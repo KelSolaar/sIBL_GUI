@@ -239,8 +239,4 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 							if software.name == name:
 								indexes.append(self.model().getNodeIndex(software))
 
-		if self.selectionModel():
-			self.selectionModel().clear()
-			for index in indexes:
-				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-		return True
+		return self.selectIndexes(indexes)

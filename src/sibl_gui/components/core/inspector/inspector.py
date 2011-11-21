@@ -147,11 +147,12 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 
+		self.__sectionsFileParsersCache = None
+
 		self.__model = None
 		self.__view = None
 
 		self.__inspectorIblSet = None
-		self.__inspectorIblSetParser = None
 		self.__inspectorPlates = None
 
 		self.__noPreviewImageText = """
@@ -441,6 +442,38 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
+	def sectionsFileParserCache(self):
+		"""
+		This method is the property for **self.__sectionsFileParserCache** attribute.
+
+		:return: self.__sectionsFileParserCache. ( Dictionary )
+		"""
+
+		return self.__sectionsFileParserCache
+
+	@sectionsFileParserCache.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def sectionsFileParserCache(self, value):
+		"""
+		This method is the setter method for **self.__sectionsFileParserCache** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParserCache"))
+
+	@sectionsFileParserCache.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def sectionsFileParserCache(self):
+		"""
+		This method is the deleter method for **self.__sectionsFileParserCache** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParserCache"))
+
+	@property
 	def model(self):
 		"""
 		This method is the property for **self.__model** attribute.
@@ -535,38 +568,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorIblSet"))
-
-	@property
-	def inspectorIblSetParser(self):
-		"""
-		This method is the property for **self.__inspectorIblSetParser** attribute.
-
-		:return: self.__inspectorIblSetParser. ( SectionsFileParser )
-		"""
-
-		return self.__inspectorIblSetParser
-
-	@inspectorIblSetParser.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def inspectorIblSetParser(self, value):
-		"""
-		This method is the setter method for **self.__inspectorIblSetParser** attribute.
-
-		:param value: Attribute value. ( SectionsFileParser )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorIblSetParser"))
-
-	@inspectorIblSetParser.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def inspectorIblSetParser(self):
-		"""
-		This method is the deleter method for **self.__inspectorIblSetParser** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorIblSetParser"))
 
 	@property
 	def inspectorPlates(self):
@@ -904,6 +905,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.__sectionsFileParsersCache = {}
+
 		self.__model = PlatesModel()
 
 		self.Plates_listView.setParent(None)
@@ -1168,8 +1171,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if os.path.exists(self.__inspectorIblSet.path):
 			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
-			self.__inspectorIblSetParser = SectionsFileParser(self.__inspectorIblSet.path)
-			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
+
+			if not self.__sectionsFileParsersCache.get(self.__inspectorIblSet.path):
+				sectionsFileParser = SectionsFileParser(self.__inspectorIblSet.path)
+				sectionsFileParser.read() and sectionsFileParser.parse()
+				self.__sectionsFileParsersCache[self.__inspectorIblSet.path] = sectionsFileParser
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
@@ -1181,42 +1187,45 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__inspectorIblSet:
 			return
 
-		if not os.path.exists(self.__inspectorIblSet.path):
+		path = self.__inspectorIblSet.path
+		if not os.path.exists(path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, self.__inspectorIblSet.title))
 
+		sectionsFileParser = self.__sectionsFileParsersCache[path]
 		self.__inspectorPlates = OrderedDict()
-		for section in self.__inspectorIblSetParser.sections:
+		for section in sectionsFileParser.sections:
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
-				Plate(name=strings.getSplitextBasename(self.__inspectorIblSetParser.getValue("PLATEfile", section)),
+				Plate(name=strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
 					icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
-														self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
+														sectionsFileParser.getValue("PLATEthumb", section))),
 					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
-															self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
+															sectionsFileParser.getValue("PLATEpreview", section))),
 					image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
-														self.__inspectorIblSetParser.getValue("PLATEfile", section))))
+														sectionsFileParser.getValue("PLATEfile", section))))
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
 		"""
-		This method draws an overlay on .
+		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
 		"""
 
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		for section in self.__inspectorIblSetParser.sections:
+		sectionsFileParser = self.__sectionsFileParsersCache[self.__inspectorIblSet.path]
+		for section in sectionsFileParser.sections:
 				if section == "Sun":
 					self.__drawLightLabel(painter, Light(name="Sun",
-													color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
-													uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
-													vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
+													color=[int(value) for value in sectionsFileParser.getValue("SUNcolor", section).split(",")],
+													uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
+													vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
 				elif re.search(r"Light\d+", section):
-					self.__drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
-													color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
-													uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),
-													vCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTv", section))))
+					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue("LIGHTname", section),
+													color=[int(value)for value in sectionsFileParser.getValue("LIGHTcolor", section).split(",")],
+													uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
+													vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
 		painter.end()
 
 	@core.executionTrace

@@ -18,6 +18,7 @@
 #***	External imports.
 #**********************************************************************************************************************
 import logging
+from PyQt4.QtGui import QItemSelection
 from PyQt4.QtGui import QItemSelectionModel
 
 #**********************************************************************************************************************
@@ -40,6 +41,7 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
+			"selectViewIndexes"
 			"storeDefaultViewModelSelection",
 			"restoreDefaultViewModelSelection",
 			"Abstract_QListView",
@@ -50,6 +52,25 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def selectViewIndexes(view, indexes, flags=QItemSelectionModel.Select | QItemSelectionModel.Rows):
+	"""
+	This method selects given view indexes.
+
+	:param view: View. ( QWidget )
+	:param indexes: Indexes to select. ( List )
+	:param flags: Selection flags. ( QItemSelectionModel.SelectionFlags )
+	:return: Definition success. ( Boolean )
+	"""
+
+	if view.selectionModel():
+		selection = QItemSelection()
+		for index in indexes:
+			selection.merge(QItemSelection(index, index), flags)
+		view.selectionModel().select(selection, flags)
+	return True
+
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def storeDefaultViewModelSelection(view):
@@ -90,11 +111,7 @@ def restoreDefaultModelSelection(view):
 	for node in foundations.walkers.nodesWalker(view.model().rootNode):
 		node.id.value in selection and indexes.append(view.model().getNodeIndex(node))
 
-	if view.selectionModel():
-		view.selectionModel().clear()
-		for index in indexes:
-			view.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-	return True
+	return selectViewIndexes(view, indexes)
 
 class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 	"""
@@ -203,6 +220,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		self.restoreModelSelection()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -213,6 +231,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		return storeDefaultViewModelSelection(self)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.
@@ -221,6 +240,18 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		"""
 
 		return restoreDefaultModelSelection(self)
+
+	@core.executionTrace
+	def selectIndexes(self, indexes, flags=QItemSelectionModel.Select | QItemSelectionModel.Rows):
+		"""
+		This method selects given indexes.
+
+		:param indexes: Indexes to select. ( List )
+		:param flags: Selection flags. ( QItemSelectionModel.SelectionFlags )
+		:return: Method success. ( Boolean )
+		"""
+
+		return selectViewIndexes(self, indexes, flags)
 
 class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 	"""
@@ -329,6 +360,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		self.restoreModelSelection()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -339,6 +371,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		return storeDefaultViewModelSelection(self)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.
@@ -347,3 +380,15 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		"""
 
 		return restoreDefaultModelSelection(self)
+
+	@core.executionTrace
+	def selectIndexes(self, indexes, flags=QItemSelectionModel.Select | QItemSelectionModel.Rows):
+		"""
+		This method selects given indexes.
+
+		:param indexes: Indexes to select. ( List )
+		:param flags: Selection flags. ( QItemSelectionModel.SelectionFlags )
+		:return: Method success. ( Boolean )
+		"""
+
+		return selectViewIndexes(self, indexes, flags)

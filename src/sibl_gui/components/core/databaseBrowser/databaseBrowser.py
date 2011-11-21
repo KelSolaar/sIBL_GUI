@@ -1561,7 +1561,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					"'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
 					'Edit' it in the Script Editor?".format(name),
 					buttons=QMessageBox.Cancel,
-					customButtons=((QString("Add"),QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
+					customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
 					if choice == 0:
 						self.addIblSet(name, path)
 					elif choice == 1:
@@ -1832,8 +1832,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		success = True
 		for iblSet, path in osWalker.files.items():
 			if not self.iblSetExists(path):
-				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), 
-										path, 
+				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True),
+										path,
 										collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(),
 										emitSignal=False) or False
 			self.__engine.stepProcessing()
@@ -1890,8 +1890,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__, 
-																					iblSet.title, 
+		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__,
+																					iblSet.title,
 																					file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			emitSignal and self.modelRefresh.emit()
@@ -1927,9 +1927,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.IblSetNode(iblSet, 
-											name=iblSet.title, 
-											parent=rootNode, 
+			iblSetNode = dbNodes.IblSetNode(iblSet,
+											name=iblSet.title,
+											parent=rootNode,
 											nodeFlags=nodeFlags,
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
@@ -1960,8 +1960,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner.getSelectedCollections() or \
 		self.__coreCollectionsOutliner.getCollections())).intersection(
 		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags))]
-		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value 
-														for value in set((getattr(iblSetNode, attribute) 
+		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
+														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
 
 		return iblSets

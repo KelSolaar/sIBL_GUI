@@ -291,8 +291,4 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				self.modelSelection.get("Overall", None) and \
 				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
 
-		if self.selectionModel():
-			self.selectionModel().clear()
-			for index in indexes:
-				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-		return True
+		return self.selectIndexes(indexes)
