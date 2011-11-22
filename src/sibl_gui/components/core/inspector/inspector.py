@@ -932,6 +932,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
+		self.__coreDatabaseBrowser.databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
 		for view in self.__coreDatabaseBrowser.views:
 			view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
@@ -1072,6 +1073,23 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.__setInspectorIblSet()
+
+	@core.executionTrace
+	def __coreDb_database__databaseChanged(self, iblSets):
+		"""
+		This method is triggered by the
+		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_Worker` class
+		when the Database has changed.
+
+		:param iblSets: Modified Ibl Sets. ( List )
+		"""
+
+		cachedFiles = [os.path.normpath(file) for file in self.__sectionsFileParsersCache.keys()]
+		for iblSet in iblSets:
+			path = os.path.normpath(iblSet.path)
+			if path in cachedFiles:
+				LOGGER.debug("> Removing modified '{0}' file from cache.".format(path))
+				self.__sectionsFileParsersCache.removeContent(path)
 
 	@core.executionTrace
 	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
