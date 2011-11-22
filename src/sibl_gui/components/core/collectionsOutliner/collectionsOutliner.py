@@ -909,6 +909,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				continue
 
 			collectionIblSetsCount = self.getCollectionIblSetsCount(node.dbItem)
+			iblSetsCount += collectionIblSetsCount
 			if collectionIblSetsCount == node.count.value:
 				continue
 
@@ -917,7 +918,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																self.__headers.keys().index(self.__iblSetsCountLabel)),
 																QVariant(collectionIblSetsCount),
 																Qt.DisplayRole)
-			iblSetsCount += collectionIblSetsCount
 
 		overallCollectionNode = self.__model.findChildren("^{0}$".format(self.__overallCollection))[0]
 		if iblSetsCount == overallCollectionNode.count.value:
@@ -1164,7 +1164,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
 			iblSetsCount += collectionIblSetsCount
 		overallCollectionNode.count.value = overallCollectionNode.count.roles[Qt.DisplayRole] = iblSetsCount
-
 		rootNode.sortChildren()
 
 		self.__model.initializeModel(rootNode)
