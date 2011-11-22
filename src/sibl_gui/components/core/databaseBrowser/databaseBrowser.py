@@ -1251,7 +1251,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
+				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
 			self.__model.dataChanged.connect(self.__model__dataChanged)
 			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
@@ -1525,9 +1525,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			viewPushButton.setChecked(viewIndex == index and True or False)
 
 	@core.executionTrace
-	def __coreDb_database__changed(self):
+	def __coreDb_database__databaseChanged(self, iblSets):
 		"""
-		This method is triggered by the **DatabaseBrowser_Worker** when the Database has changed.
+		This method is triggered by the
+		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_Worker` class
+		when the Database has changed.
+
+		:param iblSets: Modified Ibl Sets. ( List )
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.

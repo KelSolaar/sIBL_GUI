@@ -959,7 +959,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
+				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
 			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
@@ -1226,9 +1226,13 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.setTemplates()
 
 	@core.executionTrace
-	def __coreDb_database__changed(self):
+	def __coreDb_database__databaseChanged(self, templates):
 		"""
-		This method is triggered by the **TemplatesOutliner_Worker** when the Database has changed.
+		This method is triggered by the
+		:class:`umbra.components.core.templatesOutliner.workers.TemplatesOutliner_Worker`class
+		when the Database has changed.
+
+		:param templates: Modified Templates. ( List )
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
@@ -1730,7 +1734,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		return [collection for collection in set(dbCommon.filterCollections(
-		self.__coreDb.dbSession,"^{0}$".format(collection), "name")).intersection(
+		self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(
 		dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
 
 	@core.executionTrace

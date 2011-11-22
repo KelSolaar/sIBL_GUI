@@ -57,7 +57,7 @@ class DatabaseBrowser_Worker(QThread):
 	"""
 
 	# Custom signals definitions.
-	databaseChanged = pyqtSignal()
+	databaseChanged = pyqtSignal(list)
 
 	@core.executionTrace
 	def __init__(self, parent):
@@ -234,6 +234,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 
 		needModelRefresh = False
+		modifiedIblSets = []
 		for iblSet in dbCommon.getIblSets(self.__dbSession):
 			if not iblSet.path:
 				continue
@@ -243,12 +244,14 @@ class DatabaseBrowser_Worker(QThread):
 
 			storedStats = iblSet.osStats.split(",")
 			osStats = os.stat(iblSet.path)
-			if str(osStats[8]) != str(storedStats[8]):
-				LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(
-				self.__class__.__name__, iblSet.title))
-				if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
-					LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
-					needModelRefresh = True
+			if str(osStats[8]) == str(storedStats[8]):
+				continue
 
-		needModelRefresh and self.databaseChanged.emit()
+			LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(
+			self.__class__.__name__, iblSet.title))
+			if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
+				LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
+				modifiedIblSets.append(iblSet)
+				needModelRefresh = True
 
+		needModelRefresh and self.databaseChanged.emit(modifiedIblSets)

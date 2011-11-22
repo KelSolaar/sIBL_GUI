@@ -57,7 +57,7 @@ class TemplatesOutliner_Worker(QThread):
 	"""
 
 	# Custom signals definitions.
-	databaseChanged = pyqtSignal()
+	databaseChanged = pyqtSignal(list)
 
 	@core.executionTrace
 	def __init__(self, parent):
@@ -235,17 +235,24 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 
 		needModelRefresh = False
+		modifiedTemplates = []
 		for template in dbCommon.getTemplates(self.__dbSession):
-			if template.path:
-				if os.path.exists(template.path):
-					storedStats = template.osStats.split(",")
-					osStats = os.stat(template.path)
-					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(
-						self.__class__.__name__, template.name))
-						if dbCommon.updateTemplateContent(self.__dbSession, template):
-							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__,
-																						template.name))
-							needModelRefresh = True
+			if not template.path:
+				continue
 
-		needModelRefresh and self.databaseChanged.emit()
+			if os.path.exists(template.path):
+				continue
+
+			storedStats = template.osStats.split(",")
+			osStats = os.stat(template.path)
+			if str(osStats[8]) == str(storedStats[8]):
+				continue
+
+			LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(
+			self.__class__.__name__, template.name))
+			if dbCommon.updateTemplateContent(self.__dbSession, template):
+				LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
+				modifiedTemplates.append(template)
+				needModelRefresh = True
+
+		needModelRefresh and self.databaseChanged.emit(modifiedTemplates)
