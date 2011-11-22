@@ -6,6 +6,7 @@ Modules Summary:
 .. toctree::
    :maxdepth: 1
 
+   foundations.cache <api/foundations.cache>
    foundations.common <api/foundations.common>
    foundations.core <api/foundations.core>
    foundations.dag <api/foundations.dag>
@@ -108,6 +109,7 @@ Modules Summary:
    umbra.ui.widgets.search_QLineEdit <api/umbra.ui.widgets.search_QLineEdit>
    umbra.ui.widgets.variable_QPushButton <api/umbra.ui.widgets.variable_QPushButton>
    tests.tests <api/tests.tests>
+   tests.testsFoundations.testsCache <api/tests.testsFoundations.testsCache>
    tests.testsFoundations.testsCommon <api/tests.testsFoundations.testsCommon>
    tests.testsFoundations.testsCore <api/tests.testsFoundations.testsCore>
    tests.testsFoundations.testsDag <api/tests.testsFoundations.testsDag>

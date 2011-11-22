@@ -16,6 +16,10 @@ Functions
 Classes
 -------
 
+.. autoclass:: RuntimeGlobals
+	:show-inheritance:
+	:members:
+
 .. autoclass:: Active_QLabel
 	:show-inheritance:
 	:members:

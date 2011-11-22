@@ -11,6 +11,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: selectViewIndexes
+
 .. autofunction:: storeDefaultViewModelSelection
 
 .. autofunction:: restoreDefaultModelSelection
