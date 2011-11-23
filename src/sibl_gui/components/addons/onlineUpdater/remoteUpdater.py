@@ -37,6 +37,7 @@ from PyQt4.QtGui import QTableWidgetItem
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.dataStructures
 import foundations.exceptions
 import foundations.ui.common
 import umbra.ui.common
@@ -66,7 +67,7 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Remote_Updater.ui")
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class ReleaseObject(core.Structure):
+class ReleaseObject(foundations.dataStructures.Structure):
 	"""
 	This class represents a storage object for a :class:`RemoteUpdater` class release.
 	"""
@@ -81,7 +82,7 @@ class ReleaseObject(core.Structure):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		core.Structure.__init__(self, **kwargs)
+		foundations.dataStructures.Structure.__init__(self, **kwargs)
 
 class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""

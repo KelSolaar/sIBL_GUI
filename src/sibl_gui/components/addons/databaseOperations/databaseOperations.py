@@ -26,6 +26,7 @@ from PyQt4.QtGui import QMessageBox
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.dataStructures
 import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.engine
@@ -53,7 +54,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Oper
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class DbType(core.Structure):
+class DbType(foundations.dataStructures.Structure):
 	"""
 	| This class represents a storage object for manipulation methods associated to a given Database type.
 	| See :mod:`umbra.components.core.db.utilities.types` module for more informations
@@ -70,7 +71,7 @@ class DbType(core.Structure):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		core.Structure.__init__(self, **kwargs)
+		foundations.dataStructures.Structure.__init__(self, **kwargs)
 
 class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""

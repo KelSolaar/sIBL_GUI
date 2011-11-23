@@ -40,6 +40,7 @@ from PyQt4.QtGui import QPen
 #**********************************************************************************************************************
 import foundations.core as core
 import foundations.cache
+import foundations.dataStructures
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -71,7 +72,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui"
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class Plate(core.Structure):
+class Plate(foundations.dataStructures.Structure):
 	"""
 	This class represents a storage object for an Ibl Set Plate.
 	"""
@@ -86,9 +87,9 @@ class Plate(core.Structure):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		core.Structure.__init__(self, **kwargs)
+		foundations.dataStructures.Structure.__init__(self, **kwargs)
 
-class Light(core.Structure):
+class Light(foundations.dataStructures.Structure):
 	"""
 	This class represents a storage object for an Ibl Set light.
 	"""
@@ -103,7 +104,7 @@ class Light(core.Structure):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		core.Structure.__init__(self, **kwargs)
+		foundations.dataStructures.Structure.__init__(self, **kwargs)
 
 class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
