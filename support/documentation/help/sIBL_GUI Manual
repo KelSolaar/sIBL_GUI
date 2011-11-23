@@ -32,15 +32,19 @@ Table Of Content
 
 -  `Components`_
 
+   -  `Factory`_
+
+      -  `Components Manager Ui`_
+      -  `Preferences Manager`_
+      -  `Script Editor`_
+
    -  `Core`_
 
       -  `Collections Outliner`_
-      -  `Components Manager`_
       -  `Database Browser`_
       -  `Db`_
       -  `Inspector`_
       -  `Templates Outliner`_
-      -  `Preferences Manager`_
 
    -  `Addons`_
 
@@ -166,19 +170,23 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **Templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
--  **settings**: Directory storing *sIBL_GUI* settings file.
--  **logging**: Directory storing *sIBL_GUI* logging file.
--  **io**: Directory used for *sIBL_GUI* input / output operations.
-
-   -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
-   -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
-
+-  **components**: Directory storing user components.
 -  **database**: Directory storing the SQLite database.
 
    -  **backup**: Directory used by the *Db* component when it backups the database.
+   -  **migrations**: Directory used by the *Db* migration mechanism responsible to migrate the database.
 
--  **components**: Directory storing user components.
+      -  **versions**: Directory used by to store the various migrations scripts.
+
+-  **io**: Directory used for *sIBL_GUI* input / output operations.
+
+   -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
+   -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
+   -  **scriptEditor**: Directory containing the default scripts used by the **Script Editor**.
+
+-  **logging**: Directory storing *sIBL_GUI* logging file.
+-  **settings**: Directory storing *sIBL_GUI* settings file.
+-  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
 
 _`Command Line Parameters`
 --------------------------
@@ -190,11 +198,11 @@ _`Command Line Parameters`
 -  **-v VERBOSITYLEVEL, —verbose=VERBOSITYLEVEL**: Application verbosity levels: 0 = Critical \| 1 = Error \| 2 = Warning \| 3 = Info \| 4 = Debug.
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
+-  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 -  **-t, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
 -  **-o LOADERSCRIPTSOUTPUTDIRECTORY, —loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY**: Loader scripts output directory.
--  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 
 Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
 
@@ -257,6 +265,7 @@ _`Interface`
 -  `Library Layout`_
 -  `Inspect Layout`_
 -  `Export Layout`_
+-  `Edit Layout`_
 -  `Preferences Layout`_
 
 _`Toolbar`
@@ -339,6 +348,19 @@ An additional but extremely powerful export related component is available by ri
 | ..  image:: resources/pictures/sIBL_GUI_TemplatesCentricLayout.jpg     |
 +------------------------------------------------------------------------+
 
+_`Edit Layout`
+^^^^^^^^^^^^^^^^^
+
+The *Edit layout* is where Ibl Set are edited.
+
+This layout is built around 1 component:
+
+-  `Script Editor`_ (factory.scriptEditor)
+
++-------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_EditCentricLayout.jpg     |
++-------------------------------------------------------------------+
+
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -346,8 +368,8 @@ The *Preferences layout* is where *sIBL_GUI* behavior is configured.
 
 This layout is built around 2 components:
 
--  `Components Manager`_ (core.componentsManagerUi)
--  `Preferences Manager`_ (core.preferencesManager)
+-  `Components Manager Ui`_ (factory.componentsManagerUi)
+-  `Preferences Manager`_ (factory.preferencesManager)
 
 +--------------------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_PreferencesCentricLayout.jpg     |
@@ -358,16 +380,109 @@ This layout is built around 2 components:
 _`Components`
 =============
 
-*sIBL_GUI* has currently 2 categories of components:
+*sIBL_GUI* has currently 3 categories of components:
 
--  **Default Component** (Components without an associated Ui Widget).
--  **Ui Component** (Components with an associated Ui Widget).
+-  **Default Component** (Components inheriting from *Python Object*).
+-  **QWidget Component** (Components inheriting from *Qt QWidget*).
+-  **QObject Component** (Components inheriting from *Qt QObject*).
 
-Those 2 types are split into 3 main families:
+Those 2 types are split into 4 main families:
 
--  **Core** (Factory required components, not deactivable and not removable)
--  **Addons** (Factory optional components, deactivable and removable)
--  **User** (User optional components, deactivable and removable)
+-  **Factory** (Factory required components, not deactivable and not removable).
+-  **Core** (Core required components, not deactivable and not removable).
+-  **Addons** (Factory optional components, deactivable and removable).
+-  **User** (User optional components, deactivable and removable).
+
+_`Factory`
+----------
+
+.. _factory.componentsManagerUi:
+
+_`Components Manager Ui` (factory.componentsManagerUi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++-------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ComponentsManager.jpg     |
++-------------------------------------------------------------------+
+
+The *Components Manager Ui* component allows *sIBL_GUI* addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
+
+Interactions:
+
+-  **Right clic**: Displays a context menu described further.
+
+Columns Descriptions:
+
+-  **Components**: Components names (Components are sorted by families).
+-  **Activated**: Components activations status.
+-  **Category**: Components categories (Default or Ui).
+-  **Rank**: Components ranks (Components with a low rank will have a high instantiation priority).
+
+Context Menu:
+
++------------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg     |
++------------------------------------------------------------------------------+
+
+-  **Activate Component(s)**: Activates selected Component(s).
+-  **Dectivate Component(s)**: Deactivates selected Component(s).
+-  **Reload Component(s)**: Reloads selected Component(s) (Deactivates the component, reloads component code, activates back the component).
+
+Addons Functionalities:
+
+-  **Open Component(s) Location(s) ...**: Opens Component(s) directory(s).
+
+**\*\*\***
+
+.. _factory.preferencesManager:
+
+_`Preferences Manager` (factory.preferencesManager)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_PreferencesManager.jpg     |
++--------------------------------------------------------------------+
+
+The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
+
+-  **General**: Overall *sIBL_GUI* settings.
+-  **Others**: Components settings.
+
+General Page:
+
+-  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
+
+   -  Default: Default logging formatter: **Logging Level: Message**.
+   -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
+   -  Standard: Simple standard logging formatter: **Message**.
+
+-  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
+
+   -  Debug
+   -  Info
+   -  Warning
+   -  Error
+   -  Critical
+
+-  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
+
+Others Page:
+
+Those settings are components dependent and will be described per related component.
+
+**\*\*\***
+
+.. _factory.scriptEditor:
+
+_`Script Editor` (factory.scriptEditor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditor.jpg     |
++--------------------------------------------------------------+
+
+The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting.
+
 
 _`Core`
 -------
@@ -416,44 +531,6 @@ While adding a new Collection, a comment can be directly provided by using a com
 +----------------------------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg     |
 +----------------------------------------------------------------------------------+
-
-**\*\*\***
-
-.. _core.componentsManagerUi:
-
-_`Components Manager` (core.componentsManagerUi)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+-------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_ComponentsManager.jpg     |
-+-------------------------------------------------------------------+
-
-The *Components Manager* component allows *sIBL_GUI* addons and user components activation / deactivation (Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
-
-Interactions:
-
--  **Right clic**: Displays a context menu described further.
-
-Columns Descriptions:
-
--  **Components**: Components names (Components are sorted by families).
--  **Activated**: Components activations status.
--  **Category**: Components categories (Default or Ui).
--  **Rank**: Components ranks (Components with a low rank will have a high instantiation priority).
-
-Context Menu:
-
-+------------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg     |
-+------------------------------------------------------------------------------+
-
--  **Activate Component(s)**: Activates selected Component(s).
--  **Dectivate Component(s)**: Deactivates selected Component(s).
--  **Reload Component(s)**: Reloads selected Component(s) (Deactivates the component, reloads component code, activates back the component).
-
-Addons Functionalities:
-
--  **Open Component(s) Location(s) ...**: Opens Component(s) directory(s).
 
 **\*\*\***
 
@@ -552,44 +629,6 @@ Addons Functionalities:
 -  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Plate(s) …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
-
-**\*\*\***
-
-.. _core.preferencesManager:
-
-_`Preferences Manager` (core.preferencesManager)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+--------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_PreferencesManager.jpg     |
-+--------------------------------------------------------------------+
-
-The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
-
--  **General**: Overall *sIBL_GUI* settings.
--  **Others**: Components settings.
-
-General Page:
-
--  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
-
-   -  Default: Default logging formatter: **Logging Level: Message**.
-   -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
-   -  Standard: Simple standard logging formatter: **Message**.
-
--  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
-
-   -  Debug
-   -  Info
-   -  Warning
-   -  Error
-   -  Critical
-
--  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
-
-Others Page:
-
-Those settings are components dependent and will be described per related component.
 
 **\*\*\***
 
