@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.setsScanner.setsScanner.SetsScanner` 
+	This module defines the :class:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner.IblSetsScanner` 
 	Component Interface class Workers.
 
 **Others:**
@@ -44,14 +44,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "SetsScanner_Worker"]
+__all__ = ["LOGGER", "iblSetsScanner_Worker"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class SetsScanner_Worker(QThread):
+class iblSetsScanner_Worker(QThread):
 	"""
 	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to retrieve
 	new Ibl Sets from Database registered directories parents.

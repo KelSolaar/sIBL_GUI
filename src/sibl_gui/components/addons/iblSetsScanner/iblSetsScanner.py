@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**setsScanner.py**
+**iblSetsScanner.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`SetsScanner` Component Interface class.
+	This module defines the :class:`IblSetsScanner` Component Interface class.
 
 **Others:**
 
@@ -30,7 +30,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qobjectComponent import QObjectComponent
-from sibl_gui.components.addons.setsScanner.workers import SetsScanner_Worker
+from sibl_gui.components.addons.iblSetsScanner.workers import iblSetsScanner_Worker
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -43,17 +43,17 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "SetsScanner"]
+__all__ = ["LOGGER", "IblSetsScanner"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class SetsScanner(QObjectComponent):
+class IblSetsScanner(QObjectComponent):
 	"""
-	| This class is the :mod:`umbra.components.addons.setsScanner.setsScanner` Component Interface class.
-	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets
+	| This class is the :mod:`umbra.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
+	| It instantiates the :class:`IblSetsScanner` class on Application startup which will gather new Ibl Sets
 		from Database registered directories parents.
 	"""
 
@@ -300,7 +300,7 @@ class SetsScanner(QObjectComponent):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__setsScannerWorkerThread = SetsScanner_Worker(self)
+				self.__setsScannerWorkerThread = iblSetsScanner_Worker(self)
 				self.__engine.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
@@ -349,7 +349,7 @@ class SetsScanner(QObjectComponent):
 	@umbra.engine.encapsulateProcessing
 	def __setsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
-		This method is triggered by the **SetsScanner_Worker** when the Database has changed.
+		This method is triggered by the **iblSetsScanner_Worker** when the Database has changed.
 
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
