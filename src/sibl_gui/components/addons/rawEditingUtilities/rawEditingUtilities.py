@@ -518,7 +518,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __addActions(self):
 		"""
-		This method adds actions.
+		This method sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -531,8 +531,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				view.addAction(editIblSetsFilesAction)
 
 			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...",
-			slot=self.__Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered))
+			"Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
+			slot=self.__Inspector_Overall_frame_editInspectorIblSetFileAction__triggered))
 			self.__coreTemplatesOutliner.view.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...",
 			slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
@@ -553,10 +553,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			for view in self.__coreDatabaseBrowser.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)
-			editInspectorIblSetsFilesAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ..."
+			editInspectorIblSetFileAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
 			self.__coreInspector.Inspector_Overall_frame.removeAction(
-			self.__engine.actionsManager.getAction(editInspectorIblSetsFilesAction))
-			self.__engine.actionsManager.unregisterAction(editInspectorIblSetsFilesAction)
+			self.__engine.actionsManager.getAction(editInspectorIblSetFileAction))
+			self.__engine.actionsManager.unregisterAction(editInspectorIblSetFileAction)
 			editTemplatesFilesAction = "Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ..."
 			self.__coreTemplatesOutliner.view.removeAction(
 			self.__engine.actionsManager.getAction(editTemplatesFilesAction))
@@ -575,9 +575,9 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editIblSetsFiles_ui()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered(self, checked):
+	def __Inspector_Overall_frame_editInspectorIblSetFileAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )

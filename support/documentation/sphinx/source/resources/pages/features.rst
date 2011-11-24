@@ -7,7 +7,7 @@ With an external application, “.Ibl” files format parsing, Collections manag
 
 The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
 
-*sIBL_GUI* is built in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
+*sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
 - `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `PyQt <http://www.riverbankcomputing.co.uk/>`_ bindings.
 - `SQLAlchemy <http://www.sqlalchemy.org/>`_ provides the database backbone.

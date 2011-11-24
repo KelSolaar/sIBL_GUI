@@ -22,9 +22,9 @@ _`Factory`
 _`Components Manager Ui` (factory.componentsManagerUi)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+-------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_ComponentsManager.jpg            |
-+-------------------------------------------------------------------+
++---------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ComponentsManagerUi.jpg            |
++---------------------------------------------------------------------+
 
 The *Components Manager Ui* component allows *sIBL_GUI* addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
 
@@ -38,12 +38,13 @@ Columns Descriptions:
 -  **Activated**: Components activations status.
 -  **Category**: Components categories (Default or Ui).
 -  **Rank**: Components ranks (Components with a low rank will have a high instantiation priority).
+-  **Version**: Components versions.
 
-Context Menu:
+Context menu:
 
-+------------------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg            |
-+------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ComponentsManagerUiContextMenu.jpg            |
++--------------------------------------------------------------------------------+
 
 -  **Activate Component(s)**: Activates selected Component(s).
 -  **Dectivate Component(s)**: Deactivates selected Component(s).
@@ -102,9 +103,19 @@ _`Script Editor` (factory.scriptEditor)
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditor.jpg            |
 +--------------------------------------------------------------+
 
-| The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+
 | Languages support is provided using custom grammars files but mechanism will be replaced by *Textmate* compliant system in the future.
 | *sIBL_GUI* logging messages and commands execution results are displayed in the upper pane.
+| By default the *Script Editor* component is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
+
+Interactions:
+
+-  **Language Combo Box**: Switches the current editor language.
+-  **Drag’n’drop**:
+
+   -  Drag’n’dropping an IBL Sets or Templates selection into the *Script Editor* component will open their associated files.
+   -  Drag’n’dropping any other type of file on *sIBL_GUI* will open it in the *Script Editor* component.
 
 Menus Bar:
 
@@ -115,38 +126,81 @@ File Menu:
 +----------------------------------------------------------------------+
 
 -  **New**: Adds a new editor.
--  **Load …**: Loads user chosen file in a new editor.
--  **Source …**: Loads user chosen file in a new editor and execute its content.
+-  **Load ...**: Loads user chosen file in a new editor.
+-  **Source ...**: Loads user chosen file in a new editor and execute its content.
 -  **Save**: Saves current editor content.
--  **Save As …**: Saves current editor content as user chosen file.
+-  **Save As ...**: Saves current editor content as user chosen file.
 -  **Save All**: Saves all editors content.
 -  **Close**: Closes current editor.
 -  **Close All**: Closes all editors.
+
+Edit Menu:
 
 +----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorEditMenu.jpg            |
 +----------------------------------------------------------------------+
 
--  **New**: Adds a new editor.
--  **Load …**: Loads user chosen file in a new editor.
--  **Source …**: Loads user chosen file in a new editor and execute its content.
--  **Save**: Saves current editor content.
--  **Save As …**: Saves current editor content as user chosen file.
--  **Save All**: Saves all editors content.
--  **Close**: Closes current editor.
--  **Close All**: Closes all editors.
+-  **Undo**: Reverts current editor last changes.
+-  **Redo**: Repeats current editor reverted changes.
+-  **Cut**: Cuts current editor selected content.
+-  **Copy**: Copies current editor selected content.
+-  **Paste**: Pastes clipboard content into current editor.
+-  **Delete**: Deletes current editor selected content.
+-  **Select All**: Selects all editor content.
+-  **Goto Line ...**: Scrolls current editor to user chosen line.
+-  **Indent Selection**: Indents current editor selected content.
+-  **Unindent Selection**: Unindents current editor selected content.
+-  **Convert Indentation To Tabs**: Converts current editor indentation to tabs.
+-  **Convert Indentation To Spaces**: Converts current editor indentation to spaces.
+-  **Remove Trailing Whitespaces**: Removes current editor trailing whitespaces.
+-  **Toggle Comments**: Toggles comments on current editor selected content.
+
+Search Menu:
 
 +------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg            |
 +------------------------------------------------------------------------+
 
+-  **Search And Replace ...**: Launches the *Search And Replace* dialog described further below.
+-  **Search Next**: Searches next occurence of current editor selected text.
+-  **Search Previous**: Searches previous occurence of current editor selected text.
+
+Command Menu:
+
 +-------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg            |
 +-------------------------------------------------------------------------+
 
+-  **Evaluate Selection**: Evaluates current editor selected text.
+-  **Evaluate Script**: Evaluates current editor content.
+
+View Menu:
+
 +----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorViewMenu.jpg            |
 +----------------------------------------------------------------------+
+
+-  **Toggle Word Wrap**: Toggles word wrap on current editor.
+-  **Toggle Whitespaces**: Toggles whitespaces display on current editor.
+
+Dialogs:
+
+Search And Replace:
+
++------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg            |
++------------------------------------------------------------------------------+
+
+-  **Search Combo Box**: Defines the search pattern.
+-  **Replace With Combo Box**: Defines the replacement pattern.
+-  **Case Sensitive Check Box**: Search will be performed case sensitively.
+-  **Whole Word Check Box**: Search will be performed within words boundaries.
+-  **Regular Expressions Check Box**: Search will be performed using Regular Expressions.
+-  **Backward Search Check Box**: Search will be performed backward.
+-  **Wrap Around Check Box**: Search will wrap around when reaching the editor end.
+-  **Search Push Button**: Performs the search and highlight editor first matched occurence.
+-  **Replace Push Button**: Performs the search and replace editor first matched occurence.
+-  **Replace All Push Button**: Performs the search and replace all editor matched occurence.
 
 _`Core`
 -------
@@ -160,8 +214,8 @@ _`Collections Outliner` (core.collectionsOutliner)
 | ..  image:: ../pictures/sIBL_GUI_CollectionsOutliner.jpg            |
 +---------------------------------------------------------------------+
 
-| The *Collections Outliner* component is where the Ibl Sets are organized into Collections for better management.
-| There is a *Default Collection* where Ibl Sets fall when they are added without a specific Collection container.
+| The *Collections Outliner* component is where the IBL Sets are organized into Collections for better management.
+| There is a *Default Collection* where IBL Sets fall when they are added without a specific Collection container.
 
 Interactions:
 
@@ -169,23 +223,23 @@ Interactions:
 -  **Right clic**: Displays a context menu described further.
 -  **Drag’n’drop**:
 
-   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
-   -  Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
+   -  Drag’n’dropping an IBL Sets selection from the *Database Browser* component to a Collections Outliner component Collection changes given IBL Sets current Collection.
+   -  Drag’n’dropping some IBL Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 
 Columns Descriptions:
 
 -  **Collections**: Collections names (Editable through double click).
--  **Sets**: Sets count per Collections.
+-  **IBL Sets**: IBL Sets count per Collections.
 -  **Comments**: Collections comments (Editable through double click).
 
-Context Menu:
+Context menu:
 
 +--------------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg            |
 +--------------------------------------------------------------------------------+
 
--  **Add Content …**: Adds a new Collection, then recursively adds chosen directory Ibl Sets into the database, assigning them to the new Collection.
--  **Add Collection …**: Adds a new Collection to the database.
+-  **Add Content ...**: Adds a new Collection, then recursively adds chosen directory IBL Sets into the database, assigning them to the new Collection.
+-  **Add Collection ...**: Adds a new Collection to the database.
 -  **Remove Collection(s) ...**: Removes selected Collections from the database (Overall and Default Collections cannot be removed).
 
 **Note**:
@@ -207,7 +261,32 @@ _`Database Browser` (core.databaseBrowser)
 | ..  image:: ../pictures/sIBL_GUI_DatabaseBrowser.jpg            |
 +-----------------------------------------------------------------+
 
-The *Database Browser* component is the central component where Ibl Sets are viewed and chosen for export. The component is tracking the Ibl Sets files on the disk and reload them automatically when modified.
+The *Database Browser* component is the central component where IBL Sets are viewed and chosen for export. The component is tracking the IBL Sets files on the disk and reload them automatically when modified.
+
+IBL Sets can be viewed using different views depending the user needs:
+
+Columns View:
+
++----------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_DatabaseBrowserColumnsView.jpg            |
++----------------------------------------------------------------------------+
+
+Details View:
+
++----------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_DatabaseBrowserDetailsView.jpg            |
++----------------------------------------------------------------------------+
+
+Columns Descriptions:
+
+-  **Ibl Set**: IBL Sets titles (Editable through double click).
+-  **Author**: IBL Sets authors.
+-  **Shot Location**: IBL Sets shot locations.
+-  **Latitude**: IBL Sets shot locations latitudes.
+-  **Longitude**: IBL Sets shot locations Longitudes.
+-  **Shot Date**: IBL Sets shot days.
+-  **Shot Time**: IBL Sets shot times.
+-  **Comment**: IBL Sets comments.
 
 Interactions:
 
@@ -215,39 +294,50 @@ Interactions:
 -  **Right clic**: Displays a context menu described further.
 -  **Drag’n’drop**:
 
-   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a *Collections Outliner* component Collection change the selected sets Collection.
-   -  Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
+   -  Drag’n’dropping an IBL Sets selection from the *Database Browser* component to a *Collections Outliner* component Collection change the selected sets Collection.
+   -  Drag’n’dropping some IBL Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 
 -  **Hovering**: Hovering an Ibl Set raises a popup with informations about the focused Ibl Set.
--  **Thumbnails Size Horizontal Slider**: Adjusts Ibl Sets icons size.
+-  **Thumbnails View Push Button**: Switch the current view to *Thumbnails View*. 
+-  **Columns View Push Button**: Switch the current view to *Columns View*.
+-  **Details View Push Button**: Switch the current view to *Details View*.
+-  **Case Sensitive Matching Push Button**: Search will be performed case sensitively if the button is checked.
+-  **Search Database Line Edit**: It allows IBL Sets filtering. The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will be raised once characters starts being typed. Clicking the magnifier glass raises a context menu pictured below allowing to choose the current database field.
+-  **Thumbnails Size Horizontal Slider**: Adjusts IBL Sets icons size.
 
-Context Menu:
+Context menu:
 
 +----------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg            |
 +----------------------------------------------------------------------------+
 
--  **Add Content …**: Recursively adds chosen directory Ibl Sets into the database assigning them to the selected *Collections Outliner* component Collection or the Default Collection if none is selected.
--  **Add Ibl Set …**: Adds the selected Ibl Set file into the database assigning it to the selected *Collections Outliner* component Collection or the Default Collection if none is selected.
--  **Remove Ibl Set(s) ...**: Removes selected Ibl Sets from the database.
--  **Update Ibl Set(s) Location(s) ...**: Updates selected Ibl Sets files paths.
+-  **Add Content ...**: Recursively adds chosen directory IBL Sets into the database assigning them to the selected *Collections Outliner* component Collection or the Default Collection if none is selected.
+-  **Add Ibl Set ...**: Adds the selected Ibl Set file into the database assigning it to the selected *Collections Outliner* component Collection or the Default Collection if none is selected.
+-  **Remove Ibl Set(s) ...**: Removes selected IBL Sets from the database.
+-  **Update Ibl Set(s) Location(s) ...**: Updates selected IBL Sets files paths.
 
 Addons Functionalities:
 
--  **Edit In sIBLedit …**: Sends selected Ibl Sets to *sIBLedit*.
--  **Edit In Text Editor …**: Edits selected Ibl Sets with system or custom user defined text editor.
--  **Open Ibl Set(s) Location(s) ...**: Opens selected Ibl Sets directories.
--  **View Background Image …**: Views selected Ibl Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Lighting Image …**: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Reflection Image …**: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Plate(s) …**: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **Edit In sIBLedit ...**: Sends selected IBL Sets to *sIBLedit*.
+-  **Open Ibl Set(s) Location(s) ...**: Opens selected IBL Sets directories.
+-  **Edit Ibl Set(s) File(s) ...**: Edits selected IBL Sets in the *Script Editor* component or custom user defined text editor.
+-  **View Background Image ...**: Views selected IBL Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Lighting Image ...**: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Reflection Image ...**: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plate(s) ...**: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+
+Search widget context menu:
+
++----------------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_DatabaseBrowserSearchWidgetContextMenu.jpg            |
++----------------------------------------------------------------------------------------+
 
 
 
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
-The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write and rotating backup methods.
+The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
 
 
 
@@ -278,7 +368,7 @@ Addons Functionalities:
 -  **View Reflection Image Push Button**: Views Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Plate(s) Push Button**: Views Inspector Ibl Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
-Context Menu:
+Context menu:
 
 +----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_InspectorContextMenu.jpg            |
@@ -286,13 +376,13 @@ Context Menu:
 
 Addons Functionalities:
 
--  **Edit In sIBLedit …**: Sends Inspector Ibl Set to *sIBLedit*.
--  **Edit In Text Editor …**: Edits Inspector Ibl Set with system or custom user defined text editor.
--  **Open Ibl Set(s) Location(s) ...**: Opens Inspector Ibl Sets directory.
--  **View Background Image …**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Plate(s) …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **Edit In sIBLedit ...**: Sends Inspector Ibl Set to *sIBLedit*.
+-  **Open Ibl Set Location ...**: Opens Inspector IBL Sets directory.
+-  **Edit Ibl Set File ...**: Edits  Inspector Ibl Set in the *Script Editor* component or custom user defined text editor.
+-  **View Background Image ...**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Lighting Image ...**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Reflection Image ...**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plate(s) ...**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 
 
@@ -327,13 +417,13 @@ Interactions:
 
    -  Drag’n’dropping some Templates files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 
-Context Menu:
+Context menu:
 
 +------------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_TemplatesOutlinerContextMenu.jpg            |
 +------------------------------------------------------------------------------+
 
--  **Add Template …**: Adds the selected Templates file to the database.
+-  **Add Template ...**: Adds the selected Templates file to the database.
 -  **Remove Templates(s) ...**: Removes selected Templates from the database.
 -  **Import Default Templates**: *sIBL_GUI* will scan for Templates into it’s installation directory and the user preferences directories.
 -  **Filter Templates Versions**: *sIBL_GUI* will filter the Templates keeping the highest version of multiple same Templates.
@@ -341,8 +431,8 @@ Context Menu:
 
 Addons Functionalities:
 
--  **Edit In Text Editor …**: Edits selected Templates with system or custom user defined text editor.
 -  **Open Templates(s) Location(s) ...**: Opens selected Templates directories.
+-  **Edit Template(s) File(s) ...**: Edits selected Templates in the *Script Editor* component or custom user defined text editor.
 
 Addons
 ------
@@ -386,7 +476,7 @@ _`Gps Map` (addons.gpsMap)
 | ..  image:: ../pictures/sIBL_GUI_GpsMap.jpg            |
 +--------------------------------------------------------+
 
-The *Gps Map* component is embedding a Microsoft Bing Map into *sIBL_GUI*: Selecting some Ibl Sets (Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
+The *Gps Map* component is embedding a Microsoft Bing Map into *sIBL_GUI*: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
 
 Interactions:
 
@@ -397,6 +487,15 @@ Interactions:
    -  Auto: This map type automatically chooses between Aerial and Road mode.
    -  Aerial: This map type overlays satellite imagery onto the map and highlights roads and major landmarks to be easily identifiable amongst the satellite images.
    -  Road: This map type displays vector imagery of roads, buildings, and geography.
+
+
+
+.. _addons.iblSetsScanner:
+
+_`Ibl Sets Scanner` (addons.iblSetsScanner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *Ibl Sets Scanner* component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
 
 
 
@@ -438,6 +537,8 @@ The *Loader Script Options* component allows the user to tweak the way the loade
 
 -  **Common Attributes**: Common Template attributes (Refer to the current Template help file for details about an attribute).
 -  **Additional Attributes**: Additional Template attributes (Refer to the current Template help file for details about an attribute).
+
+Templates settings are stored per version and restored each time one is selected in *sIBL_GUI* preferences directory.
 
 
 
@@ -481,19 +582,6 @@ _`Logging Notifier` (addons.loggingNotifier)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Logging Notifier* component displays logging messages in the status bar.
-
-
-
-.. _addons.loggingWindow:
-
-_`Logging Window` (addons.loggingWindow)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+---------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_LoggingWindow.jpg            |
-+---------------------------------------------------------------+
-
-The *Logging Window* component is available by right clicking the main toolbar and displays *sIBL_GUI* verbose messages.
 
 
 
@@ -578,24 +666,7 @@ _`Raw Editing Utilities` (addons.rawEditingUtilities)
 | ..  image:: ../pictures/sIBL_GUI_RawEditingUtilities.jpg            |
 +---------------------------------------------------------------------+
 
-The *Raw Editing Utilities* component provides text editing capability to *sIBL_GUI*, adding text edition at various entry points in *sIBL_GUI* Ui. The text edition is done either by the Os default text editor or an user defined text editor.
-
-Default Supported Text Editors:
-
--  **Windows**:
-
-   -  Notepad
-
--  **Mac Os X**:
-
-   -  TextEdit
-
--  **Linux**:
-
-   -  Gedit
-   -  Kwrite
-   -  Nedit
-   -  Mousepad
+The *Raw Editing Utilities* component provides text editing capability to *sIBL_GUI*, adding text edition at various entry points in *sIBL_GUI* Ui. The text edition is done either by the *Script Editor* component or an user defined text editor.
 
 Interactions:
 
@@ -612,7 +683,7 @@ _`Rewiring Tool` (addons.rewiringTool)
 | ..  image:: ../pictures/sIBL_GUI_RewiringTool.jpg            |
 +--------------------------------------------------------------+
 
-The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL sets and arbitrary load whatever HDR you want and still benefit from *sIBL_GUI* one click lighting setup.
+The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from *sIBL_GUI* one click lighting setup.
 
 Interactions:
 
@@ -626,27 +697,16 @@ Interactions:
 _`Search Database` (addons.searchDatabase)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+------------------------------------------------------------------+------------------------------------------------------------------+------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_SearchDatabase_A.jpg            | ..  image:: ../pictures/sIBL_GUI_SearchDatabase_B.jpg            | ..  image:: ../pictures/sIBL_GUI_SearchDatabase_C.jpg            |
-+------------------------------------------------------------------+------------------------------------------------------------------+------------------------------------------------------------------+
++---------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_SearchDatabaseSearchInTagsCloud.jpg            | ..  image:: ../pictures/sIBL_GUI_SearchDatabaseSearchInShotTime.jpg            |
++---------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
 
 The *Search Database* component enables search in the database. There are 2 pages providing different search options:
 
--  **Search In Fields**: Searches in database fields.
+-  **Search In Tags Cloud**: Searches in database Ibl Sets comments tags cloud generated.
 -  **Search In Shot Time**: Searches in shot time range.
 
 Interactions:
-
-Search In Fields Page:
-
--  **Search Database Combo Box**: Field against which the search will be executed. There are 5 different fields types available:
-
-   -  In Names
-   -  In Authors
-   -  In Links
-   -  In Locations
-   -  In Comments
-   -  In Tags Cloud
 
 -  **Search Database Line Edit**: The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will raise once characters starts being typed.
 -  **Case Insensitive Matching Check Box**: The string matching is done case insensitively.
@@ -655,15 +715,6 @@ Search In Shot Time:
 
 -  **From Time Edit**: Time range search start.
 -  **To Time Edit**: Time range search end.
-
-
-
-.. _addons.setsScanner:
-
-_`Sets Scanner` (addons.setsScanner)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The *Sets Scanner* component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent directory. This behavior can be stopped by deactivating the component.
 
 
 

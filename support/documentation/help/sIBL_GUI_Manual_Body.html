@@ -43,7 +43,7 @@
 						<a class="reference internal" href="#shared-database-configuration">Shared Database Configuration</a>
 					</li>
 					<li>
-						<a class="reference internal" href="#ibl-sets-wizard">Ibl Sets Wizard</a>
+						<a class="reference internal" href="#ibl-sets-wizard">IBL Sets Wizard</a>
 					</li>
 					<li>
 						<a class="reference internal" href="#interface">Interface</a>
@@ -117,6 +117,9 @@
 								<a class="reference internal" href="#gps-map">Gps Map</a>
 							</li>
 							<li>
+								<a class="reference internal" href="#ibl-sets-scanner">Ibl Sets Scanner</a>
+							</li>
+							<li>
 								<a class="reference internal" href="#loader-script">Loader Script</a>
 							</li>
 							<li>
@@ -127,9 +130,6 @@
 							</li>
 							<li>
 								<a class="reference internal" href="#logging-notifier">Logging Notifier</a>
-							</li>
-							<li>
-								<a class="reference internal" href="#logging-window">Logging Window</a>
 							</li>
 							<li>
 								<a class="reference internal" href="#online-updater">Online Updater</a>
@@ -145,9 +145,6 @@
 							</li>
 							<li>
 								<a class="reference internal" href="#search-database">Search Database</a>
-							</li>
-							<li>
-								<a class="reference internal" href="#sets-scanner">Sets Scanner</a>
 							</li>
 							<li>
 								<a class="reference internal" href="#sibledit-utilities">sIBLedit Utilities</a>
@@ -200,7 +197,7 @@
 			The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That&#8217;s one of <em>sIBL_GUI</em> strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
 		</p>
 		<p>
-			<em>sIBL_GUI</em> is built in <a class="reference external" href="http://www.python.org/">Python 2.7.1</a> and uses some others major libraries / tools:
+			<em>sIBL_GUI</em> is built around <a class="reference external" href="https://github.com/KelSolaar/Umbra">Umbra</a> Framework in <a class="reference external" href="http://www.python.org/">Python 2.7.1</a> and uses some others major libraries / tools:
 		</p>
 		<ul class="simple">
 			<li>
@@ -380,7 +377,7 @@
 							<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
 						</li>
 						<li>
-							<strong>scriptEditor</strong>: Directory containing the default scripts used by the <strong>Script Editor</strong>.
+							<strong>scriptEditor</strong>: Directory containing the default scripts used by the <em>Script Editor</em> component.
 						</li>
 					</ul>
 				</li>
@@ -489,7 +486,7 @@ cd sIBL_GUI.app
 C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 </pre>
 			<p>
-				When the Database is read only, the automatic scanner adding new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library directory won&#8217;t be added automatically.
+				When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won&#8217;t be added automatically.
 			</p>
 			<p>
 				It&#8217;s a good idea to put the Database with a real file system write lock in case someone launch a <em>sIBL_GUI</em> instance without the command line arguments.
@@ -500,10 +497,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 		</div>
 		<div class="section" id="id11">
 			<h2>
-				<span class="target" id="ibl-sets-wizard">Ibl Sets Wizard</span>
+				<span class="target" id="ibl-sets-wizard">IBL Sets Wizard</span>
 			</h2>
 			<p>
-				The first time <em>sIBL_GUI</em> is started a wizard asks to add Ibl Sets into the database:
+				The first time <em>sIBL_GUI</em> is started a wizard asks to add IBL Sets into the database:
 			</p>
 			<table border="1" class="docutils">
 				<colgroup>
@@ -518,7 +515,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</tbody>
 			</table>
 			<p>
-				Choose a directory where are stored some Ibl Sets and they will be added to the Default Sets Collection.
+				Choose a directory where are stored some IBL Sets and they will be added to the Default Ibl Sets Collection.
 			</p>
 			<table border="1" class="docutils">
 				<colgroup>
@@ -630,7 +627,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<span class="target" id="library-layout">Library Layout</span>
 				</h3>
 				<p>
-					The <em>Library layout</em> is where most of the Ibl Sets management is done.
+					The <em>Library layout</em> is where most of the IBL Sets management is done.
 				</p>
 				<p>
 					This layout is built around 4 components:
@@ -853,7 +850,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<tbody valign="top">
 						<tr>
 							<td>
-								<img alt="resources/pictures/sIBL_GUI_ComponentsManager.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManager.jpg" />
+								<img alt="resources/pictures/sIBL_GUI_ComponentsManagerUi.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManagerUi.jpg" />
 							</td>
 						</tr>
 					</tbody>
@@ -885,9 +882,12 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<li>
 						<strong>Rank</strong>: Components ranks (Components with a low rank will have a high instantiation priority).
 					</li>
+					<li>
+						<strong>Version</strong>: Components versions.
+					</li>
 				</ul>
 				<p>
-					Context Menu:
+					Context menu:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -896,7 +896,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<tbody valign="top">
 						<tr>
 							<td>
-								<img alt="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" />
+								<img alt="resources/pictures/sIBL_GUI_ComponentsManagerUiContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManagerUiContextMenu.jpg" />
 							</td>
 						</tr>
 					</tbody>
@@ -1013,17 +1013,37 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</tr>
 					</tbody>
 				</table>
+				<p>
+					The <em>Script Editor</em> component allows directly interaction with <em>sIBL_GUI</em> through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+				</p>
 				<div class="line-block">
-					<div class="line">
-						The <em>Script Editor</em> component allows directly interaction with <em>sIBL_GUI</em> through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
-					</div>
 					<div class="line">
 						Languages support is provided using custom grammars files but mechanism will be replaced by <em>Textmate</em> compliant system in the future.
 					</div>
 					<div class="line">
 						<em>sIBL_GUI</em> logging messages and commands execution results are displayed in the upper pane.
 					</div>
+					<div class="line">
+						By default the <em>Script Editor</em> component is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
+					</div>
 				</div>
+				<p>
+					Interactions:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Language Combo Box</strong>: Switches the current editor language.
+					</li>
+					<li>
+						<strong>Drag&#8217;n&#8217;drop</strong>:
+						<ul>
+							<li>Drag&#8217;n&#8217;dropping an IBL Sets or Templates selection into the <em>Script Editor</em> component will open their associated files.
+							</li>
+							<li>Drag&#8217;n&#8217;dropping any other type of file on <em>sIBL_GUI</em> will open it in the <em>Script Editor</em> component.
+							</li>
+						</ul>
+					</li>
+				</ul>
 				<p>
 					Menus Bar:
 				</p>
@@ -1047,16 +1067,16 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>New</strong>: Adds a new editor.
 					</li>
 					<li>
-						<strong>Load &#8230;</strong>: Loads user chosen file in a new editor.
+						<strong>Load ...</strong>: Loads user chosen file in a new editor.
 					</li>
 					<li>
-						<strong>Source &#8230;</strong>: Loads user chosen file in a new editor and execute its content.
+						<strong>Source ...</strong>: Loads user chosen file in a new editor and execute its content.
 					</li>
 					<li>
 						<strong>Save</strong>: Saves current editor content.
 					</li>
 					<li>
-						<strong>Save As &#8230;</strong>: Saves current editor content as user chosen file.
+						<strong>Save As ...</strong>: Saves current editor content as user chosen file.
 					</li>
 					<li>
 						<strong>Save All</strong>: Saves all editors content.
@@ -1068,6 +1088,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>Close All</strong>: Closes all editors.
 					</li>
 				</ul>
+				<p>
+					Edit Menu:
+				</p>
 				<table border="1" class="docutils">
 					<colgroup>
 						<col width="100%" />
@@ -1082,30 +1105,51 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</table>
 				<ul class="simple">
 					<li>
-						<strong>New</strong>: Adds a new editor.
+						<strong>Undo</strong>: Reverts current editor last changes.
 					</li>
 					<li>
-						<strong>Load &#8230;</strong>: Loads user chosen file in a new editor.
+						<strong>Redo</strong>: Repeats current editor reverted changes.
 					</li>
 					<li>
-						<strong>Source &#8230;</strong>: Loads user chosen file in a new editor and execute its content.
+						<strong>Cut</strong>: Cuts current editor selected content.
 					</li>
 					<li>
-						<strong>Save</strong>: Saves current editor content.
+						<strong>Copy</strong>: Copies current editor selected content.
 					</li>
 					<li>
-						<strong>Save As &#8230;</strong>: Saves current editor content as user chosen file.
+						<strong>Paste</strong>: Pastes clipboard content into current editor.
 					</li>
 					<li>
-						<strong>Save All</strong>: Saves all editors content.
+						<strong>Delete</strong>: Deletes current editor selected content.
 					</li>
 					<li>
-						<strong>Close</strong>: Closes current editor.
+						<strong>Select All</strong>: Selects all editor content.
 					</li>
 					<li>
-						<strong>Close All</strong>: Closes all editors.
+						<strong>Goto Line ...</strong>: Scrolls current editor to user chosen line.
+					</li>
+					<li>
+						<strong>Indent Selection</strong>: Indents current editor selected content.
+					</li>
+					<li>
+						<strong>Unindent Selection</strong>: Unindents current editor selected content.
+					</li>
+					<li>
+						<strong>Convert Indentation To Tabs</strong>: Converts current editor indentation to tabs.
+					</li>
+					<li>
+						<strong>Convert Indentation To Spaces</strong>: Converts current editor indentation to spaces.
+					</li>
+					<li>
+						<strong>Remove Trailing Whitespaces</strong>: Removes current editor trailing whitespaces.
+					</li>
+					<li>
+						<strong>Toggle Comments</strong>: Toggles comments on current editor selected content.
 					</li>
 				</ul>
+				<p>
+					Search Menu:
+				</p>
 				<table border="1" class="docutils">
 					<colgroup>
 						<col width="100%" />
@@ -1118,6 +1162,20 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</tr>
 					</tbody>
 				</table>
+				<ul class="simple">
+					<li>
+						<strong>Search And Replace ...</strong>: Launches the <em>Search And Replace</em> dialog described further below.
+					</li>
+					<li>
+						<strong>Search Next</strong>: Searches next occurence of current editor selected text.
+					</li>
+					<li>
+						<strong>Search Previous</strong>: Searches previous occurence of current editor selected text.
+					</li>
+				</ul>
+				<p>
+					Command Menu:
+				</p>
 				<table border="1" class="docutils">
 					<colgroup>
 						<col width="100%" />
@@ -1130,6 +1188,17 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</tr>
 					</tbody>
 				</table>
+				<ul class="simple">
+					<li>
+						<strong>Evaluate Selection</strong>: Evaluates current editor selected text.
+					</li>
+					<li>
+						<strong>Evaluate Script</strong>: Evaluates current editor content.
+					</li>
+				</ul>
+				<p>
+					View Menu:
+				</p>
 				<table border="1" class="docutils">
 					<colgroup>
 						<col width="100%" />
@@ -1142,6 +1211,64 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</tr>
 					</tbody>
 				</table>
+				<ul class="simple">
+					<li>
+						<strong>Toggle Word Wrap</strong>: Toggles word wrap on current editor.
+					</li>
+					<li>
+						<strong>Toggle Whitespaces</strong>: Toggles whitespaces display on current editor.
+					</li>
+				</ul>
+				<p>
+					Dialogs:
+				</p>
+				<p>
+					Search And Replace:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="simple">
+					<li>
+						<strong>Search Combo Box</strong>: Defines the search pattern.
+					</li>
+					<li>
+						<strong>Replace With Combo Box</strong>: Defines the replacement pattern.
+					</li>
+					<li>
+						<strong>Case Sensitive Check Box</strong>: Search will be performed case sensitively.
+					</li>
+					<li>
+						<strong>Whole Word Check Box</strong>: Search will be performed within words boundaries.
+					</li>
+					<li>
+						<strong>Regular Expressions Check Box</strong>: Search will be performed using Regular Expressions.
+					</li>
+					<li>
+						<strong>Backward Search Check Box</strong>: Search will be performed backward.
+					</li>
+					<li>
+						<strong>Wrap Around Check Box</strong>: Search will wrap around when reaching the editor end.
+					</li>
+					<li>
+						<strong>Search Push Button</strong>: Performs the search and highlight editor first matched occurence.
+					</li>
+					<li>
+						<strong>Replace Push Button</strong>: Performs the search and replace editor first matched occurence.
+					</li>
+					<li>
+						<strong>Replace All Push Button</strong>: Performs the search and replace all editor matched occurence.
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div class="section" id="id21">
@@ -1167,10 +1294,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</table>
 				<div class="line-block">
 					<div class="line">
-						The <em>Collections Outliner</em> component is where the Ibl Sets are organized into Collections for better management.
+						The <em>Collections Outliner</em> component is where the IBL Sets are organized into Collections for better management.
 					</div>
 					<div class="line">
-						There is a <em>Default Collection</em> where Ibl Sets fall when they are added without a specific Collection container.
+						There is a <em>Default Collection</em> where IBL Sets fall when they are added without a specific Collection container.
 					</div>
 				</div>
 				<p>
@@ -1186,9 +1313,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<li>
 						<strong>Drag&#8217;n&#8217;drop</strong>:
 						<ul>
-							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
+							<li>Drag&#8217;n&#8217;dropping an IBL Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection changes given IBL Sets current Collection.
 							</li>
-							<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
+							<li>Drag&#8217;n&#8217;dropping some IBL Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 							</li>
 						</ul>
 					</li>
@@ -1201,14 +1328,14 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>Collections</strong>: Collections names (Editable through double click).
 					</li>
 					<li>
-						<strong>Sets</strong>: Sets count per Collections.
+						<strong>IBL Sets</strong>: IBL Sets count per Collections.
 					</li>
 					<li>
 						<strong>Comments</strong>: Collections comments (Editable through double click).
 					</li>
 				</ul>
 				<p>
-					Context Menu:
+					Context menu:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -1224,10 +1351,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</table>
 				<ul class="simple">
 					<li>
-						<strong>Add Content &#8230;</strong>: Adds a new Collection, then recursively adds chosen directory Ibl Sets into the database, assigning them to the new Collection.
+						<strong>Add Content ...</strong>: Adds a new Collection, then recursively adds chosen directory IBL Sets into the database, assigning them to the new Collection.
 					</li>
 					<li>
-						<strong>Add Collection &#8230;</strong>: Adds a new Collection to the database.
+						<strong>Add Collection ...</strong>: Adds a new Collection to the database.
 					</li>
 					<li>
 						<strong>Remove Collection(s) ...</strong>: Removes selected Collections from the database (Overall and Default Collections cannot be removed).
@@ -1273,8 +1400,70 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</tbody>
 				</table>
 				<p>
-					The <em>Database Browser</em> component is the central component where Ibl Sets are viewed and chosen for export. The component is tracking the Ibl Sets files on the disk and reload them automatically when modified.
+					The <em>Database Browser</em> component is the central component where IBL Sets are viewed and chosen for export. The component is tracking the IBL Sets files on the disk and reload them automatically when modified.
 				</p>
+				<p>
+					IBL Sets can be viewed using different views depending the user needs:
+				</p>
+				<p>
+					Columns View:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_DatabaseBrowserColumnsView.jpg" class="first last" src="resources/pictures/sIBL_GUI_DatabaseBrowserColumnsView.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Details View:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_DatabaseBrowserDetailsView.jpg" class="first last" src="resources/pictures/sIBL_GUI_DatabaseBrowserDetailsView.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Columns Descriptions:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Ibl Set</strong>: IBL Sets titles (Editable through double click).
+					</li>
+					<li>
+						<strong>Author</strong>: IBL Sets authors.
+					</li>
+					<li>
+						<strong>Shot Location</strong>: IBL Sets shot locations.
+					</li>
+					<li>
+						<strong>Latitude</strong>: IBL Sets shot locations latitudes.
+					</li>
+					<li>
+						<strong>Longitude</strong>: IBL Sets shot locations Longitudes.
+					</li>
+					<li>
+						<strong>Shot Date</strong>: IBL Sets shot days.
+					</li>
+					<li>
+						<strong>Shot Time</strong>: IBL Sets shot times.
+					</li>
+					<li>
+						<strong>Comment</strong>: IBL Sets comments.
+					</li>
+				</ul>
 				<p>
 					Interactions:
 				</p>
@@ -1288,9 +1477,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<li>
 						<strong>Drag&#8217;n&#8217;drop</strong>:
 						<ul>
-							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a <em>Collections Outliner</em> component Collection change the selected sets Collection.
+							<li>Drag&#8217;n&#8217;dropping an IBL Sets selection from the <em>Database Browser</em> component to a <em>Collections Outliner</em> component Collection change the selected sets Collection.
 							</li>
-							<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
+							<li>Drag&#8217;n&#8217;dropping some IBL Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 							</li>
 						</ul>
 					</li>
@@ -1298,11 +1487,26 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>Hovering</strong>: Hovering an Ibl Set raises a popup with informations about the focused Ibl Set.
 					</li>
 					<li>
-						<strong>Thumbnails Size Horizontal Slider</strong>: Adjusts Ibl Sets icons size.
+						<strong>Thumbnails View Push Button</strong>: Switch the current view to <em>Thumbnails View</em>.
+					</li>
+					<li>
+						<strong>Columns View Push Button</strong>: Switch the current view to <em>Columns View</em>.
+					</li>
+					<li>
+						<strong>Details View Push Button</strong>: Switch the current view to <em>Details View</em>.
+					</li>
+					<li>
+						<strong>Case Sensitive Matching Push Button</strong>: Search will be performed case sensitively if the button is checked.
+					</li>
+					<li>
+						<strong>Search Database Line Edit</strong>: It allows IBL Sets filtering. The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will be raised once characters starts being typed. Clicking the magnifier glass raises a context menu pictured below allowing to choose the current database field.
+					</li>
+					<li>
+						<strong>Thumbnails Size Horizontal Slider</strong>: Adjusts IBL Sets icons size.
 					</li>
 				</ul>
 				<p>
-					Context Menu:
+					Context menu:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -1318,16 +1522,16 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</table>
 				<ul class="simple">
 					<li>
-						<strong>Add Content &#8230;</strong>: Recursively adds chosen directory Ibl Sets into the database assigning them to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
+						<strong>Add Content ...</strong>: Recursively adds chosen directory IBL Sets into the database assigning them to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
 					</li>
 					<li>
-						<strong>Add Ibl Set &#8230;</strong>: Adds the selected Ibl Set file into the database assigning it to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
+						<strong>Add Ibl Set ...</strong>: Adds the selected Ibl Set file into the database assigning it to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
 					</li>
 					<li>
-						<strong>Remove Ibl Set(s) ...</strong>: Removes selected Ibl Sets from the database.
+						<strong>Remove Ibl Set(s) ...</strong>: Removes selected IBL Sets from the database.
 					</li>
 					<li>
-						<strong>Update Ibl Set(s) Location(s) ...</strong>: Updates selected Ibl Sets files paths.
+						<strong>Update Ibl Set(s) Location(s) ...</strong>: Updates selected IBL Sets files paths.
 					</li>
 				</ul>
 				<p>
@@ -1335,27 +1539,42 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Edit In sIBLedit &#8230;</strong>: Sends selected Ibl Sets to <em>sIBLedit</em>.
+						<strong>Edit In sIBLedit ...</strong>: Sends selected IBL Sets to <em>sIBLedit</em>.
 					</li>
 					<li>
-						<strong>Edit In Text Editor &#8230;</strong>: Edits selected Ibl Sets with system or custom user defined text editor.
+						<strong>Open Ibl Set(s) Location(s) ...</strong>: Opens selected IBL Sets directories.
 					</li>
 					<li>
-						<strong>Open Ibl Set(s) Location(s) ...</strong>: Opens selected Ibl Sets directories.
+						<strong>Edit Ibl Set(s) File(s) ...</strong>: Edits selected IBL Sets in the <em>Script Editor</em> component or custom user defined text editor.
 					</li>
 					<li>
-						<strong>View Background Image &#8230;</strong>: Views selected Ibl Sets background images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Background Image ...</strong>: Views selected IBL Sets background images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Lighting Image &#8230;</strong>: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Lighting Image ...</strong>: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Reflection Image &#8230;</strong>: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Reflection Image ...</strong>: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Plate(s) &#8230;</strong>: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Plate(s) ...</strong>: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
+				<p>
+					Search widget context menu:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_DatabaseBrowserSearchWidgetContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_DatabaseBrowserSearchWidgetContextMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<p>
 					<strong>***</strong>
 				</p>
@@ -1365,7 +1584,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<span class="target" id="db">Db</span> (core.db)
 				</h3>
 				<p>
-					The <em>Db</em> component is the heart of <em>sIBL_GUI</em> data storage, it provides the database manipulation, read, write and rotating backup methods.
+					The <em>Db</em> component is the heart of <em>sIBL_GUI</em> data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
 				</p>
 				<p>
 					<strong>***</strong>
@@ -1432,7 +1651,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</li>
 				</ul>
 				<p>
-					Context Menu:
+					Context menu:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -1451,25 +1670,25 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Edit In sIBLedit &#8230;</strong>: Sends Inspector Ibl Set to <em>sIBLedit</em>.
+						<strong>Edit In sIBLedit ...</strong>: Sends Inspector Ibl Set to <em>sIBLedit</em>.
 					</li>
 					<li>
-						<strong>Edit In Text Editor &#8230;</strong>: Edits Inspector Ibl Set with system or custom user defined text editor.
+						<strong>Open Ibl Set Location ...</strong>: Opens Inspector IBL Sets directory.
 					</li>
 					<li>
-						<strong>Open Ibl Set(s) Location(s) ...</strong>: Opens Inspector Ibl Sets directory.
+						<strong>Edit Ibl Set File ...</strong>: Edits Inspector Ibl Set in the <em>Script Editor</em> component or custom user defined text editor.
 					</li>
 					<li>
-						<strong>View Background Image &#8230;</strong>: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Background Image ...</strong>: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Lighting Image &#8230;</strong>: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Lighting Image ...</strong>: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Reflection Image &#8230;</strong>: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Reflection Image ...</strong>: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Plate(s) &#8230;</strong>: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
+						<strong>View Plate(s) ...</strong>: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
 				<p>
@@ -1540,7 +1759,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</li>
 				</ul>
 				<p>
-					Context Menu:
+					Context menu:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -1556,7 +1775,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</table>
 				<ul class="simple">
 					<li>
-						<strong>Add Template &#8230;</strong>: Adds the selected Templates file to the database.
+						<strong>Add Template ...</strong>: Adds the selected Templates file to the database.
 					</li>
 					<li>
 						<strong>Remove Templates(s) ...</strong>: Removes selected Templates from the database.
@@ -1576,10 +1795,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Edit In Text Editor &#8230;</strong>: Edits selected Templates with system or custom user defined text editor.
+						<strong>Open Templates(s) Location(s) ...</strong>: Opens selected Templates directories.
 					</li>
 					<li>
-						<strong>Open Templates(s) Location(s) ...</strong>: Opens selected Templates directories.
+						<strong>Edit Template(s) File(s) ...</strong>: Edits selected Templates in the <em>Script Editor</em> component or custom user defined text editor.
 					</li>
 				</ul>
 			</div>
@@ -1662,7 +1881,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</tbody>
 				</table>
 				<p>
-					The <em>Gps Map</em> component is embedding a Microsoft Bing Map into <em>sIBL_GUI</em>: Selecting some Ibl Sets (Sets with GEO coordinates) in the <em>Database Browser</em> component will display their markers onto the Gps Map.
+					The <em>Gps Map</em> component is embedding a Microsoft Bing Map into <em>sIBL_GUI</em>: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the <em>Database Browser</em> component will display their markers onto the Gps Map.
 				</p>
 				<p>
 					Interactions:
@@ -1686,6 +1905,18 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</ul>
 					</li>
 				</ul>
+				<p>
+					<strong>***</strong>
+				</p>
+			</div>
+			<div class="section" id="ibl-sets-scanner-addons-iblsetsscanner">
+				<span id="addons-iblsetsscanner" />
+				<h3>
+					<span class="target" id="ibl-sets-scanner">Ibl Sets Scanner</span> (addons.iblSetsScanner)
+				</h3>
+				<p>
+					The <em>Ibl Sets Scanner</em> component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
+				</p>
 				<p>
 					<strong>***</strong>
 				</p>
@@ -1771,6 +2002,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</li>
 				</ul>
 				<p>
+					Templates settings are stored per version and restored each time one is selected in <em>sIBL_GUI</em> preferences directory.
+				</p>
+				<p>
 					<strong>***</strong>
 				</p>
 			</div>
@@ -1845,30 +2079,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</h3>
 				<p>
 					The <em>Logging Notifier</em> component displays logging messages in the status bar.
-				</p>
-				<p>
-					<strong>***</strong>
-				</p>
-			</div>
-			<div class="section" id="logging-window-addons-loggingwindow">
-				<span id="addons-loggingwindow" />
-				<h3>
-					<span class="target" id="logging-window">Logging Window</span> (addons.loggingWindow)
-				</h3>
-				<table border="1" class="docutils">
-					<colgroup>
-						<col width="100%" />
-					</colgroup>
-					<tbody valign="top">
-						<tr>
-							<td>
-								<img alt="resources/pictures/sIBL_GUI_LoggingWindow.jpg" class="first last" src="resources/pictures/sIBL_GUI_LoggingWindow.jpg" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<p>
-					The <em>Logging Window</em> component is available by right clicking the main toolbar and displays <em>sIBL_GUI</em> verbose messages.
 				</p>
 				<p>
 					<strong>***</strong>
@@ -2053,40 +2263,8 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</tbody>
 				</table>
 				<p>
-					The <em>Raw Editing Utilities</em> component provides text editing capability to <em>sIBL_GUI</em>, adding text edition at various entry points in <em>sIBL_GUI</em> Ui. The text edition is done either by the Os default text editor or an user defined text editor.
+					The <em>Raw Editing Utilities</em> component provides text editing capability to <em>sIBL_GUI</em>, adding text edition at various entry points in <em>sIBL_GUI</em> Ui. The text edition is done either by the <em>Script Editor</em> component or an user defined text editor.
 				</p>
-				<p>
-					Default Supported Text Editors:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>Windows</strong>:
-						<ul>
-							<li>Notepad
-							</li>
-						</ul>
-					</li>
-					<li>
-						<strong>Mac Os X</strong>:
-						<ul>
-							<li>TextEdit
-							</li>
-						</ul>
-					</li>
-					<li>
-						<strong>Linux</strong>:
-						<ul>
-							<li>Gedit
-							</li>
-							<li>Kwrite
-							</li>
-							<li>Nedit
-							</li>
-							<li>Mousepad
-							</li>
-						</ul>
-					</li>
-				</ul>
 				<p>
 					Interactions:
 				</p>
@@ -2117,7 +2295,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					</tbody>
 				</table>
 				<p>
-					The <em>Rewiring Tool</em> component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate IBL sets and arbitrary load whatever HDR you want and still benefit from <em>sIBL_GUI</em> one click lighting setup.
+					The <em>Rewiring Tool</em> component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from <em>sIBL_GUI</em> one click lighting setup.
 				</p>
 				<p>
 					Interactions:
@@ -2141,20 +2319,16 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</h3>
 				<table border="1" class="docutils">
 					<colgroup>
-						<col width="33%" />
-						<col width="33%" />
-						<col width="33%" />
+						<col width="50%" />
+						<col width="50%" />
 					</colgroup>
 					<tbody valign="top">
 						<tr>
 							<td>
-								<img alt="resources/pictures/sIBL_GUI_SearchDatabase_A.jpg" class="first last" src="resources/pictures/sIBL_GUI_SearchDatabase_A.jpg" />
+								<img alt="resources/pictures/sIBL_GUI_SearchDatabaseSearchInTagsCloud.jpg" class="first last" src="resources/pictures/sIBL_GUI_SearchDatabaseSearchInTagsCloud.jpg" />
 							</td>
 							<td>
-								<img alt="resources/pictures/sIBL_GUI_SearchDatabase_B.jpg" class="first last" src="resources/pictures/sIBL_GUI_SearchDatabase_B.jpg" />
-							</td>
-							<td>
-								<img alt="resources/pictures/sIBL_GUI_SearchDatabase_C.jpg" class="first last" src="resources/pictures/sIBL_GUI_SearchDatabase_C.jpg" />
+								<img alt="resources/pictures/sIBL_GUI_SearchDatabaseSearchInShotTime.jpg" class="first last" src="resources/pictures/sIBL_GUI_SearchDatabaseSearchInShotTime.jpg" />
 							</td>
 						</tr>
 					</tbody>
@@ -2164,7 +2338,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Search In Fields</strong>: Searches in database fields.
+						<strong>Search In Tags Cloud</strong>: Searches in database Ibl Sets comments tags cloud generated.
 					</li>
 					<li>
 						<strong>Search In Shot Time</strong>: Searches in shot time range.
@@ -2173,27 +2347,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				<p>
 					Interactions:
 				</p>
-				<p>
-					Search In Fields Page:
-				</p>
 				<ul class="simple">
-					<li>
-						<strong>Search Database Combo Box</strong>: Field against which the search will be executed. There are 5 different fields types available:
-						<ul>
-							<li>In Names
-							</li>
-							<li>In Authors
-							</li>
-							<li>In Links
-							</li>
-							<li>In Locations
-							</li>
-							<li>In Comments
-							</li>
-							<li>In Tags Cloud
-							</li>
-						</ul>
-					</li>
 					<li>
 						<strong>Search Database Line Edit</strong>: The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will raise once characters starts being typed.
 					</li>
@@ -2212,18 +2366,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>To Time Edit</strong>: Time range search end.
 					</li>
 				</ul>
-				<p>
-					<strong>***</strong>
-				</p>
-			</div>
-			<div class="section" id="sets-scanner-addons-setsscanner">
-				<span id="addons-setsscanner" />
-				<h3>
-					<span class="target" id="sets-scanner">Sets Scanner</span> (addons.setsScanner)
-				</h3>
-				<p>
-					The <em>Sets Scanner</em> component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent directory. This behavior can be stopped by deactivating the component.
-				</p>
 				<p>
 					<strong>***</strong>
 				</p>

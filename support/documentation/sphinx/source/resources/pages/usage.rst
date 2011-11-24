@@ -31,7 +31,7 @@ Structure Description:
 
    -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
    -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
-   -  **scriptEditor**: Directory containing the default scripts used by the **Script Editor**.
+   -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
 
 -  **logging**: Directory storing *sIBL_GUI* logging file.
 -  **settings**: Directory storing *sIBL_GUI* settings file.
@@ -85,22 +85,22 @@ Example Command Line::
 
      C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 
-When the Database is read only, the automatic scanner adding new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library directory won’t be added automatically.
+When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won’t be added automatically.
 
 It’s a good idea to put the Database with a real file system write lock in case someone launch a *sIBL_GUI* instance without the command line arguments.
 
 That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
 
-_`Ibl Sets Wizard`
+_`IBL Sets Wizard`
 ------------------
 
-The first time *sIBL_GUI* is started a wizard asks to add Ibl Sets into the database:
+The first time *sIBL_GUI* is started a wizard asks to add IBL Sets into the database:
 
 +-----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg            |
 +-----------------------------------------------------------------------+
 
-Choose a directory where are stored some Ibl Sets and they will be added to the Default Sets Collection.
+Choose a directory where are stored some IBL Sets and they will be added to the Default Ibl Sets Collection.
 
 +-----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg            |
@@ -149,7 +149,7 @@ Interactions:
 _`Library Layout`
 ^^^^^^^^^^^^^^^^^
 
-The *Library layout* is where most of the Ibl Sets management is done.
+The *Library layout* is where most of the IBL Sets management is done.
 
 This layout is built around 4 components:
 

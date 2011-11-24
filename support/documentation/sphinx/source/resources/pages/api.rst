@@ -35,6 +35,8 @@ Modules Summary:
    sibl_gui.components.addons.databaseOperations.databaseOperations <api/sibl_gui.components.addons.databaseOperations.databaseOperations>
    sibl_gui.components.addons.gpsMap.gpsMap <api/sibl_gui.components.addons.gpsMap.gpsMap>
    sibl_gui.components.addons.gpsMap.views <api/sibl_gui.components.addons.gpsMap.views>
+   sibl_gui.components.addons.iblSetsScanner.iblSetsScanner <api/sibl_gui.components.addons.iblSetsScanner.iblSetsScanner>
+   sibl_gui.components.addons.iblSetsScanner.workers <api/sibl_gui.components.addons.iblSetsScanner.workers>
    sibl_gui.components.addons.loaderScript.loaderScript <api/sibl_gui.components.addons.loaderScript.loaderScript>
    sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions <api/sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions>
    sibl_gui.components.addons.locationsBrowser.locationsBrowser <api/sibl_gui.components.addons.locationsBrowser.locationsBrowser>
@@ -48,8 +50,6 @@ Modules Summary:
    sibl_gui.components.addons.rewiringTool.rewiringTool <api/sibl_gui.components.addons.rewiringTool.rewiringTool>
    sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities <api/sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities>
    sibl_gui.components.addons.searchDatabase.searchDatabase <api/sibl_gui.components.addons.searchDatabase.searchDatabase>
-   sibl_gui.components.addons.setsScanner.setsScanner <api/sibl_gui.components.addons.setsScanner.setsScanner>
-   sibl_gui.components.addons.setsScanner.workers <api/sibl_gui.components.addons.setsScanner.workers>
    sibl_gui.components.core.collectionsOutliner.collectionsOutliner <api/sibl_gui.components.core.collectionsOutliner.collectionsOutliner>
    sibl_gui.components.core.collectionsOutliner.models <api/sibl_gui.components.core.collectionsOutliner.models>
    sibl_gui.components.core.collectionsOutliner.views <api/sibl_gui.components.core.collectionsOutliner.views>
