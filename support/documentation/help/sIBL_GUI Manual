@@ -481,8 +481,96 @@ _`Script Editor` (factory.scriptEditor)
 | ..  image:: resources/pictures/sIBL_GUI_ScriptEditor.jpg     |
 +--------------------------------------------------------------+
 
-The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting.
+The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
 
+| Languages support is provided using custom grammars files but mechanism will be replaced by *Textmate* compliant system in the future.
+| *sIBL_GUI* logging messages and commands execution results are displayed in the upper pane.
+| By default the *Script Editor* is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
+
+Menus Bar:
+
+File Menu:
+
++----------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorFileMenu.jpg     |
++----------------------------------------------------------------------+
+
+-  **New**: Adds a new editor.
+-  **Load …**: Loads user chosen file in a new editor.
+-  **Source …**: Loads user chosen file in a new editor and execute its content.
+-  **Save**: Saves current editor content.
+-  **Save As …**: Saves current editor content as user chosen file.
+-  **Save All**: Saves all editors content.
+-  **Close**: Closes current editor.
+-  **Close All**: Closes all editors.
+
+Edit Menu:
+
++----------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorEditMenu.jpg     |
++----------------------------------------------------------------------+
+
+-  **Undo**: Reverts current editor last changes.
+-  **Redo**: Repeats current editor reverted changes.
+-  **Cut**: Cuts current editor selected content.
+-  **Copy**: Copies current editor selected content.
+-  **Paste**: Pastes clipboard content into current editor.
+-  **Delete**: Deletes current editor selected content.
+-  **Select All**: Selects all editor content.
+-  **Goto Line …**: Scrolls current editor to user chosen line.
+-  **Indent Selection**: Indents current editor selected content.
+-  **Unindent Selection**: Unindents current editor selected content.
+-  **Convert Indentation To Tabs**: Converts current editor indentation to tabs.
+-  **Convert Indentation To Spaces**: Converts current editor indentation to spaces.
+-  **Remove Trailing Whitespaces**: Removes current editor trailing whitespaces.
+-  **Toggle Comments**: Toggles comments on current editor selected content.
+
+Search Menu:
+
++------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg     |
++------------------------------------------------------------------------+
+
+-  **Search And Replace …**: Launches the *Search And Replace* dialog described further below.
+-  **Search Next**: Searches next occurence of current editor selected text.
+-  **Search Previous**: Searches previous occurence of current editor selected text.
+
+Command Menu:
+
++-------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg     |
++-------------------------------------------------------------------------+
+
+-  **Evaluate Selection**: Evaluates current editor selected text.
+-  **Evaluate Script**: Evaluates current editor content.
+
+View Menu:
+
++----------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorViewMenu.jpg     |
++----------------------------------------------------------------------+
+
+-  **Toggle Word Wrap**: Toggles word wrap on current editor.
+-  **Toggle Whitespaces**: Toggles whitespaces display on current editor.
+
+Dialogs:
+
+Search And Replace:
+
++------------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg     |
++------------------------------------------------------------------------------+
+
+-  **Search:**: Defines the search pattern.
+-  **Replace With:**: Defines the replacement pattern.
+-  **Case Sensitive**: Search will be performed case sensitively.
+-  **Whole Word**: Search will be performed within words boundaries.
+-  **Regular Expressions**: Search will be performed using Regular Expressions.
+-  **Backward Search**: Search will be performed backward.
+-  **Wrap Around**: Search will wrap around when reaching the editor end.
+-  **Search**: Performs the search and highlight editor first matched occurence.
+-  **Replace**: Performs the search and replace editor first matched occurence.
+-  **Replace All**: Performs the search and replace all editor matched occurence.
 
 _`Core`
 -------
@@ -505,7 +593,7 @@ Interactions:
 -  **Right clic**: Displays a context menu described further.
 -  **Drag’n’drop**:
 
-   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a Collections Outliner component Collection change sets current Collection.
+   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
    -  Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 
 Columns Descriptions:

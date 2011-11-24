@@ -1,77 +1,32 @@
 _`Components`
 =============
 
-*sIBL_GUI* has currently 2 categories of components:
+*sIBL_GUI* has currently 3 categories of components:
 
--  **Default Component** (Components without an associated Ui Widget).
--  **Ui Component** (Components with an associated Ui Widget).
+-  **Default Component** (Components inheriting from *Python Object*).
+-  **QWidget Component** (Components inheriting from *Qt QWidget*).
+-  **QObject Component** (Components inheriting from *Qt QObject*).
 
-Those 2 types are split into 3 main families:
+Those 2 types are split into 4 main families:
 
--  **Core** (Factory required components, not deactivable and not removable)
--  **Addons** (Factory optional components, deactivable and removable)
--  **User** (User optional components, deactivable and removable)
+-  **Factory** (Factory required components, not deactivable and not removable).
+-  **Core** (Core required components, not deactivable and not removable).
+-  **Addons** (Factory optional components, deactivable and removable).
+-  **User** (User optional components, deactivable and removable).
 
-_`Core`
--------
+_`Factory`
+----------
 
-.. _core.collectionsOutliner:
+.. _factory.componentsManagerUi:
 
-_`Collections Outliner` (core.collectionsOutliner)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+---------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_CollectionsOutliner.jpg            |
-+---------------------------------------------------------------------+
-
-| The *Collections Outliner* component is where the Ibl Sets are organized into Collections for better management.
-| There is a *Default Collection* where Ibl Sets fall when they are added without a specific Collection container.
-
-Interactions:
-
--  **Double clic**: Edits Collection name or comment.
--  **Right clic**: Displays a context menu described further.
--  **Drag’n’drop**:
-
-   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a Collections Outliner component Collection change sets current Collection.
-   -  Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
-
-Columns Descriptions:
-
--  **Collections**: Collections names (Editable through double click).
--  **Sets**: Sets count per Collections.
--  **Comments**: Collections comments (Editable through double click).
-
-Context Menu:
-
-+--------------------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg            |
-+--------------------------------------------------------------------------------+
-
--  **Add Content …**: Adds a new Collection, then recursively adds chosen directory Ibl Sets into the database, assigning them to the new Collection.
--  **Add Collection …**: Adds a new Collection to the database.
--  **Remove Collection(s) ...**: Removes selected Collections from the database (Overall and Default Collections cannot be removed).
-
-**Note**:
-
-While adding a new Collection, a comment can be directly provided by using a comma separated name and comment.
-
-+----------------------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg            |
-+----------------------------------------------------------------------------------+
-
-
-
-.. _core.componentsManagerUi:
-
-_`Components Manager` (core.componentsManagerUi)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_`Components Manager Ui` (factory.componentsManagerUi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +-------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_ComponentsManager.jpg            |
 +-------------------------------------------------------------------+
 
-The *Components Manager* component allows *sIBL_GUI* addons and user components activation / deactivation (Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
+The *Components Manager Ui* component allows *sIBL_GUI* addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
 
 Interactions:
 
@@ -97,6 +52,149 @@ Context Menu:
 Addons Functionalities:
 
 -  **Open Component(s) Location(s) ...**: Opens Component(s) directory(s).
+
+
+
+.. _factory.preferencesManager:
+
+_`Preferences Manager` (factory.preferencesManager)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_PreferencesManager.jpg            |
++--------------------------------------------------------------------+
+
+The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
+
+-  **General**: Overall *sIBL_GUI* settings.
+-  **Others**: Components settings.
+
+General Page:
+
+-  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
+
+   -  Default: Default logging formatter: **Logging Level: Message**.
+   -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
+   -  Standard: Simple standard logging formatter: **Message**.
+
+-  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
+
+   -  Debug
+   -  Info
+   -  Warning
+   -  Error
+   -  Critical
+
+-  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
+
+Others Page:
+
+Those settings are components dependent and will be described per related component.
+
+
+
+.. _factory.scriptEditor:
+
+_`Script Editor` (factory.scriptEditor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditor.jpg            |
++--------------------------------------------------------------+
+
+| The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+| Languages support is provided using custom grammars files but mechanism will be replaced by *Textmate* compliant system in the future.
+| *sIBL_GUI* logging messages and commands execution results are displayed in the upper pane.
+
+Menus Bar:
+
+File Menu:
+
++----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorFileMenu.jpg            |
++----------------------------------------------------------------------+
+
+-  **New**: Adds a new editor.
+-  **Load …**: Loads user chosen file in a new editor.
+-  **Source …**: Loads user chosen file in a new editor and execute its content.
+-  **Save**: Saves current editor content.
+-  **Save As …**: Saves current editor content as user chosen file.
+-  **Save All**: Saves all editors content.
+-  **Close**: Closes current editor.
+-  **Close All**: Closes all editors.
+
++----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorEditMenu.jpg            |
++----------------------------------------------------------------------+
+
+-  **New**: Adds a new editor.
+-  **Load …**: Loads user chosen file in a new editor.
+-  **Source …**: Loads user chosen file in a new editor and execute its content.
+-  **Save**: Saves current editor content.
+-  **Save As …**: Saves current editor content as user chosen file.
+-  **Save All**: Saves all editors content.
+-  **Close**: Closes current editor.
+-  **Close All**: Closes all editors.
+
++------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg            |
++------------------------------------------------------------------------+
+
++-------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg            |
++-------------------------------------------------------------------------+
+
++----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorViewMenu.jpg            |
++----------------------------------------------------------------------+
+
+_`Core`
+-------
+
+.. _core.collectionsOutliner:
+
+_`Collections Outliner` (core.collectionsOutliner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++---------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_CollectionsOutliner.jpg            |
++---------------------------------------------------------------------+
+
+| The *Collections Outliner* component is where the Ibl Sets are organized into Collections for better management.
+| There is a *Default Collection* where Ibl Sets fall when they are added without a specific Collection container.
+
+Interactions:
+
+-  **Double clic**: Edits Collection name or comment.
+-  **Right clic**: Displays a context menu described further.
+-  **Drag’n’drop**:
+
+   -  Drag’n’dropping an Ibl Sets selection from the *Database Browser* component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
+   -  Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
+
+Columns Descriptions:
+
+-  **Collections**: Collections names (Editable through double click).
+-  **Sets**: Sets count per Collections.
+-  **Comments**: Collections comments (Editable through double click).
+
+Context Menu:
+
++--------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg            |
++--------------------------------------------------------------------------------+
+
+-  **Add Content …**: Adds a new Collection, then recursively adds chosen directory Ibl Sets into the database, assigning them to the new Collection.
+-  **Add Collection …**: Adds a new Collection to the database.
+-  **Remove Collection(s) ...**: Removes selected Collections from the database (Overall and Default Collections cannot be removed).
+
+**Note**:
+
+While adding a new Collection, a comment can be directly provided by using a comma separated name and comment.
+
++----------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg            |
++----------------------------------------------------------------------------------+
 
 
 
@@ -195,44 +293,6 @@ Addons Functionalities:
 -  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Plate(s) …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
-
-
-
-.. _core.preferencesManager:
-
-_`Preferences Manager` (core.preferencesManager)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+--------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_PreferencesManager.jpg            |
-+--------------------------------------------------------------------+
-
-The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
-
--  **General**: Overall *sIBL_GUI* settings.
--  **Others**: Components settings.
-
-General Page:
-
--  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
-
-   -  Default: Default logging formatter: **Logging Level: Message**.
-   -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
-   -  Standard: Simple standard logging formatter: **Message**.
-
--  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
-
-   -  Debug
-   -  Info
-   -  Warning
-   -  Error
-   -  Critical
-
--  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
-
-Others Page:
-
-Those settings are components dependent and will be described per related component.
 
 
 

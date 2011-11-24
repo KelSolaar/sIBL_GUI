@@ -1062,8 +1062,244 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							</tbody>
 						</table>
 						<p>
-							The <em>Script Editor</em> component allows directly interaction with <em>sIBL_GUI</em> through scripting.
+							The <em>Script Editor</em> component allows directly interaction with <em>sIBL_GUI</em> through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
 						</p>
+						<div class="line-block">
+							<div class="line">
+								Languages support is provided using custom grammars files but mechanism will be replaced by <em>Textmate</em> compliant system in the future.
+							</div>
+							<div class="line">
+								<em>sIBL_GUI</em> logging messages and commands execution results are displayed in the upper pane.
+							</div>
+							<div class="line">
+								By default the <em>Script Editor</em> is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
+							</div>
+						</div>
+						<p>
+							Menus Bar:
+						</p>
+						<p>
+							File Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorFileMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorFileMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>New</strong>: Adds a new editor.
+							</li>
+							<li>
+								<strong>Load …</strong>: Loads user chosen file in a new editor.
+							</li>
+							<li>
+								<strong>Source …</strong>: Loads user chosen file in a new editor and execute its content.
+							</li>
+							<li>
+								<strong>Save</strong>: Saves current editor content.
+							</li>
+							<li>
+								<strong>Save As …</strong>: Saves current editor content as user chosen file.
+							</li>
+							<li>
+								<strong>Save All</strong>: Saves all editors content.
+							</li>
+							<li>
+								<strong>Close</strong>: Closes current editor.
+							</li>
+							<li>
+								<strong>Close All</strong>: Closes all editors.
+							</li>
+						</ul>
+						<p>
+							Edit Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorEditMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorEditMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Undo</strong>: Reverts current editor last changes.
+							</li>
+							<li>
+								<strong>Redo</strong>: Repeats current editor reverted changes.
+							</li>
+							<li>
+								<strong>Cut</strong>: Cuts current editor selected content.
+							</li>
+							<li>
+								<strong>Copy</strong>: Copies current editor selected content.
+							</li>
+							<li>
+								<strong>Paste</strong>: Pastes clipboard content into current editor.
+							</li>
+							<li>
+								<strong>Delete</strong>: Deletes current editor selected content.
+							</li>
+							<li>
+								<strong>Select All</strong>: Selects all editor content.
+							</li>
+							<li>
+								<strong>Goto Line …</strong>: Scrolls current editor to user chosen line.
+							</li>
+							<li>
+								<strong>Indent Selection</strong>: Indents current editor selected content.
+							</li>
+							<li>
+								<strong>Unindent Selection</strong>: Unindents current editor selected content.
+							</li>
+							<li>
+								<strong>Convert Indentation To Tabs</strong>: Converts current editor indentation to tabs.
+							</li>
+							<li>
+								<strong>Convert Indentation To Spaces</strong>: Converts current editor indentation to spaces.
+							</li>
+							<li>
+								<strong>Remove Trailing Whitespaces</strong>: Removes current editor trailing whitespaces.
+							</li>
+							<li>
+								<strong>Toggle Comments</strong>: Toggles comments on current editor selected content.
+							</li>
+						</ul>
+						<p>
+							Search Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Search And Replace …</strong>: Launches the <em>Search And Replace</em> dialog described further below.
+							</li>
+							<li>
+								<strong>Search Next</strong>: Searches next occurence of current editor selected text.
+							</li>
+							<li>
+								<strong>Search Previous</strong>: Searches previous occurence of current editor selected text.
+							</li>
+						</ul>
+						<p>
+							Command Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Evaluate Selection</strong>: Evaluates current editor selected text.
+							</li>
+							<li>
+								<strong>Evaluate Script</strong>: Evaluates current editor content.
+							</li>
+						</ul>
+						<p>
+							View Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorViewMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorViewMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Toggle Word Wrap</strong>: Toggles word wrap on current editor.
+							</li>
+							<li>
+								<strong>Toggle Whitespaces</strong>: Toggles whitespaces display on current editor.
+							</li>
+						</ul>
+						<p>
+							Dialogs:
+						</p>
+						<p>
+							Search And Replace:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchAndReplace.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Search:</strong>: Defines the search pattern.
+							</li>
+							<li>
+								<strong>Replace With:</strong>: Defines the replacement pattern.
+							</li>
+							<li>
+								<strong>Case Sensitive</strong>: Search will be performed case sensitively.
+							</li>
+							<li>
+								<strong>Whole Word</strong>: Search will be performed within words boundaries.
+							</li>
+							<li>
+								<strong>Regular Expressions</strong>: Search will be performed using Regular Expressions.
+							</li>
+							<li>
+								<strong>Backward Search</strong>: Search will be performed backward.
+							</li>
+							<li>
+								<strong>Wrap Around</strong>: Search will wrap around when reaching the editor end.
+							</li>
+							<li>
+								<strong>Search</strong>: Performs the search and highlight editor first matched occurence.
+							</li>
+							<li>
+								<strong>Replace</strong>: Performs the search and replace editor first matched occurence.
+							</li>
+							<li>
+								<strong>Replace All</strong>: Performs the search and replace all editor matched occurence.
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="section" id="id21">
@@ -1108,7 +1344,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							<li>
 								<strong>Drag’n’drop</strong>:
 								<ul>
-									<li>Drag’n’dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection change sets current Collection.
+									<li>Drag’n’dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
 									</li>
 									<li>Drag’n’dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 									</li>

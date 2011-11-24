@@ -10,6 +10,7 @@ Modules Summary:
    foundations.common <api/foundations.common>
    foundations.core <api/foundations.core>
    foundations.dag <api/foundations.dag>
+   foundations.dataStructures <api/foundations.dataStructures>
    foundations.environment <api/foundations.environment>
    foundations.exceptions <api/foundations.exceptions>
    foundations.globals.constants <api/foundations.globals.constants>
@@ -113,6 +114,7 @@ Modules Summary:
    tests.testsFoundations.testsCommon <api/tests.testsFoundations.testsCommon>
    tests.testsFoundations.testsCore <api/tests.testsFoundations.testsCore>
    tests.testsFoundations.testsDag <api/tests.testsFoundations.testsDag>
+   tests.testsFoundations.testsDataStructures <api/tests.testsFoundations.testsDataStructures>
    tests.testsFoundations.testsEnvironment <api/tests.testsFoundations.testsEnvironment>
    tests.testsFoundations.testsExceptions <api/tests.testsFoundations.testsExceptions>
    tests.testsFoundations.testsGlobals.testsConstants <api/tests.testsFoundations.testsGlobals.testsConstants>

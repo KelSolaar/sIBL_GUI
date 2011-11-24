@@ -71,13 +71,24 @@
 				<a class="reference internal" href="#components">Components</a>
 				<ul>
 					<li>
+						<a class="reference internal" href="#factory">Factory</a>
+						<ul>
+							<li>
+								<a class="reference internal" href="#components-manager-ui">Components Manager Ui</a>
+							</li>
+							<li>
+								<a class="reference internal" href="#preferences-manager">Preferences Manager</a>
+							</li>
+							<li>
+								<a class="reference internal" href="#script-editor">Script Editor</a>
+							</li>
+						</ul>
+					</li>
+					<li>
 						<a class="reference internal" href="#core">Core</a>
 						<ul>
 							<li>
 								<a class="reference internal" href="#collections-outliner">Collections Outliner</a>
-							</li>
-							<li>
-								<a class="reference internal" href="#components-manager">Components Manager</a>
 							</li>
 							<li>
 								<a class="reference internal" href="#database-browser">Database Browser</a>
@@ -90,9 +101,6 @@
 							</li>
 							<li>
 								<a class="reference internal" href="#templates-outliner">Templates Outliner</a>
-							</li>
-							<li>
-								<a class="reference internal" href="#preferences-manager">Preferences Manager</a>
 							</li>
 						</ul>
 					</li>
@@ -344,24 +352,7 @@
 			</p>
 			<ul class="simple">
 				<li>
-					<strong>Templates</strong>: Directory storing user Templates (This directory is scanned by <em>sIBL_GUI</em> when importing default Templates).
-				</li>
-				<li>
-					<strong>settings</strong>: Directory storing <em>sIBL_GUI</em> settings file.
-				</li>
-				<li>
-					<strong>logging</strong>: Directory storing <em>sIBL_GUI</em> logging file.
-				</li>
-				<li>
-					<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
-					<ul>
-						<li>
-							<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
-						</li>
-						<li>
-							<strong>loaderScripts</strong>: Directory used as output directory by the <em>Loader Script</em> component.
-						</li>
-					</ul>
+					<strong>components</strong>: Directory storing user components.
 				</li>
 				<li>
 					<strong>database</strong>: Directory storing the SQLite database.
@@ -369,10 +360,38 @@
 						<li>
 							<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
 						</li>
+						<li>
+							<strong>migrations</strong>: Directory used by the <em>Db</em> migration mechanism responsible to migrate the database.
+							<ul>
+								<li>
+									<strong>versions</strong>: Directory used by to store the various migrations scripts.
+								</li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>
-					<strong>components</strong>: Directory storing user components.
+					<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
+					<ul>
+						<li>
+							<strong>loaderScripts</strong>: Directory used as output directory by the <em>Loader Script</em> component.
+						</li>
+						<li>
+							<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
+						</li>
+						<li>
+							<strong>scriptEditor</strong>: Directory containing the default scripts used by the <strong>Script Editor</strong>.
+						</li>
+					</ul>
+				</li>
+				<li>
+					<strong>logging</strong>: Directory storing <em>sIBL_GUI</em> logging file.
+				</li>
+				<li>
+					<strong>settings</strong>: Directory storing <em>sIBL_GUI</em> settings file.
+				</li>
+				<li>
+					<strong>templates</strong>: Directory storing user Templates (This directory is scanned by <em>sIBL_GUI</em> when importing default Templates).
 				</li>
 			</ul>
 		</div>
@@ -400,6 +419,9 @@
 					<strong>-u USERAPPLICATIONDATASDIRECTORY, &#8212;userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY</strong>: User application data directory (Preferences directory).
 				</li>
 				<li>
+					<strong>-s, &#8212;hideSplashScreen</strong>: The SplashScreen is not displayed during application startup.
+				</li>
+				<li>
 					<strong>-t, &#8212;deactivateWorkerThreads</strong>: The Worker Threads are deactivated.
 				</li>
 				<li>
@@ -410,9 +432,6 @@
 				</li>
 				<li>
 					<strong>-o LOADERSCRIPTSOUTPUTDIRECTORY, &#8212;loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY</strong>: Loader scripts output directory.
-				</li>
-				<li>
-					<strong>-s, &#8212;hideSplashScreen</strong>: The SplashScreen is not displayed during application startup.
 				</li>
 			</ul>
 			<p>
@@ -530,6 +549,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</li>
 				<li>
 					<a class="reference internal" href="#export-layout">Export Layout</a>
+				</li>
+				<li>
+					<a class="reference internal" href="#edit-layout">Edit Layout</a>
 				</li>
 				<li>
 					<a class="reference internal" href="#preferences-layout">Preferences Layout</a>
@@ -721,6 +743,34 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 			</div>
 			<div class="section" id="id17">
 				<h3>
+					<span class="target" id="edit-layout">Edit Layout</span>
+				</h3>
+				<p>
+					The <em>Edit layout</em> is where Ibl Set are edited.
+				</p>
+				<p>
+					This layout is built around 1 component:
+				</p>
+				<ul class="simple">
+					<li>
+						<a class="reference internal" href="#script-editor">Script Editor</a> (factory.scriptEditor)
+					</li>
+				</ul>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_EditCentricLayout.jpg" class="first last" src="resources/pictures/sIBL_GUI_EditCentricLayout.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="section" id="id18">
+				<h3>
 					<span class="target" id="preferences-layout">Preferences Layout</span>
 				</h3>
 				<p>
@@ -731,10 +781,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 				</p>
 				<ul class="simple">
 					<li>
-						<a class="reference internal" href="#components-manager">Components Manager</a> (core.componentsManagerUi)
+						<a class="reference internal" href="#components-manager-ui">Components Manager Ui</a> (factory.componentsManagerUi)
 					</li>
 					<li>
-						<a class="reference internal" href="#preferences-manager">Preferences Manager</a> (core.preferencesManager)
+						<a class="reference internal" href="#preferences-manager">Preferences Manager</a> (factory.preferencesManager)
 					</li>
 				</ul>
 				<table border="1" class="docutils">
@@ -752,36 +802,349 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 			</div>
 		</div>
 	</div>
-	<div class="section" id="id18">
+	<div class="section" id="id19">
 		<h1>
 			<span class="target" id="components">Components</span>
 		</h1>
 		<p>
-			<em>sIBL_GUI</em> has currently 2 categories of components:
+			<em>sIBL_GUI</em> has currently 3 categories of components:
 		</p>
 		<ul class="simple">
 			<li>
-				<strong>Default Component</strong> (Components without an associated Ui Widget).
+				<strong>Default Component</strong> (Components inheriting from <em>Python Object</em>).
 			</li>
 			<li>
-				<strong>Ui Component</strong> (Components with an associated Ui Widget).
+				<strong>QWidget Component</strong> (Components inheriting from <em>Qt QWidget</em>).
+			</li>
+			<li>
+				<strong>QObject Component</strong> (Components inheriting from <em>Qt QObject</em>).
 			</li>
 		</ul>
 		<p>
-			Those 2 types are split into 3 main families:
+			Those 2 types are split into 4 main families:
 		</p>
 		<ul class="simple">
 			<li>
-				<strong>Core</strong> (Factory required components, not deactivable and not removable)
+				<strong>Factory</strong> (Factory required components, not deactivable and not removable).
 			</li>
 			<li>
-				<strong>Addons</strong> (Factory optional components, deactivable and removable)
+				<strong>Core</strong> (Core required components, not deactivable and not removable).
 			</li>
 			<li>
-				<strong>User</strong> (User optional components, deactivable and removable)
+				<strong>Addons</strong> (Factory optional components, deactivable and removable).
+			</li>
+			<li>
+				<strong>User</strong> (User optional components, deactivable and removable).
 			</li>
 		</ul>
-		<div class="section" id="id19">
+		<div class="section" id="id20">
+			<h2>
+				<span class="target" id="factory">Factory</span>
+			</h2>
+			<div class="section" id="components-manager-ui-factory-componentsmanagerui">
+				<span id="factory-componentsmanagerui" />
+				<h3>
+					<span class="target" id="components-manager-ui">Components Manager Ui</span> (factory.componentsManagerUi)
+				</h3>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ComponentsManager.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManager.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					The <em>Components Manager Ui</em> component allows <em>sIBL_GUI</em> addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom <em>Components Informations</em> widget.
+				</p>
+				<p>
+					Interactions:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Right clic</strong>: Displays a context menu described further.
+					</li>
+				</ul>
+				<p>
+					Columns Descriptions:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Components</strong>: Components names (Components are sorted by families).
+					</li>
+					<li>
+						<strong>Activated</strong>: Components activations status.
+					</li>
+					<li>
+						<strong>Category</strong>: Components categories (Default or Ui).
+					</li>
+					<li>
+						<strong>Rank</strong>: Components ranks (Components with a low rank will have a high instantiation priority).
+					</li>
+				</ul>
+				<p>
+					Context Menu:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="simple">
+					<li>
+						<strong>Activate Component(s)</strong>: Activates selected Component(s).
+					</li>
+					<li>
+						<strong>Dectivate Component(s)</strong>: Deactivates selected Component(s).
+					</li>
+					<li>
+						<strong>Reload Component(s)</strong>: Reloads selected Component(s) (Deactivates the component, reloads component code, activates back the component).
+					</li>
+				</ul>
+				<p>
+					Addons Functionalities:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Open Component(s) Location(s) ...</strong>: Opens Component(s) directory(s).
+					</li>
+				</ul>
+				<p>
+					<strong>***</strong>
+				</p>
+			</div>
+			<div class="section" id="preferences-manager-factory-preferencesmanager">
+				<span id="factory-preferencesmanager" />
+				<h3>
+					<span class="target" id="preferences-manager">Preferences Manager</span> (factory.preferencesManager)
+				</h3>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_PreferencesManager.jpg" class="first last" src="resources/pictures/sIBL_GUI_PreferencesManager.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					The <em>Preferences Manager</em> component is used to configure <em>sIBL_GUI</em> behavior. There are 2 pages where settings can be changed:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>General</strong>: Overall <em>sIBL_GUI</em> settings.
+					</li>
+					<li>
+						<strong>Others</strong>: Components settings.
+					</li>
+				</ul>
+				<p>
+					General Page:
+				</p>
+				<ul class="simple">
+					<li>
+						<strong>Logging Formatter</strong>: Adjusts <em>sIBL_GUI</em> logging formatter:
+						<ul>
+							<li>Default: Default logging formatter: <strong>Logging Level: Message</strong>.
+							</li>
+							<li>Extended: Extended logging formatter: <strong>Time - Thread - Logging Level: Message</strong>.
+							</li>
+							<li>Standard: Simple standard logging formatter: <strong>Message</strong>.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Verbose Level</strong>: Adjusts <em>sIBL_GUI</em> verbose level between different modes (Debug being the most verbosing, Critical the less):
+						<ul>
+							<li>Debug
+							</li>
+							<li>Info
+							</li>
+							<li>Warning
+							</li>
+							<li>Error
+							</li>
+							<li>Critical
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Restore Geometry On Layout Change</strong>: <em>sIBL_GUI</em> window size and position will be restored when switching layouts.
+					</li>
+				</ul>
+				<p>
+					Others Page:
+				</p>
+				<p>
+					Those settings are components dependent and will be described per related component.
+				</p>
+				<p>
+					<strong>***</strong>
+				</p>
+			</div>
+			<div class="section" id="script-editor-factory-scripteditor">
+				<span id="factory-scripteditor" />
+				<h3>
+					<span class="target" id="script-editor">Script Editor</span> (factory.scriptEditor)
+				</h3>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditor.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditor.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="line-block">
+					<div class="line">
+						The <em>Script Editor</em> component allows directly interaction with <em>sIBL_GUI</em> through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+					</div>
+					<div class="line">
+						Languages support is provided using custom grammars files but mechanism will be replaced by <em>Textmate</em> compliant system in the future.
+					</div>
+					<div class="line">
+						<em>sIBL_GUI</em> logging messages and commands execution results are displayed in the upper pane.
+					</div>
+				</div>
+				<p>
+					Menus Bar:
+				</p>
+				<p>
+					File Menu:
+				</p>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorFileMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorFileMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="simple">
+					<li>
+						<strong>New</strong>: Adds a new editor.
+					</li>
+					<li>
+						<strong>Load &#8230;</strong>: Loads user chosen file in a new editor.
+					</li>
+					<li>
+						<strong>Source &#8230;</strong>: Loads user chosen file in a new editor and execute its content.
+					</li>
+					<li>
+						<strong>Save</strong>: Saves current editor content.
+					</li>
+					<li>
+						<strong>Save As &#8230;</strong>: Saves current editor content as user chosen file.
+					</li>
+					<li>
+						<strong>Save All</strong>: Saves all editors content.
+					</li>
+					<li>
+						<strong>Close</strong>: Closes current editor.
+					</li>
+					<li>
+						<strong>Close All</strong>: Closes all editors.
+					</li>
+				</ul>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorEditMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorEditMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="simple">
+					<li>
+						<strong>New</strong>: Adds a new editor.
+					</li>
+					<li>
+						<strong>Load &#8230;</strong>: Loads user chosen file in a new editor.
+					</li>
+					<li>
+						<strong>Source &#8230;</strong>: Loads user chosen file in a new editor and execute its content.
+					</li>
+					<li>
+						<strong>Save</strong>: Saves current editor content.
+					</li>
+					<li>
+						<strong>Save As &#8230;</strong>: Saves current editor content as user chosen file.
+					</li>
+					<li>
+						<strong>Save All</strong>: Saves all editors content.
+					</li>
+					<li>
+						<strong>Close</strong>: Closes current editor.
+					</li>
+					<li>
+						<strong>Close All</strong>: Closes all editors.
+					</li>
+				</ul>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorCommandMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" class="docutils">
+					<colgroup>
+						<col width="100%" />
+					</colgroup>
+					<tbody valign="top">
+						<tr>
+							<td>
+								<img alt="resources/pictures/sIBL_GUI_ScriptEditorViewMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorViewMenu.jpg" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="section" id="id21">
 			<h2>
 				<span class="target" id="core">Core</span>
 			</h2>
@@ -823,7 +1186,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 					<li>
 						<strong>Drag&#8217;n&#8217;drop</strong>:
 						<ul>
-							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection change sets current Collection.
+							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection changes given Ibl Sets current Collection.
 							</li>
 							<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 							</li>
@@ -888,89 +1251,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						</tr>
 					</tbody>
 				</table>
-				<p>
-					<strong>***</strong>
-				</p>
-			</div>
-			<div class="section" id="components-manager-core-componentsmanagerui">
-				<span id="core-componentsmanagerui" />
-				<h3>
-					<span class="target" id="components-manager">Components Manager</span> (core.componentsManagerUi)
-				</h3>
-				<table border="1" class="docutils">
-					<colgroup>
-						<col width="100%" />
-					</colgroup>
-					<tbody valign="top">
-						<tr>
-							<td>
-								<img alt="resources/pictures/sIBL_GUI_ComponentsManager.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManager.jpg" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<p>
-					The <em>Components Manager</em> component allows <em>sIBL_GUI</em> addons and user components activation / deactivation (Core components are required and not deactivable). Selected components details are displayed in the bottom <em>Components Informations</em> widget.
-				</p>
-				<p>
-					Interactions:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>Right clic</strong>: Displays a context menu described further.
-					</li>
-				</ul>
-				<p>
-					Columns Descriptions:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>Components</strong>: Components names (Components are sorted by families).
-					</li>
-					<li>
-						<strong>Activated</strong>: Components activations status.
-					</li>
-					<li>
-						<strong>Category</strong>: Components categories (Default or Ui).
-					</li>
-					<li>
-						<strong>Rank</strong>: Components ranks (Components with a low rank will have a high instantiation priority).
-					</li>
-				</ul>
-				<p>
-					Context Menu:
-				</p>
-				<table border="1" class="docutils">
-					<colgroup>
-						<col width="100%" />
-					</colgroup>
-					<tbody valign="top">
-						<tr>
-							<td>
-								<img alt="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<ul class="simple">
-					<li>
-						<strong>Activate Component(s)</strong>: Activates selected Component(s).
-					</li>
-					<li>
-						<strong>Dectivate Component(s)</strong>: Deactivates selected Component(s).
-					</li>
-					<li>
-						<strong>Reload Component(s)</strong>: Reloads selected Component(s) (Deactivates the component, reloads component code, activates back the component).
-					</li>
-				</ul>
-				<p>
-					Addons Functionalities:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>Open Component(s) Location(s) ...</strong>: Opens Component(s) directory(s).
-					</li>
-				</ul>
 				<p>
 					<strong>***</strong>
 				</p>
@@ -1192,78 +1472,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
 						<strong>View Plate(s) &#8230;</strong>: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
-				<p>
-					<strong>***</strong>
-				</p>
-			</div>
-			<div class="section" id="preferences-manager-core-preferencesmanager">
-				<span id="core-preferencesmanager" />
-				<h3>
-					<span class="target" id="preferences-manager">Preferences Manager</span> (core.preferencesManager)
-				</h3>
-				<table border="1" class="docutils">
-					<colgroup>
-						<col width="100%" />
-					</colgroup>
-					<tbody valign="top">
-						<tr>
-							<td>
-								<img alt="resources/pictures/sIBL_GUI_PreferencesManager.jpg" class="first last" src="resources/pictures/sIBL_GUI_PreferencesManager.jpg" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<p>
-					The <em>Preferences Manager</em> component is used to configure <em>sIBL_GUI</em> behavior. There are 2 pages where settings can be changed:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>General</strong>: Overall <em>sIBL_GUI</em> settings.
-					</li>
-					<li>
-						<strong>Others</strong>: Components settings.
-					</li>
-				</ul>
-				<p>
-					General Page:
-				</p>
-				<ul class="simple">
-					<li>
-						<strong>Logging Formatter</strong>: Adjusts <em>sIBL_GUI</em> logging formatter:
-						<ul>
-							<li>Default: Default logging formatter: <strong>Logging Level: Message</strong>.
-							</li>
-							<li>Extended: Extended logging formatter: <strong>Time - Thread - Logging Level: Message</strong>.
-							</li>
-							<li>Standard: Simple standard logging formatter: <strong>Message</strong>.
-							</li>
-						</ul>
-					</li>
-					<li>
-						<strong>Verbose Level</strong>: Adjusts <em>sIBL_GUI</em> verbose level between different modes (Debug being the most verbosing, Critical the less):
-						<ul>
-							<li>Debug
-							</li>
-							<li>Info
-							</li>
-							<li>Warning
-							</li>
-							<li>Error
-							</li>
-							<li>Critical
-							</li>
-						</ul>
-					</li>
-					<li>
-						<strong>Restore Geometry On Layout Change</strong>: <em>sIBL_GUI</em> window size and position will be restored when switching layouts.
-					</li>
-				</ul>
-				<p>
-					Others Page:
-				</p>
-				<p>
-					Those settings are components dependent and will be described per related component.
-				</p>
 				<p>
 					<strong>***</strong>
 				</p>

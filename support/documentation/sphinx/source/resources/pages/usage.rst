@@ -19,19 +19,23 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **Templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
--  **settings**: Directory storing *sIBL_GUI* settings file.
--  **logging**: Directory storing *sIBL_GUI* logging file.
--  **io**: Directory used for *sIBL_GUI* input / output operations.
-
-   -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
-   -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
-
+-  **components**: Directory storing user components.
 -  **database**: Directory storing the SQLite database.
 
    -  **backup**: Directory used by the *Db* component when it backups the database.
+   -  **migrations**: Directory used by the *Db* migration mechanism responsible to migrate the database.
 
--  **components**: Directory storing user components.
+      -  **versions**: Directory used by to store the various migrations scripts.
+
+-  **io**: Directory used for *sIBL_GUI* input / output operations.
+
+   -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
+   -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
+   -  **scriptEditor**: Directory containing the default scripts used by the **Script Editor**.
+
+-  **logging**: Directory storing *sIBL_GUI* logging file.
+-  **settings**: Directory storing *sIBL_GUI* settings file.
+-  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
 
 _`Command Line Parameters`
 --------------------------
@@ -43,11 +47,11 @@ _`Command Line Parameters`
 -  **-v VERBOSITYLEVEL, —verbose=VERBOSITYLEVEL**: Application verbosity levels: 0 = Critical \| 1 = Error \| 2 = Warning \| 3 = Info \| 4 = Debug.
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
+-  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 -  **-t, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
 -  **-o LOADERSCRIPTSOUTPUTDIRECTORY, —loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY**: Loader scripts output directory.
--  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 
 Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
 
@@ -110,6 +114,7 @@ _`Interface`
 -  `Library Layout`_
 -  `Inspect Layout`_
 -  `Export Layout`_
+-  `Edit Layout`_
 -  `Preferences Layout`_
 
 _`Toolbar`
@@ -192,6 +197,19 @@ An additional but extremely powerful export related component is available by ri
 | ..  image:: ../pictures/sIBL_GUI_TemplatesCentricLayout.jpg            |
 +------------------------------------------------------------------------+
 
+_`Edit Layout`
+^^^^^^^^^^^^^^^^^
+
+The *Edit layout* is where Ibl Set are edited.
+
+This layout is built around 1 component:
+
+-  :ref:`factory.scriptEditor`
+
++-------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_EditCentricLayout.jpg            |
++-------------------------------------------------------------------+
+
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -199,8 +217,8 @@ The *Preferences layout* is where *sIBL_GUI* behavior is configured.
 
 This layout is built around 2 components:
 
--  :ref:`core.componentsManagerUi`
--  :ref:`core.preferencesManager`
+-  :ref:`factory.componentsManagerUi`
+-  :ref:`factory.preferencesManager`
 
 +--------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_PreferencesCentricLayout.jpg            |
