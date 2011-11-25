@@ -933,7 +933,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
-		self.__coreDatabaseBrowser.databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
 		for view in self.__coreDatabaseBrowser.views:
 			view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
@@ -944,6 +943,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.connect(self.__inspector__modelRefresh)
 		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
 		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
+
+		if self.__coreDatabaseBrowser.databaseBrowserWorkerThread:
+			self.__coreDatabaseBrowser.databaseBrowserWorkerThread.databaseChanged.connect(
+			self.__coreDb_database__databaseChanged)
 
 		return True
 
