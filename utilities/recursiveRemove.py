@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**sIBL_GUI_recursiveRemove.py
+**recursiveRemove.py
 
 **Platform:**
 	Windows, Linux, Mac Os X.

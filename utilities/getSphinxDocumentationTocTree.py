@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**sIBL_GUI_getHDRLabsDocumentation.py
+**getSphinxDocumentationTocTree.py
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Extracts sIBL_GUI documentation body for HDRLabs.com.
+	Gets Sphinx documentation Toc Tree file.
 
 **Others:**
 
@@ -16,16 +16,18 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import glob
 import logging
 import os
-import sys
 import re
-from xml.etree import ElementTree
+import sys
+from collections import OrderedDict
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.strings as strings
 from foundations.io import File
 from foundations.globals.constants import Constants
 
@@ -47,33 +49,67 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)
 
+FILES_EXTENSION = ".rst"
+
+TOCTREE_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI |version|'s documentation!\n",
+						"==============================================\n",
+						"\n",
+						"Contents:\n",
+						"\n",
+						".. toctree::\n",
+						" :maxdepth: 2\n",
+						" :numbered:\n"]
+TOCTREE_TEMPLATE_END = ["Search:\n",
+					"==================\n",
+					"\n",
+					"* :ref:`genindex`\n",
+					"* :ref:`modindex`\n",
+					"* :ref:`search`\n", ]
+
 #**********************************************************************************************************************
 #***	Main Python code.
 #**********************************************************************************************************************
-def getHDRLabsDocumentation(fileIn, fileOut):
+def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
-	This definition extracts sIBL_GUI Documentation body for HDRLabs.com.
+	This definition gets Sphinx documentation index file.
 
 	:param fileIn: File to convert. ( String )
 	:param fileOut: Output file. ( String )
+	:param contentDirectory: Content directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))
+	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__,
+																				fileOut))
 	file = File(fileIn)
 	file.read()
 
-	LOGGER.info("{0} | Building 'ElementTree' parsing tree!".format(getHDRLabsDocumentation.__name__))
-	element = ElementTree.fromstringlist(file.content)
-	tree = ElementTree.ElementTree(element)
+	existingFiles = [strings.getSplitextBasename(item)
+					for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]
+	relativeDirectory = contentDirectory.replace("{0}/".format(os.path.dirname(fileOut)), "")
 
-	LOGGER.info("{0} | Processing 'body' data!".format(getHDRLabsDocumentation.__name__))
-	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 2))
-				for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n")
-				if not re.search(r"<html:body.*", line) and not re.search(r"</html:body.*", line)]
+	tocTree = ["\n"]
+	for line in file.content:
+		search = re.search(r"`([a-zA-Z_ ]+)`_", line)
+		if not search:
+			continue
+
+		item = search.groups()[0]
+		code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
+		if code in existingFiles:
+			link = "{0}/{1}".format(relativeDirectory, code)
+			data = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
+			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__,
+																		data.replace("\n", "")))
+			tocTree.append(data)
+	tocTree.append("\n")
+
+	content = TOCTREE_TEMPLATE_BEGIN
+	content.extend(tocTree)
+	content.extend(TOCTREE_TEMPLATE_END)
 
 	file = File(fileOut)
 	file.content = content
 	file.write()
 
 if __name__ == "__main__":
-	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
+	getSphinxDocumentationTocTree(sys.argv[1], sys.argv[2], sys.argv[3])

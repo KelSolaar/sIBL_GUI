@@ -2,7 +2,7 @@
 This script generates 2 lists of nsis commands (install & uninstall)for all files in a given directory.
 
 Usage:
-	sIBL_Generate_NSIS_Installed_Files.py <source directory> <installation list name> <uninstallation list name>
+	getNsisInstallerFilesList.py <source directory> <installation list name> <uninstallation list name>
 Where
 	<Source Directory>	  : Source directory.
 	<Installation List name>	: List of files to install. (NSIS syntax)

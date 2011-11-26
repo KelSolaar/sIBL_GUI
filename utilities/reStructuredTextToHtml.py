@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**sIBL_GUI_getDependenciesInformations.py
+**reStructuredTextToHtml.py
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Get dependencies informations.
+	Converts a reStructuredText file to html.
 
 **Others:**
 
@@ -17,9 +17,8 @@
 #***	External imports.
 #**********************************************************************************************************************
 import logging
-import subprocess
+import os
 import sys
-from collections import OrderedDict
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -46,33 +45,37 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)
 
-GIT_EXECUTABLE = "/usr/local/git/bin/git"
-FOUNDATIONS_DIRECTORY = "../../Foundations"
-MANAGER_DIRECTORY = "../../Manager"
-TEMPLATES_DIRECTORY = "../../sIBL_GUI_Templates"
-DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
-							("Manager", MANAGER_DIRECTORY), ("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
-DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
+RST2HTML = "/Library/Frameworks/Python.framework/Versions/2.7/bin/rst2html.py"
+CSS_FILE = "css/style.css"
+TIDY_SETTINGS_FILE = "tidy/tidySettings.rc"
+
+NORMALIZATION = {"document": "document", }
 
 #**********************************************************************************************************************
 #***	Main Python code.
 #**********************************************************************************************************************
-def getDependenciesInformations():
+def reStructuredTextToHtml(fileIn, fileOut):
 	"""
-	This definition gets sIBL_GUI dependencies informations file.
+	This definition outputs a reStructuredText file to html.
+
+	:param fileIn: File to convert. ( String )
+	:param fileOut: Output file. ( String )
 	"""
 
-	content = ["[Dependencies]\n"]
-	for dependency, path in DEPENDENCIES.items():
-		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE),
-									shell=True,
-									stdout=subprocess.PIPE,
-									stderr=subprocess.PIPE).communicate()[0]
-		LOGGER.info("{0} | '{1}': '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
-		content.append("{0}={1}".format(dependency, release))
-	file = File(DEPENDENCIES_FILE)
-	file.content = content
+	LOGGER.info("{0} | Converting '{1}' reStructuredText file to html!".format(reStructuredTextToHtml.__name__, fileIn))
+	os.system("{0} --stylesheet-path='{1}' '{2}' > '{3}'".format(RST2HTML,
+																os.path.join(os.path.dirname(__file__), CSS_FILE),
+																fileIn,
+																fileOut))
+
+	LOGGER.info("{0} | Formatting html file!".format("Tidy"))
+	os.system("tidy -config {0} -m '{1}'".format(os.path.join(os.path.dirname(__file__), TIDY_SETTINGS_FILE), fileOut))
+
+	file = File(fileOut)
+	file.read()
+	LOGGER.info("{0} | Replacing spaces with tabs!".format(reStructuredTextToHtml.__name__))
+	file.content = [line.replace(" " * 4, "\t") for line in file.content]
 	file.write()
 
 if __name__ == "__main__":
-	getDependenciesInformations()
+	reStructuredTextToHtml(sys.argv[1], sys.argv[2])

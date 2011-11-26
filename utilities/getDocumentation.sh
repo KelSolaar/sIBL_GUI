@@ -16,7 +16,7 @@ export SPHINX=$APPLICATION/support/documentation/sphinx
 echo ----------------------------------------------------------------
 echo Inline Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/sIBL_GUI_reStructuredTextToHtml.py "$HELP/sIBL_GUI Manual" "$HELP/sIBL_GUI Manual.html"
+python $UTILITIES/reStructuredTextToHtml.py "$HELP/sIBL_GUI Manual" "$HELP/sIBL_GUI Manual.html"
 echo ----------------------------------------------------------------
 echo Inline Documentation Build - End
 echo ----------------------------------------------------------------
@@ -25,7 +25,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/sIBL_GUI_getHDRLabsDocumentation.py "$HELP/sIBL_GUI Manual.html" "$HELP/sIBL_GUI_Manual_Body.html"
+python $UTILITIES/getHDRLabsDocumentation.py "$HELP/sIBL_GUI Manual.html" "$HELP/sIBL_GUI_Manual_Body.html"
 echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - End
 echo ----------------------------------------------------------------
@@ -34,13 +34,13 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Sphinx Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/sIBL_GUI_sliceDocumentation.py "$HELP/sIBL_GUI Manual" "$SPHINX/source/resources/pages"
-python $UTILITIES/sIBL_GUI_getSphinxDocumentationTocTree.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
+python $UTILITIES/sliceDocumentation.py "$HELP/sIBL_GUI Manual" "$SPHINX/source/resources/pages"
+python $UTILITIES/getSphinxDocumentationTocTree.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
 rm -rf $SPHINX/build
 rm -rf /source/resources/src
 rm $SPHINX/source/resources/pages/api/*
 rm "$SPHINX/source/resources/pages/tocTree.rst"
-python $UTILITIES/sIBL_GUI_getSphinxDocumentationApi.py  "$APPLICATION/src"  "$SPHINX/source/resources/src" "$SPHINX/source/resources/pages/api" "$SPHINX/source/resources/pages/api.rst"
+python $UTILITIES/getSphinxDocumentationApi.py  "$APPLICATION/src"  "$SPHINX/source/resources/src" "$SPHINX/source/resources/pages/api" "$SPHINX/source/resources/pages/api.rst"
 export PYTHONPATH=$SPHINX/source/resources/src
 sphinx-build -b html -d $SPHINX/build/doctrees   $SPHINX/source $SPHINX/build/html
 echo ----------------------------------------------------------------

@@ -69,7 +69,7 @@ Section -Main SEC0000
         ExecWait '"$INSTDIR\Uninstall.exe" /S'
     continue:
 	   SetOverwrite on
-	   !include  "sIBL_GUI_Installed_Files.nsh"
+	   !include  "support\installedFiles.nsh"
 	   WriteRegStr HKLM "${REGKEY}\Components" Main 1
 SectionEnd
 
@@ -110,7 +110,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-	!include  "sIBL_GUI_Uninstalled_Files.nsh"
+	!include  "support\uninstalledFiles.nsh"
 	DeleteRegValue HKLM "${REGKEY}\Components" Main
 SectionEnd
 
