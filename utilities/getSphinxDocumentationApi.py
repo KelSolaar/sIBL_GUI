@@ -106,9 +106,8 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 	osWalker.walk(filtersIn=("\.ui$",))
 	for file in sorted(osWalker.files.values()):
 		LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
-		targetDirectory = "{0}/{1}" .format(os.path.dirname(file).replace(sourceDirectory, ""),
-							strings.getSplitextBasename(file))
-		directory = os.path.dirname(os.path.join(cloneDirectory, targetDirectory))
+		targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
+		directory = "{0}{1}".format(cloneDirectory, targetDirectory)
 		if not os.path.exists(directory):
 			os.makedirs(directory)
 		source = os.path.join(directory, os.path.basename(file))

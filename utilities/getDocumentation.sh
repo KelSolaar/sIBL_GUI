@@ -37,7 +37,7 @@ echo ----------------------------------------------------------------
 python $UTILITIES/sliceDocumentation.py "$HELP/sIBL_GUI Manual" "$SPHINX/source/resources/pages"
 python $UTILITIES/getSphinxDocumentationTocTree.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
 rm -rf $SPHINX/build
-rm -rf /source/resources/src
+rm -rf $SPHINX/source/resources/src
 rm $SPHINX/source/resources/pages/api/*
 rm "$SPHINX/source/resources/pages/tocTree.rst"
 python $UTILITIES/getSphinxDocumentationApi.py  "$APPLICATION/src"  "$SPHINX/source/resources/src" "$SPHINX/source/resources/pages/api" "$SPHINX/source/resources/pages/api.rst"
