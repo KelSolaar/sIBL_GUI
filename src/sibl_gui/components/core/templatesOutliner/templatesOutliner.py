@@ -1641,6 +1641,17 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def listTemplates(self):
+		"""
+		This method lists Database Templates names.
+
+		:return: Database Templates names. ( List )
+		"""
+
+		return [template.title for template in self.getTemplates()]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTemplates(self):
 		"""
 		This method sets the Templates Model nodes.

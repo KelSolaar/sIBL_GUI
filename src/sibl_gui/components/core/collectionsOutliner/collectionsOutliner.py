@@ -1122,12 +1122,23 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollections(self):
 		"""
-		This method returns Database set Collections.
+		This method returns Database Ibl Sets Collections.
 
-		:return: Database set Collections. ( List )
+		:return: Database Ibl Sets Collections. ( List )
 		"""
 
 		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def listCollections(self):
+		"""
+		This method lists Database Ibl Sets Collections names.
+
+		:return: Database Ibl Sets Collections names. ( List )
+		"""
+
+		return [collection.name for collection in self.getCollections()]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

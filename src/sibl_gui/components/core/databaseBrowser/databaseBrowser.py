@@ -92,7 +92,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	This signal is emited by the :class:`DatabaseBrowser` class when :obj:`DatabaseBrowser.model` class property model
 	needs to be refreshed. ( pyqtSignal )
 	"""
-	
+
 	activeViewChanged = pyqtSignal(int)
 	"""
 	This signal is emited by the :class:`DatabaseBrowser` class when the current active view is changed. ( pyqtSignal )
@@ -1924,6 +1924,17 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def listIblSets(self):
+		"""
+		This method lists Database Ibl Sets names.
+
+		:return: Database Ibl Sets names. ( List )
+		"""
+
+		return [iblSet.title for iblSet in self.getIblSets()]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
