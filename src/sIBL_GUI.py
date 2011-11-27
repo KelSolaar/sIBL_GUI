@@ -121,6 +121,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
+		self.__setPreInitialisationOverrides()
+
 		umbra.engine.Umbra.__init__(self,
 									parent,
 									componentsPaths,
@@ -129,10 +131,10 @@ class sIBL_GUI(umbra.engine.Umbra):
 									*args,
 									**kwargs)
 
+		self.__setPostInitialisationOverrides()
+
 		# --- Initializing Application image cache. ---
 		self.__imagesCache = RuntimeGlobals.imagesCache
-
-		self.__setOverrides()
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -173,14 +175,61 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#***	Class methods.
 	#******************************************************************************************************************
 	@core.executionTrace
-	def __setOverrides(self):
+	def __setPreInitialisationOverrides(self):
 		"""
-		This method sets Application overrides.
+		This method sets Application pre initialisation overrides.
+		"""
+
+		self._Umbra__initializeToolBar = self.__initializeToolBar
+
+	@core.executionTrace
+	def __setPostInitialisationOverrides(self):
+		"""
+		This method sets Application post initialisation overrides.
 		"""
 
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		factoryScriptEditor._ScriptEditor__developmentLayout = "editCentric"
 		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__engine__contentDropped)
+
+	@core.executionTrace
+	def __initializeToolBar(self):
+		"""
+		This method initializes Application toolBar.
+		"""
+
+		LOGGER.debug("> Initializing Application toolBar!")
+		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize,
+										umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
+
+		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
+		self.toolBar.addWidget(self.getApplicationLogoLabel())
+
+		LOGGER.debug("> Adding 'Spacer_label' widget!")
+		self.toolBar.addWidget(self.getSpacerLabel())
+
+		LOGGER.debug("> Adding 'Library_activeLabel', \
+					'Inspect_activeLabel', \
+					'Export_activeLabel', \
+					'Edit_activeLabel', \
+					'Preferences_activeLabel' \
+					widgets!")
+
+		self.getLayoutsActiveLabels()
+		for activeLabel in self.layoutsActiveLabels:
+			self.toolBar.addWidget(activeLabel.object)
+
+		LOGGER.debug("> Adding 'Central_Widget_activeLabel' widget!")
+		self.toolBar.addWidget(self.getCentralWidgetActiveLabel())
+
+		LOGGER.debug("> Adding 'Custom_Layouts_activeLabel' widget!")
+		self.toolBar.addWidget(self.getCustomLayoutsActiveLabel())
+
+		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
+		self.toolBar.addWidget(self.getMiscellaneousActiveLabel())
+
+		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
+		self.toolBar.addWidget(self.getClosureSpacerLabel())
 
 	@core.executionTrace
 	def __centralWidgetButton__clicked(self):
@@ -280,47 +329,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		# Signals / Slots.
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 		return centralWidgetButton
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def initializeToolBar(self):
-		"""
-		This method initializes Application toolBar.
-		"""
-
-		LOGGER.debug("> Initializing Application toolBar!")
-		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize,
-										umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
-
-		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
-		self.toolBar.addWidget(self.getApplicationLogoLabel())
-
-		LOGGER.debug("> Adding 'Logo_Spacer_label' widget!")
-		self.toolBar.addWidget(self.getLogoSpacerLabel())
-
-		LOGGER.debug("> Adding 'Library_activeLabel', \
-					'Inspect_activeLabel', \
-					'Export_activeLabel', \
-					'Edit_activeLabel', \
-					'Preferences_activeLabel' \
-					widgets!")
-
-		self.getLayoutsActiveLabels()
-		for activeLabel in self.layoutsActiveLabels:
-			self.toolBar.addWidget(activeLabel.object)
-
-		LOGGER.debug("> Adding 'Central_Widget_activeLabel' widget!")
-		self.toolBar.addWidget(self.getCentralWidgetActiveLabel())
-
-		LOGGER.debug("> Adding 'Custom_Layouts_activeLabel' widget!")
-		self.toolBar.addWidget(self.getCustomLayoutsActiveLabel())
-
-		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
-		self.toolBar.addWidget(self.getMiscellaneousActiveLabel())
-
-		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
-		self.toolBar.addWidget(self.getClosureSpacerLabel())
-		return True
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
