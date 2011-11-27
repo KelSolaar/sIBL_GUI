@@ -44,14 +44,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "iblSetsScanner_Worker"]
+__all__ = ["LOGGER", "IblSetsScanner_Worker"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class iblSetsScanner_Worker(QThread):
+class IblSetsScanner_Worker(QThread):
 	"""
 	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to retrieve
 	new Ibl Sets from Database registered directories parents.
@@ -60,7 +60,7 @@ class iblSetsScanner_Worker(QThread):
 	# Custom signals definitions.
 	iblSetsRetrieved = pyqtSignal(dict)
 	"""
-	This signal is emited by the :class:`iblSetsScanner_Worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
+	This signal is emited by the :class:`IblSetsScanner_Worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
 	
 	:return: New Ibl Sets. ( Dictionary )
 	"""

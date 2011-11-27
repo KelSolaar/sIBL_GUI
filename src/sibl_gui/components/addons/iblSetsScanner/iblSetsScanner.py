@@ -30,7 +30,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qobjectComponent import QObjectComponent
-from sibl_gui.components.addons.iblSetsScanner.workers import iblSetsScanner_Worker
+from sibl_gui.components.addons.iblSetsScanner.workers import IblSetsScanner_Worker
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -300,7 +300,7 @@ class IblSetsScanner(QObjectComponent):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__setsScannerWorkerThread = iblSetsScanner_Worker(self)
+				self.__setsScannerWorkerThread = IblSetsScanner_Worker(self)
 				self.__engine.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
@@ -349,7 +349,7 @@ class IblSetsScanner(QObjectComponent):
 	@umbra.engine.encapsulateProcessing
 	def __setsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
-		This method is triggered by the **iblSetsScanner_Worker** when the Database has changed.
+		This method is triggered by the **IblSetsScanner_Worker** when the Database has changed.
 
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
