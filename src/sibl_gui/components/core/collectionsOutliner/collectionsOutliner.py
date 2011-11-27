@@ -19,6 +19,7 @@
 #**********************************************************************************************************************
 import logging
 import os
+import re
 from collections import OrderedDict
 from PyQt4.QtCore import QVariant
 from PyQt4.QtCore import Qt
@@ -1082,7 +1083,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None,
+											False,
+											foundations.exceptions.ProgrammingError,
+											dbExceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
 		This method removes given Collection from the Database.
@@ -1090,6 +1094,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param collection: Collection to remove. ( DbCollection )
 		:return: Method success. ( Boolean )
 		"""
+
+		if not isinstance(collection, dbTypes.DbCollection):
+			raise foundations.exceptions.ProgrammingError(
+			"{0} | '{1}' type is not 'DbCollection'!".format(self.__class__.__name__, collection))
 
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
@@ -1105,6 +1113,37 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise dbExceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__,
 																								collection.name))
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getCollections(self):
+		"""
+		This method returns Database Ibl Sets Collections.
+
+		:return: Database Ibl Sets Collections. ( List )
+		"""
+
+		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
+		"""
+		This method filters the Database Ibl Sets Collections on given attribute using given pattern.
+		
+		:param pattern: Filter pattern. ( String )
+		:param attribute: Attribute to filter on. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+
+		:return: Filtered Database Ibl Sets Collections. ( List )
+		"""
+
+		try:
+			pattern = re.compile(pattern, flags)
+		except:
+			return
+
+		return list(set(self.getCollections()).intersection(
+		dbCommon.filterCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1117,17 +1156,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		return dbCommon.collectionExists(self.__coreDb.dbSession, name)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getCollections(self):
-		"""
-		This method returns Database Ibl Sets Collections.
-
-		:return: Database Ibl Sets Collections. ( List )
-		"""
-
-		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1186,6 +1214,19 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getCollectionByName(self, name):
+		"""
+		This method returns Database Ibl Sets Collection with given name.
+
+		:param name: Collection name. ( String )
+		:return: Database Ibl Sets Collection. ( DbCollection )
+		"""
+
+		collections = self.filterCollections(r"^{0}$".format(name), "name")
+		return collections and collections[0] or None
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionsIblSets(self, collections):
 		"""
 		This method gets given Collections Ibl Sets.
@@ -1223,11 +1264,11 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getUniqueCollectionId(self):
+	def getFirstCollectionId(self):
 		"""
-		This method returns an unique Collection id ( Either first selected Collection or default one ).
+		This method returns the first available Collection id ( Either first selected Collection or default one ).
 
-		:return: Unique id. ( Integer )
+		:return: First Collection id. ( Integer )
 		"""
 
 		ids = [collection.id for collection in self.getSelectedCollections()]

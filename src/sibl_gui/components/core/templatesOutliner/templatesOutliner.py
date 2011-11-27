@@ -1467,7 +1467,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
+			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getFirstCollectionId(path)):
 				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
@@ -1540,7 +1540,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				dbCommon.addCollection(self.__coreDb.dbSession,
 										collection,
 										"Templates", "Template {0} Collection".format(collection))
-			success *= self.addDirectory(path, self.getCollection(collection).id)
+			success *= self.addDirectory(path, self.getCollectionByName(collection).id)
 
 		if success:
 			return True
@@ -1634,7 +1634,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method returns Database Templates.
 
-		:return: Database Templates Collections. ( List )
+		:return: Database Templates. ( List )
 		"""
 
 		return [template for template in dbCommon.getTemplates(self.__coreDb.dbSession)]
@@ -1707,6 +1707,21 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getCollectionByName(self, name):
+		"""
+		This method gets Template Collection from given Collection name.
+
+		:param collection: Collection name. ( String )
+		:return: Collection. ( DbCollection )
+		"""
+
+		collections = [collection for collection in set(dbCommon.filterCollections(
+		self.__coreDb.dbSession, "^{0}$".format(name), "name")).intersection(
+		dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))]
+		return collections and collections[0] or None
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the View selected nodes.
@@ -1740,32 +1755,19 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getCollection(self, collection):
+	def getFirstCollectionId(self, path):
 		"""
-		This method gets Template Collection from given Collection name.
-
-		:param collection: Collection name. ( String )
-		:return: Collection. ( DbCollection )
-		"""
-
-		return [collection for collection in set(dbCommon.filterCollections(
-		self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(
-		dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getUniqueCollectionId(self, path):
-		"""
-		This method gets an unique Collection id using given path.
+		This method gets an the first available Collection id using given path.
 
 		:param path: Template path. ( String )
-		:return: Unique id. ( Integer )
+		:return: First Collection id. ( Integer )
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		id = [collection for collection in set(dbCommon.filterCollections(
 			self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(
 			templatesCollections)][0].id
+
 		if self.__defaultCollections[self.__factoryCollection]:
 			if path in self.__defaultCollections[self.__factoryCollection]:
 				id = [collection for collection in set(dbCommon.filterCollections(

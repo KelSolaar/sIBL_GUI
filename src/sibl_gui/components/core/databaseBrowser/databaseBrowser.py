@@ -1476,7 +1476,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setIblSets(self.filterIblsSets(str(self.Search_Database_lineEdit.text()),
+		self.setIblSets(self.__searchIblSets(str(self.Search_Database_lineEdit.text()),
 											self.__searchContexts[self.__activeSearchContext],
 											not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
 
@@ -1599,6 +1599,34 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(
 			self.__class__.__name__))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __searchIblSets(self, pattern, attribute, flags=re.IGNORECASE):
+		"""
+		This method filters the current Collection Ibl Sets.
+		
+		:param pattern: Ibl Sets filter pattern. ( String )
+		:param attribute: Attribute to filter Ibl Sets on. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+
+		:return: Filtered Ibl Sets. ( List )
+		"""
+
+		try:
+			pattern = re.compile(pattern, flags)
+		except:
+			return
+
+		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
+		self.__coreCollectionsOutliner.getSelectedCollections() or \
+		self.__coreCollectionsOutliner.getCollections())).intersection(
+		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags))]
+		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
+														for value in set((getattr(iblSetNode, attribute)
+														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
+
+		return iblSets
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1815,7 +1843,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or \
-			self.__coreCollectionsOutliner.getUniqueCollectionId()):
+			self.__coreCollectionsOutliner.getFirstCollectionId()):
 				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
@@ -1848,7 +1876,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True),
 										path,
-										collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(),
+										collectionId or self.__coreCollectionsOutliner.getFirstCollectionId(),
 										emitSignal=False) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1879,18 +1907,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing \
 			'{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def iblSetExists(self, path):
-		"""
-		This method returns if given Ibl Set path exists in the Database.
-
-		:param path: Collection path. ( String )
-		:return: Collection exists. ( Boolean )
-		"""
-
-		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1927,11 +1943,46 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
+		"""
+		This method filters the Database Ibl Sets on given attribute using given pattern.
+		
+		:param pattern: Filter pattern. ( String )
+		:param attribute: Attribute to filter on. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+
+		:return: Filtered Database Ibl Sets. ( List )
+		"""
+
+		try:
+			pattern = re.compile(pattern, flags)
+		except:
+			return
+
+		return list(set(self.getIblSets()).intersection(
+		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def iblSetExists(self, path):
+		"""
+		This method returns if given Ibl Set path exists in the Database.
+
+		:param path: Collection path. ( String )
+		:return: Collection exists. ( Boolean )
+		"""
+
+		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listIblSets(self):
 		"""
 		This method lists Database Ibl Sets names.
 
 		:return: Database Ibl Sets names. ( List )
+		
+		:note: The list is actually returned using 'title' attributes instead of 'name' attributes
 		"""
 
 		return [iblSet.title for iblSet in self.getIblSets()]
@@ -1965,31 +2016,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def filterIblsSets(self, pattern, attribute, flags=re.IGNORECASE):
+	def getIblSetByName(self, name):
 		"""
-		This method filters the current Collection Ibl Sets.
+		This method returns Database Ibl Set with given name.
+
+		:param name: Ibl Set name. ( String )
+		:return: Database Ibl Set. ( DbIblSet )
 		
-		:param pattern: Ibl Sets filter pattern. ( String )
-		:param attribute: Attribute to filter Ibl Sets on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
-
-		:return: Filtered Ibl Sets. ( List )
+		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
 
-		try:
-			pattern = re.compile(pattern, flags)
-		except:
-			return
-
-		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
-		self.__coreCollectionsOutliner.getSelectedCollections() or \
-		self.__coreCollectionsOutliner.getCollections())).intersection(
-		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags))]
-		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
-														for value in set((getattr(iblSetNode, attribute)
-														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
-
-		return iblSets
+		iblSets = self.filterIblSets(r"^{0}$".format(name), "title")
+		return iblSets and iblSets[0] or None
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
