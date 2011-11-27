@@ -216,7 +216,7 @@ class DatabaseBrowser_Worker(QThread):
 	@core.executionTrace
 	def run(self):
 		"""
-		This method starts the QThread.
+		This method reimplements the :meth:`QThread.run` method.
 		"""
 
 		self.__timer = QTimer()

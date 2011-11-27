@@ -470,7 +470,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
 		"""
-		This method overloads the download manager close event.
+		This method reimplements the :meth:`QWidget.closeEvent` method.
 
 		:param closeEvent: Close event. ( QCloseEvent )
 		"""

@@ -149,7 +149,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@core.executionTrace
 	def dragEnterEvent(self, event):
 		"""
-		This method defines the drag enter event behavior.
+		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -163,7 +163,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@core.executionTrace
 	def dragMoveEvent(self, event):
 		"""
-		This method defines the drag move event behavior.
+		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragMoveEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -177,7 +177,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 											foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
-		This method defines the drop event behavior.
+		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dropEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""

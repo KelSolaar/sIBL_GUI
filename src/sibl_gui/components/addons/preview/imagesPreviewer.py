@@ -194,7 +194,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@core.executionTrace
 	def boundingRect(self):
 		"""
-		This method sets the bounding rectangle.
+		This method reimplements the :meth:`QGraphicsItem.boundingRect` method.
 		"""
 
 		return QRectF(-(self.__image.width()) / 2,
@@ -205,7 +205,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@core.executionTrace
 	def paint(self, painter, options, widget):
 		"""
-		This method paints the image.
+		This method reimplements the :meth:`QGraphicsItem.paint` method.
 
 		:param painter: QPainter ( QPainter )
 		:param options: QStyleOptionGraphicsItem ( QStyleOptionGraphicsItem )
@@ -251,8 +251,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		# Ensure the ui object is destroyed on close to avoid memory leaks.
 		self.setAttribute(Qt.WA_DeleteOnClose)
-		# Reimplementing widget close event method.
-		self.closeEvent = self.closeUi
 
 		self.__graphicsSceneBackgroundColor = QColor(48, 48, 48)
 		self.__minimumZoomFactor = 0.05
@@ -863,16 +861,16 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@core.executionTrace
 	def show(self):
 		"""
-		This method redefines the ui show method.
+		This method reimplements the :meth:`QWidget.show` method.
 		"""
 
 		super(ImagesPreviewer, self).show()
 		self.fitImage()
 
 	@core.executionTrace
-	def closeUi(self, event):
+	def closeEvent(self, event):
 		"""
-		This method redefines the ui close event.
+		This method reimplements the :meth:`QWidget.closeEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
@@ -885,7 +883,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@core.executionTrace
 	def wheelEvent(self, event):
 		"""
-		This method redefines wheelevent.
+		This method reimplements the :meth:`QWidget.wheelEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
@@ -895,7 +893,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@core.executionTrace
 	def keyPressEvent(self, event):
 		"""
-		This method redefines keypressevent.
+		This method reimplements the :meth:`QWidget.keyPressEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
