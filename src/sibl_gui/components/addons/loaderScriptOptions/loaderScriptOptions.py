@@ -829,7 +829,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				# Signals / Slots.
 				item.editingFinished.connect(self.__tableWidget__valueChanged)
 
-			item._data = attributeCompound
+			item.data = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
 
 		tableWidget.setVerticalHeaderLabels (verticalHeaderLabels)
@@ -933,7 +933,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				else:
 					value = str(widget.text())
 				templateSettingsSectionsFileParser.sections[
-				section][foundations.namespace.removeNamespace(widget._data.name)] = value
+				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace
@@ -957,10 +957,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				value = str(widget.currentText())
 			else:
 				value = str(widget.text())
-			widget._data.value = value
+			widget.data.value = value
 
-			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget._data.name, widget._data.value))
-			self.__addonsLoaderScript.overrideKeys[widget._data.name] = widget._data
+			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget.data.name, widget.data.value))
+			self.__addonsLoaderScript.overrideKeys[widget.data.name] = widget.data
 		return True
 
 	@core.executionTrace

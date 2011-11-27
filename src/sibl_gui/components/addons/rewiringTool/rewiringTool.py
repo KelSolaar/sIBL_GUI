@@ -386,7 +386,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			frame.hide()
 
 		for index in range(len(self.__reWireComboBoxesWidgets)):
-			self.__reWireComboBoxesWidgets[index]._data = self.__rewiringParameters[index][1]
+			self.__reWireComboBoxesWidgets[index].data = self.__rewiringParameters[index][1]
 			self.__reWireComboBoxesWidgets[index].addItems([parameter[0] for parameter in self.__rewiringParameters])
 			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
@@ -543,15 +543,15 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]
 			if comboBox.currentText() == "Custom image":
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(
-				comboBox._data, str(self.__reWireLineEditWidgets[index].text())))
-				self.__addonsLoaderScript.overrideKeys[comboBox._data] = foundations.parsers.getAttributeCompound(
+				comboBox.data, str(self.__reWireLineEditWidgets[index].text())))
+				self.__addonsLoaderScript.overrideKeys[comboBox.data] = foundations.parsers.getAttributeCompound(
 																		parameter[1],
 																		strings.getNormalizedPath(
 																		str(self.__reWireLineEditWidgets[index].text())))
 			else:
-				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox._data,
+				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox.data,
 																					getattr(iblSet, parameter[2])))
-				self.__addonsLoaderScript.overrideKeys[comboBox._data] = getattr(iblSet, parameter[2]) and \
+				self.__addonsLoaderScript.overrideKeys[comboBox.data] = getattr(iblSet, parameter[2]) and \
 																foundations.parsers.getAttributeCompound(parameter[1],
 																strings.getNormalizedPath(getattr(iblSet, parameter[2])))
 		return True

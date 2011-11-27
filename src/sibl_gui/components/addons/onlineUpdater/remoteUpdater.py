@@ -121,7 +121,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__tableWidgetRowHeight = 30
 		self.__tableWidgetHeaderHeight = 25
 
-		self.__templatesTableWidgetHeaders = ["_data",
+		self.__templatesTableWidgetHeaders = ["data",
 											"Get it!",
 											"Local version",
 											"Repository version",
@@ -677,7 +677,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					verticalHeaderLabels.append(release)
 
 					tableWidgetItem = QTableWidgetItem()
-					tableWidgetItem._data = templatesReleases[release]
+					tableWidgetItem.data = templatesReleases[release]
 					self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
 					tableWidgetItem = Variable_QPushButton(self,
@@ -747,7 +747,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		requests = []
 		for row in range(self.Templates_tableWidget.rowCount()):
 			if self.Templates_tableWidget.cellWidget(row, 1).state:
-				requests.append(self.Templates_tableWidget.item(row, 0)._data)
+				requests.append(self.Templates_tableWidget.item(row, 0).data)
 
 		if not requests:
 			return
