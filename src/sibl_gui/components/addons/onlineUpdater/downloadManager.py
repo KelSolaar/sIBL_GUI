@@ -65,6 +65,9 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	# Custom signals definitions.
 	downloadFinished = pyqtSignal()
+	"""
+	This signal is emited by the :class:`DownloadManager` class when a download is finished. ( pyqtSignal )
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent, networkAccessManager, downloadDirectory, requests=None, *args, **kwargs):

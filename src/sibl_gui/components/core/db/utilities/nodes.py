@@ -56,6 +56,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	"""
 
 	__family = "AbstractDatabaseNode"
+	"""Node family. ( String )"""
 
 	@core.executionTrace
 	def __init__(self,
@@ -259,6 +260,7 @@ class IblSetNode(AbstractDatabaseNode):
 	"""
 
 	__family = "IblSet"
+	"""Node family. ( String )"""
 
 	def __init__(self,
 				dbItem,
@@ -358,6 +360,7 @@ class TemplateNode(AbstractDatabaseNode):
 	"""
 
 	__family = "Template"
+	"""Node family. ( String )"""
 
 	def __init__(self,
 				dbItem,
@@ -453,6 +456,7 @@ class CollectionNode(AbstractDatabaseNode):
 	"""
 
 	__family = "Collection"
+	"""Node family. ( String )"""
 
 	def __init__(self,
 				dbItem,

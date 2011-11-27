@@ -54,6 +54,7 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 	"""
 
 	__family = "Plate"
+	"""Node family. ( String )"""
 
 	@core.executionTrace
 	def __init__(self,

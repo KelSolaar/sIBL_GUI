@@ -59,6 +59,11 @@ class iblSetsScanner_Worker(QThread):
 
 	# Custom signals definitions.
 	iblSetsRetrieved = pyqtSignal(dict)
+	"""
+	This signal is emited by the :class:`iblSetsScanner_Worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
+	
+	:return: New Ibl Sets. ( Dictionary )
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent):

@@ -26,7 +26,7 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: GetObjectNameTestCase
+.. autoclass:: GetTraceNameTestCase
 	:show-inheritance:
 	:members:
 

@@ -58,6 +58,12 @@ class TemplatesOutliner_Worker(QThread):
 
 	# Custom signals definitions.
 	databaseChanged = pyqtSignal(list)
+	"""
+	This signal is emited by the :class:`TemplatesOutliner_Worker` class
+	when database Templates have been updated. ( pyqtSignal )
+	
+	:return: Updated Templates. ( List )		
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent):

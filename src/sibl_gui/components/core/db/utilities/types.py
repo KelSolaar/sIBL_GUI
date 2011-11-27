@@ -57,6 +57,7 @@ class DbIblSet(DbBase):
 	"""
 
 	__tablename__ = "Sets"
+	"""Table name. ( String )"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
@@ -203,6 +204,7 @@ class DbTemplate(DbBase):
 	"""
 
 	__tablename__ = "Templates"
+	"""Table name. ( String )"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
@@ -360,6 +362,7 @@ class DbCollection(DbBase):
 	"""
 
 	__tablename__ = "Collections"
+	"""Table name. ( String )"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)

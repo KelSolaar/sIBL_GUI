@@ -58,6 +58,12 @@ class DatabaseBrowser_Worker(QThread):
 
 	# Custom signals definitions.
 	databaseChanged = pyqtSignal(list)
+	"""
+	This signal is emited by the :class:`DatabaseBrowser_Worker` class
+	when database Ibl Sets have been updated. ( pyqtSignal )
+	
+	:return: Updated Ibl Sets. ( List )		
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent):

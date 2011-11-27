@@ -88,7 +88,17 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	# Custom signals definitions.
 	modelRefresh = pyqtSignal()
+	"""
+	This signal is emited by the :class:`DatabaseBrowser` class when :obj:`DatabaseBrowser.model` class property model
+	needs to be refreshed. ( pyqtSignal )
+	"""
+	
 	activeViewChanged = pyqtSignal(int)
+	"""
+	This signal is emited by the :class:`DatabaseBrowser` class when the current active view is changed. ( pyqtSignal )
+	
+	:return: Current active view index. ( Integer )	
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):

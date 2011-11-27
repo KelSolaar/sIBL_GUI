@@ -82,6 +82,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	# Custom signals definitions.
 	modelRefresh = pyqtSignal()
+	"""
+	This signal is emited by the :class:`TemplatesOutliner` class when :obj:`TemplatesOutliner.model` class property
+	model needs to be refreshed. ( pyqtSignal )
+	"""
 
 	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):

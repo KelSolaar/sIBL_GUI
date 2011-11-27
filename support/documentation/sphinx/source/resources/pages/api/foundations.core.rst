@@ -35,7 +35,7 @@ Functions
 
 .. autofunction:: getModule
 
-.. autofunction:: getObjectName
+.. autofunction:: getTraceName
 
 .. autofunction:: extractStack
 
