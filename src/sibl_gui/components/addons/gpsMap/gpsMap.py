@@ -431,7 +431,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), 
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
 																	self.__uiResourcesDirectory)
 
 		self.__engine = engine
@@ -479,7 +479,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__map = Map_QWebView()
 		self.__map.setMinimumSize(self.__gpsMapBaseSize)
-		self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__uiResourcesDirectory, 
+		self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__uiResourcesDirectory,
 																		self.__gpsMapHtmlFile))))
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
