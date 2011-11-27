@@ -459,7 +459,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Background_ToolButton** Widget is clicked.
+		This method is triggered when **Background_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -469,7 +469,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Lighting_ToolButton** Widget is clicked.
+		This method is triggered when **Lighting_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -479,7 +479,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Reflection_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Reflection_ToolButton** Widget is clicked.
+		This method is triggered when **Reflection_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

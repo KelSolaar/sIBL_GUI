@@ -696,7 +696,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_File_Browser_Path_toolButton** Widget is clicked.
+		This method is triggered when **Custom_File_Browser_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -716,7 +716,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when **Custom_File_Browser_Path_lineEdit** Widget
+		This method is triggered when **Custom_File_Browser_Path_lineEdit** Widget
 		is edited and check that entered path is valid.
 		"""
 
@@ -735,7 +735,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This method is called when **Open_Output_Directory_pushButton** Widget is clicked.
+		This method is triggered when **Open_Output_Directory_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

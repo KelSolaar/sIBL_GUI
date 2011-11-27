@@ -1263,7 +1263,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
 			self.__model.dataChanged.connect(self.__model__dataChanged)
-			self.__engine.contentDropped.connect(self.__application__contentDropped)
+			self.__engine.contentDropped.connect(self.__engine__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -1305,7 +1305,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
-		This method is called on Framework startup.
+		This method is triggered on Framework startup.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -1362,7 +1362,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
-		This method is called on Framework close.
+		This method is triggered on Framework close.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -1553,9 +1553,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											False,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Ibl Sets ...")
-	def __application__contentDropped(self, event):
+	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped in the Application.
+		This method is triggered when content is dropped into the engine.
 		
 		:param event: Event. ( QEvent )
 		"""

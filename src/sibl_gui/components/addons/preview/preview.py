@@ -781,7 +781,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Custom_Previewer_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_Previewer_Path_toolButton** Widget is clicked.
+		This method is triggered when **Custom_Previewer_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -801,7 +801,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
+		This method is triggered when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 		
 		value = str(self.Custom_Previewer_Path_lineEdit.text())

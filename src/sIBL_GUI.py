@@ -180,7 +180,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		factoryScriptEditor._ScriptEditor__developmentLayout = "editCentric"
-		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__application__contentDropped)
+		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__engine__contentDropped)
 
 	@core.executionTrace
 	def __centralWidgetButton__clicked(self):

@@ -455,7 +455,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(
 		self.__Custom_Text_Editor_Path_lineEdit__editFinished)
-		self.__engine.contentDropped.connect(self.__application__contentDropped)
+		self.__engine.contentDropped.connect(self.__engine__contentDropped)
 		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.connect(
 		self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
@@ -476,7 +476,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(
 		self.__Custom_Text_Editor_Path_lineEdit__editFinished)
-		self.__engine.contentDropped.disconnect(self.__application__contentDropped)
+		self.__engine.contentDropped.disconnect(self.__engine__contentDropped)
 		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.disconnect(
 		self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
@@ -611,7 +611,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_Text_Editor_Path_toolButton** Widget is clicked.
+		This method is triggered when **Custom_Text_Editor_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -631,7 +631,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when **Custom_Text_Editor_Path_lineEdit** Widget
+		This method is triggered when **Custom_Text_Editor_Path_lineEdit** Widget
 		is edited and check that entered path is valid.
 		"""
 
@@ -649,9 +649,9 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@umbra.engine.encapsulateProcessing
-	def __application__contentDropped(self, event):
+	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped in the Application.
+		This method is triggered when content is dropped into the engine.
 		
 		:param event: Event. ( QEvent )
 		"""

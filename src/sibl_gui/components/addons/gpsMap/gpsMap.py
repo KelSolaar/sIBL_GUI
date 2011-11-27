@@ -554,7 +554,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
-		This method is called on Framework close.
+		This method is triggered on Framework close.
 
 		:return: Method success. ( Boolean )		
 		"""

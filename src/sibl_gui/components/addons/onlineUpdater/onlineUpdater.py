@@ -673,7 +673,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
-		This method is called on Framework startup.
+		This method is triggered on Framework startup.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -729,7 +729,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
-		This method is called when **Check_For_New_Releases_On_Startup_checkBox** state changes.
+		This method is triggered when **Check_For_New_Releases_On_Startup_checkBox** state changes.
 
 		:param state: Checkbox state. ( Integer )
 		"""
@@ -758,7 +758,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
-		This method is called when **Ignore_Non_Existing_Templates_checkBox** state changes.
+		This method is triggered when **Ignore_Non_Existing_Templates_checkBox** state changes.
 
 		:param state: Checkbox state. ( Integer )
 		"""

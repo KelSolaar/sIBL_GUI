@@ -473,7 +473,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **sIBLedit_Path_toolButton** Widget is clicked.
+		This method is triggered when **sIBLedit_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -492,7 +492,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
+		This method is triggered when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 		
 		value = str(self.sIBLedit_Path_lineEdit.text())
