@@ -25,6 +25,7 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import umbra.ui.models
 import sibl_gui.ui.common
 from umbra.globals.constants import Constants
@@ -40,6 +41,7 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
+			"getTemplateUserName",
 			"AbstractDatabaseNode",
 			"IblSetNode",
 			"TemplateNode",
@@ -50,6 +52,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+@core.executionTrace
+def getTemplateUserName(title, software):
+	"""
+	This method returns the Template user name.
+
+	:param title: Template title.  ( String )
+	:param software: Template software.  ( String )
+	:return: Template user name. ( String )
+	"""
+
+	return strings.removeStrip(title, software)
+
 class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	"""
 	This class defines Application Database abstract base class used by concrete Database node classes.
@@ -407,8 +421,9 @@ class TemplateNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
-							Qt.EditRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title)})
+		templateUserName = getTemplateUserName(self.dbItem.title, self.dbItem.software)
+		self.roles.update({Qt.DisplayRole : templateUserName,
+							Qt.EditRole : templateUserName})
 		self.synchronizeToolTip()
 
 	@core.executionTrace
@@ -420,7 +435,9 @@ class TemplateNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__dbItem.title
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = getTemplateUserName(self.dbItem.title,
+																								self.dbItem.software)
+
 		return self.synchronizeNodeAttributes()
 
 	@core.executionTrace
@@ -444,7 +461,8 @@ class TemplateNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format("{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(getTemplateUserName(self.dbItem.title,
+																				self.dbItem.software),
 																	self.dbItem.author,
 																	self.dbItem.date,
 																	self.dbItem.comment)

@@ -246,7 +246,7 @@ class TemplatesOutliner_Worker(QThread):
 			if not template.path:
 				continue
 
-			if os.path.exists(template.path):
+			if not os.path.exists(template.path):
 				continue
 
 			storedStats = template.osStats.split(",")

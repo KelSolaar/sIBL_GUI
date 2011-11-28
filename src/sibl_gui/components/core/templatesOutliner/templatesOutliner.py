@@ -1194,9 +1194,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template.software,
-																										template.renderer,
-																										template.title),
+				template and content.append(self.__templatesInformationsText.format(template.title,
 												template.date,
 												template.author,
 												template.email,
@@ -1641,6 +1639,27 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
+		"""
+		This method filters the Database Templates on given attribute using given pattern.
+		
+		:param pattern: Filter pattern. ( String )
+		:param attribute: Attribute to filter on. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+
+		:return: Filtered Database Templates. ( List )
+		"""
+
+		try:
+			pattern = re.compile(pattern, flags)
+		except:
+			return
+
+		return list(set(self.getTemplates()).intersection(
+		dbCommon.filterTemplates(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listTemplates(self):
 		"""
 		This method lists Database Templates names.
@@ -1695,7 +1714,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 				for template in templates:
 					templateNode = dbNodes.TemplateNode(template,
-														name="{0} {1}".format(template.renderer, template.title),
+														name=strings.removeStrip(template.title, template.software),
 														parent=softwareNode,
 														nodeFlags=nodeFlags,
 														attributesFlags=attributesFlags)
@@ -1709,7 +1728,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionByName(self, name):
 		"""
-		This method gets Template Collection from given Collection name.
+		This method gets Templates Collection from given Collection name.
 
 		:param collection: Collection name. ( String )
 		:return: Collection. ( DbCollection )
