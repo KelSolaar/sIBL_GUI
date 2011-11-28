@@ -1601,7 +1601,19 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __getCandidateCollectionId(self):
+		"""
+		This method returns a Collection id.
+		
+		:return: Collection id. ( Integer )
+		"""
+
+		collections = self.__coreCollectionsOutliner.getSelectedCollections()
+		id = collections and collections[0].id or None
+		return id and id or self.__coreCollectionsOutliner.getCollectionId(
+		self.__coreCollectionsOutliner.defaultCollection)
+
+	@core.executionTrace
 	def __searchIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the current Collection Ibl Sets.
@@ -1842,8 +1854,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or \
-			self.__coreCollectionsOutliner.getFirstCollectionId()):
+			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
 				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
@@ -1876,7 +1887,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True),
 										path,
-										collectionId or self.__coreCollectionsOutliner.getFirstCollectionId(),
+										collectionId or self.__getCandidateCollectionId(),
 										emitSignal=False) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()

@@ -62,6 +62,7 @@ __all__ = ["LOGGER",
 			"checkIblSetsTableIntegrity",
 			"getCollections",
 			"filterCollections",
+			"getCollectionsByType",
 			"collectionExists",
 			"addCollection",
 			"removeCollection",
@@ -405,6 +406,66 @@ def filterCollections(session, pattern, field, flags=0):
 	"""
 
 	return filterItems(session, getCollections(session), pattern, field, flags)
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def getCollectionsByType(session, type):
+	"""
+	This method returns Collections of given type.
+
+	:param session: Database session. ( Session )
+	:param type: Type name. ( String )
+	:return: Ibl Sets Collections. ( List )
+	"""
+
+	return [collection for collection in filterCollections(session, type, "type")]
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def filterCollectionsByType(session, type, pattern, field, flags=0):
+	"""
+	This definition filters the Ibl Sets Collections from the Database.
+
+	:param session: Database session. ( Session )
+	:param type: Type name. ( String )
+	:param pattern: Filtering pattern. ( String )
+	:param field: Database field to search into. ( String )
+	:param flags: Flags passed to the regex engine. ( Integer )
+	:return: Filtered Collections. ( List )
+	"""
+
+	return list(set(getCollectionsByType(session, type)).intersection(
+	filterCollections(session, "{0}".format(pattern), field, flags)))
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def filterIblSetsCollections(session, pattern, field, flags=0):
+	"""
+	This definition filters the Ibl Sets Collections from the Database.
+
+	:param session: Database session. ( Session )
+	:param pattern: Filtering pattern. ( String )
+	:param field: Database field to search into. ( String )
+	:param flags: Flags passed to the regex engine. ( Integer )
+	:return: Filtered Collections. ( List )
+	"""
+
+	return filterCollectionsByType(session, "Sets", pattern, field, flags)
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def filterTemplatesCollections(session, pattern, field, flags=0):
+	"""
+	This definition filters the Templates Collections from the Database.
+
+	:param session: Database session. ( Session )
+	:param pattern: Filtering pattern. ( String )
+	:param field: Database field to search into. ( String )
+	:param flags: Flags passed to the regex engine. ( Integer )
+	:return: Filtered Collections. ( List )
+	"""
+
+	return filterCollectionsByType(session, "Templates", pattern, field, flags)
 
 @core.executionTrace
 def collectionExists(session, name):

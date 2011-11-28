@@ -1122,7 +1122,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+		return dbCommon.getCollectionsByType(self.__coreDb.dbSession, "Sets")
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1142,8 +1142,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except:
 			return
 
-		return list(set(self.getCollections()).intersection(
-		dbCommon.filterCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
+		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)),
+																						attribute, flags)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1260,24 +1260,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Provided Collection id. ( Integer )
 		"""
 
-		return self.__model.findChildren(r"^{0}$".format(collection))[0].dbItem.id
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getFirstCollectionId(self):
-		"""
-		This method returns the first available Collection id ( Either first selected Collection or default one ).
-
-		:return: First Collection id. ( Integer )
-		"""
-
-		ids = [collection.id for collection in self.getSelectedCollections()]
-		if not ids:
-			return self.getCollectionId(self.__defaultCollection)
-		else:
-			len(ids) > 1 and LOGGER.warning("!> {0} | Multiple Collections selected, using '{1}' id!".format(
-			self.__class__.__name__, ids[0]))
-			return ids[0]
+		children = self.__model.findChildren(r"^{0}$".format(collection))
+		return children and children[0].dbItem.id or None
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
