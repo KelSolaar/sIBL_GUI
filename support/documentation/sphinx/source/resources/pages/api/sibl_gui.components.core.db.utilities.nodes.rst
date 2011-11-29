@@ -8,6 +8,11 @@ Module Attributes
 
 .. attribute:: sibl_gui.components.core.db.utilities.nodes.LOGGER
 
+Functions
+---------
+
+.. autofunction:: getTemplateUserName
+
 Classes
 -------
 

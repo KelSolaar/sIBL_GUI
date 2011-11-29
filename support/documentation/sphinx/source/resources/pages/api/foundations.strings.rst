@@ -27,6 +27,8 @@ Functions
 
 .. autofunction:: replace
 
+.. autofunction:: removeStrip
+
 .. autofunction:: toForwardSlashes
 
 .. autofunction:: toBackwardSlashes

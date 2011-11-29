@@ -38,6 +38,10 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: RemoveStripTestCase
+	:show-inheritance:
+	:members:
+
 .. autoclass:: ToForwardSlashesTestCase
 	:show-inheritance:
 	:members:

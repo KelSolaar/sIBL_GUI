@@ -51,6 +51,14 @@ Functions
 
 .. autofunction:: filterCollections
 
+.. autofunction:: getCollectionsByType
+
+.. autofunction:: filterCollectionsByType
+
+.. autofunction:: filterIblSetsCollections
+
+.. autofunction:: filterTemplatesCollections
+
 .. autofunction:: collectionExists
 
 .. autofunction:: addCollection
