@@ -91,12 +91,12 @@ for layout in sIBL_GUI.listLayouts(userLayouts=False):
 	sIBL_GUI.restoreLayout(layout)
 sIBL_GUI.restoreLayout("editCentric")
 
-____()
+# ____()
 
 """
 Fullscreen interactions:
 """
-sIBL_GUI.toggleFullScreen()
+# sIBL_GUI.toggleFullScreen()
 
 ____()
 
@@ -138,7 +138,17 @@ print(scriptEditor, databaseBrowser, gpsMap)
 ____()
 
 """
-Components Manager Ui interactions:
+Actions Manager interactions:
+"""
+actions = actionsManager.listActions()
+print("Actions : {0}".format(actions))
+action = actionsManager.getAction("Actions|Umbra|Components|factory.scriptEditor|&View|Toggle White Spaces")
+action.trigger()
+
+____()
+
+"""
+'factory.componentsManagerUi' Component interactions:
 """
 componentsManagerUi = componentsManager.getInterface("factory.componentsManagerUi")
 components = componentsManagerUi.getComponents()
@@ -155,13 +165,13 @@ componentsManagerUi.activateComponent("addons.gpsMap")
 ____()
 
 """
-Collections Outliner interactions:
+'core.collectionsOutliner' Component interactions:
 """
 collectionsOutliner = componentsManager.getInterface("core.collectionsOutliner")
 collections = collectionsOutliner.getCollections()
 print("Collections: '{0}'".format(collections))
-names = collectionsOutliner.listCollections()
-print("Collections names: '{0}'".format(names))
+collectionsNames = collectionsOutliner.listCollections()
+print("Collections names: '{0}'".format(collectionsNames))
 # Collections management:
 collection = "Example Collection"
 collectionsOutliner.addCollection(collection)
@@ -171,7 +181,7 @@ collectionsOutliner.removeCollection(collection)
 ____()
 
 """
-Database Browser interactions:
+'core.databaseBrowser' Component interactions:
 """
 databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
 exampleIblSet = umbra.ui.common.getResourcePath("others/Ditch_River_Example/Ditch-River_Example.ibl")
@@ -179,8 +189,8 @@ if exampleIblSet:
 	databaseBrowser.addIblSet("Example Ibl Set", exampleIblSet)
 	iblSets = databaseBrowser.getIblSets()
 	print("Ibl Sets: '{0}'".format(iblSets))
-	names = databaseBrowser.listIblSets()
-	print("Ibl Sets names: '{0}'".format(names))
+	iblSetsNames = databaseBrowser.listIblSets()
+	print("Ibl Sets names: '{0}'".format(iblSetsNames))
 	# Ibl Sets management:
 	iblSet = databaseBrowser.getIblSetByName("Ditch River \( Example \)")
 	databaseBrowser.removeIblSet(iblSet)
@@ -190,12 +200,87 @@ if exampleIblSet:
 ____()
 
 """
-Templates Outliner interactions:
+'core.templatesOutliner' Component interactions:
 """
 templatesOutliner = componentsManager.getInterface("core.templatesOutliner")
+templatesOutliner.addDefaultTemplates()
 templates = templatesOutliner.getTemplates()
 print("Templates: '{0}'".format(templates))
-names = templatesOutliner.listTemplates()
-print("Templates names: '{0}'".format(names))
+templatesNames = templatesOutliner.listTemplates()
+print("Templates names: '{0}'".format(templatesNames))
+if templatesNames:
+	template = templatesOutliner.getTemplateByName(templatesNames[0])
+	name, path = template.name, template.path
+	templatesOutliner.removeTemplate(template)
+	templatesOutliner.addTemplate(name, path)
+
+____()
+
+"""
+'addons.databaseOperations' Component interactions:
+"""
+databaseOperations = componentsManager.getInterface("addons.databaseOperations")
+databaseOperations.synchronizeDatabase()
+
+____()
+
+"""
+'addons.gpsMap' Component interactions:
+"""
+gpsMap = componentsManager.getInterface("addons.gpsMap")
+databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
+iblSets = databaseBrowser.getIblSets()
+if iblSets:
+	gpsMap.show()
+	for iblSet in iblSets:
+		gpsMap.setMarker(iblSet)
+	gpsMap.removeMarkers()
+	gpsMap.hide()
+
+____()
+
+"""
+'addons.loaderScript' Component interactions:
+"""
+loaderScript = componentsManager.getInterface("addons.loaderScript")
+databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
+iblSets = databaseBrowser.getIblSets()
+templatesOutliner = componentsManager.getInterface("core.templatesOutliner")
+templatesOutliner.addDefaultTemplates()
+templates = templatesOutliner.getTemplates()
+
+if iblSets and templates:
+	outputScript = loaderScript.outputLoaderScript(templates[0], iblSets[0])
+	scriptEditor = componentsManager.getInterface("factory.scriptEditor")
+	scriptEditor.loadFile(outputScript)
+
+____()
+
+"""
+'addons.locationsBrowser' Component interactions:
+"""
+locationsBrowser = componentsManager.getInterface("addons.locationsBrowser")
+scriptEditor = componentsManager.getInterface("factory.scriptEditor")
+file = scriptEditor.getCurrentEditor().file
+locationsBrowser.exploreDirectory(os.path.dirname(file))
+
+____()
+
+"""
+'addons.onlineUpdater' Component interactions:
+"""
+onlineUpdater = componentsManager.getInterface("addons.onlineUpdater")
+onlineUpdater.checkForNewReleases()
+
+____()
+
+"""
+'addons.preview' Component interactions:
+"""
+preview = componentsManager.getInterface("addons.preview")
+databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
+iblSets = databaseBrowser.getIblSets()
+if iblSets:
+	preview.viewImages(paths=(iblSets[0].lightingImage, iblSets[0].icon))
 
 ____()
