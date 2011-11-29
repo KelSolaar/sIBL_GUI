@@ -67,7 +67,7 @@ class Map_QWebView(QWebView):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addMarker(self, coordinates, title, icon, content):
 		"""
-		This method adds a marker to the map.
+		This method adds a marker to the GPS map.
 
 		:param coordinates: Marker coordinates. ( Tuple )
 		:param title: Marker title. ( String )
@@ -91,7 +91,7 @@ class Map_QWebView(QWebView):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeMarkers(self):
 		"""
-		This method removes the map markers.
+		This method removes the GPS map markers.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -105,7 +105,7 @@ class Map_QWebView(QWebView):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setCenter(self):
 		"""
-		This method centers the map.
+		This method centers the GPS map.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -119,7 +119,7 @@ class Map_QWebView(QWebView):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setMapType(self, mapTypeId):
 		"""
-		This method sets the map type.
+		This method sets the GPS map type.
 		
 		Available map types:
 			
@@ -140,7 +140,7 @@ class Map_QWebView(QWebView):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setZoom(self, type):
 		"""
-		This method sets the map zoom.
+		This method sets the GPS map zoom.
 
 		:param type: Zoom type. ( String )
 		:return: Method success. ( Boolean )

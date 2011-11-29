@@ -318,7 +318,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__downloads
 
 	@downloads.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloads(self, value):
 		"""
 		This method is the setter method for **self.__downloads** attribute.

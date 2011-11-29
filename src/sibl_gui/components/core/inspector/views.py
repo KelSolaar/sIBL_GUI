@@ -87,7 +87,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		return self.__listViewIconSize
 
 	@listViewIconSize.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self, value):
 		"""
 		This method is the setter method for **self.__listViewIconSize** attribute.

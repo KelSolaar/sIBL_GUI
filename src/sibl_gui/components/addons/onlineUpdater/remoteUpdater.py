@@ -380,7 +380,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__splitter
 
 	@splitter.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def splitter(self, value):
 		"""
 		This method is the setter method for **self.__splitter** attribute.

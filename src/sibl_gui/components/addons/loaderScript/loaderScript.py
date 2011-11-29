@@ -416,7 +416,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__overrideKeys
 
 	@overrideKeys.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def overrideKeys(self, value):
 		"""
 		This method is the setter method for **self.__overrideKeys** attribute.
@@ -671,7 +671,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name, 
+			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name,
 																			self.__templateRemoteConnectionSection))
 
 			if os.path.exists(template.path):
@@ -682,12 +682,12 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 				if self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 					LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
 					self.Remote_Connection_groupBox.show()
-					connectionType = foundations.parsers.getAttributeCompound("ConnectionType", 
+					connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
 					templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote connection type: 'Socket'.")
-						self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", 
-						templateSectionsFileParser.getValue("DefaultPort", 
+						self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort",
+						templateSectionsFileParser.getValue("DefaultPort",
 															self.__templateRemoteConnectionSection)).value))
 						self.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress",
 						templateSectionsFileParser.getValue("DefaultAddress",
@@ -792,7 +792,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		:param template: Template. ( DbTemplate )
 		:param iblSet: Ibl Set. ( DbIblSet )
-		:return: Method success. ( Boolean )
+		:return: Loader Script file. ( String )
 		"""
 
 		self.__overrideKeys = self.getDefaultOverrideKeys()
@@ -809,7 +809,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			else:
 				raise foundations.exceptions.DirectoryExistsError(
 				"{0} | '{1}' loader Script output directory doesn't exists!".format(
-				self.__class__.__name__,self.__engine.parameters.loaderScriptsOutputDirectory))
+				self.__class__.__name__, self.__engine.parameters.loaderScriptsOutputDirectory))
 		else:
 			loaderScript = File(os.path.join(self.__ioDirectory, template.outputScript))
 
@@ -818,7 +818,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		loaderScript.content = self.getLoaderScript(template.path, iblSet.path, self.__overrideKeys)
 
 		if loaderScript.content and loaderScript.write():
-			return True
+			return loaderScript.file
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.SocketConnectionError)
@@ -993,7 +993,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		loaderScript = templateSectionsFileParser.sections[
 						self.__templateScriptSection][templateSectionsFileParser.rawSectionContentIdentifier]
 
-		bindedLoaderScript = []
+		boundLoaderScript = []
 		for line in loaderScript:
 			bindingParameters = re.findall(r"{0}".format(self.__bindingIdentifierPattern), line)
 			if bindingParameters:
@@ -1001,8 +1001,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 					for attribute in bindedAttributes.values():
 						if parameter == attribute.link:
 							LOGGER.debug(
-							"> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter, 
+							"> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter,
 																								attribute.value))
 							line = line.replace(parameter, attribute.value and attribute.value or "-1")
-			bindedLoaderScript.append(line)
-		return bindedLoaderScript
+			boundLoaderScript.append(line)
+		return boundLoaderScript

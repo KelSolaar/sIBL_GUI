@@ -2037,7 +2037,7 @@ class Image(object):
 		return self.__library
 
 	@library.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def library(self, value):
 		"""
 		This method is the setter method for **self.__library** attribute.
@@ -2069,7 +2069,7 @@ class Image(object):
 		return self.__errorsCallback
 
 	@errorsCallback.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def errorsCallback(self, value):
 		"""
 		This method is the setter method for **self.__errorsCallback** attribute.

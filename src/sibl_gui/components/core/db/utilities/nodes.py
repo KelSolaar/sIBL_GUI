@@ -151,7 +151,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		return self.__toolTipText
 
 	@toolTipText.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def toolTipText(self, value):
 		"""
 		This method is the setter method for **self.__toolTipText** attribute.

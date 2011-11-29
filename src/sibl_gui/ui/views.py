@@ -153,7 +153,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.
@@ -293,7 +293,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.

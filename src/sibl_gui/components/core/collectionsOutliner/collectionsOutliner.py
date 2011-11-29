@@ -1085,7 +1085,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None,
 											False,
-											foundations.exceptions.ProgrammingError,
 											dbExceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
@@ -1094,10 +1093,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param collection: Collection to remove. ( DbCollection )
 		:return: Method success. ( Boolean )
 		"""
-
-		if not isinstance(collection, dbTypes.DbCollection):
-			raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' type is not 'DbCollection'!".format(self.__class__.__name__, collection))
 
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
@@ -1244,7 +1239,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method returns given Collection Ibl Sets count.
 
-		:param collection: Collectionm. ( DbCollection )
+		:param collection: Collection. ( DbCollection )
 		:return: Collection Ibl Sets count. ( Integer )
 		"""
 

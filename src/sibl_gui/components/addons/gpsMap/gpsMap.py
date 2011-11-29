@@ -662,3 +662,15 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__map.addMarker((iblSet.latitude, iblSet.longitude),
 		 							iblSet.title,
 		 							strings.toForwardSlashes(iblSet.icon), content)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def removeMarkers(self):
+		"""
+		This method removes the GPS map markers.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.__map.removeMarkers()
+		return True
