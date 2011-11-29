@@ -67,6 +67,8 @@ TOCTREE_TEMPLATE_BEGIN = ["Api\n",
 						"   :maxdepth: 1\n",
 						"\n"]
 
+EXCLUDED_PYTHON_MODULES = ("defaultScript\.py",)
+
 TOCTREE_TEMPLATE_END = []
 
 STATEMENTS_UPDATE_MESSAGGE = "#**********************************************************************************************************************\n" \
@@ -114,7 +116,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		shutil.copyfile(file, source)
 
 	osWalker = OsWalker(sourceDirectory)
-	osWalker.walk(filtersIn=("\.py$",))
+	osWalker.walk(filtersIn=("\.py$",), filtersOut=EXCLUDED_PYTHON_MODULES)
 	modules = []
 	for file in sorted(osWalker.files.values()):
 		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
