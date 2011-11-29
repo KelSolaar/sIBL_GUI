@@ -48,6 +48,7 @@ _`Command Line Parameters`
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
 -  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
+-  **-x, —startupScript**: Execute provided startup script.
 -  **-t, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
