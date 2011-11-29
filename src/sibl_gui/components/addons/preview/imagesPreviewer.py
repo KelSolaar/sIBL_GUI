@@ -227,7 +227,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
-		:param paths: Images paths. ( List )
+		:param paths: Images paths. ( Tuple / List )
 		:param \*args: Arguments. ( \* )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
@@ -312,7 +312,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		This method is the property for **self.__paths** attribute.
 
-		:return: self.__paths. ( List )
+		:return: self.__paths. ( Tuple / List )
 		"""
 
 		return self.__paths
@@ -323,11 +323,11 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		This method is the setter method for **self.__paths** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value. ( Tuple / List )
 		"""
 
 		if value is not None:
-			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("paths", value)
+			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("paths", value)
 			for element in value:
 				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 				"paths", element)
@@ -1057,6 +1057,9 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 																bpp=image.depth())
 
 			LOGGER.debug("> Initializing graphics item.")
+			if self.__displayGraphicsItem:
+				self.__graphicsScene.removeItem(self.__displayGraphicsItem)
+
 			self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
 			self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
