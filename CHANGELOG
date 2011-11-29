@@ -1,4 +1,4 @@
-sIBL_GUI - 4.0.0 - Stable
+sIBL_GUI - 4.0.0 - Alpha
 =========================
 
 .. raw:: html
@@ -16,14 +16,16 @@ sIBL_GUI - 4.0.0 - Stable
 Change Log
 ==========
 
-4.0.0 - Stable
+4.0.0 - Alpha
 --------------
 
--  sIBL_GUI is now built around Umbra: https://github.com/KelSolaar/Umbra
+-  sIBL_GUI is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
--  A new "Inspector" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
+-  A new "Inspect" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
+-  A new "Edit" layout has been implemented, it features **Umbra** **Script Editor** component and allows you to directly edit Ibl Sets or Templates files and interact with sIBL_GUI. 
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
--  Startup speed have been dramaticaly increased (Non frozen application version is approximately 4 times faster).
+-  Major parts of the underlying architecture have been rewrote for better evolutivity and feature a cleaner code base.
+-  Startup speed has been dramaticaly increased (Non frozen application version is more than 4 times faster).
 -  sIBL_GUI can be toggled to fullscreen using the related option in the "Custom_Layouts" menu.
 -  Templates settings are now stored / restored in preferences folder for each template release. 
 -  Most Maya templates have been ported toward Python for better maintainability and performance.
@@ -35,12 +37,14 @@ Change Log
 -  A "Logging Formatter" preferences option has been added, allowing to choose between different logging formatters.
 -  Added support for Templates strings: "nodePrefix = @nodePrefix | __Prefix__ | String | Node Prefix".
 -  Added "-f / --loggingFormatter" command line parameter allowing logging formatter choice.
+-  Added "-x / --startupScript" command line parameter allowing execution of an user script on startup.
 -  Added "-t / --deactivateWorkerThreads" command line parameter allowing Worker Threads deactivation.
 -  Renamed "-s / --noSplashScreen" command line parameter to "-s / --hideSplashScreen".
 -  Package directories structure has been deeply reorganized.
 -  Documentation has been updated and converted from textile to reStructuredText and is available in different flavors:
    -  Sphinx documentation with chapters and API.
    -  Inline monolitic file for HDRLabs.com.
+-  A "defaultScript.py" file is provided to showcase a few high level API features.
 
 3.5.0 - Stable
 --------------
