@@ -41,7 +41,7 @@ echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
 
-cp $SOURCE/sibl_gui/resources/images/Icon_Light_512.icns $SITE/
+cp $SOURCE/sibl_gui/resources/images/Icon_Light_256.icns $SITE/
 packages="foundations manager umbra sibl_gui"
 for package in $packages
 do
