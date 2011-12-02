@@ -97,9 +97,8 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Dmg Compilation - Begin
 echo ----------------------------------------------------------------
-#! rm -f ./sIBL_GUI.dmg
-#! hdiutil create ./sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "$DISTRIBUTION/sIBL_GUI.app"
-#! dropdmg -g sIBL_GUI -y sIBL_GUI $DISTRIBUTION/sIBL_GUI.app
+rm -f ./*.dmg
+dropdmg -g sIBL_GUI -y sIBL_GUI $DISTRIBUTION/sIBL_GUI.app
 echo ----------------------------------------------------------------
 echo Dmg Compilation - End
 echo ----------------------------------------------------------------
