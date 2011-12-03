@@ -27,6 +27,7 @@ from PyQt4.QtCore import pyqtSignal
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -244,7 +245,7 @@ class IblSetsScanner_Worker(QThread):
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for directory in directories:
-			if os.path.exists(directory):
+			if foundations.common.pathExists(directory):
 				osWalker = OsWalker(directory)
 				osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 				for iblSet, path in osWalker.files.items():

@@ -35,6 +35,7 @@ from PyQt4.QtGui import QMessageBox
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
@@ -1548,7 +1549,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for collection, path in ((collection, path) for (collection, path) in self.__defaultCollections.items() if path):
-			if not os.path.exists(path):
+			if not foundations.common.pathExists(path):
 				continue
 
 			if not set(dbCommon.filterCollections(self.__coreDb.dbSession,
@@ -1635,7 +1636,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		if os.path.exists(template.helpFile):
+		if foundations.common.pathExists(template.helpFile):
 			LOGGER.info("{0} | Opening '{1}' Template help file: '{2}'.".format(self.__class__.__name__,
 																				template.name,
 																				template.helpFile))
@@ -1761,7 +1762,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				iconPath = os.path.join(self.__uiResourcesDirectory, "{0}{1}".format(software, self.__uiSoftwareAffixe))
-				softwareNode.roles[Qt.DecorationRole] = os.path.exists(iconPath) and iconPath or \
+				softwareNode.roles[Qt.DecorationRole] = foundations.common.pathExists(iconPath) and iconPath or \
 												os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
 
 				for template in templates:

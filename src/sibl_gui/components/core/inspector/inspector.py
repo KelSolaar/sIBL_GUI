@@ -38,8 +38,9 @@ from PyQt4.QtGui import QPen
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.cache
+import foundations.common
+import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.strings as strings
@@ -1204,7 +1205,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
-		if os.path.exists(self.__inspectorIblSet.path):
+		if foundations.common.pathExists(self.__inspectorIblSet.path):
 			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
 
 			if not self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path):
@@ -1219,11 +1220,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the Plates from the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		if not self.__inspectorIblSet:
-			return
-
 		path = self.__inspectorIblSet.path
-		if not os.path.exists(path):
+		if not foundations.common.pathExists(path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, self.__inspectorIblSet.title))

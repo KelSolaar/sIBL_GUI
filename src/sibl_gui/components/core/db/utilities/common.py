@@ -25,6 +25,7 @@ import re
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.components.core.db.exceptions
@@ -361,21 +362,22 @@ def checkIblSetsTableIntegrity(session):
 	erroneousSets = {}
 	if getIblSets(session):
 		for iblSet in getIblSets(session):
-			if not os.path.exists(iblSet.path):
+			if not foundations.common.pathExists(iblSet.path):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
 				continue
-			if not os.path.exists(iblSet.icon):
+
+			if not foundations.common.pathExists(iblSet.icon):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
-			if iblSet.previewImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+			if iblSet.previewImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																	iblSet.previewImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION"
-			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+			if iblSet.backgroundImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.backgroundImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
-			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+			if iblSet.lightingImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.lightingImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
-			if iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+			if iblSet.reflectionImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
@@ -631,9 +633,10 @@ def checkTemplatesTableIntegrity(session):
 	erroneousTemplates = {}
 	if getTemplates(session):
 		for template in getTemplates(session):
-			if not os.path.exists(template.path):
+			if not foundations.common.pathExists(template.path):
 				erroneousTemplates[template] = "INEXISTING_TEMPLATE_FILE_EXCEPTION"
 				continue
-			if not os.path.exists(template.helpFile):
+
+			if not foundations.common.pathExists(template.helpFile):
 				erroneousTemplates[template] = "INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION"
 	return erroneousTemplates

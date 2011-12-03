@@ -25,6 +25,7 @@ from PyQt4.QtGui import QMessageBox
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
@@ -455,10 +456,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for dbType in self.__dbTypes:
 			for item in dbType.getMethod(self.__coreDb.dbSession):
-				if not item.path:
-					continue
-
-				if os.path.exists(item.path):
+				if foundations.common.pathExists(item.path):
 					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
 						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__,
 																					item.name,

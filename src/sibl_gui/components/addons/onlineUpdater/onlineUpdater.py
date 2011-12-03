@@ -27,6 +27,7 @@ from PyQt4.QtNetwork import QNetworkRequest
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
@@ -584,7 +585,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory, self.__ioDirectory)
-		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
+		not foundations.common.pathExists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.__networkAccessManager = QNetworkAccessManager()
 

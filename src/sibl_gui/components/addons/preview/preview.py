@@ -34,6 +34,7 @@ from PyQt4.QtGui import QPushButton
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import umbra.engine
@@ -805,7 +806,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		
 		value = str(self.Custom_Previewer_Path_lineEdit.text())
-		if not os.path.exists(os.path.abspath(value)) and value != "":
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
 
@@ -862,8 +863,12 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
-		if inspectorIblSet:
+		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
+		if not inspectorIblSet:
+			raise foundations.exceptions.FileExistsError(
+			"{0} | Exception raised while opening Inspector Ibl Set directory: \
+			'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				messageBox.messageBox("Warning", "Warning",
 				"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
@@ -880,11 +885,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				"{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, 
 																				inspectorIblSet.title, 
 																				imageType))
-		else:
-			raise foundations.exceptions.FileExistsError(
-			"{0} | Exception raised while opening Inspector Ibl Set directory: \
-			'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
-
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def viewImages(self, paths, customPreviewer=None):
@@ -1004,7 +1004,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = iblSet.reflectionImage
 			path and imagePaths.append(path)
 		elif imageType == "Plates":
-			if os.path.exists(iblSet.path):
+			if foundations.common.pathExists(iblSet.path):
 				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
 				sectionsFileParser = SectionsFileParser(iblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
@@ -1014,7 +1014,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																	sectionsFileParser.getValue("PLATEfile", section))))
 
 		for path in imagePaths[:]:
-			if not os.path.exists(path):
+			if not foundations.common.pathExists(path):
 				imagePaths.remove(path) and LOGGER.warning(
 				"!> {0} | '{1}' image file doesn't exists and will be skipped!".format(self.__class__.__name__, path))
 		return imagePaths

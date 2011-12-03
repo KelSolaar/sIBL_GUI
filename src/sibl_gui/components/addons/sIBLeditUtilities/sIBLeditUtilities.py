@@ -26,6 +26,7 @@ from PyQt4.QtGui import QFileDialog
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
@@ -496,7 +497,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		
 		value = str(self.sIBLedit_Path_lineEdit.text())
-		if not os.path.exists(os.path.abspath(value)) and value != "":
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
@@ -520,7 +521,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-			selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
+			selectedIblSet = selectedIblSets and foundations.common.pathExists(selectedIblSets[0].path) and \
+							selectedIblSets[0] or None
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.sIBLedit_Path_lineEdit.text()))
 			else:
@@ -547,7 +549,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			inspectorIblSet = self.__coreInspector.inspectorIblSet
-			inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+			inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
+							inspectorIblSet or None
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:

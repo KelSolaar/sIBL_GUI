@@ -29,6 +29,7 @@ from PyQt4.QtGui import QGridLayout
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import umbra.engine
@@ -636,7 +637,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		value = str(self.Custom_Text_Editor_Path_lineEdit.text())
-		if not os.path.exists(os.path.abspath(value)) and value != "":
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
@@ -702,7 +703,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for iblSet in selectedIblSets:
-			path = iblSet.path and os.path.exists(iblSet.path) and iblSet.path
+			path = iblSet.path and foundations.common.pathExists(iblSet.path) and iblSet.path
 			if path:
 				success *= self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
@@ -729,7 +730,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
@@ -752,7 +753,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for template in selectedTemplates:
-			path = template.path and os.path.exists(template.path) and template.path
+			path = template.path and foundations.common.pathExists(template.path) and template.path
 			if path:
 				success *= self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:

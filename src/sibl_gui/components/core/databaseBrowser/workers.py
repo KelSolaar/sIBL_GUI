@@ -28,6 +28,7 @@ from PyQt4.QtCore import pyqtSignal
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -242,10 +243,7 @@ class DatabaseBrowser_Worker(QThread):
 		needModelRefresh = False
 		modifiedIblSets = []
 		for iblSet in dbCommon.getIblSets(self.__dbSession):
-			if not iblSet.path:
-				continue
-
-			if not os.path.exists(iblSet.path):
+			if not foundations.common.pathExists(iblSet.path):
 				continue
 
 			storedStats = iblSet.osStats.split(",")

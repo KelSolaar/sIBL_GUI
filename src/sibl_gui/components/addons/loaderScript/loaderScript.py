@@ -28,6 +28,7 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
@@ -539,7 +540,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory,
 										self.__ioDirectory)
-		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
+		not foundations.common.pathExists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.activated = True
 		return True
@@ -669,37 +670,35 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
+		if not (template and foundations.common.pathExists(template.path)):
+			return
 
-		if template:
-			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name,
-																			self.__templateRemoteConnectionSection))
+		LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name,
+																	self.__templateRemoteConnectionSection))
+		templateSectionsFileParser = SectionsFileParser(template.path)
+		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
+		rawSections=(self.__templateScriptSection))
 
-			if os.path.exists(template.path):
-				templateSectionsFileParser = SectionsFileParser(template.path)
-				templateSectionsFileParser.read() and templateSectionsFileParser.parse(
-				rawSections=(self.__templateScriptSection))
-
-				if self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
-					LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
-					self.Remote_Connection_groupBox.show()
-					connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
-					templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
-					if connectionType.value == "Socket":
-						LOGGER.debug("> Remote connection type: 'Socket'.")
-						self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort",
-						templateSectionsFileParser.getValue("DefaultPort",
-															self.__templateRemoteConnectionSection)).value))
-						self.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress",
-						templateSectionsFileParser.getValue("DefaultAddress",
-															self.__templateRemoteConnectionSection)).value))
-						self.Remote_Connection_Options_frame.show()
-					elif connectionType.value == "Win32":
-						LOGGER.debug("> Remote connection: 'Win32'.")
-						self.Remote_Connection_Options_frame.hide()
-				else:
-					self.Remote_Connection_groupBox.hide()
-		else:
+		if not self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 			self.Remote_Connection_groupBox.hide()
+			return
+			
+		LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
+		self.Remote_Connection_groupBox.show()
+		connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
+		templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+		if connectionType.value == "Socket":
+			LOGGER.debug("> Remote connection type: 'Socket'.")
+			self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort",
+			templateSectionsFileParser.getValue("DefaultPort",
+												self.__templateRemoteConnectionSection)).value))
+			self.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress",
+			templateSectionsFileParser.getValue("DefaultAddress",
+												self.__templateRemoteConnectionSection)).value))
+			self.Remote_Connection_Options_frame.show()
+		elif connectionType.value == "Win32":
+			LOGGER.debug("> Remote connection: 'Win32'.")
+			self.Remote_Connection_Options_frame.hide()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
@@ -731,7 +730,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			"{0} | In order to output the Loader Script, you need to select a Template!".format(
 			self.__class__.__name__))
 
-		if not os.path.exists(template.path):
+		if not foundations.common.pathExists(template.path):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(
 			self.__class__.__name__, template.name))
 
@@ -747,7 +746,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			"{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(
 			self.__class__.__name__))
 
-		if not os.path.exists(iblSet.path):
+		if not foundations.common.pathExists(iblSet.path):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, iblSet.title))
 
@@ -804,7 +803,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 				hasattr(interface, "getOverrideKeys") and interface.getOverrideKeys()
 
 		if self.__engine.parameters.loaderScriptsOutputDirectory:
-			if os.path.exists(self.__engine.parameters.loaderScriptsOutputDirectory):
+			if foundations.common.pathExists(self.__engine.parameters.loaderScriptsOutputDirectory):
 				loaderScript = File(os.path.join(self.__engine.parameters.loaderScriptsOutputDirectory, template.outputScript))
 			else:
 				raise foundations.exceptions.DirectoryExistsError(

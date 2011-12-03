@@ -29,6 +29,7 @@ from PyQt4.QtNetwork import QNetworkRequest
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
@@ -523,7 +524,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.__currentFilePath = os.path.join(self.__downloadDirectory,
 											os.path.basename(str(self.__currentRequest.url().path())))
-		if os.path.exists(self.__currentFilePath):
+		if foundations.common.pathExists(self.__currentFilePath):
 			LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(
 			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
 			os.remove(self.__currentFilePath)

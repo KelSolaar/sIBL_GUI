@@ -20,6 +20,7 @@
 import logging
 import os
 import re
+import itertools
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
@@ -27,6 +28,7 @@ from PyQt4.QtGui import QPixmap
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
@@ -90,10 +92,7 @@ def getDisplayItem(path, type):
 		:return: Graphic display. ( Icon, QImage, QPixmap )
 		"""
 
-		if not path:
-			return
-
-		if os.path.exists(path):
+		if foundations.common.pathExists(path):
 			for extension in UiConstants.nativeImageFormats.values():
 				if re.search(extension, path, flags=re.IGNORECASE):
 					return type(path)
@@ -159,14 +158,13 @@ def filterImagePath(path):
 		:return: Path. ( String )
 		"""
 
-		if os.path.exists(path):
-			for extension in UiConstants.nativeImageFormats.values():
+		if foundations.common.pathExists(path):
+			for extension in itertools.chain(UiConstants.nativeImageFormats.values(),
+											UiConstants.thirdPartyImageFormats.values()):
 				if re.search(extension, path, flags=re.IGNORECASE):
 					return path
 			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path, flags=re.IGNORECASE):
-						return umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
+				return umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 		else:
 			return umbra.ui.common.getResourcePath(UiConstants.missingImage)
 

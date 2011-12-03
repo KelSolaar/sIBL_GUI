@@ -28,6 +28,7 @@ import sys
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
@@ -451,7 +452,7 @@ def unchecked(type):
 #**********************************************************************************************************************
 for path in (os.path.join(sibl_gui.__path__[0], Constants.freeImageLibrary),
 os.path.join(os.getcwd(), sibl_gui.__name__, Constants.freeImageLibrary)):
-	if os.path.exists(path):
+	if foundations.common.pathExists(path):
 		FREEIMAGE_LIBRARY_PATH = path
 		continue
 

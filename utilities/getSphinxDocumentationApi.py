@@ -29,6 +29,7 @@ from collections import OrderedDict
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.strings as strings
 from foundations.io import File
@@ -110,7 +111,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 		targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
 		directory = "{0}{1}".format(cloneDirectory, targetDirectory)
-		if not os.path.exists(directory):
+		if not foundations.common.pathExists(directory):
 			os.makedirs(directory)
 		source = os.path.join(directory, os.path.basename(file))
 		shutil.copyfile(file, source)
@@ -124,7 +125,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 											strings.getSplitextBasename(file)).strip(".")
 		LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))
 		directory = os.path.dirname(os.path.join(cloneDirectory, module.replace(".", "/")))
-		if not os.path.exists(directory):
+		if not foundations.common.pathExists(directory):
 			os.makedirs(directory)
 		source = os.path.join(directory, os.path.basename(file))
 		shutil.copyfile(file, source)

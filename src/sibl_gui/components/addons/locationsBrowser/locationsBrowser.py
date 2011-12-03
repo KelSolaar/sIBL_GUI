@@ -28,6 +28,7 @@ from PyQt4.QtGui import QPushButton
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
@@ -721,7 +722,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		value = str(self.Custom_File_Browser_Path_lineEdit.text())
-		if not os.path.exists(os.path.abspath(value)) and value != "":
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
 
@@ -757,7 +758,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for iblSet in selectedIblSets:
-			path = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
+			path = iblSet.path and foundations.common.pathExists(iblSet.path) and os.path.dirname(iblSet.path)
 			if path:
 				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
@@ -784,7 +785,8 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
+						inspectorIblSet or None
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path),
 										str(self.Custom_File_Browser_Path_lineEdit.text()))
@@ -808,7 +810,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for component in selectedComponents:
-			path = component.path and os.path.exists(component.path) and component.path
+			path = component.path and foundations.common.pathExists(component.path) and component.path
 			if path:
 				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
@@ -836,7 +838,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for template in selectedTemplates:
-			path = template.path and os.path.exists(template.path) and os.path.dirname(template.path)
+			path = template.path and foundations.common.pathExists(template.path) and os.path.dirname(template.path)
 			if path:
 				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
@@ -866,7 +868,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		directory = self.__engine.parameters.loaderScriptsOutputDirectory and \
 					self.__engine.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
 
-		if not os.path.exists(directory):
+		if not foundations.common.pathExists(directory):
 			raise foundations.exceptions.DirectoryExistsError(
 			"{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
 
@@ -913,7 +915,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 					try:
 						for path in paths:
-							if os.path.exists(os.path.join(path, browser)):
+							if foundations.common.pathExists(os.path.join(path, browser)):
 								processCommand = "\"{0}\" \"{1}\"".format(browser, directory)
 								browserFound = True
 								raise StopIteration

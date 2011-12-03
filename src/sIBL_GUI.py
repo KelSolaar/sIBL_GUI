@@ -71,8 +71,9 @@ _overrideDependenciesGlobals()
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.cache
+import foundations.common
+import foundations.core as core
 import umbra.engine
 import umbra.ui.common
 from umbra.ui.widgets.active_QLabel import Active_QLabel
@@ -380,7 +381,7 @@ if __name__ == "__main__":
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
-		(os.path.exists(path) and not path in componentsPaths) and componentsPaths.append(path)
+		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	umbra.engine.run(sIBL_GUI,
 					commandLineParametersParser.parse_args(sys.argv),

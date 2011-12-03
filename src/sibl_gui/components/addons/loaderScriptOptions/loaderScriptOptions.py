@@ -32,6 +32,7 @@ from PyQt4.QtGui import QPalette
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.io as io
@@ -661,7 +662,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 														Constants.settingsDirectory,
 														self.__templatesSettingsDirectory)
-		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
+		not foundations.common.pathExists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
 		self.activated = True
@@ -844,9 +845,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
-		if not template:
-			return
-		if not os.path.exists(template.path):
+		if not (template and foundations.common.pathExists(template.path)):
 			return
 
 		LOGGER.debug("> Attempting to read '{0}' Template settings file.".format(template.name))
@@ -858,17 +857,17 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										template.release,
 										os.path.basename(template.path))
 
-		not os.path.exists(currentTemplateSettingsDirectory) and io.setDirectory(currentTemplateSettingsDirectory)
+		not foundations.common.pathExists(currentTemplateSettingsDirectory) and io.setDirectory(currentTemplateSettingsDirectory)
 
 		templateSettingsFile = None
-		if os.path.exists(self.__templateSettingsFile):
+		if foundations.common.pathExists(self.__templateSettingsFile):
 			templateSettingsFile = self.__templateSettingsFile
 		else:
 			for version in sorted((
 							path for path in os.listdir(templateSettingsDirectory)
 							if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
 				path = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
-				if os.path.exists(path):
+				if foundations.common.pathExists(path):
 					templateSettingsFile = path
 					break
 

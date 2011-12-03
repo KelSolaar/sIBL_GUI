@@ -28,6 +28,7 @@ from PyQt4.QtCore import pyqtSignal
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -243,10 +244,7 @@ class TemplatesOutliner_Worker(QThread):
 		needModelRefresh = False
 		modifiedTemplates = []
 		for template in dbCommon.getTemplates(self.__dbSession):
-			if not template.path:
-				continue
-
-			if not os.path.exists(template.path):
+			if not foundations.common.pathExists(template.path):
 				continue
 
 			storedStats = template.osStats.split(",")
