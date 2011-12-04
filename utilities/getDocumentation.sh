@@ -16,7 +16,7 @@ export SPHINX=$APPLICATION/support/documentation/sphinx
 echo ----------------------------------------------------------------
 echo Inline Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/reStructuredTextToHtml.py "$HELP/sIBL_GUI Manual" "$HELP/sIBL_GUI Manual.html"
+python $UTILITIES/reStructuredTextToHtml.py "$HELP/sIBL_GUI_Manual.rst" "$HELP/sIBL_GUI_Manual.html"
 echo ----------------------------------------------------------------
 echo Inline Documentation Build - End
 echo ----------------------------------------------------------------
@@ -25,7 +25,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/getHDRLabsDocumentation.py "$HELP/sIBL_GUI Manual.html" "$HELP/sIBL_GUI_Manual_Body.html"
+python $UTILITIES/getHDRLabsDocumentation.py "$HELP/sIBL_GUI_Manual.html" "$HELP/sIBL_GUI_Manual_Body.html"
 echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - End
 echo ----------------------------------------------------------------
@@ -34,7 +34,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Sphinx Documentation Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/sliceDocumentation.py "$HELP/sIBL_GUI Manual" "$SPHINX/source/resources/pages"
+python $UTILITIES/sliceDocumentation.py "$HELP/sIBL_GUI_Manual.rst" "$SPHINX/source/resources/pages"
 python $UTILITIES/getSphinxDocumentationTocTree.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
 rm -rf $SPHINX/build
 rm -rf $SPHINX/source/resources/src
