@@ -21,6 +21,7 @@ Change Log
 
 -  sIBL_GUI is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
+-  x64 is the default new sIBL_GUI architecture, there won't be anymore support for x86.
 -  A new "Inspect" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
 -  A new "Edit" layout has been implemented, it features **Umbra** **Script Editor** component and allows you to directly edit Ibl Sets or Templates files and interact with sIBL_GUI. 
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
