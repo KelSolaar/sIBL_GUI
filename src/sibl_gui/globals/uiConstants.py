@@ -139,6 +139,9 @@ class UiConstants():
 	apiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 	"""Application online api file:
 	'**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html**' ( String )"""
+	makeDonationFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html"
+	"""Application online donation file:
+	'**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html**' ( String )"""
 
 	nativeImageFormats = { "Bmp" : "\.bmp$",
 							"Jpeg" : "\.jpeg$",

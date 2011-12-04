@@ -23,7 +23,10 @@ import logging
 import os
 import sys
 from PyQt4.QtCore import QSize
+from PyQt4.QtCore import QString
+from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtGui import QPixmap
 
 #**********************************************************************************************************************
@@ -228,6 +231,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
 		self.toolBar.addWidget(self.getMiscellaneousActiveLabel())
+		self.extendMiscellaneousActiveLabel()
 
 		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
 		self.toolBar.addWidget(self.getClosureSpacerLabel())
@@ -330,6 +334,35 @@ class sIBL_GUI(umbra.engine.Umbra):
 		# Signals / Slots.
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 		return centralWidgetButton
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def extendMiscellaneousActiveLabel(self):
+		"""
+		This method extends the default **Miscellaneous_activeLabel** widget.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.miscellaneousMenu.addAction(self.actionsManager.registerAction(
+		"Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
+		slot=self.__makeDonationDisplayMiscAction__triggered))
+		self.miscellaneousMenu.addSeparator()
+
+		return True
+
+	@core.executionTrace
+	def __makeDonationDisplayMiscAction__triggered(self, checked):
+		"""
+		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
+
+		:param checked: Checked state. ( Boolean )
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Opening url: '{0}'.".format(sibl_gui.globals.uiConstants.UiConstants.makeDonationFile))
+		QDesktopServices.openUrl(QUrl(QString(sibl_gui.globals.uiConstants.UiConstants.makeDonationFile)))
+		return True
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

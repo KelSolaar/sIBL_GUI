@@ -18,3 +18,7 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: PathExistsTestCase
+	:show-inheritance:
+	:members:
+

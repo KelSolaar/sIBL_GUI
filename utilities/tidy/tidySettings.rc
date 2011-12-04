@@ -7,3 +7,4 @@ merge-divs:true
 quiet: true
 show-warnings: false
 wrap: 0
+tidy-mark: false

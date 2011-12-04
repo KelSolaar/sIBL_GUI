@@ -23,3 +23,5 @@ Functions
 
 .. autofunction:: uniqify
 
+.. autofunction:: pathExists
+

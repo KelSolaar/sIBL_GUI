@@ -1,13 +1,7 @@
-_`Introduction`
-===============
-
-| *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (“.Ibl”).
-| What is sIBL? It’s a short for “Smart IBL”, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
-
-More detailed informations are available here: http://www.smartibl.com
+..  image:: resources/pictures/sIBL_GUI_Logo.png
 
 _`Donations`
-------------
+============
 
 With sIBL_GUI 4 release I decided to accept donations, so if you think the application is worth something you can use the following `Paypal <https://www.paypal.com/>`_ button:
 
@@ -20,3 +14,10 @@ With sIBL_GUI 4 release I decided to accept donations, so if you think the appli
 	<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 	</form>
 
+About
+=====
+
+| *sIBL_GUI* by Thomas Mansencal - 2008 - 2011
+| Copyright© 2008 - 2011 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| This Software Is Released Under Terms Of GNU GPL V3 License: http://www.gnu.org/licenses/
+| http://www.thomasmansencal.com/
