@@ -31,7 +31,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 python $UTILITIES/darwinSetup.py py2app --includes "PyQt4.QtCore,PyQt4.QtGui,PyQt4.QtNetwork,PyQt4.QtWebKit,PyQt4.uic,base64,cStringIO,code,collections,ctypes,datetime,functools,hashlib,inspect,itertools,linecache,logging,migrate,migrate.exceptions,migrate.versioning.api,optparse,os,pickle,platform,posixpath,re,shutil,sip,socket,sqlalchemy,sqlalchemy.ext.declarative,sqlalchemy.orm,sys,threading,time,traceback,weakref,xml.etree,zipfile" --excludes "foundations,manager,umbra,sibl_gui" --no-strip
-rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
+python $UTILITIES/recursiveRemove.py $DISTRIBUTION/sIBL_GUI.app/ debug
 echo ----------------------------------------------------------------
 echo Build - End
 echo ----------------------------------------------------------------
@@ -40,8 +40,9 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
-
 cp $SOURCE/sibl_gui/resources/images/Icon_Light_256.icns $SITE/
+cp -f ./support/qt.conf $SITE/
+cp -r ./support/imageformats $DISTRIBUTION/sIBL_GUI.app/Contents/MacOs
 packages="foundations manager umbra sibl_gui"
 for package in $packages
 do
@@ -60,8 +61,9 @@ do
 done
 rm $SITE/sibl_gui/libraries/freeImage/resources/*.dll
 rm $SITE/sibl_gui/libraries/freeImage/resources/*.so
-cp -f ./support/qt.conf $SITE/
-cp -r ./support/imageformats $DISTRIBUTION/sIBL_GUI.app/Contents/MacOs
+rm -rf $SITE/sibl_gui/resources/templates/3dsMax*
+rm -rf $SITE/sibl_gui/resources/templates/Softimage*
+rm -rf $SITE/sibl_gui/resources/templates/XSI*
 echo ----------------------------------------------------------------
 echo Release - End
 echo ----------------------------------------------------------------
@@ -69,26 +71,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
-#! Maya_Arnold_Standard template documentation removal.
-#! rm "$SITE/templates/Maya_Arnold_Standard/help/Maya_Arnold_Standard Template Manual"
-
-#! Maya_MR_Lightsmith template documentation removal.
-#! rm "$SITE/templates/Maya_MR_Lightsmith/help/Maya_MR_Lightsmith Template Manual"
-
-#! Maya_MR_Standard template documentation removal.
-#! rm "$SITE/templates/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
-
-#! Maya_RfM_Standard template documentation removal.
-#! rm "$SITE/templates/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
-
-#! Maya_VRay_Dome_Light template documentation removal.
-#! rm "$SITE/templates/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
-
-#! Maya_VRay_Lightsmith template documentation removal.
-#! rm "$SITE/templates/Maya_VRay_Lightsmith/help/Maya_VRay_Lightsmith Template Manual"
-
-#! Maya_VRay_Standard template documentation removal.
-#! rm "$SITE/templates/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
+python $UTILITIES/recursiveRemove.py $DISTRIBUTION/sIBL_GUI.app/ .rst
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo ----------------------------------------------------------------
