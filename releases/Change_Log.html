@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
+		<title></title>
+		<style type="text/css">
+/*<![CDATA[*/
+
+		body {
+		background-color: rgb(48, 48, 48);
+		color: rgb(192, 192, 192);
+		text-align: justify;
+		font-size: 10pt;
+		margin: 10px 10px 10px 10px;
+		}
+
+		A:link {
+		color: rgb(160, 96, 64);
+		text-decoration: none;
+		}
+
+		A:visited {
+		text-decoration: none;
+		color: rgb(160, 96, 64);
+		}
+
+		A:active {
+		text-decoration: none;
+		color: rgb(160, 96, 64);
+		}
+
+		A:hover {
+		text-decoration: underline;
+		color: rgb(160, 96, 64);
+		}
+
+		table {
+		border-color: rgb(96, 96, 96);
+		border-collapse: collapse;
+		border-style: solid;
+		border-width: 2px;
+		}
+		/*]]>*/
+		</style>
+	</head>
+	<body>
+		<div class="document">
+			<div class="section" id="sibl-gui-4-0-0-alpha">
+				<h1>
+					sIBL_GUI - 4.0.0 - Alpha
+				</h1>
+				<div style="color: rgb(160, 48, 32);">
+					<h2>
+						IMPORTANT NOTICES:
+					</h2>
+					<ul>
+						<li>sIBL_GUI 4.x.x requires database migration / update, the process has been extensively tested and should work fine, however if something goes wrong a database backup will be available under sIBL_GUI preferences folder: "../HDRLabs/sIBL_GUI/database/backup".
+						</li>
+						<li>If you are using a read only database, you need to start sIBL_GUI in standard mode at least once so that the database can be migrated, otherwise the application will not be able to read the database properly and will exit.
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section" id="change-log">
+				<h1>
+					Change Log
+				</h1>
+				<div class="section" id="alpha">
+					<h2>
+						4.0.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>sIBL_GUI is now built around <strong>Umbra</strong>: <a class="reference external" href="https://github.com/KelSolaar/Umbra">https://github.com/KelSolaar/Umbra</a>
+						</li>
+						<li>sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
+						</li>
+						<li>x64 is the default new sIBL_GUI architecture, there won't be anymore support for x86.
+						</li>
+						<li>A new &quot;Inspect&quot; layout has been implemented, it makes use of the new &quot;PREVIEWfile&quot; attribute of .ibl files and allows you to browse your collections using large preview images.
+						</li>
+						<li>A new &quot;Edit&quot; layout has been implemented, it features <strong>Umbra</strong> <strong>Script Editor</strong> component and allows you to directly edit Ibl Sets or Templates files and interact with sIBL_GUI.
+						</li>
+						<li>Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
+						</li>
+						<li>Major parts of the underlying architecture have been rewrote for better evolutivity and feature a cleaner code base.
+						</li>
+						<li>Startup speed has been dramaticaly increased (Non frozen application version is more than 4 times faster).
+						</li>
+						<li>sIBL_GUI can be toggled to fullscreen using the related option in the &quot;Custom_Layouts&quot; menu.
+						</li>
+						<li>Templates settings are now stored / restored in preferences folder for each template release.
+						</li>
+						<li>Most Maya templates have been ported toward Python for better maintainability and performance.
+						</li>
+						<li>The &quot;logginWindow&quot; component has been replaced by the &quot;scriptEditor&quot; component that allows direct interaction with sIBL_GUI.
+						</li>
+						<li>The &quot;databaseBackup&quot; component has been integrated to the &quot;db&quot; component.
+						</li>
+						<li>A database migration mechanism has been implemented using SQLAlchemy Migrate, it should allow database structure manipulation for future releases.
+						</li>
+						<li>A new &quot;databaseOperations&quot; component has been introduced to allow manual database synchronization.
+						</li>
+						<li>Adding / Renaming a collection using an empty name was possible, this incorrect behavior has been fixed.
+						</li>
+						<li>A &quot;Logging Formatter&quot; preferences option has been added, allowing to choose between different logging formatters.
+						</li>
+						<li>Added support for Templates strings: &quot;nodePrefix = &#64;nodePrefix | __Prefix__ | String | Node Prefix&quot;.
+						</li>
+						<li>Added &quot;-f / --loggingFormatter&quot; command line parameter allowing logging formatter choice.
+						</li>
+						<li>Added &quot;-x / --startupScript&quot; command line parameter allowing execution of an user script on startup.
+						</li>
+						<li>Added &quot;-t / --deactivateWorkerThreads&quot; command line parameter allowing Worker Threads deactivation.
+						</li>
+						<li>Renamed &quot;-s / --noSplashScreen&quot; command line parameter to &quot;-s / --hideSplashScreen&quot;.
+						</li>
+						<li>Package directories structure has been deeply reorganized.
+						</li>
+						<li>Documentation has been updated and converted from textile to reStructuredText and is available in different flavors: - Sphinx documentation with chapters and API. - Inline monolitic file for HDRLabs.com.
+						</li>
+						<li>A &quot;defaultScript.py&quot; file is provided to showcase a few high level API features.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="stable">
+					<h2>
+						3.5.0 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Implemented support for &quot;Lightsmith Lights&quot;: <a class="reference external" href="http://vimeo.com/20879389">http://vimeo.com/20879389</a>.
+						</li>
+						<li>Most of the Templates have been refactored at different level.
+						</li>
+						<li>Fixed an issue where Ibl Sets were displayed multiple times in the &quot;Database Browser&quot; component.
+						</li>
+						<li>Dropped support of Illuminate Labs Turtle Renderer.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id1">
+					<h2>
+						3.1.3 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Templates have now options to define different light types: &quot;Area&quot;, &quot;Directional&quot;, &quot;Point&quot;, &quot;Spot&quot;, etc...
+						</li>
+						<li>&quot;Search Database&quot; component &quot;In Tags Cloud&quot; method is now case sensitive.
+						</li>
+						<li>Fixed a remaining issue in &quot;Search Database&quot; component and empty Ibl Set attributes in the &quot;In Tags Cloud&quot; method.
+						</li>
+						<li>Fixed Windows building file to prevent incorrect &quot;templates&quot; folder hierarchy.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id2">
+					<h2>
+						3.1.2 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Fixed issues with the &quot;Search Database&quot; component and empty Ibl Set attributes.
+						</li>
+						<li>Added new &quot;In Tags Cloud&quot; method to the &quot;Search Database&quot; component. It's now possible to search for multiples keywords in any order either by typing them in the &quot;Search Database&quot; widget or select them in the &quot;Tags Cloud&quot; widget.
+						</li>
+						<li>&quot;Search Database&quot; widget now has a button to clear the current search.
+						</li>
+						<li>Implemented units tests on sIBL_GUI &quot;foundations&quot;, &quot;manager&quot; and &quot;globals&quot; packages.
+						</li>
+						<li>Extracted multiple packages to new repositories for better code reusability.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id3">
+					<h2>
+						3.1.1 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Fixed &quot;Add Content&quot; broken context menu entry of &quot;Collection Outliner&quot; component.
+						</li>
+						<li>Fixed a code regression preventing export of Ibl Sets with comments.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id4">
+					<h2>
+						3.1.0 - Stable
+					</h2>
+					<ul class="simple">
+						<li>sIBL_GUI now uses Python 2.7.1, allowing usage of OrderedDict, Templates attributes are now displayed in correct order.
+						</li>
+						<li>Replaced Google Maps by Bing Maps: Google Maps support is broken at the moment on Qt Webkit.
+						</li>
+						<li>Added &quot;-s / --noSplashScreen&quot; command line parameter allowing user to deactivate the splashscreen.
+						</li>
+						<li>Added support for Templates enums: &quot;lightType = &#64;lightType | Area;Directional;Spot | Enum | Light Type&quot;.
+						</li>
+						<li>Fixed an inconsistency related to the comments in the file parser.
+						</li>
+						<li>Help files stored on network are now properly opened on Windows.
+						</li>
+						<li>Modified Ibl Sets now refresh properly within the current session.
+						</li>
+						<li>Added a new fancy splashscreen image thanks to Bob Groothuis.
+						</li>
+						<li>Updated Windows icon.
+						</li>
+						<li>Lots of code refactoring and updates.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id5">
+					<h2>
+						3.0.9 - Stable
+					</h2>
+					<ul class="simple">
+						<li>sIBL_GUI has now an Internal Images Previewer: You can quickly check your Ibl Sets images by right-clicking the &quot;Database Browser&quot; and use one of the new &quot;Preview ...&quot; context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: <a class="reference external" href="http://www.hdrlabs.com/picturenaut/index.html">http://www.hdrlabs.com/picturenaut/index.html</a>.
+						</li>
+						<li>Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build: Third Party Images loading is now 10 to 20 times faster.
+						</li>
+						<li>Implemented Ibl Sets database display name edition: Double click an Ibl Set in the Database Browser to edit it's display name.
+						</li>
+						<li>&quot;-r / --databaseReadOnly&quot; command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
+						</li>
+						<li>Fixed a code regression preventing &quot;Templates Informations&quot; widget display.
+						</li>
+						<li>Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.
+						</li>
+						<li>Worker Threads are properly terminated on application exit.
+						</li>
+						<li>Switched Darwin Installer to DropDmg application: Dmg icons are laid out correctly now.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id6">
+					<h2>
+						3.0.8 - Stable
+					</h2>
+					<ul class="simple">
+						<li>sIBL_GUI For Windows now is natively built on Windows 7, this should Fixed the slow startup issues reported on Windows Vista / 7.
+						</li>
+						<li>Implemented dragNdrop in various components (Network paths are currently not supported on Windows Vista / 7):
+							<ul>
+								<li>Database Browser Component: You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
+								</li>
+								<li>Collections Outliner Component: You can also dragNdrop folders or Ibl Sets files directly from the Os.
+								</li>
+								<li>Templates Outliner Component: You can dragNdrop Templates folders or Templates files directly from the Os.
+								</li>
+							</ul>
+						</li>
+						<li>Made the code stronger when sIBL_GUI deals with corrupted Ibl / Templates Files.
+						</li>
+						<li>Refactored portions of the exceptions handling code.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id7">
+					<h2>
+						3.0.7 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Standard Output and Standard Errors messages are redirected to the Logging Window.
+						</li>
+						<li>sIBL_GUI creates one session per thread for SQLite database access thus increasing application stability.
+						</li>
+						<li>Thumbnails size preference is restored on application start.
+						</li>
+						<li>Each component has its own section in the preferences file, resulting in a better and stronger file structure. (You will will need to reconfigure components preferences).
+						</li>
+						<li>Session geometry is always restored on application start ignoring the state of the &quot;Restore Geometry On Layout Change&quot; preferences option.
+						</li>
+						<li>Fixed &quot;setsScanner&quot; component regular expressions, it can now process paths with non alphanumerical characters (&quot;C:/Program Files (x86)/&quot;).
+						</li>
+						<li>Fixed walkers arguments regular expressions so that they search for correct files extensions.
+						</li>
+						<li>Added &quot;-o / --loaderScriptsOutputDirectory&quot; command line parameter allowing user to specify loader scripts output directory.
+						</li>
+						<li>Added &quot;-r / --databaseReadOnly&quot; command line parameter that disable database edition methods.
+						</li>
+						<li>Added &quot;-d / --databaseDirectory&quot; command line parameter allowing user to specify the database directory.
+						</li>
+						<li>Added &quot;-u / --userApplicationDataDirectory&quot; command line parameter allowing user to specify application data directory (Preferences directory).
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id8">
+					<h2>
+						3.0.6 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may encounter two issues:
+							<ul>
+								<li>The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I would like to avoid Implementeding compatibility code.
+								</li>
+								<li>Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. <em>It's however advised to remove it!</em> If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering difficulties while doing the merge.
+								</li>
+							</ul>
+						</li>
+						<li>Moved Templates and Ibl Sets scanners to separate threads for increased performances.
+						</li>
+						<li>Added support for command line parameters.
+						</li>
+						<li>Fixed a regression with &quot;Lights|DynamicLights&quot; attribute export.
+						</li>
+						<li>Binded FreeImage C/C++ imaging library, sIBL_GUI can now manipulate and access a lot more image formats.
+						</li>
+						<li>Application walker is now skipping Mac Os X &quot;._&quot; files.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id9">
+					<h2>
+						3.0.5 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Templates folders hierarchy has been updated. <em>It's strongly advised to uninstall any previous sIBL_GUI 3 version before installing this stable release.</em>
+						</li>
+						<li>Database Browser is properly refreshing when a collection is removed.
+						</li>
+						<li>Database Browser items are again correctly laid out on sIBL_GUI resize.
+						</li>
+						<li>Added &quot;debug&quot; verbose messages in a lot of methods.
+						</li>
+						<li>Fixed wrong versions numbers calculations.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="beta">
+					<h2>
+						3.0.4 - Beta
+					</h2>
+					<ul class="simple">
+						<li>Templates paths are now provided to Loader Scripts.
+						</li>
+						<li>&quot;DatabaseBrowser&quot; and &quot;TemplatesOutliner&quot; components store / restore their selection when the Database is updated.
+						</li>
+						<li>Changed &quot;ComponentsManagerUi&quot;, &quot;DatabaseBrowser&quot;, &quot;CollectionsOutliner&quot;, &quot;TemplatesOutliner&quot; components to Qt Model / View framework.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id10">
+					<h2>
+						3.0.3 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Added application icon.
+						</li>
+						<li>Regenerated templates documentation help files.
+						</li>
+						<li>Added application documentation help file.
+						</li>
+						<li>Added Softimage 2011 Template.
+						</li>
+						<li>Improved startup time.
+						</li>
+						<li>Added callback for components instantiation.
+						</li>
+						<li>Online Updater skip extracting corrupted .zip files.
+						</li>
+						<li>Changed the Toolbar Widgets.
+						</li>
+						<li>Updated various Ui files / pictures.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id11">
+					<h2>
+						3.0.2 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Updated various Ui files / pictures.
+						</li>
+						<li>Added Templates Versions filtering context menu option.
+						</li>
+						<li>Merged &quot;DatabaseBrowser&quot; and &quot;ThumbnailsSize&quot; components.
+						</li>
+						<li>Changed &quot;onlineUpdater&quot; component IODevice to QFile, Windows 7 and Vista downloads are not corrupted anymore.
+						</li>
+						<li>Various Ui tweaks.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id12">
+					<h2>
+						3.0.1 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Fixed slashes path issues on Windows preventing correct Sets loading in Maya.
+						</li>
+						<li>Fixed Incorrect loaderScript path on Windows Socket Connections.
+						</li>
+						<li>Fixed an error preventing the Templates Locations of being browsed.
+						</li>
+						<li>Prevented Drag'N'Drop in the Templates Outliner Widget.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id13">
+					<h2>
+						3.0.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Full sIBL_GUI rewrite / refactoring.
+						</li>
+						<li>First release in the new repository.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id14">
+					<h2>
+						2.1.1 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Updated sIBL_GUI Help / Manual.
+						</li>
+						<li>sIBL_GUI_FTP is now starting Download automatically when invoked, &quot;Start Download&quot; Button has been removed.
+						</li>
+						<li>sIBL_GUI now restores the last visited folder.
+						</li>
+						<li>Render Combo Box added in the Import Tab (Useful when you have multiple Templates for a Renderer).
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id15">
+					<h2>
+						2.1.0 - Stable
+					</h2>
+					<ul class="simple">
+						<li>New ReWire Widget in the Import Tab, you can now for example use the Lighting Image as Background or the Reflection one for the Lighting, it's even possible to load Custom Images so you can nearlly dynamically create your IBL on the fly.
+						</li>
+						<li>Resorted sIBL_GUI Updater Columns.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Corrected the incorrect Help / Manual Files Download Path on Frozen Executables.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id16">
+					<h2>
+						2.0.8 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Updater / FTP Code Cleanup.
+						</li>
+						<li>Fixed a Bug where more Templates than required were downloaded by sIBL_GUI Updater.
+						</li>
+						<li>Debugging Code Cleanup.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id17">
+					<h2>
+						2.0.7 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Better Verbose when Remote Connection failed.
+						</li>
+						<li>Manual / Help Files now load properly from a Windows Server Path.
+						</li>
+						<li>Code Consolidation on Windows.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id18">
+					<h2>
+						2.0.6 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Last Maya Templates are packaged.
+						</li>
+						<li>Corrected a bug introduced during the Custom Text Editor / Browser Code refactoring.
+						</li>
+						<li>Wait Cursor is properly released when Checking For New Releases.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="release-candidate">
+					<h2>
+						2.0.5 - Release Candidate
+					</h2>
+					<ul class="simple">
+						<li>Updated sIBL_GUI Help / Manual.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Corrected a bug where user define Custom Editor / Browser weren't starting.
+						</li>
+						<li>A default Picture is used when a Thumbnail is using an unsupported File Format (Tga / Tif are not supported yet for example).
+						</li>
+						<li>Options Table Widgets are now properly reseted when there are no Templates available.
+						</li>
+						<li>sIBL_GUI FTP is verbosing when Gathering Files List.
+						</li>
+						<li>It's now possible to choose the Templates you want to download.
+						</li>
+						<li>Custom Widgets code refactoring for better reusability.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id19">
+					<h2>
+						2.0.2 - Beta
+					</h2>
+					<ul class="simple">
+						<li>Maya MR Template Help / Manual Files updated.
+						</li>
+						<li>Maya Templates have been updated, VRay For Maya and Turtle For Maya are released as stable.
+						</li>
+						<li>GPS Map is now a .jpg file for faster loading and XSI Addon Packaging Problem.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id20">
+					<h2>
+						2.0.1 - Beta
+					</h2>
+					<ul class="simple">
+						<li>Corrected a Windows bug preventing download of Templates / Help.
+						</li>
+						<li>Started Maya VRay and Maya Turtle Help / Manual Files.
+						</li>
+						<li>Added Maya VRay and Maya Turtle Templates.
+						</li>
+						<li>Refactored the Send/Edit sIBL code to something cleaner and stronger.
+						</li>
+						<li>&quot;Ignore Missing Templates&quot; Option sets to False by default now on a fresh install.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id21">
+					<h2>
+						2.0.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Updated sIBL_GUI Help / Manual.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Trapped some errors if loader script failed.
+						</li>
+						<li>Corrected an error in sIBL_Framework introduced while reorganizing Imports.
+						</li>
+						<li>GPS Map Markers weren't properly resized while using the keyboard shortcuts to zoom in and out.
+						</li>
+						<li>Cleaned a bit the Collection ListWidget ToolTips V2 Support Code.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id22">
+					<h2>
+						1.9.2 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Updated sIBL_GUI Help / Manual.
+						</li>
+						<li>Improved Collection ListWidget ToolTips with Shot Time.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Line Edits are not cropping their content anymore on Mac Os X.
+						</li>
+						<li>Changed the About Tab with Links Support, etc.
+						</li>
+						<li>An option is now available in Preferences to Ignore Missing Templates so you are not spammed with Templates you don't have locally.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id23">
+					<h2>
+						1.9.1 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Updated sIBL_GUI Help / Manual.
+						</li>
+						<li>Tweaked the OsWalker so it correctly return files with multiple &quot;.&quot; in their name.
+						</li>
+						<li>Splashscreen now stays on top of other windows.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id24">
+					<h2>
+						1.9.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Templates names have been changed.
+						</li>
+						<li>A Splashscreen is now showing on initialization.
+						</li>
+						<li>sIBL_GUI FTP Code has been slightly tweaked.
+						</li>
+						<li>sIBL_GUI_Updater is now also checking for Templates releases. This release makes 1.4.X update mechanism obsolete.
+						</li>
+						<li>Catched an exception when the Logging File is deleted while sIBL_GUI write into it.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>I wanted sIBL_GUI next stable release to be a 1.5, but since we are introducing the sIBL V2 File Format, I'm jumping the release numbers closer to 2.0.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id25">
+					<h2>
+						1.4.3 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>GPS Map Zooming code has been tweaked, it should be smoother now.
+						</li>
+						<li>Added OpenGL support to the GPS Map. There are some new related options in the preferences.
+						</li>
+						<li>Tweaks in sIBL_Framework Dynamic Lights Handling to correct some problems with Maya Mel Script.
+						</li>
+						<li>Improved sIBL_Parser, it uses now some Regex matching for stronger behavior and the Class is faster too.
+						</li>
+						<li>Added GUI Support for sIBL V2 Format Parameters, Improved the Import Tab and some others minor Interface tweaks.
+						</li>
+						<li>Removed some Remote Connection bugs.
+						</li>
+						<li>Refactored Options Toolbox True/False Buttons to something cleaner and more in line with PyQt.
+						</li>
+						<li>Removed a bug in the Search Function.
+						</li>
+						<li>Cleaned some Functions Tracing related code.
+						</li>
+						<li>Optimised Edit / Browser Code.
+						</li>
+						<li>Exit Code is much cleaner, Logging Handlers are properly stopped and closed.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id26">
+					<h2>
+						1.4.2 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>sIBL_Framework / sIBL_Parser have been refactored to deal with the new introduced parameters.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id27">
+					<h2>
+						1.4.1 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Refactored some sIBL_GUI Methods and changed the GUI Messages code.
+						</li>
+						<li>An Online Version Checker is now checking for sIBL_GUI Last Releases.
+						</li>
+						<li>The Manual Browser has been changed to a more powerfull Widget (QWebView).
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id28">
+					<h2>
+						1.4.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>sIBL_IO Refactored to a more generic Class (sIBL_Parser).
+						</li>
+						<li>Corrected one of the most nastier Bug I encountered since I'm working on sIBL_GUI. QSetting Class seems to affect Qt Dynamic Libraries (I'm using the Jpeg one) in a way that was making Qjpeg not working when reading settings.
+						</li>
+						<li>FTP Code is now Threaded. Interface should be smooth while Downloading.
+						</li>
+						<li>sIBL_GUI is now able to load multiple Help files (It will be possible to provide Help Files for the Templates now).
+						</li>
+						<li>sIBL_Templates Class has been changed to a more generic and flexible Class (sIBL_Recursive_Walker).
+						</li>
+						<li>Refinements in sIBL_GUI UI to include the new Help features.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id29">
+					<h2>
+						1.3.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Added Remote Templates / Help Download with the coding of sIBL_GUI_FTP Class. You can now download Templates and the Help directly from HDRLabs FTP. Notice the FTP Code is curently not multithreaded so the interface can be a bit laggy while downloading.
+						</li>
+						<li>Added an Edit button for easier Collection Management.
+						</li>
+						<li>Refinements in sIBL_GUI UI.
+						</li>
+						<li>Corrected some Mac Os X related Logging issues.
+						</li>
+						<li>Corrected some sIBL_Framework Logging issues.
+						</li>
+						<li>Reworked the Exception Code.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id30">
+					<h2>
+						1.2.6 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Corrected a bug with Logging File not being found when opening a sIBL_GUI File / Directory Browser.
+						</li>
+						<li>Logging Level is now correctly evaluated at sIBL_GUI startup.
+						</li>
+						<li>Fixed the Code Syntax that was making the compiled sIBL_GUI Executable to crash on program exit (Console Verbose was disabled because of this in sIBL_GUI 1.2.5).
+						</li>
+						<li>Refactored sIBL_GUI Settings Code using the QSettings Class.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id31">
+					<h2>
+						1.2.5 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Refactored sIBL_GUI Logging / Verbose: Now sIBL_GUI and sIBL_Framework use Python Standard Logging. Both are using a Log file: &quot;sIBL_GUI_LogFile.log&quot; for sIBL_GUI and &quot;sIBL_Framework_LogFile.log&quot; for sIBL_Framework. Those files are deleted then created each time the softwares start. One side effect is that if you launch two instances of sIBL_GUI, they will both output Log to &quot;sIBL_GUI_LogFile.log&quot; file, while it will not prevent sIBL_GUI from working, both Logging will be mixed.
+						</li>
+						<li>Refactored sIBL_GUI Functions Call Trace: A Decorator is now used to trace whenever a function is called.
+						</li>
+						<li>Added a brand new GPS Map under the Collection Browser. You can now see a Marker Cloud of sIBL Locations.
+						</li>
+						<li>Interface Tweak to insert the new GPS Map.
+						</li>
+						<li>Code Comment Improvements.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id32">
+					<h2>
+						1.0.0 - Stable
+					</h2>
+					<ul class="simple">
+						<li>Added &quot;Edit In sIBLEdit&quot; Linux Code though it seems there is maybe a bug with sIBLEdit preventing it to work.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id33">
+					<h2>
+						0.9.9 - Release Candidate
+					</h2>
+					<ul class="simple">
+						<li>Corrected introduced Bug in &quot;Open Output Folder&quot; button.
+						</li>
+						<li>Code refactoring around Collections management.
+						</li>
+						<li>Corrected Code execution when clicking Remove button and nothing was selected.
+						</li>
+						<li>Clicking Remove Button when multiple items were selected on same row was throwing an error, this has been Fixed.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id34">
+					<h2>
+						0.9.8 - Beta
+					</h2>
+					<ul class="simple">
+						<li>Code refinement for Mac Os X.
+						</li>
+						<li>Mac Os X Release is now available as .dmg files (Thanx to Emanuele Santos and Volxen for their help).
+						</li>
+						<li>Updated Windows NSIS Installer Script Code and corrected some Bugs related to Shortcuts creation.
+						</li>
+						<li>Minor Code tweaks on sIBL_Framework.
+						</li>
+						<li>Updated sIBL_GUI Help File - Manual.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id35">
+					<h2>
+						0.9.7 - Beta
+					</h2>
+					<ul class="simple">
+						<li>sIBL_GUI behavior with corrupted Ibl Sets should be better.
+						</li>
+						<li>Started Mac Os X Code (There is no sIBL_GUI packaged version for now).
+						</li>
+						<li>Managed to half pack the Linux Release (You still need to download QT Libraries, refer to the Help File - Manual).
+						</li>
+						<li>Updated sIBL_GUI Help File - Manual.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id36">
+					<h2>
+						0.9.6 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Bug introduced with Linux Code that prevented remote execution with Maya on Windows.
+						</li>
+						<li>Corrected a dangerous behavior introduced with Eclipse NSIS Plugin: It adds this line to the setup script: &quot;RmDir /r /REBOOTOK $INSTDIR&quot;. That means that if you installed by mistake at the root of &quot;Program Files/&quot; and not in &quot;Program Files/sIBL_GUI&quot;, everything in &quot;Program Files/&quot; will be deleted. sIBL_GUI - 0.9.6 For Windows and 12 October Nightly Releases are concerned!
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id37">
+					<h2>
+						0.9.6 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Windows version now uses NSIS Installer for a better user experience.
+						</li>
+						<li>Added Custom Browser Option in Preferences.
+						</li>
+						<li>Added Custom Text Editor in Preferences.
+						</li>
+						<li>Existence of paths from Preferences File is now checked.
+						</li>
+						<li>Linux Code. (Notice that you will need a &quot;TMPDIR&quot; Environment Variable)
+						</li>
+						<li>Documented the Code for Sources Release.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id38">
+					<h2>
+						0.9.5 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Corrected some erroneus Preferences File save state.
+						</li>
+						<li>Template folder is now recursively scanned, so you can add as many folders you want in, try avoid using same Template names.
+						</li>
+						<li>Refactored the way sIBL_GUI is verbosing, each method/definition now output something. Using the Debug Verbose Level will slow down performances.
+						</li>
+						<li>Some Code optimisations/refactoring.
+						</li>
+						<li>Infos in overlay if you keep your mouse over a Ibl Set in the ListView.
+						</li>
+						<li>Search function available.
+						</li>
+						<li>Improved filtering methods and behavior of sIBL_GUI.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id39">
+					<h2>
+						0.9.4 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Refined Socket Connection Code (sIBL_GUI can now directly connect to XSI too).
+						</li>
+						<li>Added Custom IP Adress instead of the &quot;HardCoded&quot; &quot;Localhost&quot; one (sIBL_GUI should be able to connect through Network).
+						</li>
+						<li>Connection Address and Port now take their Default Values from the Template.
+						</li>
+						<li>Interface polishing.
+						</li>
+						<li>Removed Collections Items reordering pop when triggering Filtering.
+						</li>
+						<li>Corrected a bug related to the Nice Attribute Name feature and the sIBL Input/Output Class.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id40">
+					<h2>
+						0.9.3 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Wrote Socket and OLE Connection Code (sIBL_GUI can now directly connect To 3dsmax and Maya).
+						</li>
+						<li>Added some eye candy buttons in the Templates Options.
+						</li>
+						<li>Code cleaning and increased Verbose in Debug.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id41">
+					<h2>
+						0.9.2 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Corrected the Collection Filtering bug (Forget to pass a value to my verbose function!)
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id42">
+					<h2>
+						0.9.2 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Improved Templates folder parsing.
+						</li>
+						<li>Started Socket Connection Code.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id43">
+					<h2>
+						0.9.1 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Fixed refreshing Log Window bug.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="id44">
+					<h2>
+						0.9.0 - Alpha
+					</h2>
+					<ul class="simple">
+						<li>Initial Release of sIBL_GUI For Windows.
+						</li>
+					</ul>
+				</div>
+				<div class="section" id="about">
+					<h2>
+						About
+					</h2>
+					<div class="line-block">
+						<div class="line">
+							sIBL_GUI by Thomas Mansencal – 2008 – 2011
+						</div>
+						<div class="line">
+							Copyright© 2008 – 2011 – Thomas Mansencal – <a class="reference external" href="mailto:thomas.mansencal&#64;gmail.com">thomas.mansencal&#64;gmail.com</a>
+						</div>
+						<div class="line">
+							This Software Is Released Under Terms Of GNU GPL V3 License: <a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>
+						</div>
+						<div class="line">
+							<a class="reference external" href="http://www.thomasmansencal.com/">http://www.thomasmansencal.com/</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
