@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**001_table_Sets_Column_previewImage.py**
+**001_rename_table_Sets.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
@@ -55,16 +55,17 @@ def upgrade(dbEngine):
 
 	metadata = sqlalchemy.MetaData()
 	metadata.bind = dbEngine
-	table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
 
-	columnName = "previewImage"
-	if columnName not in table.columns:
-		LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' column to '{2}' table!".format(__name__, columnName, table))
-		column = sqlalchemy.Column(columnName, sqlalchemy.String)
-		column.create(table)
+	currentTableName = "Sets"
+	tableName = "IblSets"
+
+	if currentTableName in metadata.tables.keys():
+		table = sqlalchemy.Table(currentTableName, metadata, autoload=True, autoload_with=dbEngine)
+
+		LOGGER.info("{0} | SQLAlchemy Migrate: Renaming '{1}' table to '{2}'!".format(__name__, currentTableName, tableName))
+		table.rename(tableName)
 	else:
-		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' already exists in '{2}' table!".format(__name__,
-																									columnName, table))
+		LOGGER.info("{0} | SQLAlchemy Migrate: '{1}' table name is already up to date!".format(__name__, tableName))
 
 def downgrade(dbEngine):
 	"""
@@ -73,4 +74,16 @@ def downgrade(dbEngine):
 	:param dbEngine: Database engine. ( Object )
 	"""
 
-	pass
+	LOGGER.info("{0} | SQLAlchemy Migrate: Downgrading Database!".format(__name__))
+
+	metadata = sqlalchemy.MetaData()
+	metadata.bind = dbEngine
+
+	currentTableName = "IblSets"
+	tableName = "Sets"
+
+	if currentTableName in metadata.tables.keys():
+		table = sqlalchemy.Table(currentTableName, metadata, autoload=True, autoload_with=dbEngine)
+
+		LOGGER.info("{0} | SQLAlchemy Migrate: Renaming '{1}' table to '{2}'!".format(__name__, currentTableName, tableName))
+		table.rename(tableName)

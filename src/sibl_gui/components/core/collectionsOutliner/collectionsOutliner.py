@@ -1068,7 +1068,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
-				if dbCommon.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
+				if dbCommon.addCollection(self.__coreDb.dbSession, name, "IblSets", comment):
 					self.modelRefresh.emit()
 					return True
 				else:
@@ -1117,7 +1117,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return dbCommon.getCollectionsByType(self.__coreDb.dbSession, "Sets")
+		return dbCommon.getCollectionsByType(self.__coreDb.dbSession, "IblSets")
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

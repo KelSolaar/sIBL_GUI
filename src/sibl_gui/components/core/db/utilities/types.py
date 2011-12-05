@@ -53,10 +53,10 @@ DbBase = sqlalchemy.ext.declarative.declarative_base()
 
 class DbIblSet(DbBase):
 	"""
-	This class defines the Database Ibl Set type.
+	This class defines the Database IblSets type.
 	"""
 
-	__tablename__ = "Sets"
+	__tablename__ = "IblSets"
 	"""Table name. ( String )"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

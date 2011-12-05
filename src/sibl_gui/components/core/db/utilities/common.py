@@ -452,7 +452,7 @@ def filterIblSetsCollections(session, pattern, field, flags=0):
 	:return: Filtered Collections. ( List )
 	"""
 
-	return filterCollectionsByType(session, "Sets", pattern, field, flags)
+	return filterCollectionsByType(session, "IblSets", pattern, field, flags)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

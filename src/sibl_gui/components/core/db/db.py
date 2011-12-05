@@ -512,6 +512,18 @@ class Db(Component):
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
 
+		LOGGER.debug("> Creating Database engine.")
+		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
+
+		LOGGER.debug("> Creating Database metadata.")
+		self.__dbCatalog = dbTypes.DbBase.metadata
+		self.__dbCatalog.create_all(self.__dbEngine)
+
+		LOGGER.debug("> Initializing Database session.")
+		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
+
+		self.__dbSession = self.__dbSessionMaker()
+
 		if foundations.common.pathExists(self.__dbName):
 			if not self.__engine.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
@@ -562,18 +574,6 @@ class Db(Component):
 		else:
 			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
-
-		LOGGER.debug("> Creating Database engine.")
-		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
-
-		LOGGER.debug("> Creating Database metadata.")
-		self.__dbCatalog = dbTypes.DbBase.metadata
-		self.__dbCatalog.create_all(self.__dbEngine)
-
-		LOGGER.debug("> Initializing Database session.")
-		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
-
-		self.__dbSession = self.__dbSessionMaker()
 		return True
 
 	@core.executionTrace
