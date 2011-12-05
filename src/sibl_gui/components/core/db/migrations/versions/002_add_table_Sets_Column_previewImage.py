@@ -19,7 +19,6 @@
 #*** External imports
 #**********************************************************************************************************************
 import sqlalchemy
-from migrate import *
 import logging
 
 #**********************************************************************************************************************
@@ -68,7 +67,6 @@ def upgrade(dbEngine):
 	else:
 		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' already exists in '{2}' table!".format(__name__,
 																									columnName, table))
-
 def downgrade(dbEngine):
 	"""
 	This definition downgrades the Database.

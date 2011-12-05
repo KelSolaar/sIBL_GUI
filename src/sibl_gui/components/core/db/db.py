@@ -84,7 +84,7 @@ class Db(Component):
 		self.__dbEngine = None
 		self.__dbCatalog = None
 
-		self.__connectionString = None
+		self.__dbConnectionString = None
 
 		self.__dbMigrationsRepositoryDirectory = None
 		self.__dbMigrationsTemplatesDirectory = None
@@ -288,36 +288,36 @@ class Db(Component):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSessionMaker"))
 
 	@property
-	def connectionString(self):
+	def dbConnectionString(self):
 		"""
-		This method is the property for **self.__connectionString** attribute.
+		This method is the property for **self.__dbConnectionString** attribute.
 
-		:return: self.__connectionString. ( String )
+		:return: self.__dbConnectionString. ( String )
 		"""
 
-		return self.__connectionString
+		return self.__dbConnectionString
 
-	@connectionString.setter
+	@dbConnectionString.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def connectionString(self, value):
+	def dbConnectionString(self, value):
 		"""
-		This method is the setter method for **self.__connectionString** attribute.
+		This method is the setter method for **self.__dbConnectionString** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "connectionString"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbConnectionString"))
 
-	@connectionString.deleter
+	@dbConnectionString.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def connectionString(self):
+	def dbConnectionString(self):
 		"""
-		This method is the deleter method for **self.__connectionString** attribute.
+		This method is the deleter method for **self.__dbConnectionString** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "connectionString"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbConnectionString"))
 
 	@property
 	def dbMigrationsRepositoryDirectory(self):
@@ -493,7 +493,7 @@ class Db(Component):
 
 		LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.databaseFile))
 		if self.__engine.parameters.databaseDirectory:
-			if foundations.common.pathExists(self.__engine.parameters.databaseDirectory):
+			if os.path.exists(self.__engine.parameters.databaseDirectory):
 				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
 																	Constants.databaseMigrationsDirectory)
@@ -510,21 +510,9 @@ class Db(Component):
 																Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
-		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
+		self.__dbConnectionString = "sqlite:///{0}".format(self.__dbName)
 
-		LOGGER.debug("> Creating Database engine.")
-		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
-
-		LOGGER.debug("> Creating Database metadata.")
-		self.__dbCatalog = dbTypes.DbBase.metadata
-		self.__dbCatalog.create_all(self.__dbEngine)
-
-		LOGGER.debug("> Initializing Database session.")
-		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
-
-		self.__dbSession = self.__dbSessionMaker()
-
-		if foundations.common.pathExists(self.__dbName):
+		if os.path.exists(self.__dbName):
 			if not self.__engine.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
@@ -561,19 +549,31 @@ class Db(Component):
 				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory,
 											Constants.databaseMigrationsFilesDirectory))
 
-			if foundations.common.pathExists(self.__dbName):
+			if os.path.exists(self.__dbName):
 				LOGGER.debug("> Placing Database under SQLAlchemy Migrate version control.")
 				try:
-					migrate.versioning.api.version_control(self.__connectionString,
+					migrate.versioning.api.version_control(self.__dbConnectionString,
 															self.__dbMigrationsRepositoryDirectory)
 				except migrate.exceptions.DatabaseAlreadyControlledError:
 					LOGGER.debug("> Database is already under SQLAlchemy Migrate version control!")
 
 				LOGGER.debug("> Upgrading Database.")
-				migrate.versioning.api.upgrade(self.__connectionString, self.__dbMigrationsRepositoryDirectory)
+				migrate.versioning.api.upgrade(self.__dbConnectionString, self.__dbMigrationsRepositoryDirectory)
 		else:
 			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
+
+		LOGGER.debug("> Creating Database engine.")
+		self.__dbEngine = sqlalchemy.create_engine(self.__dbConnectionString)
+
+		LOGGER.debug("> Creating Database metadata.")
+		self.__dbCatalog = dbTypes.DbBase.metadata
+		self.__dbCatalog.create_all(self.__dbEngine)
+
+		LOGGER.debug("> Initializing Database session.")
+		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
+
+		self.__dbSession = self.__dbSessionMaker()
 		return True
 
 	@core.executionTrace
