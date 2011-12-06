@@ -58,6 +58,7 @@ class ConstantsTestCase(unittest.TestCase):
 								"databaseMigrationsDirectory",
 								"databaseMigrationsFilesDirectory",
 								"databaseMigrationsTemplatesDirectory",
+								"patchesDirectory",
 								"settingsDirectory",
 								"userComponentsDirectory",
 								"loggingDirectory",
@@ -67,6 +68,7 @@ class ConstantsTestCase(unittest.TestCase):
 								"coreComponentsDirectory",
 								"addonsComponentsDirectory",
 								"resourcesDirectory",
+								"patchesFile",
 								"databaseFile",
 								"settingsFile",
 								"loggingFile",
@@ -140,6 +142,13 @@ class ConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(Constants.databaseMigrationsTemplatesDirectory, "\w+")
 
+	def testPatchesDirectoryAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.constants.Constants.patchesDirectory` attribute.
+		"""
+
+		self.assertRegexpMatches(Constants.patchesDirectory, "\w+")
+
 	def testSettingsDirectoryAttribute(self):
 		"""
 		This method tests :attr:`sibl_gui.globals.constants.Constants.settingsDirectory` attribute.
@@ -202,6 +211,13 @@ class ConstantsTestCase(unittest.TestCase):
 		"""
 
 		self.assertRegexpMatches(Constants.resourcesDirectory, "\w+")
+
+	def testPatchesFileAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.constants.Constants.patchesFile` attribute.
+		"""
+
+		self.assertRegexpMatches(Constants.patchesFile, "\w+")
 
 	def testDatabaseFileAttribute(self):
 		"""

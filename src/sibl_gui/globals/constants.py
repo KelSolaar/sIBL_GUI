@@ -65,6 +65,8 @@ class Constants():
 	"""Application Database migrations files versions directory: '**versions**' ( String )"""
 	databaseMigrationsTemplatesDirectory = "templates"
 	"""Application Database migrations templates files directory: '**templates**' ( String )"""
+	patchesDirectory = "patches"
+	"""Application patches directory: '**patches**' ( String )"""
 	settingsDirectory = "settings"
 	"""Application settings directory: '**settings**' ( String )"""
 	userComponentsDirectory = "components"
@@ -76,13 +78,16 @@ class Constants():
 	ioDirectory = "io"
 	"""Application io directory: '**io**' ( String )"""
 
+
 	preferencesDirectories = (databaseDirectory,
+								patchesDirectory,
 								settingsDirectory,
 								userComponentsDirectory,
 								loggingDirectory,
 								templatesDirectory,
 								ioDirectory)
 	"""Application preferences directories ( Tuple )"""
+
 	coreComponentsDirectory = "components/core"
 	"""Application core components directory: '**components/core**' ( String )"""
 	addonsComponentsDirectory = "components/addons"
@@ -91,6 +96,8 @@ class Constants():
 	resourcesDirectory = "resources"
 	"""Application resources directory: '**resources**' ( String )"""
 
+	patchesFile = "sIBL_GUI_Patches.rc"
+	"""Application settings file: '**sIBL_GUI_Patches.rc**' ( String )"""
 	databaseFile = "sIBL_GUI_Database.sqlite"
 	"""Application Database file: '**sIBL_GUI_Database.sqlite**' ( String )"""
 	settingsFile = "sIBL_GUI_Settings.rc"
