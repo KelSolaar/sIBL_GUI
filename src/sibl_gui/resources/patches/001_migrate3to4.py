@@ -19,6 +19,7 @@
 import logging
 import os
 import shutil
+import sqlalchemy
 from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
@@ -26,6 +27,7 @@ from PyQt4.QtGui import QMessageBox
 #**********************************************************************************************************************
 import foundations.common
 import foundations.core as core
+import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.widgets.messageBox
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -104,14 +106,14 @@ If you are using an already migrated shared database, you can ignore this messag
 		core.getModule(apply).__name__, legacyDatabaseFile))
 		databaseFile = os.path.join(os.path.dirname(legacyDatabaseFile), Constants.databaseFile)
 		os.rename(legacyDatabaseFile, databaseFile)
+
 		if foundations.common.pathExists(backupDirectory):
 			items = [os.path.join(backupDirectory, item) for item in os.listdir(backupDirectory)]
 			for item in items:
 				if not  os.path.isfile(item):
 					continue
 
-				LOGGER.info("{0} | Renaming '{1}' backup database file!".format(
-				core.getModule(apply).__name__, item))
+				LOGGER.info("{0} | Renaming '{1}' backup database file!".format(core.getModule(apply).__name__, item))
 				os.rename(item, item.replace("sIBL_Database", "sIBL_GUI_Database"))
 
 			deprecatedDatabaseDirectory = os.path.join(backupDirectory, "deprecated")
@@ -121,5 +123,14 @@ If you are using an already migrated shared database, you can ignore this messag
 			deprecatedDatabaseDirectory)
 			umbra.ui.widgets.messageBox.standaloneMessageBox("Information", "sIBL_GUI | Information", message)
 			shutil.copyfile(databaseFile, deprecatedDatabaseFile)
-# Templates folders.
+
+		dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(databaseFile))
+		dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=dbEngine)
+		dbSession = dbSessionMaker()
+		for template in dbCommon.getTemplates(dbSession):
+			id = template.id
+			LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
+			core.getModule(apply).__name__, id))
+			dbCommon.removeTemplate(dbSession, id)
+
 	return True
