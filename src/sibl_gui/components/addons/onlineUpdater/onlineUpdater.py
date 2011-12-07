@@ -835,8 +835,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																		comment=sectionsFileParser.getValue("Comment",
 																										remoteObject))
 						else:
-							LOGGER.info("{0} | '{1}' repository remote object skipped by \
-							'{2}' command line parameter value!".format(
+							LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(
 							self.__class__.__name__, remoteObject, "databaseReadOnly"))
 				else:
 					if Constants.releaseVersion != sectionsFileParser.getValue("Release", remoteObject):

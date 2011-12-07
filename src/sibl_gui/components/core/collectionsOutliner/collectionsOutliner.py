@@ -684,8 +684,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by \
-		'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and \
+		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
+																									"databaseReadOnly"))
 		self.__model = CollectionsModel(self, horizontalHeaders=self.__headers)
 		self.setCollections()
 
@@ -755,8 +756,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			not self.getCollections() and self.addCollection(self.__defaultCollection, "Default Collection")
 		else:
-			LOGGER.info("{0} | Database default Collection wizard deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> '{0}' View stored selected Collections identities '{1}'.".format(self.__class__.__name__,
@@ -812,8 +813,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...",
 			slot=self.__view_removeCollectionsAction__triggered))
 		else:
-			LOGGER.info("{0} | Collections Database alteration capabilities deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info(
+			"{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __view_addContentAction__triggered(self, checked):

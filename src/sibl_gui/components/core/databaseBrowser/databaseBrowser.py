@@ -1179,8 +1179,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by \
-		'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and \
+		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
+																									"databaseReadOnly"))
 		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
 		self.Database_Browser_stackedWidget = QStackedWidget(self)
@@ -1341,8 +1342,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						"{0} | '{1}' {2}".format(self.__class__.__name__,
 						iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
-			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info(
+			"{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		activeView, state = self.__settings.getKey(self.__settingsSection, "activeView").toInt()
 		state and self.setActiveViewIndex(activeView)
@@ -1409,8 +1411,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								separatorAction):
 					view.addAction(action)
 		else:
-			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info(
+			"{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __views_addContentAction__triggered(self, checked):

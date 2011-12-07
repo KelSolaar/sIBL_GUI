@@ -1034,8 +1034,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												template.name,
 												dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
 		else:
-			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info(
+			"{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
@@ -1113,8 +1114,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			separatorAction.setSeparator(True)
 			self.__view.addAction(separatorAction)
 		else:
-			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by \
-			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		self.__view.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...",
