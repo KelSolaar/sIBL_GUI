@@ -46,7 +46,7 @@ __all__ = ["UID", "apply"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
-UID = "6476c4d6da7ea194cc25a6b4b5efb06f"
+UID = "0c9b1019275b1f34bd0f7f578f56aa63"
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
