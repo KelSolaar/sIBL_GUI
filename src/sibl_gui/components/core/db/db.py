@@ -493,7 +493,7 @@ class Db(Component):
 
 		LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.databaseFile))
 		if self.__engine.parameters.databaseDirectory:
-			if os.path.exists(self.__engine.parameters.databaseDirectory):
+			if foundations.common.pathExists(self.__engine.parameters.databaseDirectory):
 				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
 																	Constants.databaseMigrationsDirectory)
@@ -512,7 +512,7 @@ class Db(Component):
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__dbConnectionString = "sqlite:///{0}".format(self.__dbName)
 
-		if os.path.exists(self.__dbName):
+		if foundations.common.pathExists(self.__dbName):
 			if not self.__engine.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
@@ -549,7 +549,7 @@ class Db(Component):
 				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory,
 											Constants.databaseMigrationsFilesDirectory))
 
-			if os.path.exists(self.__dbName):
+			if foundations.common.pathExists(self.__dbName):
 				LOGGER.debug("> Placing Database under SQLAlchemy Migrate version control.")
 				try:
 					migrate.versioning.api.version_control(self.__dbConnectionString,
