@@ -59,7 +59,8 @@ Modules Summary:
    sibl_gui.components.core.databaseBrowser.workers <api/sibl_gui.components.core.databaseBrowser.workers>
    sibl_gui.components.core.db.db <api/sibl_gui.components.core.db.db>
    sibl_gui.components.core.db.exceptions <api/sibl_gui.components.core.db.exceptions>
-   sibl_gui.components.core.db.migrations.versions.001_table_Sets_Column_previewImage <api/sibl_gui.components.core.db.migrations.versions.001_table_Sets_Column_previewImage>
+   sibl_gui.components.core.db.migrations.versions.001_rename_table_Sets <api/sibl_gui.components.core.db.migrations.versions.001_rename_table_Sets>
+   sibl_gui.components.core.db.migrations.versions.002_add_table_Sets_Column_previewImage <api/sibl_gui.components.core.db.migrations.versions.002_add_table_Sets_Column_previewImage>
    sibl_gui.components.core.db.utilities.common <api/sibl_gui.components.core.db.utilities.common>
    sibl_gui.components.core.db.utilities.nodes <api/sibl_gui.components.core.db.utilities.nodes>
    sibl_gui.components.core.db.utilities.types <api/sibl_gui.components.core.db.utilities.types>
@@ -94,6 +95,7 @@ Modules Summary:
    umbra.globals.constants <api/umbra.globals.constants>
    umbra.globals.runtimeGlobals <api/umbra.globals.runtimeGlobals>
    umbra.globals.uiConstants <api/umbra.globals.uiConstants>
+   umbra.patchesManager <api/umbra.patchesManager>
    umbra.preferences <api/umbra.preferences>
    umbra.processing <api/umbra.processing>
    umbra.ui.common <api/umbra.ui.common>

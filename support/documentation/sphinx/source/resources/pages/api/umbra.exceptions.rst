@@ -34,3 +34,19 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractPatchesManagerError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PatchRegistrationError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PatchInterfaceError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PatchApplyError
+	:show-inheritance:
+	:members:
+

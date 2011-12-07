@@ -6,7 +6,7 @@ _`manager.exceptions`
 Classes
 -------
 
-.. autoclass:: AbstractComponentError
+.. autoclass:: AbstractComponentsManagerError
 	:show-inheritance:
 	:members:
 
