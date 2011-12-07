@@ -18,12 +18,15 @@
 #**********************************************************************************************************************
 import logging
 import os
+import shutil
+from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
 import foundations.core as core
+import umbra.ui.widgets.messageBox
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -53,30 +56,70 @@ def apply():
 	:return: Definition success. ( Boolean )
 	"""
 
+	if RuntimeGlobals.parameters.databaseReadOnly:
+		message = "sIBL_GUI is launched with '-r / --databaseReadOnly' parameter preventing database migration!\n\n\
+In order to complete the migration, you will need to relaunch sIBL_GUI without the '-r / --databaseReadOnly' parameter!\n\n\
+If you are using an already migrated shared database, you can ignore this message!\n\nWould like to continue?"
+		if umbra.ui.widgets.messageBox.standaloneMessageBox("Question",
+																"sIBL_GUI | Question",
+																message,
+																buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
+			foundations.common.exit(1)
+
 	userApplicationDataDirectory = RuntimeGlobals.userApplicationDataDirectory
 	if foundations.common.pathExists(userApplicationDataDirectory):
+		# 'sIBL_Settings.rc' file.		
 		legacySettingsFile = os.path.join(RuntimeGlobals.userApplicationDataDirectory,
 												Constants.settingsDirectory,
 												"sIBL_Settings.rc")
 		if foundations.common.pathExists(legacySettingsFile):
-			LOGGER.warning("!> {0} | Removing deprecated '{1}' settings file!".format(
+			LOGGER.info("{0} | Removing deprecated '{1}' settings file!".format(
 			core.getModule(apply).__name__, legacySettingsFile))
 			os.remove(legacySettingsFile)
 
+		# 'sIBL_Logging.log' file.
 		legacyLoggingFile = os.path.join(RuntimeGlobals.userApplicationDataDirectory,
 												Constants.loggingDirectory,
 												"sIBL_Logging.log")
 		if foundations.common.pathExists(legacyLoggingFile):
-			LOGGER.warning("!> {0} | Removing deprecated '{1}' logging file!".format(
+			LOGGER.info("{0} | Removing deprecated '{1}' logging file!".format(
 			core.getModule(apply).__name__, legacyLoggingFile))
 			os.remove(legacyLoggingFile)
 
-		legacyDatabaseFile = os.path.join(RuntimeGlobals.userApplicationDataDirectory,
-												Constants.databaseDirectory,
-												"sIBL_Database.sqlite")
-		if foundations.common.pathExists(legacyDatabaseFile):
-			LOGGER.warning("!> {0} | Renaming '{1}' database file!".format(
-			core.getModule(apply).__name__, legacyDatabaseFile))
-			os.rename(legacyDatabaseFile, os.path.join(os.path.dirname(legacyDatabaseFile), Constants.databaseFile))
+	# 'sIBL_Database.sqlite' file.
+	if RuntimeGlobals.parameters.databaseReadOnly:
+		LOGGER.warning("!> {0} | Database has been set read only by '{1}' command line parameter value!".format(
+		core.getModule(apply).__name__, "databaseReadOnly"))
+		return True
 
+	if RuntimeGlobals.parameters.databaseDirectory:
+		databaseDirectory = RuntimeGlobals.parameters.databaseDirectory
+	else:
+		databaseDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory, Constants.databaseDirectory)
+	legacyDatabaseFile = os.path.join(databaseDirectory, "sIBL_Database.sqlite")
+	backupDirectory = os.path.join(databaseDirectory, "backup")
+
+	if foundations.common.pathExists(legacyDatabaseFile):
+		LOGGER.info("{0} | Renaming '{1}' database file!".format(
+		core.getModule(apply).__name__, legacyDatabaseFile))
+		databaseFile = os.path.join(os.path.dirname(legacyDatabaseFile), Constants.databaseFile)
+		os.rename(legacyDatabaseFile, databaseFile)
+		if foundations.common.pathExists(backupDirectory):
+			items = [os.path.join(backupDirectory, item) for item in os.listdir(backupDirectory)]
+			for item in items:
+				if not  os.path.isfile(item):
+					continue
+
+				LOGGER.info("{0} | Renaming '{1}' backup database file!".format(
+				core.getModule(apply).__name__, item))
+				os.rename(item, item.replace("sIBL_Database", "sIBL_GUI_Database"))
+
+			deprecatedDatabaseDirectory = os.path.join(backupDirectory, "deprecated")
+			os.makedirs(os.path.join(backupDirectory, deprecatedDatabaseDirectory))
+			deprecatedDatabaseFile = os.path.join(deprecatedDatabaseDirectory, os.path.basename(databaseFile))
+			message = "A deprecated database file has been found and will be backuped in the following directory: '{0}'.".format(
+			deprecatedDatabaseDirectory)
+			umbra.ui.widgets.messageBox.standaloneMessageBox("Information", "sIBL_GUI | Information", message)
+			shutil.copyfile(databaseFile, deprecatedDatabaseFile)
+# Templates folders.
 	return True
