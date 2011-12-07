@@ -418,7 +418,7 @@ class UiConstantsTestCase(unittest.TestCase):
 			"""
 
 			self.assertIsInstance(UiConstants.nativeImageFormats, dict)
-			for key, value in UiConstants.nativeImageFormats.items():
+			for key, value in UiConstants.nativeImageFormats.iteritems():
 				self.assertIsInstance(key, str)
 				self.assertIsInstance(value, str)
 				self.assertTrue(re.compile(value))
@@ -429,7 +429,7 @@ class UiConstantsTestCase(unittest.TestCase):
 			"""
 
 			self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
-			for key, value in UiConstants.thirdPartyImageFormats.items():
+			for key, value in UiConstants.thirdPartyImageFormats.iteritems():
 				self.assertIsInstance(key, str)
 				self.assertIsInstance(value, str)
 				self.assertTrue(re.compile(value))

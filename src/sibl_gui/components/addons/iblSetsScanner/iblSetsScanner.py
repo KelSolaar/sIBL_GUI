@@ -359,7 +359,7 @@ class IblSetsScanner(QObjectComponent):
 		", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))),
 		 buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
-			for iblSet, path in iblSets.items():
+			for iblSet, path in iblSets.iteritems():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
 				if not dbCommon.addIblSet(self.__coreDb.dbSession,

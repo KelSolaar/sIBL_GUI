@@ -1516,7 +1516,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine.startProcessing("Adding Directory Templates ...", len(osWalker.files.keys()))
 		success = True
-		for template, path in osWalker.files.items():
+		for template, path in osWalker.files.iteritems():
 			if not self.templateExists(path):
 				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True),
 											path,
@@ -1549,7 +1549,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Adding default Templates to the Database.")
 
 		success = True
-		for collection, path in ((collection, path) for (collection, path) in self.__defaultCollections.items() if path):
+		for collection, path in ((collection, path) for (collection, path) in self.__defaultCollections.iteritems() if path):
 			if not foundations.common.pathExists(path):
 				continue
 

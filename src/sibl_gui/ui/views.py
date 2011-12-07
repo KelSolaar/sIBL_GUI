@@ -163,7 +163,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
-			for key, element in value.items():
+			for key, element in value.iteritems():
 				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 				"modelSelection", key)
 				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
@@ -303,7 +303,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
-			for key, element in value.items():
+			for key, element in value.iteritems():
 				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 				"modelSelection", key)
 				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",

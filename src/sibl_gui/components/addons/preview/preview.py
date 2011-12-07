@@ -665,7 +665,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.__coreInspector.Inspector_Options_groupBox.show()
-		for key, value in self.__inspectorButtons.items():
+		for key, value in self.__inspectorButtons.iteritems():
 			value["object"] = QPushButton(value["text"])
 			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
 																				value["row"],
@@ -677,7 +677,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method removes buttons from the :mod:`umbra.components.core.inspector.inspector` Component.
 		"""
 
-		for value in self.__inspectorButtons.values():
+		for value in self.__inspectorButtons.itervalues():
 			value["object"].setParent(None)
 
 	@core.executionTrace

@@ -63,7 +63,7 @@ def getDependenciesInformations():
 	"""
 
 	content = ["[Dependencies]\n"]
-	for dependency, path in DEPENDENCIES.items():
+	for dependency, path in DEPENDENCIES.iteritems():
 		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE),
 									shell=True,
 									stdout=subprocess.PIPE,

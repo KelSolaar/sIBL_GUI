@@ -919,7 +919,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection,
 												self.Common_Attributes_tableWidget),
 												(self.__templateAdditionalAttributesSection,
-												self.Additional_Attributes_tableWidget)]).items():
+												self.Additional_Attributes_tableWidget)]).iteritems():
 			templateSettingsSectionsFileParser.sections[section] = OrderedDict()
 			for row in range(tableWidget.rowCount()):
 				widget = tableWidget.cellWidget(row, 0)

@@ -545,7 +545,7 @@ class Db(Component):
 								Constants.databaseMigrationsDirectory,
 								Constants.databaseMigrationsFilesDirectory))
 			osWalker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
-			for file in osWalker.files.values():
+			for file in osWalker.files.itervalues():
 				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory,
 											Constants.databaseMigrationsFilesDirectory))
 

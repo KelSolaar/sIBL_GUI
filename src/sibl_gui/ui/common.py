@@ -93,11 +93,11 @@ def getDisplayItem(path, type):
 		"""
 
 		if foundations.common.pathExists(path):
-			for extension in UiConstants.nativeImageFormats.values():
+			for extension in UiConstants.nativeImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
 					return type(path)
 			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
+				for extension in UiConstants.thirdPartyImageFormats.itervalues():
 					if re.search(extension, path, flags=re.IGNORECASE):
 						image = Image(str(path))
 						image = image.convertToQImage()
@@ -159,8 +159,8 @@ def filterImagePath(path):
 		"""
 
 		if foundations.common.pathExists(path):
-			for extension in itertools.chain(UiConstants.nativeImageFormats.values(),
-											UiConstants.thirdPartyImageFormats.values()):
+			for extension in itertools.chain(UiConstants.nativeImageFormats.itervalues(),
+											UiConstants.thirdPartyImageFormats.itervalues()):
 				if re.search(extension, path, flags=re.IGNORECASE):
 					return path
 			else:

@@ -75,7 +75,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 			slices[search.groups()[0]] = i + SLICE_ATTRIBUTE_INDENT
 
 	index = 0
-	for slice, sliceStart in slices.items():
+	for slice, sliceStart in slices.iteritems():
 		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, OUTPUT_FILES_EXTENSION)))
 		LOGGER.info("{0} | Outputing '{1}' file!".format(sliceDocumentation.__name__, sliceFile.file))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or \
@@ -89,7 +89,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 																						item))
 					continue
 				line = file.content[i]
-				for pattern, value in CONTENT_SUBSTITUTIONS.items():
+				for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
 					line = re.sub(pattern, value, line)
 
 				search = re.search(r"-  `[\w ]+`_ \(([\w\.]+)\)", line)

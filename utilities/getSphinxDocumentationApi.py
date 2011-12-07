@@ -107,7 +107,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 	osWalker = OsWalker(sourceDirectory)
 	osWalker.walk(filtersIn=("\.ui$",))
-	for file in sorted(osWalker.files.values()):
+	for file in sorted(osWalker.files.itervalues()):
 		LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 		targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
 		directory = "{0}{1}".format(cloneDirectory, targetDirectory)
@@ -119,7 +119,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 	osWalker = OsWalker(sourceDirectory)
 	osWalker.walk(filtersIn=("\.py$",), filtersOut=EXCLUDED_PYTHON_MODULES)
 	modules = []
-	for file in sorted(osWalker.files.values()):
+	for file in sorted(osWalker.files.itervalues()):
 		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 		module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
 											strings.getSplitextBasename(file)).strip(".")
@@ -138,7 +138,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 				trimStartIndex = i
 			if trimStartIndex and re.search(r"^\s*$", line):
 				trimEndIndex = i
-			for pattern, value in CONTENT_SUBSTITUTIONS.items():
+			for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
 			if i < len(sourceFile.content):
@@ -176,7 +176,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		functions = OrderedDict()
 		classes = OrderedDict()
 		moduleAttributes = OrderedDict()
-		for member, object in moduleBrowser._readmodule(module, [source, ]).items():
+		for member, object in moduleBrowser._readmodule(module, [source, ]).iteritems():
 			if object.__class__ == moduleBrowser.Function:
 				if not member.startswith("_"):
 					functions[member] = [".. autofunction:: {0}\n".format(member)]
@@ -189,17 +189,17 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 					moduleAttributes[member] = [".. attribute:: {0}.{1}\n".format(module, member)]
 
 		moduleAttributes and rstFile.content.append("Module Attributes\n-----------------\n\n")
-		for moduleAttribute in moduleAttributes.values():
+		for moduleAttribute in moduleAttributes.itervalues():
 			rstFile.content.extend(moduleAttribute)
 			rstFile.content.append("\n")
 
 		functions and rstFile.content.append("Functions\n---------\n\n")
-		for function in functions.values():
+		for function in functions.itervalues():
 			rstFile.content.extend(function)
 			rstFile.content.append("\n")
 
 		classes and rstFile.content.append("Classes\n-------\n\n")
-		for class_ in classes.values():
+		for class_ in classes.itervalues():
 			rstFile.content.extend(class_)
 			rstFile.content.append("\n")
 

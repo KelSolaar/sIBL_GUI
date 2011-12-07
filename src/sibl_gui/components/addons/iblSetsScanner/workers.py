@@ -248,7 +248,7 @@ class IblSetsScanner_Worker(QThread):
 			if foundations.common.pathExists(directory):
 				osWalker = OsWalker(directory)
 				osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
-				for iblSet, path in osWalker.files.items():
+				for iblSet, path in osWalker.files.iteritems():
 					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path

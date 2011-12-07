@@ -1321,7 +1321,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										nodeFlags=nodeFlags,
 										attributesFlags=attributesFlags)
 		iblSetNode.roles[Qt.DisplayRole] = str()
-		for name, plate in self.__inspectorPlates.items():
+		for name, plate in self.__inspectorPlates.iteritems():
 			plateNode = PlatesNode(plate, name=name, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = str()
 			plateNode.roles[Qt.DecorationRole] = plate.icon

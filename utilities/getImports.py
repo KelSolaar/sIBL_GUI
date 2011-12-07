@@ -69,7 +69,7 @@ def getImports(sourceDirectory, filtersIn, filtersOut):
 	osWalker.walk(filtersIn, filtersOut)
 
 	imports = IMPORTS
-	for file in sorted(osWalker.files.values()):
+	for file in sorted(osWalker.files.itervalues()):
 		source = File(file)
 		source.read()
 		for line in source.content:

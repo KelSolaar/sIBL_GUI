@@ -1211,7 +1211,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									1 : (self.Columns_View_pushButton, self.__uiColumnsViewImage),
 									2 : (self.Details_View_pushButton, self.__uiDetailsViewImage)}
 
-		for index, data in self.__viewsPushButtons.items():
+		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
 			viewPushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, image)))
 
@@ -1249,7 +1249,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.activeViewChanged.connect(self.__views__activeViewChanged)
-		for index, data in self.__viewsPushButtons.items():
+		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
 			viewPushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, index))
 
@@ -1533,7 +1533,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
-		for viewIndex, data in self.__viewsPushButtons.items():
+		for viewIndex, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
 			viewPushButton.setChecked(viewIndex == index and True or False)
 
@@ -1707,7 +1707,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		text = "{0} ...".format(context)
 		for action in  self.__engine.actionsManager.getCategory(
-		"Actions|Umbra|Components|core.databaseBrowser|Search").values():
+		"Actions|Umbra|Components|core.databaseBrowser|Search").itervalues():
 			action.setChecked(action.text() == text and True or False)
 
 		self.__activeSearchContext = context
@@ -1886,7 +1886,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
 		success = True
-		for iblSet, path in osWalker.files.items():
+		for iblSet, path in osWalker.files.iteritems():
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True),
 										path,

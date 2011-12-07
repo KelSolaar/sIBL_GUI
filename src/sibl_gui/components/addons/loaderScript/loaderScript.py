@@ -427,7 +427,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("overrideKeys", value)
-			for key, element in value.items():
+			for key, element in value.iteritems():
 				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 				"overrideKeys", key)
 				assert type(element) is foundations.parsers.AttributeCompound, \
@@ -940,7 +940,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 											rawSections=(self.__templateScriptSection))
 		templateSections = dict.copy(templateSectionsFileParser.sections)
 
-		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).items():
+		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).iteritems():
 			templateSections[self.__templateIblSetAttributesSection][namespace.removeNamespace(attribute,
 																								rootOnly=True)] = value
 			del templateSections[self.__templateIblSetAttributesSection][attribute]
@@ -948,7 +948,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		LOGGER.debug("> Binding Templates file attributes.")
 		bindedAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value))
 							for section in templateSections.keys() if section not in (self.__templateScriptSection)
-							for attribute, value in templateSections[section].items()))
+							for attribute, value in templateSections[section].iteritems()))
 
 		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
 		iblSetSectionsFileParser = SectionsFileParser(iblSet)
@@ -958,7 +958,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		LOGGER.debug("> Flattening Ibl Set file attributes.")
 		flattenedIblAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value))
 		 						for section in iblSetSections.keys()
-								for attribute, value in iblSetSections[section].items()))
+								for attribute, value in iblSetSections[section].iteritems()))
 
 		for attribute in flattenedIblAttributes:
 			if attribute in bindedAttributes.keys():
@@ -997,7 +997,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			bindingParameters = re.findall(r"{0}".format(self.__bindingIdentifierPattern), line)
 			if bindingParameters:
 				for parameter in bindingParameters:
-					for attribute in bindedAttributes.values():
+					for attribute in bindedAttributes.itervalues():
 						if parameter == attribute.link:
 							LOGGER.debug(
 							"> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter,
