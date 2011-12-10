@@ -257,7 +257,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		LOGGER.debug("> Storing Model selection!")
 
 		self.modelSelection = {"Overall" : [], "Collections" : []}
-		for node in self.getSelectedNodes().keys():
+		for node in self.getSelectedNodes():
 			if node.name == self.__container.overallCollection:
 				self.modelSelection["Overall"].append(node.name)
 			elif node.family == "Collection":

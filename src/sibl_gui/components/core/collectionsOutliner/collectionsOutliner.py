@@ -1280,7 +1280,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Collections nodes. ( List )
 		"""
 
-		return [node for node in self.getSelectedNodes().keys() if node.family == "Collection"]
+		return [node for node in self.getSelectedNodes() if node.family == "Collection"]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

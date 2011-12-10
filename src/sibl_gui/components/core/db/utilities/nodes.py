@@ -206,7 +206,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
-			if not attribute in self.keys():
+			if not attribute in self:
 				continue
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
@@ -225,7 +225,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
-			if not attribute in self.keys():
+			if not attribute in self:
 				continue
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):

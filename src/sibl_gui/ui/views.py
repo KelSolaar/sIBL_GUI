@@ -84,7 +84,7 @@ def storeDefaultViewModelSelection(view):
 	LOGGER.debug("> Storing Model selection!")
 
 	view.modelSelection = {"Default" : []}
-	for node in view.getSelectedNodes().keys():
+	for node in view.getSelectedNodes():
 		view.modelSelection["Default"].append(node.id.value)
 	return True
 

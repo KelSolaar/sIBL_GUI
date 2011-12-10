@@ -192,7 +192,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		LOGGER.debug("> Storing Model selection!")
 
 		self.modelSelection = {"Templates" : [], "Collections" : [], "Softwares" : []}
-		for node in self.getSelectedNodes().keys():
+		for node in self.getSelectedNodes():
 			if node.family == "Template":
 				self.modelSelection["Templates"].append(node.id.value)
 			elif node.family == "Collection":

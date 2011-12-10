@@ -1514,7 +1514,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__engine.startProcessing("Adding Directory Templates ...", len(osWalker.files.keys()))
+		self.__engine.startProcessing("Adding Directory Templates ...", len(osWalker.files))
 		success = True
 		for template, path in osWalker.files.iteritems():
 			if not self.templateExists(path):
@@ -1839,7 +1839,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Templates nodes. ( List )
 		"""
 
-		return [node for node in self.getSelectedNodes().keys() if node.family == "Template"]
+		return [node for node in self.getSelectedNodes() if node.family == "Template"]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

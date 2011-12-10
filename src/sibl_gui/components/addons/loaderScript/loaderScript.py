@@ -947,7 +947,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Binding Templates file attributes.")
 		bindedAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value))
-							for section in templateSections.keys() if section not in (self.__templateScriptSection)
+							for section in templateSections if section not in (self.__templateScriptSection)
 							for attribute, value in templateSections[section].iteritems()))
 
 		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
@@ -957,14 +957,14 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Flattening Ibl Set file attributes.")
 		flattenedIblAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value))
-		 						for section in iblSetSections.keys()
+		 						for section in iblSetSections
 								for attribute, value in iblSetSections[section].iteritems()))
 
 		for attribute in flattenedIblAttributes:
-			if attribute in bindedAttributes.keys():
+			if attribute in bindedAttributes:
 				bindedAttributes[attribute].value = flattenedIblAttributes[attribute].value
 
-		if "Lights|DynamicLights" in bindedAttributes.keys():
+		if "Lights|DynamicLights" in bindedAttributes:
 			LOGGER.debug("> Building '{0}' custom attribute.".format("Lights|DynamicLights"))
 			dynamicLights = []
 			for section in iblSetSections:
@@ -985,7 +985,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Updating attributes with override keys.")
 		for attribute in overrideKeys:
-			if attribute in bindedAttributes.keys():
+			if attribute in bindedAttributes:
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
 		LOGGER.debug("> Updating Loader Script content.")

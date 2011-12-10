@@ -1101,7 +1101,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param iblSets: Modified Ibl Sets. ( List )
 		"""
 
-		cachedFiles = [os.path.normpath(file) for file in self.__sectionsFileParsersCache.keys()]
+		cachedFiles = [os.path.normpath(file) for file in self.__sectionsFileParsersCache]
 		for iblSet in iblSets:
 			path = os.path.normpath(iblSet.path)
 			if path in cachedFiles:

@@ -1222,7 +1222,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 		searchContextsMenu = QMenu()
-		for context in self.__searchContexts.keys():
+		for context in self.__searchContexts:
 			searchContextsMenu.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context),
 			text="{0} ...".format(context),
@@ -1884,7 +1884,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__engine.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
+		self.__engine.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files))
 		success = True
 		for iblSet, path in osWalker.files.iteritems():
 			if not self.iblSetExists(path):
@@ -2063,7 +2063,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Ibl Sets nodes. ( List )
 		"""
 
-		return [node for node in self.getSelectedNodes().keys() if node.family == "IblSet"]
+		return [node for node in self.getSelectedNodes() if node.family == "IblSet"]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

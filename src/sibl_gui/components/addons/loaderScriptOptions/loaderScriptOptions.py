@@ -785,10 +785,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		tableWidget.setPalette(palette)
 
 		verticalHeaderLabels = []
-		for row, attribute in enumerate(section.keys()):
+		for row, attribute in enumerate(section):
 			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
 
-			overridesValue = attribute in overrides.keys() and overrides[attribute] or None
+			overridesValue = attribute in overrides and overrides[attribute] or None
 			LOGGER.debug("> Settings value: '{0}'.".format(overridesValue or Constants.nullObject))
 
 			attributeCompound = foundations.parsers.getAttributeCompound(attribute, section[attribute])

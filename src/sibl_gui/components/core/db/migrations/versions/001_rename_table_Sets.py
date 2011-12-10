@@ -60,7 +60,7 @@ def renameTable(dbEngine, currrentName, newName):
 	metadata.bind = dbEngine
 	metadata.reflect(dbEngine)
 
-	if currrentName in metadata.tables.keys():
+	if currrentName in metadata.tables:
 		LOGGER.info("{0} | SQLAlchemy Migrate: Renaming '{1}' table to '{2}'!".format(__name__, currrentName, newName))
 		table = sqlalchemy.Table(currrentName, metadata, autoload=True, autoload_with=dbEngine)
 		table.rename(newName)
