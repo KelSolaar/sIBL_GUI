@@ -833,7 +833,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			item.data = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
 
-		tableWidget.setVerticalHeaderLabels (verticalHeaderLabels)
+		tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
 		tableWidget.show()
 
 	@core.executionTrace
