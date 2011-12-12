@@ -54,7 +54,7 @@ class Constants():
 	logger = "sIBL_GUI_Logger"
 	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
 
-	applicationDirectory = "sIBL_GUI"
+	applicationDirectory = os.sep.join(("sIBL_GUI", ".".join((majorVersion, minorVersion))))
 	"""Package Application directory: '**sIBL_GUI**' ( String )"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
 		providerDirectory = "HDRLabs"
