@@ -869,7 +869,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 					LOGGER.debug("> Current connection command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
-					raise sibl_gui.exceptions.SocketConnectionError(
+					raise sibl_gui.exceptions.Win32OLEServerConnectionError(
 					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
 		return True
 

@@ -31,7 +31,8 @@ __status__ = "Production"
 
 __all__ = ["AbstractNetworkError",
 			"NetworkError",
-			"SocketConnectionError"]
+			"SocketConnectionError",
+			"Win32OLEServerConnectionError"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -56,3 +57,11 @@ class SocketConnectionError(AbstractNetworkError):
 	"""
 
 	pass
+
+class Win32OLEServerConnectionError(AbstractNetworkError):
+	"""
+	This class is used for Win32OLE Server connection exceptions.
+	"""
+
+	pass
+
