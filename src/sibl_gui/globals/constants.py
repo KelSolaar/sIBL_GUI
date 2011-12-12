@@ -42,7 +42,13 @@ class Constants():
 
 	applicationName = "sIBL_GUI"
 	"""Package Application name: '**sIBL_GUI**' ( String )"""
-	releaseVersion = "4.0.0"
+	majorVersion = "4"
+	"""Package major version: '**4**' ( String )"""
+	minorVersion = "0"
+	"""Package minor version: '**0**' ( String )"""
+	changeVersion = "0"
+	"""Package change version: '**0**' ( String )"""
+	releaseVersion = ".".join((majorVersion, minorVersion, changeVersion))
 	"""Package release version: '**4.0.0**' ( String )"""
 
 	logger = "sIBL_GUI_Logger"

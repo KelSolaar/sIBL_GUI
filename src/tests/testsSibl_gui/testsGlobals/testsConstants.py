@@ -50,6 +50,9 @@ class ConstantsTestCase(unittest.TestCase):
 		"""
 
 		requiredAttributes = ("applicationName",
+								"majorVersion",
+								"minorVersion",
+								"changeVersion",
 								"releaseVersion",
 								"logger",
 								"applicationDirectory",
@@ -86,12 +89,33 @@ class ConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(Constants.applicationName, "\w+")
 
+	def testMajorVersionAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.constants.Constants.majorVersion` attribute.
+		"""
+
+		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+
+	def testMinorVersionAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.constants.Constants.minorVersion` attribute.
+		"""
+
+		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+
+	def testChangeVersionAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.constants.Constants.changeVersion` attribute.
+		"""
+
+		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+
 	def testReleaseVersionAttribute(self):
 		"""
 		This method tests :attr:`sibl_gui.globals.constants.Constants.releaseVersion` attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.releaseVersion, "[0-9]\.[0-9]\.[0-9]")
+		self.assertRegexpMatches(Constants.releaseVersion, "\d\.\d\.\d")
 
 	def testLoggerAttribute(self):
 		"""
