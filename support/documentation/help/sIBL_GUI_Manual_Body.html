@@ -363,48 +363,59 @@
 			<p>
 				Structure Description:
 			</p>
-			<ul class="simple">
+			<ul>
 				<li>
-					<strong>components</strong>: Directory storing user components.
-				</li>
-				<li>
-					<strong>database</strong>: Directory storing the SQLite database.
-					<ul>
+					<p class="first">
+						<strong>X.X</strong>: Current sIBL_GUI version. - <strong>components</strong>: Directory storing user components. - <strong>database</strong>: Directory storing the SQLite database.
+					</p>
+					<blockquote>
+						<ul class="simple">
+							<li>
+								<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
+							</li>
+							<li>
+								<strong>migrations</strong>: Directory used by the <em>Db</em> migration mechanism responsible to migrate the database.
+								<ul>
+									<li>
+										<strong>versions</strong>: Directory used by to store the various migrations scripts.
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</blockquote>
+					<ul class="simple">
 						<li>
-							<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
-						</li>
-						<li>
-							<strong>migrations</strong>: Directory used by the <em>Db</em> migration mechanism responsible to migrate the database.
+							<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
 							<ul>
 								<li>
-									<strong>versions</strong>: Directory used by to store the various migrations scripts.
+									<strong>loaderScripts</strong>: Directory used as output directory by the <em>Loader Script</em> component.
+								</li>
+								<li>
+									<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
+								</li>
+								<li>
+									<strong>scriptEditor</strong>: Directory containing the default scripts used by the <em>Script Editor</em> component.
 								</li>
 							</ul>
 						</li>
+						<li>
+							<strong>logging</strong>: Directory storing <em>sIBL_GUI</em> logging file.
+						</li>
+						<li>
+							<strong>patches</strong>: Directory storing <em>sIBL_GUI</em> patches file.
+						</li>
+						<li>
+							<strong>settings</strong>: Directory storing <em>sIBL_GUI</em> settings file.
+							<ul>
+								<li>
+									<strong>templates</strong>: Directory storing Templates settings.
+								</li>
+							</ul>
+						</li>
+						<li>
+							<strong>templates</strong>: Directory storing user Templates (This directory is scanned by <em>sIBL_GUI</em> when importing default Templates).
+						</li>
 					</ul>
-				</li>
-				<li>
-					<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
-					<ul>
-						<li>
-							<strong>loaderScripts</strong>: Directory used as output directory by the <em>Loader Script</em> component.
-						</li>
-						<li>
-							<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
-						</li>
-						<li>
-							<strong>scriptEditor</strong>: Directory containing the default scripts used by the <em>Script Editor</em> component.
-						</li>
-					</ul>
-				</li>
-				<li>
-					<strong>logging</strong>: Directory storing <em>sIBL_GUI</em> logging file.
-				</li>
-				<li>
-					<strong>settings</strong>: Directory storing <em>sIBL_GUI</em> settings file.
-				</li>
-				<li>
-					<strong>templates</strong>: Directory storing user Templates (This directory is scanned by <em>sIBL_GUI</em> when importing default Templates).
 				</li>
 			</ul>
 		</div>

@@ -186,23 +186,28 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **components**: Directory storing user components.
--  **database**: Directory storing the SQLite database.
+-  **X.X**: Current sIBL_GUI version.
+   -  **components**: Directory storing user components.
+   -  **database**: Directory storing the SQLite database.
 
-   -  **backup**: Directory used by the *Db* component when it backups the database.
-   -  **migrations**: Directory used by the *Db* migration mechanism responsible to migrate the database.
+      -  **backup**: Directory used by the *Db* component when it backups the database.
+      -  **migrations**: Directory used by the *Db* migration mechanism responsible to migrate the database.
 
-      -  **versions**: Directory used by to store the various migrations scripts.
+         -  **versions**: Directory used by to store the various migrations scripts.
 
--  **io**: Directory used for *sIBL_GUI* input / output operations.
+   -  **io**: Directory used for *sIBL_GUI* input / output operations.
 
-   -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
-   -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
-   -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
+      -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
+      -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
+      -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
 
--  **logging**: Directory storing *sIBL_GUI* logging file.
--  **settings**: Directory storing *sIBL_GUI* settings file.
--  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
+   -  **logging**: Directory storing *sIBL_GUI* logging file.
+   -  **patches**: Directory storing *sIBL_GUI* patches file.
+   -  **settings**: Directory storing *sIBL_GUI* settings file.
+
+      -  **templates**: Directory storing Templates settings.
+
+   -  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
 
 _`Command Line Parameters`
 --------------------------

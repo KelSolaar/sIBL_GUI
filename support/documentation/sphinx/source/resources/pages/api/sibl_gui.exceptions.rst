@@ -18,3 +18,7 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: Win32OLEServerConnectionError
+	:show-inheritance:
+	:members:
+

@@ -68,7 +68,7 @@ TOCTREE_TEMPLATE_BEGIN = ["Api\n",
 						"   :maxdepth: 1\n",
 						"\n"]
 
-EXCLUDED_PYTHON_MODULES = ("defaultScript\.py", "001_migrate3to4\.py", "001_dummy\.py")
+EXCLUDED_PYTHON_MODULES = ("defaultScript\.py", "001_migrate_3-x-x_to_4-0-0\.py", "001_dummy\.py")
 
 TOCTREE_TEMPLATE_END = []
 
