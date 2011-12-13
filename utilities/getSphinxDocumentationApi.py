@@ -133,6 +133,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		sourceFile = File(source)
 		sourceFile.read()
 		trimStartIndex = trimEndIndex = None
+		inMultilineString = inDecorator = False
 		for i, line in enumerate(sourceFile.content):
 			if re.search(r"__name__ +\=\= +\"__main__\"", line):
 				trimStartIndex = i
@@ -141,16 +142,29 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 			for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
-			if i < len(sourceFile.content):
-				if re.search(r"^[ \t]*@\w+", line) and (re.search(r"^[ \t]*def \w+", sourceFile.content[i + 1]) or \
-				re.search(r"^[ \t]*class \w+", sourceFile.content[i + 1]) or \
-				re.search(r"^[ \t]*@\w+", sourceFile.content[i + 1])):
-					if not re.search(r"^[ \t]*@property", line) and \
-						not re.search(r"^[ \t]*@\w+\.setter", line) and \
-						not re.search(r"^[ \t]*@\w+\.deleter", line) and \
-						not re.search(r"^[ \t]*@exceptionsHandler", line):
-						indent = re.search(r"^([ \t]*)", line)
-						sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
+
+			strippedLine = line.strip()
+			if re.search(r"^\"\"\"", strippedLine):
+				inMultilineString = not inMultilineString
+
+			if inMultilineString:
+				continue
+
+			if re.search(r"^@\w+", strippedLine) and \
+				not re.search(r"@property", strippedLine) and \
+				not re.search(r"^@\w+\.setter", strippedLine) and \
+				not re.search(r"^@\w+\.deleter", strippedLine):
+					inDecorator = True
+					indent = re.search(r"^([ \t]*)", line)
+
+			if re.search(r"^[ \t]*def \w+", sourceFile.content[i]) or \
+				re.search(r"^[ \t]*class \w+", sourceFile.content[i]):
+				inDecorator = False
+
+			if not inDecorator:
+				continue
+
+			sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
 		if trimStartIndex and trimEndIndex:
 			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__))
