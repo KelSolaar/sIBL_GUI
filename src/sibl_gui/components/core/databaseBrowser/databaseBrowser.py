@@ -1336,7 +1336,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
 						self.__class__.__name__, iblSet.title),
 						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-							self.updateIblSetLocation(iblSet)
+							file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																"Updating '{0}' Ibl Set location:".format(iblSet.title),
+																RuntimeGlobals.lastBrowsedPath,
+																"Ibls files (*.{0})".format(self.__extension))))
+							file and self.updateIblSetLocation(iblSet, file)
 					else:
 						messageBox.messageBox("Warning", "Warning",
 						"{0} | '{1}' {2}".format(self.__class__.__name__,
@@ -1826,8 +1830,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																"Updating '{0}' Ibl Set location:".format(iblSet.title),
 																RuntimeGlobals.lastBrowsedPath,
 																"Ibls files (*.{0})".format(self.__extension))))
-			if file:
-				success *= self.updateIblSetLocation(iblSet, file) or False
+			success *= file and self.updateIblSetLocation(iblSet, file) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
@@ -1941,8 +1944,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating \
-			'{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
+			self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
