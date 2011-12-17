@@ -682,7 +682,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if not self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 			self.Remote_Connection_groupBox.hide()
 			return
-			
+
 		LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
 		self.Remote_Connection_groupBox.show()
 		connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
@@ -769,19 +769,19 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		if self.outputLoaderScript_ui():
-			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-			template = selectedTemplates and selectedTemplates[0] or None
-			if not template:
-				return
+		if not self.outputLoaderScript_ui():
+			return
 
-			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
-			if self.Convert_To_Posix_Paths_checkBox.isChecked():
-				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-			if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
-				raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
-		else:
-			raise Exception("{0} | Exception raised while outputing Loader Script!".format(self.__class__.__name__))
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
+		if not template:
+			return
+
+		loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
+		if self.Convert_To_Posix_Paths_checkBox.isChecked():
+			loaderScriptPath = strings.toPosixPath(loaderScriptPath)
+		if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
+			raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DirectoryExistsError)
