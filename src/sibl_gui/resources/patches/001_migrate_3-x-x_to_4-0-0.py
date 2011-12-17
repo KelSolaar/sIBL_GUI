@@ -62,7 +62,7 @@ def apply():
 		message = "sIBL_GUI is launched with '-r / --databaseReadOnly' parameter preventing database migration!\n\n\
 In order to complete the migration, you will need to relaunch sIBL_GUI without the '-r / --databaseReadOnly' parameter!\n\n\
 If you are using an already migrated shared database, you can ignore this message!\n\nWould like to continue?"
-		if umbra.ui.widgets.messageBox.standaloneMessageBox("Question",
+		if umbra.ui.widgets.messageBox.messageBox("Question",
 																"sIBL_GUI | Question",
 																message,
 																buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
@@ -86,7 +86,7 @@ If you are using an already migrated shared database, you can ignore this messag
 		message = "A previous sIBL_GUI database file has been found: '{0}'!\n\n\
 Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 				legacyDatabaseFile)
-		if umbra.ui.widgets.messageBox.standaloneMessageBox("Question", "sIBL_GUI | Question",
+		if umbra.ui.widgets.messageBox.messageBox("Question", "sIBL_GUI | Question",
 														message,
 														buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			try:
@@ -96,7 +96,7 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 			except:
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
 sIBL_GUI will now exit!".format(core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
-				umbra.ui.widgets.messageBox.standaloneMessageBox("Critical", "sIBL_GUI | Critical", message)
+				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
 				foundations.common.exit(1)
 
 			dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(databaseFile))

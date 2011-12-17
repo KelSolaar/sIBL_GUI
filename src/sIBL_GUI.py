@@ -58,8 +58,6 @@ import manager.globals.constants
 def _overrideDependenciesGlobals():
 	"""
 	This definition overrides dependencies globals.
-
-	:return: Definition success. ( Boolean )
 	"""
 
 	foundations.globals.constants.Constants.logger = \
@@ -67,7 +65,6 @@ def _overrideDependenciesGlobals():
 
 	foundations.globals.constants.Constants.applicationDirectory = \
 	manager.globals.constants.Constants.applicationDirectory = umbra.globals.constants.Constants.applicationDirectory
-	return True
 
 _overrideDependenciesGlobals()
 
