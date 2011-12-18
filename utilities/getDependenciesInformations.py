@@ -13,6 +13,7 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
@@ -38,6 +39,17 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER",
+		"LOGGING_CONSOLE_HANDLER",
+		"GIT_EXECUTABLE",
+		"FOUNDATIONS_DIRECTORY",
+		"MANAGER_DIRECTORY",
+		"UMBRA_DIRECTORY"
+		"TEMPLATES_DIRECTORY",
+		"DEPENDENCIES",
+		"DEPENDENCIES_FILE",
+		"getDependenciesInformations"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -49,13 +61,16 @@ core.setVerbosityLevel(3)
 GIT_EXECUTABLE = "/usr/local/git/bin/git"
 FOUNDATIONS_DIRECTORY = "../../Foundations"
 MANAGER_DIRECTORY = "../../Manager"
+UMBRA_DIRECTORY = "../../Umbra"
 TEMPLATES_DIRECTORY = "../../sIBL_GUI_Templates"
 DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
-							("Manager", MANAGER_DIRECTORY), ("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
+							("Manager", MANAGER_DIRECTORY),
+							("Umbra", UMBRA_DIRECTORY),
+							("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def getDependenciesInformations():
 	"""

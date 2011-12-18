@@ -39,6 +39,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "LOGGING_CONSOLE_HANDLER", "IMPORTS", "FILTERS_IN", "FILTERS_OUT", "getImports"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -53,7 +55,7 @@ FILTERS_IN = ("\.py$",)
 FILTERS_OUT = ("defaultScript\.py", "tests")
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def getImports(sourceDirectory, filtersIn, filtersOut):
 	"""

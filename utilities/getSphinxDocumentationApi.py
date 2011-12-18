@@ -49,6 +49,17 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER",
+		"LOGGING_CONSOLE_HANDLER",
+		"FILES_EXTENSION",
+		"TOCTREE_TEMPLATE_BEGIN",
+		"TOCTREE_TEMPLATE_END",
+		"EXCLUDED_PYTHON_MODULES",
+		"STATEMENTS_UPDATE_MESSAGGE",
+		"DECORATORS_COMMENT_MESSAGE",
+		"CONTENT_SUBSTITUTIONS",
+		"getSphinxDocumentationApi"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -68,9 +79,10 @@ TOCTREE_TEMPLATE_BEGIN = ["Api\n",
 						"   :maxdepth: 1\n",
 						"\n"]
 
+TOCTREE_TEMPLATE_END = []
+
 EXCLUDED_PYTHON_MODULES = ("defaultScript\.py", "001_migrate_3-x-x_to_4-0-0\.py", "001_dummy\.py")
 
-TOCTREE_TEMPLATE_END = []
 
 STATEMENTS_UPDATE_MESSAGGE = "#**********************************************************************************************************************\n" \
 							"#***\tSphinx: Statements updated for auto-documentation purpose.\n" \
@@ -89,7 +101,7 @@ CONTENT_SUBSTITUTIONS = {"APPLICATION \= QApplication\(sys.argv\)": "{0}".format
 						"{0}\n{1}".format(STATEMENTS_UPDATE_MESSAGGE, "TEXT_LANGUAGE = None")}
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, apiFile):
 	"""

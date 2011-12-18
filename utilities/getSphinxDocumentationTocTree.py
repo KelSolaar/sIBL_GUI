@@ -41,6 +41,13 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER",
+		"LOGGING_CONSOLE_HANDLER",
+		"FILES_EXTENSION",
+		"TOCTREE_TEMPLATE_BEGIN",
+		"TOCTREE_TEMPLATE_END",
+		"getSphinxDocumentationTocTree"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -67,7 +74,7 @@ TOCTREE_TEMPLATE_END = ["Search:\n",
 					"* :ref:`search`\n", ]
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""

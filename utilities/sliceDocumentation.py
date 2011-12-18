@@ -39,6 +39,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER",
+		"LOGGING_CONSOLE_HANDLER",
+		"OUTPUT_FILES_EXTENSION",
+		"SLICE_ATTRIBUTE_INDENT",
+		"CONTENT_DELETION",
+		"CONTENT_SUBSTITUTIONS",
+		"sliceDocumentation"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -54,7 +62,7 @@ CONTENT_SUBSTITUTIONS = {"resources/": "../",
 						"     \|":"            |" }
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def sliceDocumentation(fileIn, outputDirectory):
 	"""

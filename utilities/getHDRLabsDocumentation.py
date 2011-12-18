@@ -39,6 +39,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "LOGGING_CONSOLE_HANDLER", "getHDRLabsDocumentation"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
@@ -48,7 +50,7 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 core.setVerbosityLevel(3)
 
 #**********************************************************************************************************************
-#***	Main Python code.
+#***	Module classes and definitions.
 #**********************************************************************************************************************
 def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
