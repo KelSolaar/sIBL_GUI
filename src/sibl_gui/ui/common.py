@@ -88,7 +88,7 @@ def getDisplayItem(path, type):
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
-		:return: Graphic display. ( Icon, QImage, QPixmap )
+		:return: Graphic display. ( QIcon, QImage, QPixmap )
 		"""
 
 		if foundations.common.pathExists(path):
