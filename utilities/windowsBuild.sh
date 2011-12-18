@@ -4,8 +4,10 @@ echo sIBL_GUI - Windows - Overall Build
 echo ----------------------------------------------------------------
 
 export PYINSTALLER=c:/pyinstaller
-export PROJECT=z:/Documents/Developement/sIBL_GUI
 export PYTHONPATH=$PROJECT/src
+
+export PROJECT=z:/Documents/Developement/sIBL_GUI
+export MAJOR_VERSION=4
 
 export UTILITIES=$PROJECT/utilities
 
@@ -13,7 +15,8 @@ export SOURCE=$PROJECT/src
 export RELEASES=$PROJECT/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
-export DEPENDENCIES=$RELEASES/sIBL_GUI
+export BUNDLE=$RELEASES/sIBL_GUI\ $MAJOR_VERSION
+export DEPENDENCIES=$BUNDLE
 
 IFS=","
 
@@ -21,7 +24,6 @@ IFS=","
 echo ----------------------------------------------------------------
 echo Cleanup - Begin
 echo ----------------------------------------------------------------
-rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES
 rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES
 for type in ".pyc,.pyo,.DS_Store,Thumbs.db"
 do
@@ -36,7 +38,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 #! python $PYINSTALLER/Makespec.py --noconsole --icon "$SOURCE/sibl_gui/resources/images/Icon_Light.ico" $SOURCE/sIBL_GUI.py -o $RELEASES
-cp $UTILITIES/windowsBuild.py $RELEASES/sIBL_GUI.spec
+cp $UTILITIES/windowsSetup.py $RELEASES/sIBL_GUI.spec
 python $PYINSTALLER/Build.py $RELEASES/sIBL_GUI.spec
 echo ----------------------------------------------------------------
 echo Build - End
@@ -46,7 +48,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
-cp -r $DISTRIBUTION/sIBL_GUI $RELEASES/
+cp -r $DISTRIBUTION/sIBL_GUI $BUNDLE
 packages="foundations,manager,umbra,sibl_gui"
 for package in $packages
 do

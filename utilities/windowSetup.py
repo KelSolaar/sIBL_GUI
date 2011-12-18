@@ -1,10 +1,39 @@
-# -*- mode: python -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+**windowsSetup.py**
+
+**Platform:**
+	Windows.
+
+**Description:**
+	This module defines the pyinstaller configuration file.
+
+**Others:**
+
+"""
+
+#**********************************************************************************************************************
+#***	Module attributes.
+#**********************************************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
+
+__all__ = ["a", "pyz", "exe", "coll", "app"]
+
 a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
 			os.path.join(HOMEPATH, "support\\useUnicode.py"),
 			"z:/Documents/Developement/sIBL_GUI/src/sIBL_GUI.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
              excludes=["foundations", "manager", "umbra", "sibl_gui"])
+
 pyz = PYZ(a.pure)
+
 exe = EXE(pyz,
 		a.scripts,
 		exclude_binaries=1,
@@ -14,6 +43,7 @@ exe = EXE(pyz,
 		upx=True,
 		console=False,
 		icon="z:\\Documents\\Developement\\sIBL_GUI\\src\\sibl_gui\\resources\\images\\Icon_Light.ico")
+
 coll = COLLECT(exe,
 			a.binaries,
 			a.zipfiles,
@@ -21,5 +51,6 @@ coll = COLLECT(exe,
 			strip=False,
 			upx=True,
 			name=os.path.join("dist", "sIBL_GUI"))
+
 app = BUNDLE(coll,
 			name=os.path.join("dist", "sIBL_GUI.app"))
