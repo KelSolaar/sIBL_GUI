@@ -46,7 +46,7 @@ __all__ = ["UID", "apply"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
-UID = "a3625655c2d3e5c1c9fba3c3e72c2df5"
+UID = "f23bedfa0def170bb6f70f24b4e1b047"
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -75,12 +75,14 @@ If you are using an already migrated shared database, you can ignore this messag
 
 	if RuntimeGlobals.parameters.databaseDirectory:
 		databaseDirectory = RuntimeGlobals.parameters.databaseDirectory
+		legacyDatabaseFile = os.path.join(databaseDirectory, "sIBL_Database.sqlite")
 	else:
 		databaseDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory, Constants.databaseDirectory)
-	legacyDatabaseFile = os.path.normpath(os.path.join(RuntimeGlobals.userApplicationDataDirectory,
+		legacyDatabaseFile = os.path.normpath(os.path.join(RuntimeGlobals.userApplicationDataDirectory,
 									"..",
 									Constants.databaseDirectory,
 									"sIBL_Database.sqlite"))
+
 	if foundations.common.pathExists(legacyDatabaseFile):
 		databaseFile = os.path.join(databaseDirectory, Constants.databaseFile)
 		message = "A previous sIBL_GUI database file has been found: '{0}'!\n\n\
@@ -98,6 +100,15 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 sIBL_GUI will now exit!".format(core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
 				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
 				foundations.common.exit(1)
+
+			if RuntimeGlobals.parameters.databaseDirectory:
+				deprecatedDatabaseDirectory = os.path.join(databaseDirectory, "backup", "deprecated")
+				message = "The previous sIBL_GUI database file will be backuped into the following directory: '{0}'.".format(
+				deprecatedDatabaseDirectory)
+				umbra.ui.widgets.messageBox.messageBox("Information", "sIBL_GUI | Information", message)
+				os.makedirs(deprecatedDatabaseDirectory)
+				shutil.move(legacyDatabaseFile,
+							os.path.join(deprecatedDatabaseDirectory, os.path.basename(legacyDatabaseFile)))
 
 			dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(databaseFile))
 			dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=dbEngine)
