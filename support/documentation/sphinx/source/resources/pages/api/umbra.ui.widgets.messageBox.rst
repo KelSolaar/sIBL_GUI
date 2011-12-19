@@ -13,5 +13,3 @@ Functions
 
 .. autofunction:: messageBox
 
-.. autofunction:: standaloneMessageBox
-

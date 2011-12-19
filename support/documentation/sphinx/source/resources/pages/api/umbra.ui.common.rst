@@ -13,15 +13,9 @@ Functions
 
 .. autofunction:: uiExtendedExceptionHandler
 
-.. autofunction:: uiStandaloneExtendedExceptionHandler
-
 .. autofunction:: uiBasicExceptionHandler
 
-.. autofunction:: uiStandaloneBasicExceptionHandler
-
 .. autofunction:: uiSystemExitExceptionHandler
-
-.. autofunction:: uiStandaloneSystemExitExceptionHandler
 
 .. autofunction:: getResourcePath
 
