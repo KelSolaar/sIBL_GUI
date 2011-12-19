@@ -94,6 +94,7 @@ Section -post SEC0001
 	WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION}" UninstallString $INSTDIR\Uninstall.exe
 	WriteRegDWORD HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION}" NoModify 1
 	WriteRegDWORD HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION}" NoRepair 1
+    System::Call 'Shell32::SHChangeNotify(i 0x8000000, i 0, i 0, i 0)'
 SectionEnd
 
 # Macro for selecting uninstaller sections.
