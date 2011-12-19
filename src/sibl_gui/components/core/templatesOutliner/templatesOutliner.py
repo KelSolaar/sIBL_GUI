@@ -1267,8 +1267,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if re.search(r"\.{0}$".format(self.__extension), str(url.path())):
 					name = strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
-					"'{0}' Template file has been dropped, would you like \
-					to 'Add' it to the Database or 'Edit' it in the Script Editor?".format(name),
+					"'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
+'Edit' it in the Script Editor?".format(name),
 					buttons=QMessageBox.Cancel,
 					customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
 					if choice == 0:

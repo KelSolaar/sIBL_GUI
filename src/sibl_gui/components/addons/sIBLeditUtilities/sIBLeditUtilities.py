@@ -555,8 +555,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
 				raise foundations.exceptions.FileExistsError(
-				"{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: \
-				'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+				"{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(
+				self.__class__.__name__, inspectorIblSet.title))
 		else:
 			messageBox.messageBox("Warning", "Warning",
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))

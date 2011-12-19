@@ -223,10 +223,10 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		indexes = []
 		for node in foundations.walkers.nodesWalker(self.model().rootNode):
 			if node.family == "Template":
-				self.modelSelection.get("Templates", None) and  node.id.value in self.modelSelection["Templates"] and \
+				self.modelSelection.get("Templates", None) and node.id.value in self.modelSelection["Templates"] and \
 				indexes.append(self.model().getNodeIndex(node))
 			elif node.family == "Collection":
-				self.modelSelection.get("Collections", None) and  node.id.value in self.modelSelection["Collections"] and \
+				self.modelSelection.get("Collections", None) and node.id.value in self.modelSelection["Collections"] and \
 				indexes.append(self.model().getNodeIndex(node))
 			elif node.family == "Software":
 				for item in self.modelSelection["Softwares"]:

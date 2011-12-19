@@ -1324,8 +1324,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																						RuntimeGlobals.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
-							raise Exception("{0} | Exception raised while adding \
-							'{1}' directory content to the Database!".format(self.__class__.__name__, directory))
+							raise Exception(
+							"{0} | Exception raised while adding '{1}' directory content to the Database!".format(
+							self.__class__.__name__, directory))
 
 			# Ibl Sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
@@ -1580,7 +1581,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					name = strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
-					'Edit' it in the Script Editor?".format(name),
+'Edit' it in the Script Editor?".format(name),
 					buttons=QMessageBox.Cancel,
 					customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
 					if choice == 0:
@@ -1922,8 +1923,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing \
-			'{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
+			raise dbExceptions.DatabaseOperationError(
+			"{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
+																							iblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)

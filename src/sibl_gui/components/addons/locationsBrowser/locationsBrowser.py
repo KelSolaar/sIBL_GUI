@@ -792,8 +792,8 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										str(self.Custom_File_Browser_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
-			"{0} | Exception raised while opening Inspector Ibl Set directory: \
-			'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
+			self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)

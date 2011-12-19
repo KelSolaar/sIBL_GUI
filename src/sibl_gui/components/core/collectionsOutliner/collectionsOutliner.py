@@ -1003,11 +1003,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					messageBox.messageBox("Warning", "Warning",
 					"{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 			else:
-				raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: \
-				Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
+				raise foundations.exceptions.UserError(
+				"{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(
+				self.__class__.__name__, self.__model.overallCollection))
 		else:
-			raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: \
-			Cannot use an empty name!".format(self.__class__.__name__))
+			raise foundations.exceptions.UserError(
+			"{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(
+			self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)

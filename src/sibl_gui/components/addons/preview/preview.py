@@ -866,8 +866,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
 		if not inspectorIblSet:
 			raise foundations.exceptions.FileExistsError(
-			"{0} | Exception raised while opening Inspector Ibl Set directory: \
-			'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
+			self.__class__.__name__, inspectorIblSet.title))
 
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				messageBox.messageBox("Warning", "Warning",
