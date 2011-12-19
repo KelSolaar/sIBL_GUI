@@ -6,9 +6,7 @@ sIBL_GUI - 4.0.0 - Alpha
     <div style="color: rgb(160, 48, 32);">
         <h2>IMPORTANT NOTICES:</h2>
         <ul>
-            <li>sIBL_GUI 4.x.x requires database migration / update, the process has been extensively tested and should work fine, however if something goes wrong a database backup will be available under sIBL_GUI preferences folder: "../HDRLabs/sIBL_GUI/database/backup".
-            </li>
-            <li>If you are using a read only database, you need to start sIBL_GUI in standard mode at least once so that the database can be migrated, otherwise the application will not be able to read the database properly and will exit.
+            <li>sIBL_GUI 4.x.x preferences a now stored per version in "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION" directory.
             </li>
         </ul>
     </div>
@@ -22,16 +20,16 @@ Change Log
 -  sIBL_GUI is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
 -  x64 is the default new sIBL_GUI architecture, there won't be anymore support for x86.
+-  sIBL_GUI 4.x.x preferences a now stored per version in "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION" directory.
 -  A new "Inspect" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
 -  A new "Edit" layout has been implemented, it features **Umbra** **Script Editor** component and allows you to directly edit Ibl Sets or Templates files and interact with sIBL_GUI. 
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
 -  Major parts of the underlying architecture have been rewrote for better evolutivity and feature a cleaner code base.
 -  Startup speed has been dramaticaly increased (Non frozen application version is more than 4 times faster).
 -  sIBL_GUI can be toggled to fullscreen using the related option in the "Custom_Layouts" menu.
--  Templates settings are now stored / restored in preferences folder for each template release. 
--  Most Maya templates have been ported toward Python for better maintainability and performance.
+-  A patches mechanism has been implemented to allow migrations between sIBL_GUI versions.
 -  The "logginWindow" component has been replaced by the "scriptEditor" component that allows direct interaction with sIBL_GUI.
--  The "databaseBackup" component has been integrated to the "db" component.
+-  The "databaseBackup" component has been integrated into the "db" component.
 -  A database migration mechanism has been implemented using SQLAlchemy Migrate, it should allow database structure manipulation for future releases.
 -  A new "databaseOperations" component has been introduced to allow manual database synchronization.
 -  Adding / Renaming a collection using an empty name was possible, this incorrect behavior has been fixed.
@@ -46,6 +44,12 @@ Change Log
    -  Sphinx documentation with chapters and API.
    -  Inline monolitic file for HDRLabs.com.
 -  A "defaultScript.py" file is provided to showcase a few high level API features.
+-  Templates settings are now stored / restored in preferences folder for each template release. 
+-  Most Maya templates have been ported toward Python for better maintainability and performance.
+-  3dsMax and Softimage / XSI templates have been refactored for better maintainability.
+-  Most Templates allows the user to define the prefix the setup will use for better customization.
+- The Maya, 3dsMax, Softimage / XSI helper scripts have been refactored to be inline with sIBL_GUI 4.0.0 release.
+- A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
 
 3.5.0 - Stable
 --------------
@@ -469,5 +473,5 @@ About
 
 | sIBL_GUI by Thomas Mansencal – 2008 – 2011
 | Copyright© 2008 – 2011 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
-| This Software Is Released Under Terms Of GNU GPL V3 License: `http://www.gnu.org/licenses/ <http://www.gnu.org/licenses/>`_
+| This software is released under terms of GNU GPL V3 license: `http://www.gnu.org/licenses/ <http://www.gnu.org/licenses/>`_
 | `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_
