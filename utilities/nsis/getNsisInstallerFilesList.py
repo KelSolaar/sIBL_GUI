@@ -1,101 +1,136 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
-This script generates 2 lists of nsis commands (install & uninstall)for all files in a given directory.
+**getNsisInstallerFilesList.py**
 
-Usage:
-	getNsisInstallerFilesList.py <source directory> <installation list name> <uninstallation list name>
-Where
-	<Source Directory>	  : Source directory.
-	<Installation List name>	: List of files to install. (NSIS syntax)
-	<UnInstallation List name> : List of files to uninstall. (NSIS syntax)
+**Platform:**
+	Windows.
+
+**Description:**
+	This module defines generates 2 lists of NSIS commands (install & uninstall) for all files in a given directory.
+
+**Others:**
+
 """
 
-import sys, os, glob
+#**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
+import glob
+import os
+import sys
 
-# global settings
-just_print_flag = 0 # turn to 1 for debugging
+#**********************************************************************************************************************
+#***	Module attributes.
+#**********************************************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
 
-# templates for the output
-inst_dir_tpl = ' SetOutPath "$instdir%s"'
-inst_file_tpl = ' File "%s"'
-uninst_file_tpl = ' Delete "$instdir%s"'
-uninst_dir_tpl = ' RMDir "$instdir%s"'
+__all__ = ["INSTALLED_DIRECTORY_TEMPLATE",
+		"INSTALLED_FILE_TEMPLATE",
+		"UNINSTALLED_DIRECTORY_TEMPLATE",
+		"UNINSTALLED_FILE_TEMPLATE",
+		"Data",
+		"visitor",
+		"getNsisDependencies"]
 
-# check args
-if len(sys.argv) != 4:
-	print __doc__
-	sys.exit(1)
-source_dir = sys.argv[1]
-if not os.path.isdir(source_dir):
-	print __doc__
-	sys.exit(1)
+INSTALLED_DIRECTORY_TEMPLATE = ' SetOutPath "$instdir%s"'
+INSTALLED_FILE_TEMPLATE = ' File "%s"'
+UNINSTALLED_DIRECTORY_TEMPLATE = ' RMDir "$instdir%s"'
+UNINSTALLED_FILE_TEMPLATE = ' Delete "$instdir%s"'
 
-def open_file_for_writting(filename):
-	try:
-		h = file(filename, "w")
-	except:
-		print "Problem opening file %s for writting!" % filename
-		print __doc__
-		sys.exit(1)
-	return h
+#**********************************************************************************************************************
+#***	Module classes and definitions.
+#**********************************************************************************************************************
+class Data(dict):
+	"""
+	This class creates an object similar to C/C++ structured type.
+	"""
 
-inst_list = sys.argv[2]
-uninst_list = sys.argv[3]
-if not just_print_flag:
-	ih = open_file_for_writting(inst_list)
-	uh = open_file_for_writting(uninst_list)
+	def __init__(self, **kwargs):
+		"""
+		This method initializes the class.
 
-stack_of_visited = []
-counter_files = 0
-counter_dirs = 0
+		:param \*\*kwargs: Key / Value pairs. ( Key / Value pairs )
+		"""
 
-print "Generating install & uninstall list of files"
-print " For directory", source_dir
-print >> ih, " ; Files to install\n"
-print >> uh, " ; Files and directories to remove\n"
+		kwargs.update(self.__dict__)
 
-def my_visitor(my_stack, cur_dir, files_and_dirs):
-	global counter_dirs, counter_files, stack_of_visited
-	counter_dirs += 1
+		dict.__init__(self, **kwargs)
+		self.__dict__ = self
 
-	if just_print_flag:
-		print "Here", my_dir
-		return
+def visitor(data, currentDirectory, items):
+	"""
+	This definition handles the directories walking interactions.
 
-	# first separate files
-	my_files = [x for x in files_and_dirs if os.path.isfile(cur_dir + os.sep + x)]
-	# and truncate dir name
-	my_dir = cur_dir[len(source_dir):]
-	#if my_dir == "": my_dir = "\\."
+	:param data: Data. ( Data )
+	:param currentDirectory: Directory being walked. ( String )
+	:param items: Directory items. ( List )
+	"""
 
-	# save it for uninstall
-	stack_of_visited.append((my_files, my_dir))
+	data.directoriesCounter += 1
 
-	# build install list
-	if len(my_files):
-		print >> ih, inst_dir_tpl % (my_dir)
-		for f in my_files:
-			print >> ih, inst_file_tpl % (os.path.abspath(cur_dir) + os.sep + f)
-			counter_files += 1
-		print >> ih, " "
+	files = [item for item in items if os.path.isfile(os.path.join(currentDirectory, item))]
+	directory = currentDirectory[len(data.sourceDirectory):]
 
-os.path.walk(source_dir, my_visitor, stack_of_visited)
-ih.close()
-print "Install list done!"
-print " ", counter_files, "Files in", counter_dirs, "Directories"
+	data.visitedItems.append((files, directory))
 
-stack_of_visited.reverse()
-# Now build the uninstall list
-for (my_files, my_dir) in stack_of_visited:
-		for f in my_files:
-			print >> uh, uninst_file_tpl % (my_dir + os.sep + f)
-		if my_dir:
-			print >> uh, uninst_dir_tpl % my_dir
-			print >> uh, " "
+	if len(files):
+		print >> data.installedItemsFileHandler, INSTALLED_DIRECTORY_TEMPLATE % (directory)
+		for item in files:
+			print >> data.installedItemsFileHandler, INSTALLED_FILE_TEMPLATE % (os.path.join(os.path.abspath(currentDirectory), item))
+			data.filesCounter += 1
+		print >> data.installedItemsFileHandler, " "
 
-print >> uh, " "
-print >> uh, " RMDir /r \"$instdir\\support\\\""
-print >> uh, " RMDir \"$instdir\\\""
+def getNsisDependencies(sourceDirectory, installedItemsFile, uninstalledItemsFile):
+	"""
+	This definition gets NSIS dependencies.
 
-# now close everything
-uh.close()
-print "Uninstall list done!\n"
+	:param sourceDirectory: Source directory. ( String )
+	:param installedItemsFile: Installed files file name. ( String )
+	:param uninstalledItemsFile: Uninstalled files file name. ( String )
+	"""
+
+	installedItemsFileHandler = file(installedItemsFile, "w")
+	uninstalledItemsFileHandler = file(uninstalledItemsFile, "w")
+
+	data = Data(**{"visitedItems" : [],
+			"installedItemsFileHandler" : installedItemsFileHandler,
+			"uninstalledItemsFileHandler" : uninstalledItemsFileHandler,
+			"sourceDirectory" : sourceDirectory,
+			"filesCounter" : 0,
+			"directoriesCounter" : 0})
+
+	print "Generating install & uninstall list of files"
+	print " For directory", sourceDirectory
+	print >> installedItemsFileHandler, " ; Files to install\n"
+	print >> uninstalledItemsFileHandler, " ; Files and directories to remove\n"
+
+	os.path.walk(sourceDirectory, visitor, data)
+	installedItemsFileHandler.close()
+
+	print "Install list done!"
+	print " ", data.filesCounter, "Files in", data.directoriesCounter, "Directories"
+
+	data.visitedItems.reverse()
+	for (files, directory) in data.visitedItems:
+			for item in files:
+				print >> uninstalledItemsFileHandler, UNINSTALLED_FILE_TEMPLATE % (os.sep.join((directory, item)))
+			if directory:
+				print >> uninstalledItemsFileHandler, UNINSTALLED_DIRECTORY_TEMPLATE % directory
+				print >> uninstalledItemsFileHandler, " "
+
+	print >> uninstalledItemsFileHandler, " "
+	print >> uninstalledItemsFileHandler, " RMDir /r \"$instdir\\support\\\""
+	print >> uninstalledItemsFileHandler, " RMDir \"$instdir\\\""
+
+	uninstalledItemsFileHandler.close()
+	print "Uninstall list done!\n"
+
+if __name__ == "__main__":
+	getNsisDependencies(sys.argv[1], sys.argv[2], sys.argv[3])
