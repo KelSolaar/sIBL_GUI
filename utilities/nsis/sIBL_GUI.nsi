@@ -50,6 +50,7 @@ Var StartMenuGroup
 # Installer attributes.
 OutFile sIBL_GUI_Setup.exe
 InstallDir "$PROGRAMFILES\${COMPANY}\${APPLICATION}"
+LicenseForceSelection checkbox "I accept the licence terms."
 CRCCheck on
 XPStyle on
 ShowInstDetails show
@@ -116,14 +117,14 @@ SectionEnd
 
 Section -un.post UNSEC0001
 	DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION}"
-	Delete /REBOOTOK "$DESKTOP\${APPLICATION}.lnk"
-	Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\${APPLICATION}.lnk"
-	Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall ${APPLICATION}.lnk"
-	Delete /REBOOTOK $INSTDIR\Uninstall.exe
 	DeleteRegValue HKLM "${REGKEY}" StartMenuGroup
 	DeleteRegValue HKLM "${REGKEY}" Path
 	DeleteRegKey /IfEmpty HKLM "${REGKEY}\Components"
 	DeleteRegKey /IfEmpty HKLM "${REGKEY}"
+    Delete /REBOOTOK "$DESKTOP\${APPLICATION}.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\${APPLICATION}.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall ${APPLICATION}.lnk"
+    Delete /REBOOTOK $INSTDIR\Uninstall.exe
 	RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $SMPROGRAMS\${COMPANY}
 	RmDir /REBOOTOK $INSTDIR
