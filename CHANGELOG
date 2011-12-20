@@ -6,7 +6,7 @@ sIBL_GUI - 4.0.0 - Alpha
     <div style="color: rgb(160, 48, 32);">
         <h2>IMPORTANT NOTICES:</h2>
         <ul>
-            <li>sIBL_GUI 4.x.x preferences a now stored per version in "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION" directory.
+            <li>sIBL_GUI 4.x.x preferences are now stored per version in a directory following this structure : "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION".
             </li>
         </ul>
     </div>
