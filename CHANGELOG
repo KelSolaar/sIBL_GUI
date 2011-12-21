@@ -48,8 +48,8 @@ Change Log
 -  Most Maya templates have been ported toward Python for better maintainability and performance.
 -  3dsMax and Softimage / XSI templates have been refactored for better maintainability.
 -  Most Templates allows the user to define the prefix the setup will use for better customization.
-- The Maya, 3dsMax, Softimage / XSI helper scripts have been refactored to be inline with sIBL_GUI 4.0.0 release.
-- A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
+-  The Maya, 3dsMax, Softimage / XSI helper scripts have been refactored to be inline with sIBL_GUI 4.0.0 release.
+-  A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
 
 3.5.0 - Stable
 --------------
