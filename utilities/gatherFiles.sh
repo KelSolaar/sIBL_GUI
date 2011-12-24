@@ -15,7 +15,7 @@ rm -rf $REPOSITORY/*
 mkdir $REPOSITORY/sIBL_GUI
 
 #! Windows gathering.
-cp $UTILITIES/nsis/sIBL_GUI_Setup.exe $REPOSITORY/sIBL_GUI/sIBL_GUI.exe
+cp $RELEASES/windows/sIBL_GUI_Setup.exe $REPOSITORY/sIBL_GUI/sIBL_GUI.exe
 
 #! Mac Os X gathering.
 cp $RELEASES/Darwin/sIBL_GUI.dmg $REPOSITORY/sIBL_GUI/sIBL_GUI.dmg
