@@ -46,71 +46,69 @@ LOGGER = logging.getLogger(Constants.logger)
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "About.ui")
 
 ABOUT_MESSAGE = """
-		<center>
-		*
-		<p>
-		<img src="{0}">
-		</p>
-		<p>
-		s I B L _ G U I - {1}
-		</p>
-		*
-		<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
-		<br/>
-		Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler,
-		Lee and Brett.
-		<br/>
-		Another big thanks to Emanuele Santos for helping me out on the Mac Os X bundle.
-		<br/>
-		Thanks to Marienz from irc #python for optimisations tips.
-		<p>
-		Thanks to all cool guys from CGFeedback, XSIBase and CGTalk.
-		</p>
-		<p>
-		Very special thanks to Christian for providing me some space on his server!
-		</p>
-		<p>
-		This software uses Python, Qt, PyQt, FreeImage, SQLAlchemy, SQLAlchemy-migrate, py2app, pyinstaller and NSIS.
-		<br/>
-		Coded with Eclipse - Pydev - Aptana - Textmate and Git.
-		</p>
-		<p>
-		Light bulb icon is copyright Christian Bloch.
-		</p>
-		<p>
-		If you are a HDRI resources vendor and are interested in making your sets Smart Ibl compliant:
-		<br/>
-		Please contact us at HDRLabs:
-		<br/>
-		Christian Bloch - <a href="mailto:blochi@edenfx.com">
-		<span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
-		<br/>
-		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com">
-		<span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
-		</p>
-		<p>
-		sIBL_GUI by Thomas Mansencal - 2008 - 2011
-		<br/>
-		This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/">
-		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
-		<br/>
-		<a href="http://www.thomasmansencal.com/">
-		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.thomasmansencal.com/</span></a>
-		</p>
-		<p>
-		*
-		</p>
-		<p>
-		<a href="http://www.hdrlabs.com/">
-		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/</span></a>
-		</p>
-		*
-		<p>
-		<img src="{2}">
-		</p>
-		*
-		</center>
-		"""
+<center>
+*
+<p>
+<img src="{0}">
+</p>
+<p>
+s I B L _ G U I - {1}
+</p>
+*
+<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
+<br/>
+Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler,
+Lee and Brett.
+<br/>
+Another big thanks to Emanuele Santos for helping me out on the Mac Os X bundle.
+<br/>
+Thanks to Marienz from irc #python for optimisations tips.
+<p>
+Thanks to all cool guys from CGFeedback, XSIBase and CGTalk.
+</p>
+<p>
+Very special thanks to Christian for providing me some space on his server!
+</p>
+<p>
+This software uses Python, Qt, PyQt, FreeImage, SQLAlchemy, SQLAlchemy-migrate, py2app, pyinstaller, Sphinx, Tidy, \
+Actual Installer.
+<br/>
+Coded with Aptana - Pydev - Textmate - Sublime Text 2, Git and Github for Mac.
+</p>
+<p>
+If you are a HDRI resources vendor and are interested in making your sets Smart Ibl compliant:
+<br/>
+Please contact us at HDRLabs:
+<br/>
+Christian Bloch - <a href="mailto:blochi@edenfx.com">
+<span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
+<br/>
+Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com">
+<span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
+</p>
+<p>
+sIBL_GUI by Thomas Mansencal - 2008 - 2011
+<br/>
+This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/">
+<span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
+<br/>
+<a href="http://www.thomasmansencal.com/">
+<span style=" text-decoration: underline; color:#e0e0e0;">http://www.thomasmansencal.com/</span></a>
+</p>
+<p>
+*
+</p>
+<p>
+<a href="http://www.hdrlabs.com/">
+<span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/</span></a>
+</p>
+*
+<p>
+<img src="{2}">
+</p>
+*
+</center>
+"""
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
