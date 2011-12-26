@@ -1,4 +1,4 @@
-sIBL_GUI - 4.0.0 - Alpha
+sIBL_GUI - 4.0.1 - Beta
 =========================
 
 .. raw:: html
@@ -13,6 +13,11 @@ sIBL_GUI - 4.0.0 - Alpha
 
 Change Log
 ==========
+
+4.0.1 - Beta
+--------------
+
+-  Dropped **NSIS** installer for "**Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
 
 4.0.0 - Alpha
 --------------
