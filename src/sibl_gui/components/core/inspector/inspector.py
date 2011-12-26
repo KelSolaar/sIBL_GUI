@@ -125,7 +125,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	This signal is emited by the :class:`Inspector` class when the Ui needs to be refreshed. ( pyqtSignal )
 	"""
-	
+
 	uiClear = pyqtSignal()
 	"""
 	This signal is emited by the :class:`Inspector` class when the Ui needs to be cleared. ( pyqtSignal )
@@ -944,6 +944,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Inspector_Overall_frame_addActions()
 
 		# Signals / Slots.
+		self.__engine.imagesCaches.QIcon.cacheUpdated.connect(self.__view.viewport().update)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
 		for view in self.__coreDatabaseBrowser.views:

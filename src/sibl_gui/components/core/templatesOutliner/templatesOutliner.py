@@ -959,6 +959,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
+		self.__engine.imagesCaches.QIcon.cacheUpdated.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
