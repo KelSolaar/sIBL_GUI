@@ -17,6 +17,7 @@ Change Log
 4.0.1 - Beta
 --------------
 
+-  Implement asynchronous images loading in related sIBL_GUI components for increased speed and responsiveness.
 -  Dropped **NSIS** installer for "**Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
 
 4.0.0 - Alpha
