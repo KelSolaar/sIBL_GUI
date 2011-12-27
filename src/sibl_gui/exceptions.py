@@ -79,3 +79,9 @@ class CacheExistsError(foundations.exceptions.AbstractError):
 
 	pass
 
+class CacheOperationError(foundations.exceptions.AbstractError):
+	"""
+	This class is used for cache operations exceptions.
+	"""
+
+	pass
