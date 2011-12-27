@@ -376,7 +376,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		if not self.__engine.parameters.databaseReadOnly:
-			self.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
+			self.Synchronize_Database_pushButton.clicked.connect(self.__Synchronize_Database_pushButton_clicked)
 		else:
 			LOGGER.info(
 			"{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(
@@ -397,7 +397,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		not self.__engine.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(
-															self.__synchronize_Database_pushButton_clicked)
+															self.__Synchronize_Database_pushButton_clicked)
 
 		return True
 
@@ -433,7 +433,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	def __synchronize_Database_pushButton_clicked(self, checked):
+	def __Synchronize_Database_pushButton_clicked(self, checked):
 		"""
 		This method is triggered when **Synchronize_Database_pushButton** Widget is clicked.
 
