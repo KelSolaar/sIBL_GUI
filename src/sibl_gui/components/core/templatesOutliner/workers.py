@@ -53,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class TemplatesOutliner_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used
+	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used
 	to track modified Templates and update the Database accordingly.
 	"""
 

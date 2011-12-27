@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class GraphicsItem_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to load images.
+	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to load images.
 	"""
 
 	# If the signal uses **QImage** as signature instead of **object**, a copy gets passed to the slot instead

@@ -2299,7 +2299,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
-		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
+		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 
 		:return: Converted image. ( QImage )
 		"""

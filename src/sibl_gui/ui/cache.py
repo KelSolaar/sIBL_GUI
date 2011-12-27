@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class AbstractResourcesCache(QObject):
 	"""
-	This class is a `QObject <http://doc.qt.nokia.com/4.7/qobject.html>`_ subclass used as an abstract resources cache.
+	This class is a `QObject <http://doc.qt.nokia.com/qobject.html>`_ subclass used as an abstract resources cache.
 	"""
 
 	contentAdded = pyqtSignal(list)

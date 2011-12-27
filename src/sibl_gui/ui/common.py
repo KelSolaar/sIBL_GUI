@@ -104,8 +104,8 @@ def convertImage(image, type):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def loadGraphicsItem(path, type):
 		"""
-		This method loads a graphic item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
-		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+		This method loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+		`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
@@ -134,8 +134,8 @@ def loadGraphicsItem(path, type):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		"""
-		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
-		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+		This method gets a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+		`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
@@ -159,7 +159,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path, asynchronousLoading=True, imagesCache=None):
 		"""
-		This method gets a `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_.
+		This method gets a `QIcon <http://doc.qt.nokia.com/qicon.html>`_.
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -174,7 +174,7 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 		"""
-		This method gets a `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+		This method gets a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -189,7 +189,7 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path, asynchronousLoading=True, imagesCache=None):
 		"""
-		This method gets a `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
+		This method gets a `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )

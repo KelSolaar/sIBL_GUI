@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class IblSetsScanner_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to retrieve
+	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
 	new Ibl Sets from Database registered directories parents.
 	"""
 

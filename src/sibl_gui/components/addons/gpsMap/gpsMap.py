@@ -58,7 +58,7 @@ COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
-	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
+	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/qdockwidget.html>`_ window.
 	"""
 
 	@core.executionTrace

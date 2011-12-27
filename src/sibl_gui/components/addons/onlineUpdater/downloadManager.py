@@ -59,7 +59,7 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Download_Manager.ui")
 class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
 	| This class defines the Application download manager.
-	| Once initialized with a `QNetworkAccessManager <http://doc.qt.nokia.com/4.7/qnetworkaccessmanager.html>`_ instance,
+	| Once initialized with a `QNetworkAccessManager <http://doc.qt.nokia.com/qnetworkaccessmanager.html>`_ instance,
 		a download directory and a list of requests ( List of online resources / files ),
 		this class can proceed of the download of those requests using the :meth:`DownloadManager.startDownload` method.
 	"""
