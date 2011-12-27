@@ -19,7 +19,6 @@
 #**********************************************************************************************************************
 import logging
 import os
-import sys
 from PyQt4.QtGui import QGridLayout
 from PyQt4.QtGui import QMessageBox
 
