@@ -929,6 +929,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Plates_listView.setObjectName("Plates_listView")
 		self.Plates_frame_gridLayout.addWidget(self.Plates_listView, 0, 1)
 		self.__view = self.Plates_listView
+		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda:True
 
 		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
 		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))

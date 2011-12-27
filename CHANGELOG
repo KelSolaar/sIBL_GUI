@@ -19,6 +19,7 @@ Change Log
 
 -  Implement asynchronous images loading in related sIBL_GUI components for increased speed and responsiveness.
 -  Dropped **NSIS** installer for "**Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
+-  Prevented an exception in "inspector" component when a plate was selected and the view attempted to store the current nodes selection.
 
 4.0.0 - Alpha
 --------------
