@@ -75,8 +75,10 @@ _overrideDependenciesGlobals()
 import foundations.common
 import foundations.core as core
 import sibl_gui.ui.cache
+import sibl_gui.ui.models
 import umbra.engine
 import umbra.ui.common
+import umbra.ui.models
 from umbra.ui.widgets.active_QLabel import Active_QLabel
 
 #**********************************************************************************************************************
@@ -134,11 +136,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		self.__setPreInitialisationOverrides()
-
-		# --- Initializing Application images caches. ---
-		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
-
 		umbra.engine.Umbra.__init__(self,
 									parent,
 									componentsPaths,
@@ -146,11 +143,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 									visibleComponents,
 									*args,
 									**kwargs)
-
-		for cache in self.__imagesCaches.itervalues():
-			self.workerThreads.append(cache.worker)
-
-		self.__setPostInitialisationOverrides()
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -191,18 +183,28 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#***	Class methods.
 	#******************************************************************************************************************
 	@core.executionTrace
-	def __setPreInitialisationOverrides(self):
+	def onPreInitialisation(self):
 		"""
-		This method sets Application pre initialisation overrides.
+		This method is called by the :class:`umbra.engine.Umbra` class before Application main class initialisation.
 		"""
+
+		# Binding Application images caches.
+		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
+
+		# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
+		# with asynchronous images loading.
+		umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
 
 		self._Umbra__initializeToolBar = self.__initializeToolBar
 
 	@core.executionTrace
-	def __setPostInitialisationOverrides(self):
+	def onPostInitialisation(self):
 		"""
-		This method sets Application post initialisation overrides.
+		This method is called by the :class:`umbra.engine.Umbra` class after Application main class initialisation.
 		"""
+
+		for cache in self.__imagesCaches.itervalues():
+			self.workerThreads.append(cache.worker)
 
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		factoryScriptEditor._ScriptEditor__developmentLayout = "editCentric"
