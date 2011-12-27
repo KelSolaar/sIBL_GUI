@@ -11,7 +11,7 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: IblSetsScanner_Worker
+.. autoclass:: IblSetsScanner_worker
 	:show-inheritance:
 	:members:
 

@@ -11,7 +11,7 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: TemplatesOutliner_Worker
+.. autoclass:: TemplatesOutliner_worker
 	:show-inheritance:
 	:members:
 

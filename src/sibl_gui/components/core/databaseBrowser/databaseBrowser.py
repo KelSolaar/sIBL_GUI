@@ -56,7 +56,7 @@ from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
 from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
 from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
 from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
-from sibl_gui.components.core.databaseBrowser.workers import DatabaseBrowser_Worker
+from sibl_gui.components.core.databaseBrowser.workers import DatabaseBrowser_worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -1237,7 +1237,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
+				self.__databaseBrowserWorkerThread = DatabaseBrowser_worker(self)
 				self.__databaseBrowserWorkerThread.start()
 				self.__engine.workerThreads.append(self.__databaseBrowserWorkerThread)
 			else:
@@ -1548,7 +1548,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __coreDb_database__databaseChanged(self, iblSets):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_Worker` class
+		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
 		when the Database has changed.
 
 		:param iblSets: Modified Ibl Sets. ( List )

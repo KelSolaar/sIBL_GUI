@@ -1094,7 +1094,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __coreDb_database__databaseChanged(self, iblSets):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_Worker` class
+		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
 		when the Database has changed.
 
 		:param iblSets: Modified Ibl Sets. ( List )

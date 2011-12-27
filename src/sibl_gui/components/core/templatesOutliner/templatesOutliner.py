@@ -52,7 +52,7 @@ from foundations.walkers import OsWalker
 from sibl_gui.components.core.templatesOutliner.models import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
-from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_Worker
+from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -948,7 +948,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
+				self.__templatesOutlinerWorkerThread = TemplatesOutliner_worker(self)
 				self.__templatesOutlinerWorkerThread.start()
 				self.__engine.workerThreads.append(self.__templatesOutlinerWorkerThread)
 			else:
@@ -1234,7 +1234,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __coreDb_database__databaseChanged(self, templates):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.templatesOutliner.workers.TemplatesOutliner_Worker`class
+		:class:`umbra.components.core.templatesOutliner.workers.TemplatesOutliner_worker`class
 		when the Database has changed.
 
 		:param templates: Modified Templates. ( List )

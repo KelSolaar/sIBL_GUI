@@ -44,14 +44,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "TemplatesOutliner_Worker"]
+__all__ = ["LOGGER", "TemplatesOutliner_worker"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class TemplatesOutliner_Worker(QThread):
+class TemplatesOutliner_worker(QThread):
 	"""
 	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used
 	to track modified Templates and update the Database accordingly.
@@ -60,7 +60,7 @@ class TemplatesOutliner_Worker(QThread):
 	# Custom signals definitions.
 	databaseChanged = pyqtSignal(list)
 	"""
-	This signal is emited by the :class:`TemplatesOutliner_Worker` class
+	This signal is emited by the :class:`TemplatesOutliner_worker` class
 	when database Templates have been updated. ( pyqtSignal )
 	
 	:return: Updated Templates. ( List )		

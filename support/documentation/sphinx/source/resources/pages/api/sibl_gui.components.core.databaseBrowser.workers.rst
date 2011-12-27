@@ -11,7 +11,7 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: DatabaseBrowser_Worker
+.. autoclass:: DatabaseBrowser_worker
 	:show-inheritance:
 	:members:
 

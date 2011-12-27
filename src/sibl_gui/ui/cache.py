@@ -221,7 +221,7 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		# --- Setting class attributes. ---
 		self.__type = type
 		self.__default = default
-		self.__worker = sibl_gui.ui.workers.GraphicsItem_Worker()
+		self.__worker = sibl_gui.ui.workers.GraphicsItem_worker()
 		self.__worker.start()
 		self.__worker.imageLoaded.connect(self.__worker__imageLoaded)
 

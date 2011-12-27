@@ -44,14 +44,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "DatabaseBrowser_Worker"]
+__all__ = ["LOGGER", "DatabaseBrowser_worker"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class DatabaseBrowser_Worker(QThread):
+class DatabaseBrowser_worker(QThread):
 	"""
 	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used
 	to track modified Ibl Sets and update the Database accordingly.
@@ -60,7 +60,7 @@ class DatabaseBrowser_Worker(QThread):
 	# Custom signals definitions.
 	databaseChanged = pyqtSignal(list)
 	"""
-	This signal is emited by the :class:`DatabaseBrowser_Worker` class
+	This signal is emited by the :class:`DatabaseBrowser_worker` class
 	when database Ibl Sets have been updated. ( pyqtSignal )
 	
 	:return: Updated Ibl Sets. ( List )		

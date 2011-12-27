@@ -43,14 +43,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "GraphicsItem_Worker"]
+__all__ = ["LOGGER", "GraphicsItem_worker"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class GraphicsItem_Worker(QThread):
+class GraphicsItem_worker(QThread):
 	"""
 	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to load images.
 	"""
@@ -59,7 +59,7 @@ class GraphicsItem_Worker(QThread):
 	# of the object itself, the issue is that the copy loses any defined extra attributes.
 	imageLoaded = pyqtSignal(object)
 	"""
-	This signal is emited by the :class:`GraphicsItem_Worker` class when an image has been loaded. ( pyqtSignal )
+	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded. ( pyqtSignal )
 	
 	:return: Loaded image. ( QImage )		
 	"""
