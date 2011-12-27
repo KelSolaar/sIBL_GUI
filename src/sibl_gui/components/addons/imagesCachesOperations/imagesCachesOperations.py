@@ -19,6 +19,7 @@
 #**********************************************************************************************************************
 import logging
 import os
+import sys
 from PyQt4.QtGui import QGridLayout
 from PyQt4.QtGui import QMessageBox
 
@@ -79,6 +80,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine = None
 
 		self.__factoryPreferencesManager = None
+
+		self.__editLayout = "editCentric"
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -147,6 +150,38 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
 
+	@property
+	def editLayout(self):
+		"""
+		This method is the property for **self.__editLayout** attribute.
+
+		:return: self.__editLayout. ( String )
+		"""
+
+		return self.__editLayout
+
+	@editLayout.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self, value):
+		"""
+		This method is the setter method for **self.__editLayout** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
+
+	@editLayout.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self):
+		"""
+		This method is the deleter method for **self.__editLayout** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
+
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -203,7 +238,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Clear_Images_Caches_pushButton.clicked.connect(self.__Clear_Images_Caches_pushButton_clicked)
+		self.Output_Images_Caches_Metrics_pushButton.clicked.connect(self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Clear_Images_Caches_pushButton.clicked.connect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		return True
 
@@ -219,7 +255,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Clear_Images_Caches_pushButton.clicked.disconnect(self.__Clear_Images_Caches_pushButton_clicked)
+		self.Output_Images_Caches_Metrics_pushButton.clicked.disconnect(self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Clear_Images_Caches_pushButton.clicked.disconnect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		return True
 
@@ -255,7 +292,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	def __Clear_Images_Caches_pushButton_clicked(self, checked):
+	def __Clear_Images_Caches_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Clear_Images_Caches_pushButton** Widget is clicked.
 
@@ -263,6 +300,40 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.clearImagesCaches()
+
+	@core.executionTrace
+	def __Output_Images_Caches_Metrics_pushButton__clicked(self, checked):
+		"""
+		This method is triggered when **Output_Images_Caches_Metrics_pushButton** Widget is clicked.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		self.outputImagesCachesMetrics()
+		self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def outputImagesCachesMetrics(self):
+		"""
+		This method logs images caches metrics.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		separator = "{0}".format(Constants.loggingSeparators.replace("*", "-"))
+		for type, cache in self.__engine.imagesCaches.iteritems():
+			LOGGER.info(separator)
+			LOGGER.info("{0} | Metrics for '{1}' '{2}' images cache:".format(self.__class__.__name__,
+																			Constants.applicationName, type))
+			cacheMetrics = cache.getMetrics().content
+			LOGGER.info("{0} | \tCached graphics items count: '{1}'".format(self.__class__.__name__, len(cacheMetrics)))
+			for path, data in sorted(cache.getMetrics().content.iteritems()):
+				LOGGER.info("{0} | \t\t'{1}':".format(self.__class__.__name__, path))
+				LOGGER.info("{0} | \t\t\tSize: {1}x{2} px".format(self.__class__.__name__, data.width, data.height))
+				LOGGER.info("{0} | \t\t\tBpp: {1} bit".format(self.__class__.__name__, data.bpp / 4))
+			LOGGER.info(separator)
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,

@@ -19,6 +19,7 @@
 #**********************************************************************************************************************
 import logging
 import os
+import itertools
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 
@@ -42,14 +43,32 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
+			"CacheMetrics",
 			"AbstractResourcesCache",
-			"AsynchronousGraphicsCache"]
+			"AsynchronousGraphicsItemsCache"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+class CacheMetrics(foundations.dataStructures.Structure):
+	"""
+	This class represents a storage object for cache metrics.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This method initializes the class.
+
+		:param kwargs: type, content. ( Key / Value pairs )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		foundations.dataStructures.Structure.__init__(self, **kwargs)
+
 class AbstractResourcesCache(QObject):
 	"""
 	This class is a `QObject <http://doc.qt.nokia.com/qobject.html>`_ subclass used as an abstract resources cache.
@@ -57,7 +76,7 @@ class AbstractResourcesCache(QObject):
 
 	contentAdded = pyqtSignal(list)
 	"""
-	This signal is emited by the :class:`AsynchronousGraphicsCache` class
+	This signal is emited by the :class:`AsynchronousGraphicsItemsCache` class
 	whenever content has been added. ( pyqtSignal )
 	
 	:return: Content added to the cache. ( List )	
@@ -65,7 +84,7 @@ class AbstractResourcesCache(QObject):
 
 	contentRemoved = pyqtSignal(list)
 	"""
-	This signal is emited by the :class:`AsynchronousGraphicsCache` class
+	This signal is emited by the :class:`AsynchronousGraphicsItemsCache` class
 	whenever content has been removed. ( pyqtSignal )
 	
 	:return: Content removed from the cache. ( List )	
@@ -135,6 +154,17 @@ class AbstractResourcesCache(QObject):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def listContent(self):
+		"""
+		This method lists the cache content.
+
+		:return: Cache content. ( List )
+		"""
+
+		return self.__mapping.keys()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method adds given content to the cache.
@@ -199,9 +229,21 @@ class AbstractResourcesCache(QObject):
 		self.contentRemoved.emit(content)
 		return True
 
-class AsynchronousGraphicsCache(AbstractResourcesCache):
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getMetrics(self):
+		"""
+		This method returns the cache metrics.
+		"""
+
+		cacheMetrics = CacheMetrics()
+		cacheMetrics.type = None
+		cacheMetrics.content = dict(zip(self.__mapping.keys(), itertools.repeat(None, len(self.__mapping))))
+		return cacheMetrics
+
+class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	"""
-	This class provides an asynchronous graphics resources cache.
+	This class provides an asynchronous graphics items cache.
 	"""
 
 	@core.executionTrace
@@ -211,7 +253,7 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		
 		:param parent: Object parent. ( QObject )
 		:param type: Cache type. ( QImage / QPixmap / QIcon )
-		:param default: Default cache object. ( String )
+		:param default: Default image. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -221,9 +263,12 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		# --- Setting class attributes. ---
 		self.__type = type
 		self.__default = default
+
 		self.__worker = sibl_gui.ui.workers.GraphicsItem_worker()
 		self.__worker.start()
 		self.__worker.imageLoaded.connect(self.__worker__imageLoaded)
+
+		self.__setDefaultGraphicsItem(default)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -293,6 +338,38 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default"))
 
 	@property
+	def defaultGraphicsItem(self):
+		"""
+		This method is the property for **self.__defaultGraphicsItem** attribute.
+
+		:return: self.__defaultGraphicsItem. ( QObject )
+		"""
+
+		return self.__defaultGraphicsItem
+
+	@defaultGraphicsItem.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultGraphicsItem(self, value):
+		"""
+		This method is the setter method for **self.__defaultGraphicsItem** attribute.
+
+		:param value: Attribute value. ( QObject )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultGraphicsItem"))
+
+	@defaultGraphicsItem.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultGraphicsItem(self):
+		"""
+		This method is the deleter method for **self.__defaultGraphicsItem** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "defaultGraphicsItem"))
+
+	@property
 	def worker(self):
 		"""
 		This method is the property for **self.__worker** attribute.
@@ -333,15 +410,27 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 	@core.executionTrace
 	def __worker__imageLoaded(self, image):
 		"""
-		This method is triggered by the :obj:`AsynchronousGraphicsCache.worker` method when an image has been loaded.
+		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
 		:param image: Loaded image. ( QImage )
 		"""
+
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
 		graphicsItem.data = image.data
 		path = graphicsItem.data.path
 		self.mapping[path] = graphicsItem
 		self.contentAdded.emit([path])
+
+	@core.executionTrace
+	def __setDefaultGraphicsItem(self, path):
+		"""
+		This method sets the defaultGraphicsItem graphics item.
+		
+		:param path: Default image path. ( String )
+		"""
+
+		self.__defaultGraphicsItem = self.__type(path)
+		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -356,13 +445,21 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
 		for path, item in content.items():
+			if not foundations.common.pathExists(path):
+				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!!".format(
+				self.__class__.__name__, path))
+				del(content[path])
+				continue
+
 			if type(item) is not self.__type:
 				LOGGER.warning("!> {0} | '{1}' item type is not '{2}' type and has been skipped!".format(
 				self.__class__.__name__, item, self.__type))
 				del(content[path])
 
-		self.mapping.update(**content)
-		self.contentAdded.emit(content.keys())
+		for key, value in content.iteritems():
+			value.data = sibl_gui.ui.common.getImageInformationsHeader(key, value)
+			self.mapping[key] = value
+			self.contentAdded.emit([key])
 		return True
 
 	@core.executionTrace
@@ -371,7 +468,7 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		"""
 		This method adds given content to the cache.
 
-		:param \*content: Comantent to add. ( \* )
+		:param \*content: Paths to add. ( \* )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -384,14 +481,28 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 
 			if path in self.mapping:
 				image = self.mapping.get(path)
-				if hasattr(image, "data"):
-					if image.data.osStats.st_mtime == os.stat(path).st_mtime:
-						continue
-					else:
-						LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
-						self.__class__.__name__, path))
+				if image.data.path != path:
+					continue
 
-			self.mapping[path] = self.__type(self.default)
+				if image.data.osStats.st_mtime == os.stat(path).st_mtime:
+					continue
+				else:
+					LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
+					self.__class__.__name__, path))
+
+			self.mapping[path] = self.__defaultGraphicsItem
 			self.contentAdded.emit([path])
 			self.__worker.addRequest(path)
 		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getMetrics(self):
+		"""
+		This method reimplements the :meth:`AbstractResourcesCache.getMetrics` method.
+		"""
+
+		cacheMetrics = AbstractResourcesCache.getMetrics(self)
+		cacheMetrics.type = self.__type
+		cacheMetrics.content = dict(zip(self.mapping.keys(), (value.data for value in self.mapping.itervalues())))
+		return cacheMetrics

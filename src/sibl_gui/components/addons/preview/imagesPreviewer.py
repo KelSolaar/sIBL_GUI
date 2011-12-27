@@ -914,7 +914,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Previous_Image_pushButton.clicked.connect(self.__Previous_Image_pushButton__clicked)
 		self.Next_Image_pushButton.clicked.connect(self.__Next_Image_pushButton__clicked)
 		self.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
-		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton_clicked)
+		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
 		self.Zoom_Fit_pushButton.clicked.connect(self.__Zoom_Fit_pushButton__clicked)
 
 	@core.executionTrace
@@ -927,11 +927,10 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			return
 
 		image = self.__displayGraphicsItem.image
-		if hasattr(image, "data"):
-			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image.data.path),
-			 																		image.data.width,
-																					image.data.height,
-																					image.data.bpp))
+		self.Images_Informations_label.setText("{0} - {1}x{2} px - {3} bit".format(os.path.basename(image.data.path),
+		 																		image.data.width,
+																				image.data.height,
+																				image.data.bpp / 4))
 
 	@core.executionTrace
 	def __engine_imagesCaches_QImage__contentAdded(self, content):
@@ -949,7 +948,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			return
 
 		image = self.__container.engine.imagesCaches.QImage.getContent(path)
-
 		self.__setDisplayGraphicsItem(image)
 
 	@core.executionTrace
@@ -973,7 +971,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.loopThroughImages()
 
 	@core.executionTrace
-	def __Zoom_In_pushButton_clicked(self, checked):
+	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_In_pushButton** Widget is clicked.
 

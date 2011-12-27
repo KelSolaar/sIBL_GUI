@@ -2007,7 +2007,7 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: path, width, height, bpp. ( Key / Value pairs )
+		:param kwargs: path, width, height, bpp, osStats. ( Key / Value pairs )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

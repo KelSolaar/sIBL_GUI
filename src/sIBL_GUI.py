@@ -107,9 +107,9 @@ def _setImagesCaches():
 
 	loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
 	umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = foundations.dataStructures.Structure(**{
-								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QImage, default=loadingImage),
-								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QPixmap, default=loadingImage),
-								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QIcon, default=loadingImage)})
+								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QImage, default=loadingImage),
+								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QPixmap, default=loadingImage),
+								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QIcon, default=loadingImage)})
 
 class sIBL_GUI(umbra.engine.Umbra):
 	"""

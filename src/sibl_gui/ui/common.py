@@ -20,6 +20,7 @@
 import inspect
 import itertools
 import logging
+import os
 import re
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
@@ -35,6 +36,7 @@ import foundations.exceptions
 import sibl_gui.exceptions
 import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
+from sibl_gui.libraries.freeImage.freeImage import ImageInformationsHeader
 from sibl_gui.globals.uiConstants import UiConstants
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -57,6 +59,7 @@ __all__ = ["LOGGER",
 			"getIcon",
 			"getPixmap",
 			"getImage",
+			"getImageInformationsHeader",
 			"filterImagePath",
 			"getFormatedShotDate"]
 
@@ -140,7 +143,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 		:return: Graphic display. ( QIcon, QImage, QPixmap )
 		"""
 
@@ -163,7 +166,7 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None):
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 		:return: QIcon. ( QIcon )
 		"""
 
@@ -178,7 +181,7 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 		:return: QPixmap. ( QPixmap )
 		"""
 
@@ -193,12 +196,37 @@ def getImage(path, asynchronousLoading=True, imagesCache=None):
 
 		:param path: Icon image path. ( String )
 		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 		:return: QImage. ( QImage )
 		"""
 
 		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
 		return getGraphicsItem(path, QImage, asynchronousLoading, cache)
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
+def getImageInformationsHeader(path, graphicsItem):
+		"""
+		This method returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
+		from given path and graphics item.
+
+		:param path: Image path. ( String )
+		:param graphicsItem: Image graphics item. ( QImage, QPixmap, QIcon )
+		:return: Image informations header. ( ImageInformationsHeader )
+		"""
+
+		if not foundations.common.pathExists(path):
+			raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
+			inspect.getmodulename(__file__), path))
+
+		if type(graphicsItem) is QIcon:
+			graphicsItem = QPixmap(path)
+
+		return ImageInformationsHeader(path=path,
+										width=graphicsItem.width(),
+										height=graphicsItem.height(),
+										bpp=graphicsItem.depth(),
+										osStats=os.stat(path))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
