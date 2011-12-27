@@ -206,6 +206,9 @@ class sIBL_GUI(umbra.engine.Umbra):
 		for cache in self.__imagesCaches.itervalues():
 			self.workerThreads.append(cache.worker)
 
+		componentsManagerUi = self.componentsManager.getInterface("factory.componentsManagerUi")
+		self.imagesCaches.QIcon.contentAdded.connect(componentsManagerUi.view.viewport().update)
+
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		factoryScriptEditor._ScriptEditor__developmentLayout = "editCentric"
 		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__engine__contentDropped)
