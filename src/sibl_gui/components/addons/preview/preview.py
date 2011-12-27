@@ -113,7 +113,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													"text": "View Reflection Image",
 													"row" : 1,
 													"column" : 5},
-									"Plates" : {"object" : None,
+									"Plate" : {"object" : None,
 													"text": "View Plate(s)",
 													"row" : 1,
 													"column" : 6}}
@@ -722,7 +722,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Plates")
+		return self.viewIblSetsImages_ui("Plate")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
@@ -766,7 +766,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Plates")
+		return self.viewIblSetsImages_ui("Plate")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -804,7 +804,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
-		
+
 		value = str(self.Custom_Previewer_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
 			LOGGER.debug("> Restoring preferences!")
@@ -882,8 +882,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					self.__class__.__name__, inspectorIblSet.title))
 			else:
 				messageBox.messageBox("Warning", "Warning",
-				"{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, 
-																				inspectorIblSet.title, 
+				"{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__,
+																				inspectorIblSet.title,
 																				imageType))
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -899,7 +899,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			previewCommand = self.getProcessCommand(paths, customPreviewer)
 			if previewCommand:
 				LOGGER.debug("> Current image preview command: '{0}'.".format(previewCommand))
-				LOGGER.info("{0} | Launching Previewer with '{1}' images paths.".format(self.__class__.__name__, 
+				LOGGER.info("{0} | Launching Previewer with '{1}' images paths.".format(self.__class__.__name__,
 																						", ".join(paths)))
 				editProcess = QProcess()
 				editProcess.startDetached(previewCommand)
@@ -1003,7 +1003,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		elif imageType == "Reflection":
 			path = iblSet.reflectionImage
 			path and imagePaths.append(path)
-		elif imageType == "Plates":
+		elif imageType == "Plate":
 			if foundations.common.pathExists(iblSet.path):
 				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
 				sectionsFileParser = SectionsFileParser(iblSet.path)

@@ -90,6 +90,7 @@ class UiConstantsTestCase(unittest.TestCase):
 								"preferencesActiveIcon",
 								"formatErrorImage",
 								"missingImage",
+								"loadingImage",
 								"startupLayout",
 								"helpFile",
 								"apiFile",
@@ -389,6 +390,15 @@ class UiConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(UiConstants.missingImage, "\w+")
 		self.assertRegexpMatches(UiConstants.missingImage,
+								"\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+
+	def testLoadingImageAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.loadingImage` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.loadingImage, "\w+")
+		self.assertRegexpMatches(UiConstants.loadingImage,
 								"\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testStartupLayoutAttribute(self):

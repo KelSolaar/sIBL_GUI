@@ -701,6 +701,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view_addActions()
 
 		# Signals / Slots.
+		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.modelRefresh.connect(self.__collectionsOutliner__modelRefresh)
 		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__model__dataChanged)

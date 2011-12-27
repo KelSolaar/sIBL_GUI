@@ -65,3 +65,17 @@ class Win32OLEServerConnectionError(AbstractNetworkError):
 
 	pass
 
+class AbstractCacheError(foundations.exceptions.AbstractError):
+	"""
+	This class is the abstract base class for caching related exceptions.
+	"""
+
+	pass
+
+class CacheExistsError(foundations.exceptions.AbstractError):
+	"""
+	This class is used for non existing cache exceptions.
+	"""
+
+	pass
+

@@ -2339,7 +2339,11 @@ class Image(object):
 
 			image = QImage(voidptr(bitsPointer, size=height * pitch), width, height, pitch, QImage.Format_RGB32)
 
-			image.data = ImageInformationsHeader(path=self.__imagePath, width=width, height=height, bpp=bpp)
+			image.data = ImageInformationsHeader(path=self.__imagePath,
+												width=width,
+												height=height,
+												bpp=bpp,
+												osStats=os.stat(self.__imagePath))
 
 			# Removing the following line would result in a blank image display the first time.
 			LOGGER.debug("> Final memory pointer with '{0}' address.".format(image.bits().__int__()))

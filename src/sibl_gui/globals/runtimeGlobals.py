@@ -39,5 +39,5 @@ class RuntimeGlobals():
 	templatesUserDirectory = None
 	"""Templates user directory."""
 
-	imagesCache = None
+	imagesCaches = None
 	"""Images cache."""

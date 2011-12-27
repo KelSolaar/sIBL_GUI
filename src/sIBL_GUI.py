@@ -27,6 +27,8 @@ from PyQt4.QtCore import QString
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QDesktopServices
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
 
 #**********************************************************************************************************************
@@ -38,7 +40,6 @@ import sibl_gui.globals.runtimeGlobals
 import umbra.globals.constants
 import umbra.globals.uiConstants
 import umbra.globals.runtimeGlobals
-from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Dependencies globals manipulation.
@@ -71,9 +72,9 @@ _overrideDependenciesGlobals()
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.cache
 import foundations.common
 import foundations.core as core
+import sibl_gui.ui.cache
 import umbra.engine
 import umbra.ui.common
 from umbra.ui.widgets.active_QLabel import Active_QLabel
@@ -88,15 +89,26 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "sIBL_GUI", "extendCommandLineParametersParser"]
+__all__ = ["LOGGER",
+		"sIBL_GUI",
+		"extendCommandLineParametersParser"]
 
 LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
-
-RuntimeGlobals.imagesCache = foundations.cache.Cache()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+def _setImagesCaches():
+	"""
+	This definition sets the Application images caches.
+	"""
+
+	loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
+	umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = foundations.dataStructures.Structure(**{
+								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QImage, default=loadingImage),
+								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QPixmap, default=loadingImage),
+								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsCache(type=QIcon, default=loadingImage)})
+
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
 	This class is the main class of the **sIBL_GUI** package.
@@ -124,6 +136,9 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		self.__setPreInitialisationOverrides()
 
+		# --- Initializing Application images caches. ---
+		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
+
 		umbra.engine.Umbra.__init__(self,
 									parent,
 									componentsPaths,
@@ -132,45 +147,45 @@ class sIBL_GUI(umbra.engine.Umbra):
 									*args,
 									**kwargs)
 
-		self.__setPostInitialisationOverrides()
+		for cache in self.__imagesCaches.itervalues():
+			self.workerThreads.append(cache.worker)
 
-		# --- Initializing Application image cache. ---
-		self.__imagesCache = RuntimeGlobals.imagesCache
+		self.__setPostInitialisationOverrides()
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def imagesCache(self):
+	def imagesCaches(self):
 		"""
-		This method is the property for **self.__imagesCache** attribute.
+		This method is the property for **self.__imagesCaches** attribute.
 
-		:return: self.__imagesCache. ( Cache )
+		:return: self.__imagesCaches. ( Cache )
 		"""
 
-		return self.__imagesCache
+		return self.__imagesCaches
 
-	@imagesCache.setter
+	@imagesCaches.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def imagesCache(self, value):
+	def imagesCaches(self, value):
 		"""
-		This method is the setter method for **self.__imagesCache** attribute.
+		This method is the setter method for **self.__imagesCaches** attribute.
 
 		:param value: Attribute value. ( Cache )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesCache"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesCaches"))
 
-	@imagesCache.deleter
+	@imagesCaches.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def imagesCache(self):
+	def imagesCaches(self):
 		"""
-		This method is the deleter method for **self.__imagesCache** attribute.
+		This method is the deleter method for **self.__imagesCaches** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesCache"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesCaches"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -412,6 +427,8 @@ if __name__ == "__main__":
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
+
+	_setImagesCaches()
 
 	umbra.engine.run(sIBL_GUI,
 					commandLineParametersParser.parse_args(sys.argv),

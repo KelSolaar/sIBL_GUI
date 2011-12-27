@@ -129,6 +129,8 @@ class UiConstants():
 	"""Application format error image thumbnail: '**images/Thumbnail_Format_Not_Supported_Yet.png**' ( String )"""
 	missingImage = "images/Thumbnail_Not_Found.png"
 	"""Application missing image thumbnail: '**images/Thumbnail_Not_Found.png**' ( String )"""
+	loadingImage = "images/Loading.png"
+	"""Application loading image thumbnail: '**images/Loading.png**' ( String )"""
 
 	startupLayout = "startupCentric"
 	"""Application startup layout: '**startupCentric**' ( String )"""

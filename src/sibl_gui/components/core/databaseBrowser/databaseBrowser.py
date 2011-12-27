@@ -1248,6 +1248,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
+		for view in self.__views:
+			self.__engine.imagesCaches.QIcon.contentAdded.connect(view.viewport().update)
 		self.activeViewChanged.connect(self.__views__activeViewChanged)
 		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data

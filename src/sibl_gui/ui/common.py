@@ -17,9 +17,10 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
+import itertools
 import logging
 import re
-import itertools
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
@@ -31,11 +32,12 @@ import foundations.common
 import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
+import sibl_gui.exceptions
 import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
 from sibl_gui.globals.uiConstants import UiConstants
-from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -49,7 +51,9 @@ __status__ = "Production"
 
 __all__ = ["LOGGER",
 			"Icon",
-			"getDisplayItem",
+			"convertImage",
+			"loadGraphicsItem",
+			"getGraphicsItem",
 			"getIcon",
 			"getPixmap",
 			"getImage",
@@ -80,72 +84,121 @@ class Icon(foundations.dataStructures.Structure):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-@core.memoize(RuntimeGlobals.imagesCache)
-def getDisplayItem(path, type):
+def convertImage(image, type):
+	"""
+	This method converts given image to given type.
+
+	:param image: Image to convert. ( QImage )
+	:return: Converted image. ( QImage / QPixmap / QIcon )
+	"""
+
+	graphicsItem = image
+	if type == QIcon:
+		graphicsItem = QIcon(QPixmap(image))
+	elif type == QPixmap:
+		graphicsItem = QPixmap(image)
+
+	return graphicsItem
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def loadGraphicsItem(path, type):
+		"""
+		This method loads a graphic item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
+		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+
+		:param path: Image path. ( String )
+		:param type: QIcon, QImage, QPixmap. ( QObject )
+		:return: Graphics item. ( QIcon, QImage, QPixmap )
+		"""
+
+		if not foundations.common.pathExists(path):
+			graphicsItem = type(umbra.ui.common.getResourcePath(UiConstants.missingImage))
+		else:
+			for extension in UiConstants.nativeImageFormats.itervalues():
+				if re.search(extension, path, flags=re.IGNORECASE):
+					graphicsItem = type(path)
+					break
+			else:
+				for extension in UiConstants.thirdPartyImageFormats.itervalues():
+					if re.search(extension, path, flags=re.IGNORECASE):
+						image = Image(str(path))
+						image = image.convertToQImage()
+						graphicsItem = convertImage(image, type)
+						break
+				else:
+					graphicsItem = type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
+		return graphicsItem
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
 		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: Graphic display. ( QIcon, QImage, QPixmap )
 		"""
 
-		if foundations.common.pathExists(path):
-			for extension in UiConstants.nativeImageFormats.itervalues():
-				if re.search(extension, path, flags=re.IGNORECASE):
-					return type(path)
-			else:
-				for extension in UiConstants.thirdPartyImageFormats.itervalues():
-					if re.search(extension, path, flags=re.IGNORECASE):
-						image = Image(str(path))
-						image = image.convertToQImage()
-						if type == QIcon:
-							return QIcon(QPixmap(image))
-						elif type == QImage:
-							return image
-						elif type == QPixmap:
-							return QPixmap(image)
-				else:
-					return type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get(type.__name__)
+		if cache is None:
+			raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(
+				inspect.getmodulename(__file__), type.__name__))
+
+		if asynchronousLoading:
+			cache.addDeferredContent(path)
 		else:
-			return type(umbra.ui.common.getResourcePath(UiConstants.missingImage))
+			not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
+		return cache.getContent(path)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIcon(path):
+def getIcon(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QIcon. ( QIcon )
 		"""
 
-		return getDisplayItem(path, QIcon)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
+		return getGraphicsItem(path, QIcon, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getPixmap(path):
+def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QPixmap. ( QPixmap )
 		"""
 
-		return getDisplayItem(path, QPixmap)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
+		return getGraphicsItem(path, QPixmap, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getImage(path):
+def getImage(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QImage. ( QImage )
 		"""
 
-		return getDisplayItem(path, QImage)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
+		return getGraphicsItem(path, QImage, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
