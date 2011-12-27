@@ -1,7 +1,7 @@
 [Setup]
 Version=3.9
 AppName=sIBL_GUI
-AppVersion=4.0.0
+AppVersion=4.0.1
 CompanyName=HDRLabs
 WebSite=http://www.hdrlabs.com/
 SupportLink=mailto:thomas.mansencal@gmail.com
