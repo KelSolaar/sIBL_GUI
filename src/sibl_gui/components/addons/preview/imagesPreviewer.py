@@ -255,7 +255,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__graphicsSceneBackgroundColor = QColor(48, 48, 48)
 		self.__minimumZoomFactor = 0.05
 		self.__maximumZoomFactor = 25
-		self.__previewerMargin = 128
 		self.__displayGraphicsItemMargin = 32
 		self.__graphicsSceneWidth = QApplication.desktop().screenGeometry(
 								QApplication.desktop().primaryScreen()).width() * (1 / self.__minimumZoomFactor * 1.75)
@@ -270,7 +269,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		ImagesPreviewer.__initializeUi(self)
 
-		self.fitImage()
+		self.loadImage()
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -534,38 +533,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
-
-	@property
-	def previewerMargin(self):
-		"""
-		This method is the property for **self.__previewerMargin** attribute.
-
-		:return: self.__previewerMargin. ( Integer )
-		"""
-
-		return self.__previewerMargin
-
-	@previewerMargin.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewerMargin(self, value):
-		"""
-		This method is the setter method for **self.__previewerMargin** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "previewerMargin"))
-
-	@previewerMargin.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewerMargin(self):
-		"""
-		This method is the deleter method for **self.__previewerMargin** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "previewerMargin"))
 
 	@property
 	def graphicsSceneWidth(self):
@@ -865,7 +832,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		super(ImagesPreviewer, self).show()
-		self.fitImage()
+		umbra.ui.common.centerWidgetOnScreen(self)
 
 	@core.executionTrace
 	def closeEvent(self, event):
@@ -904,7 +871,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		elif key == Qt.Key_Minus:
 			self.scaleView(1 / self.__keyZoomFactor)
 		else:
-			QGraphicsView.keyPressEvent(self, event)
+			super(ImagesPreviewer, self).keyPressEvent(event)
 
 	@core.executionTrace
 	def __initializeUi(self):
@@ -940,17 +907,50 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__graphicsView.setScene(self.__graphicsScene)
 		self.__graphicsView.setBackgroundBrush(QBrush(self.__graphicsSceneBackgroundColor))
 
-		self.setImage()
-		self.fitPreviewer()
-
 		self.Images_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
 
 		# Signals / Slots.
+		self.__container.engine.imagesCaches.QImage.contentAdded.connect(self.__engine_imagesCaches_QImage__contentAdded)
 		self.Previous_Image_pushButton.clicked.connect(self.__Previous_Image_pushButton__clicked)
 		self.Next_Image_pushButton.clicked.connect(self.__Next_Image_pushButton__clicked)
 		self.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
 		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton_clicked)
 		self.Zoom_Fit_pushButton.clicked.connect(self.__Zoom_Fit_pushButton__clicked)
+
+	@core.executionTrace
+	def __Images_Informations_label_setUi(self):
+		"""
+		This method sets the **Images_Informations_label** Widget ui.
+		"""
+
+		if not self.__displayGraphicsItem:
+			return
+
+		image = self.__displayGraphicsItem.image
+		if hasattr(image, "data"):
+			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image.data.path),
+			 																		image.data.width,
+																					image.data.height,
+																					image.data.bpp))
+
+	@core.executionTrace
+	def __engine_imagesCaches_QImage__contentAdded(self, content):
+		"""
+		This method is triggered by the Application **QImage** images cache when content has been added.
+
+		:param content: Cache added content. ( List )
+		"""
+
+		if not self.__paths:
+			return
+
+		path = content[0]
+		if not path in self.__paths:
+			return
+
+		image = self.__container.engine.imagesCaches.QImage.getContent(path)
+
+		self.__setDisplayGraphicsItem(image)
 
 	@core.executionTrace
 	def __Previous_Image_pushButton__clicked(self, checked):
@@ -1003,12 +1003,48 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.fitImage()
 
 	@core.executionTrace
+	def __setDisplayGraphicsItem(self, image):
+		"""
+		This method sets the display graphics item using given image.
+
+		:param image: Image to display. ( Qimage )
+		"""
+
+		LOGGER.debug("> Initializing graphics item.")
+		if self.__displayGraphicsItem:
+			self.__graphicsScene.removeItem(self.__displayGraphicsItem)
+
+		self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
+		self.__graphicsScene.addItem(self.__displayGraphicsItem)
+
+		self.__Images_Informations_label_setUi()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def loadImage(self, index=0):
+		"""
+		This method loads the display image.
+
+		:param index: Index to load. ( Integer )
+		:return: Method success. ( Boolean )
+		"""
+
+		if not self.__paths:
+			return
+
+		image = sibl_gui.ui.common.getImage(self.__paths[index])
+		self.__setDisplayGraphicsItem(image)
+
+		return True
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def scaleView(self, scaleFactor):
 		"""
 		This method scales the QGraphicsView.
 
 		:param scaleFactor: Float ( Float )
+		:return: Method success. ( Boolean )
 		"""
 
 		graphicsView = self.findChild(QGraphicsView)
@@ -1017,71 +1053,49 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			return
 
 		graphicsView.scale(scaleFactor, scaleFactor)
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def fitPreviewer(self):
+	def fitWindow(self):
 		"""
 		This method fits the previewer window.
+		
+		:return: Method success. ( Boolean )
 		"""
 
-		if self.__displayGraphicsItem:
-			desktopWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width()
-			desktopHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height()
-			width = self.__displayGraphicsItem.width > desktopWidth and \
-					desktopWidth / 1.5 + self.__previewerMargin or \
-					self.__displayGraphicsItem.width + self.__previewerMargin
-			height = self.__displayGraphicsItem.height > desktopHeight and \
-					desktopHeight / 1.5 + self.__previewerMargin or \
-					self.__displayGraphicsItem.height + self.__previewerMargin
+		if not self.__displayGraphicsItem:
+			return
 
-			self.resize(width, height)
-			umbra.ui.common.centerWidgetOnScreen(self)
+		desktopWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width()
+		desktopHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height()
+		width = min(desktopWidth * 0.80, self.__displayGraphicsItem.width)
+		height = min(desktopHeight * 0.80, self.__displayGraphicsItem.height)
+		self.resize(width, height)
 
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setImage(self, index=0):
-		"""
-		This method sets the display image.
+		umbra.ui.common.centerWidgetOnScreen(self)
 
-		:param index: Index to display. ( Integer )
-		"""
-
-		if self.__paths:
-			path = self.__paths[index]
-			image = sibl_gui.ui.common.getImage(path)
-			if not hasattr(image, "data"):
-				image.data = freeImage.ImageInformationsHeader(path=path,
-																width=image.width(),
-																height=image.height(),
-																bpp=image.depth())
-
-			LOGGER.debug("> Initializing graphics item.")
-			if self.__displayGraphicsItem:
-				self.__graphicsScene.removeItem(self.__displayGraphicsItem)
-
-			self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
-			self.__graphicsScene.addItem(self.__displayGraphicsItem)
-
-			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image.data.path),
-			 																		image.data.width,
-																					image.data.height,
-																					image.data.bpp))
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def fitImage(self):
 		"""
 		This method fits the display image.
+		
+		:return: Method success. ( Boolean )
 		"""
 
-		if self.__displayGraphicsItem:
-			self.__graphicsView.fitInView(
-			QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2),
-					- (self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2),
-					self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin,
-					self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin),
-					Qt.KeepAspectRatio)
+		if not self.__displayGraphicsItem:
+			return
+
+		self.__graphicsView.fitInView(
+		QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2),
+				- (self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2),
+				self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin,
+				self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin),
+				Qt.KeepAspectRatio)
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1090,6 +1104,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method loops through Images Previewer images.
 
 		:param backward: Looping backward. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		index = self.__paths.index(self.__displayGraphicsItem.image.data.path)
@@ -1098,5 +1113,5 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			index = len(self.__paths) - 1
 		elif index > len(self.__paths) - 1:
 			index = 0
-		self.setImage(index)
-		self.fitImage()
+		self.loadImage(index)
+		return True

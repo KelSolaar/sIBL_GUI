@@ -136,7 +136,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		self.__setPreInitialisationOverrides()
 
-		# --- Initializing Application image cache. ---
+		# --- Initializing Application images caches. ---
 		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
 
 		umbra.engine.Umbra.__init__(self,
@@ -146,6 +146,9 @@ class sIBL_GUI(umbra.engine.Umbra):
 									visibleComponents,
 									*args,
 									**kwargs)
+
+		for cache in self.__imagesCaches.itervalues():
+			self.workerThreads.append(cache.worker)
 
 		self.__setPostInitialisationOverrides()
 

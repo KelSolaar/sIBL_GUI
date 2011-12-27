@@ -944,7 +944,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Inspector_Overall_frame_addActions()
 
 		# Signals / Slots.
-		self.__engine.imagesCaches.QIcon.cacheUpdated.connect(self.__view.viewport().update)
+		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
 		for view in self.__coreDatabaseBrowser.views:
@@ -1011,7 +1011,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																				self.__inspectorIblSet.location))
 
 			if self.__inspectorIblSet.previewImage:
-				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__inspectorIblSet.previewImage))
+				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__inspectorIblSet.previewImage,
+																		asynchronousLoading=False))
 				self.__drawInspectorIblSetOverlay()
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(
@@ -1028,10 +1029,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__inspectorIblSet.comment))
 
-			if self.__inspectorPlates:
-				self.Plates_frame.show()
-			else:
-				self.Plates_frame.hide()
+			self.Plates_frame.setVisible(bool(self.__inspectorPlates))
 		else:
 			self.__Inspector_DockWidget_clearUi()
 
@@ -1079,7 +1077,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if node.family == "Plate":
-			self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(node.plate.previewImage))
+			self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(node.plate.previewImage, asynchronousLoading=False))
 		else:
 			self.uiRefresh.emit()
 

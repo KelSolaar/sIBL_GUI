@@ -125,30 +125,31 @@ def loadGraphicsItem(path, type):
 						image = Image(str(path))
 						image = image.convertToQImage()
 						graphicsItem = convertImage(image, type)
+						break
 				else:
 					graphicsItem = type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
 		return graphicsItem
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getGraphicsItem(path, type, deferredLoading=True, imagesCaches=None):
+def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
 		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
-		:param deferredLoading: Images are loaded asynchronously. ( Boolean )
-		:param imagesCaches: Images cache. ( Dictionary / Structure )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: Graphic display. ( QIcon, QImage, QPixmap )
 		"""
 
-		cache = imagesCaches and imagesCaches.get(type.__name__) or RuntimeGlobals.imagesCaches.get(type.__name__)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get(type.__name__)
 		if cache is None:
 			raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(
 				inspect.getmodulename(__file__), type.__name__))
 
-		if deferredLoading:
+		if asynchronousLoading:
 			cache.addDeferredContent(path)
 		else:
 			not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
@@ -156,39 +157,48 @@ def getGraphicsItem(path, type, deferredLoading=True, imagesCaches=None):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIcon(path):
+def getIcon(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QIcon. ( QIcon )
 		"""
 
-		return getGraphicsItem(path, QIcon)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
+		return getGraphicsItem(path, QIcon, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getPixmap(path):
+def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QPixmap. ( QPixmap )
 		"""
 
-		return getGraphicsItem(path, QPixmap)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
+		return getGraphicsItem(path, QPixmap, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getImage(path):
+def getImage(path, asynchronousLoading=True, imagesCache=None):
 		"""
 		This method gets a `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 
 		:param path: Icon image path. ( String )
+		:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+		:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsCache )
 		:return: QImage. ( QImage )
 		"""
 
-		return getGraphicsItem(path, QImage)
+		cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
+		return getGraphicsItem(path, QImage, asynchronousLoading, cache)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

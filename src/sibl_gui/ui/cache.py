@@ -55,10 +55,20 @@ class AbstractResourcesCache(QObject):
 	This class is a `QObject <http://doc.qt.nokia.com/4.7/qobject.html>`_ subclass used as an abstract resources cache.
 	"""
 
-	cacheUpdated = pyqtSignal()
+	contentAdded = pyqtSignal(list)
 	"""
 	This signal is emited by the :class:`AsynchronousGraphicsCache` class
-	whenever its content has been updated. ( pyqtSignal )
+	whenever content has been added. ( pyqtSignal )
+	
+	:return: Content added to the cache. ( List )	
+	"""
+
+	contentRemoved = pyqtSignal(list)
+	"""
+	This signal is emited by the :class:`AsynchronousGraphicsCache` class
+	whenever content has been removed. ( pyqtSignal )
+	
+	:return: Content removed from the cache. ( List )	
 	"""
 
 	@core.executionTrace
@@ -113,6 +123,18 @@ class AbstractResourcesCache(QObject):
 	#******************************************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def isCached(self, key):
+		"""
+		This method returns if given content is cached.
+
+		:param key: Content to retrieve. ( Object )
+		:return: Is content cached. ( Boolean )
+		"""
+
+		return key in self.__mapping
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method adds given content to the cache.
@@ -124,7 +146,7 @@ class AbstractResourcesCache(QObject):
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
 		self.__mapping.update(**content)
-		self.cacheUpdated.emit()
+		self.contentAdded.emit(content.keys())
 		return True
 
 	@core.executionTrace
@@ -144,7 +166,7 @@ class AbstractResourcesCache(QObject):
 				raise KeyError("{0} | '{1}' key doesn't exists in cache content!".format(self.__class__.__name__, key))
 
 			del self.__mapping[key]
-			self.cacheUpdated.emit()
+			self.contentRemoved.emit([key])
 		return True
 
 	@core.executionTrace
@@ -172,8 +194,9 @@ class AbstractResourcesCache(QObject):
 
 		LOGGER.debug("> Flushing cache content.".format(self.__class__.__name__))
 
+		content = self.__mapping.keys()
 		self.__mapping.clear()
-		self.cacheUpdated.emit()
+		self.contentRemoved.emit(content)
 		return True
 
 class AsynchronousGraphicsCache(AbstractResourcesCache):
@@ -316,8 +339,9 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		"""
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
 		graphicsItem.data = image.data
-		self.mapping[graphicsItem.data.path] = graphicsItem
-		self.cacheUpdated.emit()
+		path = graphicsItem.data.path
+		self.mapping[path] = graphicsItem
+		self.contentAdded.emit([path])
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -338,7 +362,7 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 				del(content[path])
 
 		self.mapping.update(**content)
-		self.cacheUpdated.emit()
+		self.contentAdded.emit(content.keys())
 		return True
 
 	@core.executionTrace
@@ -347,7 +371,7 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 		"""
 		This method adds given content to the cache.
 
-		:param \*\*content: Comantent to add. ( \*\* )
+		:param \*content: Comantent to add. ( \* )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -368,6 +392,6 @@ class AsynchronousGraphicsCache(AbstractResourcesCache):
 						self.__class__.__name__, path))
 
 			self.mapping[path] = self.__type(self.default)
-			self.cacheUpdated.emit()
+			self.contentAdded.emit([path])
 			self.__worker.addRequest(path)
 		return True

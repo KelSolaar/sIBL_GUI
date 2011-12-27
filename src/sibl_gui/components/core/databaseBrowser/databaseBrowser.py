@@ -1249,7 +1249,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		for view in self.__views:
-			self.__engine.imagesCaches.QIcon.cacheUpdated.connect(view.viewport().update)
+			self.__engine.imagesCaches.QIcon.contentAdded.connect(view.viewport().update)
 		self.activeViewChanged.connect(self.__views__activeViewChanged)
 		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data

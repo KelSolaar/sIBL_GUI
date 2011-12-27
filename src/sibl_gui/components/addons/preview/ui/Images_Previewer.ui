@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>sIBL_GUI_Images_Previewer_Form</class>
  <widget class="QWidget" name="sIBL_GUI_Images_Previewer_Form">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>492</width>
-    <height>82</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>sIBL_GUI - Images Previewer</string>
   </property>
