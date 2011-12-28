@@ -21,6 +21,7 @@ Change Log
 -  A new "imagesCachesOperations" component has been introduced to allow manual images caches operations.
 -  Dropped **NSIS** installer for "**Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
 -  Prevented an exception in **Inspector** component when a plate was selected and the view attempted to store the current nodes selection.
+-  Prevented an exception in **Inspector** component when current Ibl Set preview image doesn't exists.
 
 4.0.0 - Alpha
 --------------
