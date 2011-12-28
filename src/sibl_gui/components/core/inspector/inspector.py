@@ -1007,11 +1007,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if self.__inspectorIblSet:
-
 			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__inspectorIblSet.title,
 																				self.__inspectorIblSet.location))
 
-			if self.__inspectorIblSet.previewImage:
+			if foundations.common.pathExists(self.__inspectorIblSet.previewImage):
 				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__inspectorIblSet.previewImage,
 																		asynchronousLoading=False))
 				self.__drawInspectorIblSetOverlay()
@@ -1021,12 +1020,12 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__inspectorIblSet.author, self.__inspectorIblSet.link))
 
 			self.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(
-			self.__inspectorIblSet.title,
-			self.__inspectorIblSet.author or Constants.nullObject,
-			self.__inspectorIblSet.location or Constants.nullObject,
-			sibl_gui.ui.common.getFormatedShotDate(self.__inspectorIblSet.date,
-												self.__inspectorIblSet.time) or Constants.nullObject,
-			self.__inspectorIblSet.comment or Constants.nullObject))
+													self.__inspectorIblSet.title,
+													self.__inspectorIblSet.author or Constants.nullObject,
+													self.__inspectorIblSet.location or Constants.nullObject,
+													sibl_gui.ui.common.getFormatedShotDate(self.__inspectorIblSet.date,
+																self.__inspectorIblSet.time) or Constants.nullObject,
+																self.__inspectorIblSet.comment or Constants.nullObject))
 
 			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__inspectorIblSet.comment))
 
