@@ -55,6 +55,7 @@ Table Of Content
       -  `Database Operations`_
       -  `Gps Map`_
       -  `Ibl Sets Scanner`_
+      -  `Images Caches Operations`_
       -  `Loader Script`_
       -  `Loader Script Options`_
       -  `Locations Browser`_
@@ -104,7 +105,7 @@ Why an external application instead of directly using scripting possibilities of
 
 With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 
-The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
+The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
 
 *sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
@@ -162,6 +163,11 @@ If you want to build the documentation you will need:
 
 -  **Sphinx**: http://sphinx.pocoo.org/
 -  **Tidy** http://tidy.sourceforge.net/
+
+The softwares used to generate the Windows and Mac Os X installers are respectively:
+
+-  **Actual Installer**: http://www.actualinstaller.com/
+-  **Drop DMG** http://c-command.com/dropdmg/
 
 .. .usage
 
@@ -691,7 +697,7 @@ Columns Descriptions:
 
 Interactions:
 
--  **Double clic**: Edits selected Ibl Set title.
+-  **Double clic**: Opens the current Ibl Set in the *Inspector* component.
 -  **Right clic**: Displays a context menu described further.
 -  **Drag’n’drop**:
 
@@ -897,6 +903,24 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Ibl Sets Scanner* component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
+
+**\*\*\***
+
+.. _addons.imagesCachesOperations:
+
+_`Images Caches Operations` (addons.imagesCachesOperations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg     |
++------------------------------------------------------------------------+
+
+The *Images Caches Operations* component allows the user to manipulate *sIBL_GUI* images caches.
+
+Interactions:
+
+-  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
+-  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
 **\*\*\***
 

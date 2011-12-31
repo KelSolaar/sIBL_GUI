@@ -37,6 +37,7 @@ Modules Summary:
    sibl_gui.components.addons.gpsMap.views <api/sibl_gui.components.addons.gpsMap.views>
    sibl_gui.components.addons.iblSetsScanner.iblSetsScanner <api/sibl_gui.components.addons.iblSetsScanner.iblSetsScanner>
    sibl_gui.components.addons.iblSetsScanner.workers <api/sibl_gui.components.addons.iblSetsScanner.workers>
+   sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations <api/sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations>
    sibl_gui.components.addons.loaderScript.loaderScript <api/sibl_gui.components.addons.loaderScript.loaderScript>
    sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions <api/sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions>
    sibl_gui.components.addons.locationsBrowser.locationsBrowser <api/sibl_gui.components.addons.locationsBrowser.locationsBrowser>
@@ -76,9 +77,11 @@ Modules Summary:
    sibl_gui.globals.runtimeGlobals <api/sibl_gui.globals.runtimeGlobals>
    sibl_gui.globals.uiConstants <api/sibl_gui.globals.uiConstants>
    sibl_gui.libraries.freeImage.freeImage <api/sibl_gui.libraries.freeImage.freeImage>
+   sibl_gui.ui.cache <api/sibl_gui.ui.cache>
    sibl_gui.ui.common <api/sibl_gui.ui.common>
    sibl_gui.ui.models <api/sibl_gui.ui.models>
    sibl_gui.ui.views <api/sibl_gui.ui.views>
+   sibl_gui.ui.workers <api/sibl_gui.ui.workers>
    umbra.actionsManager <api/umbra.actionsManager>
    umbra.components.factory.componentsManagerUi.componentsManagerUi <api/umbra.components.factory.componentsManagerUi.componentsManagerUi>
    umbra.components.factory.componentsManagerUi.models <api/umbra.components.factory.componentsManagerUi.models>

@@ -11,13 +11,19 @@ Module Attributes
 Functions
 ---------
 
-.. autofunction:: getDisplayItem
+.. autofunction:: convertImage
+
+.. autofunction:: loadGraphicsItem
+
+.. autofunction:: getGraphicsItem
 
 .. autofunction:: getIcon
 
 .. autofunction:: getPixmap
 
 .. autofunction:: getImage
+
+.. autofunction:: getImageInformationsHeader
 
 .. autofunction:: filterImagePath
 

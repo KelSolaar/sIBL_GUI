@@ -172,6 +172,9 @@
 										<a class="reference internal" href="#ibl-sets-scanner">Ibl Sets Scanner</a>
 									</li>
 									<li>
+										<a class="reference internal" href="#images-caches-operations">Images Caches Operations</a>
+									</li>
+									<li>
 										<a class="reference internal" href="#loader-script">Loader Script</a>
 									</li>
 									<li>
@@ -257,7 +260,7 @@
 					With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 				</p>
 				<p>
-					The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That’s one of <em>sIBL_GUI</em> strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
+					The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That’s one of <em>sIBL_GUI</em> strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
 				</p>
 				<p>
 					<em>sIBL_GUI</em> is built around <a class="reference external" href="https://github.com/KelSolaar/Umbra">Umbra</a> Framework in <a class="reference external" href="http://www.python.org/">Python 2.7.1</a> and uses some others major libraries / tools:
@@ -367,6 +370,17 @@
 						</li>
 						<li>
 							<strong>Tidy</strong> <a class="reference external" href="http://tidy.sourceforge.net/">http://tidy.sourceforge.net/</a>
+						</li>
+					</ul>
+					<p>
+						The softwares used to generate the Windows and Mac Os X installers are respectively:
+					</p>
+					<ul class="simple">
+						<li>
+							<strong>Actual Installer</strong>: <a class="reference external" href="http://www.actualinstaller.com/">http://www.actualinstaller.com/</a>
+						</li>
+						<li>
+							<strong>Drop DMG</strong> <a class="reference external" href="http://c-command.com/dropdmg/">http://c-command.com/dropdmg/</a>
 						</li>
 					</ul><!-- .usage -->
 				</div>
@@ -1546,7 +1560,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 						</p>
 						<ul class="simple">
 							<li>
-								<strong>Double clic</strong>: Edits selected Ibl Set title.
+								<strong>Double clic</strong>: Opens the current Ibl Set in the <em>Inspector</em> component.
 							</li>
 							<li>
 								<strong>Right clic</strong>: Displays a context menu described further.
@@ -1994,6 +2008,41 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 						<p>
 							The <em>Ibl Sets Scanner</em> component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
 						</p>
+						<p>
+							<strong>***</strong>
+						</p>
+					</div>
+					<div class="section" id="images-caches-operations-addons-imagescachesoperations">
+						<span id="addons-imagescachesoperations"></span>
+						<h3>
+							<span class="target" id="images-caches-operations">Images Caches Operations</span> (addons.imagesCachesOperations)
+						</h3>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg" class="first last" src="resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The <em>Images Caches Operations</em> component allows the user to manipulate <em>sIBL_GUI</em> images caches.
+						</p>
+						<p>
+							Interactions:
+						</p>
+						<ul class="simple">
+							<li>
+								<strong>Output Images Caches Metrics Push Button</strong>: Outputs various images caches metrics: Images count, paths, sizes.
+							</li>
+							<li>
+								<strong>Clear Images Caches Push Button</strong>: Clears the various images caches, the Python interpreter may not release the memory immediately.
+							</li>
+						</ul>
 						<p>
 							<strong>***</strong>
 						</p>
@@ -2499,7 +2548,7 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 					Change Log
 				</h1>
 				<p>
-					<strong>sIBL_GUI - Change Log</strong>: <a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html">http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html</a>
+					<strong>sIBL_GUI - Change Log</strong>: <a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Change_Log/Change_Log.html">http://kelsolaar.hdrlabs.com/sIBL_GUI/Change_Log/Change_Log.html</a>
 				</p><!-- .about -->
 			</div>
 			<div class="section" id="about">

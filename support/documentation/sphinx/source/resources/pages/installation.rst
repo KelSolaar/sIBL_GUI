@@ -30,3 +30,8 @@ If you want to build the documentation you will need:
 -  **Sphinx**: http://sphinx.pocoo.org/
 -  **Tidy** http://tidy.sourceforge.net/
 
+The softwares used to generate the Windows and Mac Os X installers are respectively:
+
+-  **Actual Installer**: http://www.actualinstaller.com/
+-  **Drop DMG** http://c-command.com/dropdmg/
+

@@ -290,7 +290,7 @@ Columns Descriptions:
 
 Interactions:
 
--  **Double clic**: Edits selected Ibl Set title.
+-  **Double clic**: Opens the current Ibl Set in the *Inspector* component.
 -  **Right clic**: Displays a context menu described further.
 -  **Drag’n’drop**:
 
@@ -496,6 +496,24 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Ibl Sets Scanner* component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
+
+
+
+.. _addons.imagesCachesOperations:
+
+_`Images Caches Operations` (addons.imagesCachesOperations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ImagesCachesOperations.jpg            |
++------------------------------------------------------------------------+
+
+The *Images Caches Operations* component allows the user to manipulate *sIBL_GUI* images caches.
+
+Interactions:
+
+-  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
+-  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
 
 

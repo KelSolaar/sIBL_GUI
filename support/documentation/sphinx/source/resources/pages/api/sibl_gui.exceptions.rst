@@ -22,3 +22,15 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractCacheError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: CacheExistsError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: CacheOperationError
+	:show-inheritance:
+	:members:
+

@@ -5,7 +5,7 @@ Why an external application instead of directly using scripting possibilities of
 
 With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 
-The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
+The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
 
 *sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
