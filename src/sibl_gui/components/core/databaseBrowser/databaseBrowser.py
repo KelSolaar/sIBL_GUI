@@ -138,6 +138,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__extension = "ibl"
 
 		self.__editLayout = "editCentric"
+		self.__inspectLayout = "inspectCentric"
 
 		self.__factoryScriptEditor = None
 		self.__coreDb = None
@@ -715,6 +716,38 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
+	def inspectLayout(self):
+		"""
+		This method is the property for **self.__editLayout** attribute.
+
+		:return: self.__editLayout. ( String )
+		"""
+
+		return self.__editLayout
+
+	@inspectLayout.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectLayout(self, value):
+		"""
+		This method is the setter method for **self.__editLayout** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectLayout"))
+
+	@inspectLayout.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectLayout(self):
+		"""
+		This method is the deleter method for **self.__editLayout** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectLayout"))
+
+	@property
 	def factoryScriptEditor(self):
 		"""
 		This method is the property for **self.__factoryScriptEditor** attribute.
@@ -1250,6 +1283,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		for view in self.__views:
 			self.__engine.imagesCaches.QIcon.contentAdded.connect(view.viewport().update)
+			view.doubleClicked.connect(self.__views__doubleClicked)
 		self.activeViewChanged.connect(self.__views__activeViewChanged)
 		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
@@ -1477,6 +1511,16 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.setActiveViewIndex(index)
+
+	@core.executionTrace
+	def __views__doubleClicked(self, index):
+		"""
+		This method is triggered when a **\*_View** Widget is double clicked.
+
+		:param index: Clicked item index. ( Integer )
+		"""
+
+		self.__engine.restoreLayout(self.__inspectLayout)
 
 	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):
@@ -2019,7 +2063,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		nodeFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or \
-		int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
+		int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(
 		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
