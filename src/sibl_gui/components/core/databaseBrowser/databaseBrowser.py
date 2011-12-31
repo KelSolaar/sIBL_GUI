@@ -1517,7 +1517,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when a **\*_View** Widget is double clicked.
 
-		:param index: Clicked item index. ( Integer )
+		:param index: Clicked item index. ( QModelIndex )
 		"""
 
 		self.__engine.restoreLayout(self.__inspectLayout)
