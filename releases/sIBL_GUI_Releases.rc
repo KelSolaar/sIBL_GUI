@@ -1,4 +1,4 @@
 [sIBL_GUI]
-Release = 4.0.0
-Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows/Nightly/sIBL_GUI.exe" | Mac Os X | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Darwin/Nightly/sIBL_GUI.dmg" | Linux | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Linux/Nightly/sIBL_GUI.tar.gz"
-Type = "Nightly"
+Release = 4.0.1
+Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows/Stable/sIBL_GUI.exe" | Mac Os X | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Darwin/Stable/sIBL_GUI.dmg" | Linux | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Linux/Nightly/sIBL_GUI.tar.gz"
+Type = "Stable"
