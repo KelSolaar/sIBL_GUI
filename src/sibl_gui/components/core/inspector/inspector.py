@@ -178,17 +178,17 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											<img src="{0}">
 										</td>
 										<td>
-											<p><b>Preview Image unavailable!<b></p>
+											<p><b>Preview Image is unavailable!<b></p>
 											What now?
 											<ul>
 												<li>Check For an updated set on <b>HDRLabs</b> at
 												<a href="http://www.hdrlabs.com/sibl/archive.html">
-												<span style=" text-decoration: underline; color:#e0e0e0;">
+												<span style="text-decoration: underline; color:#e0e0e0;">
 												http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
-												<li>Contact <b>{1}</b> At <a href="{2}">
-												<span style=" text-decoration: underline; color:#e0e0e0;">{2}</span>
-												</a> for an updated set.</li>
-												<li>Resize The background image to 600x300 pixels.<br/>
+												<li>Contact <b>{1}</b> for an updated Ibl Set: <a href="{2}">
+												<span style="text-decoration: underline; color:#e0e0e0;">{2}</span>
+												</a></li>
+												<li>Resize the background image to 600x300 pixels.<br/>
 												Save it as a jpeg in your set directory.<br/>
 												Register it in the ."ibl" file header using the "PREVIEWfile" attribute.
 												</li>
