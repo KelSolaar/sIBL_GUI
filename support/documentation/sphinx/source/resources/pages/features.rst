@@ -9,11 +9,16 @@ The bridge between *sIBL_GUI* and the 3d package is done through Templates that 
 
 *sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
-- `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `PyQt <http://www.riverbankcomputing.co.uk/>`_ bindings.
-- `SQLAlchemy <http://www.sqlalchemy.org/>`_ provides the database backbone.
-- `SQLAlchemy-migrate <http://code.google.com/p/sqlalchemy-migrate/>`_ adds support for database migrations.
-- `Sphinx <http://sphinx.pocoo.org/>`_ provides the documentation build system.
-- `Tidy <http://tidy.sourceforge.net/>`_ is used to cleanup docutils documentation html files.
+-  `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `PyQt <http://www.riverbankcomputing.co.uk/>`_ bindings.
+-  `SQLAlchemy <http://www.sqlalchemy.org/>`_ provides the database backbone.
+-  `SQLAlchemy-migrate <http://code.google.com/p/sqlalchemy-migrate/>`_ adds support for database migrations.
+-  `Sphinx <http://sphinx.pocoo.org/>`_ provides the documentation build system.
+-  `Tidy <http://tidy.sourceforge.net/>`_ is used to cleanup docutils documentation html files.
+
+The following softwares are used to generate the Windows and Mac Os X installers:
+
+-  `Actual Installer <http://www.actualinstaller.com/>`_
+-  `Drop DMG <http://c-command.com/dropdmg/>`_
 
 Some highlights:
 

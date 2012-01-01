@@ -283,6 +283,17 @@
 					</li>
 				</ul>
 				<p>
+					The following softwares are used to generate the Windows and Mac Os X installers:
+				</p>
+				<ul class="simple">
+					<li>
+						<a class="reference external" href="http://www.actualinstaller.com/">Actual Installer</a>
+					</li>
+					<li>
+						<a class="reference external" href="http://c-command.com/dropdmg/">Drop DMG</a>
+					</li>
+				</ul>
+				<p>
 					Some highlights:
 				</p>
 				<ul class="simple">
@@ -318,7 +329,7 @@
 						<span class="target" id="windows-platform">Windows Platform</span>
 					</h2>
 					<p>
-						Installation on Windows is pretty straightforward, just launch “sIBL_GUI.exe”.
+						Installation on Windows is pretty straightforward, just launch “sIBL_GUI.exe”. In order to support third party images formats through FreeImage you may need to install <a class="reference external" href="http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe">Microsoft Visual C++ 2010 Redistributable Package (x64)</a>.
 					</p>
 				</div>
 				<div class="section" id="id6">
@@ -346,6 +357,31 @@
 					</p>
 					<ul class="simple">
 						<li>
+							<strong>Foundations</strong>: <a class="reference external" href="https://github.com/KelSolaar/Foundations">https://github.com/KelSolaar/Foundations</a>
+						</li>
+						<li>
+							<strong>Manager</strong>: <a class="reference external" href="https://github.com/KelSolaar/Manager">https://github.com/KelSolaar/Manager</a>
+						</li>
+						<li>
+							<strong>Umbra</strong>: <a class="reference external" href="https://github.com/KelSolaar/Umbra">https://github.com/KelSolaar/Umbra</a>
+						</li>
+						<li>
+							<strong>sIBL_GUI_Templates</strong>: <a class="reference external" href="https://github.com/KelSolaar/sIBL_GUI_Templates">https://github.com/KelSolaar/sIBL_GUI_Templates</a>
+						</li>
+					</ul>
+					<p>
+						If you want to support third party images formats through FreeImage, you will need to recompile <a class="reference external" href="3.15.1http://downloads.sourceforge.net/freeimage/FreeImage3151.zip">FreeImage</a> with the following patch over it:
+					</p>
+					<ul class="simple">
+						<li>
+							<strong>FreeImage_For_sIBL_GUI</strong>: <a class="reference external" href="https://github.com/KelSolaar/FreeImage_For_sIBL_GUI">https://github.com/KelSolaar/FreeImage_For_sIBL_GUI</a>
+						</li>
+					</ul>
+					<p>
+						The following third party dependencies are also needed:
+					</p>
+					<ul class="simple">
+						<li>
 							<strong>Python 2.7.1</strong>: <a class="reference external" href="http://www.python.org/">http://www.python.org/</a>
 						</li>
 						<li>
@@ -370,17 +406,6 @@
 						</li>
 						<li>
 							<strong>Tidy</strong> <a class="reference external" href="http://tidy.sourceforge.net/">http://tidy.sourceforge.net/</a>
-						</li>
-					</ul>
-					<p>
-						The softwares used to generate the Windows and Mac Os X installers are respectively:
-					</p>
-					<ul class="simple">
-						<li>
-							<strong>Actual Installer</strong>: <a class="reference external" href="http://www.actualinstaller.com/">http://www.actualinstaller.com/</a>
-						</li>
-						<li>
-							<strong>Drop DMG</strong> <a class="reference external" href="http://c-command.com/dropdmg/">http://c-command.com/dropdmg/</a>
 						</li>
 					</ul><!-- .usage -->
 				</div>
