@@ -8,6 +8,8 @@ sIBL_GUI - 4.0.1 - Beta
         <ul>
             <li>sIBL_GUI 4.x.x preferences are now stored per version in a directory following this structure : "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION".
             </li>
+            <li>On Windows, sIBL_GUI 4.x.x needs <a href="http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe">Microsoft Visual C++ 2010 Redistributable Package (x64)</a> to have third party images formats support.
+            </li>
         </ul>
     </div>
 
@@ -17,14 +19,20 @@ Change Log
 4.0.1 - Beta
 --------------
 
--  Implement asynchronous images loading in related sIBL_GUI components for increased speed and responsiveness.
--  A new "imagesCachesOperations" component has been introduced to allow manual images caches operations.
--  Dropped **NSIS** installer for "**Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
+Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
+
+-  Implemented asynchronous images loading in related sIBL_GUI components for increased speed and responsiveness.
+-  A new **imagesCachesOperations** component has been introduced to allow images caches operations.
+-  Dropped **NSIS** installer for **Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
+-  Double clicking an Ibl Set in the **Database Browser"** component now opens the **Inspect** layout.
+-  Prevented a subtle memory leak related to a Python interpreter issue ( http://bugs.python.org/issue1469629 ), slightly reducing memory consumption. 
 -  Prevented an exception in **Inspector** component when a plate was selected and the view attempted to store the current nodes selection.
 -  Prevented an exception in **Inspector** component when current Ibl Set preview image doesn't exists.
 
 4.0.0 - Alpha
 --------------
+
+Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
 
 -  sIBL_GUI is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
