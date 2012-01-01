@@ -20,6 +20,7 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 Structure Description:
 
 -  **X.X**: Current sIBL_GUI version.
+
    -  **components**: Directory storing user components.
    -  **database**: Directory storing the SQLite database.
 

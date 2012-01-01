@@ -424,27 +424,29 @@
 					<p>
 						Structure Description:
 					</p>
-					<ul>
+					<ul class="simple">
 						<li>
-							<p class="first">
-								<strong>X.X</strong>: Current sIBL_GUI version. - <strong>components</strong>: Directory storing user components. - <strong>database</strong>: Directory storing the SQLite database.
-							</p>
-							<blockquote>
-								<ul class="simple">
-									<li>
-										<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
-									</li>
-									<li>
-										<strong>migrations</strong>: Directory used by the <em>Db</em> migration mechanism responsible to migrate the database.
-										<ul>
-											<li>
-												<strong>versions</strong>: Directory used by to store the various migrations scripts.
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</blockquote>
-							<ul class="simple">
+							<strong>X.X</strong>: Current sIBL_GUI version.
+							<ul>
+								<li>
+									<strong>components</strong>: Directory storing user components.
+								</li>
+								<li>
+									<strong>database</strong>: Directory storing the SQLite database.
+									<ul>
+										<li>
+											<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
+										</li>
+										<li>
+											<strong>migrations</strong>: Directory used by the <em>Db</em> migration mechanism responsible to migrate the database.
+											<ul>
+												<li>
+													<strong>versions</strong>: Directory used by to store the various migrations scripts.
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
 								<li>
 									<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
 									<ul>
