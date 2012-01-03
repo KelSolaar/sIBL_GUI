@@ -78,6 +78,7 @@ class GraphicsItem_worker(QThread):
 
 		# --- Setting class attributes. ---
 		self.__requests = Queue()
+		self.__interrupt = False
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -143,6 +144,10 @@ class GraphicsItem_worker(QThread):
 
 		while True:
 			path = self.__requests.get()
+
+			if self.__interrupt:
+				return
+
 			image = sibl_gui.ui.common.loadGraphicsItem(path, QImage)
 			image.data = ImageInformationsHeader(path=path,
 												width=image.width(),
@@ -150,3 +155,14 @@ class GraphicsItem_worker(QThread):
 												bpp=image.depth(),
 												osStats=os.stat(path))
 			self.imageLoaded.emit(image)
+
+	@core.executionTrace
+	def quit(self):
+		"""
+		This method reimplements the :meth:`QThread.quit` method.
+		"""
+
+		self.__interrupt = True
+		self.__requests.put(None)
+
+		QThread.quit(self)
