@@ -1,5 +1,5 @@
-sIBL_GUI - 4.0.1 - Beta
-=======================
+sIBL_GUI - 4.0.2 - Stable
+=========================
 
 .. raw:: html
 
@@ -15,6 +15,13 @@ sIBL_GUI - 4.0.1 - Beta
 
 Change Log
 ==========
+
+4.0.2 - Stable
+--------------
+
+Development 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
+
+-  Ensured workers threads are properly closed on application exit.
 
 4.0.1 - Beta
 ------------
