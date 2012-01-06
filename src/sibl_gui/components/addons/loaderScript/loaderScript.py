@@ -700,7 +700,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			self.Remote_Connection_Options_frame.hide()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError,
 											Exception)
@@ -753,7 +753,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			template.outputScript))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def sendLoaderScriptToSoftware_ui(self):
 		"""
 		This method sends the Loader Script to associated 3d package.

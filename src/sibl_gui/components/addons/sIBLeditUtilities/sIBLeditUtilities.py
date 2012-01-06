@@ -488,7 +488,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
@@ -506,7 +506,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
 	def editIblSetInSIBLEdit_ui(self):
@@ -534,7 +534,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
 	def editInspectorIblSetInSIBLEdit_ui(self):

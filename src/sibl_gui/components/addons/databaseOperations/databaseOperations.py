@@ -443,7 +443,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.synchronizeDatabase()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Synchronizing Database ...")
 	def synchronizeDatabase(self):
 		"""

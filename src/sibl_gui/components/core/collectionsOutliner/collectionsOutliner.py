@@ -861,7 +861,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.setCollections()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
@@ -938,7 +938,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 															Qt.DisplayRole)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContent_ui(self):
 		"""
@@ -967,7 +967,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, directory))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError,
 											Exception)
@@ -1013,7 +1013,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeCollections_ui(self):
 		"""

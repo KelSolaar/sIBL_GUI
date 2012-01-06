@@ -616,7 +616,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.setMarkers_ui()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setMarkers_ui(self):
 		"""
 		This method sets selected Ibl Sets markers.

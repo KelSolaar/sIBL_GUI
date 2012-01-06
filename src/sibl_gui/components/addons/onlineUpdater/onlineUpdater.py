@@ -869,7 +869,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False, sibl_gui.exceptions.NetworkError,
 											Exception)
 	def checkForNewReleases_ui(self):

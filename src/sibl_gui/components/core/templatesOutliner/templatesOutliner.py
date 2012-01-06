@@ -1246,7 +1246,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.emit()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Templates ...")
@@ -1317,7 +1317,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return id
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplate_ui(self):
 		"""
@@ -1347,7 +1347,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeTemplates_ui(self):
 		"""
@@ -1396,7 +1396,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplates_ui(self):
 		"""
@@ -1414,7 +1414,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFiles_ui(self):
 		"""
@@ -1440,7 +1440,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersions_ui(self):
 		"""

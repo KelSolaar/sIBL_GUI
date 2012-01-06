@@ -1329,7 +1329,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
 		This method loops through :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
@@ -1363,7 +1363,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
 		This method loops through :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Plates.

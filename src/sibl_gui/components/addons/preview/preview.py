@@ -797,7 +797,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									self.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
@@ -832,7 +832,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def viewIblSetsImages_ui(self, imageType, *args):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
@@ -864,7 +864,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError,
 											Exception)

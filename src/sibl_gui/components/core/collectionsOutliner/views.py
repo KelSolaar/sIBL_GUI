@@ -171,7 +171,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
 											foundations.exceptions.UserError)

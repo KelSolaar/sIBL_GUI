@@ -712,7 +712,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									self.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
@@ -744,7 +744,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.openOutputDirectory_ui()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openIblSetsLocations_ui(self):
 		"""
 		This method open selected Ibl Sets directories.
@@ -772,7 +772,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
 	def openInspectorIblSetLocations_ui(self):
@@ -796,7 +796,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openComponentsLocations_ui(self):
 		"""
 		This method opens selected Components directories.
@@ -824,7 +824,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, ", ".join(component.name for component in selectedComponents)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openTemplatesLocations_ui(self):
 		"""
 		This method opens selected Templates directories.
@@ -852,7 +852,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, ", ".join(template.name for template in selectedTemplates)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
 											Exception)

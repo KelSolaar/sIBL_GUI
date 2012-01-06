@@ -334,7 +334,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											sibl_gui.exceptions.CacheOperationError)
 	def clearImagesCaches(self):
