@@ -36,7 +36,6 @@ import foundations.parsers
 import foundations.strings as strings
 import sibl_gui.exceptions
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -701,9 +700,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			self.Remote_Connection_Options_frame.hide()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
-											foundations.exceptions.UserError,
 											foundations.exceptions.FileExistsError,
 											Exception)
 	def outputLoaderScript_ui(self):
@@ -719,16 +717,14 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
-			messageBox.messageBox("Information", "Information",
-			"{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__,
-																			selectedTemplates[0].name))
+			self.__engine.notificationsManager.warnify(
+			"{0} | Multiple selected Templates, '{0}' will be used!".format(self.__class__.__name__, selectedTemplates[0].name))
 
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if not template:
 			raise foundations.exceptions.UserError(
-			"{0} | In order to output the Loader Script, you need to select a Template!".format(
-			self.__class__.__name__))
+			"{0} | In order to output the Loader Script, you need to select a Template!".format(self.__class__.__name__))
 
 		if not foundations.common.pathExists(template.path):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(
@@ -736,30 +732,28 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		if selectedIblSets and len(selectedIblSets) != 1:
-			messageBox.messageBox("Information", "Information",
-			"{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
-																			selectedIblSets[0].name))
+			self.__engine.notificationsManager.warnify(
+			"Multiple selected Ibl Sets, '{0}' will be used!".format(selectedIblSets[0].name), self.__class__.__name__)
 
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if not iblSet:
 			raise foundations.exceptions.UserError(
-			"{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(
-			self.__class__.__name__))
+			"{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__))
 
 		if not foundations.common.pathExists(iblSet.path):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, iblSet.title))
 
 		if self.outputLoaderScript(template, iblSet):
-			messageBox.messageBox("Information", "Information", "{0} | '{1}' output done!".format(
-			self.__class__.__name__, template.outputScript))
+			self.__engine.notificationsManager.notify(
+			"{0} | '{1}' output done!".format(self.__class__.__name__, template.outputScript))
 			return True
 		else:
 			raise Exception("{0} | Exception raised: '{1}' output failed!".format(self.__class__.__name__,
 			template.outputScript))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	def sendLoaderScriptToSoftware_ui(self):
 		"""
 		This method sends the Loader Script to associated 3d package.
@@ -851,6 +845,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 				LOGGER.debug("> Received back from Application: '%s'", dataBack)
 				connection.close()
 				LOGGER.info("{0} | Ending remote connection!".format(self.__class__.__name__))
+				self.__engine.notificationsManager.notify(
+				"{0} | Socket connection command dispatched!".format(self.__class__.__name__))
 			except Exception as error:
 				raise sibl_gui.exceptions.SocketConnectionError(
 				"{0} | Socket connection error: '{1}'!".format(self.__class__.__name__, error))
@@ -868,6 +864,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 																								loaderScriptPath)
 					LOGGER.debug("> Current connection command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
+					self.__engine.notificationsManager.notify(
+					"{0} | Win32 connection command dispatched!".format(self.__class__.__name__))
 				except Exception as error:
 					raise sibl_gui.exceptions.Win32OLEServerConnectionError(
 					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))

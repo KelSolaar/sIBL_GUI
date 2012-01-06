@@ -443,7 +443,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.synchronizeDatabase()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Synchronizing Database ...")
 	def synchronizeDatabase(self):
 		"""
@@ -470,7 +470,5 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__engine.processEvents()
 			dbType.modelContainer.modelRefresh.emit()
 		self.__engine.stopProcessing()
-		messageBox.messageBox("Information", "Information",
-		"{0} | Database synchronization done!".format(self.__class__.__name__),
-		QMessageBox.Information, QMessageBox.Ok)
+		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))		
 		return True

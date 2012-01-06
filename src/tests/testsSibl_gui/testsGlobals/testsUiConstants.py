@@ -92,6 +92,7 @@ class UiConstantsTestCase(unittest.TestCase):
 								"missingImage",
 								"loadingImage",
 								"startupLayout",
+								"developmentLayout",
 								"helpFile",
 								"apiFile",
 								"nativeImageFormats",
@@ -407,6 +408,13 @@ class UiConstantsTestCase(unittest.TestCase):
 		"""
 
 		self.assertRegexpMatches(UiConstants.startupLayout, "\w+")
+
+	def testDevelopmentLayoutAttribute(self):
+		"""
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.developmentLayout` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.developmentLayout, "\w+")
 
 	def testHelpFileAttribute(self):
 		"""

@@ -861,7 +861,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.setCollections()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
@@ -878,7 +878,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if startIndex.column() == 0:
 			if self.collectionExists(collectionNode.name):
-				messageBox.messageBox("Warning", "Warning",
+				self.__engine.notificationsManager.warnify(
 				"{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__,
 																				collectionNode.name))
 				return
@@ -938,7 +938,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 															Qt.DisplayRole)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContent_ui(self):
 		"""
@@ -967,7 +967,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, directory))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											foundations.exceptions.UserError,
 											Exception)
@@ -1001,7 +1001,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						raise Exception("{0} | Exception raised while adding '{1}' Collection to the Database!".format(
 						self.__class__.__name__, name))
 				else:
-					messageBox.messageBox("Warning", "Warning",
+					self.__engine.notificationsManager.warnify(
 					"{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 			else:
 				raise foundations.exceptions.UserError(
@@ -1013,7 +1013,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeCollections_ui(self):
 		"""
@@ -1027,8 +1027,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		selectedNodes = self.getSelectedNodes().keys()
 		if self.__overallCollection in (node.name for node in selectedNodes) or \
 		self.__defaultCollection in (node.name for node in selectedNodes):
-			messageBox.messageBox("Warning", "Warning",
-			"{0} | Cannot remove '{1}' or '{2}' Collection!".format(self.__class__.__name__,
+			self.__engine.notificationsManager.warnify(
+			"{0} | '{1}' and '{2}' Collections cannot be removed!".format(self.__class__.__name__,
 																	self.__overallCollection,
 																	self.__defaultCollection))
 

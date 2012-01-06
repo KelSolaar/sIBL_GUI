@@ -34,7 +34,6 @@ import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.exceptions
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.onlineUpdater.remoteUpdater import ReleaseObject
@@ -851,7 +850,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__remoteUpdater = RemoteUpdater(self, releases, Qt.Window)
 				self.__remoteUpdater.show()
 			else:
-				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information",
+				self.__reportUpdateStatus and self.__engine.notificationsManager.notify(
 				"{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
 			raise sibl_gui.exceptions.NetworkError("{0} | QNetworkAccessManager error code: '{1}'.".format(
@@ -870,7 +869,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False, sibl_gui.exceptions.NetworkError,
 											Exception)
 	def checkForNewReleases_ui(self):

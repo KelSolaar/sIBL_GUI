@@ -59,6 +59,7 @@ from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
 from sibl_gui.components.core.databaseBrowser.workers import DatabaseBrowser_worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
+from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #**********************************************************************************************************************
@@ -137,7 +138,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__extension = "ibl"
 
-		self.__editLayout = "editCentric"
+		self.__editLayout = UiConstants.developmentLayout
 		self.__inspectLayout = "inspectCentric"
 
 		self.__factoryScriptEditor = None
@@ -1339,7 +1340,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -1379,7 +1380,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																"Ibls files (*.{0})".format(self.__extension))))
 							file and self.updateIblSetLocation(iblSet, file)
 					else:
-						messageBox.messageBox("Warning", "Warning",
+						self.__engine.notificationsManager.warnify(
 						"{0} | '{1}' {2}".format(self.__class__.__name__,
 						iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
@@ -1603,7 +1604,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.emit()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Ibl Sets ...")
@@ -1766,7 +1767,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContent_ui(self):
 		"""
@@ -1791,7 +1792,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, directory))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSet_ui(self):
 		"""
@@ -1817,11 +1818,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise Exception("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
 				self.__class__.__name__, path))
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set already exists in Database!".format(
-			self.__class__.__name__, path))
+			self.__engine.notificationsManager.warnify(
+			"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeIblSets_ui(self):
 		"""
@@ -1855,7 +1856,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def updateIblSetsLocation_ui(self):
 		"""

@@ -134,6 +134,8 @@ class UiConstants():
 
 	startupLayout = "startupCentric"
 	"""Application startup layout: '**startupCentric**' ( String )"""
+	developmentLayout = "editCentric"
+	"""Application development layout: '**"editCentric"**' ( String )"""
 
 	helpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
 	"""Application online help file:

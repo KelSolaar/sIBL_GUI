@@ -34,8 +34,8 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -532,9 +532,10 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentFile = QFile(self.__currentFilePath)
 
 		if not self.__currentFile.open(QIODevice.WriteOnly):
-			messageBox.messageBox("Warning", "Warning",
+			RuntimeGlobals.notificationsManager.exceptify(
 			"{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(
 			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+
 			self.__downloadNext()
 			return
 

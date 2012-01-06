@@ -670,7 +670,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
 																				value["row"],
 																				value["column"])
-			value["object"].clicked.connect(functools.partial(self.viewIblSetsImages_ui, key))
+			value["object"].clicked.connect(functools.partial(self.viewInspectorIblSetImages_ui, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -733,7 +733,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Background")
+		return self.viewInspectorIblSetImages_ui("Background")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
@@ -744,7 +744,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Lighting")
+		return self.viewInspectorIblSetImages_ui("Lighting")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
@@ -755,7 +755,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Reflection")
+		return self.viewInspectorIblSetImages_ui("Reflection")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
@@ -766,7 +766,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Plate")
+		return self.viewInspectorIblSetImages_ui("Plate")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -797,7 +797,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									self.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
@@ -816,31 +816,47 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	def __hasMaximumImagesPreviewersInstances(self):
+		"""
+		This method returns if the maximum Previewers instances allowed is reached.
+
+		:return: Maximum instances reached. ( Boolean )
+		"""
+
+		if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
+			self.__engine.notificationsManager.warnify(
+			"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
+			self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+			return True
+		else:
+			return False
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler, False, Exception)
 	def viewIblSetsImages_ui(self, imageType, *args):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
-
+		:return: Method success. ( Boolean )
+		
 		:note: This method may require user interaction.
 		"""
 
 		success = True
 		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning",
-				"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
-				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+			if self.__hasMaximumImagesPreviewersInstances():
 				break
+
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
 			if paths:
 				success *= self.viewImages(paths, str(self.Custom_Previewer_Path_lineEdit.text())) or False
 			else:
-				messageBox.messageBox("Warning", "Warning",
+				self.__engine.notificationsManager.warnify(
 				"{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(
 				self.__class__.__name__, iblSet.title, imageType))
+
 		if success:
 			return True
 		else:
@@ -848,7 +864,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError,
 											Exception)
@@ -858,7 +874,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
-
+		:return: Method success. ( Boolean )
+		
 		:note: This method may require user interaction.
 		"""
 
@@ -869,22 +886,22 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, inspectorIblSet.title))
 
-			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning",
-				"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
-				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
-			paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
-			if paths:
-				if self.viewImages(paths, str(self.Custom_Previewer_Path_lineEdit.text())):
-					return True
-				else:
-					raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(
-					self.__class__.__name__, inspectorIblSet.title))
+		if self.__hasMaximumImagesPreviewersInstances():
+			return
+
+		paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
+		if paths:
+			if self.viewImages(paths, str(self.Custom_Previewer_Path_lineEdit.text())):
+				return True
 			else:
-				messageBox.messageBox("Warning", "Warning",
-				"{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__,
-																				inspectorIblSet.title,
-																				imageType))
+				raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(
+				self.__class__.__name__, inspectorIblSet.title))
+		else:
+			self.__engine.notificationsManager.warnify(
+			"{0} | '{1}' Inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__,
+																		inspectorIblSet.title,
+																		imageType))
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def viewImages(self, paths, customPreviewer=None):

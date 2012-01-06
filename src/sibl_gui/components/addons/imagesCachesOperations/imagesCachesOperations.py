@@ -20,7 +20,6 @@
 import logging
 import os
 from PyQt4.QtGui import QGridLayout
-from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -29,9 +28,9 @@ import foundations.core as core
 import foundations.exceptions
 import sibl_gui.exceptions
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
+from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -80,7 +79,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__factoryPreferencesManager = None
 
-		self.__editLayout = "editCentric"
+		self.__editLayout = UiConstants.developmentLayout
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -335,11 +334,12 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifierExceptionHandler,
 											False,
 											sibl_gui.exceptions.CacheOperationError)
 	def clearImagesCaches(self):
 		"""
+		This method clears the images caches.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -349,9 +349,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			success *= cache.flushContent()
 
 		if success:
-			messageBox.messageBox("Information", "Information",
-			"{0} | Images caches have been successfully cleared!".format(self.__class__.__name__),
-			QMessageBox.Information, QMessageBox.Ok)
+			self.__engine.notificationsManager.notify(
+			"{0} | Images caches have been successfully cleared!".format(self.__class__.__name__))		
 			return True
 		else:
 			raise sibl_gui.exceptions.CacheOperationError(

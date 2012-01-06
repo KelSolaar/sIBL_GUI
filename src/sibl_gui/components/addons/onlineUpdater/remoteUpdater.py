@@ -800,9 +800,9 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
 					os.remove(download)
 				else:
-					messageBox.messageBox("Warning", "Warning",
+					self.__container.engine.notificationsManager.exceptify(
 					"{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__,
-																					os.path.basename(download)))
+																					os.path.basename(download)))					
 				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download),
 															self.__container.coreTemplatesOutliner.getCollectionByName(
 															self.__container.coreTemplatesOutliner.userCollection).id)
