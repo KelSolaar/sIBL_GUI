@@ -240,7 +240,6 @@ class DatabaseBrowser_worker(QThread):
 		This method updates Database Ibl Sets if they have been modified on disk.
 		"""
 
-		needModelRefresh = False
 		modifiedIblSets = []
 		for iblSet in dbCommon.getIblSets(self.__dbSession):
 			if not foundations.common.pathExists(iblSet.path):
@@ -251,11 +250,9 @@ class DatabaseBrowser_worker(QThread):
 			if str(osStats[8]) == str(storedStats[8]):
 				continue
 
-			LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(
-			self.__class__.__name__, iblSet.title))
+			LOGGER.debug("> '{0}' Ibl Set file has been modified and will be updated!".format(iblSet.title))
 			if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
-				LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
+				LOGGER.debug("> '{0}' Ibl Set has been updated!".format(iblSet.title))
 				modifiedIblSets.append(iblSet)
-				needModelRefresh = True
 
-		needModelRefresh and self.databaseChanged.emit(modifiedIblSets)
+		modifiedIblSets and self.databaseChanged.emit(modifiedIblSets)

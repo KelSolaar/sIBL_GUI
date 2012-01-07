@@ -1599,6 +1599,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param iblSets: Modified Ibl Sets. ( List )
 		"""
 
+		for iblSet in iblSets:
+			self.__engine.notificationsManager.notify(
+			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
+			self.__class__.__name__, iblSet.title))
+
 		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
 		self.modelRefresh.emit()

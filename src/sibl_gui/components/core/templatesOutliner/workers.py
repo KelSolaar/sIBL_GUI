@@ -241,7 +241,6 @@ class TemplatesOutliner_worker(QThread):
 		This method updates Database Templates if they have been modified on disk.
 		"""
 
-		needModelRefresh = False
 		modifiedTemplates = []
 		for template in dbCommon.getTemplates(self.__dbSession):
 			if not foundations.common.pathExists(template.path):
@@ -252,11 +251,9 @@ class TemplatesOutliner_worker(QThread):
 			if str(osStats[8]) == str(storedStats[8]):
 				continue
 
-			LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(
-			self.__class__.__name__, template.name))
+			LOGGER.debug("> '{0}' Template file has been modified and will be updated!".format(template.name))
 			if dbCommon.updateTemplateContent(self.__dbSession, template):
-				LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
+				LOGGER.debug("> '{0}' Template has been updated!".format(template.name))
 				modifiedTemplates.append(template)
-				needModelRefresh = True
 
-		needModelRefresh and self.databaseChanged.emit(modifiedTemplates)
+		modifiedTemplates and self.databaseChanged.emit(modifiedTemplates)

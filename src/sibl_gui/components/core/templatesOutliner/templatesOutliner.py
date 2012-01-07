@@ -1241,6 +1241,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param templates: Modified Templates. ( List )
 		"""
 
+		for template in templates:
+			self.__engine.notificationsManager.notify(
+			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
+			self.__class__.__name__, template.title))
+
 		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
 		self.modelRefresh.emit()
