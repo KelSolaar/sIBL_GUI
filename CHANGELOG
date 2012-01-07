@@ -21,6 +21,7 @@ Change Log
 
 Development 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
 
+-  Implemented a slick notification manager.
 -  Ensured workers threads are properly closed on application exit.
 
 4.0.1 - Beta
