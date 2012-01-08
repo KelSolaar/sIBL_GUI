@@ -39,7 +39,6 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.engine
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.preview.imagesPreviewer import ImagesPreviewer

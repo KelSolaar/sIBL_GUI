@@ -30,7 +30,6 @@ import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
