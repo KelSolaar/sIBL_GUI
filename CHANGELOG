@@ -19,10 +19,12 @@ Change Log
 4.0.2 - Stable
 --------------
 
-Development 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
+sIBL_GUI 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
+Umbra 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented a slick notification manager.
 -  Ensured workers threads are properly closed on application exit.
+-  Refactored the layouts management code.
 
 4.0.1 - Beta
 ------------
