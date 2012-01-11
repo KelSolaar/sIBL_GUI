@@ -116,6 +116,11 @@ def _setImagesCaches():
 								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QImage, default=loadingImage),
 								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QPixmap, default=loadingImage),
 								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QIcon, default=loadingImage)})
+
+	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
+	# with asynchronous images loading.
+	umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
+
 _setImagesCaches()
 
 class sIBL_GUI(umbra.engine.Umbra):
@@ -197,10 +202,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		# Binding Application images caches.
 		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
-
-		# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
-		# with asynchronous images loading.
-		umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
 
 	@core.executionTrace
 	def onPostInitialisation(self):

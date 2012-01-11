@@ -65,14 +65,26 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 	#***	Class methods.
 	#******************************************************************************************************************
 	@core.executionTrace
-	def __initializeUi(self):
+	def __centralWidgetButton__clicked(self):
 		"""
-		This method initializes the Widget ui.
+		This method sets the **Central** Widget visibility.
 		"""
 
-		LOGGER.debug("> Initializing Application toolBar!")
-		self.setIconSize(QSize(UiConstants.defaultToolbarIconSize,
-										UiConstants.defaultToolbarIconSize))
+		LOGGER.debug("> Central Widget button clicked!")
+
+		if self.__container.centralwidget.isVisible():
+			self.__container.centralwidget.hide()
+		else:
+			self.__container.centralwidget.show()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setToolBarChildrenWidgets(self):
+		"""
+		This method sets the toolBar children widgets.
+
+		:return: Method success. ( Boolean )
+		"""
 
 		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
 		self.addWidget(self.getApplicationLogoLabel())
@@ -102,22 +114,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
 		self.addWidget(self.getClosureSpacerLabel())
 
-		# Signals / Slots.
-		self.__container.layoutsManager.layoutStored.connect(self.__layoutsManager__layoutStored)
-		self.__container.layoutsManager.layoutRestored.connect(self.__layoutsManager__layoutRestored)
-
-	@core.executionTrace
-	def __centralWidgetButton__clicked(self):
-		"""
-		This method sets the **Central** Widget visibility.
-		"""
-
-		LOGGER.debug("> Central Widget button clicked!")
-
-		if self__container.centralwidget.isVisible():
-			self__container.centralwidget.hide()
-		else:
-			self__container.centralwidget.show()
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
