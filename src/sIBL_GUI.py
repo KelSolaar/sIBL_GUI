@@ -18,15 +18,9 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import functools
 import logging
 import os
 import sys
-from PyQt4.QtCore import QSize
-from PyQt4.QtCore import QString
-from PyQt4.QtCore import QUrl
-from PyQt4.QtCore import Qt
-from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
@@ -69,6 +63,19 @@ def _overrideDependenciesGlobals():
 
 _overrideDependenciesGlobals()
 
+import umbra.ui.widgets.application_QToolBar
+import sibl_gui.ui.widgets.application_QToolBar
+
+def _overrideApplicationToolbar():
+	"""
+	This definition overrides Application toolbar.
+	"""
+
+	umbra.ui.widgets.application_QToolBar.Application_QToolBar = \
+	sibl_gui.ui.widgets.application_QToolBar.Application_QToolBar
+
+_overrideApplicationToolbar()
+
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
@@ -79,7 +86,6 @@ import sibl_gui.ui.models
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.models
-from umbra.ui.widgets.active_QLabel import Active_QLabel
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -110,6 +116,7 @@ def _setImagesCaches():
 								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QImage, default=loadingImage),
 								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QPixmap, default=loadingImage),
 								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QIcon, default=loadingImage)})
+_setImagesCaches()
 
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
@@ -195,8 +202,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		# with asynchronous images loading.
 		umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
 
-		self._Umbra__initializeToolBar = self.__initializeToolBar
-
 	@core.executionTrace
 	def onPostInitialisation(self):
 		"""
@@ -211,174 +216,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__engine__contentDropped)
-
-	@core.executionTrace
-	def __initializeToolBar(self):
-		"""
-		This method initializes Application toolBar.
-		"""
-
-		LOGGER.debug("> Initializing Application toolBar!")
-		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize,
-										umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
-
-		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
-		self.toolBar.addWidget(self.getApplicationLogoLabel())
-
-		LOGGER.debug("> Adding 'Spacer_label' widget!")
-		self.toolBar.addWidget(self.getSpacerLabel())
-
-		LOGGER.debug("> Adding 'Library_activeLabel', \
-					'Inspect_activeLabel', \
-					'Export_activeLabel', \
-					'Edit_activeLabel', \
-					'Preferences_activeLabel' \
-					widgets!")
-
-		self.getLayoutsActiveLabels()
-		for activeLabel in self.layoutsActiveLabels:
-			self.toolBar.addWidget(activeLabel.object)
-
-		LOGGER.debug("> Adding 'Central_Widget_activeLabel' widget!")
-		self.toolBar.addWidget(self.getCentralWidgetActiveLabel())
-
-		LOGGER.debug("> Adding 'Custom_Layouts_activeLabel' widget!")
-		self.toolBar.addWidget(self.getCustomLayoutsActiveLabel())
-
-		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
-		self.toolBar.addWidget(self.getMiscellaneousActiveLabel())
-		self.extendMiscellaneousActiveLabel()
-
-		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
-		self.toolBar.addWidget(self.getClosureSpacerLabel())
-
-	@core.executionTrace
-	def __centralWidgetButton__clicked(self):
-		"""
-		This method sets the **Central** Widget visibility.
-		"""
-
-		LOGGER.debug("> Central Widget button clicked!")
-
-		if self.centralwidget.isVisible():
-			self.centralwidget.hide()
-		else:
-			self.centralwidget.show()
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getLayoutsActiveLabels(self):
-		"""
-		This method returns the default layouts active labels widgets.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		libraryActiveLabel = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
-		libraryActiveLabel.setObjectName("Library_activeLabel")
-
-		inspectActiveLabel = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
-		inspectActiveLabel.setObjectName("Inspect_activeLabel")
-
-		exportActiveLabel = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
-		exportActiveLabel.setObjectName("Export_activeLabel")
-
-		editActiveLabel = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editActiveIcon)), True)
-		editActiveLabel.setObjectName("Edit_activeLabel")
-
-		preferencesActiveLabel = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
-		preferencesActiveLabel.setObjectName("Preferences_activeLabel")
-
-		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library",
-																	object=libraryActiveLabel,
-																	layout="setsCentric",
-																	shortcut=Qt.Key_6),
-									umbra.ui.common.LayoutActiveLabel(name="Inspect",
-																	object=inspectActiveLabel,
-																	layout="inspectCentric",
-																	shortcut=Qt.Key_7),
-									umbra.ui.common.LayoutActiveLabel(name="Export",
-																	object=exportActiveLabel,
-																	layout="templatesCentric",
-																	shortcut=Qt.Key_8),
-									umbra.ui.common.LayoutActiveLabel(name="Edit",
-																	object=editActiveLabel,
-																	layout="editCentric",
-																	shortcut=Qt.Key_9),
-									umbra.ui.common.LayoutActiveLabel(name="Preferences",
-																	object=preferencesActiveLabel,
-																	layout="preferencesCentric",
-																	shortcut=Qt.Key_0))
-
-		# Signals / Slots.
-		for layoutActiveLabel in self.layoutsActiveLabels:
-			layoutActiveLabel.object.clicked.connect(functools.partial(self._Umbra__layoutActiveLabel__clicked,
-																		layoutActiveLabel.layout))
-
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getCentralWidgetActiveLabel(self):
-		"""
-		This method provides the default **Central_Widget_activeLabel** widget.
-
-		:return: Central Widget active label. ( Active_QLabel )
-		"""
-
-		centralWidgetButton = Active_QLabel(self,
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
-		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
-		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
-
-		# Signals / Slots.
-		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
-		return centralWidgetButton
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def extendMiscellaneousActiveLabel(self):
-		"""
-		This method extends the default **Miscellaneous_activeLabel** widget.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		self.miscellaneousMenu.addAction(self.actionsManager.registerAction(
-		"Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
-		slot=self.__makeDonationDisplayMiscAction__triggered))
-		self.miscellaneousMenu.addSeparator()
-
-		return True
-
-	@core.executionTrace
-	def __makeDonationDisplayMiscAction__triggered(self, checked):
-		"""
-		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
-
-		:param checked: Checked state. ( Boolean )
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening url: '{0}'.".format(sibl_gui.globals.uiConstants.UiConstants.makeDonationFile))
-		QDesktopServices.openUrl(QUrl(QString(sibl_gui.globals.uiConstants.UiConstants.makeDonationFile)))
-		return True
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -431,8 +268,6 @@ if __name__ == "__main__":
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
-
-	_setImagesCaches()
 
 	umbra.engine.run(sIBL_GUI,
 					commandLineParametersParser.parse_args(sys.argv),

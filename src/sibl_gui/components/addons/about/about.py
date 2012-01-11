@@ -327,7 +327,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
-		self.__miscellaneousMenu = self.__engine.miscellaneousMenu
+		self.__miscellaneousMenu = self.__engine.toolBar.miscellaneousMenu
 
 		self.__addActions()
 

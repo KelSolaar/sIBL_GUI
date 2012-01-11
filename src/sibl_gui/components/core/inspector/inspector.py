@@ -226,6 +226,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__lightLabelTextMargin = 16
 		self.__lightLabelTextHeight = 14
 		self.__lightLabelTextFont = "Helvetica"
+		self.__unnamedLightName = "Unnamed_Light"
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -872,6 +873,40 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
 
+	@property
+	def unnamedLightName(self):
+		"""
+		This method is the property for **self.__unnamedLightName** attribute.
+
+		:return: self.__unnamedLightName. ( String )
+		"""
+
+		return self.__unnamedLightName
+
+	@unnamedLightName.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def unnamedLightName(self, value):
+		"""
+		This method is the setter method for **self.__unnamedLightName** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		if value is not None:
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			"unnamedLightName", value)
+		self.__unnamedLightName = value
+
+	@unnamedLightName.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def unnamedLightName(self):
+		"""
+		This method is the deleter method for **self.__unnamedLightName** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
+
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -1250,12 +1285,15 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for section in sectionsFileParser.sections:
 				if section == "Sun":
 					self.__drawLightLabel(painter, Light(name="Sun",
-													color=[int(value) for value in sectionsFileParser.getValue("SUNcolor", section).split(",")],
+													color=[int(value) for value in sectionsFileParser.getValue(
+													"SUNcolor", section).split(",")],
 													uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
 													vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
 				elif re.search(r"Light\d+", section):
-					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue("LIGHTname", section),
-													color=[int(value)for value in sectionsFileParser.getValue("LIGHTcolor", section).split(",")],
+					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
+													"LIGHTname", section) or self.__unnamedLightName,
+													color=[int(value) for value in sectionsFileParser.getValue(
+													"LIGHTcolor", section).split(",")],
 													uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
 													vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
 		painter.end()
