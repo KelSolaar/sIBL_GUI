@@ -1137,7 +1137,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		cachedFiles = [os.path.normpath(file) for file in self.__sectionsFileParsersCache]
 		for iblSet in iblSets:
-			path = os.path.normpath(iblSet.path)
+			path = iblSet.path
 			if path in cachedFiles:
 				LOGGER.debug("> Removing modified '{0}' file from cache.".format(path))
 				self.__sectionsFileParsersCache.removeContent(path)
