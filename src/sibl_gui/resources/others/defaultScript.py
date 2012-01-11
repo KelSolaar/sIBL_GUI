@@ -80,18 +80,27 @@ sIBL_GUI.stopProcessing()
 ____()
 
 """
+Notifications interactions:
+"""
+sIBL_GUI.notificationsManager.notify("This is an 'Information' notification!")
+sIBL_GUI.notificationsManager.warnify("This is a 'Warning' notification!")
+sIBL_GUI.notificationsManager.exceptify("This is an 'Exception' notification!")
+
+____()
+
+"""
 Layouts interactions:
 """
-layouts = sIBL_GUI.listLayouts()
+layouts = sIBL_GUI.layoutsManager.listLayouts()
 print("Layouts: '{0}'".format(layouts))
-currentLayout = sIBL_GUI.currentLayout
+currentLayout = sIBL_GUI.layoutsManager.currentLayout
 print("Current layout: '{0}'".format(currentLayout))
-for layout in sIBL_GUI.listLayouts(userLayouts=False):
+for layout in sIBL_GUI.layoutsManager.listLayouts():
 	sIBL_GUI.processEvents()
-	sIBL_GUI.restoreLayout(layout)
-sIBL_GUI.restoreLayout("editCentric")
+	sIBL_GUI.layoutsManager.restoreLayout(layout)
+sIBL_GUI.layoutsManager.restoreLayout("editCentric")
 
-# ____()
+____()
 
 """
 Fullscreen interactions:
