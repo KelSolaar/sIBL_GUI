@@ -1282,7 +1282,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addTemplate(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
+						self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return

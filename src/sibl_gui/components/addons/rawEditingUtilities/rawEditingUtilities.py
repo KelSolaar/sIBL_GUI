@@ -811,5 +811,5 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise Exception("{0} | Exception raised: No suitable process command given!".format(
 				self.__class__.__name__))
 		else:
-			self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
+			self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 			return self.__factoryScriptEditor.loadFile(file)

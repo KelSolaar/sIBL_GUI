@@ -1521,7 +1521,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param index: Clicked item index. ( QModelIndex )
 		"""
 
-		self.__engine.restoreLayout(self.__inspectLayout)
+		self.__engine.layoutsManager.restoreLayout(self.__inspectLayout)
 
 	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):
@@ -1640,7 +1640,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addIblSet(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
+						self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return

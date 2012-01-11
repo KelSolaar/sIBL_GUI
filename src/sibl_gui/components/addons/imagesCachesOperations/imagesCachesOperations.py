@@ -308,7 +308,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.outputImagesCachesMetrics()
-		self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
+		self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
