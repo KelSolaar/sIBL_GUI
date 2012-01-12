@@ -44,8 +44,8 @@ umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.run
 
 for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory),
 			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
-	if os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories:
-		umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path)
+	((os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories) and
+	umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path))
 
 import foundations.globals.constants
 import manager.globals.constants
@@ -272,8 +272,7 @@ if __name__ == "__main__":
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
-		if foundations.common.pathExists(path) and not path in COMPONENTS_PATHS:
-			COMPONENTS_PATHS.append(path)
+		(foundations.common.pathExists(path) and not path in COMPONENTS_PATHS) and COMPONENTS_PATHS.append(path)
 
 	umbra.engine.run(sIBL_GUI,
 					COMMAND_LINE_PARAMETERS_PARSER.parse_args(sys.argv),
