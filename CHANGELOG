@@ -10,6 +10,8 @@ sIBL_GUI - 4.0.2 - Stable
             </li>
             <li>On Windows, sIBL_GUI 4.x.x needs <a href="http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe">Microsoft Visual C++ 2010 Redistributable Package (x64)</a> to have third party images formats support.
             </li>
+            <li>We are running a survey, if you have 30 seconds it would be awesome: http://kelsolaar.polldaddy.com/s/sibl-gui-3d-softwares-usage-survey.
+            </li>
         </ul>
     </div>
 
@@ -19,13 +21,17 @@ Change Log
 4.0.2 - Stable
 --------------
 
+I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
+
 sIBL_GUI 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
 Umbra 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented a slick notification manager.
 -  Ensured workers threads are properly closed on application exit.
 -  Refactored the layouts management code.
--  Prevented an exception in **Inspector** Component when an Ibl Set is modified and reloaded on Windows Os.
+-  Rolled back to Qt 4.7.x thanks to **Jens Lindgren**.
+-  Fixed an exception in **Inspector** Component when an Ibl Set is modified and reloaded on Windows Os.
+-  Fixed an exception while drag'n'drop in **Collections Outliner** Component.
 
 4.0.1 - Beta
 ------------
@@ -36,9 +42,9 @@ Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issu
 -  A new **Images Caches Operations** Component has been introduced to allow images caches operations.
 -  Dropped **NSIS** installer for **Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
 -  Double clicking an Ibl Set in the **Database Browser"** Component now opens the **Inspect** layout.
--  Prevented a subtle memory leak related to a Python interpreter issue ( http://bugs.python.org/issue1469629 ), slightly reducing memory consumption. 
--  Prevented an exception in **Inspector** Component when a plate was selected and the view attempted to store the current nodes selection.
--  Prevented an exception in **Inspector** Component when current Ibl Set preview image doesn't exists.
+-  Fixed a subtle memory leak related to a Python interpreter issue ( http://bugs.python.org/issue1469629 ), slightly reducing memory consumption. 
+-  Fixed an exception in **Inspector** Component when a plate was selected and the view attempted to store the current nodes selection.
+-  Fixed an exception in **Inspector** Component when current Ibl Set preview image doesn't exists.
 
 4.0.0 - Alpha
 --------------
@@ -130,7 +136,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  sIBL_GUI has now an Internal Images Previewer: You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: http://www.hdrlabs.com/picturenaut/index.html.
 -  Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build: Third Party Images loading is now 10 to 20 times faster.
 -  Implemented Ibl Sets database display name edition: Double click an Ibl Set in the **Database Browser** Component to edit it's display name.
--  "-r / --databaseReadOnly" command line parameter properly disable **Database Browser**, **Collections Outliner** and **Templates Outliner** Components dragNdrop capabilities and **Collections Outliner** Component editing capabilities.
+-  "-r / --databaseReadOnly" command line parameter properly disable **Database Browser**, **Collections Outliner** and **Templates Outliner** Components drag'n'drop capabilities and **Collections Outliner** Component editing capabilities.
 -  Fixed a code regression preventing "Templates Informations" widget display.
 -  Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.
 -  Worker Threads are properly terminated on application exit.
@@ -140,11 +146,11 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 --------------
 
 -  sIBL_GUI For Windows now is natively built on Windows 7, this should Fixed the slow startup issues reported on Windows Vista / 7.
--  Implemented dragNdrop in various Components (Network paths are currently not supported on Windows Vista / 7):
+-  Implemented drag'n'drop in various Components (Network paths are currently not supported on Windows Vista / 7):
 
-   -  **Database Browser** Component: You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
-   -  **Collections Outliner** Component: You can also dragNdrop folders or Ibl Sets files directly from the Os.
-   -  **Templates Outliner** Component: You can dragNdrop Templates folders or Templates files directly from the Os.
+   -  **Database Browser** Component: You can drag'n'drop Ibl Sets folders or Ibl Sets files directly from the Os.
+   -  **Collections Outliner** Component: You can also drag'n'drop folders or Ibl Sets files directly from the Os.
+   -  **Templates Outliner** Component: You can drag'n'drop Templates folders or Templates files directly from the Os.
 
 -  Made the code stronger when sIBL_GUI deals with corrupted Ibl / Templates Files.
 -  Refactored portions of the exceptions handling code.
@@ -222,7 +228,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  Fixed slashes path issues on Windows preventing correct Sets loading in Maya.
 -  Fixed Incorrect loaderScript path on Windows Socket Connections.
 -  Fixed an error preventing the Templates Locations of being browsed.
--  Prevented Drag'N'Drop in the Templates Outliner Widget.
+-  Fixed drag'n'drop in the Templates Outliner Widget.
 
 3.0.0 - Alpha
 -------------
