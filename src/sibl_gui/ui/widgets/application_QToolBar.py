@@ -18,7 +18,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import logging
-from PyQt4.QtCore import QSize
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt

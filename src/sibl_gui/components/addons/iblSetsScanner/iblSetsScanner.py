@@ -79,6 +79,7 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__coreDb = None
 		self.__coreCollectionsOutliner = None
+		self.__coreDatabaseBrowser = None
 
 		self.__setsScannerWorkerThread = None
 

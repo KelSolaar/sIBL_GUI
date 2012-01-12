@@ -843,8 +843,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		success = True
-		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
+		for iblSet in selectedIblSets:
 			if self.__hasMaximumImagesPreviewersInstances():
 				break
 
@@ -859,8 +860,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if success:
 			return True
 		else:
-			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(
-			self.__class__.__name__, iblSet.title))
+			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set(s) image(s)!".format(
+			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
@@ -991,11 +992,11 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		processCommand = None
 		imagesPaths = [os.path.normpath(path) for path in paths]
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-				processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+			processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
 		elif platform.system() == "Darwin":
-				processCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+			processCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
 		elif platform.system() == "Linux":
-				processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+			processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
 		return processCommand
 
 	@core.executionTrace

@@ -583,7 +583,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloads.append(self.__currentFilePath)
 		self.Current_File_label.setText("'{0}' downloading done!".format(os.path.basename(self.__currentFilePath)))
 		self.Download_progressBar.hide()
-		self.__currentRequest.deleteLater();
+		self.__currentRequest.deleteLater()
 
 		if self.__requests:
 			LOGGER.debug("> Proceeding to next download request.")

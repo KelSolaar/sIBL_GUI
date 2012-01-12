@@ -196,8 +196,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__engine = engine
-		self.__settings = self.__engine.settings
-		self.__settingsSection = self.name
 
 		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
 											"factory.preferencesManager"].interface
@@ -216,8 +214,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__engine = None
-		self.__settings = None
-		self.__settingsSection = None
 
 		self.__factoryPreferencesManager = None
 
@@ -236,7 +232,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Output_Images_Caches_Metrics_pushButton.clicked.connect(self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Output_Images_Caches_Metrics_pushButton.clicked.connect(
+		self.__Output_Images_Caches_Metrics_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.connect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		return True
@@ -253,7 +250,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Output_Images_Caches_Metrics_pushButton.clicked.disconnect(self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Output_Images_Caches_Metrics_pushButton.clicked.disconnect(
+		self.__Output_Images_Caches_Metrics_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.disconnect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		return True

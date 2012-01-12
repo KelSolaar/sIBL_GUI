@@ -69,7 +69,8 @@ def renameTable(dbEngine, currrentName, newName):
 		session = sessionMaker()
 
 		for collection in dbCommon.getCollectionsByType(session, currrentName):
-			LOGGER.info("{0} | SQLAlchemy Migrate: Changing '{1}' Collection type to '{2}'!".format(__name__, collection.name, newName))
+			LOGGER.info("{0} | SQLAlchemy Migrate: Changing '{1}' Collection type to '{2}'!".format(
+			__name__, collection.name, newName))
 			collection.type = newName
 		dbCommon.commit(session)
 		session.close()

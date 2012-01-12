@@ -662,7 +662,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 														Constants.settingsDirectory,
 														self.__templatesSettingsDirectory)
-		not foundations.common.pathExists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
+		not foundations.common.pathExists(self.__templatesSettingsDirectory) and \
+		os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
 		self.activated = True
@@ -857,7 +858,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										template.release,
 										os.path.basename(template.path))
 
-		not foundations.common.pathExists(currentTemplateSettingsDirectory) and io.setDirectory(currentTemplateSettingsDirectory)
+		not foundations.common.pathExists(currentTemplateSettingsDirectory) and \
+		io.setDirectory(currentTemplateSettingsDirectory)
 
 		templateSettingsFile = None
 		if foundations.common.pathExists(self.__templateSettingsFile):

@@ -1139,7 +1139,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		try:
 			pattern = re.compile(pattern, flags)
-		except:
+		except Exception:
 			return
 
 		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)),

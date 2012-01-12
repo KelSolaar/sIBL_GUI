@@ -634,7 +634,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__engine.parameters.deactivateWorkerThreads and \
-		LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(
+		LOGGER.info(
+		"{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(
 		self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
@@ -801,41 +802,41 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			releases = {}
 			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
-						dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(
-									remoteObject), "name")
-						dbTemplate = dbTemplates and [dbTemplate[0]
-													for dbTemplate in sorted(((dbTemplate, dbTemplate.release)
-													for dbTemplate in dbTemplates),
-													reverse=True,
-													key=lambda x:(strings.getVersionRank(x[1])))][0] or None
-						if not self.__engine.parameters.databaseReadOnly:
-							if dbTemplate:
-								if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
-									releases[remoteObject] = ReleaseObject(name=remoteObject,
-																		repositoryVersion=sectionsFileParser.getValue(
-																		"Release", remoteObject),
-																		localVersion=dbTemplate.release,
-																		type=sectionsFileParser.getValue("Type",
-																										remoteObject),
-																		url=sectionsFileParser.getValue("Url",
-																										remoteObject),
-																		comment=sectionsFileParser.getValue("Comment",
-																										remoteObject))
-							else:
-								if not self.Ignore_Non_Existing_Templates_checkBox.isChecked():
-									releases[remoteObject] = ReleaseObject(name=remoteObject,
-																		repositoryVersion=sectionsFileParser.getValue(
-																		"Release", remoteObject),
-																		localVersion=None,
-																		type=sectionsFileParser.getValue("Type",
-																										remoteObject),
-																		url=sectionsFileParser.getValue("Url",
-																										remoteObject),
-																		comment=sectionsFileParser.getValue("Comment",
-																										remoteObject))
+					dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(
+								remoteObject), "name")
+					dbTemplate = dbTemplates and [dbTemplate[0]
+												for dbTemplate in sorted(((dbTemplate, dbTemplate.release)
+												for dbTemplate in dbTemplates),
+												reverse=True,
+												key=lambda x:(strings.getVersionRank(x[1])))][0] or None
+					if not self.__engine.parameters.databaseReadOnly:
+						if dbTemplate:
+							if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
+								releases[remoteObject] = ReleaseObject(name=remoteObject,
+																	repositoryVersion=sectionsFileParser.getValue(
+																	"Release", remoteObject),
+																	localVersion=dbTemplate.release,
+																	type=sectionsFileParser.getValue("Type",
+																									remoteObject),
+																	url=sectionsFileParser.getValue("Url",
+																									remoteObject),
+																	comment=sectionsFileParser.getValue("Comment",
+																									remoteObject))
 						else:
-							LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(
-							self.__class__.__name__, remoteObject, "databaseReadOnly"))
+							if not self.Ignore_Non_Existing_Templates_checkBox.isChecked():
+								releases[remoteObject] = ReleaseObject(name=remoteObject,
+																	repositoryVersion=sectionsFileParser.getValue(
+																	"Release", remoteObject),
+																	localVersion=None,
+																	type=sectionsFileParser.getValue("Type",
+																									remoteObject),
+																	url=sectionsFileParser.getValue("Url",
+																									remoteObject),
+																	comment=sectionsFileParser.getValue("Comment",
+																									remoteObject))
+					else:
+						LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(
+						self.__class__.__name__, remoteObject, "databaseReadOnly"))
 				else:
 					if Constants.releaseVersion != sectionsFileParser.getValue("Release", remoteObject):
 						releases[remoteObject] = ReleaseObject(name=remoteObject,

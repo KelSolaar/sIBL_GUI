@@ -1283,19 +1283,19 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		painter.setRenderHints(QPainter.Antialiasing)
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path)
 		for section in sectionsFileParser.sections:
-				if section == "Sun":
-					self.__drawLightLabel(painter, Light(name="Sun",
-													color=[int(value) for value in sectionsFileParser.getValue(
-													"SUNcolor", section).split(",")],
-													uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
-													vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
-				elif re.search(r"Light\d+", section):
-					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
-													"LIGHTname", section) or self.__unnamedLightName,
-													color=[int(value) for value in sectionsFileParser.getValue(
-													"LIGHTcolor", section).split(",")],
-													uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
-													vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
+			if section == "Sun":
+				self.__drawLightLabel(painter, Light(name="Sun",
+												color=[int(value) for value in sectionsFileParser.getValue(
+												"SUNcolor", section).split(",")],
+												uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
+												vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
+			elif re.search(r"Light\d+", section):
+				self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
+												"LIGHTname", section) or self.__unnamedLightName,
+												color=[int(value) for value in sectionsFileParser.getValue(
+												"LIGHTcolor", section).split(",")],
+												uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
+												vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
 		painter.end()
 
 	@core.executionTrace
@@ -1318,28 +1318,29 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		font.setBold(True)
 		painter.setFont(font)
 
-		x = int(light.uCoordinate * width)
-		y = int(light.vCoordinate * height)
+		pointX = int(light.uCoordinate * width)
+		pointY = int(light.vCoordinate * height)
 
 		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = x + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width and \
-		- (self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
-		yLabelTextOffset = y - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) \
-		< 0 and -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
-		painter.drawText(x + xLabelTextOffset, y - yLabelTextOffset, light.name.title())
+		xLabelTextOffset = pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > \
+		width and - (self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
+		yLabelTextOffset = pointY -  \
+		(self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 and \
+		-(self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
+		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
-		painter.drawLine(x,
-						y,
-						x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset),
-						y - (yLabelTextOffset < 0 and yLabelTextOffset + self.__lightLabelTextHeight or yLabelTextOffset))
+		painter.drawLine(pointX,
+						pointY,
+						pointX + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset),
+						pointY - (yLabelTextOffset < 0 and yLabelTextOffset + self.__lightLabelTextHeight or yLabelTextOffset))
 
-		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius, self.__lightLabelRadius)
+		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
 
 		painter.setBrush(Qt.NoBrush)
 		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 100)), 2))
-		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius * 3, self.__lightLabelRadius * 3)
+		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius * 3, self.__lightLabelRadius * 3)
 		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 50)), 2))
-		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
+		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

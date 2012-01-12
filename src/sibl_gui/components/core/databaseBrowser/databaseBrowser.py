@@ -1384,9 +1384,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						"{0} | '{1}' {2}".format(self.__class__.__name__,
 						iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
-			LOGGER.info(
-			"{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated\
+by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeView, state = self.__settings.getKey(self.__settingsSection, "activeView").toInt()
 		state and self.setActiveViewIndex(activeView)
@@ -1640,7 +1639,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addIblSet(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
+						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1669,8 +1669,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		collections = self.__coreCollectionsOutliner.getSelectedCollections()
-		id = collections and collections[0].id or None
-		return id and id or self.__coreCollectionsOutliner.getCollectionId(
+		identity = collections and collections[0].id or None
+		return identity and identity or self.__coreCollectionsOutliner.getCollectionId(
 		self.__coreCollectionsOutliner.defaultCollection)
 
 	@core.executionTrace
@@ -1687,7 +1687,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		try:
 			pattern = re.compile(pattern, flags)
-		except:
+		except Exception:
 			return
 
 		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
@@ -2027,7 +2027,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		try:
 			pattern = re.compile(pattern, flags)
-		except:
+		except Exception:
 			return
 
 		return list(set(self.getIblSets()).intersection(

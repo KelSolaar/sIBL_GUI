@@ -37,7 +37,6 @@ from PyQt4.QtGui import QImage
 import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
-import sibl_gui.libraries.freeImage.freeImage as freeImage
 import sibl_gui.ui.common
 import umbra.ui.common
 from umbra.globals.constants import Constants

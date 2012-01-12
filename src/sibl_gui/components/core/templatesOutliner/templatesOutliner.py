@@ -1036,9 +1036,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												template.name,
 												dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
 		else:
-			LOGGER.info(
-			"{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
+by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
@@ -1116,8 +1115,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			separatorAction.setSeparator(True)
 			self.__view.addAction(separatorAction)
 		else:
-			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates Database alteration capabilities deactivated\
+by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		self.__view.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...",
@@ -1282,7 +1281,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addTemplate(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
+						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1312,14 +1312,14 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		collections = self.getCollections()
-		id = collections and collections[0].id or None
+		identity = collections and collections[0].id or None
 
 		factoryCollectionPath = self.__defaultCollections[self.__factoryCollection]
 		if path and factoryCollectionPath :
 			if os.path.normpath(factoryCollectionPath) in os.path.normpath(path):
 				collection = self.getCollectionByName(self.__factoryCollection)
-				id = collection and collection.id or None
-		return id
+				identity = collection and collection.id or None
+		return identity
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
@@ -1462,10 +1462,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for template in templates:
 			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
-				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
+				for identity in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
 								reverse=True,
 								key=lambda x:(strings.getVersionRank(x[1])))[1:]:
-					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
+					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, identity[0]) or False
 				self.modelRefresh.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1681,7 +1681,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		try:
 			pattern = re.compile(pattern, flags)
-		except:
+		except Exception:
 			return
 
 		return dbCommon.filterTemplatesCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)),
@@ -1713,7 +1713,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		try:
 			pattern = re.compile(pattern, flags)
-		except:
+		except Exception:
 			return
 
 		return list(set(self.getTemplates()).intersection(

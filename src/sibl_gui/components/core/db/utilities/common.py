@@ -171,19 +171,19 @@ def removeItem(session, item):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def removeStandardItem(session, type, id):
+def removeStandardItem(session, type, identity):
 	"""
 	This definition removes a standard item from the Database.
 
 	:param session: Database session. ( Session )
 	:param type: Item type. ( Object )
-	:param id: Item id. ( String )
+	:param identity: Item id. ( String )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Removing item type '{0}' with id '{1}' from the Database.".format(type.__name__, id))
+	LOGGER.debug("> Removing item type '{0}' with id '{1}' from the Database.".format(type.__name__, identity))
 
-	item = session.query(type).filter_by(id=id).one()
+	item = session.query(type).filter_by(id=identity).one()
 	return removeItem(session, item)
 
 @core.executionTrace
@@ -264,7 +264,7 @@ def itemExists(session, items, pattern, field, flags=0):
 @core.executionTrace
 def getIblSets(session):
 	"""
-	This definition gets the Ibl Sets from the Database.
+	This definition returns the Ibl Sets from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Ibl Sets. ( List )
@@ -312,16 +312,16 @@ def addIblSet(session, name, path, collection):
 	return addStandardItem(session, dbTypes.DbIblSet, name, path, collection)
 
 @core.executionTrace
-def removeIblSet(session, id):
+def removeIblSet(session, identity):
 	"""
 	This definition removes an Ibl Set from the Database.
 
 	:param session: Database session. ( Session )
-	:param id: Ibl Set id. ( String )
+	:param identity: Ibl Set id. ( String )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbIblSet, id)
+	return removeStandardItem(session, dbTypes.DbIblSet, identity)
 
 @core.executionTrace
 def updateIblSetContent(session, iblSet):
@@ -387,7 +387,7 @@ def checkIblSetsTableIntegrity(session):
 @core.executionTrace
 def getCollections(session):
 	"""
-	This definition gets the Collections from the Database.
+	This definition returns the Collections from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Collections. ( List )
@@ -503,30 +503,30 @@ def addCollection(session, collection, type, comment):
 		return False
 
 @core.executionTrace
-def removeCollection(session, id):
+def removeCollection(session, identity):
 	"""
 	This definition removes a Collection from the Database.
 
 	:param session: Database session. ( Session )
-	:param id: Collection id. ( String )
+	:param identity: Collection id. ( String )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbCollection, id)
+	return removeStandardItem(session, dbTypes.DbCollection, identity)
 
 @core.executionTrace
-def getCollectionsIblSets(session, ids):
+def getCollectionsIblSets(session, identities):
 	"""
-	This definition gets Ibl Sets from Collections ids
+	This definition returns Ibl Sets from Collections ids
 
 	:param session: Database session. ( Session )
-	:param ids: Collections ids. ( List )
+	:param identities: Collections ids. ( List )
 	:return: Ibl Sets list. ( List )
 	"""
 
 	iblSets = []
-	for id in ids:
-		collectionSets = filterIblSets(session, "^{0}$".format(id), "collection")
+	for identity in identities:
+		collectionSets = filterIblSets(session, "^{0}$".format(identity), "collection")
 		if collectionSets:
 			for iblSet in collectionSets:
 				iblSets.append(iblSet)
@@ -535,7 +535,7 @@ def getCollectionsIblSets(session, ids):
 @core.executionTrace
 def getTemplates(session):
 	"""
-	This definition gets the Templates from the Database.
+	This definition returns the Templates from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Templates. ( List )
@@ -583,16 +583,16 @@ def addTemplate(session, name, path, collection):
 	return addStandardItem(session, dbTypes.DbTemplate, name, path, collection)
 
 @core.executionTrace
-def removeTemplate(session, id):
+def removeTemplate(session, identity):
 	"""
 	This definition removes a Template from the Database.
 
 	:param session: Database session. ( Session )
-	:param id: Template id. ( String )
+	:param identity: Template id. ( String )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbTemplate, id)
+	return removeStandardItem(session, dbTypes.DbTemplate, identity)
 
 @core.executionTrace
 def updateTemplateContent(session, template):

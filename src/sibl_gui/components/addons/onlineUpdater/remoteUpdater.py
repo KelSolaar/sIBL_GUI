@@ -674,32 +674,32 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 			verticalHeaderLabels = []
 			for row, release in enumerate(sorted(templatesReleases)):
-					verticalHeaderLabels.append(release)
+				verticalHeaderLabels.append(release)
 
-					tableWidgetItem = QTableWidgetItem()
-					tableWidgetItem.data = templatesReleases[release]
-					self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
+				tableWidgetItem = QTableWidgetItem()
+				tableWidgetItem.data = templatesReleases[release]
+				self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
-					tableWidgetItem = Variable_QPushButton(self,
-															True,
-															(self.__uiLightGrayColor, self.__uiDarkGrayColor),
-															("Yes", "No"))
-					self.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
+				tableWidgetItem = Variable_QPushButton(self,
+														True,
+														(self.__uiLightGrayColor, self.__uiDarkGrayColor),
+														("Yes", "No"))
+				self.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
 
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
+				tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
+				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
+				self.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
 
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].repositoryVersion)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
+				tableWidgetItem = QTableWidgetItem(templatesReleases[release].repositoryVersion)
+				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
+				self.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
 
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].type)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
+				tableWidgetItem = QTableWidgetItem(templatesReleases[release].type)
+				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
+				self.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
 
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].comment)
-					self.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
+				tableWidgetItem = QTableWidgetItem(templatesReleases[release].comment)
+				self.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
 
 			self.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
 			self.Templates_tableWidget.resizeColumnsToContents()

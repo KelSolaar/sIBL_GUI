@@ -81,6 +81,7 @@ class Db(Component):
 
 		self.__dbName = None
 		self.__dbSession = None
+		self.__dbSessionMaker = None
 		self.__dbEngine = None
 		self.__dbCatalog = None
 
@@ -514,13 +515,13 @@ class Db(Component):
 
 		if foundations.common.pathExists(self.__dbName):
 			if not self.__engine.parameters.databaseReadOnly:
-					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
+				backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
-					LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__,
-																					Constants.databaseFile,
-																					backupDestination))
-					rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
-					rotatingBackup.backup()
+				LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__,
+																				Constants.databaseFile,
+																				backupDestination))
+				rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
+				rotatingBackup.backup()
 			else:
 				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(
 				self.__class__.__name__, "databaseReadOnly"))

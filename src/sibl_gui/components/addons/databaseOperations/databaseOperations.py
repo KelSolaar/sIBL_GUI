@@ -99,6 +99,8 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.deactivatable = True
 
 		self.__engine = None
+		self.__settings = None
+		self.__settingsSection = None
 
 		self.__coreDb = None
 		self.__factoryPreferencesManager = None
@@ -141,6 +143,70 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+
+	@property
+	def settings(self):
+		"""
+		This method is the property for **self.__settings** attribute.
+
+		:return: self.__settings. ( QSettings )
+		"""
+
+		return self.__settings
+
+	@settings.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self, value):
+		"""
+		This method is the setter method for **self.__settings** attribute.
+
+		:param value: Attribute value. ( QSettings )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+
+	@settings.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self):
+		"""
+		This method is the deleter method for **self.__settings** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+
+	@property
+	def settingsSection(self):
+		"""
+		This method is the property for **self.__settingsSection** attribute.
+
+		:return: self.__settingsSection. ( String )
+		"""
+
+		return self.__settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSection(self, value):
+		"""
+		This method is the setter method for **self.__settingsSection** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSection(self):
+		"""
+		This method is the deleter method for **self.__settingsSection** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
 	def coreDb(self):

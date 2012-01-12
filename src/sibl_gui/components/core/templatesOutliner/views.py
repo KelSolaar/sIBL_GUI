@@ -21,7 +21,6 @@
 import logging
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QAbstractItemView
-from PyQt4.QtGui import QItemSelectionModel
 
 #**********************************************************************************************************************
 #***	Internal imports.
