@@ -44,8 +44,8 @@ umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.run
 
 for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory),
 			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
-	((os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories) and
-	umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path))
+	if os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories:
+		umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path)
 
 import foundations.globals.constants
 import manager.globals.constants
@@ -99,7 +99,9 @@ __status__ = "Production"
 
 __all__ = ["LOGGER",
 		"sIBL_GUI",
-		"extendCommandLineParametersParser"]
+		"extendCommandLineParametersParser",
+		"COMMAND_LINE_PARAMETERS_PARSER",
+		"COMPONENTS_PATHS"]
 
 LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
 
@@ -147,6 +149,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		self.__imagesCaches = None
 
 		umbra.engine.Umbra.__init__(self,
 									parent,
@@ -259,20 +263,21 @@ def extendCommandLineParametersParser(parser):
 #***	Launcher.
 #**********************************************************************************************************************
 if __name__ == "__main__":
-	commandLineParametersParser = umbra.engine.getCommandLineParametersParser()
-	extendCommandLineParametersParser(commandLineParametersParser)
-	componentsPaths = []
+	COMMAND_LINE_PARAMETERS_PARSER = umbra.engine.getCommandLineParametersParser()
+	extendCommandLineParametersParser(COMMAND_LINE_PARAMETERS_PARSER)
+	COMPONENTS_PATHS = []
 	for path in (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
 		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
-		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
+		if foundations.common.pathExists(path) and not path in COMPONENTS_PATHS:
+			COMPONENTS_PATHS.append(path)
 
 	umbra.engine.run(sIBL_GUI,
-					commandLineParametersParser.parse_args(sys.argv),
-					componentsPaths,
+					COMMAND_LINE_PARAMETERS_PARSER.parse_args(sys.argv),
+					COMPONENTS_PATHS,
 					("factory.scriptEditor",
 					"factory.preferencesManager",
 					"factory.componentsManagerUi",
