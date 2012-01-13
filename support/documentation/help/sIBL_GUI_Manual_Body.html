@@ -340,13 +340,13 @@
 
 					<li>
 
-						<a class="reference internal" href="#operating-system-centric-questions">Operating System Centric Questions</a>
+						<a class="reference internal" href="#general-questions">General Questions</a>
 
 						<ul>
 
 							<li>
 
-								<a class="reference internal" href="#general">General</a>
+								<a class="reference internal" href="#overall">Overall</a>
 
 							</li>
 
@@ -362,7 +362,29 @@
 
 					<li>
 
-						<a class="reference internal" href="#d-packages-centric-questions">3D Packages Centric Questions</a>
+						<a class="reference internal" href="#operating-system-questions">Operating System Questions</a>
+
+						<ul>
+
+							<li>
+
+								<a class="reference internal" href="#windows">Windows</a>
+
+							</li>
+
+							<li>
+
+								<a class="reference internal" href="#mac-os-x">Mac Os X</a>
+
+							</li>
+
+						</ul>
+
+					</li>
+
+					<li>
+
+						<a class="reference internal" href="#d-packages-questions">3D Packages Questions</a>
 
 						<ul>
 
@@ -4988,13 +5010,19 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 
 			Faq
 
-		</h1><br />
+		</h1>
+
+		<p>
+
+			The following questions are answered by <em>sIBL_GUI</em> developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
+
+		</p><br />
 
 		<div class="section" id="id23">
 
 			<h2>
 
-				<span class="target" id="operating-system-centric-questions">Operating System Centric Questions</span>
+				<span class="target" id="general-questions">General Questions</span>
 
 			</h2><br />
 
@@ -5002,15 +5030,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 
 				<h3>
 
-					<span class="target" id="general">General</span>
+					<span class="target" id="overall">Overall</span>
 
 				</h3>
-
-				<p>
-
-					The following questions are replied by <em>sIBL_GUI</em> developer and doesn't necessarily reflect other HDRLabs developer opinions and thoughts.
-
-				</p>
 
 				<pre class="literal-block">
 
@@ -5022,13 +5044,13 @@ Is sIBL_GUI Open Source?
 
 					<div class="line">
 
-						Yes <em>sIBL_GUI</em> is Open Source, and available under GNU GPL V3 license.
+						Yes <em>sIBL_GUI</em> is Open Source and licensed under: <a class="reference external" href="http://www.gnu.org/copyleft/gpl.html">GNU GPL V3 license</a>
 
 					</div>
 
 					<div class="line">
 
-						You can grab the source code from this Git repository: <a class="reference external" href="http://kelsolaar.github.com/sIBL_GUI/">sIBL_GUI GIT Repository On GITHub.</a>
+						You can grab the source code from: <a class="reference external" href="http://kelsolaar.github.com/sIBL_GUI/">sIBL_GUI Git Repository on GitHub</a>
 
 					</div>
 
@@ -5214,7 +5236,7 @@ What is the shift between the viewport visual feedback sphere and the render ima
 
 					<div class="line">
 
-						When you render using an environment map, the image is &quot;kind&quot; of warped on an infinite radius sphere centered on the camera (<a class="reference external" href="http://www.pauldebevec.com/ReflectionMapping/">http://www.pauldebevec.com/ReflectionMapping/</a>). If you are way off the center of the viewport with a fairly small visual feedback, you'll encounter a shift.
+						When you render using an environment map, the image is &quot;kind&quot; of warped on an infinite radius sphere centered on the camera: <a class="reference external" href="http://www.pauldebevec.com/ReflectionMapping/">http://www.pauldebevec.com/ReflectionMapping/</a>. If you are way off the center of the viewport with a fairly small visual feedback, you'll encounter a shift.
 
 					</div>
 
@@ -5270,11 +5292,81 @@ Is it possible to share a common Database file between multiple computers?
 
 			<h2>
 
-				<span class="target" id="d-packages-centric-questions">3D Packages Centric Questions</span>
+				<span class="target" id="operating-system-questions">Operating System Questions</span>
 
 			</h2><br />
 
 			<div class="section" id="id27">
+
+				<h3>
+
+					<span class="target" id="windows">Windows</span>
+
+				</h3>
+
+				<pre class="literal-block">
+
+How do I launch sIBL_GUI with command line parameters?
+
+</pre>
+
+				<p>
+
+					Create or modify a <em>shortcut</em> to the executable, then append the parameters you want to use into the <em>target</em> field.
+
+				</p><br />
+
+			</div>
+
+			<div class="section" id="id28">
+
+				<h3>
+
+					<span class="target" id="mac-os-x">Mac Os X</span>
+
+				</h3>
+
+				<pre class="literal-block">
+
+How do I launch sIBL_GUI with command line parameters?
+
+</pre>
+
+				<p>
+
+					Open a terminal then issue the following commands with the parameters you want to use:
+
+				</p>
+
+				<blockquote>
+
+					<p>
+
+						<tt class="docutils literal">cd /Applications/sIBL_GUI\ 4.app/</tt>
+
+					</p>
+
+					<p>
+
+						<tt class="docutils literal">./Contents/MacOS/sIBL_GUI</tt>
+
+					</p>
+
+				</blockquote><br />
+
+			</div>
+
+		</div>
+
+		<div class="section" id="id29">
+
+			<h2>
+
+				<span class="target" id="d-packages-questions">3D Packages Questions</span>
+
+			</h2><br />
+
+			<div class="section" id="id30">
 
 				<h3>
 
@@ -5424,7 +5516,7 @@ I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Execut
 
 			</div>
 
-			<div class="section" id="id28">
+			<div class="section" id="id31">
 
 				<h3>
 
@@ -5548,7 +5640,7 @@ How do I register the sIBL_GUI_XSI_Server.dll file into Windows Global Assembly 
 
 			</div>
 
-			<div class="section" id="id29">
+			<div class="section" id="id32">
 
 				<h3>
 

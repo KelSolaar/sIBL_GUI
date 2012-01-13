@@ -1,11 +1,13 @@
 Faq
 ===
 
+The following questions are answered by *sIBL_GUI* developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
+
 .. raw:: html
 
     <br/>
 
-_`Operating System Centric Questions`
+_`General Questions`
 -------------------------------------
 
 .. raw:: html
@@ -13,17 +15,15 @@ _`Operating System Centric Questions`
     <br/>
 
 
-_`General`
+_`Overall`
 ^^^^^^^^^^
-
-The following questions are replied by *sIBL_GUI* developer and doesn't necessarily reflect other HDRLabs developer opinions and thoughts.
 
 ::
 
       Is sIBL_GUI Open Source?
 
-| Yes *sIBL_GUI* is Open Source, and available under GNU GPL V3 license.
-| You can grab the source code from this Git repository: `sIBL_GUI GIT Repository On GITHub. <http://kelsolaar.github.com/sIBL_GUI/>`_
+| Yes *sIBL_GUI* is Open Source and licensed under: `GNU GPL V3 license <http://www.gnu.org/copyleft/gpl.html>`_
+| You can grab the source code from: `sIBL_GUI Git Repository on GitHub <http://kelsolaar.github.com/sIBL_GUI/>`_
 
 .. raw:: html
 
@@ -136,7 +136,7 @@ _`Rendering`
 
       What is the shift between the viewport visual feedback sphere and the render image?
 
-| When you render using an environment map, the image is "kind" of warped on an infinite radius sphere centered on the camera (http://www.pauldebevec.com/ReflectionMapping/). If you are way off the center of the viewport with a fairly small visual feedback, you'll encounter a shift.
+| When you render using an environment map, the image is "kind" of warped on an infinite radius sphere centered on the camera: http://www.pauldebevec.com/ReflectionMapping/. If you are way off the center of the viewport with a fairly small visual feedback, you'll encounter a shift.
 | There are 2 solutions to counter this effect :
 
 -  Constrain in position the visual feedBack to your render camera.
@@ -166,7 +166,44 @@ Yes you need to map each one on a different sphere and play with the different r
 
     <br/>
 
-_`3D Packages Centric Questions`
+_`Operating System Questions`
+--------------------------------
+
+.. raw:: html
+
+    <br/>
+
+_`Windows`
+^^^^^^^^^^^^^^^^
+
+::
+
+      How do I launch sIBL_GUI with command line parameters?
+
+Create or modify a *shortcut* to the executable, then append the parameters you want to use into the *target* field.
+
+.. raw:: html
+
+    <br/>
+
+_`Mac Os X`
+^^^^^^^^^^^^^^^^
+
+::
+
+      How do I launch sIBL_GUI with command line parameters?
+
+Open a terminal then issue the following commands with the parameters you want to use:
+
+      ``cd /Applications/sIBL_GUI\ 4.app/``
+
+      ``./Contents/MacOS/sIBL_GUI``
+
+.. raw:: html
+
+    <br/>
+
+_`3D Packages Questions`
 --------------------------------
 
 .. raw:: html
