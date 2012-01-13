@@ -69,6 +69,14 @@ Table Of Content
 
 -  `Api`_
 -  `Faq`_
+
+   -  `Operating System Centric Questions`_
+   -  `3D Packages Centric Questions`_
+
+      -  `Autodesk Maya`_
+      -  `Autodesk Softimage`_
+      -  `Autodesk 3ds Max`_
+
 -  `Change Log`_
 -  `About`_
 
@@ -105,7 +113,7 @@ Why an external application instead of directly using scripting possibilities of
 
 With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 
-The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
+The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the Autodesk Softimage Mental Ray Template into an Autodesk Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
 
 *sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
@@ -248,8 +256,8 @@ _`Command Line Parameters`
 
 Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
 
-     cd sIBL_GUI.app
-     ./Contents/MacOS/sIBL_GUI
+      cd sIBL_GUI.app
+      ./Contents/MacOS/sIBL_GUI
 
 _`Shared Database Configuration`
 --------------------------------
@@ -276,7 +284,7 @@ It’s possible to share one Database file between multiple *sIBL_GUI* install. 
 
 Example Command Line::
 
-     C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
+      C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 
 When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won’t be added automatically.
 
@@ -1177,14 +1185,137 @@ Interactions:
 Api
 ===
 
-sIBL_GUI Api documentation is available here: `sIBL_GUI - Api <http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html>`_
+*sIBL_GUI* Api documentation is available here: `sIBL_GUI - Api <http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html>`_
 
 .. .faq
 
 Faq
 ===
 
-A “Frequently Asked Questions” thread is available on HDRLabs forum: `Smart Ibl Loaders - Faq <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491>`_
+.. .operatingSystemCentricQuestions:
+
+_`Operating System Centric Questions`
+-------------------------------------
+
+
+.. .3dPackagesCentricQuestions:
+
+_`3D Packages Centric Questions`
+--------------------------------
+
+_`Autodesk Maya`
+^^^^^^^^^^^^^^^^
+
+::
+
+      I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
+
+| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Maya.
+| You need to make Autodesk Maya listen to the port sIBL_GUI is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
+
+-  Autodesk Maya 2008 - 2012:
+   
+      ``commandPort -n "127.0.0.1:2048";``
+
+-  Autodesk Maya 2010 - Windows Vista / 7 :
+   
+      ``commandPort -n "127.0.0.1:2048"; commandPort -n ":2048";``
+
+****
+
+::
+
+      How do I open automatically the command port in Autodesk Maya?
+
+Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
+
+-  Autodesk Maya 2008 - 2012:
+   
+      ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`);``
+
+-  Autodesk Maya 2010 - Windows Vista / 7 :
+   
+      ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`); commandPort -n (":" + `optionVar -q "sIBL_GUI_commandPort"`);``
+
+****
+
+::
+
+      I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Executable Path field?
+
+It's a convenient method to directly launch *sIBL_GUI* from within Autodesk Maya, just point to sIBL_GUI executable, then you can use the second shelf button to launch sIBL_GUI.
+   
+      ``/Applications/sIBL_GUI.app/Contents/MacOs/sIBL_GUI 4.app``
+
+
+_`Autodesk Softimage`
+^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+      I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
+
+| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Softimage.
+| You need to make Autodesk Softimage listen to the port sIBL_GUI is using. You can do that using the **sIBL_GUI_XSI_Server Addon**:
+
+sIBL_GUI_XSI_Server Addon ( Windows Only ):
+
+-  `Nightly <http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Nightly>`_
+-  `Stable <http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Stable>`_
+-  `Archives <http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Archives>`_
+
+****
+
+::
+
+      I'm getting that error: "' ERROR : 2424 - XSI failed to load a .NET plug-in. This error happens because the plug-in may have been compiled with a different version of XSI. Recompile the plug-in with the current version of XSI to fix the problem. ' <Plug-in: \\..\sIBL_GUI_XSI_Server\Application\Plugins\sIBL_GUI_XSI_Server.dll> ' <Current XSI version: X.X.XXX.X>"
+
+You either:
+
+-  Don't have the correct **sIBL_GUI_XSI_Server Addon** compiled for your version of Autodesk Softimage.
+-  Didn't registered the *sIBL_GUI_XSI_Server.dll* file into the Windows GAC ( Global Assembly Cache ).
+
+****
+
+::
+
+      How do I register the sIBL_GUI_XSI_Server.dll file into Windows Global Assembly Cache?
+
+| You need to use a Microsoft .Net tool called *gacutil* available with the .Net Framework: `.Net Framework on Wikipedia <http://en.wikipedia.org/wiki/.NET_Framework>`_
+| If you don't have the .Net Framework, you can get the gacutil executable alone here: `gacutil.rar <http://kelsolaar.hdrlabs.com/sIBL_Framework/XSI/sIBL_GUI_For_XSI/Others/gacutil.rar>`_
+
+You will then need to issue a command like this in an Administrator elevated prompt:
+
+      ``gacutil.exe /i C:\Addons\sIBL_GUI_XSI\Application\Plugins\sIBL_GUI_XSI_Server.dll``
+
+There is also an alternative way without gacutil.exe, it has been tested on a few computers and seems to work: You just need to drag'n'drop the *sIBL_GUI_Server.dll* into Windows GAC folder (C:\\Windows\\assembly).
+
+_`Autodesk 3ds Max`
+^^^^^^^^^^^^^^^^^^^
+
+::
+
+      I'm getting that error: "LoaderScript | Win32 OLE server connection error: '(-2147221164, 'Class not registered', None, None)'!"
+
+| *sIBL_GUI* is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
+| You need to register Autodesk 3ds Max as an OLE Server and expose the communication class. The easiest way to do that is to use *Autodesk 3ds Max - Helper Script* and trigger the *Register OLE Server* button: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
+
+Notice that you need to launch Autodesk 3ds Max as Administrator for that purpose.
+
+::
+
+      What is this error with Autodesk 3dsMax_MR_Standard Template: "sIBL_GUI | Mental Ray Productions Shaders are not available!"?
+
+| Zap Anderson Production Shaders are hidden by default in Autodesk 3ds Max 2009 and 2010 since they were introduced a few versions ago.
+| You need to edit the associated *production_max.mi* include file in Autodesk 3ds Max Mental Ray folder by commenting out those type of statements:
+
+      ``"hidden"``
+
+to
+
+      ``# "hidden"``
+
+Or after backuping the original one, you can directly use one of those already edited files: `Production Shaders Files <http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/3dsMax/Others/Production%20Shader%20Files>`_
 
 .. .changeLog
 

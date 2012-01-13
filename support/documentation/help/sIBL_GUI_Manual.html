@@ -41,6 +41,25 @@
 		border-style: solid;
 		border-width: 2px;
 		}
+
+		pre {
+		background-color: rgb(64, 64, 64);
+		border: 2px solid rgb(160, 96, 64);
+		border-left: none;
+		border-right: none;
+		color: rgb(224, 224, 224);
+		font-size: 12pt;
+		padding: 5px;
+		white-space: pre-wrap;
+		}
+
+		tt {
+		background-color: rgb(64, 64, 64);
+		color: rgb(224, 224, 224);
+		padding: 5px;
+		white-space: pre-wrap;
+		white-space: -moz-pre-wrap !important;
+		}
 		/*]]>*/
 		</style>
 	</head>
@@ -213,6 +232,25 @@
 					</li>
 					<li>
 						<a class="reference internal" href="#faq">Faq</a>
+						<ul>
+							<li>
+								<a class="reference internal" href="#operating-system-centric-questions">Operating System Centric Questions</a>
+							</li>
+							<li>
+								<a class="reference internal" href="#d-packages-centric-questions">3D Packages Centric Questions</a>
+								<ul>
+									<li>
+										<a class="reference internal" href="#autodesk-maya">Autodesk Maya</a>
+									</li>
+									<li>
+										<a class="reference internal" href="#autodesk-softimage">Autodesk Softimage</a>
+									</li>
+									<li>
+										<a class="reference internal" href="#autodesk-3ds-max">Autodesk 3ds Max</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 					<li>
 						<a class="reference internal" href="#change-log">Change Log</a>
@@ -260,7 +298,7 @@
 					With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 				</p>
 				<p>
-					The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That’s one of <em>sIBL_GUI</em> strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
+					The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That’s one of <em>sIBL_GUI</em> strength: It only took a few hours to convert the Autodesk Softimage Mental Ray Template into an Autodesk Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
 				</p>
 				<p>
 					<em>sIBL_GUI</em> is built around <a class="reference external" href="https://github.com/KelSolaar/Umbra">Umbra</a> Framework in <a class="reference external" href="http://www.python.org/">Python 2.7.1</a> and uses some others major libraries / tools:
@@ -2559,16 +2597,206 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 					Api
 				</h1>
 				<p>
-					sIBL_GUI Api documentation is available here: <a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html">sIBL_GUI - Api</a>
+					<em>sIBL_GUI</em> Api documentation is available here: <a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html">sIBL_GUI - Api</a>
 				</p><!-- .faq -->
 			</div>
 			<div class="section" id="faq">
 				<h1>
 					Faq
-				</h1>
-				<p>
-					A “Frequently Asked Questions” thread is available on HDRLabs forum: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491">Smart Ibl Loaders - Faq</a>
-				</p><!-- .changeLog -->
+				</h1><!-- .operatingSystemCentricQuestions: -->
+				<div class="section" id="id23">
+					<h2>
+						<span class="target" id="operating-system-centric-questions">Operating System Centric Questions</span>
+					</h2><!-- .3dPackagesCentricQuestions: -->
+				</div>
+				<div class="section" id="id24">
+					<h2>
+						<span class="target" id="d-packages-centric-questions">3D Packages Centric Questions</span>
+					</h2>
+					<div class="section" id="id25">
+						<h3>
+							<span class="target" id="autodesk-maya">Autodesk Maya</span>
+						</h3>
+						<pre class="literal-block">
+I'm getting that error: &quot;LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!&quot;
+</pre>
+						<div class="line-block">
+							<div class="line">
+								<em>sIBL_GUI</em> is relying on Socket Connection to communicate with Autodesk Maya.
+							</div>
+							<div class="line">
+								You need to make Autodesk Maya listen to the port sIBL_GUI is using. You can do that using the <strong>Autodesk Maya - Helper Script</strong>: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1">http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1</a> or executing the following lines into the script editor:
+							</div>
+						</div>
+						<ul>
+							<li>
+								<p class="first">
+									Autodesk Maya 2008 - 2012:
+								</p>
+								<blockquote>
+									<p>
+										<tt class="docutils literal">commandPort <span class="pre">-n</span> &quot;127.0.0.1:2048&quot;;</tt>
+									</p>
+								</blockquote>
+							</li>
+							<li>
+								<p class="first">
+									Autodesk Maya 2010 - Windows Vista / 7 :
+								</p>
+								<blockquote>
+									<p>
+										<tt class="docutils literal">commandPort <span class="pre">-n</span> &quot;127.0.0.1:2048&quot;; commandPort <span class="pre">-n</span> &quot;:2048&quot;;</tt>
+									</p>
+								</blockquote>
+							</li>
+						</ul>
+						<hr class="docutils" />
+						<pre class="literal-block">
+How do I open automatically the command port in Autodesk Maya?
+</pre>
+						<p>
+							Open your <em>userSetup.mel</em> in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
+						</p>
+						<ul>
+							<li>
+								<p class="first">
+									Autodesk Maya 2008 - 2012:
+								</p>
+								<blockquote>
+									<p>
+										<tt class="docutils literal">commandPort <span class="pre">-n</span> (&quot;127.0.0.1:&quot;&nbsp; + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span></tt>
+									</p>
+								</blockquote>
+							</li>
+							<li>
+								<p class="first">
+									Autodesk Maya 2010 - Windows Vista / 7 :
+								</p>
+								<blockquote>
+									<p>
+										<tt class="docutils literal">commandPort <span class="pre">-n</span> (&quot;127.0.0.1:&quot;&nbsp; + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span> commandPort <span class="pre">-n</span> <span class="pre">(&quot;:&quot;</span> + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span></tt>
+									</p>
+								</blockquote>
+							</li>
+						</ul>
+						<hr class="docutils" />
+						<pre class="literal-block">
+I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Executable Path field?
+</pre>
+						<p>
+							It's a convenient method to directly launch <em>sIBL_GUI</em> from within Autodesk Maya, just point to sIBL_GUI executable, then you can use the second shelf button to launch sIBL_GUI.
+						</p>
+						<blockquote>
+							<tt class="docutils literal">/Applications/sIBL_GUI.app/Contents/MacOs/sIBL_GUI 4.app</tt>
+						</blockquote>
+					</div>
+					<div class="section" id="id26">
+						<h3>
+							<span class="target" id="autodesk-softimage">Autodesk Softimage</span>
+						</h3>
+						<pre class="literal-block">
+I'm getting that error: &quot;LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!&quot;
+</pre>
+						<div class="line-block">
+							<div class="line">
+								<em>sIBL_GUI</em> is relying on Socket Connection to communicate with Autodesk Softimage.
+							</div>
+							<div class="line">
+								You need to make Autodesk Softimage listen to the port sIBL_GUI is using. You can do that using the <strong>sIBL_GUI_XSI_Server Addon</strong>:
+							</div>
+						</div>
+						<p>
+							sIBL_GUI_XSI_Server Addon ( Windows Only ):
+						</p>
+						<ul class="simple">
+							<li>
+								<a class="reference external" href="http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Nightly">Nightly</a>
+							</li>
+							<li>
+								<a class="reference external" href="http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Stable">Stable</a>
+							</li>
+							<li>
+								<a class="reference external" href="http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_XSI_Server/Archives">Archives</a>
+							</li>
+						</ul>
+						<hr class="docutils" />
+						<pre class="literal-block">
+I'm getting that error: &quot;' ERROR : 2424 - XSI failed to load a .NET plug-in. This error happens because the plug-in may have been compiled with a different version of XSI. Recompile the plug-in with the current version of XSI to fix the problem. ' &lt;Plug-in: \\..\sIBL_GUI_XSI_Server\Application\Plugins\sIBL_GUI_XSI_Server.dll&gt; ' &lt;Current XSI version: X.X.XXX.X&gt;&quot;
+</pre>
+						<p>
+							You either:
+						</p>
+						<ul class="simple">
+							<li>Don't have the correct <strong>sIBL_GUI_XSI_Server Addon</strong> compiled for your version of Autodesk Softimage.
+							</li>
+							<li>Didn't registered the <em>sIBL_GUI_XSI_Server.dll</em> file into the Windows GAC ( Global Assembly Cache ).
+							</li>
+						</ul>
+						<hr class="docutils" />
+						<pre class="literal-block">
+How do I register the sIBL_GUI_XSI_Server.dll file into Windows Global Assembly Cache?
+</pre>
+						<div class="line-block">
+							<div class="line">
+								You need to use a Microsoft .Net tool called <em>gacutil</em> available with the .Net Framework: <a class="reference external" href="http://en.wikipedia.org/wiki/.NET_Framework">.Net Framework on Wikipedia</a>
+							</div>
+							<div class="line">
+								If you don't have the .Net Framework, you can get the gacutil executable alone here: <a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_Framework/XSI/sIBL_GUI_For_XSI/Others/gacutil.rar">gacutil.rar</a>
+							</div>
+						</div>
+						<p>
+							You will then need to issue a command like this in an Administrator elevated prompt:
+						</p>
+						<blockquote>
+							<tt class="docutils literal">gacutil.exe /i <span class="pre">C:\Addons\sIBL_GUI_XSI\Application\Plugins\sIBL_GUI_XSI_Server.dll</span></tt>
+						</blockquote>
+						<p>
+							There is also an alternative way without gacutil.exe, it has been tested on a few computers and seems to work: You just need to drag'n'drop the <em>sIBL_GUI_Server.dll</em> into Windows GAC folder (C:\Windows\assembly).
+						</p>
+					</div>
+					<div class="section" id="id27">
+						<h3>
+							<span class="target" id="autodesk-3ds-max">Autodesk 3ds Max</span>
+						</h3>
+						<pre class="literal-block">
+I'm getting that error: &quot;LoaderScript | Win32 OLE server connection error: '(-2147221164, 'Class not registered', None, None)'!&quot;
+</pre>
+						<div class="line-block">
+							<div class="line">
+								<em>sIBL_GUI</em> is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
+							</div>
+							<div class="line">
+								You need to register Autodesk 3ds Max as an OLE Server and expose the communication class. The easiest way to do that is to use <em>Autodesk 3ds Max - Helper Script</em> and trigger the <em>Register OLE Server</em> button: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1">http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1</a>
+							</div>
+						</div>
+						<p>
+							Notice that you need to launch Autodesk 3ds Max as Administrator for that purpose.
+						</p>
+						<pre class="literal-block">
+What is this error with Autodesk 3dsMax_MR_Standard Template: &quot;sIBL_GUI | Mental Ray Productions Shaders are not available!&quot;?
+</pre>
+						<div class="line-block">
+							<div class="line">
+								Zap Anderson Production Shaders are hidden by default in Autodesk 3ds Max 2009 and 2010 since they were introduced a few versions ago.
+							</div>
+							<div class="line">
+								You need to edit the associated <em>production_max.mi</em> include file in Autodesk 3ds Max Mental Ray folder by commenting out those type of statements:
+							</div>
+						</div>
+						<blockquote>
+							<tt class="docutils literal">&quot;hidden&quot;</tt>
+						</blockquote>
+						<p>
+							to
+						</p>
+						<blockquote>
+							<tt class="docutils literal"># &quot;hidden&quot;</tt>
+						</blockquote>
+						<p>
+							Or after backuping the original one, you can directly use one of those already edited files: <a class="reference external" href="http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Support/Softwares/3dsMax/Others/Production%20Shader%20Files">Production Shaders Files</a>
+						</p><!-- .changeLog -->
+					</div>
+				</div>
 			</div>
 			<div class="section" id="change-log">
 				<h1>
