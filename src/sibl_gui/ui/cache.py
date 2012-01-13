@@ -430,6 +430,12 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		:param path: Default image path. ( String )
 		"""
 
+		if not foundations.common.pathExists(path):
+			LOGGER.warning(
+			"!> {0} | '{1}' default graphics item file doesn't exists, unexpected behavior may occur!".format(
+			self.__class__.__name__, self))
+			return
+
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
@@ -447,7 +453,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		for path, item in content.items():
 			if not foundations.common.pathExists(path):
-				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!!".format(
+				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
 				self.__class__.__name__, path))
 				del(content[path])
 				continue
@@ -482,6 +488,11 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 			if path in self.mapping:
 				image = self.mapping.get(path)
+				if not hasattr(image, "data"):
+					LOGGER.debug("> {0} | '{1}' object has not 'data' attribute and has been skipped!".format(
+					self.__class__.__name__, image))
+					continue
+
 				if image.data.path != path:
 					continue
 

@@ -22,9 +22,14 @@ import itertools
 import logging
 import os
 import re
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QBrush
+from PyQt4.QtGui import QColor
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
+from PyQt4.QtGui import QPainter
 from PyQt4.QtGui import QPixmap
+from PyQt4.QtGui import QPen
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -59,6 +64,7 @@ __all__ = ["LOGGER",
 			"getIcon",
 			"getPixmap",
 			"getImage",
+			"createPixmap",
 			"getImageInformationsHeader",
 			"filterImagePath",
 			"getFormatedShotDate"]
@@ -137,8 +143,8 @@ def loadGraphicsItem(path, type):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	"""
-	This method gets a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
-	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
+	This method returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Image path. ( String )
 	:param type: QIcon, QImage, QPixmap. ( QObject )
@@ -162,7 +168,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path, asynchronousLoading=True, imagesCache=None):
 	"""
-	This method gets a `QIcon <http://doc.qt.nokia.com/qicon.html>`_.
+	This method returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -177,7 +183,7 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 	"""
-	This method gets a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
+	This method returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -192,7 +198,7 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path, asynchronousLoading=True, imagesCache=None):
 	"""
-	This method gets a `QImage <http://doc.qt.nokia.com/qimage.html>`_.
+	This method returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -202,6 +208,28 @@ def getImage(path, asynchronousLoading=True, imagesCache=None):
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
 	return getGraphicsItem(path, QImage, asynchronousLoading, cache)
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def createPixmap(width=128, height=128, text=None):
+	"""
+	This method create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+
+	:param width: Pixmap width. ( Integer )
+	:param height: Pixmap height. ( Integer )
+	:param text: Pximap text. ( String )
+	:return: QPixmap. ( QPixmap )
+	"""
+
+	loadingPixmap = QPixmap(width, height)
+	loadingPixmap.fill(QColor(96, 96, 96))
+	painter = QPainter(loadingPixmap)
+	if text:
+		painter.setPen(QPen(QColor(192, 192, 192)))
+		pointX = painter.fontMetrics().width(text) / 2
+		pointY = width / 2
+		painter.drawText(pointX, pointY, text)
+	return loadingPixmap
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
