@@ -14,8 +14,16 @@ Those 2 types are split into 4 main families:
 -  **Addons** (Factory optional components, deactivable and removable).
 -  **User** (User optional components, deactivable and removable).
 
+.. raw:: html
+
+    <br/>
+
 _`Factory`
 ----------
+
+.. raw:: html
+
+    <br/>
 
 .. _factory.componentsManagerUi:
 
@@ -54,7 +62,9 @@ Addons Functionalities:
 
 -  **Open Component(s) Location(s) ...**: Opens Component(s) directory(s).
 
+.. raw:: html
 
+    <br/>
 
 .. _factory.preferencesManager:
 
@@ -92,7 +102,9 @@ Others Page:
 
 Those settings are components dependent and will be described per related component.
 
+.. raw:: html
 
+    <br/>
 
 .. _factory.scriptEditor:
 
@@ -202,8 +214,16 @@ Search And Replace:
 -  **Replace Push Button**: Performs the search and replace editor first matched occurence.
 -  **Replace All Push Button**: Performs the search and replace all editor matched occurence.
 
+.. raw:: html
+
+    <br/>
+
 _`Core`
 -------
+
+.. raw:: html
+
+    <br/>
 
 .. _core.collectionsOutliner:
 
@@ -250,7 +270,9 @@ While adding a new Collection, a comment can be directly provided by using a com
 | ..  image:: ../pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg            |
 +----------------------------------------------------------------------------------+
 
+.. raw:: html
 
+    <br/>
 
 .. _core.databaseBrowser:
 
@@ -332,14 +354,18 @@ Search widget context menu:
 | ..  image:: ../pictures/sIBL_GUI_DatabaseBrowserSearchWidgetContextMenu.jpg            |
 +----------------------------------------------------------------------------------------+
 
+.. raw:: html
 
+    <br/>
 
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
 The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
 
+.. raw:: html
 
+    <br/>
 
 .. _core.inspector:
 
@@ -384,7 +410,9 @@ Addons Functionalities:
 -  **View Reflection Image ...**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Plate(s) ...**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
+.. raw:: html
 
+    <br/>
 
 .. _core.templatesOutliner:
 
@@ -434,8 +462,16 @@ Addons Functionalities:
 -  **Open Templates(s) Location(s) ...**: Opens selected Templates directories.
 -  **Edit Template(s) File(s) ...**: Edits selected Templates in the *Script Editor* component or custom user defined text editor.
 
+.. raw:: html
+
+    <br/>
+
 Addons
 ------
+
+.. raw:: html
+
+    <br/>
 
 .. _addons.about:
 
@@ -448,7 +484,9 @@ _`About sIBL_GUI` (addons.about)
 
 The *About* component displays the *About* window.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.databaseOperations:
 
@@ -465,7 +503,9 @@ Interactions:
 
 -  **Synchronize Database Push Button**: Forces database synchronization by reparsing all registered files.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.gpsMap:
 
@@ -488,7 +528,9 @@ Interactions:
    -  Aerial: This map type overlays satellite imagery onto the map and highlights roads and major landmarks to be easily identifiable amongst the satellite images.
    -  Road: This map type displays vector imagery of roads, buildings, and geography.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.iblSetsScanner:
 
@@ -497,7 +539,9 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 
 The *Ibl Sets Scanner* component is a file scanning component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the component.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.imagesCachesOperations:
 
@@ -515,7 +559,9 @@ Interactions:
 -  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
 -  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.loaderScript:
 
@@ -540,7 +586,9 @@ Addons Functionalities:
 
 -  **Open Output Folder Push Button**: Opens the output directory.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.loaderScriptOptions:
 
@@ -558,7 +606,9 @@ The *Loader Script Options* component allows the user to tweak the way the loade
 
 Templates settings are stored per version and restored each time one is selected in *sIBL_GUI* preferences directory.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.locationsBrowser:
 
@@ -592,7 +642,9 @@ Interactions:
 
 -  **Custom File Browser Path Line Edit**: User defined file browser executable path.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.loggingNotifier:
 
@@ -601,7 +653,9 @@ _`Logging Notifier` (addons.loggingNotifier)
 
 The *Logging Notifier* component displays logging messages in the status bar.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.onlineUpdater:
 
@@ -638,7 +692,9 @@ Interactions:
 -  **Check For New Releases On Startup Check Box**: *sIBL_GUI* will check for new releases on startup.
 -  **Ignore Non Existing Templates Check Box**: *sIBL_GUI* will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.preview:
 
@@ -673,7 +729,9 @@ Interactions:
 -  **Zoom Fit Push Button**: Zooms fit the Image.
 -  **Zoom Out Push Button**: Zooms out of the Image.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.rawEditingUtilities:
 
@@ -690,7 +748,9 @@ Interactions:
 
 -  **Custom Text Editor Path Line Edit**: User defined Text Editor executable path.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.rewiringTool:
 
@@ -708,7 +768,9 @@ Interactions:
 -  **Combo Boxes**: The current image will be remapped to the chosen entry.
 -  **Path Line Edits**: The current image will be remapped to the chosen custom image.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.searchDatabase:
 
@@ -734,7 +796,9 @@ Search In Shot Time:
 -  **From Time Edit**: Time range search start.
 -  **To Time Edit**: Time range search end.
 
+.. raw:: html
 
+    <br/>
 
 .. _addons.sIBLeditUtilities:
 
@@ -750,4 +814,8 @@ The *sIBLedit Utilities* component provides a bridge between *sIBL_GUI* and *sIB
 Interactions:
 
 -  **sIBLedit Executable Path Line Edit**: *sIBLedit* executable path.
+
+.. raw:: html
+
+    <br/>
 

@@ -20,7 +20,6 @@ import logging
 import os
 import sys
 import re
-from xml.etree import ElementTree
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -64,14 +63,16 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	file = File(fileIn)
 	file.read()
 
-	LOGGER.info("{0} | Building 'ElementTree' parsing tree!".format(getHDRLabsDocumentation.__name__))
-	element = ElementTree.fromstringlist(file.content)
-	tree = ElementTree.ElementTree(element)
-
 	LOGGER.info("{0} | Processing 'body' data!".format(getHDRLabsDocumentation.__name__))
-	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 2))
-				for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n")
-				if not re.search(r"<html:body.*", line) and not re.search(r"</html:body.*", line)]
+	content = []
+	skipLine = True
+	for line in file.content:
+		if re.search(r"<body>", line):
+			skipLine = False
+		elif re.search(r"</body>", line):
+			skipLine = True
+
+		not skipLine and content.append("{0}\n".format(line.replace("\t", "", 2)))
 
 	file = File(fileOut)
 	file.content = content

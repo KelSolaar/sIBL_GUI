@@ -18,6 +18,10 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: OrderedUniqifyTestCase
+	:show-inheritance:
+	:members:
+
 .. autoclass:: PathExistsTestCase
 	:show-inheritance:
 	:members:

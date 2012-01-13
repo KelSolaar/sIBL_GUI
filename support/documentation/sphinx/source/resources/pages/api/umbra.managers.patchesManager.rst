@@ -1,12 +1,12 @@
-_`umbra.patchesManager`
-=======================
+_`umbra.managers.patchesManager`
+================================
 
-.. automodule:: umbra.patchesManager
+.. automodule:: umbra.managers.patchesManager
 
 Module Attributes
 -----------------
 
-.. attribute:: umbra.patchesManager.LOGGER
+.. attribute:: umbra.managers.patchesManager.LOGGER
 
 Classes
 -------

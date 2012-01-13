@@ -81,8 +81,8 @@ Modules Summary:
    sibl_gui.ui.common <api/sibl_gui.ui.common>
    sibl_gui.ui.models <api/sibl_gui.ui.models>
    sibl_gui.ui.views <api/sibl_gui.ui.views>
+   sibl_gui.ui.widgets.application_QToolBar <api/sibl_gui.ui.widgets.application_QToolBar>
    sibl_gui.ui.workers <api/sibl_gui.ui.workers>
-   umbra.actionsManager <api/umbra.actionsManager>
    umbra.components.factory.componentsManagerUi.componentsManagerUi <api/umbra.components.factory.componentsManagerUi.componentsManagerUi>
    umbra.components.factory.componentsManagerUi.models <api/umbra.components.factory.componentsManagerUi.models>
    umbra.components.factory.componentsManagerUi.views <api/umbra.components.factory.componentsManagerUi.views>
@@ -98,7 +98,11 @@ Modules Summary:
    umbra.globals.constants <api/umbra.globals.constants>
    umbra.globals.runtimeGlobals <api/umbra.globals.runtimeGlobals>
    umbra.globals.uiConstants <api/umbra.globals.uiConstants>
-   umbra.patchesManager <api/umbra.patchesManager>
+   umbra.guerilla <api/umbra.guerilla>
+   umbra.managers.actionsManager <api/umbra.managers.actionsManager>
+   umbra.managers.layoutsManager <api/umbra.managers.layoutsManager>
+   umbra.managers.notificationsManager <api/umbra.managers.notificationsManager>
+   umbra.managers.patchesManager <api/umbra.managers.patchesManager>
    umbra.preferences <api/umbra.preferences>
    umbra.processing <api/umbra.processing>
    umbra.ui.common <api/umbra.ui.common>
@@ -109,9 +113,13 @@ Modules Summary:
    umbra.ui.themes <api/umbra.ui.themes>
    umbra.ui.views <api/umbra.ui.views>
    umbra.ui.widgets.active_QLabel <api/umbra.ui.widgets.active_QLabel>
+   umbra.ui.widgets.active_QLabelsCollection <api/umbra.ui.widgets.active_QLabelsCollection>
+   umbra.ui.widgets.application_QToolBar <api/umbra.ui.widgets.application_QToolBar>
+   umbra.ui.widgets.basic_QPlainTextEdit <api/umbra.ui.widgets.basic_QPlainTextEdit>
    umbra.ui.widgets.codeEditor_QPlainTextEdit <api/umbra.ui.widgets.codeEditor_QPlainTextEdit>
    umbra.ui.widgets.delayed_QSplashScreen <api/umbra.ui.widgets.delayed_QSplashScreen>
    umbra.ui.widgets.messageBox <api/umbra.ui.widgets.messageBox>
+   umbra.ui.widgets.notification_QLabel <api/umbra.ui.widgets.notification_QLabel>
    umbra.ui.widgets.search_QLineEdit <api/umbra.ui.widgets.search_QLineEdit>
    umbra.ui.widgets.variable_QPushButton <api/umbra.ui.widgets.variable_QPushButton>
    tests.tests <api/tests.tests>

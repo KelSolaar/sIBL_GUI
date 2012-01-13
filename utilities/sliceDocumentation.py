@@ -57,7 +57,7 @@ core.setVerbosityLevel(3)
 
 OUTPUT_FILES_EXTENSION = "rst"
 SLICE_ATTRIBUTE_INDENT = 2
-CONTENT_DELETION = ("\\*\\*\\\\\\*\\\\\\*\\\\\\*\\*\\*",)
+CONTENT_DELETION = ()
 CONTENT_SUBSTITUTIONS = {"resources/": "../",
 						"     \|":"            |" }
 
@@ -90,22 +90,28 @@ def sliceDocumentation(fileIn, outputDirectory):
 		len(file.content)
 
 		for i in range(sliceStart, sliceEnd):
+			skipLine = False
 			for item in CONTENT_DELETION:
 				if re.search(item, file.content[i]):
 					LOGGER.info("{0} | Skipping Line '{1}' with '{2}' content!".format(sliceDocumentation.__name__,
 																						i,
 																						item))
-					continue
-				line = file.content[i]
-				for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
-					line = re.sub(pattern, value, line)
+					skipLine = True
+					break
 
-				search = re.search(r"-  `[\w ]+`_ \(([\w\.]+)\)", line)
-				if search:
-					LOGGER.info("{0} | Updating Line '{1}' link: '{2}'!".format(sliceDocumentation.__name__,
-																				i,
-																				search.groups()[0]))
-					line = "-  :ref:`{0}`\n".format(search.groups()[0])
+			if skipLine:
+				continue
+
+			line = file.content[i]
+			for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
+				line = re.sub(pattern, value, line)
+
+			search = re.search(r"-  `[\w ]+`_ \(([\w\.]+)\)", line)
+			if search:
+				LOGGER.info("{0} | Updating Line '{1}' link: '{2}'!".format(sliceDocumentation.__name__,
+																			i,
+																			search.groups()[0]))
+				line = "-  :ref:`{0}`\n".format(search.groups()[0])
 			sliceFile.content.append(line)
 
 		sliceFile.write()

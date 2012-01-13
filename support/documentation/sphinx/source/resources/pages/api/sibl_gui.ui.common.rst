@@ -23,6 +23,8 @@ Functions
 
 .. autofunction:: getImage
 
+.. autofunction:: createPixmap
+
 .. autofunction:: getImageInformationsHeader
 
 .. autofunction:: filterImagePath

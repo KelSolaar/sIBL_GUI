@@ -17,6 +17,8 @@ Functions
 
 .. autofunction:: uiSystemExitExceptionHandler
 
+.. autofunction:: notifyExceptionHandler
+
 .. autofunction:: getResourcePath
 
 .. autofunction:: setWindowDefaultIcon
@@ -33,10 +35,6 @@ Functions
 
 Classes
 -------
-
-.. autoclass:: LayoutActiveLabel
-	:show-inheritance:
-	:members:
 
 .. autoclass:: Icon
 	:show-inheritance:

@@ -1,6 +1,10 @@
 _`Usage`
 ========
 
+.. raw:: html
+
+    <br/>
+
 _`User Preferences`
 -------------------
 
@@ -19,7 +23,7 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **X.X**: Current sIBL_GUI version.
+-  **$MAJOR_VERSION.$MINOR_VERSION**: Current *sIBL_GUI* version.
 
    -  **components**: Directory storing user components.
    -  **database**: Directory storing the SQLite database.
@@ -43,13 +47,17 @@ Structure Description:
 
    -  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
 
+.. raw:: html
+
+    <br/>
+
 _`Command Line Parameters`
 --------------------------
 
 *sIBL_GUI* accepts various command line parameters:
 
 -  **-h, —help**: Display the command line parameters help message and exit. (Mac Os X and Linux only)
--  **-a, —about**: Display application “About” message. (Mac Os X and Linux only)
+-  **-a, —about**: Display application *About* message. (Mac Os X and Linux only)
 -  **-v VERBOSITYLEVEL, —verbose=VERBOSITYLEVEL**: Application verbosity levels: 0 = Critical \| 1 = Error \| 2 = Warning \| 3 = Info \| 4 = Debug.
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
@@ -62,8 +70,12 @@ _`Command Line Parameters`
 
 Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
 
-     cd sIBL_GUI.app
-     ./Contents/MacOS/sIBL_GUI
+      cd sIBL_GUI.app
+      ./Contents/MacOS/sIBL_GUI
+
+.. raw:: html
+
+    <br/>
 
 _`Shared Database Configuration`
 --------------------------------
@@ -76,10 +88,10 @@ Copy the Database file **sIBL_Database.sqlite** on every machine that have *sIBL
 
 The file is located in one of those directory depending your OS:
 
--  C:\\Users\\$USER\\AppData\\Roaming\\HDRLabs\\sIBL_GUI\\database\\ on Windows 7
--  C:\\Documents and Settings\\$USER\\Application Data\\HDRLabs\\sIBL_GUI\\database\\ on Windows XP
--  /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI/database/ on Mac Os X
--  /home/$USER/.HDRLabs/sIBL_GUI/database/ on Linux
+-  C:\\Users\\$USER\\AppData\\Roaming\\HDRLabs\\sIBL_GUI\\$MAJOR_VERSION.$MINOR_VERSION\\database\\ on Windows 7
+-  C:\\Documents and Settings\\$USER\\Application Data\\HDRLabs\\sIBL_GUI\\$MAJOR_VERSION.$MINOR_VERSION\\database\\ on Windows XP
+-  /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION/database/ on Mac Os X
+-  /home/$USER/.HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION/database/ on Linux
 
 **Recommended Method**
 
@@ -90,13 +102,17 @@ It’s possible to share one Database file between multiple *sIBL_GUI* install. 
 
 Example Command Line::
 
-     C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
+      C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 
 When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won’t be added automatically.
 
 It’s a good idea to put the Database with a real file system write lock in case someone launch a *sIBL_GUI* instance without the command line arguments.
 
 That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
+
+.. raw:: html
+
+    <br/>
 
 _`IBL Sets Wizard`
 ------------------
@@ -113,6 +129,10 @@ Choose a directory where are stored some IBL Sets and they will be added to the 
 | ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg            |
 +-----------------------------------------------------------------------+
 
+.. raw:: html
+
+    <br/>
+
 _`Interface`
 ------------
 
@@ -123,6 +143,10 @@ _`Interface`
 -  `Export Layout`_
 -  `Edit Layout`_
 -  `Preferences Layout`_
+
+.. raw:: html
+
+    <br/>
 
 _`Toolbar`
 ^^^^^^^^^^
@@ -153,6 +177,10 @@ Interactions:
 | ..  image:: ../pictures/sIBL_GUI_MiscellaneousContextMenu.jpg            |
 +--------------------------------------------------------------------------+
 
+.. raw:: html
+
+    <br/>
+
 _`Library Layout`
 ^^^^^^^^^^^^^^^^^
 
@@ -169,6 +197,10 @@ This layout is built around 4 components:
 | ..  image:: ../pictures/sIBL_GUI_SetsCentricLayout.jpg            |
 +-------------------------------------------------------------------+
 
+.. raw:: html
+
+    <br/>
+
 _`Inspect Layout`
 ^^^^^^^^^^^^^^^^^
 
@@ -183,6 +215,10 @@ This layout is built around 3 components:
 +----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_InspectCentricLayout.jpg            |
 +----------------------------------------------------------------------+
+
+.. raw:: html
+
+    <br/>
 
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
@@ -204,6 +240,10 @@ An additional but extremely powerful export related component is available by ri
 | ..  image:: ../pictures/sIBL_GUI_TemplatesCentricLayout.jpg            |
 +------------------------------------------------------------------------+
 
+.. raw:: html
+
+    <br/>
+
 _`Edit Layout`
 ^^^^^^^^^^^^^^^^^
 
@@ -216,6 +256,10 @@ This layout is built around 1 component:
 +-------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_EditCentricLayout.jpg            |
 +-------------------------------------------------------------------+
+
+.. raw:: html
+
+    <br/>
 
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -230,4 +274,8 @@ This layout is built around 2 components:
 +--------------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_PreferencesCentricLayout.jpg            |
 +--------------------------------------------------------------------------+
+
+.. raw:: html
+
+    <br/>
 

@@ -23,5 +23,7 @@ Functions
 
 .. autofunction:: uniqify
 
+.. autofunction:: orderedUniqify
+
 .. autofunction:: pathExists
 

@@ -1,17 +1,30 @@
 _`Installation`
 ===============
 
+.. raw:: html
+
+    <br/>
+
+
 _`Windows Platform`
 -------------------
 
-Installation on Windows is pretty straightforward, just launch “sIBL_GUI.exe”.
+Installation on Windows is pretty straightforward, just launch *sIBL_GUI.exe*.
 In order to support third party images formats through FreeImage you may need to install
 `Microsoft Visual C++ 2010 Redistributable Package (x64) <http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe>`_.
+
+.. raw:: html
+
+    <br/>
 
 _`Mac Os X Platform`
 --------------------
 
-Open “sIBL_GUI.dmg” and drag “sIBL_GUI.app” into the “Application” directory.
+Open *sIBL_GUI.dmg* and drag *sIBL_GUI.app* into the *Application* directory.
+
+.. raw:: html
+
+    <br/>
 
 _`Linux Platform`
 -----------------
@@ -42,4 +55,8 @@ If you want to build the documentation you will need:
 
 -  **Sphinx**: http://sphinx.pocoo.org/
 -  **Tidy** http://tidy.sourceforge.net/
+
+.. raw:: html
+
+    <br/>
 

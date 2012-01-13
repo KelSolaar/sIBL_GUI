@@ -1,15 +1,19 @@
 _`Introduction`
 ===============
 
-| *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (“.Ibl”).
-| What is sIBL? It’s a short for “Smart IBL”, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
+| *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (*.Ibl*).
+| What is sIBL? It’s a short for *Smart IBL*, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
 
 More detailed informations are available here: http://www.smartibl.com
+
+.. raw:: html
+
+    <br/>
 
 _`Donations`
 ------------
 
-With sIBL_GUI 4 release I decided to accept donations, so if you think the application is worth something you can use the following `Paypal <https://www.paypal.com/>`_ button:
+With *sIBL_GUI 4* release I decided to accept donations, so if you think the application is worth something you can use the following `Paypal <https://www.paypal.com/>`_ button:
 
 .. raw:: html
 
@@ -19,4 +23,8 @@ With sIBL_GUI 4 release I decided to accept donations, so if you think the appli
 	<input type="image" src="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Pictures/Make_A_Donation.png" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
 	<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 	</form>
+
+.. raw:: html
+
+    <br/>
 

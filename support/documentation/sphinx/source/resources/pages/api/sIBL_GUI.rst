@@ -16,10 +16,6 @@ Functions
 Classes
 -------
 
-.. autoclass:: Active_QLabel
-	:show-inheritance:
-	:members:
-
 .. autoclass:: sIBL_GUI
 	:show-inheritance:
 	:members:

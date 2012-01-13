@@ -8,11 +8,6 @@ Module Attributes
 
 .. attribute:: umbra.ui.widgets.codeEditor_QPlainTextEdit.LOGGER
 
-Functions
----------
-
-.. autofunction:: anchorTextCursor
-
 Classes
 -------
 

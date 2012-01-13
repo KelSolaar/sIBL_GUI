@@ -50,3 +50,15 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractLayoutsManagerError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: LayoutRegistrationError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: LayoutExistError
+	:show-inheritance:
+	:members:
+
