@@ -646,7 +646,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.outputLoaderScript_ui()
+		self.outputLoaderScriptUi()
 
 	@core.executionTrace
 	def __Send_To_Software_pushButton__clicked(self, checked):
@@ -656,7 +656,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.sendLoaderScriptToSoftware_ui()
+		self.sendLoaderScriptToSoftwareUi()
 
 	@core.executionTrace
 	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -704,7 +704,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 											False,
 											foundations.exceptions.FileExistsError,
 											Exception)
-	def outputLoaderScript_ui(self):
+	def outputLoaderScriptUi(self):
 		"""
 		This method outputs the Loader Script.
 
@@ -754,7 +754,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def sendLoaderScriptToSoftware_ui(self):
+	def sendLoaderScriptToSoftwareUi(self):
 		"""
 		This method sends the Loader Script to associated 3d package.
 
@@ -763,7 +763,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		if not self.outputLoaderScript_ui():
+		if not self.outputLoaderScriptUi():
 			return
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -814,7 +814,9 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			return loaderScript.file
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.SocketConnectionError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
+											False,
+											sibl_gui.exceptions.SocketConnectionError)
 	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):
 		"""
 		This method sends the Loader Script to associated 3d package.

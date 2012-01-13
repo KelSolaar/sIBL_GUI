@@ -447,7 +447,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editIblSetInSIBLEdit_ui()
+		return self.editIblSetInSIBLEditUi()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
@@ -458,7 +458,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editInspectorIblSetInSIBLEdit_ui()
+		return self.editInspectorIblSetInSIBLEditUi()
 
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
@@ -508,7 +508,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
-	def editIblSetInSIBLEdit_ui(self):
+	def editIblSetInSIBLEditUi(self):
 		"""
 		This method edits selected Ibl Set in sIBLedit.
 
@@ -536,7 +536,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
-	def editInspectorIblSetInSIBLEdit_ui(self):
+	def editInspectorIblSetInSIBLEditUi(self):
 		"""
 		This method edits :mod:`umbra.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
 

@@ -646,7 +646,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.openIblSetsLocations_ui()
+		return self.openIblSetsLocationsUi()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
@@ -657,7 +657,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.openInspectorIblSetLocations_ui()
+		return self.openInspectorIblSetLocationsUi()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
@@ -669,7 +669,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.openComponentsLocations_ui()
+		return self.openComponentsLocationsUi()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
@@ -681,7 +681,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.openTemplatesLocations_ui()
+		return self.openTemplatesLocationsUi()
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
@@ -741,11 +741,11 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.openOutputDirectory_ui()
+		self.openOutputDirectoryUi()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def openIblSetsLocations_ui(self):
+	def openIblSetsLocationsUi(self):
 		"""
 		This method open selected Ibl Sets directories.
 
@@ -775,7 +775,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
-	def openInspectorIblSetLocations_ui(self):
+	def openInspectorIblSetLocationsUi(self):
 		"""
 		This method opens :mod:`umbra.components.core.inspector.inspector` Component Ibl Set directory.
 
@@ -797,7 +797,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def openComponentsLocations_ui(self):
+	def openComponentsLocationsUi(self):
 		"""
 		This method opens selected Components directories.
 
@@ -825,7 +825,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def openTemplatesLocations_ui(self):
+	def openTemplatesLocationsUi(self):
 		"""
 		This method opens selected Templates directories.
 
@@ -856,7 +856,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											False,
 											foundations.exceptions.DirectoryExistsError,
 											Exception)
-	def openOutputDirectory_ui(self):
+	def openOutputDirectoryUi(self):
 		"""
 		This method opens output directory.
 

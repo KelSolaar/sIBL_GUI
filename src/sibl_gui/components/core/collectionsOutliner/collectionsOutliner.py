@@ -827,7 +827,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.addContent_ui()
+		return self.addContentUi()
 
 	@core.executionTrace
 	def __view_addCollectionAction__triggered(self, checked):
@@ -838,7 +838,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.addCollection_ui()
+		return self.addCollectionUi()
 
 	@core.executionTrace
 	def __view_removeCollectionsAction__triggered(self, checked):
@@ -850,7 +850,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.removeCollections_ui()
+		return self.removeCollectionsUi()
 
 	@core.executionTrace
 	def __collectionsOutliner__modelRefresh(self):
@@ -940,7 +940,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
-	def addContent_ui(self):
+	def addContentUi(self):
 		"""
 		This method adds user defined content to the Database.
 
@@ -949,7 +949,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		collection = self.addCollection_ui()
+		collection = self.addCollectionUi()
 		if not collection:
 			return
 
@@ -972,7 +972,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError,
 											Exception)
 	@umbra.engine.showProcessing("Adding Collection ...")
-	def addCollection_ui(self):
+	def addCollectionUi(self):
 		"""
 		This method adds an user defined Collection to the Database.
 
@@ -1015,7 +1015,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def removeCollections_ui(self):
+	def removeCollectionsUi(self):
 		"""
 		This method removes user selected Collections from the Database.
 

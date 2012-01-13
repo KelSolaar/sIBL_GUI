@@ -1135,7 +1135,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.addTemplate_ui()
+		return self.addTemplateUi()
 
 	@core.executionTrace
 	def __view_removeTemplatesAction__triggered(self, checked):
@@ -1146,7 +1146,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.removeTemplates_ui()
+		return self.removeTemplatesUi()
 
 	@core.executionTrace
 	def __view_importDefaultTemplatesAction__triggered(self, checked):
@@ -1157,7 +1157,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.importDefaultTemplates_ui()
+		return self.importDefaultTemplatesUi()
 
 	@core.executionTrace
 	def __view_displayHelpFilesAction__triggered(self, checked):
@@ -1168,7 +1168,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.displayHelpFiles_ui()
+		return self.displayHelpFilesUi()
 
 	@core.executionTrace
 	def __view_filterTemplatesVersionsAction__triggered(self, checked):
@@ -1179,7 +1179,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.filterTemplatesVersions_ui()
+		return self.filterTemplatesVersionsUi()
 
 	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1324,7 +1324,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Template ...")
-	def addTemplate_ui(self):
+	def addTemplateUi(self):
 		"""
 		This method adds an user defined Template to the Database.
 
@@ -1354,7 +1354,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def removeTemplates_ui(self):
+	def removeTemplatesUi(self):
 		"""
 		This method removes user selected Templates from the Database.
 
@@ -1403,7 +1403,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
-	def importDefaultTemplates_ui(self):
+	def importDefaultTemplatesUi(self):
 		"""
 		This method imports default Templates into the Database.
 
@@ -1421,7 +1421,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def displayHelpFiles_ui(self):
+	def displayHelpFilesUi(self):
 		"""
 		This method displays user selected Templates help files.
 
@@ -1447,7 +1447,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def filterTemplatesVersions_ui(self):
+	def filterTemplatesVersionsUi(self):
 		"""
 		This method filters Templates by versions.
 

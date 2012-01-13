@@ -778,7 +778,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.checkForNewReleases_ui()
+		self.checkForNewReleasesUi()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError)
@@ -873,7 +873,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False, sibl_gui.exceptions.NetworkError,
 											Exception)
-	def checkForNewReleases_ui(self):
+	def checkForNewReleasesUi(self):
 		"""
 		This method checks for new releases.
 

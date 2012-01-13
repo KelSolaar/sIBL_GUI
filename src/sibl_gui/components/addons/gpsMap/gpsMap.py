@@ -573,7 +573,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		self.setMarkers_ui()
+		self.setMarkersUi()
 
 	@core.executionTrace
 	def __Map_Type_comboBox__activated(self, index):
@@ -613,11 +613,11 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param state: Loading state. ( Boolean )
 		"""
 
-		self.setMarkers_ui()
+		self.setMarkersUi()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def setMarkers_ui(self):
+	def setMarkersUi(self):
 		"""
 		This method sets selected Ibl Sets markers.
 

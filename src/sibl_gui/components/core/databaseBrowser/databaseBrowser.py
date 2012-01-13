@@ -1465,7 +1465,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.addContent_ui()
+		return self.addContentUi()
 
 	@core.executionTrace
 	def __views_addIblSetAction__triggered(self, checked):
@@ -1476,7 +1476,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.addIblSet_ui()
+		return self.addIblSetUi()
 
 	@core.executionTrace
 	def __views_removeIblSetsAction__triggered(self, checked):
@@ -1487,7 +1487,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.removeIblSets_ui()
+		return self.removeIblSetsUi()
 
 	@core.executionTrace
 	def __views_updateIblSetsLocationsAction__triggered(self, checked):
@@ -1499,7 +1499,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.updateIblSetsLocation_ui()
+		return self.updateIblSetsLocationUi()
 
 	@core.executionTrace
 	def __views_pushButtons__clicked(self, index, checked):
@@ -1774,7 +1774,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
-	def addContent_ui(self):
+	def addContentUi(self):
 		"""
 		This method adds user defined content to the Database.
 
@@ -1799,7 +1799,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
-	def addIblSet_ui(self):
+	def addIblSetUi(self):
 		"""
 		This method adds an user defined Ibl Set to the Database.
 
@@ -1829,7 +1829,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def removeIblSets_ui(self):
+	def removeIblSetsUi(self):
 		"""
 		This method removes user selected Ibl Sets from the Database.
 
@@ -1863,7 +1863,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
-	def updateIblSetsLocation_ui(self):
+	def updateIblSetsLocationUi(self):
 		"""
 		This method updates user selected Ibl Sets locations.
 

@@ -574,7 +574,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editIblSetsFiles_ui()
+		return self.editIblSetsFilesUi()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetFileAction__triggered(self, checked):
@@ -585,7 +585,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editInspectorIblSetFile_ui()
+		return self.editInspectorIblSetFileUi()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplatesFilesAction__triggered(self, checked):
@@ -597,7 +597,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editTemplatesFiles_ui()
+		return self.editTemplatesFilesUi()
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
@@ -685,13 +685,13 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if event.source() in self.__coreDatabaseBrowser.views:
-			self.editIblSetsFiles_ui()
+			self.editIblSetsFilesUi()
 		elif event.source() is self.__coreTemplatesOutliner.view:
-			self.editTemplatesFiles_ui()
+			self.editTemplatesFilesUi()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def editIblSetsFiles_ui(self):
+	def editIblSetsFilesUi(self):
 		"""
 		This method edits selected Ibl Sets files.
 
@@ -721,7 +721,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
-	def editInspectorIblSetFile_ui(self):
+	def editInspectorIblSetFileUi(self):
 		"""
 		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set file.
 
@@ -741,7 +741,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def editTemplatesFiles_ui(self):
+	def editTemplatesFilesUi(self):
 		"""
 		This method edits selected Templates files.
 

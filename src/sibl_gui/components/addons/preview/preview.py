@@ -669,7 +669,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
 																				value["row"],
 																				value["column"])
-			value["object"].clicked.connect(functools.partial(self.viewInspectorIblSetImages_ui, key))
+			value["object"].clicked.connect(functools.partial(self.viewInspectorIblSetImagesUi, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -688,7 +688,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Background")
+		return self.viewIblSetsImagesUi("Background")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
@@ -699,7 +699,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Lighting")
+		return self.viewIblSetsImagesUi("Lighting")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
@@ -710,7 +710,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Reflection")
+		return self.viewIblSetsImagesUi("Reflection")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
@@ -721,7 +721,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewIblSetsImages_ui("Plate")
+		return self.viewIblSetsImagesUi("Plate")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
@@ -732,7 +732,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImages_ui("Background")
+		return self.viewInspectorIblSetImagesUi("Background")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
@@ -743,7 +743,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImages_ui("Lighting")
+		return self.viewInspectorIblSetImagesUi("Lighting")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
@@ -754,7 +754,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImages_ui("Reflection")
+		return self.viewInspectorIblSetImagesUi("Reflection")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
@@ -765,7 +765,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImages_ui("Plate")
+		return self.viewInspectorIblSetImagesUi("Plate")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -832,7 +832,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
-	def viewIblSetsImages_ui(self, imageType, *args):
+	def viewIblSetsImagesUi(self, imageType, *args):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
 
@@ -868,7 +868,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											False,
 											foundations.exceptions.FileExistsError,
 											Exception)
-	def viewInspectorIblSetImages_ui(self, imageType, *args):
+	def viewInspectorIblSetImagesUi(self, imageType, *args):
 		"""
 		This method launches :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
