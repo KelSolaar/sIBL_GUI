@@ -31,6 +31,7 @@ Umbra 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?mile
 -  Ensured workers threads are properly closed on application exit.
 -  Refactored the layouts management code.
 -  Rolled back to Qt 4.7.x thanks to **Jens Lindgren**.
+-  "Online Updater" Component now correctly reports networks errors.
 -  Fixed an exception in **Inspector** Component when an Ibl Set is modified and reloaded on Windows Os.
 -  Fixed an exception while drag'n'drop in **Collections Outliner** Component.
 
