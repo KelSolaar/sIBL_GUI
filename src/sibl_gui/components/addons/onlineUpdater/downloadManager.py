@@ -35,7 +35,6 @@ import foundations.exceptions
 import foundations.ui.common
 import umbra.ui.common
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -99,7 +98,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.__requests = None
 		self.requests = requests
-		self.__downloads = []
+		self.__downloads = {}
 		self.__currentRequest = None
 		self.__currentFile = None
 		self.__currentFilePath = None
@@ -313,7 +312,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		This method is the property for **self.__downloads** attribute.
 
-		:return: self.__downloads. ( List )
+		:return: self.__downloads. ( Dictionary )
 		"""
 
 		return self.__downloads
@@ -532,9 +531,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentFile = QFile(self.__currentFilePath)
 
 		if not self.__currentFile.open(QIODevice.WriteOnly):
-			RuntimeGlobals.notificationsManager.exceptify(
-			"{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(
-			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+			LOGGER.warning("!> Error occured while writing '{0}' file to disk, proceeding to next download!".format(
+			os.path.basename(self.__currentFilePath)))
 
 			self.__downloadNext()
 			return
@@ -580,7 +578,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.debug("> '{0}' download complete.".format(self.__currentFile))
 
 		self.__currentFile.close()
-		self.__downloads.append(self.__currentFilePath)
+		self.__downloads[self.__currentFilePath] = (self.__currentRequest.error(), self.__currentRequest.url().toString())
 		self.Current_File_label.setText("'{0}' downloading done!".format(os.path.basename(self.__currentFilePath)))
 		self.Download_progressBar.hide()
 		self.__currentRequest.deleteLater()

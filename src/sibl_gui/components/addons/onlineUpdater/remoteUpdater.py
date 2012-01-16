@@ -794,7 +794,14 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is triggered when the download Manager finishes.
 		"""
 
-		for download in self.__downloadManager.downloads:
+		for download, data in self.__downloadManager.downloads.iteritems():
+			networkError, request = data
+			if networkError != 0:
+				self.__container.engine.notificationsManager.exceptify(
+					"{0} | '{1}' file download failed! Error code: '{2}'".format(
+					self.__class__.__name__, request, networkError))
+				continue
+
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
 					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
