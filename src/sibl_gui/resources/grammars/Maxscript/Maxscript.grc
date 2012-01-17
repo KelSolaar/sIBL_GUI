@@ -14,7 +14,7 @@ Highlighter = DefaultHighlighter
 Completer = DefaultCompleter
 PreInputAccelerators = indentationPreEventInputAccelerators|symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators
 PostInputAccelerators = completionPostEventInputAccelerators|indentationPostEventInputAccelerators
-VisualAccelerators = highlightCurrentLine|highlightOccurences
+VisualAccelerators = highlightCurrentLine|highlightOccurences|highlightMatchingSymbolsPairs
 Dictionary = Maxscript.drc
 Theme = DefaultTheme
 

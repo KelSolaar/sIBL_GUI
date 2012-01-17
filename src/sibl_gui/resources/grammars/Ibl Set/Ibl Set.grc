@@ -11,7 +11,7 @@ Highlighter = DefaultHighlighter
 Completer = DefaultCompleter
 PreInputAccelerators = symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators
 PostInputAccelerators = completionPostEventInputAccelerators
-VisualAccelerators = highlightCurrentLine|highlightOccurences
+VisualAccelerators = highlightCurrentLine|highlightOccurences|highlightMatchingSymbolsPairs
 Dictionary = Ibl Set.drc
 Theme = DefaultTheme
 
