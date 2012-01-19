@@ -458,36 +458,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
-	def sectionsFileParserCache(self):
+	def sectionsFileParsersCache(self):
 		"""
-		This method is the property for **self.__sectionsFileParserCache** attribute.
+		This method is the property for **self.__sectionsFileParsersCache** attribute.
 
-		:return: self.__sectionsFileParserCache. ( Cache )
+		:return: self.__sectionsFileParsersCache. ( Cache )
 		"""
 
-		return self.__sectionsFileParserCache
+		return self.__sectionsFileParsersCache
 
-	@sectionsFileParserCache.setter
+	@sectionsFileParsersCache.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def sectionsFileParserCache(self, value):
+	def sectionsFileParsersCache(self, value):
 		"""
-		This method is the setter method for **self.__sectionsFileParserCache** attribute.
+		This method is the setter method for **self.__sectionsFileParsersCache** attribute.
 
 		:param value: Attribute value. ( Cache )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParserCache"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
-	@sectionsFileParserCache.deleter
+	@sectionsFileParsersCache.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def sectionsFileParserCache(self):
+	def sectionsFileParsersCache(self):
 		"""
-		This method is the deleter method for **self.__sectionsFileParserCache** attribute.
+		This method is the deleter method for **self.__sectionsFileParsersCache** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParserCache"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
 	@property
 	def model(self):
@@ -1323,10 +1323,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		textWidth = painter.fontMetrics().width(light.name.title())
 		xLabelTextOffset = pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > \
-		width and - (self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
-		yLabelTextOffset = pointY -  \
+		width and -(self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
+		yLabelTextOffset = pointY - \
 		(self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 and \
-		-(self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
+		- (self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
 		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
 		painter.drawLine(pointX,
