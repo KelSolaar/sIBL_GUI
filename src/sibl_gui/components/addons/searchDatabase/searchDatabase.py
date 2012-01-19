@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import collections
 import logging
 import os
 import re
@@ -548,7 +549,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__cloudExcludedTags = list(itertools.chain.from_iterable(
 									[(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper()))
 									for tag in self.__cloudExcludedTags]))
-		self.setTagsCloudMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSetsUi()
 
 		# Signals / Slots.
 		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
@@ -624,7 +625,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setTagsCloudMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSetsUi()
 
 	@core.executionTrace
 	def __Case_Sensitive_Matching_pushButton__clicked(self, checked):
@@ -634,7 +635,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.setTagsCloudMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSetsUi()
 
 	@core.executionTrace
 	def __Time_Low_timeEdit__timeChanged(self, time):
@@ -646,7 +647,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Time_Low_timeEdit.time() >= self.Time_High_timeEdit.time() and \
 		self.Time_Low_timeEdit.setTime(self.Time_High_timeEdit.time().addSecs(-60))
-		self.setTimeMatchingIblSets()
+		self.setTimeMatchingIblSetsUi()
 
 	@core.executionTrace
 	def __Time_High_timeEdit__timeChanged(self, time):
@@ -658,7 +659,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Time_High_timeEdit.time() <= self.Time_Low_timeEdit.time() and \
 		self.Time_High_timeEdit.setTime(self.Time_Low_timeEdit.time().addSecs(60))
-		self.setTimeMatchingIblSets()
+		self.setTimeMatchingIblSetsUi()
 
 	@core.executionTrace
 	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
@@ -679,71 +680,108 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		self.setTagsCloudMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSetsUi()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	def setTagsCloudMatchingIblsSetsUi(self):
+		"""
+		This method sets the user defined pattern matching Ibl Sets and 
+		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		
+		:return: Method success. ( Boolean )
+		
+		:note: This method may require user interaction.
+		"""
+
+		return self.setTagsCloudMatchingIblsSets(str(self.Search_Database_lineEdit.text()),
+		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	def setTimeMatchingIblSetsUi(self):
+		"""
+		This method sets the user defined time matching Ibl Sets and 
+		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		
+		:return: Method success. ( Boolean )
+		
+		:note: This method may require user interaction.
+		"""
+
+		return self.setTimeMatchingIblSets(self.Time_Low_timeEdit.time(), self.Time_High_timeEdit.time())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
-	def setTagsCloudMatchingIblsSets(self):
+	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
-		This method gets the pattern matching Ibl Sets and 
+		This method sets the pattern matching Ibl Sets and 
 		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
-		"""
 
-		pattern = str(self.Search_Database_lineEdit.text())
-		flags = not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0
+		:param pattern: Filtering pattern. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+		:return: Method success. ( Boolean )
+		"""
 
 		LOGGER.debug("> Filtering Ibl Sets by Tags.")
 
-		patternTokens = pattern.split() or (".*",)
+		patternsDefault = (".*",)
+		patternTokens = pattern.split() or patternsDefault
+
+		allTags = set()
 		filteredIblSets = []
-		allTags = []
 
 		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(
 		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		for iblSet in iblSets:
-			if not getattr(iblSet, "comment"):
+			comment = getattr(iblSet, "comment")
+			if not comment:
 				continue
 
-			tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, "comment")),
-											filtersOut=self.__cloudExcludedTags,
-											flags=flags)
+			tagsCloud = strings.filterWords(strings.getWords(comment), filtersOut=self.__cloudExcludedTags, flags=flags)
+
 			patternsMatched = True
-			for pattern in patternTokens:
-				patternMatched = False
-				for tag in tagsCloud:
-					if re.search(pattern, tag, flags=flags):
-						patternMatched = True
-						break
-				patternsMatched *= patternMatched
+			if patternTokens != patternsDefault:
+				for pattern in patternTokens:
+					patternMatched = False
+					for tag in tagsCloud:
+						if re.search(pattern, tag, flags=flags):
+							patternMatched = True
+							break
+					patternsMatched *= patternMatched
+
 			if patternsMatched:
-				allTags.extend(tagsCloud)
+				allTags.update(tagsCloud)
 				filteredIblSets.append(iblSet)
 
 		self.Tags_Cloud_listWidget.clear()
-		self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
+		self.Tags_Cloud_listWidget.addItems(sorted(allTags, key=lambda x:x.lower()))
+		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
+		len(self.__coreDatabaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
-		LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
-		", ".join((iblSet.name for iblSet in filteredIblSets))))
+			LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
+			", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-		self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
+			self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
 		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setTimeMatchingIblSets(self):
+	def setTimeMatchingIblSets(self, timeLow, timeHigh):
 		"""
-		This method gets the time matching Ibl Sets and 
+		This method sets the time matching Ibl Sets and 
 		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		
+		:param timeLow: Time low. ( QTime )
+		:param timeHigh: Time high. ( QTime )
+		:return: Method success. ( Boolean )
 		"""
+
+		LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
 
 		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(
 				self.__coreCollectionsOutliner.getSelectedCollections())
-
-		timeLow = self.Time_Low_timeEdit.time()
-		timeHigh = self.Time_High_timeEdit.time()
-
-		LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
 
 		filteredIblSets = []
 		for iblSet in iblSets:
@@ -752,12 +790,15 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			hours, minutes, seconds = iblSet.time.split(":")
 			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and \
-			int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredIblSets.append(iblSet)
+			int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and \
+			filteredIblSets.append(iblSet)
 
 		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(filteredIblSets)]
 
-		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
-		", ".join((iblSet.name for iblSet in filteredIblSets))))
+		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
+		len(self.__coreDatabaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+			LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
+			", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-		self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
+			self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
 		return True

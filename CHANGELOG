@@ -28,6 +28,7 @@ Umbra 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?mile
 
 -  Implemented a slick notification manager.
 -  The FAQ have been moved into the documentation: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/resources/pages/faq.html
+-  Optimized "Search Database" Component speed.
 -  Ensured workers threads are properly closed on application exit.
 -  Refactored the layouts management code.
 -  Rolled back to Qt 4.7.x thanks to **Jens Lindgren**.
