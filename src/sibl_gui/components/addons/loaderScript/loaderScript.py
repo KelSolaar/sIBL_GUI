@@ -836,6 +836,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if connectionType.value == "Socket":
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+				connection.settimeout(2.5)
 				connection.connect((str(self.Address_lineEdit.text()), int(self.Software_Port_spinBox.value())))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand",
 								templateSectionsFileParser.getValue("ExecutionCommand",
@@ -843,12 +844,14 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 																						loaderScriptPath)
 				LOGGER.debug("> Current socket command: '%s'.", socketCommand)
 				connection.send(socketCommand)
-				dataBack = connection.recv(8192)
-				LOGGER.debug("> Received back from Application: '%s'", dataBack)
-				connection.close()
-				LOGGER.info("{0} | Ending remote connection!".format(self.__class__.__name__))
 				self.__engine.notificationsManager.notify(
 				"{0} | Socket connection command dispatched!".format(self.__class__.__name__))
+				dataBack = connection.recv(4096)
+				LOGGER.debug("> Received from connection: '{0}'.".format(dataBack))
+				connection.close()
+				LOGGER.info("{0} | Closing remote connection!".format(self.__class__.__name__))
+			except socket.timeout as error:
+				LOGGER.info("{0} | Closing remote connection on timeout!".format(self.__class__.__name__))
 			except Exception as error:
 				raise sibl_gui.exceptions.SocketConnectionError(
 				"{0} | Socket connection error: '{1}'!".format(self.__class__.__name__, error))
