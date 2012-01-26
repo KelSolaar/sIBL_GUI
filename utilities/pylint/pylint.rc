@@ -40,10 +40,10 @@ disable=E0102,E0202,E1101,W0142,W0613
 
 # Set the output format. Available formats are text, parseable, colorized, msvs
 # (visual studio) and html
-output-format=colorized
+output-format=text
 
 # Include message's id in output
-include-ids=yes
+include-ids=no
 
 # Put messages in a separate file for each module / package specified on the
 # command line instead of printing them on stdout. Reports (if any) will be
@@ -166,7 +166,7 @@ generated-members=REQUEST,acl_users,aq_parent
 [VARIABLES]
 
 # Tells whether we should check for unused import in __init__ files.
-init-import=yes
+init-import=no
 
 # A regular expression matching the beginning of the name of dummy variables
 # (i.e. not used).
