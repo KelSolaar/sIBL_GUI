@@ -424,16 +424,12 @@ QToolTip {
 	padding: 8px;
 }
 
+/* Search_QlineEdit. */
+#Search_Field_activeLabel, #Clear_Field_button {
+	background-color: transparent;
+}
+
 /* Components. */
-/* Core Component "Inspector". */
-#Inspector_Overall_frame {
-	background-color: rgb(40, 40, 40);
-}
-
-#Image_frame {
-	padding: 8px;
-}
-
 /* Factory Component "Script Editor". */
 #Script_Editor_tabWidget {
 	border: 0px;
@@ -451,11 +447,16 @@ QToolTip {
 	margin: 4px 8px 4px 8px;
 }
 
-/* Addon Component "Search Database". */
-#Search_Field_activeLabel, #Clear_Field_button {
-	background-color: transparent;
+/* Core Component "Inspector". */
+#Inspector_Overall_frame {
+	background-color: rgb(40, 40, 40);
 }
 
+#Image_frame {
+	padding: 8px;
+}
+
+/* Addon Component "Search Database". */
 #Tags_Cloud_listWidget::item {
 	border: 0px;
 	padding: 2px;

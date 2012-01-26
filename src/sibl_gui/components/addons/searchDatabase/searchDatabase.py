@@ -78,11 +78,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiResourcesDirectory = "resources"
-		self.__uiSearchImage = "images/Search_Glass.png"
-		self.__uiSearchClickedImage = "images/Search_Glass_Clicked.png"
-		self.__uiClearImage = "images/Search_Clear.png"
-		self.__uiClearClickedImage = "images/Search_Clear_Clicked.png"
 		self.__dockArea = 2
 		self.__tagsCloudListWidgetSpacing = 4
 
@@ -96,166 +91,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
-	@property
-	def uiResourcesDirectory(self):
-		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
-
-		:return: self.__uiResourcesDirectory. ( String )
-		"""
-
-		return self.__uiResourcesDirectory
-
-	@uiResourcesDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self, value):
-		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
-
-	@uiResourcesDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self):
-		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
-
-	@property
-	def uiSearchImage(self):
-		"""
-		This method is the property for **self.__uiSearchImage** attribute.
-
-		:return: self.__uiSearchImage. ( String )
-		"""
-
-		return self.__uiSearchImage
-
-	@uiSearchImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchImage(self, value):
-		"""
-		This method is the setter method for **self.__uiSearchImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSearchImage"))
-
-	@uiSearchImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchImage(self):
-		"""
-		This method is the deleter method for **self.__uiSearchImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchImage"))
-
-	@property
-	def uiSearchClickedImage(self):
-		"""
-		This method is the property for **self.__uiSearchClickedImage** attribute.
-
-		:return: self.__uiSearchClickedImage. ( String )
-		"""
-
-		return self.__uiSearchClickedImage
-
-	@uiSearchClickedImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchClickedImage(self, value):
-		"""
-		This method is the setter method for **self.__uiSearchClickedImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSearchClickedImage"))
-
-	@uiSearchClickedImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchClickedImage(self):
-		"""
-		This method is the deleter method for **self.__uiSearchClickedImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchClickedImage"))
-
-	@property
-	def uiClearImage(self):
-		"""
-		This method is the property for **self.__uiClearImage** attribute.
-
-		:return: self.__uiClearImage. ( String )
-		"""
-
-		return self.__uiClearImage
-
-	@uiClearImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearImage(self, value):
-		"""
-		This method is the setter method for **self.__uiClearImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiClearImage"))
-
-	@uiClearImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearImage(self):
-		"""
-		This method is the deleter method for **self.__uiClearImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiClearImage"))
-
-	@property
-	def uiClearClickedImage(self):
-		"""
-		This method is the property for **self.__uiClearClickedImage** attribute.
-
-		:return: self.__uiClearClickedImage. ( String )
-		"""
-
-		return self.__uiClearClickedImage
-
-	@uiClearClickedImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearClickedImage(self, value):
-		"""
-		This method is the setter method for **self.__uiClearClickedImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiClearClickedImage"))
-
-	@uiClearClickedImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearClickedImage(self):
-		"""
-		This method is the deleter method for **self.__uiClearClickedImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiClearClickedImage"))
-
 	@property
 	def dockArea(self):
 		"""
@@ -495,8 +330,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
-													self.__uiResourcesDirectory)
 		self.__engine = engine
 
 		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
@@ -517,7 +350,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.basename(self.__uiResourcesDirectory)
 		self.__engine = None
 
 		self.__coreDb = None
@@ -538,10 +370,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Search_Database_lineEdit = Search_QLineEdit(self, umbra.ui.common.getResourcePath(self.__uiSearchImage),
-														umbra.ui.common.getResourcePath(self.__uiSearchClickedImage),
-														umbra.ui.common.getResourcePath(self.__uiClearImage),
-														umbra.ui.common.getResourcePath(self.__uiClearClickedImage))
+		self.Search_Database_lineEdit = Search_QLineEdit(self)
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Search_Database_lineEdit.setPlaceholderText("Search In Tags Cloud ...")
 		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)

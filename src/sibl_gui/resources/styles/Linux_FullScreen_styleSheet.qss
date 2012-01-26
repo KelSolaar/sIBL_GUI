@@ -424,7 +424,29 @@ QToolTip {
 	padding: 8px;
 }
 
+/* Search_QlineEdit. */
+#Search_Field_activeLabel, #Clear_Field_button {
+	background-color: transparent;
+}
+
 /* Components. */
+/* Factory Component "Script Editor". */
+#Script_Editor_tabWidget {
+	border: 0px;
+}
+
+#Lines_Numbers_textEdit {
+	background-color: rgb(96, 96, 96);
+}
+
+#Case_Sensitive_checkBox, #Whole_Word_checkBox, #Regular_Expressions_checkBox, #Backward_Search_checkBox, #Wrap_Around_checkBox {
+	background-color: rgb(64, 64, 64);
+}
+
+#Lines_Columns_label {
+	margin: 4px 8px 4px 8px;
+}
+
 /* Core Component "Inspector". */
 #Inspector_Overall_frame {
 	background-color: rgb(40, 40, 40);
@@ -434,28 +456,7 @@ QToolTip {
 	padding: 8px;
 }
 
-/* Factory Component "Script Editor". */
-#Script_Editor_tabWidget {
-	border: 0px;
-}
-
-#Case_Sensitive_checkBox, #Whole_Word_checkBox, #Regular_Expressions_checkBox, #Backward_Search_checkBox, #Wrap_Around_checkBox {
-	background-color: rgb(64, 64, 64);
-}
-
-#Lines_Numbers_textEdit {
-	background-color: rgb(96, 96, 96);
-}
-
-#Lines_Columns_label {
-	margin: 4px 8px 4px 8px;
-}
-
 /* Addon Component "Search Database". */
-#Search_Field_activeLabel, #Clear_Field_button {
-	background-color: transparent;
-}
-
 #Tags_Cloud_listWidget::item {
 	border: 0px;
 	padding: 2px;
