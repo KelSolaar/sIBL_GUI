@@ -525,7 +525,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__model** attribute.
 
-		:return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( TemplatesModel )
 		"""
 
 		return self.__model
@@ -536,7 +536,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__model** attribute.
 
-		:param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( TemplatesModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

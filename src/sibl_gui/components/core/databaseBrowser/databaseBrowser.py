@@ -849,7 +849,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__model** attribute.
 
-		:return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( IblSetsModel )
 		"""
 
 		return self.__model
@@ -860,7 +860,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__model** attribute.
 
-		:param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( IblSetsModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
