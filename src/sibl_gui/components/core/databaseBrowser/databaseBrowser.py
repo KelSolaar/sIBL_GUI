@@ -1561,7 +1561,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method is triggered when the Model data have changed.
+		This method is triggered when the Model data has changed.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
