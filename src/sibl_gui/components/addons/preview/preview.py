@@ -787,7 +787,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		customPreviewerExecutable = umbra.ui.common.storeLastBrowsedPath(
-		QFileDialog.getOpenFileName(self, "Custom previewer executable:", RuntimeGlobals.lastBrowsedPath))
+		QFileDialog.getOpenFileName(self, "Custom Previewer Executable:", RuntimeGlobals.lastBrowsedPath))
 		if customPreviewerExecutable != "":
 			LOGGER.debug("> Chosen custom Images Previewer executable: '{0}'.".format(customPreviewerExecutable))
 			self.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))

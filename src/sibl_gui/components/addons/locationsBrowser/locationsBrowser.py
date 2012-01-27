@@ -703,7 +703,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		customFileBrowserExecutable = umbra.ui.common.storeLastBrowsedPath(
-		QFileDialog.getOpenFileName(self, "Custom file browser executable:", RuntimeGlobals.lastBrowsedPath))
+		QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", RuntimeGlobals.lastBrowsedPath))
 		if customFileBrowserExecutable != "":
 			LOGGER.debug("> Chosen custom file browser executable: '{0}'.".format(customFileBrowserExecutable))
 			self.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))

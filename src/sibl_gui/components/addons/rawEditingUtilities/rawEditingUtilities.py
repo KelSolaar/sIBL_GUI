@@ -619,7 +619,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		customTextEditorExecutable = umbra.ui.common.storeLastBrowsedPath(
-		QFileDialog.getOpenFileName(self, "Custom text editor executable:", RuntimeGlobals.lastBrowsedPath))
+		QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", RuntimeGlobals.lastBrowsedPath))
 		if customTextEditorExecutable != "":
 			LOGGER.debug("> Chosen custom text editor executable: '{0}'.".format(customTextEditorExecutable))
 			self.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))

@@ -162,6 +162,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								("Search In Locations", "location"),
 								("Search In Comments", "comment")])
 		self.__activeSearchContext = "Search In Names"
+		self.__searchContextsMenu = None
 
 		self.__databaseBrowserWorkerThread = None
 
@@ -1001,6 +1002,38 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeSearchContext"))
 
 	@property
+	def searchContextMenu(self):
+		"""
+		This method is the property for **self.__searchContextMenu** attribute.
+
+		:return: self.__searchContextMenu. ( QMenu )
+		"""
+
+		return self.__searchContextMenu
+
+	@searchContextMenu.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def searchContextMenu(self, value):
+		"""
+		This method is the setter method for **self.__searchContextMenu** attribute.
+
+		:param value: Attribute value. ( self.__searchContextsMenu )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "searchContextMenu"))
+
+	@searchContextMenu.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def searchContextMenu(self):
+		"""
+		This method is the deleter method for **self.__searchContextMenu** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "searchContextMenu"))
+
+	@property
 	def databaseBrowserWorkerThread(self):
 		"""
 		This method is the property for **self.__databaseBrowserWorkerThread** attribute.
@@ -1120,14 +1153,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit = Search_QLineEdit(self)
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-		searchContextsMenu = QMenu()
-		for context in self.__searchContexts:
-			searchContextsMenu.addAction(self.__engine.actionsManager.registerAction(
+		self.__searchContextsMenu = QMenu()
+		for context in self.__searchContexts.iterkeys():
+			self.__searchContextsMenu.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context),
 			text="{0} ...".format(context),
 			checkable=True,
 			slot=functools.partial(self.setActiveSearchContext, context)))
-		self.Search_Database_lineEdit.searchActiveLabel.setMenu(searchContextsMenu)
+		self.Search_Database_lineEdit.searchActiveLabel.setMenu(self.__searchContextsMenu)
 		self.setActiveSearchContext(self.__activeSearchContext)
 
 		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
@@ -1222,7 +1255,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				"The Database is empty, would you like to add some Ibl Sets?",
 				buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
-																						 "Add content:",
+																						 "Add Content:",
 																						RuntimeGlobals.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
@@ -1240,7 +1273,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.__class__.__name__, iblSet.title),
 						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 							file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Ibl Set location:".format(iblSet.title),
+																"Updating '{0}' Ibl Set Location:".format(iblSet.title),
 																RuntimeGlobals.lastBrowsedPath,
 																"Ibls files (*.{0})".format(self.__extension))))
 							file and self.updateIblSetLocation(iblSet, file)
@@ -1649,7 +1682,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
-																						"Add content:",
+																						"Add Content:",
 																						RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
 			return
@@ -1745,7 +1778,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		success = True
 		for iblSet in selectedIblSets:
 			file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Ibl Set location:".format(iblSet.title),
+																"Updating '{0}' Ibl Set Location:".format(iblSet.title),
 																RuntimeGlobals.lastBrowsedPath,
 																"Ibls files (*.{0})".format(self.__extension))))
 			success *= file and self.updateIblSetLocation(iblSet, file) or False

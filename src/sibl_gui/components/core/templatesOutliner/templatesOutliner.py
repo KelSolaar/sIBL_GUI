@@ -1619,7 +1619,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Template location:".format(template.name),
+																"Updating '{0}' Template Location:".format(template.name),
 																RuntimeGlobals.lastBrowsedPath,
 																"Template files (*{0})".format(self.__extension))))
 		if not file:

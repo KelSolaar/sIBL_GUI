@@ -839,7 +839,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		elif choice == 2:
 			return self.__container.container.storeLastBrowsedPath(
 			QFileDialog.getExistingDirectory(self,
-											"Choose Templates directory:",
+											"Choose Templates Directory:",
 											self.__container.container.lastBrowsedPath))
 
 	@core.executionTrace

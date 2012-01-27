@@ -479,7 +479,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		sIBLeditExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self,
-																						"sIBLedit executable:",
+																						"sIBLedit Executable:",
 																						RuntimeGlobals.lastBrowsedPath))
 		if sIBLeditExecutable != "":
 			LOGGER.debug("> Chosen sIBLedit executable: '{0}'.".format(sIBLeditExecutable))

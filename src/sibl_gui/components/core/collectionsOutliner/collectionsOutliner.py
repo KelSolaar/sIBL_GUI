@@ -954,7 +954,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
-																						"Add content:",
+																						"Add Content:",
 																						RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
 			return
