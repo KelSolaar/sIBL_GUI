@@ -189,7 +189,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryPreferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( Object )
+		:return: self.__factoryPreferencesManager. ( QWidget )
 		"""
 
 		return self.__factoryPreferencesManager
@@ -200,7 +200,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryPreferencesManager** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -221,7 +221,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreDatabaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( QWidget )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -232,7 +232,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -253,7 +253,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreInspector** attribute.
 
-		:return: self.__coreInspector. ( Object )
+		:return: self.__coreInspector. ( QWidget )
 		"""
 
 		return self.__coreInspector
@@ -264,7 +264,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreInspector** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

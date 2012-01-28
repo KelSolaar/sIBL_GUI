@@ -210,7 +210,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryPreferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( Object )
+		:return: self.__factoryPreferencesManager. ( QWidget )
 		"""
 
 		return self.__factoryPreferencesManager
@@ -221,7 +221,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryPreferencesManager** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -274,7 +274,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreTemplatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( QWidget )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -285,7 +285,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -306,7 +306,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__addonsLocationsBrowser** attribute.
 
-		:return: self.__addonsLocationsBrowser. ( Object )
+		:return: self.__addonsLocationsBrowser. ( QWidget )
 		"""
 
 		return self.__addonsLocationsBrowser
@@ -317,7 +317,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__addonsLocationsBrowser** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

@@ -617,4 +617,3 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentRequest.abort()
 		self.__currentRequest.deleteLater()
 		return True
-

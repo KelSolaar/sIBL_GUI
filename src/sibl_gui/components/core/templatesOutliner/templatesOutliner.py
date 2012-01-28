@@ -461,7 +461,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryScriptEditor** attribute.
 
-		:return: self.__factoryScriptEditor. ( Object )
+		:return: self.__factoryScriptEditor. ( QWidget )
 		"""
 
 		return self.__factoryScriptEditor
@@ -472,7 +472,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryScriptEditor** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

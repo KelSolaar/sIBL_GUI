@@ -219,7 +219,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryComponentsManagerUi** attribute.
 
-		:return: self.__factoryComponentsManagerUi. ( Object )
+		:return: self.__factoryComponentsManagerUi. ( QWidget )
 		"""
 
 		return self.__factoryComponentsManagerUi
@@ -230,7 +230,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryComponentsManagerUi** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -251,7 +251,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryPreferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( Object )
+		:return: self.__factoryPreferencesManager. ( QWidget )
 		"""
 
 		return self.__factoryPreferencesManager
@@ -262,7 +262,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryPreferencesManager** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -283,7 +283,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreDatabaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( QWidget )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -294,7 +294,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -315,7 +315,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreTemplatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( QWidget )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -326,7 +326,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -347,7 +347,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__addonsLoaderScript** attribute.
 
-		:return: self.__addonsLoaderScript. ( Object )
+		:return: self.__addonsLoaderScript. ( QWidget )
 		"""
 
 		return self.__addonsLoaderScript
@@ -358,7 +358,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__addonsLoaderScript** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

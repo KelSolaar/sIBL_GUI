@@ -622,7 +622,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__factoryScriptEditor** attribute.
 
-		:return: self.__factoryScriptEditor. ( Object )
+		:return: self.__factoryScriptEditor. ( QWidget )
 		"""
 
 		return self.__factoryScriptEditor
@@ -633,7 +633,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__factoryScriptEditor** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -686,7 +686,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreCollectionsOutliner** attribute.
 
-		:return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( QWidget )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -697,7 +697,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreCollectionsOutliner** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

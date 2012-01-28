@@ -184,7 +184,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__coreTemplatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( QWidget )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -195,7 +195,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -216,7 +216,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__addonsLoaderScript** attribute.
 
-		:return: self.__addonsLoaderScript. ( Object )
+		:return: self.__addonsLoaderScript. ( QWidget )
 		"""
 
 		return self.__addonsLoaderScript
@@ -227,7 +227,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__addonsLoaderScript** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
