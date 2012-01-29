@@ -865,7 +865,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Downloading '{0}' releases file.".format(url.path()))
 
-		self.__engine.startProcessing("Retrieving Releases File ...", 0)
+		self.__engine.startProcessing("Retrieving Releases File ...")
 		self.__releasesFileReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
