@@ -22,8 +22,6 @@ import itertools
 import logging
 import os
 import re
-from PyQt4.QtCore import Qt
-from PyQt4.QtGui import QBrush
 from PyQt4.QtGui import QColor
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
@@ -57,7 +55,6 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"Icon",
 			"convertImage",
 			"loadGraphicsItem",
 			"getGraphicsItem",
@@ -74,23 +71,6 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class Icon(foundations.dataStructures.Structure):
-	"""
-	This class represents a storage object for icon.
-	"""
-
-	@core.executionTrace
-	def __init__(self, **kwargs):
-		"""
-		This method initializes the class.
-
-		:param kwargs: path ( Key / Value pairs )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		foundations.dataStructures.Structure.__init__(self, **kwargs)
-
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def convertImage(image, type):
