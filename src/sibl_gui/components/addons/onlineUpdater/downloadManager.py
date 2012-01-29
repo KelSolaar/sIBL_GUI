@@ -532,7 +532,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		if not self.__currentFile.open(QIODevice.WriteOnly):
 			LOGGER.warning("!> Error occured while writing '{0}' file to disk, proceeding to next download!".format(
-			os.path.basename(self.__currentFilePath)))
+			self.__currentFilePath))
 
 			self.__downloadNext()
 			return
