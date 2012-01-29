@@ -447,6 +447,22 @@ QToolTip {
 	margin: 4px 8px 4px 8px;
 }
 
+#Search_Results_treeView::branch:has-siblings:!adjoins-item {
+	border-image: none;
+}
+
+#Search_Results_treeView::branch:has-siblings:adjoins-item {
+	border-image: none;
+}
+
+#Search_Results_treeView::branch:!has-children:!has-siblings:adjoins-item {
+	border-image: none;
+}
+
+#Search_Results_treeView::branch:hover, QTreeView::item:hover {
+	background-color: rgb(80, 80, 80);
+}
+
 /* Core Component "Inspector". */
 #Inspector_Overall_frame {
 	background-color: rgb(40, 40, 40);
