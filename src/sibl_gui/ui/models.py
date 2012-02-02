@@ -91,16 +91,16 @@ class GraphModel(umbra.ui.models.GraphModel):
 			if hasattr(node, "roles"):
 				value = node.roles.get(role)
 				if role == Qt.DecorationRole:
-					return value and sibl_gui.ui.common.getIcon(value) or QVariant()
+					return value is not None and sibl_gui.ui.common.getIcon(value) or QVariant()
 				else:
-					return value or QVariant()
+					return value is not None and value or QVariant()
 		else:
 			attribute = self.getAttribute(node, index.column())
 			if attribute:
 				if hasattr(attribute, "roles"):
 					value = attribute.roles.get(role)
 					if role == Qt.DecorationRole:
-						return value and sibl_gui.ui.common.getIcon(value) or QVariant()
+						return value is not None and sibl_gui.ui.common.getIcon(value) or QVariant()
 					else:
-						return value or QVariant()
+						return value is not None and value or QVariant()
 		return QVariant()

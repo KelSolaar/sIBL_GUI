@@ -121,7 +121,7 @@ def _setImagesCaches():
 
 	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
 	# with asynchronous images loading.
-	umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
+	umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data.__func__
 
 _setImagesCaches()
 
