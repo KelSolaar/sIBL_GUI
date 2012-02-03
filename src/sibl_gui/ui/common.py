@@ -34,7 +34,6 @@ from PyQt4.QtGui import QPen
 #**********************************************************************************************************************
 import foundations.common
 import foundations.core as core
-import foundations.dataStructures
 import foundations.exceptions
 import sibl_gui.exceptions
 import umbra.ui.common
@@ -111,10 +110,15 @@ def loadGraphicsItem(path, type):
 		else:
 			for extension in UiConstants.thirdPartyImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
-					image = Image(str(path))
-					image = image.convertToQImage()
-					graphicsItem = convertImage(image, type)
-					break
+					try:
+						image = Image(str(path))
+						image = image.convertToQImage()
+						graphicsItem = convertImage(image, type)
+						break
+					except Exception as error:
+						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(
+						inspect.getmodulename(__file__), path, error))
+						continue
 			else:
 				graphicsItem = type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
 	return graphicsItem
