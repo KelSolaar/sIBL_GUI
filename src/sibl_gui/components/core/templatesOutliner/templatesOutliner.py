@@ -1388,7 +1388,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
 			for template in selectedTemplates:
-				success *= self.removeTemplate(template, emitSignal=False) or False
+				success *= umbra.ui.common.signalsBlocker(self, self.removeTemplate, template) or False
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
@@ -1480,14 +1480,13 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											False,
 											foundations.exceptions.ProgrammingError,
 											dbExceptions.DatabaseOperationError)
-	def addTemplate(self, name, path, collectionId=None, emitSignal=True):
+	def addTemplate(self, name, path, collectionId=None):
 		"""
 		This method adds a Template to the Database.
 
 		:param name: Template set name. ( String )
 		:param path: Template set path. ( String )
 		:param collectionId: Target Collection id. ( Integer )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1495,7 +1494,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or \
 			self.__getCandidateCollectionId(path)):
-				emitSignal and self.modelRefresh.emit()
+				self.modelRefresh.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError(
@@ -1525,10 +1524,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		success = True
 		for template, path in osWalker.files.iteritems():
 			if not self.templateExists(path):
-				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True),
-											path,
-											collectionId,
-											emitSignal=False) or False
+				success *= umbra.ui.common.signalsBlocker(self,
+														self.addTemplate,
+														namespace.getNamespace(template, rootOnly=True),
+														path,
+														collectionId) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
@@ -1577,18 +1577,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
-	def removeTemplate(self, template, emitSignal=True):
+	def removeTemplate(self, template):
 		"""
 		This method removes given Template from the Database.
 
 		:param templates: Template to remove. ( List )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
 		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
-			emitSignal and self.modelRefresh.emit()
+			self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(
@@ -1609,12 +1608,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
-	def updateTemplateLocation(self, template, emitSignal=True):
+	def updateTemplateLocation(self, template):
 		"""
 		This method updates given Template location.
 
 		:param template: Template to update. ( DbTemplate )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1628,7 +1626,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
-			emitSignal and self.modelRefresh.emit()
+			self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(

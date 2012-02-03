@@ -1746,7 +1746,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
 			success = True
 			for iblSet in selectedIblSets:
-				success *= self.removeIblSet(iblSet, emitSignal=False) or False
+				success *= umbra.ui.common.signalsBlocker(self, self.removeIblSet, iblSet) or False
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
@@ -1798,21 +1798,20 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											False,
 											foundations.exceptions.ProgrammingError,
 											dbExceptions.DatabaseOperationError)
-	def addIblSet(self, name, path, collectionId=None, emitSignal=True):
+	def addIblSet(self, name, path, collectionId=None):
 		"""
 		This method adds an Ibl Set to the Database.
 
 		:param name: Ibl Set name. ( String )
 		:param path: Ibl Set path. ( String )
 		:param collectionId: Target Collection id. ( Integer )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
-				emitSignal and self.modelRefresh.emit()
+				self.modelRefresh.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError(
@@ -1842,10 +1841,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		success = True
 		for iblSet, path in osWalker.files.iteritems():
 			if not self.iblSetExists(path):
-				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True),
-										path,
-										collectionId or self.__getCandidateCollectionId(),
-										emitSignal=False) or False
+				success *= umbra.ui.common.signalsBlocker(self,
+														self.addIblSet,
+														namespace.getNamespace(iblSet, rootOnly=True),
+														path,
+														collectionId or self.__getCandidateCollectionId()) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
@@ -1859,18 +1859,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
-	def removeIblSet(self, iblSet, emitSignal=True):
+	def removeIblSet(self, iblSet):
 		"""
 		This method removes given Ibl Set from the Database.
 
 		:param iblSet: Ibl Set to remove. ( DbIblSet )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
-			emitSignal and self.modelRefresh.emit()
+			self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(
@@ -1879,13 +1878,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
-	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
+	def updateIblSetLocation(self, iblSet, file):
 		"""
 		This method updates given Ibl Set location.
 
 		:param iblSet: Ibl Set to update. ( DbIblSet )
 		:param iblSet: New Ibl Set file. ( String )
-		:param emitSignal: Emit signal. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1893,7 +1891,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																					iblSet.title,
 																					file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
-			emitSignal and self.modelRefresh.emit()
+			self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
