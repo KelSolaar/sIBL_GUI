@@ -368,7 +368,7 @@ class IblSetsScanner(QObjectComponent):
 										path,
 										self.__coreCollectionsOutliner.getCollectionId(
 										self.__coreCollectionsOutliner.defaultCollection)):
-					LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
+					LOGGER.error("!> {0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
 					self.__class__.__name__, iblSet))
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
