@@ -108,6 +108,7 @@ def loadGraphicsItem(path, type):
 				graphicsItem = type(path)
 				break
 		else:
+			errorImage = umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 			for extension in UiConstants.thirdPartyImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
 					try:
@@ -118,9 +119,10 @@ def loadGraphicsItem(path, type):
 					except Exception as error:
 						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(
 						inspect.getmodulename(__file__), path, error))
-						continue
+						graphicsItem = type(errorImage)
+						break
 			else:
-				graphicsItem = type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
+				graphicsItem = type(errorImage)
 	return graphicsItem
 
 @core.executionTrace
