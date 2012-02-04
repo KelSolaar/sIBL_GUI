@@ -31,6 +31,7 @@ from PyQt4.QtCore import pyqtSignal
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
 from umbra.globals.constants import Constants
 
@@ -247,7 +248,7 @@ class DatabaseBrowser_worker(QThread):
 
 			storedStats = iblSet.osStats.split(",")
 			osStats = os.stat(iblSet.path)
-			if str(osStats[8]) == str(storedStats[8]):
+			if strings.encode(osStats[8]) == strings.encode(storedStats[8]):
 				continue
 
 			LOGGER.debug("> '{0}' Ibl Set file has been modified and will be updated!".format(iblSet.title))

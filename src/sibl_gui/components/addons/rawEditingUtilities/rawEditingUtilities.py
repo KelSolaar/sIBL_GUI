@@ -32,6 +32,7 @@ from PyQt4.QtGui import QGridLayout
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import umbra.engine
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -637,8 +638,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		is edited and check that entered path is valid.
 		"""
 
-		value = str(self.Custom_Text_Editor_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
+		value = strings.encode(self.Custom_Text_Editor_Path_lineEdit.text())
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
@@ -668,9 +669,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.startProcessing("Loading Files ...", len(urls))
 		for url in event.mimeData().urls():
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-			re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-			if not re.search(r"\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())) and \
-			not re.search(r"\.{0}$".format(self.coreTemplatesOutliner.extension), str(url.path())) and \
+			re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] or \
+			strings.encode(url.path())
+			if not re.search(r"\.{0}$".format(self.__coreDatabaseBrowser.extension), strings.encode(url.path())) and \
+			not re.search(r"\.{0}$".format(self.coreTemplatesOutliner.extension), strings.encode(url.path())) and \
 			not os.path.isdir(path):
 				self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text())
 			self.__engine.stepProcessing()
@@ -731,9 +733,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
+		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
+		inspectorIblSet or None
 		if inspectorIblSet:
-			return self.editFile(inspectorIblSet.path, str(self.Custom_Text_Editor_Path_lineEdit.text()))
+			return self.editFile(inspectorIblSet.path, strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(

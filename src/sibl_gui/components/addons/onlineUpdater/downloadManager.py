@@ -32,6 +32,7 @@ from PyQt4.QtNetwork import QNetworkRequest
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import foundations.ui.common
 import umbra.ui.common
 from umbra.globals.constants import Constants
@@ -522,7 +523,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
 		self.__currentFilePath = os.path.join(self.__downloadDirectory,
-											os.path.basename(str(self.__currentRequest.url().path())))
+											os.path.basename(strings.encode(self.__currentRequest.url().path())))
 		if foundations.common.pathExists(self.__currentFilePath):
 			LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(
 			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
@@ -555,7 +556,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 																									bytesTotal))
 
 		self.Current_File_label.setText("Downloading: '{0}'.".format(
-		os.path.basename(str(self.__currentRequest.url().path()))))
+		os.path.basename(strings.encode(self.__currentRequest.url().path()))))
 		self.Download_progressBar.setRange(0, bytesTotal)
 		self.Download_progressBar.setValue(bytesReceived)
 

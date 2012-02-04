@@ -2130,7 +2130,8 @@ class Image(object):
 		"""
 
 		if value is not None:
-			assert type(value) is str, "'{0}' attribute: '{1}' type is not 'str'!".format("imagePath", value)
+			assert type(value) in (str, unicode), \
+			"'{0}' attribute: '{1}' type is not 'str', 'unicode'!".format("imagePath", value)
 		self.__imagePath = value
 
 	@imagePath.deleter

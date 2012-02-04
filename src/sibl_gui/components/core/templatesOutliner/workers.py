@@ -31,6 +31,7 @@ from PyQt4.QtCore import pyqtSignal
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
 from umbra.globals.constants import Constants
 
@@ -248,7 +249,7 @@ class TemplatesOutliner_worker(QThread):
 
 			storedStats = template.osStats.split(",")
 			osStats = os.stat(template.path)
-			if str(osStats[8]) == str(storedStats[8]):
+			if strings.encode(osStats[8]) == strings.encode(storedStats[8]):
 				continue
 
 			LOGGER.debug("> '{0}' Template file has been modified and will be updated!".format(template.name))

@@ -101,7 +101,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		# --- Setting class attributes. ---
 		self.__dbItem = dbItem
-		self.__toolTipText = str()
+		self.__toolTipText = unicode()
 
 		AbstractDatabaseNode.__initializeNode(self, attributesFlags)
 

@@ -112,7 +112,7 @@ def loadGraphicsItem(path, type):
 			for extension in UiConstants.thirdPartyImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
 					try:
-						image = Image(str(path))
+						image = Image(path)
 						image = image.convertToQImage()
 						graphicsItem = convertImage(image, type)
 						break

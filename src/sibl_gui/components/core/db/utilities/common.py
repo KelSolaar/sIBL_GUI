@@ -28,6 +28,7 @@ import re
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions
 import sibl_gui.components.core.db.utilities.types as dbTypes
 from umbra.globals.constants import Constants
@@ -143,7 +144,7 @@ def addStandardItem(session, type, name, path, collection):
 	LOGGER.debug("> Adding: '{0}' '{1}' to the Database.".format(name, type.__name__))
 
 	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
-		osStats = ",".join((str(stat) for stat in os.stat(path)))
+		osStats = ",".join((strings.encode(stat) for stat in os.stat(path)))
 		dbItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if dbItem.setContent():
 			return addItem(session, dbItem)
@@ -199,7 +200,7 @@ def updateItemContent(session, item):
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
 
-	item.osStats = ",".join((str(stat) for stat in os.stat(item.path)))
+	item.osStats = ",".join((strings.encode(stat) for stat in os.stat(item.path)))
 	if item.setContent():
 		return commit(session)
 	else:
@@ -243,7 +244,7 @@ def filterItems(session, items, pattern, field, flags=0):
 	:return: Filtered items. ( List )
 	"""
 
-	return [item for item in items if re.search(pattern, str(item.__dict__[field]), flags)]
+	return [item for item in items if re.search(pattern, strings.encode(item.__dict__[field]), flags)]
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

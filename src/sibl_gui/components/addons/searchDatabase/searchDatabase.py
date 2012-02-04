@@ -523,7 +523,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		return self.setTagsCloudMatchingIblsSets(str(self.Search_Database_lineEdit.text()),
+		return self.setTagsCloudMatchingIblsSets(strings.encode(self.Search_Database_lineEdit.text()),
 		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
 	@core.executionTrace

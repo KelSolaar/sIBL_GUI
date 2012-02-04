@@ -837,7 +837,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.settimeout(2.5)
-				connection.connect((str(self.Address_lineEdit.text()), int(self.Software_Port_spinBox.value())))
+				connection.connect((strings.encode(self.Address_lineEdit.text()),
+				int(self.Software_Port_spinBox.value())))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand",
 								templateSectionsFileParser.getValue("ExecutionCommand",
 								self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath",

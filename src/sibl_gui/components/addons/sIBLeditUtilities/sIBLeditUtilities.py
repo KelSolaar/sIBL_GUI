@@ -29,6 +29,7 @@ from PyQt4.QtGui import QFileDialog
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
@@ -495,8 +496,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 		
-		value = str(self.sIBLedit_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != str():
+		value = strings.encode(self.sIBLedit_Path_lineEdit.text())
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
@@ -517,13 +518,13 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 			selectedIblSet = selectedIblSets and foundations.common.pathExists(selectedIblSets[0].path) and \
 							selectedIblSets[0] or None
 			if selectedIblSet:
-				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.sIBLedit_Path_lineEdit.text()))
+				return self.editIblSetInSIBLedit(selectedIblSet.path, strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:
 				raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(
@@ -545,11 +546,11 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			inspectorIblSet = self.__coreInspector.inspectorIblSet
 			inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
-							inspectorIblSet or None
+			inspectorIblSet or None
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:

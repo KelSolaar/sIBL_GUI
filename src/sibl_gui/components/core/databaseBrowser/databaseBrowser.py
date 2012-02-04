@@ -1290,7 +1290,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		for view in self.__views:
 			viewName = view.objectName()
-			viewSelectedIblSetsIdentities = str(self.__settings.getKey(self.__settingsSection,
+			viewSelectedIblSetsIdentities = strings.encode(self.__settings.getKey(self.__settingsSection,
 																	"{0}_viewSelecteIblSets".format(viewName)).toString())
 			LOGGER.debug("> '{0}' View stored selected Ibl Sets identities: '{1}'.".format(viewName,
 																							viewSelectedIblSetsIdentities))
@@ -1314,7 +1314,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.storeModelSelection()
 			self.__settings.setKey(self.__settingsSection,
 								"{0}_viewSelecteIblSets".format(view.objectName()),
-								self.__settingsSeparator.join(str(identity) for identity in view.modelSelection["Default"]))
+								self.__settingsSeparator.join(strings.encode(identity) \
+								for identity in view.modelSelection["Default"]))
 
 		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
 
@@ -1428,7 +1429,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setIblSets(self.__searchIblSets(str(self.Search_Database_lineEdit.text()),
+		self.setIblSets(self.__searchIblSets(strings.encode(self.Search_Database_lineEdit.text()),
 											self.__searchContexts[self.__activeSearchContext],
 											not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
 
@@ -1525,8 +1526,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), str(url.path())):
+				re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] \
+				or strings.encode(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), strings.encode(url.path())):
 					name = strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
@@ -1591,7 +1593,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
 		self.__coreCollectionsOutliner.getSelectedCollections() or \
 		self.__coreCollectionsOutliner.getCollections())).intersection(
-		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags))]
+		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(strings.encode(pattern.pattern)), attribute, flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
@@ -1927,7 +1929,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return
 
 		return list(set(self.getIblSets()).intersection(
-		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
+		dbCommon.filterIblSets(self.__coreDb.dbSession,
+								"{0}".format(strings.encode(pattern.pattern)),
+								attribute,
+								flags)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

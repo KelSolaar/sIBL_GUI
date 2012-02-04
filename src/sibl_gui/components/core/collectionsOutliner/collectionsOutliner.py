@@ -35,6 +35,7 @@ from PyQt4.QtGui import QMessageBox
 import foundations.core as core
 import foundations.exceptions
 import foundations.walkers
+import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -760,14 +761,16 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+		activeCollectionsIdentities = strings.encode(
+		self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> '{0}' View stored selected Collections identities '{1}'.".format(self.__class__.__name__,
 																						activeCollectionsIdentities))
 		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and \
 													[int(identity) for identity in activeCollectionsIdentities.split(
 													self.__settingsSeparator)] or []
 
-		activeOverallCollection = str(self.__settings.getKey(self.__settingsSection, "activeOverallCollection").toString())
+		activeOverallCollection = strings.encode(
+		self.__settings.getKey(self.__settingsSection, "activeOverallCollection").toString())
 		LOGGER.debug("> '{0}' View stored 'Overall' Collection: '{1}'.".format(self.__class__.__name__,
 																				activeOverallCollection))
 		self.__view.modelSelection[self.__overallCollection] = activeCollectionsIdentities and \
@@ -789,11 +792,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection,
 								"activeCollections",
-								self.__settingsSeparator.join((str(identity) for identity in self.__view.modelSelection[
+								self.__settingsSeparator.join((strings.encode(
+								identity) for identity in self.__view.modelSelection[
 								"Collections"])))
 		self.__settings.setKey(self.__settingsSection,
 								"activeOverallCollection",
-								self.__settingsSeparator.join((str(name)
+								self.__settingsSeparator.join((strings.encode(name)
 								for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
@@ -986,7 +990,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if collectionInformations:
-			collectionInformations = str(collectionInformations).split(",")
+			collectionInformations = strings.encode(collectionInformations).split(",")
 			name = collectionInformations[0].strip()
 			if name != self.__overallCollection:
 				if not self.collectionExists(name):
@@ -1039,7 +1043,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question",
-		"Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name)
+		"Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((strings.encode(collection.name)
 																	for collection in selectedCollections))),
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Collections ...", len(selectedCollections))
@@ -1105,7 +1109,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
-		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
+		if dbCommon.removeCollection(self.__coreDb.dbSession, strings.encode(collection.id)):
 			self.modelRefresh.emit()
 			self.__coreDatabaseBrowser.modelRefresh.emit()
 			return True
@@ -1142,7 +1146,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except Exception:
 			return
 
-		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)),
+		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(strings.encode(pattern.pattern)),
 																						attribute, flags)
 
 	@core.executionTrace

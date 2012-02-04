@@ -1039,18 +1039,20 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+		activeCollectionsIdentities = strings.encode(self.__settings.getKey(
+		self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
 																				activeCollectionsIdentities))
 		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and [int(identity)
 																		for identity in activeCollectionsIdentities.split(
 																		self.__settingsSeparator)] or []
 
-		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
+		activeSoftwares = strings.encode(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		self.__view.modelSelection["Softwares"] = activeSoftwares and activeSoftwares.split(self.__settingsSeparator) or []
 
-		activeTemplatesIdentities = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
+		activeTemplatesIdentities = strings.encode(
+		self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
 		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__,
 																						activeTemplatesIdentities))
 		self.__view.modelSelection["Templates"] = activeTemplatesIdentities and [int(identity)
@@ -1074,15 +1076,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection,
 								"activeTemplates",
-								self.__settingsSeparator.join(str(identity)
+								self.__settingsSeparator.join(strings.encode(identity)
 															for identity in self.__view.modelSelection["Templates"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeCollections",
-								self.__settingsSeparator.join(str(identity)
+								self.__settingsSeparator.join(strings.encode(identity)
 															for identity in self.__view.modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeSoftwares",
-								self.__settingsSeparator.join(str(name)
+								self.__settingsSeparator.join(strings.encode(name)
 															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
@@ -1269,8 +1271,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), str(url.path())):
+				re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] or \
+				strings.encode(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), strings.encode(url.path())):
 					name = strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
@@ -1383,7 +1386,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove '{0}' Template(s)?".format(
-		", ".join([str(template.name) for template in selectedTemplates])),
+		", ".join([strings.encode(template.name) for template in selectedTemplates])),
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
@@ -1586,7 +1589,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
+		if dbCommon.removeTemplate(self.__coreDb.dbSession, strings.encode(template.id)) :
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1682,8 +1685,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		except Exception:
 			return
 
-		return dbCommon.filterTemplatesCollections(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)),
-																						attribute, flags)
+		return dbCommon.filterTemplatesCollections(self.__coreDb.dbSession,
+													"{0}".format(strings.encode(pattern.pattern)),
+													attribute,
+													flags)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1715,7 +1720,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return
 
 		return list(set(self.getTemplates()).intersection(
-		dbCommon.filterTemplates(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags)))
+		dbCommon.filterTemplates(self.__coreDb.dbSession,
+								"{0}".format(strings.encode(pattern.pattern)),
+								attribute,
+								flags)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

@@ -48,7 +48,7 @@ def recursiveRemove(rootDirectory, pattern):
 	for root, dirs, files in os.walk(rootDirectory):
 		for item in files:
 			itemPath = os.path.join(root, item).replace("\\", "/")
-			if pattern in str(item):
+			if pattern in unicode(item):
 				remove(itemPath)
 
 def remove(item):

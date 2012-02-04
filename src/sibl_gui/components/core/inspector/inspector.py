@@ -1083,7 +1083,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.Title_label.setText(QString())
-		self.Image_label.setText(self.__noInspectorIblSetText.format(sibl_gui.ui.common.filterImagePath(str())))
+		self.Image_label.setText(self.__noInspectorIblSetText.format(sibl_gui.ui.common.filterImagePath(unicode())))
 		self.Image_label.setToolTip(QString())
 		self.Details_label.setText(QString())
 
@@ -1358,10 +1358,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										parent=rootNode,
 										nodeFlags=nodeFlags,
 										attributesFlags=attributesFlags)
-		iblSetNode.roles[Qt.DisplayRole] = str()
+		iblSetNode.roles[Qt.DisplayRole] = unicode()
 		for name, plate in self.__inspectorPlates.iteritems():
 			plateNode = PlatesNode(plate, name=name, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
-			plateNode.roles[Qt.DisplayRole] = str()
+			plateNode.roles[Qt.DisplayRole] = unicode()
 			plateNode.roles[Qt.DecorationRole] = plate.icon
 
 		self.__model.initializeModel(rootNode)
