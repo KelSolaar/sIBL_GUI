@@ -1,5 +1,5 @@
 [Dependencies]
-Foundations=v2.0.1
-Manager=v2.0.0
-Umbra=v1.0.0-4-g5627b89
-sIBL_GUI_Templates=v2.0.1-3-gabd6bc7
+Foundations=v2.0.1-16-g8d26fbb
+Manager=v2.0.0-2-g3016885
+Umbra=v1.0.1
+sIBL_GUI_Templates=v2.0.4-4-gb74a3ff
