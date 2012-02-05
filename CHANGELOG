@@ -24,17 +24,26 @@ Change Log
 I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
 
 sIBL_GUI 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
-Umbra 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
+Umbra 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
--  Implemented a slick notification manager.
+-  Implemented notifications manager code.
+-  Implemented **Search In Files** in **Script Editor** Component.
+-  Implemented matching symbols pairs highlighting in **Script Editor** Component.
+-  Implemented occurences highlighting in **Script Editor** Component.
+-  Implemented **Duplicate Line(s)** methods in **Script Editor** Component.
+-  Implemented **Delete Line(s)** methods in **Script Editor** Component.
+-  Implemented **Move Up / Down** methods in **Script Editor** Component.
+-  Implemented **Font Size Increase / Decrease** methods in **Script Editor** Component.
 -  The FAQ have been moved into the documentation: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/resources/pages/faq.html
--  Optimized "Search Database" Component speed.
--  Ensured workers threads are properly closed on application exit.
+-  Added support for command line files arguments.
 -  Refactored the layouts management code.
+-  Optimized **Search Database** Component speed.
+-  **Online Updater** Component now correctly reports networks errors.
 -  Rolled back to Qt 4.7.x thanks to **Jens Lindgren**.
--  "Online Updater" Component now correctly reports networks errors.
 -  Fixed an exception in **Inspector** Component when an Ibl Set is modified and reloaded on Windows Os.
--  Fixed an exception while drag'n'drop in **Collections Outliner** Component.
+-  Fixed an exception related to drag'n'drop in **Collections Outliner** Component.
+-  Ensured workers threads are properly closed on application exit.
+-  Handled exception when "FreeImage" library cannot be loaded.
 
 4.0.1 - Beta
 ------------
