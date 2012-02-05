@@ -10,6 +10,8 @@ Module Attributes
 
 .. attribute:: tests.testsFoundations.testsCommon.LIBRARIES_DIRECTORY
 
+.. attribute:: tests.testsFoundations.testsCommon.TEXT_FILE
+
 Classes
 -------
 
