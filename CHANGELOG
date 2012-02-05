@@ -23,8 +23,8 @@ Change Log
 
 I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
 
-sIBL_GUI 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
-Umbra 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
+| sIBL_GUI 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
+| Umbra 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented notifications manager code.
 -  Implemented **Search In Files** in **Script Editor** Component.
