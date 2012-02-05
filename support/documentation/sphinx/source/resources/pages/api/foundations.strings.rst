@@ -11,6 +11,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: encode
+
 .. autofunction:: getNiceName
 
 .. autofunction:: getVersionRank

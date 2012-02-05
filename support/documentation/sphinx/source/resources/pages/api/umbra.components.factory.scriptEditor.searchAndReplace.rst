@@ -13,6 +13,10 @@ Module Attributes
 Classes
 -------
 
+.. autoclass:: ValidationFilter
+	:show-inheritance:
+	:members:
+
 .. autoclass:: SearchAndReplace
 	:show-inheritance:
 	:members:

@@ -27,3 +27,5 @@ Functions
 
 .. autofunction:: pathExists
 
+.. autofunction:: isBinaryFile
+

@@ -3,6 +3,13 @@ _`tests.testsFoundations.testsCommon`
 
 .. automodule:: tests.testsFoundations.testsCommon
 
+Module Attributes
+-----------------
+
+.. attribute:: tests.testsFoundations.testsCommon.RESOURCES_DIRECTORY
+
+.. attribute:: tests.testsFoundations.testsCommon.LIBRARIES_DIRECTORY
+
 Classes
 -------
 
@@ -23,6 +30,10 @@ Classes
 	:members:
 
 .. autoclass:: PathExistsTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: IsBinaryFileTestCase
 	:show-inheritance:
 	:members:
 

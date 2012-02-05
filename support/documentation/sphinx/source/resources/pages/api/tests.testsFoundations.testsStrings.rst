@@ -6,6 +6,10 @@ _`tests.testsFoundations.testsStrings`
 Classes
 -------
 
+.. autoclass:: EncodeTestCase
+	:show-inheritance:
+	:members:
+
 .. autoclass:: GetNiceNameTestCase
 	:show-inheritance:
 	:members:

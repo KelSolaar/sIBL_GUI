@@ -1279,10 +1279,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 						</table>
 						<ul class="simple">
 							<li>
-								<strong>Undo</strong>: Reverts current editor last changes.
+								<strong>Undo</strong>: Undo current editor last changes.
 							</li>
 							<li>
-								<strong>Redo</strong>: Repeats current editor reverted changes.
+								<strong>Redo</strong>: Redo current editor reverted changes.
 							</li>
 							<li>
 								<strong>Cut</strong>: Cuts current editor selected content.
@@ -1299,8 +1299,34 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							<li>
 								<strong>Select All</strong>: Selects all editor content.
 							</li>
+						</ul>
+						<p>
+							Source Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSourceMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSourceMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
 							<li>
-								<strong>Goto Line ...</strong>: Scrolls current editor to user chosen line.
+								<strong>Delete Line(s)</strong>: Deletes current editor selected line(s).
+							</li>
+							<li>
+								<strong>Duplicate Line(s)</strong>: Duplicates current editor selected line(s).
+							</li>
+							<li>
+								<strong>Move Up</strong>: Move up current editor selected line(s).
+							</li>
+							<li>
+								<strong>Move Down</strong>: Move down current editor selected line(s).
 							</li>
 							<li>
 								<strong>Indent Selection</strong>: Indents current editor selected content.
@@ -1322,6 +1348,26 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							</li>
 						</ul>
 						<p>
+							Navigate Menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorNavigateMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorNavigateMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Goto Line ...</strong>: Scrolls current editor to user chosen line.
+							</li>
+						</ul>
+						<p>
 							Search Menu:
 						</p>
 						<table border="1" class="docutils">
@@ -1339,6 +1385,9 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 						<ul class="simple">
 							<li>
 								<strong>Search And Replace ...</strong>: Launches the <em>Search And Replace</em> dialog described further below.
+							</li>
+							<li>
+								<strong>Search In Files ...</strong>: Launches the <em>Search In Files</em> dialog described further below.
 							</li>
 							<li>
 								<strong>Search Next</strong>: Searches next occurence of current editor selected text.
@@ -1386,6 +1435,12 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							</tbody>
 						</table>
 						<ul class="simple">
+							<li>
+								<strong>Increase Font Size</strong>: Increases current editor font size.
+							</li>
+							<li>
+								<strong>Decrease Font Size</strong>: Decreases current editor font size.
+							</li>
 							<li>
 								<strong>Toggle Word Wrap</strong>: Toggles word wrap on current editor.
 							</li>
@@ -1441,6 +1496,105 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							</li>
 							<li>
 								<strong>Replace All Push Button</strong>: Performs the search and replace all editor matched occurence.
+							</li>
+						</ul>
+						<p>
+							Search In Files:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchInFiles.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchInFiles.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Search Combo Box</strong>: Defines the search pattern.
+							</li>
+							<li>
+								<strong>Replace With Combo Box</strong>: Defines the replacement pattern.
+							</li>
+							<li>
+								<strong>Where Line Edit</strong>: Defines the search location (Clicking the magnifier brings a context menu).
+							</li>
+							<li>
+								<strong>Case Sensitive Check Box</strong>: Search will be performed case sensitively.
+							</li>
+							<li>
+								<strong>Whole Word Check Box</strong>: Search will be performed within words boundaries.
+							</li>
+							<li>
+								<strong>Regular Expressions Check Box</strong>: Search will be performed using Regular Expressions.
+							</li>
+							<li>
+								<strong>Search Push Button</strong>: Performs the search and highlight editor first matched occurence.
+							</li>
+						</ul>
+						<p>
+							Magnifier Context menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchInFilesLocationContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchInFilesLocationContextMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Add Directory ...</strong>: Adds user chosen directory.
+							</li>
+							<li>
+								<strong>Add File ...</strong>: Adds user chosen file.
+							</li>
+							<li>
+								<strong>Add Opened Files</strong>: Adds opened files pattern.
+							</li>
+							<li>
+								<strong>Add Include Filter</strong>: Adds include glob files filter.
+							</li>
+							<li>
+								<strong>Add Exclude Filter</strong>: Adds exclude glob files filter.
+							</li>
+						</ul>
+						<p>
+							Results View Context menu:
+						</p>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_ScriptEditorSearchInFilesContextMenu.jpg" class="first last" src="resources/pictures/sIBL_GUI_ScriptEditorSearchInFilesContextMenu.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="simple">
+							<li>
+								<strong>Replace All</strong>: Replaces all search results with given replace pattern.
+							</li>
+							<li>
+								<strong>Replace Selected</strong>: Replaces selected search results with given replace pattern.
+							</li>
+							<li>
+								<strong>Save All</strong>: Saves all modified files.
+							</li>
+							<li>
+								<strong>Save Selected</strong>: Saves Selected modified files.
 							</li>
 						</ul><br />
 					</div>

@@ -31,10 +31,3 @@ Functions
 
 .. autofunction:: getFormatedShotDate
 
-Classes
--------
-
-.. autoclass:: Icon
-	:show-inheritance:
-	:members:
-

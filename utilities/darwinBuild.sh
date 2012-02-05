@@ -36,7 +36,7 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
-python $UTILITIES/darwinSetup.py py2app --includes "PyQt4.QtCore,PyQt4.QtGui,PyQt4.QtNetwork,PyQt4.QtSvg,PyQt4.QtWebKit,PyQt4.QtXml,PyQt4.uic,base64,cStringIO,code,collections,ctypes,datetime,functools,hashlib,inspect,itertools,linecache,logging,migrate,migrate.exceptions,migrate.versioning.api,optparse,os,pickle,platform,posixpath,Queue,re,shutil,sip,socket,sqlalchemy,sqlalchemy.ext.declarative,sqlalchemy.orm,sys,threading,time,traceback,weakref,xml.etree,zipfile" --excludes "foundations,manager,umbra,sibl_gui" --no-strip
+python $UTILITIES/darwinSetup.py py2app --includes "PyQt4.QtCore,PyQt4.QtGui,PyQt4.QtNetwork,PyQt4.QtSvg,PyQt4.QtWebKit,PyQt4.QtXml,PyQt4.uic,base64,cStringIO,code,collections,ctypes,datetime,functools,fnmatch,hashlib,inspect,itertools,linecache,logging,migrate,migrate.exceptions,migrate.versioning.api,optparse,os,pickle,platform,posixpath,Queue,re,shutil,sip,socket,sqlalchemy,sqlalchemy.ext.declarative,sqlalchemy.orm,sys,threading,time,traceback,weakref,xml.etree,zipfile" --excludes "foundations,manager,umbra,sibl_gui" --no-strip
 python $UTILITIES/recursiveRemove.py $BUNDLE/ debug
 echo ----------------------------------------------------------------
 echo Build - End

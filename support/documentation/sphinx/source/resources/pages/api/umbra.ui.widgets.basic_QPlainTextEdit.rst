@@ -13,6 +13,8 @@ Functions
 
 .. autofunction:: anchorTextCursor
 
+.. autofunction:: centerTextCursor
+
 Classes
 -------
 

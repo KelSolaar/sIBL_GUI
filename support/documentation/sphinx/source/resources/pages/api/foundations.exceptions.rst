@@ -62,6 +62,14 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: ProgrammingError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: UserError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: AbstractNodeError
 	:show-inheritance:
 	:members:
@@ -71,26 +79,6 @@ Classes
 	:members:
 
 .. autoclass:: NodeAttributeExistsError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: ProgrammingError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: UserError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: AbstractNetworkError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: NetworkError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: SocketConnectionError
 	:show-inheritance:
 	:members:
 

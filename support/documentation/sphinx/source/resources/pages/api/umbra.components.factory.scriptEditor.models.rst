@@ -15,3 +15,27 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: PatternNode
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PatternsModel
+	:show-inheritance:
+	:members:
+
+.. autoclass:: SearchFileNode
+	:show-inheritance:
+	:members:
+
+.. autoclass:: SearchOccurenceNode
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ReplaceResultNode
+	:show-inheritance:
+	:members:
+
+.. autoclass:: SearchResultsModel
+	:show-inheritance:
+	:members:
+

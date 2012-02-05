@@ -11,6 +11,10 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: getNodes
+
+.. autofunction:: filterNodes
+
 .. autofunction:: getViewNodesFromIndexes
 
 .. autofunction:: getViewSelectedNodes

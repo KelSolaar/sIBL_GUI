@@ -152,20 +152,38 @@ Edit Menu:
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorEditMenu.jpg            |
 +----------------------------------------------------------------------+
 
--  **Undo**: Reverts current editor last changes.
--  **Redo**: Repeats current editor reverted changes.
+-  **Undo**: Undo current editor last changes.
+-  **Redo**: Redo current editor reverted changes.
 -  **Cut**: Cuts current editor selected content.
 -  **Copy**: Copies current editor selected content.
 -  **Paste**: Pastes clipboard content into current editor.
 -  **Delete**: Deletes current editor selected content.
 -  **Select All**: Selects all editor content.
--  **Goto Line ...**: Scrolls current editor to user chosen line.
+
+Source Menu:
+
++------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSourceMenu.jpg            |
++------------------------------------------------------------------------+
+
+-  **Delete Line(s)**: Deletes current editor selected line(s).
+-  **Duplicate Line(s)**: Duplicates current editor selected line(s).
+-  **Move Up**: Move up current editor selected line(s).
+-  **Move Down**: Move down current editor selected line(s).
 -  **Indent Selection**: Indents current editor selected content.
 -  **Unindent Selection**: Unindents current editor selected content.
 -  **Convert Indentation To Tabs**: Converts current editor indentation to tabs.
 -  **Convert Indentation To Spaces**: Converts current editor indentation to spaces.
 -  **Remove Trailing Whitespaces**: Removes current editor trailing whitespaces.
 -  **Toggle Comments**: Toggles comments on current editor selected content.
+
+Navigate Menu:
+
++--------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorNavigateMenu.jpg            |
++--------------------------------------------------------------------------+
+
+-  **Goto Line ...**: Scrolls current editor to user chosen line.
 
 Search Menu:
 
@@ -174,6 +192,7 @@ Search Menu:
 +------------------------------------------------------------------------+
 
 -  **Search And Replace ...**: Launches the *Search And Replace* dialog described further below.
+-  **Search In Files ...**: Launches the *Search In Files* dialog described further below.
 -  **Search Next**: Searches next occurence of current editor selected text.
 -  **Search Previous**: Searches previous occurence of current editor selected text.
 
@@ -192,6 +211,8 @@ View Menu:
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditorViewMenu.jpg            |
 +----------------------------------------------------------------------+
 
+-  **Increase Font Size**: Increases current editor font size.
+-  **Decrease Font Size**: Decreases current editor font size.
 -  **Toggle Word Wrap**: Toggles word wrap on current editor.
 -  **Toggle Whitespaces**: Toggles whitespaces display on current editor.
 
@@ -213,6 +234,43 @@ Search And Replace:
 -  **Search Push Button**: Performs the search and highlight editor first matched occurence.
 -  **Replace Push Button**: Performs the search and replace editor first matched occurence.
 -  **Replace All Push Button**: Performs the search and replace all editor matched occurence.
+
+Search In Files:
+
++---------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchInFiles.jpg            |
++---------------------------------------------------------------------------+
+
+-  **Search Combo Box**: Defines the search pattern.
+-  **Replace With Combo Box**: Defines the replacement pattern.
+-  **Where Line Edit**: Defines the search location (Clicking the magnifier brings a context menu).
+-  **Case Sensitive Check Box**: Search will be performed case sensitively.
+-  **Whole Word Check Box**: Search will be performed within words boundaries.
+-  **Regular Expressions Check Box**: Search will be performed using Regular Expressions.
+-  **Search Push Button**: Performs the search and highlight editor first matched occurence.
+
+Magnifier Context menu:
+
++----------------------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchInFilesLocationContextMenu.jpg            |
++----------------------------------------------------------------------------------------------+
+
+-  **Add Directory ...**: Adds user chosen directory.
+-  **Add File ...**: Adds user chosen file.
+-  **Add Opened Files**: Adds opened files pattern.
+-  **Add Include Filter**: Adds include glob files filter.
+-  **Add Exclude Filter**: Adds exclude glob files filter.
+
+Results View Context menu:
+
++--------------------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ScriptEditorSearchInFilesContextMenu.jpg            |
++--------------------------------------------------------------------------------------+
+
+-  **Replace All**: Replaces all search results with given replace pattern.
+-  **Replace Selected**: Replaces selected search results with given replace pattern.
+-  **Save All**: Saves all modified files.
+-  **Save Selected**: Saves Selected modified files.
 
 .. raw:: html
 

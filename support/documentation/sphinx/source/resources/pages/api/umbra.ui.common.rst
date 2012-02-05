@@ -11,6 +11,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: parseLocation
+
 .. autofunction:: uiExtendedExceptionHandler
 
 .. autofunction:: uiBasicExceptionHandler
@@ -31,12 +33,14 @@ Functions
 
 .. autofunction:: parentsWalker
 
+.. autofunction:: signalsBlocker
+
 .. autofunction:: showWaitCursor
 
 Classes
 -------
 
-.. autoclass:: Icon
+.. autoclass:: Location
 	:show-inheritance:
 	:members:
 

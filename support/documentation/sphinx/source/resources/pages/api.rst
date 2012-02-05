@@ -93,6 +93,9 @@ Modules Summary:
    umbra.components.factory.scriptEditor.models <api/umbra.components.factory.scriptEditor.models>
    umbra.components.factory.scriptEditor.scriptEditor <api/umbra.components.factory.scriptEditor.scriptEditor>
    umbra.components.factory.scriptEditor.searchAndReplace <api/umbra.components.factory.scriptEditor.searchAndReplace>
+   umbra.components.factory.scriptEditor.searchInFiles <api/umbra.components.factory.scriptEditor.searchInFiles>
+   umbra.components.factory.scriptEditor.views <api/umbra.components.factory.scriptEditor.views>
+   umbra.components.factory.scriptEditor.workers <api/umbra.components.factory.scriptEditor.workers>
    umbra.engine <api/umbra.engine>
    umbra.exceptions <api/umbra.exceptions>
    umbra.globals.constants <api/umbra.globals.constants>
@@ -107,11 +110,13 @@ Modules Summary:
    umbra.processing <api/umbra.processing>
    umbra.ui.common <api/umbra.ui.common>
    umbra.ui.completers <api/umbra.ui.completers>
+   umbra.ui.delegates <api/umbra.ui.delegates>
    umbra.ui.highlighters <api/umbra.ui.highlighters>
    umbra.ui.inputAccelerators <api/umbra.ui.inputAccelerators>
    umbra.ui.models <api/umbra.ui.models>
    umbra.ui.themes <api/umbra.ui.themes>
    umbra.ui.views <api/umbra.ui.views>
+   umbra.ui.visualAccelerators <api/umbra.ui.visualAccelerators>
    umbra.ui.widgets.active_QLabel <api/umbra.ui.widgets.active_QLabel>
    umbra.ui.widgets.active_QLabelsCollection <api/umbra.ui.widgets.active_QLabelsCollection>
    umbra.ui.widgets.application_QToolBar <api/umbra.ui.widgets.application_QToolBar>
