@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **Umbra** package default constants through the :class:`Constants` class.
+	This module defines **sIBL_GUI** package default constants through the :class:`Constants` class.
 
 **Others:**
 
@@ -37,7 +37,7 @@ __all__ = ["Constants"]
 #**********************************************************************************************************************
 class Constants():
 	"""
-	This class provides **Umbra** package default constants.
+	This class provides **sIBL_GUI** package default constants.
 	"""
 
 	applicationName = "sIBL_GUI"
