@@ -67,7 +67,8 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Preview.ui")
 #**********************************************************************************************************************
 class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	This class is the **Preview** class.
+	| This class is the :mod:`sibl_gui.components.addons.preview.preview` Component Interface class.
+	| It provides a basic image previewer.
 	"""
 
 	@core.executionTrace

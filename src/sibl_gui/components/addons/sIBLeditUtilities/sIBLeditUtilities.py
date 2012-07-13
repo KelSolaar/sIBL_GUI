@@ -56,7 +56,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "sIBLedit_Util
 #**********************************************************************************************************************
 class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
 	| It provides methods to link the Application to sIBLedit.
 	"""
 
@@ -495,7 +495,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
-		
+
 		value = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
 			LOGGER.debug("> Restoring preferences!")

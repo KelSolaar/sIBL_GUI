@@ -53,7 +53,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Caches
 #**********************************************************************************************************************
 class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.imagesCachesOperations.imagesCachesOperations` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations` Component Interface class.
 	| It provides various methods to operate on the images caches.
 	"""
 
@@ -348,7 +348,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if success:
 			self.__engine.notificationsManager.notify(
-			"{0} | Images caches have been successfully cleared!".format(self.__class__.__name__))		
+			"{0} | Images caches have been successfully cleared!".format(self.__class__.__name__))
 			return True
 		else:
 			raise sibl_gui.exceptions.CacheOperationError(

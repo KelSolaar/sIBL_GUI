@@ -57,7 +57,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class Db(Component):
 	"""
-	| This class is the :mod:`umbra.components.core.db.db` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.core.db.db` Component Interface class.
 	| It provides Application Database creation and session, proceed to its backup using
 		the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""

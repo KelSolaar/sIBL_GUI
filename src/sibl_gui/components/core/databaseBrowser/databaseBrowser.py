@@ -83,7 +83,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Brow
 #**********************************************************************************************************************
 class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Interface class.
 	| It defines methods for Database Ibl Sets management.
 	"""
 

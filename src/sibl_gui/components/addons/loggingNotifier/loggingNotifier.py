@@ -46,10 +46,10 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	| This class is the :mod:`umbra.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
 	| It displays Application logging messages in the Application status bar.
 	| The full Application logging history is available through
-		the :mod:`umbra.components.addons.loggingWindow.loggingWindow` Component.
+		the :mod:`sibl_gui.components.addons.loggingWindow.loggingWindow` Component.
 	"""
 
 	@core.executionTrace

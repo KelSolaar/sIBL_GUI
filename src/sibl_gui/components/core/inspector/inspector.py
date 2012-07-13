@@ -109,7 +109,7 @@ class Light(foundations.dataStructures.Structure):
 
 class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.core.inspector.inspector` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate
 		into the current selected Database Collection.
 	"""

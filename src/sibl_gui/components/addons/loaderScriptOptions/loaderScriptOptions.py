@@ -64,8 +64,8 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script
 #**********************************************************************************************************************
 class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class isthe :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
-	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
+	| This class isthe :mod:`sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
+	| It provides override keys on request for the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component.
 	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that
 		the user can configure the behavior of the Loader Script.
 	"""

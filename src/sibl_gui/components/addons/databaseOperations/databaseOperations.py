@@ -58,7 +58,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Oper
 class DbType(foundations.dataStructures.Structure):
 	"""
 	| This class represents a storage object for manipulation methods associated to a given Database type.
-	| See :mod:`umbra.components.core.db.utilities.types` module for more informations
+	| See :mod:`sibl_gui.components.core.db.utilities.types` module for more informations
 		about the available Database types.
 	"""
 
@@ -76,7 +76,7 @@ class DbType(foundations.dataStructures.Structure):
 
 class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.databaseOperations.databaseOperations` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.databaseOperations.databaseOperations` Component Interface class.
 	| It provides various methods to operate on the Database.
 	"""
 
@@ -536,5 +536,5 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__engine.processEvents()
 			dbType.modelContainer.modelRefresh.emit()
 		self.__engine.stopProcessing()
-		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))		
+		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))
 		return True

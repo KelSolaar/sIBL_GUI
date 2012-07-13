@@ -56,8 +56,8 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool
 #**********************************************************************************************************************
 class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.rewiringTool.rewiringTool` Component Interface class.
-	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
+	| This class is the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component Interface class.
+	| It provides override keys on request for the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component.
 	"""
 
 	@core.executionTrace
@@ -512,7 +512,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		customFile = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self,
-																					"Custom {0} File:".format(component), 
+																					"Custom {0} File:".format(component),
 																					RuntimeGlobals.lastBrowsedPath))
 		LOGGER.debug("> Chosen custom '{0}': '{1}'.".format(component, customFile))
 		if customFile != "":

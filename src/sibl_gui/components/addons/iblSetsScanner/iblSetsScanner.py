@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class IblSetsScanner(QObjectComponent):
 	"""
-	| This class is the :mod:`umbra.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
 	| It instantiates the :class:`IblSetsScanner` class on Application startup which will gather new Ibl Sets
 		from Database registered directories parents.
 	"""
