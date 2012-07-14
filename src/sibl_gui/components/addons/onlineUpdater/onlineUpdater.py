@@ -735,11 +735,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(
-		self.Check_For_New_Releases_On_Startup_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection,
-							"checkForNewReleasesOnStartup",
-							self.Check_For_New_Releases_On_Startup_checkBox.checkState())
+		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(state))
+		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", state)
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
@@ -764,11 +761,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(
-		self.Ignore_Non_Existing_Templates_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection,
-							"ignoreNonExistingTemplates",
-							self.Ignore_Non_Existing_Templates_checkBox.checkState())
+		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(state))
+		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", state)
 
 	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
