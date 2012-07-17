@@ -725,7 +725,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.FileExistsError)
 	def editInspectorIblSetFileUi(self):
 		"""
-		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set file.
+		This method edits :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set file.
 
 		:return: Method success. ( Boolean )
 

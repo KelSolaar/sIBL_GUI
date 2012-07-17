@@ -539,7 +539,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.FileExistsError)
 	def editInspectorIblSetInSIBLEditUi(self):
 		"""
-		This method edits :mod:`umbra.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
+		This method edits :mod:`sibl_gui.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
 
 		:return: Method success. ( Boolean )
 

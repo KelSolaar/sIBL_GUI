@@ -1236,7 +1236,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	def __coreDb_database__databaseChanged(self, templates):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.templatesOutliner.workers.TemplatesOutliner_worker`class
+		:class:`sibl_gui.components.core.templatesOutliner.workers.TemplatesOutliner_worker`class
 		when the Database has changed.
 
 		:param templates: Modified Templates. ( List )

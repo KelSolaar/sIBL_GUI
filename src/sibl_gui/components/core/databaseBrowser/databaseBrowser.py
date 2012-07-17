@@ -1491,7 +1491,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	def __coreDb_database__databaseChanged(self, iblSets):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
+		:class:`sibl_gui.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
 		when the Database has changed.
 
 		:param iblSets: Modified Ibl Sets. ( List )

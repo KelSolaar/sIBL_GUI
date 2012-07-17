@@ -505,7 +505,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __setReWireCustomPath(self, component):
 		"""
-		This method sets the :mod:`umbra.components.addons.rewiringTool.rewiringTool` Component
+		This method sets the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component
 		custom image QLineEdit Widgets.
 
 		:param component: Target Component. ( String )

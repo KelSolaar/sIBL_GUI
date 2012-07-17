@@ -516,7 +516,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTagsCloudMatchingIblsSetsUi(self):
 		"""
 		This method sets the user defined pattern matching Ibl Sets and 
-		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		
 		:return: Method success. ( Boolean )
 		
@@ -531,7 +531,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTimeMatchingIblSetsUi(self):
 		"""
 		This method sets the user defined time matching Ibl Sets and 
-		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		
 		:return: Method success. ( Boolean )
 		
@@ -545,7 +545,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
 		This method sets the pattern matching Ibl Sets and 
-		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
 
 		:param pattern: Filtering pattern. ( String )
 		:param flags: Regex filtering flags. ( Integer )
@@ -600,7 +600,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTimeMatchingIblSets(self, timeLow, timeHigh):
 		"""
 		This method sets the time matching Ibl Sets and 
-		updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		
 		:param timeLow: Time low. ( QTime )
 		:param timeHigh: Time high. ( QTime )

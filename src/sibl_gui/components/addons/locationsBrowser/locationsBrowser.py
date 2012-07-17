@@ -779,7 +779,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.FileExistsError)
 	def openInspectorIblSetLocationsUi(self):
 		"""
-		This method opens :mod:`umbra.components.core.inspector.inspector` Component Ibl Set directory.
+		This method opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
 
 		:return: Method success. ( Boolean )
 

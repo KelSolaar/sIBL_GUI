@@ -1038,7 +1038,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Widget ui.
+		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		if self.__inspectorIblSet:
@@ -1071,7 +1071,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Widget ui.
+		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
@@ -1079,7 +1079,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This method clears the :mod:`umbra.components.core.inspector.inspector` Component Widget ui.
+		This method clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.Title_label.setText(QString())
@@ -1119,7 +1119,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelReset(self):
 		"""
-		This method is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser`
+		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
 		Component Model has changed.
 		"""
 
@@ -1129,7 +1129,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __coreDb_database__databaseChanged(self, iblSets):
 		"""
 		This method is triggered by the
-		:class:`umbra.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
+		:class:`sibl_gui.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
 		when the Database has changed.
 
 		:param iblSets: Modified Ibl Sets. ( List )
@@ -1145,7 +1145,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser`
+		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
 		Component Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
@@ -1223,7 +1223,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
-		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
+		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -1236,7 +1236,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set parser.
+		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
 		if foundations.common.pathExists(self.__inspectorIblSet.path):
@@ -1251,7 +1251,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def __setInspectorIblSetPlates(self):
 		"""
-		This method sets the Plates from the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
+		This method sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		path = self.__inspectorIblSet.path
@@ -1371,7 +1371,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This method loops through :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
+		This method loops through :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1405,7 +1405,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
-		This method loops through :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Plates.
+		This method loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )

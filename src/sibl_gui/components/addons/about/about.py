@@ -115,10 +115,10 @@ This software is released under terms of GNU GPL v3 license: <a href="http://www
 #**********************************************************************************************************************
 class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
 	| The message displayed by the **sIBL_GUI - About** window is defined by the
-		:attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
+		:attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
 	@core.executionTrace

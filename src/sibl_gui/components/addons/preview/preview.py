@@ -662,7 +662,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __addInspectorButtons(self):
 		"""
-		This method adds buttons to the :mod:`umbra.components.core.inspector.inspector` Component.
+		This method adds buttons to the :mod:`sibl_gui.components.core.inspector.inspector` Component.
 		"""
 
 		self.__coreInspector.Inspector_Options_groupBox.show()
@@ -675,7 +675,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeInspectorButtons(self):
 		"""
-		This method removes buttons from the :mod:`umbra.components.core.inspector.inspector` Component.
+		This method removes buttons from the :mod:`sibl_gui.components.core.inspector.inspector` Component.
 		"""
 
 		for value in self.__inspectorButtons.itervalues():
@@ -873,7 +873,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											Exception)
 	def viewInspectorIblSetImagesUi(self, imageType, *args):
 		"""
-		This method launches :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Images Previewer.
+		This method launches :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
