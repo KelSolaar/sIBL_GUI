@@ -450,7 +450,7 @@ def unchecked(type):
 #**********************************************************************************************************************
 #***	FreeImage variables.
 #**********************************************************************************************************************
-for path in (os.path.join(sibl_gui.__path__[0], Constants.freeImageLibrary),
+for path in (os.path.join(foundations.common.getFirstItem(sibl_gui.__path__), Constants.freeImageLibrary),
 os.path.join(os.getcwd(), sibl_gui.__name__, Constants.freeImageLibrary)):
 	if foundations.common.pathExists(path):
 		FREEIMAGE_LIBRARY_PATH = path
