@@ -724,8 +724,9 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox",
-																checkForNewReleasesOnStartup.toInt()[0]))
-		self.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
+												foundations.common.getFirstItem(checkForNewReleasesOnStartup.toInt())))
+		self.Check_For_New_Releases_On_Startup_checkBox.setCheckState(
+		foundations.common.getFirstItem(checkForNewReleasesOnStartup.toInt()))
 
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
@@ -750,8 +751,9 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox",
-																ignoreNonExistingTemplates.toInt()[0]))
-		self.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
+													foundations.common.getFirstItem(ignoreNonExistingTemplates.toInt())))
+		self.Ignore_Non_Existing_Templates_checkBox.setCheckState(
+		foundations.common.getFirstItem(ignoreNonExistingTemplates.toInt()))
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
@@ -798,11 +800,11 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if remoteObject != Constants.applicationName:
 					dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(
 								remoteObject), "name")
-					dbTemplate = dbTemplates and [dbTemplate[0]
+					dbTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(dbTemplate)
 												for dbTemplate in sorted(((dbTemplate, dbTemplate.release)
 												for dbTemplate in dbTemplates),
 												reverse=True,
-												key=lambda x:(strings.getVersionRank(x[1])))][0] or None
+												key=lambda x:(strings.getVersionRank(x[1])))])
 					if not self.__engine.parameters.databaseReadOnly:
 						if dbTemplate:
 							if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):

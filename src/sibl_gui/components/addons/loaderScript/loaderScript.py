@@ -668,7 +668,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
+		template = foundations.common.getFirstItem(selectedTemplates)
 		if not (template and foundations.common.pathExists(template.path)):
 			return
 
@@ -718,9 +718,10 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
 			self.__engine.notificationsManager.warnify(
-			"{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__, selectedTemplates[0].name))
+			"{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__,
+																	foundations.common.getFirstItem(selectedTemplates).name))
 
-		template = selectedTemplates and selectedTemplates[0] or None
+		template = foundations.common.getFirstItem(selectedTemplates)
 
 		if not template:
 			raise foundations.exceptions.UserError(
@@ -733,9 +734,10 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		if selectedIblSets and len(selectedIblSets) != 1:
 			self.__engine.notificationsManager.warnify(
-			"{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__, selectedIblSets[0].name))
+			"{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
+																	foundations.common.getFirstItem(selectedIblSets).name))
 
-		iblSet = selectedIblSets and selectedIblSets[0] or None
+		iblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not iblSet:
 			raise foundations.exceptions.UserError(
 			"{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__))
@@ -767,7 +769,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			return
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
+		template = foundations.common.getFirstItem(selectedTemplates)
 		if not template:
 			return
 
@@ -891,14 +893,14 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		overrideKeys = {}
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
+		template = foundations.common.getFirstItem(selectedTemplates)
 
 		if template:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Template|Path", template.path))
 			overrideKeys["Template|Path"] = foundations.parsers.getAttributeCompound("Template|Path", template.path)
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		iblSet = selectedIblSets and selectedIblSets[0] or None
+		iblSet = foundations.common.getFirstItem(selectedIblSets)
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))
 			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parsers.getAttributeCompound("Ibl Set|Path",

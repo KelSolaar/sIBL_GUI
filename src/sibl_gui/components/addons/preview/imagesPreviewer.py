@@ -34,6 +34,7 @@ from PyQt4.QtGui import QImage
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
@@ -942,7 +943,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if not self.__paths:
 			return
 
-		path = content[0]
+		path = foundations.common.getFirstItem(content)
 		if not path in self.__paths:
 			return
 

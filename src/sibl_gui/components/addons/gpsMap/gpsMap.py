@@ -27,6 +27,7 @@ from PyQt4.QtGui import QIcon
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
@@ -475,7 +476,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomInImage)))
 		self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomOutImage)))
 
-		self.Map_Type_comboBox.addItems([mapType[0] for mapType in self.__mapTypeIds])
+		self.Map_Type_comboBox.addItems([foundations.common.getFirstItem(mapType) for mapType in self.__mapTypeIds])
 
 		self.__map = Map_QWebView()
 		self.__map.setMinimumSize(self.__gpsMapBaseSize)

@@ -1106,7 +1106,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
+		index = foundations.common.getFirstItem(selectedItems.indexes())
 		node = index and self.__model.getNode(index) or None
 		if not node:
 			return
@@ -1226,11 +1226,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
-		self.__inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		self.__inspectorIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__inspectorIblSet:
 			rootNode = self.__coreDatabaseBrowser.model.rootNode
-			self.__inspectorIblSet = rootNode.children and rootNode.children[0].dbItem
+			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).dbItem
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
 	@core.executionTrace
@@ -1381,7 +1381,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			model = self.__coreDatabaseBrowser.model
 
 			inspectorIblSetNode = [node for node in model.rootNode.children if node.dbItem.path == self.__inspectorIblSet.path]
-			inspectorIblSetNode = inspectorIblSetNode and inspectorIblSetNode[0] or None
+			inspectorIblSetNode = foundations.common.getFirstItem(inspectorIblSetNode)
 			if not inspectorIblSetNode:
 				return True
 
@@ -1411,7 +1411,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		index = self.Plates_listView.selectedIndexes() and self.Plates_listView.selectedIndexes()[0] or None
+		index = foundations.common.getFirstItem(self.Plates_listView.selectedIndexes())
 		if index:
 			step = not backward and 1 or -1
 			idx = index.row() + step

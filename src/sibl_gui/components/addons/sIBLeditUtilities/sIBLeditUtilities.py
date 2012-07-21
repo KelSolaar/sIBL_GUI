@@ -521,8 +521,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-			selectedIblSet = selectedIblSets and foundations.common.pathExists(selectedIblSets[0].path) and \
-							selectedIblSets[0] or None
+			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
+							foundations.common.getFirstItem(selectedIblSets)
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:

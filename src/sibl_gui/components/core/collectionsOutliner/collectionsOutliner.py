@@ -32,6 +32,7 @@ from PyQt4.QtGui import QMessageBox
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.walkers
@@ -931,7 +932,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																QVariant(collectionIblSetsCount),
 																Qt.DisplayRole)
 
-		overallCollectionNode = self.__model.findChildren("^{0}$".format(self.__overallCollection))[0]
+		overallCollectionNode = foundations.common.getFirstItem(
+								self.__model.findChildren("^{0}$".format(self.__overallCollection)))
 		if iblSetsCount == overallCollectionNode.count.value:
 			return
 
@@ -998,7 +1000,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					collectionInformations[1].strip()
 					if self.addCollection(name, comment):
 						self.__view.selectionModel().setCurrentIndex(self.__model.getNodeIndex(
-						self.__model.findChildren(r"^{0}$".format(name))[0]),
+						foundations.common.getFirstItem(self.__model.findChildren(r"^{0}$".format(name)))),
 						QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 						return name
 					else:
@@ -1227,7 +1229,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
-		return collections and collections[0] or None
+		return foundations.common.getFirstItem(collections)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1265,7 +1267,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		children = self.__model.findChildren(r"^{0}$".format(collection))
-		return children and children[0].dbItem.id or None
+		child = foundations.common.getFirstItem(children)
+		return child and child.dbItem.id or None
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

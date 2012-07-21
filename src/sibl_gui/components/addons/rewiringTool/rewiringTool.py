@@ -26,6 +26,7 @@ from PyQt4.QtGui import QFileDialog
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.parsers
@@ -387,7 +388,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for index in range(len(self.__reWireComboBoxesWidgets)):
 			self.__reWireComboBoxesWidgets[index].data = self.__rewiringParameters[index][1]
-			self.__reWireComboBoxesWidgets[index].addItems([parameter[0] for parameter in self.__rewiringParameters])
+			self.__reWireComboBoxesWidgets[index].addItems([foundations.common.getFirstItem(parameter) \
+														 for parameter in self.__rewiringParameters])
 			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
 		# Signals / Slots.
@@ -535,7 +537,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
-		iblSet = selectedIblSet and selectedIblSet[0] or None
+		iblSet = foundations.common.getFirstItem(selectedIblSet)
 		if not iblSet:
 			return
 

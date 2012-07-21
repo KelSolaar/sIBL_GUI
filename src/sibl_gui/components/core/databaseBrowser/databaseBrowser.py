@@ -39,6 +39,7 @@ from PyQt4.QtGui import QStringListModel
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
@@ -1569,7 +1570,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		collections = self.__coreCollectionsOutliner.getSelectedCollections()
-		identity = collections and collections[0].id or None
+		collection = foundations.common.getFirstItem(collections)
+		identity = collection and collection.id or None
 		return identity and identity or self.__coreCollectionsOutliner.getCollectionId(
 		self.__coreCollectionsOutliner.defaultCollection)
 
@@ -1999,7 +2001,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		iblSets = self.filterIblSets(r"^{0}$".format(name), "title")
-		return iblSets and iblSets[0] or None
+		return foundations.common.getFirstItem(iblSets)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

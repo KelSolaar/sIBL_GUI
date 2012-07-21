@@ -241,7 +241,7 @@ class IblSetsScanner_worker(QThread):
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
-		paths = [path[0] for path in self.__dbSession.query(dbTypes.DbIblSet.path).all()]
+		paths = [foundations.common.getFirstItem(path) for path in self.__dbSession.query(dbTypes.DbIblSet.path).all()]
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for directory in directories:

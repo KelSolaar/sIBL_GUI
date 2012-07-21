@@ -845,7 +845,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
+		template = foundations.common.getFirstItem(selectedTemplates)
 		if not (template and foundations.common.pathExists(template.path)):
 			return
 

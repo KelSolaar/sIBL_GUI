@@ -1315,7 +1315,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		collections = self.getCollections()
-		identity = collections and collections[0].id or None
+		collection = foundations.common.getFirstItem(collections)
+		identity = collection and collection.id or None
 
 		factoryCollectionPath = self.__defaultCollections[self.__factoryCollection]
 		if path and factoryCollectionPath :
@@ -1468,7 +1469,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				for identity in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
 								reverse=True,
 								key=lambda x:(strings.getVersionRank(x[1])))[1:]:
-					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, identity[0]) or False
+					success *= dbCommon.removeTemplate(
+							self.__coreDb.dbSession, foundations.common.getFirstItem(identity)) or False
 				self.modelRefresh.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1749,7 +1751,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		for collection in collections:
-			softwares = set((software[0] for software in self.__coreDb.dbSession.query(
+			softwares = set((foundations.common.getFirstItem(software) for software in self.__coreDb.dbSession.query(
 						dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 			if not softwares:
 				continue
@@ -1804,7 +1806,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		templates = self.filterTemplates(r"^{0}$".format(name), "title")
-		return templates and templates[0] or None
+		return foundations.common.getFirstItem(templates)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1817,7 +1819,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
-		return collections and collections[0] or None
+		return foundations.common.getFirstItem(collections)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1830,7 +1832,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		children = self.__model.findChildren(r"^{0}$".format(collection))
-		return children and children[0].dbItem.id or None
+		child = foundations.common.getFirstItem(children)
+		return child and child.dbItem.id or None
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
