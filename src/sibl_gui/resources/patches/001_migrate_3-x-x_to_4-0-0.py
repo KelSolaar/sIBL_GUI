@@ -66,7 +66,7 @@ If you are using an already migrated shared database, you can ignore this messag
 																"sIBL_GUI | Question",
 																message,
 																buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
-			foundations.common.exit(1)
+			core.exit(1)
 
 	if RuntimeGlobals.parameters.databaseReadOnly:
 		LOGGER.warning("!> {0} | Database has been set read only by '{1}' command line parameter value!".format(
@@ -99,7 +99,7 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
 sIBL_GUI will now exit!".format(core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
 				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
-				foundations.common.exit(1)
+				core.exit(1)
 
 			if RuntimeGlobals.parameters.databaseDirectory:
 				deprecatedDatabaseDirectory = os.path.join(databaseDirectory, "backup", "deprecated")

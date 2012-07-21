@@ -7,7 +7,7 @@ The purpose of this file is to give a quick overview of some sIBL_GUI Api featur
 import os
 import time
 
-import foundations.common
+import foundations.core
 import umbra.ui.common
 
 def ____():
@@ -73,7 +73,7 @@ Processing interactions:
 steps = 5
 sIBL_GUI.startProcessing("Processing Example ...", steps)
 for i in range(steps):
-	foundations.common.wait(0.25)
+	foundations.core.wait(0.25)
 	sIBL_GUI.stepProcessing()
 sIBL_GUI.stopProcessing()
 
