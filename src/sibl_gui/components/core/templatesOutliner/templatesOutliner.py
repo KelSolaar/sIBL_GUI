@@ -46,11 +46,12 @@ import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.engine
 import umbra.ui.common
+import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from foundations.walkers import OsWalker
-from sibl_gui.components.core.templatesOutliner.models import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
+from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
 from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_worker
 from umbra.globals.constants import Constants
@@ -1747,7 +1748,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 
-		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
 		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		for collection in collections:
@@ -1761,9 +1762,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 													parent=rootNode,
 													nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 													attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-													release=umbra.ui.models.GraphModelAttribute(name="release",
+													release=umbra.ui.nodes.GraphModelAttribute(name="release",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)),
-													version=umbra.ui.models.GraphModelAttribute(name="version",
+													version=umbra.ui.nodes.GraphModelAttribute(name="version",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:

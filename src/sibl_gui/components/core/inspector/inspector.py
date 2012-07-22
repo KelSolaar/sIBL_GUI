@@ -47,10 +47,11 @@ import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.ui.common
 import umbra.ui.common
+import umbra.ui.nodes
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.inspector.models import PlatesModel
-from sibl_gui.components.core.inspector.models import PlatesNode
+from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
 
@@ -1352,7 +1353,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 		iblSetNode = dbNodes.IblSetNode(self.__inspectorIblSet,
 										name=self.__inspectorIblSet.title,
 										parent=rootNode,

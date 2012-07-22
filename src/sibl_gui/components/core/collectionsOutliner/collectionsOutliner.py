@@ -43,10 +43,11 @@ import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.engine
 import umbra.ui.common
+import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.collectionsOutliner.models import CollectionsModel
-from sibl_gui.components.core.collectionsOutliner.models import OverallCollectionNode
+from sibl_gui.components.core.collectionsOutliner.nodes import OverallCollectionNode
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -1185,7 +1186,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled)
 		collections = self.getCollections()
 
-		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
 		overallCollectionNode = OverallCollectionNode(name="Overall",
 													parent=rootNode,

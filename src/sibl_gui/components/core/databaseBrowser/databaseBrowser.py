@@ -49,7 +49,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import umbra.engine
 import umbra.ui.common
-import umbra.ui.models
+import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -1975,7 +1975,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(
 		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
-		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
 			iblSetNode = dbNodes.IblSetNode(iblSet,
 											name=iblSet.title,

@@ -26,7 +26,7 @@ from PyQt4.QtCore import Qt
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import umbra.ui.models
+import umbra.ui.nodes
 import sibl_gui.ui.common
 from umbra.globals.constants import Constants
 
@@ -64,7 +64,7 @@ def getTemplateUserName(title, software):
 
 	return strings.removeStrip(title, software)
 
-class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
+class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	"""
 	This class defines Application Database abstract base class used by concrete Database node classes.
 	"""
@@ -97,7 +97,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.models.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
+		umbra.ui.nodes.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.__dbItem = dbItem
@@ -193,7 +193,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 			value = getattr(self.__dbItem, attribute)
 			roles = {Qt.DisplayRole : value,
 					Qt.EditRole : value}
-			self[attribute] = umbra.ui.models.GraphModelAttribute(attribute, value, roles, attributesFlags)
+			self[attribute] = umbra.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -209,7 +209,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 			if not attribute in self:
 				continue
 
-			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
+			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
 				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
 				getattr(self.__dbItem, attribute)
 		return True
@@ -228,7 +228,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 			if not attribute in self:
 				continue
 
-			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
+			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
 				setattr(self.__dbItem, attribute, self[attribute].value)
 		return True
 
@@ -521,7 +521,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 		self.roles.update({Qt.DisplayRole : self.dbItem.name,
 			Qt.EditRole : self.dbItem.name})
-		self["count"] = umbra.ui.models.GraphModelAttribute(name="count",
+		self["count"] = umbra.ui.nodes.GraphModelAttribute(name="count",
 															value=None,
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 		self.synchronizeToolTip()
