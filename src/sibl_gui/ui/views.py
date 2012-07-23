@@ -42,8 +42,8 @@ __status__ = "Production"
 
 __all__ = ["LOGGER",
 			"selectViewIndexes"
-			"storeDefaultViewModelSelection",
-			"restoreDefaultViewModelSelection",
+			"storeViewModelSelection",
+			"restoreViewModelSelection",
 			"Abstract_QListView",
 			"Abstract_QTreeView"]
 
@@ -73,7 +73,7 @@ def selectViewIndexes(view, indexes, flags=QItemSelectionModel.Select | QItemSel
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def storeDefaultViewModelSelection(view):
+def storeViewModelSelection(view):
 	"""
 	This method stores the View Model selection.
 
@@ -90,7 +90,7 @@ def storeDefaultViewModelSelection(view):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def restoreDefaultModelSelection(view):
+def restoreViewModelSelection(view):
 	"""
 	This method restores the View Model selection.
 
@@ -228,7 +228,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return storeDefaultViewModelSelection(self)
+		return storeViewModelSelection(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -239,7 +239,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return restoreDefaultModelSelection(self)
+		return restoreViewModelSelection(self)
 
 	@core.executionTrace
 	def selectIndexes(self, indexes, flags=QItemSelectionModel.Select | QItemSelectionModel.Rows):
@@ -368,7 +368,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return storeDefaultViewModelSelection(self)
+		return storeViewModelSelection(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -379,7 +379,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return restoreDefaultModelSelection(self)
+		return restoreViewModelSelection(self)
 
 	@core.executionTrace
 	def selectIndexes(self, indexes, flags=QItemSelectionModel.Select | QItemSelectionModel.Rows):
