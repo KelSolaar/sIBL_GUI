@@ -463,6 +463,23 @@ QToolTip {
 	background-color: rgb(80, 80, 80);
 }
 
+/* Factory Component "Projects Explorer". */
+#Projects_Explorer_treeView::branch:has-siblings:!adjoins-item {
+	border-image: none;
+}
+
+#Projects_Explorer_treeView::branch:has-siblings:adjoins-item {
+	border-image: none;
+}
+
+#Projects_Explorer_treeView::branch:!has-children:!has-siblings:adjoins-item {
+	border-image: none;
+}
+
+#Projects_Explorer_treeView::branch:hover, QTreeView::item:hover {
+	background-color: rgb(80, 80, 80);
+}
+
 /* Core Component "Inspector". */
 #Inspector_Overall_frame {
 	background-color: rgb(40, 40, 40);
