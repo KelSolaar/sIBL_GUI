@@ -832,6 +832,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		super(ImagesPreviewer, self).show()
+
 		umbra.ui.common.centerWidgetOnScreen(self)
 
 	@core.executionTrace
@@ -842,10 +843,10 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param event: QEvent ( QEvent )
 		"""
 
-		event.accept()
-
 		LOGGER.debug("> Removing '{0}' from Images Previewers list.".format(self))
 		self.__container.imagesPreviewers.remove(self)
+
+		event.accept()
 
 	@core.executionTrace
 	def wheelEvent(self, event):

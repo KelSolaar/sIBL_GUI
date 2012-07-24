@@ -472,15 +472,16 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#***	Class methods.
 	#******************************************************************************************************************
 	@core.executionTrace
-	def closeEvent(self, closeEvent):
+	def closeEvent(self, event):
 		"""
 		This method reimplements the :meth:`QWidget.closeEvent` method.
 
-		:param closeEvent: Close event. ( QCloseEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		self.__downloadStatus or self.abortDownload()
-		closeEvent.accept()
+
+		super(DownloadManager, self).closeEvent(event)
 
 	@core.executionTrace
 	def __initializeUi(self):
@@ -494,7 +495,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Download_progressBar.hide()
 		self.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage)))
 
-		self.closeEvent = self.closeEvent
 
 		# Signals / Slots.
 		self.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
