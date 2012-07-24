@@ -268,6 +268,8 @@ if __name__ == "__main__":
 	COMPONENTS_PATHS = []
 	for path in (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
 		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryComponentsDirectory),
+		os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.addinsComponentsDirectory),
+		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.addinsComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
