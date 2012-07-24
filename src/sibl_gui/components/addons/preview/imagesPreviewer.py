@@ -39,7 +39,6 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
 import sibl_gui.ui.common
-import umbra.ui.common
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -833,7 +832,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		super(ImagesPreviewer, self).show()
 
-		umbra.ui.common.centerWidgetOnScreen(self)
+		foundations.ui.common.centerWidgetOnScreen(self)
 
 	@core.executionTrace
 	def closeEvent(self, event):
@@ -1072,7 +1071,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		height = min(desktopHeight * 0.80, self.__displayGraphicsItem.height)
 		self.resize(width, height)
 
-		umbra.ui.common.centerWidgetOnScreen(self)
+		foundations.ui.common.centerWidgetOnScreen(self)
 
 		return True
 
