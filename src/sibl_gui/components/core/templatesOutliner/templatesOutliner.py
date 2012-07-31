@@ -49,7 +49,7 @@ import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
-from foundations.walkers import OsWalker
+from foundations.walkers import FilesWalker
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
@@ -1291,10 +1291,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if not os.path.isdir(path):
 						return
 
-					osWalker = OsWalker(path)
-					osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+					filesWalker = FilesWalker(path)
+					filesWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-					if not osWalker.files:
+					if not filesWalker.files:
 						return
 
 					if messageBox.messageBox("Question", "Question",
@@ -1521,14 +1521,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing directory '{0}' osWalker.".format(directory))
+		LOGGER.debug("> Initializing directory '{0}' filesWalker.".format(directory))
 
-		osWalker = OsWalker(directory)
-		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+		filesWalker = FilesWalker(directory)
+		filesWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__engine.startProcessing("Adding Directory Templates ...", len(osWalker.files))
+		self.__engine.startProcessing("Adding Directory Templates ...", len(filesWalker.files))
 		success = True
-		for template, path in osWalker.files.iteritems():
+		for template, path in filesWalker.files.iteritems():
 			if not self.templateExists(path):
 				success *= umbra.ui.common.signalsBlocker(self,
 														self.addTemplate,
