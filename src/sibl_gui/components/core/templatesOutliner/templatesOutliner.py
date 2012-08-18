@@ -981,10 +981,16 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error",
+						choice = messageBox.messageBox("Question", "Error",
 						"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
 						self.__class__.__name__, template.name),
-						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+						customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+
+						if choice == 0:
+							break
+
+						if choice == QMessageBox.Yes:
 							self.updateTemplateLocation(template)
 					else:
 						self.__engine.notificationsManager.warnify(

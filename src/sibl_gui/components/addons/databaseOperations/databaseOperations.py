@@ -19,6 +19,7 @@
 #**********************************************************************************************************************
 import logging
 import os
+from PyQt4.QtCore import QString
 from PyQt4.QtGui import QGridLayout
 from PyQt4.QtGui import QMessageBox
 
@@ -528,10 +529,16 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																					item.name,
 																					dbType.type))
 				else:
-					if messageBox.messageBox("Question", "Error",
+					choice = messageBox.messageBox("Question", "Error",
 					"{0} | '{1}' {2} file is missing, would you like to update it's location?".format(
 					self.__class__.__name__, item.name, dbType.type),
-					QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+					QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+					customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+
+					if choice == 0:
+							break
+
+					if choice == QMessageBox.Yes:
 						dbType.updateLocationMethod(item)
 				self.__engine.processEvents()
 			dbType.modelContainer.modelRefresh.emit()

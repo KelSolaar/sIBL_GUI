@@ -1224,10 +1224,16 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error",
+						choice = messageBox.messageBox("Question", "Error",
 						"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
 						self.__class__.__name__, iblSet.title),
-						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+						customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+
+						if choice == 0:
+							break
+
+						if choice == QMessageBox.Yes:
 							file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
 																"Updating '{0}' Ibl Set Location:".format(iblSet.title),
 																RuntimeGlobals.lastBrowsedPath,
