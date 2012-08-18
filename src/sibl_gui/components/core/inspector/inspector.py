@@ -984,6 +984,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
+		self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
 		for view in self.__coreDatabaseBrowser.views:
 			view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
@@ -994,11 +995,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.connect(self.__inspector__modelRefresh)
 		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
 		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
-
-		if self.__coreDatabaseBrowser.databaseBrowserWorkerThread:
-			self.__coreDatabaseBrowser.databaseBrowserWorkerThread.databaseChanged.connect(
-			self.__coreDb_database__databaseChanged)
-
 		return True
 
 	@core.executionTrace
@@ -1127,21 +1123,24 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__setInspectorIblSet()
 
 	@core.executionTrace
-	def __coreDb_database__databaseChanged(self, iblSets):
+	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the
-		:class:`sibl_gui.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
-		when the Database has changed.
-
-		:param iblSets: Modified Ibl Sets. ( List )
+		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		
+		:param file: File changed. ( String )
 		"""
 
-		cachedFiles = [os.path.normpath(file) for file in self.__sectionsFileParsersCache]
-		for iblSet in iblSets:
-			path = iblSet.path
-			if path in cachedFiles:
-				LOGGER.debug("> Removing modified '{0}' file from cache.".format(path))
-				self.__sectionsFileParsersCache.removeContent(path)
+		file = strings.encode(file)
+		if file in self.__sectionsFileParsersCache:
+			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
+			self.__sectionsFileParsersCache.removeContent(file)
+
+			if not self.__inspectorIblSet:
+				return
+
+			if self.__inspectorIblSet.path == file:
+				self.__setInspectorIblSet()
+				self.uiRefresh.emit()
 
 	@core.executionTrace
 	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):

@@ -53,7 +53,6 @@ from foundations.walkers import FilesWalker
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
-from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
@@ -128,8 +127,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__headers = OrderedDict([("Templates", "name"),
 										("Release", "release"),
 										("Software Version", "version")])
-
-		self.__templatesOutlinerWorkerThread = None
 
 		self.__extension = "sIBLT"
 
@@ -618,38 +615,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
 	@property
-	def templatesOutlinerWorkerThread(self):
-		"""
-		This method is the property for **self.__templatesOutlinerWorkerThread** attribute.
-
-		:return: self.__templatesOutlinerWorkerThread. ( QThread )
-		"""
-
-		return self.__templatesOutlinerWorkerThread
-
-	@templatesOutlinerWorkerThread.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templatesOutlinerWorkerThread(self, value):
-		"""
-		This method is the setter method for **self.__templatesOutlinerWorkerThread** attribute.
-
-		:param value: Attribute value. ( QThread )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
-
-	@templatesOutlinerWorkerThread.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templatesOutlinerWorkerThread(self):
-		"""
-		This method is the deleter method for **self.__templatesOutlinerWorkerThread** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
-
-	@property
 	def extension(self):
 		"""
 		This method is the property for **self.__extension** attribute.
@@ -948,27 +913,17 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Templates_Outliner_splitter.setSizes([16777215, 1])
 
-		if not self.__engine.parameters.databaseReadOnly:
-			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__templatesOutlinerWorkerThread = TemplatesOutliner_worker(self)
-				self.__templatesOutlinerWorkerThread.start()
-				self.__engine.workerThreads.append(self.__templatesOutlinerWorkerThread)
-			else:
-				LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(
-				self.__class__.__name__, "deactivateWorkerThreads"))
-		else:
-			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
-
 		# Signals / Slots.
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
 		if not self.__engine.parameters.databaseReadOnly:
-			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
+			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
 			self.__engine.contentDropped.connect(self.__engine__contentDropped)
+		else:
+			LOGGER.info("{0} | Templates file system events ignored by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 		return True
 
 	@core.executionTrace
@@ -1234,25 +1189,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.setTemplates()
 
 	@core.executionTrace
-	def __coreDb_database__databaseChanged(self, templates):
-		"""
-		This method is triggered by the
-		:class:`sibl_gui.components.core.templatesOutliner.workers.TemplatesOutliner_worker`class
-		when the Database has changed.
-
-		:param templates: Modified Templates. ( List )
-		"""
-
-		for template in templates:
-			self.__engine.notificationsManager.notify(
-			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
-			self.__class__.__name__, template.title))
-
-		# Ensure that db objects modified by the worker thread will refresh properly.
-		self.__coreDb.dbSession.expire_all()
-		self.modelRefresh.emit()
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -1305,6 +1241,24 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise foundations.exceptions.UserError(
 			"{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
+
+	@core.executionTrace
+	def __engine_fileSystemEventsManager__fileChanged(self, file):
+		"""
+		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		
+		:param file: File changed. ( String )
+		"""
+
+		template = foundations.common.getFirstItem(filter(lambda x: x.path == file, self.getTemplates()))
+		if not template:
+			return
+
+		if dbCommon.updateTemplateContent(self.__coreDb.dbSession, template):
+			self.__engine.notificationsManager.notify(
+			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
+			self.__class__.__name__, template.title))
+			self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __getCandidateCollectionId(self, path=None):

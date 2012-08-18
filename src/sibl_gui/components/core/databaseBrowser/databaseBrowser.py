@@ -57,7 +57,6 @@ from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
 from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
 from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
 from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
-from sibl_gui.components.core.databaseBrowser.workers import DatabaseBrowser_worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
@@ -164,8 +163,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								("Search In Comments", "comment")])
 		self.__activeSearchContext = "Search In Names"
 		self.__searchContextsMenu = None
-
-		self.__databaseBrowserWorkerThread = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -1034,38 +1031,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "searchContextMenu"))
 
-	@property
-	def databaseBrowserWorkerThread(self):
-		"""
-		This method is the property for **self.__databaseBrowserWorkerThread** attribute.
-
-		:return: self.__databaseBrowserWorkerThread. ( QThread )
-		"""
-
-		return self.__databaseBrowserWorkerThread
-
-	@databaseBrowserWorkerThread.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def databaseBrowserWorkerThread(self, value):
-		"""
-		This method is the setter method for **self.__databaseBrowserWorkerThread** attribute.
-
-		:param value: Attribute value. ( QThread )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowserWorkerThread"))
-
-	@databaseBrowserWorkerThread.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def databaseBrowserWorkerThread(self):
-		"""
-		This method is the deleter method for **self.__databaseBrowserWorkerThread** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowserWorkerThread"))
-
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -1168,18 +1133,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
-		if not self.__engine.parameters.databaseReadOnly:
-			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__databaseBrowserWorkerThread = DatabaseBrowser_worker(self)
-				self.__databaseBrowserWorkerThread.start()
-				self.__engine.workerThreads.append(self.__databaseBrowserWorkerThread)
-			else:
-				LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(
-				self.__class__.__name__, "deactivateWorkerThreads"))
-		else:
-			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
-
 		# Signals / Slots.
 		for view in self.__views:
 			self.__engine.imagesCaches.QIcon.contentAdded.connect(view.viewport().update)
@@ -1197,10 +1150,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 
 		if not self.__engine.parameters.databaseReadOnly:
-			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__databaseChanged)
-			self.__model.dataChanged.connect(self.__model__dataChanged)
+			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
 			self.__engine.contentDropped.connect(self.__engine__contentDropped)
+			self.__model.dataChanged.connect(self.__model__dataChanged)
+		else:
+			LOGGER.info("{0} | Ibl Sets file system events ignored by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 		return True
 
 	@core.executionTrace
@@ -1489,25 +1444,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			viewPushButton.setChecked(viewIndex == index and True or False)
 
 	@core.executionTrace
-	def __coreDb_database__databaseChanged(self, iblSets):
-		"""
-		This method is triggered by the
-		:class:`sibl_gui.components.core.databaseBrowser.workers.DatabaseBrowser_worker` class
-		when the Database has changed.
-
-		:param iblSets: Modified Ibl Sets. ( List )
-		"""
-
-		for iblSet in iblSets:
-			self.__engine.notificationsManager.notify(
-			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
-			self.__class__.__name__, iblSet.title))
-
-		# Ensure that db objects modified by the worker thread will refresh properly.
-		self.__coreDb.dbSession.expire_all()
-		self.modelRefresh.emit()
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -1560,6 +1496,24 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(
 			self.__class__.__name__))
+
+	@core.executionTrace
+	def __engine_fileSystemEventsManager__fileChanged(self, file):
+		"""
+		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		
+		:param file: File changed. ( String )
+		"""
+
+		iblSet = foundations.common.getFirstItem(filter(lambda x: x.path == file, self.getIblSets()))
+		if not iblSet:
+			return
+
+		if dbCommon.updateIblSetContent(self.__coreDb.dbSession, iblSet):
+			self.__engine.notificationsManager.notify(
+			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
+			self.__class__.__name__, iblSet.title))
+			self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __getCandidateCollectionId(self):
@@ -1982,6 +1936,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											parent=rootNode,
 											nodeFlags=nodeFlags,
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+
+			path = strings.encode(iblSet.path)
+			not self.__engine.fileSystemEventsManager.isPathRegistered(path) and \
+			self.__engine.fileSystemEventsManager.registerPath(path, modifiedTime=float(iblSet.osStats.split(",")[8]))
 
 		rootNode.sortChildren(attribute="title")
 

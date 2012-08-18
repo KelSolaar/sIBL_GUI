@@ -232,12 +232,6 @@ def extendCommandLineParametersParser(parser):
 	:return: Definition success. ( Boolean )
 	"""
 
-	parser.add_option("-t",
-					"--deactivateWorkerThreads",
-					action="store_true",
-					default=False,
-					dest="deactivateWorkerThreads",
-					help="'Deactivate worker threads'.")
 	parser.add_option("-d",
 					"--databaseDirectory",
 					action="store",

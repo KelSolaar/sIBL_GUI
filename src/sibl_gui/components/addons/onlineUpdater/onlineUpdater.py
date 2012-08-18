@@ -682,8 +682,9 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
-		not self.__engine.parameters.deactivateWorkerThreads and \
-		self.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		if not self.__engine.parameters.deactivateWorkerThreads and \
+		self.Check_For_New_Releases_On_Startup_checkBox.isChecked():
+			self.checkForNewReleases()
 		return True
 
 	@core.executionTrace

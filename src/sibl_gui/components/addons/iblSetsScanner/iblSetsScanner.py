@@ -81,7 +81,7 @@ class IblSetsScanner(QObjectComponent):
 		self.__coreCollectionsOutliner = None
 		self.__coreDatabaseBrowser = None
 
-		self.__setsScannerWorkerThread = None
+		self.__iblSetsScannerWorkerThread = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -215,36 +215,36 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
-	def setsScannerWorkerThread(self):
+	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the property for **self.__setsScannerWorkerThread** attribute.
+		This method is the property for **self.__iblSetsScannerWorkerThread** attribute.
 
-		:return: self.__setsScannerWorkerThread. ( QThread )
+		:return: self.__iblSetsScannerWorkerThread. ( QThread )
 		"""
 
-		return self.__setsScannerWorkerThread
+		return self.__iblSetsScannerWorkerThread
 
-	@setsScannerWorkerThread.setter
+	@iblSetsScannerWorkerThread.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def setsScannerWorkerThread(self, value):
+	def iblSetsScannerWorkerThread(self, value):
 		"""
-		This method is the setter method for **self.__setsScannerWorkerThread** attribute.
+		This method is the setter method for **self.__iblSetsScannerWorkerThread** attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "setsScannerWorkerThread"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsScannerWorkerThread"))
 
-	@setsScannerWorkerThread.deleter
+	@iblSetsScannerWorkerThread.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def setsScannerWorkerThread(self):
+	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the deleter method for **self.__setsScannerWorkerThread** attribute.
+		This method is the deleter method for **self.__iblSetsScannerWorkerThread** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "setsScannerWorkerThread"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsScannerWorkerThread"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -299,13 +299,13 @@ class IblSetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
+		self.__iblSetsScannerWorkerThread = IblSetsScanner_worker(self)
+		self.__engine.workerThreads.append(self.__iblSetsScannerWorkerThread)
+
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__setsScannerWorkerThread = IblSetsScanner_worker(self)
-				self.__engine.workerThreads.append(self.__setsScannerWorkerThread)
-
 				# Signals / Slots.
-				self.__setsScannerWorkerThread.iblSetsRetrieved.connect(self.__setsScannerWorkerThread__iblSetsRetrieved)
+				self.__iblSetsScannerWorkerThread.iblSetsRetrieved.connect(self.__iblSetsScannerWorkerThread__iblSetsRetrieved)
 			else:
 				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
 				self.__class__.__name__, "deactivateWorkerThreads"))
@@ -326,10 +326,11 @@ class IblSetsScanner(QObjectComponent):
 			if not self.__engine.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
 				not self.__engine.parameters.databaseReadOnly and \
-				self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(
-				self.__setsScannerWorkerThread__iblSetsRetrieved)
+				self.__iblSetsScannerWorkerThread.iblSetsRetrieved.disconnect(
+				self.__iblSetsScannerWorkerThread__iblSetsRetrieved)
 
-				self.__setsScannerWorkerThread = None
+		self.__engine.workerThreads.remove(self.__iblSetsScannerWorkerThread)
+		self.__iblSetsScannerWorkerThread = None
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -343,12 +344,12 @@ class IblSetsScanner(QObjectComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		not self.__engine.parameters.databaseReadOnly and \
-		not self.__engine.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
+		not self.__engine.parameters.deactivateWorkerThreads and self.__iblSetsScannerWorkerThread.start()
 		return True
 
 	@core.executionTrace
 	@umbra.engine.encapsulateProcessing
-	def __setsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
+	def __iblSetsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
 		This method is triggered by the **IblSetsScanner_worker** when the Database has changed.
 
