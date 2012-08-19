@@ -523,6 +523,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.connect(self.__Open_Output_Directory_pushButton__clicked)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -551,6 +552,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__removeActions()
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

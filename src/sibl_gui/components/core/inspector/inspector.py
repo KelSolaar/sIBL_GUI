@@ -995,6 +995,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.connect(self.__inspector__modelRefresh)
 		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
 		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
+
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace

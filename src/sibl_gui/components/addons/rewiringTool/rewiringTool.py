@@ -400,6 +400,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Lighting_Path_toolButton.clicked.connect(self.__Lighting_Path_toolButton__clicked)
 		self.Reflection_Path_toolButton.clicked.connect(self.__Reflection_Path_toolButton__clicked)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -425,6 +426,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Lighting_Path_toolButton.clicked.disconnect(self.__Lighting_Path_toolButton__clicked)
 		self.Reflection_Path_toolButton.clicked.disconnect(self.__Reflection_Path_toolButton__clicked)
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

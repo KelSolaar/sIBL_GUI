@@ -236,6 +236,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Output_Images_Caches_Metrics_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.connect(self.__Clear_Images_Caches_pushButton__clicked)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -254,6 +255,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Output_Images_Caches_Metrics_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.disconnect(self.__Clear_Images_Caches_pushButton__clicked)
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

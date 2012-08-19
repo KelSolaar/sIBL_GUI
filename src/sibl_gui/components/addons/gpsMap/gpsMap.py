@@ -495,6 +495,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
 		self.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -518,6 +519,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__map.setParent(None)
 		self.__map = None
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace

@@ -648,6 +648,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(
 		self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -668,6 +669,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(
 		self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

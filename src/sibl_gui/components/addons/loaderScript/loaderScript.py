@@ -586,6 +586,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(
 		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -605,6 +606,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(
 		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

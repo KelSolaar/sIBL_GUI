@@ -462,6 +462,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.connect(
 		self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -485,6 +486,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__removeActions()
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

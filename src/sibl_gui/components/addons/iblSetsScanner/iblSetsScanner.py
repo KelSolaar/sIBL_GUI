@@ -295,6 +295,8 @@ class IblSetsScanner(QObjectComponent):
 	def initialize(self):
 		"""
 		This method initializes the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -313,11 +315,16 @@ class IblSetsScanner(QObjectComponent):
 			LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
+		self.initialized = True
+		return True
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
@@ -331,6 +338,9 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine.workerThreads.remove(self.__iblSetsScannerWorkerThread)
 		self.__iblSetsScannerWorkerThread = None
+
+		self.initialized = False
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

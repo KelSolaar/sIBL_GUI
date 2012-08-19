@@ -348,6 +348,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.sIBLedit_Path_toolButton.clicked.connect(self.__sIBLedit_Path_toolButton__clicked)
 		self.sIBLedit_Path_lineEdit.editingFinished.connect(self.__sIBLedit_Path_lineEdit__editFinished)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -367,6 +368,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__removeActions()
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

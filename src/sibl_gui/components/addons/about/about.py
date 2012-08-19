@@ -365,6 +365,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -378,6 +379,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

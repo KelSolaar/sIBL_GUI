@@ -388,6 +388,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
 		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.connect(
 		self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
+
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -413,6 +415,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.setParent(None)
 		self.Search_Database_lineEdit = None
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

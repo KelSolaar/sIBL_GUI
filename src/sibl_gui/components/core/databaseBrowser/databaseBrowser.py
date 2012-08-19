@@ -1156,6 +1156,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Ibl Sets file system events ignored by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
+
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace

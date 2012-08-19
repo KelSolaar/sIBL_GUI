@@ -449,6 +449,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
@@ -466,6 +467,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		not self.__engine.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(
 															self.__Synchronize_Database_pushButton__clicked)
 
+		self.initializedUi = False
 		return True
 
 	@core.executionTrace

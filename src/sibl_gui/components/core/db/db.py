@@ -575,6 +575,8 @@ class Db(Component):
 		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
 
 		self.__dbSession = self.__dbSessionMaker()
+
+		self.initialized = True
 		return True
 
 	@core.executionTrace

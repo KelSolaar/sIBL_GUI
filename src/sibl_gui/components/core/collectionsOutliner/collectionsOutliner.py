@@ -709,6 +709,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.connect(self.__collectionsOutliner__modelRefresh)
 		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__model__dataChanged)
 
+		self.initializedUi = True
 		return True
 
 	@core.executionTrace
