@@ -1347,6 +1347,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setPlates(self):
 		"""
 		This method sets the Plates Model nodes.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
@@ -1359,6 +1361,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										nodeFlags=nodeFlags,
 										attributesFlags=attributesFlags)
 		iblSetNode.roles[Qt.DisplayRole] = unicode()
+
+		if not self.__inspectorPlates:
+			return False
+
 		for name, plate in self.__inspectorPlates.iteritems():
 			plateNode = PlatesNode(plate, name=name, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = unicode()
