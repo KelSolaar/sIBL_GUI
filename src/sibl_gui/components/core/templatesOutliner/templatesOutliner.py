@@ -978,25 +978,28 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			# Templates table integrity checking.
 			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
-			if erroneousTemplates:
-				for template in erroneousTemplates:
-					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						choice = messageBox.messageBox("Question", "Error",
-						"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
-						self.__class__.__name__, template.name),
-						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-						customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+			try:
+				for template, exceptions in erroneousTemplates.iteritems():
+					for exception in exceptions:
+						if exception is dbExceptions.MissingTemplateFileError:
+							choice = messageBox.messageBox("Question", "Error",
+							"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
+							self.__class__.__name__, template.name),
+							QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+							customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
-						if choice == 0:
-							break
+							if choice == 0:
+								raise foundations.exceptions.BreakIteration("{0}".format(self.__class__.__name__))
 
-						if choice == QMessageBox.Yes:
-							self.updateTemplateLocation(template)
-					else:
-						self.__engine.notificationsManager.warnify(
-						"{0} | '{1}' {2}".format(self.__class__.__name__,
-												template.name,
-												dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
+							if choice == QMessageBox.Yes:
+								self.updateTemplateLocation(template)
+						else:
+							self.__engine.notificationsManager.warnify(
+							"{0} | '{1}' {2}".format(self.__class__.__name__,
+													template.name,
+													 dbCommon.DB_EXCEPTIONS[exception]))
+			except foundations.exceptions.BreakIteration:
+				pass
 		else:
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -1748,6 +1751,13 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 														parent=softwareNode,
 														nodeFlags=nodeFlags,
 														attributesFlags=attributesFlags)
+
+					path = strings.encode(template.path)
+					if not foundations.common.pathExists(path):
+						continue
+
+					not self.__engine.fileSystemEventsManager.isPathRegistered(path) and \
+					self.__engine.fileSystemEventsManager.registerPath(path, modifiedTime=float(template.osStats.split(",")[8]))
 
 		rootNode.sortChildren(attribute="title")
 

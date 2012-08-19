@@ -80,14 +80,15 @@ __all__ = ["LOGGER",
 
 LOGGER = logging.getLogger(Constants.logger)
 
-DB_EXCEPTIONS = {"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's file is missing!",
-				"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's icon is missing!",
-				"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl Set's preview image is missing!",
-				"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's background image is missing!",
-				"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's lighting image is missing!",
-				"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's reflection image is missing!",
-				"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template file is missing!",
-				"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template help file is missing!"}
+DB_EXCEPTIONS = {
+	sibl_gui.components.core.db.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",
+	sibl_gui.components.core.db.exceptions.MissingIblSetIconError : "Ibl Set's icon is missing!",
+	sibl_gui.components.core.db.exceptions.MissingIblSetPreviewImageError : "Ibl Set's preview image is missing!",
+	sibl_gui.components.core.db.exceptions.MissingIblSetBackgroundImageError : "Ibl Set's background image is missing!",
+	sibl_gui.components.core.db.exceptions.MissingIblSetLightingImageError : "Ibl Set's lighting image is missing!",
+	sibl_gui.components.core.db.exceptions.MissingIblSetReflectionImageError : "Ibl Set's reflection image is missing!",
+	sibl_gui.components.core.db.exceptions.MissingTemplateFileError : "Template file is missing!",
+	sibl_gui.components.core.db.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -360,30 +361,33 @@ def checkIblSetsTableIntegrity(session):
 
 	LOGGER.debug("> Checking 'Sets' Database table integrity.")
 
-	erroneousSets = {}
+	erroneousIblSets = {}
 	if getIblSets(session):
 		for iblSet in getIblSets(session):
+			exceptions = []
 			if not foundations.common.pathExists(iblSet.path):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
-				continue
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetFileError)
 
 			if not foundations.common.pathExists(iblSet.icon):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetIconError)
+
 			if iblSet.previewImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																	iblSet.previewImage)):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetPreviewImageError)
 			if iblSet.backgroundImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.backgroundImage)):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetBackgroundImageError)
 			if iblSet.lightingImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.lightingImage)):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetLightingImageError)
 			if iblSet.reflectionImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.reflectionImage)):
-				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetReflectionImageError)
 
-	if erroneousSets:
-		return erroneousSets
+			if exceptions:
+				erroneousIblSets[iblSet] = exceptions
+
+	return erroneousIblSets
 
 @core.executionTrace
 def getCollections(session):
@@ -634,10 +638,14 @@ def checkTemplatesTableIntegrity(session):
 	erroneousTemplates = {}
 	if getTemplates(session):
 		for template in getTemplates(session):
+			exceptions = []
 			if not foundations.common.pathExists(template.path):
-				erroneousTemplates[template] = "INEXISTING_TEMPLATE_FILE_EXCEPTION"
-				continue
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingTemplateFileError)
 
 			if not foundations.common.pathExists(template.helpFile):
-				erroneousTemplates[template] = "INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION"
+				exceptions.append(sibl_gui.components.core.db.exceptions.MissingTemplateHelpFileError)
+
+			if exceptions:
+				erroneousTemplates[template] = exceptions
+
 	return erroneousTemplates

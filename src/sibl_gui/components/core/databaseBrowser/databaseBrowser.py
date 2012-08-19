@@ -1221,28 +1221,31 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			# Ibl Sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
-			if erroneousIblSets:
-				for iblSet in erroneousIblSets:
-					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						choice = messageBox.messageBox("Question", "Error",
-						"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
-						self.__class__.__name__, iblSet.title),
-						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-						customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+			try:
+				for iblSet, exceptions in erroneousIblSets.iteritems():
+					for exception in exceptions:
+						if exception is dbExceptions.MissingIblSetFileError:
+							choice = messageBox.messageBox("Question", "Error",
+							"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
+							self.__class__.__name__, iblSet.title),
+							QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+							customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
-						if choice == 0:
-							break
+							if choice == 0:
+								raise foundations.exceptions.BreakIteration("{0}".format(self.__class__.__name__))
 
-						if choice == QMessageBox.Yes:
-							file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Ibl Set Location:".format(iblSet.title),
-																RuntimeGlobals.lastBrowsedPath,
-																"Ibls files (*.{0})".format(self.__extension))))
-							file and self.updateIblSetLocation(iblSet, file)
-					else:
-						self.__engine.notificationsManager.warnify(
-						"{0} | '{1}' {2}".format(self.__class__.__name__,
-						iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
+							if choice == QMessageBox.Yes:
+								file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																	"Updating '{0}' Ibl Set Location:".format(iblSet.title),
+																	RuntimeGlobals.lastBrowsedPath,
+																	"Ibls files (*.{0})".format(self.__extension))))
+								file and self.updateIblSetLocation(iblSet, file)
+						else:
+							self.__engine.notificationsManager.warnify(
+							"{0} | '{1}' {2}".format(self.__class__.__name__,
+							iblSet.title, dbCommon.DB_EXCEPTIONS[exception]))
+			except foundations.exceptions.BreakIteration:
+				pass
 		else:
 			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -1944,6 +1947,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 			path = strings.encode(iblSet.path)
+			if not foundations.common.pathExists(path):
+				continue
+
 			not self.__engine.fileSystemEventsManager.isPathRegistered(path) and \
 			self.__engine.fileSystemEventsManager.registerPath(path, modifiedTime=float(iblSet.osStats.split(",")[8]))
 
