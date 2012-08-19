@@ -812,7 +812,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		success = True
 		for component in selectedComponents:
-			path = component.path and foundations.common.pathExists(component.path) and component.path
+			path = component.directory and foundations.common.pathExists(component.directory) and component.directory
 			if path:
 				success *= self.exploreDirectory(path, \
 				strings.encode(self.Custom_File_Browser_Path_lineEdit.text())) or False

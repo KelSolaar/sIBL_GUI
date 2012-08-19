@@ -137,11 +137,11 @@ print("Components: '{0}'".format(components))
 ____()
 
 """
-Components interface access:
+Components interface access through various access points:
 """
 scriptEditor = componentsManager.getInterface("factory.scriptEditor")
-databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
-gpsMap = componentsManager.getInterface("addons.gpsMap")
+databaseBrowser = componentsManager.components["core.databaseBrowser"].interface
+gpsMap = componentsManager["addons.gpsMap"]
 print(scriptEditor, databaseBrowser, gpsMap)
 
 ____()
