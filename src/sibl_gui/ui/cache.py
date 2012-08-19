@@ -141,6 +141,59 @@ class AbstractResourcesCache(QObject):
 	#***	Class methods.
 	#******************************************************************************************************************
 	@core.executionTrace
+	def __getitem__(self, item):
+		"""
+		This method reimplements the :meth:`object.__getitem__` method.
+
+		:param item: Item name. ( String )
+		:return: Item. ( Object )
+		"""
+
+		return self.__mapping.__getitem__(item)
+
+	@core.executionTrace
+	def __setitem__(self, key, value):
+		"""
+		This method reimplements the :meth:`object.__setitem__` method.
+
+		:param key: Key. ( String )
+		:param value: Item. ( Object )
+		"""
+
+		self.__mapping.__setitem__(key, value)
+
+	@core.executionTrace
+	def __iter__(self):
+		"""
+		This method reimplements the :meth:`object.__iter__` method.
+
+		:return: Paths iterator. ( Object )
+		"""
+
+		return self.__mapping.iteritems()
+
+	@core.executionTrace
+	def __contains__(self, item):
+		"""
+		This method reimplements the :meth:`object.__contains__` method.
+
+		:param item: Item name. ( String )
+		:return: Item existence. ( Boolean )
+		"""
+
+		return item in self.__mapping.keys()
+
+	@core.executionTrace
+	def __len__(self):
+		"""
+		This method reimplements the :meth:`object.__len__` method.
+
+		:return: Paths count. ( Integer )
+		"""
+
+		return len(self.__mapping.keys())
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def isCached(self, key):
 		"""
@@ -150,7 +203,7 @@ class AbstractResourcesCache(QObject):
 		:return: Is content cached. ( Boolean )
 		"""
 
-		return key in self.__mapping
+		return key in self
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -192,10 +245,10 @@ class AbstractResourcesCache(QObject):
 		LOGGER.debug("> Removing '{0}' content from the cache.".format(self.__class__.__name__, keys))
 
 		for key in keys:
-			if not key in self.__mapping:
+			if not key in self:
 				raise KeyError("{0} | '{1}' key doesn't exists in cache content!".format(self.__class__.__name__, key))
 
-			del self.__mapping[key]
+			del(self.__mapping[key])
 			self.contentRemoved.emit([key])
 		return True
 
@@ -419,7 +472,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
 		graphicsItem.data = image.data
 		path = graphicsItem.data.path
-		self.mapping[path] = graphicsItem
+		self[path] = graphicsItem
 		self.contentAdded.emit([path])
 
 	@core.executionTrace
@@ -465,7 +518,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		for key, value in content.iteritems():
 			value.data = sibl_gui.ui.common.getImageInformationsHeader(key, value)
-			self.mapping[key] = value
+			self[key] = value
 			self.contentAdded.emit([key])
 		return True
 
@@ -486,8 +539,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 				raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
 				self.__class__.__name__, path))
 
-			if path in self.mapping:
-				image = self.mapping.get(path)
+			if path in self:
+				image = self.getContent(path)
 				if not hasattr(image, "data"):
 					LOGGER.debug("> {0} | '{1}' object has not 'data' attribute and has been skipped!".format(
 					self.__class__.__name__, image))
@@ -502,7 +555,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 					LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
 					self.__class__.__name__, path))
 
-			self.mapping[path] = self.__defaultGraphicsItem
+			self[path] = self.__defaultGraphicsItem
 			self.contentAdded.emit([path])
 			self.__worker.addRequest(path)
 		return True
