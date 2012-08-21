@@ -533,8 +533,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory,

@@ -437,7 +437,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True

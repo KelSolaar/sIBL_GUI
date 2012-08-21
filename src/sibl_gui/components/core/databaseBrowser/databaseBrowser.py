@@ -1052,9 +1052,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__engine.componentsManager.components["factory.scriptEditor"].interface
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
-		self.__coreCollectionsOutliner = self.__engine.componentsManager.components["core.collectionsOutliner"].interface
+		self.__factoryScriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
+		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__coreCollectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
 		return True

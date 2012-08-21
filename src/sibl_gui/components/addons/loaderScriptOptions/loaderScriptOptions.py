@@ -656,8 +656,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
-		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
+		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 														Constants.settingsDirectory,

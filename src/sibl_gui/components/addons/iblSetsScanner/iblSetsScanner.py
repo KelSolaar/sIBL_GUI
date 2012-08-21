@@ -263,9 +263,9 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = engine
 
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
-		self.__coreCollectionsOutliner = self.__engine.componentsManager.components["core.collectionsOutliner"].interface
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__coreCollectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True

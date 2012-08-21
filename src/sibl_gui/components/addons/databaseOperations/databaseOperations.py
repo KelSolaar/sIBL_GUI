@@ -388,11 +388,10 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
-		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
-											"factory.preferencesManager"].interface
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__dbTypes = (DbType(type="Ibl Set",
 						getMethod=dbCommon.getIblSets,

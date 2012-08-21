@@ -340,8 +340,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
-		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.activated = True
 		return True

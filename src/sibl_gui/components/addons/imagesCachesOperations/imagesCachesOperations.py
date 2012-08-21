@@ -197,8 +197,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
-											"factory.preferencesManager"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
 		self.activated = True
 		return True
 

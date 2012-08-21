@@ -660,8 +660,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True

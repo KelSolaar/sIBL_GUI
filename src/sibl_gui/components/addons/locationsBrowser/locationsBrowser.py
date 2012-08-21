@@ -458,14 +458,12 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryComponentsManagerUi = self.__engine.componentsManager.components[
-											"factory.componentsManagerUi"].interface
-		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
-											"factory.preferencesManager"].interface
-		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreInspector = self.__engine.componentsManager.components["core.inspector"].interface
-		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
-		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
+		self.__factoryComponentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
+		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__coreInspector = self.__engine.componentsManager["core.inspector"]
+		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.activated = True
 		return True

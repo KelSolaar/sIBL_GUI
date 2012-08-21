@@ -859,8 +859,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__engine.componentsManager.components["factory.scriptEditor"].interface
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__factoryScriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
+		self.__coreDb = self.__engine.componentsManager["core.db"]
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
 		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory,

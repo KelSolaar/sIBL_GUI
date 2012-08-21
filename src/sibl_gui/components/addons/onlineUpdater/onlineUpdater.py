@@ -576,11 +576,10 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
-											"factory.preferencesManager"].interface
-		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
-		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
-		self.__addonsLocationsBrowser = self.__engine.componentsManager.components["addons.locationsBrowser"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__addonsLocationsBrowser = self.__engine.componentsManager["addons.locationsBrowser"]
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory, self.__ioDirectory)
