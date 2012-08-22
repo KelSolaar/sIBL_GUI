@@ -989,7 +989,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name!")
+		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name:")
 		if not state:
 			return
 
