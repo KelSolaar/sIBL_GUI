@@ -412,13 +412,13 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...",
-			slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered)
+			slot=self.__coreDatabaseBrowser_views_editIblSetInSIBLEditAction__triggered)
 			for view in self.__coreDatabaseBrowser.views:
 				view.addAction(editIblSetInSIBLEditAction)
 
 			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...",
-			slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
+			slot=self.__coreInspector_editInspectorIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
@@ -442,7 +442,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
 	@core.executionTrace
-	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
 
@@ -453,7 +453,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editIblSetInSIBLEditUi()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
+	def __coreInspector_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
 

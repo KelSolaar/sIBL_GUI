@@ -567,16 +567,16 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetsFilesAction = self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...",
-			slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered)
+			slot=self.__coreDatabaseBrowser_views_editIblSetsFilesAction__triggered)
 			for view in self.__coreDatabaseBrowser.views:
 				view.addAction(editIblSetsFilesAction)
 
 			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
-			slot=self.__Inspector_Overall_frame_editInspectorIblSetFileAction__triggered))
+			slot=self.__coreInspector_editInspectorIblSetFileAction__triggered))
 			self.__coreTemplatesOutliner.view.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...",
-			slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
+			slot=self.__coreTemplatesOutliner_view_editTemplatesFilesAction__triggered))
 		else:
 			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
@@ -587,7 +587,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__factoryComponentsManagerUi.view.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...",
-		slot=self.__Components_Manager_Ui_treeView_editComponentsAction__triggered))
+		slot=self.__factoryComponentsManagerUi_view_editComponentsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -616,7 +616,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.unregisterAction(editComponenetsAction)
 
 	@core.executionTrace
-	def __Database_Browser_listView_editIblSetsFilesAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_editIblSetsFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...'** action.
@@ -628,7 +628,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editIblSetsFilesUi()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectorIblSetFileAction__triggered(self, checked):
+	def __coreInspector_editInspectorIblSetFileAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
 
@@ -639,7 +639,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editInspectorIblSetFileUi()
 
 	@core.executionTrace
-	def __Templates_Outliner_treeView_editTemplatesFilesAction__triggered(self, checked):
+	def __coreTemplatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...'** action.
@@ -651,7 +651,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editTemplatesFilesUi()
 
 	@core.executionTrace
-	def __Components_Manager_Ui_treeView_editComponentsAction__triggered(self, checked):
+	def __factoryComponentsManagerUi_view_editComponentsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...'** action.

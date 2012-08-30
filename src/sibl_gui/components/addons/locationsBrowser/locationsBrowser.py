@@ -593,22 +593,22 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		openIblSetsLocationsAction = self.__engine.actionsManager.registerAction(
 									"Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...",
-									slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
+									slot=self.__coreDatabaseBrowser_views_openIblSetsLocationsAction__triggered)
 		for view in self.__coreDatabaseBrowser.views:
 			view.addAction(openIblSetsLocationsAction)
 
 		self.__coreInspector.Inspector_Overall_frame.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
-		slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
-		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.addAction(
+		slot=self.__coreInspector_openInspectorIblSetLocationsAction__triggered))
+		self.__factoryComponentsManagerUi.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
-		slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
+		slot=self.__factoryComponentsManagerUi_view_openComponentsLocationsAction__triggered))
 		self.__coreTemplatesOutliner.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...",
-		slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
+		slot=self.__coreTemplatesOutliner_view_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -628,7 +628,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
 		openComponentsLocationsAction = \
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
-		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.removeAction(
+		self.__factoryComponentsManagerUi.view.removeAction(
 		self.__engine.actionsManager.getAction(openComponentsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openComponentsLocationsAction)
 		openTemplatesLocationsAction = \
@@ -638,7 +638,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
 	@core.executionTrace
-	def __Database_Browser_listView_openIblSetsLocationsAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_openIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...'** action.
@@ -650,7 +650,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openIblSetsLocationsUi()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
+	def __coreInspector_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
@@ -661,7 +661,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openInspectorIblSetLocationsUi()
 
 	@core.executionTrace
-	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
+	def __factoryComponentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...'** action.
@@ -673,7 +673,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openComponentsLocationsUi()
 
 	@core.executionTrace
-	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
+	def __coreTemplatesOutliner_view_openTemplatesLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...'** action.

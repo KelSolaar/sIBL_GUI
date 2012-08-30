@@ -584,16 +584,16 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Background Image ...",
-		slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
+		slot=self.__coreDatabaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered)
 		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...",
-		slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
+		slot=self.__coreDatabaseBrowser_views_viewIblSetsLightingImagesAction__triggered)
 		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...",
-		slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
+		slot=self.__coreDatabaseBrowser_views_viewIblSetsReflectionImagesAction__triggered)
 		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...",
-		slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
+		slot=self.__coreDatabaseBrowser_views_viewIblSetsPlatesAction__triggered)
 		for view in self.__coreDatabaseBrowser.views:
 			separatorAction = QAction(view)
 			separatorAction.setSeparator(True)
@@ -683,7 +683,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			value["object"].setParent(None)
 
 	@core.executionTrace
-	def __Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
 
@@ -694,7 +694,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Background")
 
 	@core.executionTrace
-	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
 
@@ -705,7 +705,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Lighting")
 
 	@core.executionTrace
-	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
 
@@ -716,7 +716,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Reflection")
 
 	@core.executionTrace
-	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
+	def __coreDatabaseBrowser_views_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
 
