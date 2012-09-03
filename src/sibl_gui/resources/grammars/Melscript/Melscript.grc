@@ -1,6 +1,6 @@
 [Language]
 Name = Melscript
-Extensions = \.mel
+Extensions = \.mel$
 
 [Syntax]
 CommentMarker = //

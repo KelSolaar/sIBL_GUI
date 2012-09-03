@@ -1,6 +1,6 @@
 [Language]
 Name = Maxscript
-Extensions = \.mxs
+Extensions = \.mxs$
 
 [Syntax]
 CommentMarker = --

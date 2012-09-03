@@ -1,6 +1,6 @@
 [Language]
 Name = Javascript
-Extensions = \.js|\.jsx
+Extensions = \.js$|\.jsx$
 
 [Syntax]
 CommentMarker = //

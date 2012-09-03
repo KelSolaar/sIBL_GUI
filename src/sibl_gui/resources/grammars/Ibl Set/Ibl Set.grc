@@ -1,6 +1,6 @@
 [Language]
 Name = Ibl Set
-Extensions = \.ibl
+Extensions = \.ibl$
 
 [Syntax]
 CommentMarker = ;
