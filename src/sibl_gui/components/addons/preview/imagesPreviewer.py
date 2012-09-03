@@ -1028,7 +1028,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		if not self.__paths:
-			return
+			return False
 
 		image = sibl_gui.ui.common.getImage(self.__paths[index])
 		self.__setDisplayGraphicsItem(image)
@@ -1048,7 +1048,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		graphicsView = self.findChild(QGraphicsView)
 		factor = graphicsView.matrix().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width()
 		if factor < self.__minimumZoomFactor or factor > self.__maximumZoomFactor:
-			return
+			return False
 
 		graphicsView.scale(scaleFactor, scaleFactor)
 		return True
@@ -1063,7 +1063,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		if not self.__displayGraphicsItem:
-			return
+			return False
 
 		desktopWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width()
 		desktopHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height()
@@ -1085,7 +1085,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		if not self.__displayGraphicsItem:
-			return
+			return False
 
 		self.__graphicsView.fitInView(
 		QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2),

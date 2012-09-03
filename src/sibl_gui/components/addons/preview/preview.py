@@ -891,7 +891,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__class__.__name__, inspectorIblSet.title))
 
 		if self.__hasMaximumImagesPreviewersInstances():
-			return
+			return False
 
 		paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
 		if paths:

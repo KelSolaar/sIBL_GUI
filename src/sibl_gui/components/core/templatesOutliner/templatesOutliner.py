@@ -1349,7 +1349,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		selectedTemplates = self.getSelectedTemplates()
 		if not selectedTemplates:
-			return
+			return False
 
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove '{0}' Template(s)?".format(
@@ -1400,7 +1400,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		selectedTemplates = self.getSelectedTemplates()
 		if not selectedTemplates:
-			return
+			return False
 
 		self.__engine.startProcessing("Displaying Templates Help Files ...", len(selectedTemplates))
 		success = True
@@ -1522,7 +1522,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		if not forceImport and self.getTemplates():
-			return
+			return False
 
 		LOGGER.debug("> Adding default Templates to the Database.")
 
@@ -1592,7 +1592,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																RuntimeGlobals.lastBrowsedPath,
 																"Template files (*{0})".format(self.__extension))))
 		if not file:
-			return
+			return False
 
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
@@ -1651,7 +1651,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		try:
 			pattern = re.compile(pattern, flags)
 		except Exception:
-			return
+			return list()
 
 		return dbCommon.filterTemplatesCollections(self.__coreDb.dbSession,
 													"{0}".format(strings.encode(pattern.pattern)),
@@ -1685,7 +1685,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		try:
 			pattern = re.compile(pattern, flags)
 		except Exception:
-			return
+			return list()
 
 		return list(set(self.getTemplates()).intersection(
 		dbCommon.filterTemplates(self.__coreDb.dbSession,

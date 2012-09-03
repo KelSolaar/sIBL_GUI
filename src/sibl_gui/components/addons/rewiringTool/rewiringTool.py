@@ -541,7 +541,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = foundations.common.getFirstItem(selectedIblSet)
 		if not iblSet:
-			return
+			return False
 
 		for index, comboBox in enumerate(self.__reWireComboBoxesWidgets):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]

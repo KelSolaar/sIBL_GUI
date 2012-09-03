@@ -959,13 +959,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		collection = self.addCollectionUi()
 		if not collection:
-			return
+			return False
 
 		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
 																						"Add Content:",
 																						RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
-			return
+			return False
 
 		LOGGER.debug("> Chosen directory path: '{0}'.".format(directory))
 		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
@@ -991,7 +991,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name:")
 		if not state:
-			return
+			return False
 
 		if collectionInformations:
 			collectionInformations = strings.encode(collectionInformations).split(",")
@@ -1044,7 +1044,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								for collection in self.getSelectedCollections()
 								if collection.name != self.__defaultCollection]
 		if not selectedCollections:
-			return
+			return False
 
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((strings.encode(collection.name)
@@ -1148,7 +1148,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		try:
 			pattern = re.compile(pattern, flags)
 		except Exception:
-			return
+			return list()
 
 		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(strings.encode(pattern.pattern)),
 																						attribute, flags)

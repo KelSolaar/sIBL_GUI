@@ -768,17 +768,19 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		if not self.outputLoaderScriptUi():
-			return
+			return False
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 		if not template:
-			return
+			return False
 
 		loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
 		if self.Convert_To_Posix_Paths_checkBox.isChecked():
 			loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-		if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
+		if self.sendLoaderScriptToSoftware(template, loaderScriptPath):
+			return True
+		else:
 			raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
 	@core.executionTrace

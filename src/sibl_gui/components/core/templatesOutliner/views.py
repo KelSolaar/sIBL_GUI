@@ -213,12 +213,12 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		LOGGER.debug("> Restoring Model selection!")
 
 		if not self.modelSelection:
-			return
+			return False
 
 		selection = self.modelSelection.get("Templates", None) or self.modelSelection.get("Collections", None) or \
 		self.modelSelection.get("Softwares", None)
 		if not selection:
-			return
+			return False
 
 		indexes = []
 		for node in foundations.walkers.nodesWalker(self.model().rootNode):

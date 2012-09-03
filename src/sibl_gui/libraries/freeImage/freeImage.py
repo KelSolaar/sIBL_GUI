@@ -2218,7 +2218,7 @@ class Image(object):
 		"""
 
 		if not self.__imagePath:
-			return
+			return False
 
 		imageFormat = self.getImageFormat(self.__imagePath)
 		if imageFormat != FIF_UNKNOWN:
@@ -2255,7 +2255,7 @@ class Image(object):
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
 			if not imagePath:
-				return
+				return False
 			if self.__library.FreeImage_Save(imageFormat, self.__bitmap, imagePath, flags):
 				LOGGER.debug("> '{0}' image has been saved!".format(imagePath))
 				return True

@@ -1555,7 +1555,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		try:
 			pattern = re.compile(pattern, flags)
 		except Exception:
-			return
+			return list()
 
 		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
 		self.__coreCollectionsOutliner.getSelectedCollections() or \
@@ -1654,7 +1654,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																						"Add Content:",
 																						RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
-			return
+			return False
 
 		LOGGER.debug("> Chosen directory path: '{0}'.".format(directory))
 		if self.addDirectory(directory):
@@ -1680,7 +1680,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																		RuntimeGlobals.lastBrowsedPath,
 																		"Ibls files (*{0})".format(self.__extension))))
 		if not path:
-			return
+			return False
 
 		if not self.iblSetExists(path):
 			LOGGER.debug("> Chosen Ibl Set path: '{0}'.".format(path))
@@ -1707,7 +1707,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		selectedIblSets = self.getSelectedIblSets()
 		if not selectedIblSets:
-			return
+			return False
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(
 		", ".join((iblSet.title for iblSet in selectedIblSets))),
@@ -1741,7 +1741,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		selectedIblSets = self.getSelectedIblSets()
 		if not selectedIblSets:
-			return
+			return False
 
 		self.__engine.startProcessing("Update Ibl Sets Locations ...", len(selectedIblSets))
 		success = True
@@ -1893,7 +1893,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		try:
 			pattern = re.compile(pattern, flags)
 		except Exception:
-			return
+			return list()
 
 		return list(set(self.getIblSets()).intersection(
 		dbCommon.filterIblSets(self.__coreDb.dbSession,

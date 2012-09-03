@@ -79,11 +79,11 @@ def restoreViewModelSelection(view):
 	LOGGER.debug("> Restoring Model selection!")
 
 	if not view.modelSelection:
-		return
+		return False
 
 	selection = view.modelSelection.get("Default", None)
 	if not selection:
-		return
+		return False
 
 	indexes = []
 	for node in foundations.walkers.nodesWalker(view.model().rootNode):

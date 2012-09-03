@@ -96,10 +96,11 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		
 		:param column: Column. ( Integer )
 		:param order: Order. ( Qt.SortOrder )
+		:return: Method success. ( Boolean )
 		"""
 
 		if column > self.columnCount():
-			return
+			return False
 
 		self.beginResetModel()
 		if column == 0:
