@@ -119,8 +119,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__editLayout = UiConstants.developmentLayout
 
-		self.__factoryScriptEditor = None
-		self.__coreDb = None
+		self.__scriptEditor = None
+		self.__db = None
 
 		self.__model = None
 		self.__view = None
@@ -455,68 +455,68 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the property for **self.__factoryScriptEditor** attribute.
+		This method is the property for **self.__scriptEditor** attribute.
 
-		:return: self.__factoryScriptEditor. ( QWidget )
+		:return: self.__scriptEditor. ( QWidget )
 		"""
 
-		return self.__factoryScriptEditor
+		return self.__scriptEditor
 
-	@factoryScriptEditor.setter
+	@scriptEditor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self, value):
+	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__factoryScriptEditor** attribute.
+		This method is the setter method for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
-	@factoryScriptEditor.deleter
+	@scriptEditor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__factoryScriptEditor** attribute.
+		This method is the deleter method for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
 	def model(self):
@@ -859,8 +859,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__coreDb = self.__engine.componentsManager["core.db"]
+		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
+		self.__db = self.__engine.componentsManager["core.db"]
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
 		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
@@ -979,7 +979,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.addDefaultTemplates()
 
 			# Templates table integrity checking.
-			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
+			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__db.dbSession)
 			try:
 				for template, exceptions in erroneousTemplates.iteritems():
 					for exception in exceptions:
@@ -1231,7 +1231,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addTemplate(name, path)
 					elif choice == 1:
-						self.__factoryScriptEditor.loadFile(path)
+						self.__scriptEditor.loadFile(path)
 						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
 						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
@@ -1265,7 +1265,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not template:
 			return
 
-		if dbCommon.updateTemplateContent(self.__coreDb.dbSession, template):
+		if dbCommon.updateTemplateContent(self.__db.dbSession, template):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, template.title))
@@ -1426,17 +1426,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:note: This method may require user interaction.
 		"""
 
-		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
+		templates = dbCommon.getTemplates(self.__db.dbSession)
 		self.__engine.startProcessing("Filtering Templates ...", len(templates.all()))
 		success = True
 		for template in templates:
-			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
+			matchingTemplates = dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
 				for identity in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
 								reverse=True,
 								key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(
-							self.__coreDb.dbSession, foundations.common.getFirstItem(identity)) or False
+							self.__db.dbSession, foundations.common.getFirstItem(identity)) or False
 				self.modelRefresh.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1461,9 +1461,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
+		if not dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or \
+			if dbCommon.addTemplate(self.__db.dbSession, name, path, collectionId or \
 			self.__getCandidateCollectionId(path)):
 				self.modelRefresh.emit()
 				return True
@@ -1531,11 +1531,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if not foundations.common.pathExists(path):
 				continue
 
-			if not set(dbCommon.filterCollections(self.__coreDb.dbSession,
+			if not set(dbCommon.filterCollections(self.__db.dbSession,
 												"^{0}$".format(collection), "name")).intersection(
-												dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
+												dbCommon.filterCollections(self.__db.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
-				dbCommon.addCollection(self.__coreDb.dbSession,
+				dbCommon.addCollection(self.__db.dbSession,
 										collection,
 										"Templates", "Template {0} Collection".format(collection))
 			success *= self.addDirectory(path, self.getCollectionByName(collection).id)
@@ -1557,7 +1557,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if dbCommon.removeTemplate(self.__coreDb.dbSession, strings.encode(template.id)) :
+		if dbCommon.removeTemplate(self.__db.dbSession, strings.encode(template.id)) :
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1575,7 +1575,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Template exists. ( Boolean )
 		"""
 
-		return dbCommon.templateExists(self.__coreDb.dbSession, path)
+		return dbCommon.templateExists(self.__db.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1596,7 +1596,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
-		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
+		if not dbCommon.updateTemplateLocation(self.__db.dbSession, template, file):
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1633,7 +1633,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates Collections. ( List )
 		"""
 
-		return dbCommon.getCollectionsByType(self.__coreDb.dbSession, "Templates")
+		return dbCommon.getCollectionsByType(self.__db.dbSession, "Templates")
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1653,7 +1653,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		except Exception:
 			return list()
 
-		return dbCommon.filterTemplatesCollections(self.__coreDb.dbSession,
+		return dbCommon.filterTemplatesCollections(self.__db.dbSession,
 													"{0}".format(strings.encode(pattern.pattern)),
 													attribute,
 													flags)
@@ -1667,7 +1667,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates. ( List )
 		"""
 
-		return [template for template in dbCommon.getTemplates(self.__coreDb.dbSession)]
+		return [template for template in dbCommon.getTemplates(self.__db.dbSession)]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1688,7 +1688,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getTemplates()).intersection(
-		dbCommon.filterTemplates(self.__coreDb.dbSession,
+		dbCommon.filterTemplates(self.__db.dbSession,
 								"{0}".format(strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
@@ -1715,9 +1715,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
-		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		collections = dbCommon.filterCollections(self.__db.dbSession, "Templates", "type")
 		for collection in collections:
-			softwares = set((foundations.common.getFirstItem(software) for software in self.__coreDb.dbSession.query(
+			softwares = set((foundations.common.getFirstItem(software) for software in self.__db.dbSession.query(
 						dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 			if not softwares:
 				continue
@@ -1733,7 +1733,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
-				templates = set((template for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate).filter(
+				templates = set((template for template in self.__db.dbSession.query(dbTypes.DbTemplate).filter(
 				dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
 
 				if not templates:

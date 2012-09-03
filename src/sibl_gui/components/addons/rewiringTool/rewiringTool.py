@@ -83,13 +83,13 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
+		self.__databaseBrowser = None
 
 		self.__reWireFramesWidgets = None
 		self.__reWireComboBoxesWidgets = None
 		self.__reWireLineEditWidgets = None
 
-		self.__addonsLoaderScript = None
+		self.__loaderScript = None
 
 		self.__rewiringParameters = (("Background", "Background|BGfile", "backgroundImage"),
 									("Lighting", "Enviroment|EVfile", "lightingImage"),
@@ -164,36 +164,36 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
 	def reWireFramesWidgets(self):
@@ -340,8 +340,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__loaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.activated = True
 		return True
@@ -359,8 +359,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
-		self.__addonsLoaderScript = None
+		self.__databaseBrowser = None
+		self.__loaderScript = None
 
 		self.activated = False
 		return True
@@ -538,7 +538,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSet = self.__databaseBrowser.getSelectedIblSets()
 		iblSet = foundations.common.getFirstItem(selectedIblSet)
 		if not iblSet:
 			return False
@@ -548,7 +548,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if comboBox.currentText() == "Custom image":
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(
 				comboBox.data, strings.encode(self.__reWireLineEditWidgets[index].text())))
-				self.__addonsLoaderScript.overrideKeys[comboBox.data] = foundations.parsers.getAttributeCompound(
+				self.__loaderScript.overrideKeys[comboBox.data] = foundations.parsers.getAttributeCompound(
 																		parameter[1],
 																		strings.getNormalizedPath(
 																		strings.encode(
@@ -556,7 +556,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox.data,
 																					getattr(iblSet, parameter[2])))
-				self.__addonsLoaderScript.overrideKeys[comboBox.data] = getattr(iblSet, parameter[2]) and \
+				self.__loaderScript.overrideKeys[comboBox.data] = getattr(iblSet, parameter[2]) and \
 																foundations.parsers.getAttributeCompound(parameter[1],
 																strings.getNormalizedPath(getattr(iblSet, parameter[2])))
 		return True

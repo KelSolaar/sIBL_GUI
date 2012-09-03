@@ -90,10 +90,10 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDb = None
-		self.__coreTemplatesOutliner = None
-		self.__addonsLocationsBrowser = None
+		self.__preferencesManager = None
+		self.__db = None
+		self.__templatesOutliner = None
+		self.__locationsBrowser = None
 
 		self.__ioDirectory = "remote/"
 
@@ -206,132 +206,132 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
-	def addonsLocationsBrowser(self):
+	def locationsBrowser(self):
 		"""
-		This method is the property for **self.__addonsLocationsBrowser** attribute.
+		This method is the property for **self.__locationsBrowser** attribute.
 
-		:return: self.__addonsLocationsBrowser. ( QWidget )
+		:return: self.__locationsBrowser. ( QWidget )
 		"""
 
-		return self.__addonsLocationsBrowser
+		return self.__locationsBrowser
 
-	@addonsLocationsBrowser.setter
+	@locationsBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLocationsBrowser(self, value):
+	def locationsBrowser(self, value):
 		"""
-		This method is the setter method for **self.__addonsLocationsBrowser** attribute.
+		This method is the setter method for **self.__locationsBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "addonsLocationsBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "locationsBrowser"))
 
-	@addonsLocationsBrowser.deleter
+	@locationsBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLocationsBrowser(self):
+	def locationsBrowser(self):
 		"""
-		This method is the deleter method for **self.__addonsLocationsBrowser** attribute.
+		This method is the deleter method for **self.__locationsBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "addonsLocationsBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "locationsBrowser"))
 
 	@property
 	def ioDirectory(self):
@@ -576,10 +576,10 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
-		self.__addonsLocationsBrowser = self.__engine.componentsManager["addons.locationsBrowser"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__locationsBrowser = self.__engine.componentsManager["addons.locationsBrowser"]
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory, self.__ioDirectory)
@@ -607,10 +607,10 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDb = None
-		self.__coreTemplatesOutliner = None
-		self.__addonsLocationsBrowser = None
+		self.__preferencesManager = None
+		self.__db = None
+		self.__templatesOutliner = None
+		self.__locationsBrowser = None
 
 		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
@@ -699,7 +699,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Online_Updater_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Online_Updater_groupBox)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -800,7 +800,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			releases = {}
 			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
-					dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(
+					dbTemplates = dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(
 								remoteObject), "name")
 					dbTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(dbTemplate)
 												for dbTemplate in sorted(((dbTemplate, dbTemplate.release)

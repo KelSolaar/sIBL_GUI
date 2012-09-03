@@ -810,12 +810,12 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					self.__container.engine.notificationsManager.exceptify(
 					"{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__,
 																					os.path.basename(download)))
-				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download),
-															self.__container.coreTemplatesOutliner.getCollectionByName(
-															self.__container.coreTemplatesOutliner.userCollection).id)
+				self.__container.templatesOutliner.addDirectory(os.path.dirname(download),
+															self.__container.templatesOutliner.getCollectionByName(
+															self.__container.templatesOutliner.userCollection).id)
 			else:
-				if self.__container.addonsLocationsBrowser.activated:
-					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
+				if self.__container.locationsBrowser.activated:
+					self.__container.locationsBrowser.exploreDirectory(os.path.dirname(download))
 
 	@core.executionTrace
 	def __getTemplatesDownloadDirectory(self):

@@ -103,10 +103,10 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__coreDb = None
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreTemplatesOutliner = None
+		self.__db = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__templatesOutliner = None
 
 		self.__dbTypes = None
 
@@ -210,132 +210,132 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
 	def dbTypes(self):
@@ -388,21 +388,21 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__dbTypes = (DbType(type="Ibl Set",
 						getMethod=dbCommon.getIblSets,
 						updateContentMethod=dbCommon.updateIblSetContent,
-						modelContainer=self.__coreDatabaseBrowser,
-						updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+						modelContainer=self.__databaseBrowser,
+						updateLocationMethod=self.__databaseBrowser.updateIblSetLocation),
 						DbType(type="Template",
 						getMethod=dbCommon.getTemplates,
 						updateContentMethod=dbCommon.updateTemplateContent,
-						modelContainer=self.__coreTemplatesOutliner,
-						updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
+						modelContainer=self.__templatesOutliner,
+						updateLocationMethod=self.__templatesOutliner.updateTemplateLocation))
 
 		self.activated = True
 		return True
@@ -422,9 +422,9 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreTemplatesOutliner = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__templatesOutliner = None
 
 		self.activated = False
 		return True
@@ -480,7 +480,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Database_Operations_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Database_Operations_groupBox)
 
 		return True
 
@@ -495,7 +495,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
+		self.__preferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
 		self.Database_Operations_groupBox.setParent(None)
 
 		return True
@@ -523,9 +523,9 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		for dbType in self.__dbTypes:
-			for item in dbType.getMethod(self.__coreDb.dbSession):
+			for item in dbType.getMethod(self.__db.dbSession):
 				if foundations.common.pathExists(item.path):
-					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
+					if dbType.updateContentMethod(self.__db.dbSession, item):
 						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__,
 																					item.name,
 																					dbType.type))

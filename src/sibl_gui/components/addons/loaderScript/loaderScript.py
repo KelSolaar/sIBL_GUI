@@ -97,8 +97,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
-		self.__coreTemplatesOutliner = None
+		self.__databaseBrowser = None
+		self.__templatesOutliner = None
 
 		self.__ioDirectory = "loaderScripts/"
 
@@ -182,68 +182,68 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
 	def ioDirectory(self):
@@ -533,8 +533,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory,
@@ -557,8 +557,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
-		self.__coreTemplatesOutliner = None
+		self.__databaseBrowser = None
+		self.__templatesOutliner = None
 
 		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
@@ -583,8 +583,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		# Signals / Slots.
 		self.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
 		self.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(
-		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__templatesOutliner.view.selectionModel().selectionChanged.connect(
+		self.__templatesOutliner_view_selectionModel__selectionChanged)
 
 		self.initializedUi = True
 		return True
@@ -603,8 +603,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		# Signals / Slots.
 		self.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
 		self.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(
-		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__templatesOutliner.view.selectionModel().selectionChanged.disconnect(
+		self.__templatesOutliner_view_selectionModel__selectionChanged)
 
 		self.initializedUi = False
 		return True
@@ -661,15 +661,15 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.sendLoaderScriptToSoftwareUi()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreTemplatesOutliner.view** Model selection has changed.
+		This method is triggered when **templatesOutliner.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 		if not (template and foundations.common.pathExists(template.path)):
 			return
@@ -717,7 +717,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Initializing Loader Script output.")
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
 			self.__engine.notificationsManager.warnify(
 			"{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__,
@@ -733,7 +733,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(
 			self.__class__.__name__, template.name))
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 		if selectedIblSets and len(selectedIblSets) != 1:
 			self.__engine.notificationsManager.warnify(
 			"{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
@@ -770,7 +770,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if not self.outputLoaderScriptUi():
 			return False
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 		if not template:
 			return False
@@ -896,14 +896,14 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		overrideKeys = {}
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 
 		if template:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Template|Path", template.path))
 			overrideKeys["Template|Path"] = foundations.parsers.getAttributeCompound("Template|Path", template.path)
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 		iblSet = foundations.common.getFirstItem(selectedIblSets)
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))

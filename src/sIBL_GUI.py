@@ -219,8 +219,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		componentsManagerUi = self.componentsManager.getInterface("factory.componentsManagerUi")
 		self.imagesCaches.QIcon.contentAdded.connect(componentsManagerUi.view.viewport().update)
 
-		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
-		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__engine__contentDropped)
+		scriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
+		self.contentDropped.disconnect(scriptEditor._ScriptEditor__engine__contentDropped)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

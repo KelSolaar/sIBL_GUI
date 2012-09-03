@@ -92,8 +92,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreTemplatesOutliner = None
-		self.__addonsLoaderScript = None
+		self.__templatesOutliner = None
+		self.__loaderScript = None
 
 		self.__namespaceSplitter = "|"
 
@@ -180,68 +180,68 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
-	def addonsLoaderScript(self):
+	def loaderScript(self):
 		"""
-		This method is the property for **self.__addonsLoaderScript** attribute.
+		This method is the property for **self.__loaderScript** attribute.
 
-		:return: self.__addonsLoaderScript. ( QWidget )
+		:return: self.__loaderScript. ( QWidget )
 		"""
 
-		return self.__addonsLoaderScript
+		return self.__loaderScript
 
-	@addonsLoaderScript.setter
+	@loaderScript.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLoaderScript(self, value):
+	def loaderScript(self, value):
 		"""
-		This method is the setter method for **self.__addonsLoaderScript** attribute.
+		This method is the setter method for **self.__loaderScript** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "addonsLoaderScript"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loaderScript"))
 
-	@addonsLoaderScript.deleter
+	@loaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLoaderScript(self):
+	def loaderScript(self):
 		"""
-		This method is the deleter method for **self.__addonsLoaderScript** attribute.
+		This method is the deleter method for **self.__loaderScript** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "addonsLoaderScript"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loaderScript"))
 
 	@property
 	def namespaceSplitter(self):
@@ -656,8 +656,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
-		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__loaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 														Constants.settingsDirectory,
@@ -682,8 +682,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreTemplatesOutliner = None
-		self.__addonsLoaderScript = None
+		self.__templatesOutliner = None
+		self.__loaderScript = None
 
 		self.__templatesSettingsDirectory = os.path.basename(os.path.abspath(self.__templatesSettingsDirectory))
 		self.__templateSettingsFile = None
@@ -705,8 +705,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(
-		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__templatesOutliner.view.selectionModel().selectionChanged.connect(
+		self.__templatesOutliner_view_selectionModel__selectionChanged)
 
 		self.initializedUi = True
 		return True
@@ -723,8 +723,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(
-		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__templatesOutliner.view.selectionModel().selectionChanged.disconnect(
+		self.__templatesOutliner_view_selectionModel__selectionChanged)
 
 		self.initializedUi = False
 		return True
@@ -846,7 +846,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the **Common_Attributes_tableWidget** and  **Additional_Attributes_tableWidget** widgets.
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 		if not (template and foundations.common.pathExists(template.path)):
 			return
@@ -898,9 +898,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreTemplatesOutliner.view** Model selection has changed.
+		This method is triggered when **templatesOutliner.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -963,7 +963,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			widget.data.value = value
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget.data.name, widget.data.value))
-			self.__addonsLoaderScript.overrideKeys[widget.data.name] = widget.data
+			self.__loaderScript.overrideKeys[widget.data.name] = widget.data
 		return True
 
 	@core.executionTrace

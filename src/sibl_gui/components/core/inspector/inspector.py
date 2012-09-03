@@ -160,8 +160,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
 
 		self.__sectionsFileParsersCache = None
 
@@ -427,36 +427,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
 	def sectionsFileParsersCache(self):
@@ -929,8 +929,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True
@@ -983,10 +983,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-		self.__coreDatabaseBrowser.model.modelReset.connect(self.__coreDatabaseBrowser__modelReset)
+		self.__databaseBrowser.model.modelReset.connect(self.__databaseBrowser__modelReset)
 		self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
-		for view in self.__coreDatabaseBrowser.views:
-			view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
+		for view in self.__databaseBrowser.views:
+			view.selectionModel().selectionChanged.connect(self.__databaseBrowser_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
 		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
@@ -1116,7 +1116,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.uiRefresh.emit()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser__modelReset(self):
+	def __databaseBrowser__modelReset(self):
 		"""
 		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
 		Component Model has changed.
@@ -1145,7 +1145,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.uiRefresh.emit()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
 		Component Model selection has changed.
@@ -1228,10 +1228,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 		self.__inspectorIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__inspectorIblSet:
-			rootNode = self.__coreDatabaseBrowser.model.rootNode
+			rootNode = self.__databaseBrowser.model.rootNode
 			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).dbItem
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
@@ -1386,7 +1386,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if self.__inspectorIblSet:
-			model = self.__coreDatabaseBrowser.model
+			model = self.__databaseBrowser.model
 
 			inspectorIblSetNode = [node for node in model.rootNode.children if node.dbItem.path == self.__inspectorIblSet.path]
 			inspectorIblSetNode = foundations.common.getFirstItem(inspectorIblSetNode)
@@ -1402,7 +1402,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif idx > model.rootNode.childrenCount() - 1:
 				idx = 0
 
-			selectionModel = self.__coreDatabaseBrowser.getActiveView().selectionModel()
+			selectionModel = self.__databaseBrowser.getActiveView().selectionModel()
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(model.index(idx), QItemSelectionModel.Select)
 		else:

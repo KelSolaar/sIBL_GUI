@@ -83,8 +83,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
-		self.__coreCollectionsOutliner = None
+		self.__databaseBrowser = None
+		self.__collectionsOutliner = None
 
 		self.__cloudExcludedTags = ("a", "and", "by", "for", "from", "in", "of", "on", "or", "the", "to", "with")
 
@@ -188,100 +188,100 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__coreCollectionsOutliner** attribute.
+		This method is the property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__coreCollectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner. ( QWidget )
 		"""
 
-		return self.__coreCollectionsOutliner
+		return self.__collectionsOutliner
 
-	@coreCollectionsOutliner.setter
+	@collectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self, value):
+	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the setter method for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
-	@coreCollectionsOutliner.deleter
+	@collectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the deleter method for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@property
 	def cloudExcludedTags(self):
@@ -332,9 +332,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreCollectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
 		return True
@@ -352,9 +352,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__coreDb = None
-		self.__coreDatabaseBrowser = None
-		self.__coreCollectionsOutliner = None
+		self.__db = None
+		self.__databaseBrowser = None
+		self.__collectionsOutliner = None
 
 		self.activated = False
 		return True
@@ -386,8 +386,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
 		self.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
-		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.connect(
-		self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
+		self.__collectionsOutliner.view.selectionModel().selectionChanged.connect(
+		self.__collectionsOutliner_view_selectionModel__selectionChanged)
 
 		self.initializedUi = True
 		return True
@@ -409,8 +409,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
 		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
-		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.disconnect(
-		self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
+		self.__collectionsOutliner.view.selectionModel().selectionChanged.disconnect(
+		self.__collectionsOutliner_view_selectionModel__selectionChanged)
 
 		self.Search_Database_lineEdit.setParent(None)
 		self.Search_Database_lineEdit = None
@@ -504,9 +504,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
-	def __coreCollectionsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __collectionsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreCollectionsOutliner.view** Model selection has changed.
+		This method is triggered when **collectionsOutliner.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -563,8 +563,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		allTags = set()
 		filteredIblSets = []
 
-		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(
-		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		iblSets = self.__collectionsOutliner.getCollectionsIblSets(
+		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		for iblSet in iblSets:
 			comment = getattr(iblSet, "comment")
 			if not comment:
@@ -589,13 +589,13 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Tags_Cloud_listWidget.clear()
 		self.Tags_Cloud_listWidget.addItems(sorted(allTags, key=lambda x:x.lower()))
 		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
-		len(self.__coreDatabaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
 			LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
 			", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-			self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
+			self.__databaseBrowser.setIblSets(filteredIblSets)
 		return True
 
 	@core.executionTrace
@@ -612,8 +612,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
 
-		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(
-				self.__coreCollectionsOutliner.getSelectedCollections())
+		iblSets = self.__collectionsOutliner.getCollectionsIblSets(
+				self.__collectionsOutliner.getSelectedCollections())
 
 		filteredIblSets = []
 		for iblSet in iblSets:
@@ -628,9 +628,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(filteredIblSets)]
 
 		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
-		len(self.__coreDatabaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
 			", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-			self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
+			self.__databaseBrowser.setIblSets(filteredIblSets)
 		return True

@@ -95,9 +95,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
 
 		self.__imagesPreviewers = None
 		self.__maximumImagesPreviewersInstances = 5
@@ -251,100 +251,100 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the property for **self.__coreInspector** attribute.
+		This method is the property for **self.__inspector** attribute.
 
-		:return: self.__coreInspector. ( QWidget )
+		:return: self.__inspector. ( QWidget )
 		"""
 
-		return self.__coreInspector
+		return self.__inspector
 
-	@coreInspector.setter
+	@inspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self, value):
+	def inspector(self, value):
 		"""
-		This method is the setter method for **self.__coreInspector** attribute.
+		This method is the setter method for **self.__inspector** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
-	@coreInspector.deleter
+	@inspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the deleter method for **self.__coreInspector** attribute.
+		This method is the deleter method for **self.__inspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
 
 	@property
 	def imagesPreviewers(self):
@@ -463,9 +463,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreInspector = self.__engine.componentsManager["core.inspector"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__inspector = self.__engine.componentsManager["core.inspector"]
 
 		self.__imagesPreviewers = []
 
@@ -488,9 +488,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
 
 		for imagesPreviewer in self.__imagesPreviewers[:]:
 			imagesPreviewer.ui.close()
@@ -553,7 +553,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_Previewer_Path_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_Previewer_Path_groupBox)
 
 		return True
 
@@ -568,7 +568,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
+		self.__preferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
 		self.Custom_Previewer_Path_groupBox.setParent(None)
 
 		return True
@@ -584,17 +584,17 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Background Image ...",
-		slot=self.__coreDatabaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered)
+		slot=self.__databaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered)
 		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...",
-		slot=self.__coreDatabaseBrowser_views_viewIblSetsLightingImagesAction__triggered)
+		slot=self.__databaseBrowser_views_viewIblSetsLightingImagesAction__triggered)
 		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...",
-		slot=self.__coreDatabaseBrowser_views_viewIblSetsReflectionImagesAction__triggered)
+		slot=self.__databaseBrowser_views_viewIblSetsReflectionImagesAction__triggered)
 		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...",
-		slot=self.__coreDatabaseBrowser_views_viewIblSetsPlatesAction__triggered)
-		for view in self.__coreDatabaseBrowser.views:
+		slot=self.__databaseBrowser_views_viewIblSetsPlatesAction__triggered)
+		for view in self.__databaseBrowser.views:
 			separatorAction = QAction(view)
 			separatorAction.setSeparator(True)
 			for action in (separatorAction,
@@ -604,20 +604,20 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							viewIblSetsPlatesAction):
 				view.addAction(action)
 
-		separatorAction = QAction(self.__coreInspector.Inspector_Overall_frame)
+		separatorAction = QAction(self.__inspector.Inspector_Overall_frame)
 		separatorAction.setSeparator(True)
-		self.__coreInspector.Inspector_Overall_frame.addAction(separatorAction)
+		self.__inspector.Inspector_Overall_frame.addAction(separatorAction)
 
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Background Image ...",
 		slot=self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Lighting Image ...",
 		slot=self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Reflection Image ...",
 		slot=self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Plate(s) ...",
 		slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
 
@@ -637,26 +637,26 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					viewIblSetsLightingImagesAction,
 					viewIblSetsReflectionImagesAction,
 					viewIblSetsPlatesAction)
-		for view in self.__coreDatabaseBrowser.views:
+		for view in self.__databaseBrowser.views:
 			for action in actions:
 				view.removeAction(self.__engine.actionsManager.getAction(action))
 		for action in actions:
 			self.__engine.actionsManager.unregisterAction(action)
 
 		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__inspector.Inspector_Overall_frame.removeAction(
 		self.__engine.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetBackgroundImageAction)
 		viewInspectorIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__inspector.Inspector_Overall_frame.removeAction(
 		self.__engine.actionsManager.getAction(viewInspectorIblSetLightingImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetLightingImageAction)
 		viewInspectorIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__inspector.Inspector_Overall_frame.removeAction(
 		self.__engine.actionsManager.getAction(viewInspectorIblSetReflectionImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetReflectionImageAction)
 		viewInspectorIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__inspector.Inspector_Overall_frame.removeAction(
 		self.__engine.actionsManager.getAction(viewInspectorIblSetPlatesAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetPlatesAction)
 
@@ -666,10 +666,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method adds buttons to the :mod:`sibl_gui.components.core.inspector.inspector` Component.
 		"""
 
-		self.__coreInspector.Inspector_Options_groupBox.show()
+		self.__inspector.Inspector_Options_groupBox.show()
 		for key, value in self.__inspectorButtons.iteritems():
 			value["object"] = QPushButton(value["text"])
-			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
+			self.__inspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
 																				value["row"],
 																				value["column"])
 			value["object"].clicked.connect(functools.partial(self.viewInspectorIblSetImagesUi, key))
@@ -683,7 +683,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			value["object"].setParent(None)
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
+	def __databaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
 
@@ -694,7 +694,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Background")
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_viewIblSetsLightingImagesAction__triggered(self, checked):
+	def __databaseBrowser_views_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
 
@@ -705,7 +705,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Lighting")
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
+	def __databaseBrowser_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
 
@@ -716,7 +716,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.viewIblSetsImagesUi("Reflection")
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_viewIblSetsPlatesAction__triggered(self, checked):
+	def __databaseBrowser_views_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
 
@@ -846,7 +846,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 		success = True
 		for iblSet in selectedIblSets:
 			if self.__hasMaximumImagesPreviewersInstances():
@@ -883,7 +883,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = self.__inspector.inspectorIblSet
 		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
 		if not inspectorIblSet:
 			raise foundations.exceptions.FileExistsError(

@@ -89,7 +89,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
+		self.__databaseBrowser = None
 
 		self.__map = None
 		self.__mapTypeIds = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
@@ -322,36 +322,36 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
 	def map(self):
@@ -437,7 +437,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True
@@ -457,7 +457,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__coreDatabaseBrowser = None
+		self.__databaseBrowser = None
 
 		self.activated = False
 		return True
@@ -487,9 +487,9 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		for view in self.__coreDatabaseBrowser.views:
+		for view in self.__databaseBrowser.views:
 			view.selectionModel().selectionChanged.connect(
-			self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
+			self.__databaseBrowser_view_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
 		self.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
 		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
@@ -508,9 +508,9 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		# Signals / Slots.
-		for view in self.__coreDatabaseBrowser.views:
+		for view in self.__databaseBrowser.views:
 			view.selectionModel().selectionChanged.disconnect(
-			self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
+			self.__databaseBrowser_view_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
 		self.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
 		self.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
@@ -568,7 +568,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return True
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **Data** Model selection has changed.
 
@@ -629,7 +629,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 		self.__map.removeMarkers()
 		success = True
 		for iblSet in selectedIblSets:

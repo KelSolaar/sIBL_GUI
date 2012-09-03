@@ -92,12 +92,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__editLayout = UiConstants.developmentLayout
 
-		self.__factoryScriptEditor = None
-		self.__factoryPreferencesManager = None
-		self.__factoryComponentsManagerUi = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
-		self.__coreTemplatesOutliner = None
+		self.__scriptEditor = None
+		self.__preferencesManager = None
+		self.__componentsManagerUi = None
+		self.__databaseBrowser = None
+		self.__inspector = None
+		self.__templatesOutliner = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -231,196 +231,196 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the property for **self.__factoryScriptEditor** attribute.
+		This method is the property for **self.__scriptEditor** attribute.
 
-		:return: self.__factoryScriptEditor. ( QWidget )
+		:return: self.__scriptEditor. ( QWidget )
 		"""
 
-		return self.__factoryScriptEditor
+		return self.__scriptEditor
 
-	@factoryScriptEditor.setter
+	@scriptEditor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self, value):
+	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__factoryScriptEditor** attribute.
+		This method is the setter method for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
-	@factoryScriptEditor.deleter
+	@scriptEditor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__factoryScriptEditor** attribute.
+		This method is the deleter method for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def factoryComponentsManagerUi(self):
+	def componentsManagerUi(self):
 		"""
-		This method is the property for **self.__factoryComponentsManagerUi** attribute.
+		This method is the property for **self.__componentsManagerUi** attribute.
 
-		:return: self.__factoryComponentsManagerUi. ( QWidget )
+		:return: self.__componentsManagerUi. ( QWidget )
 		"""
 
-		return self.__factoryComponentsManagerUi
+		return self.__componentsManagerUi
 
-	@factoryComponentsManagerUi.setter
+	@componentsManagerUi.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryComponentsManagerUi(self, value):
+	def componentsManagerUi(self, value):
 		"""
-		This method is the setter method for **self.__factoryComponentsManagerUi** attribute.
+		This method is the setter method for **self.__componentsManagerUi** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryComponentsManagerUi"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "componentsManagerUi"))
 
-	@factoryComponentsManagerUi.deleter
+	@componentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryComponentsManagerUi(self):
+	def componentsManagerUi(self):
 		"""
-		This method is the deleter method for **self.__factoryComponentsManagerUi** attribute.
+		This method is the deleter method for **self.__componentsManagerUi** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryComponentsManagerUi"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "componentsManagerUi"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the property for **self.__coreInspector** attribute.
+		This method is the property for **self.__inspector** attribute.
 
-		:return: self.__coreInspector. ( QWidget )
+		:return: self.__inspector. ( QWidget )
 		"""
 
-		return self.__coreInspector
+		return self.__inspector
 
-	@coreInspector.setter
+	@inspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self, value):
+	def inspector(self, value):
 		"""
-		This method is the setter method for **self.__coreInspector** attribute.
+		This method is the setter method for **self.__inspector** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
-	@coreInspector.deleter
+	@inspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the deleter method for **self.__coreInspector** attribute.
+		This method is the deleter method for **self.__inspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -441,12 +441,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__factoryComponentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreInspector = self.__engine.componentsManager["core.inspector"]
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__componentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__inspector = self.__engine.componentsManager["core.inspector"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.activated = True
 		return True
@@ -466,12 +466,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryScriptEditor = None
-		self.__factoryPreferencesManager = None
-		self.__factoryComponentsManagerUi = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
-		self.__coreTemplatesOutliner = None
+		self.__scriptEditor = None
+		self.__preferencesManager = None
+		self.__componentsManagerUi = None
+		self.__databaseBrowser = None
+		self.__inspector = None
+		self.__templatesOutliner = None
 
 		self.activated = False
 		return True
@@ -495,8 +495,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(
 		self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__engine.contentDropped.connect(self.__engine__contentDropped)
-		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.connect(
-		self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
+		self.__scriptEditor.Script_Editor_tabWidget.contentDropped.connect(
+		self.__scriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		self.initializedUi = True
 		return True
@@ -517,8 +517,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(
 		self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__engine.contentDropped.disconnect(self.__engine__contentDropped)
-		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.disconnect(
-		self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
+		self.__scriptEditor.Script_Editor_tabWidget.contentDropped.disconnect(
+		self.__scriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		self.__removeActions()
 
@@ -536,7 +536,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_Text_Editor_Path_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_Text_Editor_Path_groupBox)
 
 		return True
 
@@ -551,7 +551,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
+		self.__preferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
 		self.Custom_Text_Editor_Path_groupBox.setParent(None)
 
 		return True
@@ -567,27 +567,27 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetsFilesAction = self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...",
-			slot=self.__coreDatabaseBrowser_views_editIblSetsFilesAction__triggered)
-			for view in self.__coreDatabaseBrowser.views:
+			slot=self.__databaseBrowser_views_editIblSetsFilesAction__triggered)
+			for view in self.__databaseBrowser.views:
 				view.addAction(editIblSetsFilesAction)
 
-			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
-			slot=self.__coreInspector_editInspectorIblSetFileAction__triggered))
-			self.__coreTemplatesOutliner.view.addAction(self.__engine.actionsManager.registerAction(
+			slot=self.__inspector_editInspectorIblSetFileAction__triggered))
+			self.__templatesOutliner.view.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...",
-			slot=self.__coreTemplatesOutliner_view_editTemplatesFilesAction__triggered))
+			slot=self.__templatesOutliner_view_editTemplatesFilesAction__triggered))
 		else:
 			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-		separatorAction = QAction(self.__factoryComponentsManagerUi.view)
+		separatorAction = QAction(self.__componentsManagerUi.view)
 		separatorAction.setSeparator(True)
-		self.__factoryComponentsManagerUi.view.addAction(separatorAction)
+		self.__componentsManagerUi.view.addAction(separatorAction)
 
-		self.__factoryComponentsManagerUi.view.addAction(self.__engine.actionsManager.registerAction(
+		self.__componentsManagerUi.view.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...",
-		slot=self.__factoryComponentsManagerUi_view_editComponentsAction__triggered))
+		slot=self.__componentsManagerUi_view_editComponentsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -599,24 +599,24 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
-			for view in self.__coreDatabaseBrowser.views:
+			for view in self.__databaseBrowser.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)
 			editInspectorIblSetFileAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
-			self.__coreInspector.Inspector_Overall_frame.removeAction(
+			self.__inspector.Inspector_Overall_frame.removeAction(
 			self.__engine.actionsManager.getAction(editInspectorIblSetFileAction))
 			self.__engine.actionsManager.unregisterAction(editInspectorIblSetFileAction)
 			editTemplatesFilesAction = "Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ..."
-			self.__coreTemplatesOutliner.view.removeAction(
+			self.__templatesOutliner.view.removeAction(
 			self.__engine.actionsManager.getAction(editTemplatesFilesAction))
 			self.__engine.actionsManager.unregisterAction(editTemplatesFilesAction)
 		editComponenetsAction = "Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ..."
-		self.__factoryComponentsManagerUi.view.removeAction(
+		self.__componentsManagerUi.view.removeAction(
 		self.__engine.actionsManager.getAction(editComponenetsAction))
 		self.__engine.actionsManager.unregisterAction(editComponenetsAction)
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_editIblSetsFilesAction__triggered(self, checked):
+	def __databaseBrowser_views_editIblSetsFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...'** action.
@@ -628,7 +628,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editIblSetsFilesUi()
 
 	@core.executionTrace
-	def __coreInspector_editInspectorIblSetFileAction__triggered(self, checked):
+	def __inspector_editInspectorIblSetFileAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
 
@@ -639,7 +639,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editInspectorIblSetFileUi()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
+	def __templatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...'** action.
@@ -651,7 +651,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editTemplatesFilesUi()
 
 	@core.executionTrace
-	def __factoryComponentsManagerUi_view_editComponentsAction__triggered(self, checked):
+	def __componentsManagerUi_view_editComponentsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...'** action.
@@ -733,24 +733,24 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
 			re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] or \
 			strings.encode(url.path())
-			if not re.search(r"\.{0}$".format(self.__coreDatabaseBrowser.extension), strings.encode(url.path())) and \
-			not re.search(r"\.{0}$".format(self.coreTemplatesOutliner.extension), strings.encode(url.path())) and \
+			if not re.search(r"\.{0}$".format(self.__databaseBrowser.extension), strings.encode(url.path())) and \
+			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), strings.encode(url.path())) and \
 			not os.path.isdir(path):
 				self.editPath(path, self.Custom_Text_Editor_Path_lineEdit.text())
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
 	@core.executionTrace
-	def __factoryScriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
+	def __scriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped in the **factoryScriptEditor.Script_Editor_tabWidget** Widget.
+		This method is triggered when content is dropped in the **scriptEditor.Script_Editor_tabWidget** Widget.
 		
 		:param event: Event. ( QEvent )
 		"""
 
-		if event.source() in self.__coreDatabaseBrowser.views:
+		if event.source() in self.__databaseBrowser.views:
 			self.editIblSetsFilesUi()
-		elif event.source() is self.__coreTemplatesOutliner.view:
+		elif event.source() is self.__templatesOutliner.view:
 			self.editTemplatesFilesUi()
 
 	@core.executionTrace
@@ -764,7 +764,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 
 		success = True
 		for iblSet in selectedIblSets:
@@ -794,7 +794,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = self.__inspector.inspectorIblSet
 		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
 		inspectorIblSet or None
 		if inspectorIblSet:
@@ -815,7 +815,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 
 		success = True
 		for template in selectedTemplates:
@@ -843,7 +843,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedComponents = self.__factoryComponentsManagerUi.getSelectedComponents()
+		selectedComponents = self.__componentsManagerUi.getSelectedComponents()
 
 		success = True
 		for component in selectedComponents:
@@ -905,4 +905,4 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__class__.__name__))
 		else:
 			self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
-			return self.__factoryScriptEditor.loadPath(path)
+			return self.__scriptEditor.loadPath(path)

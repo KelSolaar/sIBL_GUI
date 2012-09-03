@@ -81,7 +81,7 @@ class IblSetsScanner_worker(QThread):
 		# --- Setting class attributes. ---
 		self.__container = parent
 
-		self.__dbSession = self.__container.coreDb.dbSessionMaker()
+		self.__dbSession = self.__container.db.dbSessionMaker()
 
 		self.__newIblSets = None
 

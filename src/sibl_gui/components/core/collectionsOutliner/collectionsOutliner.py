@@ -112,8 +112,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
 
-		self.__coreDb = None
-		self.__coreDatabaseBrowser = None
+		self.__db = None
+		self.__databaseBrowser = None
 
 		self.__model = None
 		self.__view = None
@@ -384,68 +384,68 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
 	def model(self):
@@ -660,8 +660,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True
@@ -899,7 +899,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		collectionNode.synchronizeDbItem()
 		collectionNode.synchronizeToolTip()
 
-		self.__coreDb.commit()
+		self.__db.commit()
 
 	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -910,7 +910,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		self.__coreDatabaseBrowser.modelRefresh.emit()
+		self.__databaseBrowser.modelRefresh.emit()
 
 	@core.executionTrace
 	def __view_setIblSetsCounts(self):
@@ -968,7 +968,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		LOGGER.debug("> Chosen directory path: '{0}'.".format(directory))
-		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
+		if self.__databaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
 			return True
 		else:
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
@@ -1081,7 +1081,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
-				if dbCommon.addCollection(self.__coreDb.dbSession, name, "IblSets", comment):
+				if dbCommon.addCollection(self.__db.dbSession, name, "IblSets", comment):
 					self.modelRefresh.emit()
 					return True
 				else:
@@ -1107,15 +1107,15 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
+		iblSets = dbCommon.getCollectionsIblSets(self.__db.dbSession, (collection.id,))
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
-		if dbCommon.removeCollection(self.__coreDb.dbSession, strings.encode(collection.id)):
+		if dbCommon.removeCollection(self.__db.dbSession, strings.encode(collection.id)):
 			self.modelRefresh.emit()
-			self.__coreDatabaseBrowser.modelRefresh.emit()
+			self.__databaseBrowser.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(
@@ -1130,7 +1130,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return dbCommon.getCollectionsByType(self.__coreDb.dbSession, "IblSets")
+		return dbCommon.getCollectionsByType(self.__db.dbSession, "IblSets")
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1150,7 +1150,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except Exception:
 			return list()
 
-		return dbCommon.filterIblSetsCollections(self.__coreDb.dbSession, "{0}".format(strings.encode(pattern.pattern)),
+		return dbCommon.filterIblSetsCollections(self.__db.dbSession, "{0}".format(strings.encode(pattern.pattern)),
 																						attribute, flags)
 
 	@core.executionTrace
@@ -1163,7 +1163,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return dbCommon.collectionExists(self.__coreDb.dbSession, name)
+		return dbCommon.collectionExists(self.__db.dbSession, name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1243,7 +1243,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Ibl Sets list. ( List )
 		"""
 
-		return [iblSet for iblSet in dbCommon.getCollectionsIblSets(self.__coreDb.dbSession,
+		return [iblSet for iblSet in dbCommon.getCollectionsIblSets(self.__db.dbSession,
 																	[collection.id for collection in collections])]
 
 	@core.executionTrace
@@ -1256,7 +1256,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection Ibl Sets count. ( Integer )
 		"""
 
-		return self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count()
+		return self.__db.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

@@ -105,12 +105,12 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryComponentsManagerUi = None
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
-		self.__coreTemplatesOutliner = None
-		self.__addonsLoaderScript = None
+		self.__componentsManagerUi = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
+		self.__templatesOutliner = None
+		self.__loaderScript = None
 
 		self.__Open_Output_Directory_pushButton = None
 
@@ -216,164 +216,164 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
-	def factoryComponentsManagerUi(self):
+	def componentsManagerUi(self):
 		"""
-		This method is the property for **self.__factoryComponentsManagerUi** attribute.
+		This method is the property for **self.__componentsManagerUi** attribute.
 
-		:return: self.__factoryComponentsManagerUi. ( QWidget )
+		:return: self.__componentsManagerUi. ( QWidget )
 		"""
 
-		return self.__factoryComponentsManagerUi
+		return self.__componentsManagerUi
 
-	@factoryComponentsManagerUi.setter
+	@componentsManagerUi.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryComponentsManagerUi(self, value):
+	def componentsManagerUi(self, value):
 		"""
-		This method is the setter method for **self.__factoryComponentsManagerUi** attribute.
+		This method is the setter method for **self.__componentsManagerUi** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryComponentsManagerUi"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "componentsManagerUi"))
 
-	@factoryComponentsManagerUi.deleter
+	@componentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryComponentsManagerUi(self):
+	def componentsManagerUi(self):
 		"""
-		This method is the deleter method for **self.__factoryComponentsManagerUi** attribute.
+		This method is the deleter method for **self.__componentsManagerUi** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryComponentsManagerUi"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "componentsManagerUi"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__coreTemplatesOutliner** attribute.
+		This method is the property for **self.__templatesOutliner** attribute.
 
-		:return: self.__coreTemplatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner. ( QWidget )
 		"""
 
-		return self.__coreTemplatesOutliner
+		return self.__templatesOutliner
 
-	@coreTemplatesOutliner.setter
+	@templatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self, value):
+	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the setter method for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
-	@coreTemplatesOutliner.deleter
+	@templatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreTemplatesOutliner(self):
+	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
+		This method is the deleter method for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
-	def addonsLoaderScript(self):
+	def loaderScript(self):
 		"""
-		This method is the property for **self.__addonsLoaderScript** attribute.
+		This method is the property for **self.__loaderScript** attribute.
 
-		:return: self.__addonsLoaderScript. ( QWidget )
+		:return: self.__loaderScript. ( QWidget )
 		"""
 
-		return self.__addonsLoaderScript
+		return self.__loaderScript
 
-	@addonsLoaderScript.setter
+	@loaderScript.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLoaderScript(self, value):
+	def loaderScript(self, value):
 		"""
-		This method is the setter method for **self.__addonsLoaderScript** attribute.
+		This method is the setter method for **self.__loaderScript** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "addonsLoaderScript"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loaderScript"))
 
-	@addonsLoaderScript.deleter
+	@loaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def addonsLoaderScript(self):
+	def loaderScript(self):
 		"""
-		This method is the deleter method for **self.__addonsLoaderScript** attribute.
+		This method is the deleter method for **self.__loaderScript** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "addonsLoaderScript"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loaderScript"))
 
 	@property
 	def Open_Output_Directory_pushButton(self):
@@ -458,12 +458,12 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryComponentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreInspector = self.__engine.componentsManager["core.inspector"]
-		self.__coreTemplatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
-		self.__addonsLoaderScript = self.__engine.componentsManager["addons.loaderScript"]
+		self.__componentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__inspector = self.__engine.componentsManager["core.inspector"]
+		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__loaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.activated = True
 		return True
@@ -483,12 +483,12 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryComponentsManagerUi = None
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
-		self.__coreTemplatesOutliner = None
-		self.__addonsLoaderScript = None
+		self.__componentsManagerUi = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
+		self.__templatesOutliner = None
+		self.__loaderScript = None
 
 		self.activated = False
 		return True
@@ -514,9 +514,9 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript addon component specific code.
-		if self.__addonsLoaderScript.activated:
+		if self.__loaderScript.activated:
 			self.__Open_Output_Directory_pushButton = QPushButton("Open Output Directory ...")
-			self.__addonsLoaderScript.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
+			self.__loaderScript.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
 
 			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.connect(self.__Open_Output_Directory_pushButton__clicked)
@@ -541,7 +541,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript addon component specific code.
-		if self.__addonsLoaderScript.activated:
+		if self.__loaderScript.activated:
 			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.disconnect(self.__Open_Output_Directory_pushButton__clicked)
 
@@ -564,7 +564,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_File_Browser_Path_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_File_Browser_Path_groupBox)
 
 		return True
 
@@ -593,22 +593,22 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		openIblSetsLocationsAction = self.__engine.actionsManager.registerAction(
 									"Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...",
-									slot=self.__coreDatabaseBrowser_views_openIblSetsLocationsAction__triggered)
-		for view in self.__coreDatabaseBrowser.views:
+									slot=self.__databaseBrowser_views_openIblSetsLocationsAction__triggered)
+		for view in self.__databaseBrowser.views:
 			view.addAction(openIblSetsLocationsAction)
 
-		self.__coreInspector.Inspector_Overall_frame.addAction(
+		self.__inspector.Inspector_Overall_frame.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
-		slot=self.__coreInspector_openInspectorIblSetLocationsAction__triggered))
-		self.__factoryComponentsManagerUi.view.addAction(
+		slot=self.__inspector_openInspectorIblSetLocationsAction__triggered))
+		self.__componentsManagerUi.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
-		slot=self.__factoryComponentsManagerUi_view_openComponentsLocationsAction__triggered))
-		self.__coreTemplatesOutliner.view.addAction(
+		slot=self.__componentsManagerUi_view_openComponentsLocationsAction__triggered))
+		self.__templatesOutliner.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...",
-		slot=self.__coreTemplatesOutliner_view_openTemplatesLocationsAction__triggered))
+		slot=self.__templatesOutliner_view_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -619,26 +619,26 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		openIblSetsLocationsAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
-		for view in self.__coreDatabaseBrowser.views:
+		for view in self.__databaseBrowser.views:
 			view.removeAction(self.__engine.actionsManager.getAction(openIblSetsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openIblSetsLocationsAction)
 		openInspectorIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__inspector.Inspector_Overall_frame.removeAction(
 		self.__engine.actionsManager.getAction(openInspectorIblSetLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
 		openComponentsLocationsAction = \
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
-		self.__factoryComponentsManagerUi.view.removeAction(
+		self.__componentsManagerUi.view.removeAction(
 		self.__engine.actionsManager.getAction(openComponentsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openComponentsLocationsAction)
 		openTemplatesLocationsAction = \
 		"Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ..."
-		self.__coreTemplatesOutliner.view.removeAction(
+		self.__templatesOutliner.view.removeAction(
 		self.__engine.actionsManager.getAction(openTemplatesLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_openIblSetsLocationsAction__triggered(self, checked):
+	def __databaseBrowser_views_openIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...'** action.
@@ -650,7 +650,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openIblSetsLocationsUi()
 
 	@core.executionTrace
-	def __coreInspector_openInspectorIblSetLocationsAction__triggered(self, checked):
+	def __inspector_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
@@ -661,7 +661,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openInspectorIblSetLocationsUi()
 
 	@core.executionTrace
-	def __factoryComponentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
+	def __componentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...'** action.
@@ -673,7 +673,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.openComponentsLocationsUi()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_view_openTemplatesLocationsAction__triggered(self, checked):
+	def __templatesOutliner_view_openTemplatesLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...'** action.
@@ -755,7 +755,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 
 		success = True
 		for iblSet in selectedIblSets:
@@ -786,7 +786,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = self.__inspector.inspectorIblSet
 		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
 						inspectorIblSet or None
 		if inspectorIblSet:
@@ -808,7 +808,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedComponents = self.__factoryComponentsManagerUi.getSelectedComponents()
+		selectedComponents = self.__componentsManagerUi.getSelectedComponents()
 
 		success = True
 		for component in selectedComponents:
@@ -837,7 +837,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 
 		success = True
 		for template in selectedTemplates:
@@ -870,7 +870,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		directory = self.__engine.parameters.loaderScriptsOutputDirectory and \
-					self.__engine.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
+					self.__engine.parameters.loaderScriptsOutputDirectory or self.__loaderScript.ioDirectory
 
 		if not foundations.common.pathExists(directory):
 			raise foundations.exceptions.DirectoryExistsError(

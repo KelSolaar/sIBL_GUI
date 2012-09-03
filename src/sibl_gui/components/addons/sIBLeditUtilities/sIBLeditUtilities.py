@@ -82,9 +82,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -186,100 +186,100 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the property for **self.__factoryPreferencesManager** attribute.
+		This method is the property for **self.__preferencesManager** attribute.
 
-		:return: self.__factoryPreferencesManager. ( QWidget )
+		:return: self.__preferencesManager. ( QWidget )
 		"""
 
-		return self.__factoryPreferencesManager
+		return self.__preferencesManager
 
-	@factoryPreferencesManager.setter
+	@preferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self, value):
+	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__factoryPreferencesManager** attribute.
+		This method is the setter method for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
-	@factoryPreferencesManager.deleter
+	@preferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryPreferencesManager(self):
+	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
+		This method is the deleter method for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the property for **self.__coreInspector** attribute.
+		This method is the property for **self.__inspector** attribute.
 
-		:return: self.__coreInspector. ( QWidget )
+		:return: self.__inspector. ( QWidget )
 		"""
 
-		return self.__coreInspector
+		return self.__inspector
 
-	@coreInspector.setter
+	@inspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self, value):
+	def inspector(self, value):
 		"""
-		This method is the setter method for **self.__coreInspector** attribute.
+		This method is the setter method for **self.__inspector** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
-	@coreInspector.deleter
+	@inspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreInspector(self):
+	def inspector(self):
 		"""
-		This method is the deleter method for **self.__coreInspector** attribute.
+		This method is the deleter method for **self.__inspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreInspector"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -300,9 +300,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
-		self.__coreInspector = self.__engine.componentsManager["core.inspector"]
+		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__inspector = self.__engine.componentsManager["core.inspector"]
 
 		self.activated = True
 		return True
@@ -322,9 +322,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__factoryPreferencesManager = None
-		self.__coreDatabaseBrowser = None
-		self.__coreInspector = None
+		self.__preferencesManager = None
+		self.__databaseBrowser = None
+		self.__inspector = None
 
 		self.activated = False
 		return True
@@ -382,7 +382,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.sIBLedit_Path_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.sIBLedit_Path_groupBox)
 
 		return True
 
@@ -412,13 +412,13 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...",
-			slot=self.__coreDatabaseBrowser_views_editIblSetInSIBLEditAction__triggered)
-			for view in self.__coreDatabaseBrowser.views:
+			slot=self.__databaseBrowser_views_editIblSetInSIBLEditAction__triggered)
+			for view in self.__databaseBrowser.views:
 				view.addAction(editIblSetInSIBLEditAction)
 
-			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...",
-			slot=self.__coreInspector_editInspectorIblSetInSIBLEditAction__triggered))
+			slot=self.__inspector_editInspectorIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
@@ -433,16 +433,16 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ..."
-			for view in self.__coreDatabaseBrowser.views:
+			for view in self.__databaseBrowser.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
 			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
-			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(
+			self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(
 			editInspectorIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_views_editIblSetInSIBLEditAction__triggered(self, checked):
+	def __databaseBrowser_views_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
 
@@ -453,7 +453,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.editIblSetInSIBLEditUi()
 
 	@core.executionTrace
-	def __coreInspector_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
+	def __inspector_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
 
@@ -522,7 +522,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+			selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
 							foundations.common.getFirstItem(selectedIblSets)
 			if selectedIblSet:
@@ -550,7 +550,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			inspectorIblSet = self.__coreInspector.inspectorIblSet
+			inspectorIblSet = self.__inspector.inspectorIblSet
 			inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
 			inspectorIblSet or None
 			if inspectorIblSet:

@@ -77,9 +77,9 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__coreDb = None
-		self.__coreCollectionsOutliner = None
-		self.__coreDatabaseBrowser = None
+		self.__db = None
+		self.__collectionsOutliner = None
+		self.__databaseBrowser = None
 
 		self.__iblSetsScannerWorkerThread = None
 
@@ -119,100 +119,100 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__coreCollectionsOutliner** attribute.
+		This method is the property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__coreCollectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner. ( QWidget )
 		"""
 
-		return self.__coreCollectionsOutliner
+		return self.__collectionsOutliner
 
-	@coreCollectionsOutliner.setter
+	@collectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self, value):
+	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the setter method for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
-	@coreCollectionsOutliner.deleter
+	@collectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the deleter method for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__databaseBrowser** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( QWidget )
+		:return: self.__databaseBrowser. ( QWidget )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__databaseBrowser
 
-	@coreDatabaseBrowser.setter
+	@databaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def databaseBrowser(self, value):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__databaseBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
-	@coreDatabaseBrowser.deleter
+	@databaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def databaseBrowser(self):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the deleter method for **self.__databaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@property
 	def iblSetsScannerWorkerThread(self):
@@ -263,9 +263,9 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = engine
 
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__coreCollectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
-		self.__coreDatabaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
+		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
 		self.activated = True
 		return True
@@ -283,9 +283,9 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__coreDb = None
-		self.__coreCollectionsOutliner = None
-		self.__coreDatabaseBrowser = None
+		self.__db = None
+		self.__collectionsOutliner = None
+		self.__databaseBrowser = None
 
 		self.activated = False
 		return True
@@ -374,14 +374,14 @@ class IblSetsScanner(QObjectComponent):
 			for iblSet, path in iblSets.iteritems():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				if not dbCommon.addIblSet(self.__coreDb.dbSession,
+				if not dbCommon.addIblSet(self.__db.dbSession,
 				 						iblSet,
 										path,
-										self.__coreCollectionsOutliner.getCollectionId(
-										self.__coreCollectionsOutliner.defaultCollection)):
+										self.__collectionsOutliner.getCollectionId(
+										self.__collectionsOutliner.defaultCollection)):
 					LOGGER.error("!> {0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
 					self.__class__.__name__, iblSet))
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.__coreDatabaseBrowser.modelRefresh.emit()
+			self.__databaseBrowser.modelRefresh.emit()

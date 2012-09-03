@@ -137,9 +137,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__editLayout = UiConstants.developmentLayout
 		self.__inspectLayout = "inspectCentric"
 
-		self.__factoryScriptEditor = None
-		self.__coreDb = None
-		self.__coreCollectionsOutliner = None
+		self.__scriptEditor = None
+		self.__db = None
+		self.__collectionsOutliner = None
 
 		self.__model = None
 		self.__views = None
@@ -616,100 +616,100 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectLayout"))
 
 	@property
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the property for **self.__factoryScriptEditor** attribute.
+		This method is the property for **self.__scriptEditor** attribute.
 
-		:return: self.__factoryScriptEditor. ( QWidget )
+		:return: self.__scriptEditor. ( QWidget )
 		"""
 
-		return self.__factoryScriptEditor
+		return self.__scriptEditor
 
-	@factoryScriptEditor.setter
+	@scriptEditor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self, value):
+	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__factoryScriptEditor** attribute.
+		This method is the setter method for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
-	@factoryScriptEditor.deleter
+	@scriptEditor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def factoryScriptEditor(self):
+	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__factoryScriptEditor** attribute.
+		This method is the deleter method for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryScriptEditor"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the property for **self.__coreDb** attribute.
+		This method is the property for **self.__db** attribute.
 
-		:return: self.__coreDb. ( Object )
+		:return: self.__db. ( Object )
 		"""
 
-		return self.__coreDb
+		return self.__db
 
-	@coreDb.setter
+	@db.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
+	def db(self, value):
 		"""
-		This method is the setter method for **self.__coreDb** attribute.
+		This method is the setter method for **self.__db** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
-	@coreDb.deleter
+	@db.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
+	def db(self):
 		"""
-		This method is the deleter method for **self.__coreDb** attribute.
+		This method is the deleter method for **self.__db** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
 
 	@property
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__coreCollectionsOutliner** attribute.
+		This method is the property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__coreCollectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner. ( QWidget )
 		"""
 
-		return self.__coreCollectionsOutliner
+		return self.__collectionsOutliner
 
-	@coreCollectionsOutliner.setter
+	@collectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self, value):
+	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the setter method for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
-	@coreCollectionsOutliner.deleter
+	@collectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreCollectionsOutliner(self):
+	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__coreCollectionsOutliner** attribute.
+		This method is the deleter method for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@property
 	def model(self):
@@ -1052,9 +1052,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__coreDb = self.__engine.componentsManager["core.db"]
-		self.__coreCollectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
+		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
+		self.__db = self.__engine.componentsManager["core.db"]
+		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
 		return True
@@ -1147,7 +1147,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
-		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
+		self.__model.modelReset.connect(self.__collectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 
 		if not self.__engine.parameters.databaseReadOnly:
 			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
@@ -1222,7 +1222,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							self.__class__.__name__, directory))
 
 			# Ibl Sets table integrity checking.
-			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
+			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__db.dbSession)
 			try:
 				for iblSet, exceptions in erroneousIblSets.iteritems():
 					for exception in exceptions:
@@ -1439,7 +1439,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSetNode.synchronizeDbItem()
 		iblSetNode.synchronizeToolTip()
 
-		self.__coreDb.commit()
+		self.__db.commit()
 
 	@core.executionTrace
 	def __views__activeViewChanged(self, index):
@@ -1486,7 +1486,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addIblSet(name, path)
 					elif choice == 1:
-						self.__factoryScriptEditor.loadFile(path)
+						self.__scriptEditor.loadFile(path)
 						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
 						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 				else:
@@ -1520,7 +1520,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not iblSet:
 			return
 
-		if dbCommon.updateIblSetContent(self.__coreDb.dbSession, iblSet):
+		if dbCommon.updateIblSetContent(self.__db.dbSession, iblSet):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, iblSet.title))
@@ -1534,11 +1534,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Collection id. ( Integer )
 		"""
 
-		collections = self.__coreCollectionsOutliner.getSelectedCollections()
+		collections = self.__collectionsOutliner.getSelectedCollections()
 		collection = foundations.common.getFirstItem(collections)
 		identity = collection and collection.id or None
-		return identity and identity or self.__coreCollectionsOutliner.getCollectionId(
-		self.__coreCollectionsOutliner.defaultCollection)
+		return identity and identity or self.__collectionsOutliner.getCollectionId(
+		self.__collectionsOutliner.defaultCollection)
 
 	@core.executionTrace
 	def __searchIblSets(self, pattern, attribute, flags=re.IGNORECASE):
@@ -1557,10 +1557,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		except Exception:
 			return list()
 
-		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(
-		self.__coreCollectionsOutliner.getSelectedCollections() or \
-		self.__coreCollectionsOutliner.getCollections())).intersection(
-		dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(strings.encode(pattern.pattern)), attribute, flags))]
+		iblSets = [iblSet for iblSet in set(self.__collectionsOutliner.getCollectionsIblSets(
+		self.__collectionsOutliner.getSelectedCollections() or \
+		self.__collectionsOutliner.getCollections())).intersection(
+		dbCommon.filterIblSets(self.__db.dbSession, "{0}".format(strings.encode(pattern.pattern)), attribute, flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
@@ -1779,7 +1779,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
+			if dbCommon.addIblSet(self.__db.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
 				self.modelRefresh.emit()
 				return True
 			else:
@@ -1837,7 +1837,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
-		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
+		if dbCommon.removeIblSet(self.__db.dbSession, iblSet.id):
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1859,7 +1859,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__,
 																					iblSet.title,
 																					file))
-		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
+		if dbCommon.updateIblSetLocation(self.__db.dbSession, iblSet, file):
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1875,7 +1875,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Ibl Sets. ( List )
 		"""
 
-		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
+		return [iblSet for iblSet in dbCommon.getIblSets(self.__db.dbSession)]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1896,7 +1896,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getIblSets()).intersection(
-		dbCommon.filterIblSets(self.__coreDb.dbSession,
+		dbCommon.filterIblSets(self.__db.dbSession,
 								"{0}".format(strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
@@ -1911,7 +1911,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
+		return dbCommon.iblSetExists(self.__db.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1938,8 +1938,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		nodeFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or \
 		int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
-		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(
-		self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		iblSets = iblSets or self.__collectionsOutliner.getCollectionsIblSets(
+		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
 			iblSetNode = dbNodes.IblSetNode(iblSet,
