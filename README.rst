@@ -14,10 +14,10 @@ Installation / Usage
 For Installation and Usage check the Manual / Help File available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html and the related thread here: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
 sIBL_GUI depends on some other packages / repositories:
 
-	* Foundations package available from Github: https://github.com/KelSolaar/Foundations. You will need to create a symbolic link from "Foundations/src/foundations" to "sIBL_GUI/src/foundations" and from "Foundations/src/tests/testsFoundations" to "sIBL_GUI/src/tests/testsFoundations" or ensure the packages are available in Python path.
-	* Manager package available from Github: https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the packages are available in Python path.
-	* Umbra package available from Github: https://github.com/KelSolaar/Umbra. You will need to create a symbolic link from "Umbra/src/umbra" to "sIBL_GUI/src/umbra" and from "Umbra/src/tests/testsUmbra" to "sIBL_GUI/src/tests/testsUmbra" or ensure the packages are available in Python path.
-	* sIBL_GUI_Templates repository available from Github: https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/sibl_gui/resources/templates".
+-   Foundations package available from Github: https://github.com/KelSolaar/Foundations. You will need to create a symbolic link from "Foundations/src/foundations" to "sIBL_GUI/src/foundations" and from "Foundations/src/tests/testsFoundations" to "sIBL_GUI/src/tests/testsFoundations" or ensure the packages are available in Python path.
+-   Manager package available from Github: https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the packages are available in Python path.
+-   Umbra package available from Github: https://github.com/KelSolaar/Umbra. You will need to create a symbolic link from "Umbra/src/umbra" to "sIBL_GUI/src/umbra" and from "Umbra/src/tests/testsUmbra" to "sIBL_GUI/src/tests/testsUmbra" or ensure the packages are available in Python path.
+-   sIBL_GUI_Templates repository available from Github: https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/sibl_gui/resources/templates".
 
 Quick Repositories Cloning Commands::
 
