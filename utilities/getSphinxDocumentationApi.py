@@ -106,11 +106,11 @@ CONTENT_SUBSTITUTIONS = {"APPLICATION \= QApplication\(sys.argv\)": "{0}".format
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, apiFile):
+def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile):
 	"""
 	This definition gets Sphinx documentation API.
 
-	:param sourceDirectory: Source directory. ( String )
+	:param packages: Packages. ( String )
 	:param cloneDirectory: Source clone directory. ( String )
 	:param outputDirectory: Content directory. ( String )
 	:param apiFile: API file. ( String )
@@ -118,131 +118,140 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 	LOGGER.info("{0} | Building Sphinx documentation API!".format(getSphinxDocumentationApi.__name__))
 
-	not cloneDirectory in sys.path and sys.path.append(sourceDirectory)
+	if os.path.exists(cloneDirectory):
+		shutil.rmtree(cloneDirectory)
+		os.makedirs(cloneDirectory)
 
-	filesWalker = FilesWalker(sourceDirectory)
-	filesWalker.walk(filtersIn=("\.ui$",))
-	for file in sorted(filesWalker.files.itervalues()):
-		LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
-		targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
-		directory = "{0}{1}".format(cloneDirectory, targetDirectory)
-		if not foundations.common.pathExists(directory):
-			os.makedirs(directory)
-		source = os.path.join(directory, os.path.basename(file))
-		shutil.copyfile(file, source)
+	packagesModules = {"apiModules" : [],
+					"testsModules" : []}
+	for package in packages.split(","):
+		package = __import__(package)
+		path = foundations.common.getFirstItem(package.__path__)
+		sourceDirectory = os.path.dirname(path)
 
-	filesWalker = FilesWalker(sourceDirectory)
-	filesWalker.walk(filtersIn=("\.py$",), filtersOut=EXCLUDED_PYTHON_MODULES)
-	modules = []
-	for file in sorted(filesWalker.files.itervalues()):
-		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
-		module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
-											strings.getSplitextBasename(file)).strip(".")
-		LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))
-		directory = os.path.dirname(os.path.join(cloneDirectory, module.replace(".", "/")))
-		if not foundations.common.pathExists(directory):
-			os.makedirs(directory)
-		source = os.path.join(directory, os.path.basename(file))
-		shutil.copyfile(file, source)
+		filesWalker = FilesWalker(sourceDirectory)
+		filesWalker.walk(filtersIn=("{0}.*\.ui$".format(path),))
+		for file in sorted(filesWalker.files.itervalues()):
+			LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
+			targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
+			directory = "{0}{1}".format(cloneDirectory, targetDirectory)
+			if not foundations.common.pathExists(directory):
+				os.makedirs(directory)
+			source = os.path.join(directory, os.path.basename(file))
+			shutil.copyfile(file, source)
 
-		sourceFile = File(source)
-		sourceFile.read()
-		trimStartIndex = trimEndIndex = None
-		inMultilineString = inDecorator = False
-		for i, line in enumerate(sourceFile.content):
-			if re.search(r"__name__ +\=\= +\"__main__\"", line):
-				trimStartIndex = i
-			if trimStartIndex and re.search(r"^\s*$", line):
-				trimEndIndex = i
-			for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
-				if re.search(pattern, line):
-					sourceFile.content[i] = re.sub(pattern, value, line)
+		filesWalker = FilesWalker(sourceDirectory)
+		filesWalker.walk(filtersIn=("{0}.*\.py$".format(path),), filtersOut=EXCLUDED_PYTHON_MODULES)
+		modules = []
+		for file in sorted(filesWalker.files.itervalues()):
+			LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
+			module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
+												strings.getSplitextBasename(file)).strip(".")
+			LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))
+			directory = os.path.dirname(os.path.join(cloneDirectory, module.replace(".", "/")))
+			if not foundations.common.pathExists(directory):
+				os.makedirs(directory)
+			source = os.path.join(directory, os.path.basename(file))
+			shutil.copyfile(file, source)
 
-			strippedLine = line.strip()
-			if re.search(r"^\"\"\"", strippedLine):
-				inMultilineString = not inMultilineString
+			sourceFile = File(source)
+			sourceFile.read()
+			trimStartIndex = trimEndIndex = None
+			inMultilineString = inDecorator = False
+			for i, line in enumerate(sourceFile.content):
+				if re.search(r"__name__ +\=\= +\"__main__\"", line):
+					trimStartIndex = i
+				if trimStartIndex and re.search(r"^\s*$", line):
+					trimEndIndex = i
+				for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
+					if re.search(pattern, line):
+						sourceFile.content[i] = re.sub(pattern, value, line)
 
-			if inMultilineString:
+				strippedLine = line.strip()
+				if re.search(r"^\"\"\"", strippedLine):
+					inMultilineString = not inMultilineString
+
+				if inMultilineString:
+					continue
+
+				if re.search(r"^@\w+", strippedLine) and \
+					not re.search(r"@property", strippedLine) and \
+					not re.search(r"^@\w+\.setter", strippedLine) and \
+					not re.search(r"^@\w+\.deleter", strippedLine):
+						inDecorator = True
+						indent = re.search(r"^([ \t]*)", line)
+
+				if re.search(r"^[ \t]*def \w+", sourceFile.content[i]) or \
+					re.search(r"^[ \t]*class \w+", sourceFile.content[i]):
+					inDecorator = False
+
+				if not inDecorator:
+					continue
+
+				sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
+
+			if trimStartIndex and trimEndIndex:
+				LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__))
+				content = [sourceFile.content[i] for i in range(trimStartIndex)]
+				content.append("\n{0}\n".format(STATEMENTS_UPDATE_MESSAGGE))
+				content.extend([sourceFile.content[i] for i in range(trimEndIndex, len(sourceFile.content))])
+				sourceFile.content = content
+			sourceFile.write()
+
+			if "__init__.py" in file:
 				continue
 
-			if re.search(r"^@\w+", strippedLine) and \
-				not re.search(r"@property", strippedLine) and \
-				not re.search(r"^@\w+\.setter", strippedLine) and \
-				not re.search(r"^@\w+\.deleter", strippedLine):
-					inDecorator = True
-					indent = re.search(r"^([ \t]*)", line)
+			rstFilePath = "{0}{1}".format(module, FILES_EXTENSION)
+			LOGGER.info("{0} | Building API file: '{1}'".format(getSphinxDocumentationApi.__name__, rstFilePath))
+			rstFile = File(os.path.join(outputDirectory, rstFilePath))
+			header = ["_`{0}`\n".format(module),
+					"==={0}\n".format("="*len(module)),
+					"\n",
+					".. automodule:: {0}\n".format(module),
+					"\n"]
+			rstFile.content.extend(header)
 
-			if re.search(r"^[ \t]*def \w+", sourceFile.content[i]) or \
-				re.search(r"^[ \t]*class \w+", sourceFile.content[i]):
-				inDecorator = False
+			functions = OrderedDict()
+			classes = OrderedDict()
+			moduleAttributes = OrderedDict()
+			for member, object in moduleBrowser._readmodule(module, [source, ]).iteritems():
+				if object.__class__ == moduleBrowser.Function:
+					if not member.startswith("_"):
+						functions[member] = [".. autofunction:: {0}\n".format(member)]
+				elif object.__class__ == moduleBrowser.Class:
+					classes[member] = [".. autoclass:: {0}\n".format(member),
+										"	:show-inheritance:\n",
+										"	:members:\n"]
+				elif object.__class__ == moduleBrowser.Global:
+					if not member.startswith("_"):
+						moduleAttributes[member] = [".. attribute:: {0}.{1}\n".format(module, member)]
 
-			if not inDecorator:
-				continue
+			moduleAttributes and rstFile.content.append("Module Attributes\n-----------------\n\n")
+			for moduleAttribute in moduleAttributes.itervalues():
+				rstFile.content.extend(moduleAttribute)
+				rstFile.content.append("\n")
 
-			sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
+			functions and rstFile.content.append("Functions\n---------\n\n")
+			for function in functions.itervalues():
+				rstFile.content.extend(function)
+				rstFile.content.append("\n")
 
-		if trimStartIndex and trimEndIndex:
-			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__))
-			content = [sourceFile.content[i] for i in range(trimStartIndex)]
-			content.append("\n{0}\n".format(STATEMENTS_UPDATE_MESSAGGE))
-			content.extend([sourceFile.content[i] for i in range(trimEndIndex, len(sourceFile.content))])
-			sourceFile.content = content
-		sourceFile.write()
+			classes and rstFile.content.append("Classes\n-------\n\n")
+			for class_ in classes.itervalues():
+				rstFile.content.extend(class_)
+				rstFile.content.append("\n")
 
-		if "__init__.py" in file:
-			continue
+			rstFile.write()
+			modules.append(module)
 
-		rstFilePath = "{0}{1}".format(module, FILES_EXTENSION)
-		LOGGER.info("{0} | Building API file: '{1}'".format(getSphinxDocumentationApi.__name__, rstFilePath))
-		rstFile = File(os.path.join(outputDirectory, rstFilePath))
-		header = ["_`{0}`\n".format(module),
-				"==={0}\n".format("="*len(module)),
-				"\n",
-				".. automodule:: {0}\n".format(module),
-				"\n"]
-		rstFile.content.extend(header)
-
-		functions = OrderedDict()
-		classes = OrderedDict()
-		moduleAttributes = OrderedDict()
-		for member, object in moduleBrowser._readmodule(module, [source, ]).iteritems():
-			if object.__class__ == moduleBrowser.Function:
-				if not member.startswith("_"):
-					functions[member] = [".. autofunction:: {0}\n".format(member)]
-			elif object.__class__ == moduleBrowser.Class:
-				classes[member] = [".. autoclass:: {0}\n".format(member),
-									"	:show-inheritance:\n",
-									"	:members:\n"]
-			elif object.__class__ == moduleBrowser.Global:
-				if not member.startswith("_"):
-					moduleAttributes[member] = [".. attribute:: {0}.{1}\n".format(module, member)]
-
-		moduleAttributes and rstFile.content.append("Module Attributes\n-----------------\n\n")
-		for moduleAttribute in moduleAttributes.itervalues():
-			rstFile.content.extend(moduleAttribute)
-			rstFile.content.append("\n")
-
-		functions and rstFile.content.append("Functions\n---------\n\n")
-		for function in functions.itervalues():
-			rstFile.content.extend(function)
-			rstFile.content.append("\n")
-
-		classes and rstFile.content.append("Classes\n-------\n\n")
-		for class_ in classes.itervalues():
-			rstFile.content.extend(class_)
-			rstFile.content.append("\n")
-
-		rstFile.write()
-		modules.append(module)
-
-	testsModules = [module for module in modules if "tests" in module]
-	modules = [module for module in modules if not "tests" in module]
+		packagesModules["apiModules"].extend([module for module in modules if not "tests" in module])
+		packagesModules["testsModules"].extend([module for module in modules if "tests" in module])
 
 	apiFile = File(apiFile)
 	apiFile.content.extend(TOCTREE_TEMPLATE_BEGIN)
-	for module in modules:
+	for module in packagesModules["apiModules"]:
 		apiFile.content.append("   {0} <{1}>\n".format(module, "api/{0}".format(module)))
-	for module in testsModules:
+	for module in packagesModules["testsModules"]:
 		apiFile.content.append("   {0} <{1}>\n".format(module, "api/{0}".format(module)))
 	apiFile.content.extend(TOCTREE_TEMPLATE_END)
 	apiFile.write()

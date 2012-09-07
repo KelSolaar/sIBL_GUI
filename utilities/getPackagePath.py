@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**darwinSetup.py**
+**getPackagePath.py
 
 **Platform:**
-	Mac Os X.
+	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the py2app configuration file.
+	Write given package path to stdout.
 
 **Others:**
 
@@ -17,7 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-from setuptools import setup
+import sys
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -29,20 +29,18 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["MAJOR_VERSION", "APP", "DATA_FILES", "OPTIONS"]
-
-APPLICATION_NAME = "sIBL_GUI"
-MAJOR_VERSION = "4"
-
-APP = ["../../sibl_gui/launcher.py"]
-DATA_FILES = []
-OPTIONS = {"argv_emulation": True, "iconfile": "../../sibl_gui/resources/images/Icon_Light_256.icns"}
+__all__ = ["getPackagePath"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-setup(name="{0} {1}".format(APPLICATION_NAME, MAJOR_VERSION),
-	app=APP,
-	data_files=DATA_FILES,
-	options={"py2app": OPTIONS},
-	setup_requires=["py2app"])
+def getPackagePath(package):
+	"""
+	This writes given package path to stdout.
+	"""
+
+	package = __import__(package)
+	sys.stdout.write(package.__path__[0])
+
+if __name__ == "__main__":
+	getPackagePath(sys.argv[1])

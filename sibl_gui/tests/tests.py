@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**darwinSetup.py**
+**tests.py**
 
 **Platform:**
-	Mac Os X.
+	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the py2app configuration file.
+	This module runs the tests suite.
 
 **Others:**
 
@@ -17,7 +17,13 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-from setuptools import setup
+import os
+import sys
+import unittest
+
+#**********************************************************************************************************************
+#***	Internal imports.
+#**********************************************************************************************************************
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -29,20 +35,34 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["MAJOR_VERSION", "APP", "DATA_FILES", "OPTIONS"]
-
-APPLICATION_NAME = "sIBL_GUI"
-MAJOR_VERSION = "4"
-
-APP = ["../../sibl_gui/launcher.py"]
-DATA_FILES = []
-OPTIONS = {"argv_emulation": True, "iconfile": "../../sibl_gui/resources/images/Icon_Light_256.icns"}
+__all__ = ["testsSuite"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-setup(name="{0} {1}".format(APPLICATION_NAME, MAJOR_VERSION),
-	app=APP,
-	data_files=DATA_FILES,
-	options={"py2app": OPTIONS},
-	setup_requires=["py2app"])
+def _setApplicationPackageDirectory():
+	"""
+	This definition sets the package directory in the path.
+
+	:return: Definition success. ( Boolean )
+	"""
+
+	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
+	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
+	return True
+
+_setApplicationPackageDirectory()
+
+def testsSuite():
+	"""
+	This definitions runs the tests suite.
+	
+	:return: Tests suite. ( TestSuite )
+	"""
+
+	testsLoader = unittest.TestLoader()
+	return testsLoader.discover(os.path.dirname(__file__))
+
+if __name__ == "__main__":
+	import sibl_gui.tests.utilities
+	unittest.TextTestRunner(verbosity=2).run(testsSuite())

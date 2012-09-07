@@ -1,9 +1,9 @@
 #/bin/bash
-echo ----------------------------------------------------------------
+echo -------------------------------------------------------------------------------
 echo sIBL_GUI - Files Gathering
-echo ----------------------------------------------------------------
+echo -------------------------------------------------------------------------------
 
-export PROJECT=/Users/KelSolaar/Documents/Developement/sIBL_GUI
+export PROJECT=$( dirname "${BASH_SOURCE[0]}" )/..
 
 export SUPPORT=$PROJECT/support/
 export RELEASES=$PROJECT/releases/
