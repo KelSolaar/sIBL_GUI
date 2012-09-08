@@ -1762,7 +1762,7 @@ Or after backuping the original one, you can directly use one of those already e
 
     <br/>
 
-.. .changeLog
+.. .changes
 
 Changes
 =======
