@@ -58,8 +58,8 @@ core.setVerbosityLevel(3)
 
 FILES_EXTENSION = ".rst"
 
-TOCTREE_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI |version|'s documentation!\n",
-						"==============================================\n",
+TOCTREE_TEMPLATE_BEGIN = ["Welcome to {0} |version|'s documentation!\n",
+						"{0}\n",
 						"\n",
 						"Contents:\n",
 						"\n",
@@ -76,10 +76,11 @@ TOCTREE_TEMPLATE_END = ["Search:\n",
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
+def getSphinxDocumentationTocTree(title, fileIn, fileOut, contentDirectory):
 	"""
 	This definition gets Sphinx documentation index file.
 
+	:param title: Package title. ( String )
 	:param fileIn: File to convert. ( String )
 	:param fileOut: Output file. ( String )
 	:param contentDirectory: Content directory. ( String )
@@ -110,6 +111,8 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 			tocTree.append(data)
 	tocTree.append("\n")
 
+	TOCTREE_TEMPLATE_BEGIN[0] = TOCTREE_TEMPLATE_BEGIN[0].format(title)
+	TOCTREE_TEMPLATE_BEGIN[1] = TOCTREE_TEMPLATE_BEGIN[1].format("=" * len(TOCTREE_TEMPLATE_BEGIN[0]))
 	content = TOCTREE_TEMPLATE_BEGIN
 	content.extend(tocTree)
 	content.extend(TOCTREE_TEMPLATE_END)
@@ -119,4 +122,4 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	file.write()
 
 if __name__ == "__main__":
-	getSphinxDocumentationTocTree(sys.argv[1], sys.argv[2], sys.argv[3])
+	getSphinxDocumentationTocTree(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
