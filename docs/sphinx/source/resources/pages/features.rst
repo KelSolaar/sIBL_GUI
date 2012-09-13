@@ -37,5 +37,5 @@ The source code is available on `github <http://github.com/>`_: http://github.co
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

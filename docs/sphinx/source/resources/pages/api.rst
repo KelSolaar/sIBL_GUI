@@ -9,7 +9,6 @@ Modules Summary:
    foundations.cache <api/foundations.cache>
    foundations.common <api/foundations.common>
    foundations.core <api/foundations.core>
-   foundations.dag <api/foundations.dag>
    foundations.dataStructures <api/foundations.dataStructures>
    foundations.environment <api/foundations.environment>
    foundations.exceptions <api/foundations.exceptions>
@@ -17,6 +16,7 @@ Modules Summary:
    foundations.io <api/foundations.io>
    foundations.library <api/foundations.library>
    foundations.namespace <api/foundations.namespace>
+   foundations.nodes <api/foundations.nodes>
    foundations.parsers <api/foundations.parsers>
    foundations.pkzip <api/foundations.pkzip>
    foundations.rotatingBackup <api/foundations.rotatingBackup>
@@ -143,7 +143,6 @@ Modules Summary:
    foundations.tests.testsFoundations.testsCache <api/foundations.tests.testsFoundations.testsCache>
    foundations.tests.testsFoundations.testsCommon <api/foundations.tests.testsFoundations.testsCommon>
    foundations.tests.testsFoundations.testsCore <api/foundations.tests.testsFoundations.testsCore>
-   foundations.tests.testsFoundations.testsDag <api/foundations.tests.testsFoundations.testsDag>
    foundations.tests.testsFoundations.testsDataStructures <api/foundations.tests.testsFoundations.testsDataStructures>
    foundations.tests.testsFoundations.testsEnvironment <api/foundations.tests.testsFoundations.testsEnvironment>
    foundations.tests.testsFoundations.testsExceptions <api/foundations.tests.testsFoundations.testsExceptions>
@@ -151,6 +150,7 @@ Modules Summary:
    foundations.tests.testsFoundations.testsIo <api/foundations.tests.testsFoundations.testsIo>
    foundations.tests.testsFoundations.testsLibrary <api/foundations.tests.testsFoundations.testsLibrary>
    foundations.tests.testsFoundations.testsNamespace <api/foundations.tests.testsFoundations.testsNamespace>
+   foundations.tests.testsFoundations.testsNodes <api/foundations.tests.testsFoundations.testsNodes>
    foundations.tests.testsFoundations.testsParsers <api/foundations.tests.testsFoundations.testsParsers>
    foundations.tests.testsFoundations.testsPkzip <api/foundations.tests.testsFoundations.testsPkzip>
    foundations.tests.testsFoundations.testsRotatingBackup <api/foundations.tests.testsFoundations.testsRotatingBackup>

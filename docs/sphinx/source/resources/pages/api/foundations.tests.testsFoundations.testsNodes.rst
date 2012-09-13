@@ -1,7 +1,7 @@
-_`foundations.tests.testsFoundations.testsDag`
-==============================================
+_`foundations.tests.testsFoundations.testsNodes`
+================================================
 
-.. automodule:: foundations.tests.testsFoundations.testsDag
+.. automodule:: foundations.tests.testsFoundations.testsNodes
 
 Classes
 -------

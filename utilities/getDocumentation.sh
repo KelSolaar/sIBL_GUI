@@ -7,8 +7,8 @@ export PROJECT=$( dirname "${BASH_SOURCE[0]}" )/..
 
 export UTILITIES=$PROJECT/utilities
 export DOCUMENTATION=$PROJECT/docs/documentation
-export HELP=$PROJECT/docs/documentation/help
-export SPHINX=$PROJECT/docs/documentation/sphinx
+export HELP=$PROJECT/docs/help
+export SPHINX=$PROJECT/docs/sphinx
 
 #! Inline documentation build.
 echo -------------------------------------------------------------------------------

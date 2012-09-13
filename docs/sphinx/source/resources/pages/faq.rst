@@ -5,14 +5,14 @@ The following questions are answered by *sIBL_GUI* developer Thomas Mansencal an
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`General Questions`
 -------------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 
 _`Overall`
@@ -27,7 +27,7 @@ _`Overall`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -37,7 +37,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -49,7 +49,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -59,7 +59,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -72,7 +72,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -82,7 +82,7 @@ You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command l
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -95,7 +95,7 @@ You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command l
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -105,7 +105,7 @@ Please refer to the first post of this thread: http://www.hdrlabs.com/cgi-bin/fo
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -117,7 +117,7 @@ Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -127,7 +127,7 @@ Using the *-u / --userApplicationDatasDirectory* command line parameter, you can
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Rendering`
 ^^^^^^^^^^^^
@@ -144,7 +144,7 @@ _`Rendering`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -154,7 +154,7 @@ Yes you need to map each one on a different sphere and play with the different r
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -164,14 +164,14 @@ Yes you need to map each one on a different sphere and play with the different r
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Operating System Questions`
 --------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Windows`
 ^^^^^^^^^^^^^^^^
@@ -184,7 +184,7 @@ Create or modify a *shortcut* to the executable, then append the parameters you 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Mac Os X`
 ^^^^^^^^^^^^^^^^
@@ -201,14 +201,14 @@ Open a terminal then issue the following commands with the parameters you want t
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`3D Packages Questions`
 --------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk Maya`
 ^^^^^^^^^^^^^^^^
@@ -230,7 +230,7 @@ _`Autodesk Maya`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -248,7 +248,7 @@ Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -260,7 +260,7 @@ It's a convenient method to directly launch *sIBL_GUI* from within Autodesk Maya
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk Softimage`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -280,7 +280,7 @@ sIBL_GUI_XSI_Server Addon ( Windows Only ):
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -293,7 +293,7 @@ You either:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -310,7 +310,7 @@ There is also an alternative way without gacutil.exe, it has been tested on a fe
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk 3ds Max`
 ^^^^^^^^^^^^^^^^^^^
@@ -326,7 +326,7 @@ Notice that you need to launch Autodesk 3ds Max as Administrator for that purpos
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -345,5 +345,5 @@ Or after backuping the original one, you can directly use one of those already e
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

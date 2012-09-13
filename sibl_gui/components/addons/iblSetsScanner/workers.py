@@ -30,9 +30,10 @@ from PyQt4.QtCore import pyqtSignal
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
+import foundations.walkers
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
-from foundations.walkers import FilesWalker
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -246,10 +247,9 @@ class IblSetsScanner_worker(QThread):
 		needModelRefresh = False
 		for directory in directories:
 			if foundations.common.pathExists(directory):
-				filesWalker = FilesWalker(directory)
-				filesWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
-				for iblSet, path in filesWalker.files.iteritems():
+				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
 					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
+						iblSet = strings.getSplitextBasename(path)
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:

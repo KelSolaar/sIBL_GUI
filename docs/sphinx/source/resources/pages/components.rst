@@ -16,14 +16,14 @@ Those 2 types are split into 4 main families:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Factory`
 ----------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.componentsManagerUi:
 
@@ -64,7 +64,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.preferencesManager:
 
@@ -104,7 +104,7 @@ Those settings are components dependent and will be described per related compon
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.scriptEditor:
 
@@ -274,14 +274,14 @@ Results View Context menu:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Core`
 -------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.collectionsOutliner:
 
@@ -330,7 +330,7 @@ While adding a new Collection, a comment can be directly provided by using a com
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.databaseBrowser:
 
@@ -414,7 +414,7 @@ Search widget context menu:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
@@ -423,7 +423,7 @@ The *Db* component is the heart of *sIBL_GUI* data storage, it provides the data
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.inspector:
 
@@ -470,7 +470,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.templatesOutliner:
 
@@ -522,14 +522,14 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 Addons
 ------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.about:
 
@@ -544,7 +544,7 @@ The *About* component displays the *About* window.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.databaseOperations:
 
@@ -563,7 +563,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.gpsMap:
 
@@ -588,7 +588,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.iblSetsScanner:
 
@@ -599,7 +599,7 @@ The *Ibl Sets Scanner* component is a file scanning component that will automati
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.imagesCachesOperations:
 
@@ -619,7 +619,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loaderScript:
 
@@ -646,7 +646,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loaderScriptOptions:
 
@@ -666,7 +666,7 @@ Templates settings are stored per version and restored each time one is selected
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.locationsBrowser:
 
@@ -702,7 +702,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loggingNotifier:
 
@@ -713,7 +713,7 @@ The *Logging Notifier* component displays logging messages in the status bar.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.onlineUpdater:
 
@@ -752,7 +752,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.preview:
 
@@ -789,7 +789,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.rawEditingUtilities:
 
@@ -808,7 +808,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.rewiringTool:
 
@@ -828,7 +828,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.searchDatabase:
 
@@ -856,7 +856,7 @@ Search In Shot Time:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.sIBLeditUtilities:
 
@@ -875,5 +875,5 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

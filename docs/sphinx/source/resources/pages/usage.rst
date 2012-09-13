@@ -3,7 +3,7 @@ _`Usage`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`User Preferences`
 -------------------
@@ -49,7 +49,7 @@ Structure Description:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Command Line Parameters`
 --------------------------
@@ -75,7 +75,7 @@ Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Shared Database Configuration`
 --------------------------------
@@ -112,7 +112,7 @@ That way you can have artists using the Database a supervisor has defined, and e
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`IBL Sets Wizard`
 ------------------
@@ -131,7 +131,7 @@ Choose a directory where are stored some IBL Sets and they will be added to the 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Interface`
 ------------
@@ -146,7 +146,7 @@ _`Interface`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Toolbar`
 ^^^^^^^^^^
@@ -179,7 +179,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Library Layout`
 ^^^^^^^^^^^^^^^^^
@@ -199,7 +199,7 @@ This layout is built around 4 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Inspect Layout`
 ^^^^^^^^^^^^^^^^^
@@ -218,7 +218,7 @@ This layout is built around 3 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
@@ -242,7 +242,7 @@ An additional but extremely powerful export related component is available by ri
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Edit Layout`
 ^^^^^^^^^^^^^^^^^
@@ -259,7 +259,7 @@ This layout is built around 1 component:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -277,5 +277,5 @@ This layout is built around 2 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

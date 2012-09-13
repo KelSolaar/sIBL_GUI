@@ -32,9 +32,9 @@ from collections import OrderedDict
 import foundations.common
 import foundations.core as core
 import foundations.strings as strings
+import foundations.walkers
 from foundations.io import File
 from foundations.globals.constants import Constants
-from foundations.walkers import FilesWalker
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "libraries"))
 import python.pyclbr as moduleBrowser
@@ -129,9 +129,7 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 		path = foundations.common.getFirstItem(package.__path__)
 		sourceDirectory = os.path.dirname(path)
 
-		filesWalker = FilesWalker(sourceDirectory)
-		filesWalker.walk(filtersIn=("{0}.*\.ui$".format(path),))
-		for file in sorted(filesWalker.files.itervalues()):
+		for file in sorted(list(foundations.walkers.filesWalker(sourceDirectory, filtersIn=("{0}.*\.ui$".format(path),)))):
 			LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 			targetDirectory = os.path.dirname(file).replace(sourceDirectory, "")
 			directory = "{0}{1}".format(cloneDirectory, targetDirectory)
@@ -140,10 +138,9 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 			source = os.path.join(directory, os.path.basename(file))
 			shutil.copyfile(file, source)
 
-		filesWalker = FilesWalker(sourceDirectory)
-		filesWalker.walk(filtersIn=("{0}.*\.py$".format(path),), filtersOut=EXCLUDED_PYTHON_MODULES)
 		modules = []
-		for file in sorted(filesWalker.files.itervalues()):
+		for file in sorted(list(foundations.walkers.filesWalker(sourceDirectory, filtersIn=("{0}.*\.py$".format(path),),
+		filtersOut=EXCLUDED_PYTHON_MODULES))):
 			LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 			module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
 												strings.getSplitextBasename(file)).strip(".")

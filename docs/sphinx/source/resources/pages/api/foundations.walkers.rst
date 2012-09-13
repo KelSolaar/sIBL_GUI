@@ -11,16 +11,11 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: filesWalker
+
 .. autofunction:: depthWalker
 
 .. autofunction:: dictionariesWalker
 
 .. autofunction:: nodesWalker
-
-Classes
--------
-
-.. autoclass:: FilesWalker
-	:show-inheritance:
-	:members:
 

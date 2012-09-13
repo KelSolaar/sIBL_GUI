@@ -21,11 +21,11 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: DictionariesWalkerTestCase
+.. autoclass:: DepthWalkerTestCase
 	:show-inheritance:
 	:members:
 
-.. autoclass:: DepthWalkerTestCase
+.. autoclass:: DictionariesWalkerTestCase
 	:show-inheritance:
 	:members:
 

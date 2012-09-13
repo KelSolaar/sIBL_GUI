@@ -28,7 +28,7 @@ __all__ = ["a", "pyz", "exe", "coll", "app"]
 
 a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
 			os.path.join(HOMEPATH, "support\\useUnicode.py"),
-			"z:/Documents/Developement/sIBL_GUI/src/sIBL_GUI.py"],
+			"z:/Documents/Developement/sIBL_GUI/sIBL_GUI.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
              excludes=["foundations", "manager", "umbra", "sibl_gui"])
 

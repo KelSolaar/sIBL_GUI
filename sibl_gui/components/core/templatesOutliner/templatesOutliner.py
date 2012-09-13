@@ -40,6 +40,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
+import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -49,7 +50,6 @@ import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
-from foundations.walkers import FilesWalker
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
@@ -1238,10 +1238,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if not os.path.isdir(path):
 						return
 
-					filesWalker = FilesWalker(path)
-					filesWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
-
-					if not filesWalker.files:
+					if not list(foundations.walkers.filesWalker(path, ("\.{0}$".format(self.__extension),), ("\._",))):
 						return
 
 					if messageBox.messageBox("Question", "Question",
@@ -1488,16 +1485,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.debug("> Initializing directory '{0}' filesWalker.".format(directory))
 
-		filesWalker = FilesWalker(directory)
-		filesWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+		files = list(foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)))
 
-		self.__engine.startProcessing("Adding Directory Templates ...", len(filesWalker.files))
+		self.__engine.startProcessing("Adding Directory Templates ...", len(files))
 		success = True
-		for template, path in filesWalker.files.iteritems():
+		for path in files:
 			if not self.templateExists(path):
 				success *= umbra.ui.common.signalsBlocker(self,
 														self.addTemplate,
-														namespace.getNamespace(template, rootOnly=True),
+														strings.getSplitextBasename(path),
 														path,
 														collectionId) or False
 			self.__engine.stepProcessing()

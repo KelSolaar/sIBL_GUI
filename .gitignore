@@ -16,6 +16,6 @@ releases/Linux/
 releases/repository/
 releases/Windows/
 sibl_gui/resources/images/builders/
-docs/documentation/sphinx/build
-docs/documentation/sphinx/source/resources/packages
+docs/sphinx/build
+docs/sphinx/source/resources/packages
 utilities/dmgCanvas/

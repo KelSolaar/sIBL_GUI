@@ -25,9 +25,9 @@ import sys
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.walkers
 from foundations.io import File
 from foundations.globals.constants import Constants
-from foundations.walkers import FilesWalker
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -67,11 +67,8 @@ def getImports(sourceDirectory, filtersIn, filtersOut):
 	:return: Imports. ( List )
 	"""
 
-	filesWalker = FilesWalker(sourceDirectory)
-	filesWalker.walk(filtersIn, filtersOut)
-
 	imports = IMPORTS
-	for file in sorted(filesWalker.files.itervalues()):
+	for file in sorted(list(foundations.walkers.filesWalker(sourceDirectory, filtersIn, filtersOut))):
 		source = File(file)
 		source.read()
 		for line in source.content:

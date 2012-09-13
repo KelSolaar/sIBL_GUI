@@ -3,7 +3,7 @@ _`Installation`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 
 _`Windows Platform`
@@ -15,7 +15,7 @@ In order to support third party images formats through FreeImage you may need to
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Mac Os X Platform`
 --------------------
@@ -24,7 +24,7 @@ Open *sIBL_GUI.dmg* and drag *sIBL_GUI.app* into the *Application* directory.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Linux Platform`
 -----------------
@@ -58,5 +58,5 @@ If you want to build the documentation you will need:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

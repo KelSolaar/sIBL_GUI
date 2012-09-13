@@ -8,7 +8,7 @@ More detailed informations are available here: http://www.smartibl.com
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Donations`
 ------------
@@ -26,5 +26,5 @@ With *sIBL_GUI 4* release I decided to accept donations, so if you think the app
 
 .. raw:: html
 
-    <br/>
+   <br/>
 

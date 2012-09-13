@@ -1,12 +1,12 @@
-_`foundations.dag`
-==================
+_`foundations.nodes`
+====================
 
-.. automodule:: foundations.dag
+.. automodule:: foundations.nodes
 
 Module Attributes
 -----------------
 
-.. attribute:: foundations.dag.LOGGER
+.. attribute:: foundations.nodes.LOGGER
 
 Classes
 -------
