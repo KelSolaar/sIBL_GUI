@@ -5,7 +5,7 @@ Manual - Help File
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 Table Of Content
 =================
@@ -95,7 +95,7 @@ Table Of Content
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .introduction
 
@@ -109,7 +109,7 @@ More detailed informations are available here: http://www.smartibl.com
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Donations`
 ------------
@@ -127,7 +127,7 @@ With *sIBL_GUI 4* release I decided to accept donations, so if you think the app
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .features
 
@@ -170,7 +170,7 @@ The source code is available on `github <http://github.com/>`_: http://github.co
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .installation
 
@@ -179,7 +179,7 @@ _`Installation`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 
 _`Windows Platform`
@@ -191,7 +191,7 @@ In order to support third party images formats through FreeImage you may need to
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Mac Os X Platform`
 --------------------
@@ -200,7 +200,7 @@ Open *sIBL_GUI.dmg* and drag *sIBL_GUI.app* into the *Application* directory.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Linux Platform`
 -----------------
@@ -234,7 +234,7 @@ If you want to build the documentation you will need:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .usage
 
@@ -243,7 +243,7 @@ _`Usage`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`User Preferences`
 -------------------
@@ -289,7 +289,7 @@ Structure Description:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Command Line Parameters`
 --------------------------
@@ -315,7 +315,7 @@ Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Shared Database Configuration`
 --------------------------------
@@ -352,7 +352,7 @@ That way you can have artists using the Database a supervisor has defined, and e
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`IBL Sets Wizard`
 ------------------
@@ -371,7 +371,7 @@ Choose a directory where are stored some IBL Sets and they will be added to the 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Interface`
 ------------
@@ -386,7 +386,7 @@ _`Interface`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Toolbar`
 ^^^^^^^^^^
@@ -419,7 +419,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Library Layout`
 ^^^^^^^^^^^^^^^^^
@@ -439,7 +439,7 @@ This layout is built around 4 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Inspect Layout`
 ^^^^^^^^^^^^^^^^^
@@ -458,7 +458,7 @@ This layout is built around 3 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
@@ -482,7 +482,7 @@ An additional but extremely powerful export related component is available by ri
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Edit Layout`
 ^^^^^^^^^^^^^^^^^
@@ -499,7 +499,7 @@ This layout is built around 1 component:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -517,7 +517,7 @@ This layout is built around 2 components:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .components
 
@@ -539,14 +539,14 @@ Those 2 types are split into 4 main families:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Factory`
 ----------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.componentsManagerUi:
 
@@ -587,7 +587,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.preferencesManager:
 
@@ -627,7 +627,7 @@ Those settings are components dependent and will be described per related compon
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _factory.scriptEditor:
 
@@ -797,14 +797,14 @@ Results View Context menu:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Core`
 -------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.collectionsOutliner:
 
@@ -853,7 +853,7 @@ While adding a new Collection, a comment can be directly provided by using a com
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.databaseBrowser:
 
@@ -937,7 +937,7 @@ Search widget context menu:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
@@ -946,7 +946,7 @@ The *Db* component is the heart of *sIBL_GUI* data storage, it provides the data
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.inspector:
 
@@ -993,7 +993,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _core.templatesOutliner:
 
@@ -1045,14 +1045,14 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 Addons
 ------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.about:
 
@@ -1067,7 +1067,7 @@ The *About* component displays the *About* window.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.databaseOperations:
 
@@ -1086,7 +1086,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.gpsMap:
 
@@ -1111,7 +1111,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.iblSetsScanner:
 
@@ -1122,7 +1122,7 @@ The *Ibl Sets Scanner* component is a file scanning component that will automati
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.imagesCachesOperations:
 
@@ -1142,7 +1142,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loaderScript:
 
@@ -1169,7 +1169,7 @@ Addons Functionalities:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loaderScriptOptions:
 
@@ -1189,7 +1189,7 @@ Templates settings are stored per version and restored each time one is selected
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.locationsBrowser:
 
@@ -1225,7 +1225,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.loggingNotifier:
 
@@ -1236,7 +1236,7 @@ The *Logging Notifier* component displays logging messages in the status bar.
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.onlineUpdater:
 
@@ -1275,7 +1275,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.preview:
 
@@ -1312,7 +1312,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.rawEditingUtilities:
 
@@ -1331,7 +1331,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.rewiringTool:
 
@@ -1351,7 +1351,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.searchDatabase:
 
@@ -1379,7 +1379,7 @@ Search In Shot Time:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. _addons.sIBLeditUtilities:
 
@@ -1398,7 +1398,7 @@ Interactions:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .api
 
@@ -1409,7 +1409,7 @@ Api
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .faq
 
@@ -1420,14 +1420,14 @@ The following questions are answered by *sIBL_GUI* developer Thomas Mansencal an
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`General Questions`
 -------------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 
 _`Overall`
@@ -1442,7 +1442,7 @@ _`Overall`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1452,7 +1452,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1464,7 +1464,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1474,7 +1474,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1487,7 +1487,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1497,7 +1497,7 @@ You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command l
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1510,7 +1510,7 @@ You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command l
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1520,7 +1520,7 @@ Please refer to the first post of this thread: http://www.hdrlabs.com/cgi-bin/fo
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1532,7 +1532,7 @@ Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1542,7 +1542,7 @@ Using the *-u / --userApplicationDatasDirectory* command line parameter, you can
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Rendering`
 ^^^^^^^^^^^^
@@ -1559,7 +1559,7 @@ _`Rendering`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1569,7 +1569,7 @@ Yes you need to map each one on a different sphere and play with the different r
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1579,14 +1579,14 @@ Yes you need to map each one on a different sphere and play with the different r
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Operating System Questions`
 --------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Windows`
 ^^^^^^^^^^^^^^^^
@@ -1599,7 +1599,7 @@ Create or modify a *shortcut* to the executable, then append the parameters you 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Mac Os X`
 ^^^^^^^^^^^^^^^^
@@ -1616,14 +1616,14 @@ Open a terminal then issue the following commands with the parameters you want t
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`3D Packages Questions`
 --------------------------------
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk Maya`
 ^^^^^^^^^^^^^^^^
@@ -1645,7 +1645,7 @@ _`Autodesk Maya`
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1663,7 +1663,7 @@ Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if 
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1675,7 +1675,7 @@ It's a convenient method to directly launch *sIBL_GUI* from within Autodesk Maya
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk Softimage`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -1695,7 +1695,7 @@ sIBL_GUI_XSI_Server Addon ( Windows Only ):
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1708,7 +1708,7 @@ You either:
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1725,7 +1725,7 @@ There is also an alternative way without gacutil.exe, it has been tested on a fe
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 _`Autodesk 3ds Max`
 ^^^^^^^^^^^^^^^^^^^
@@ -1741,7 +1741,7 @@ Notice that you need to launch Autodesk 3ds Max as Administrator for that purpos
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 ::
 
@@ -1760,7 +1760,7 @@ Or after backuping the original one, you can directly use one of those already e
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .changes
 
@@ -1771,7 +1771,7 @@ Changes
 
 .. raw:: html
 
-    <br/>
+   <br/>
 
 .. .about
 

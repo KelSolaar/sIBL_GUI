@@ -8,8 +8,8 @@ sIBL_GUI is an open source lighting assistant making the Image Based Lighting pr
 What is sIBL? It's a short for "Smart IBL", a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
 More detailed informations are available here: "http://www.smartibl.com":http://www.smartibl.com
 
-Installation / Usage
---------------------
+Installation
+------------
 
 For Installation and Usage check the Manual / Help File available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html and the related thread here: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
 sIBL_GUI depends on some other packages / repositories:
@@ -26,6 +26,9 @@ Quick Repositories Cloning Commands::
    git clone git://github.com/KelSolaar/sIBL_GUI.git && git clone git://github.com/KelSolaar/Foundations.git &&  git clone git://github.com/KelSolaar/Manager.git && git clone git://github.com/KelSolaar/Umbra.git && git clone git://github.com/KelSolaar/sIBL_GUI_Templates.git
    cd sIBL_GUI/src/
    python sIBL_GUI.py
+
+Usage
+-----
 
 About
 -----
