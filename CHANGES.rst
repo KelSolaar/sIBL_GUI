@@ -15,6 +15,8 @@ sIBL_GUI - 4.0.2 - Stable
         </ul>
     </div>
 
+.. .changes
+
 Changes
 =======
 
@@ -513,6 +515,8 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -------------
 
 -  Initial Release of sIBL_GUI For Windows.
+
+.. .about
 
 About
 -----

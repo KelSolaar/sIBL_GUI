@@ -10,12 +10,12 @@
 *.nsh
 
 references/
-releases/Change_Log.html
+releases/Changes.html
 releases/Darwin/
 releases/Linux/
 releases/repository/
 releases/Windows/
 sibl_gui/resources/images/builders/
-docs/sphinx/build
-docs/sphinx/source/resources/packages
+docs/sphinx/build/
+docs/sphinx/source/resources/packages/
 utilities/dmgCanvas/

@@ -1,7 +1,7 @@
 Changes
 =======
 
-**sIBL_GUI - Changes**: http://kelsolaar.hdrlabs.com/sIBL_GUI/Change_Log/Change_Log.html
+**sIBL_GUI - Changes**: http://kelsolaar.hdrlabs.com/sIBL_GUI/Changes/Changes.html
 
 .. raw:: html
 

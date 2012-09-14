@@ -128,7 +128,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 											"Release type",
 											"Comment"]
 
-		self.__applicationChangesUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change_Log/Change_Log.html"
+		self.__applicationChangesUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Changes/Changes.html"
 		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
 
 		self.__downloadManager = None
