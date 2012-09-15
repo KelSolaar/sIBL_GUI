@@ -102,7 +102,7 @@ Table Of Content
 _`Introduction`
 ===============
 
-| *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (*.Ibl*).
+| **sIBL_GUI** is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (*.Ibl*).
 | What is sIBL? It’s a short for *Smart IBL*, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
 
 More detailed informations are available here: http://www.smartibl.com
@@ -138,9 +138,9 @@ Why an external application instead of directly using scripting possibilities of
 
 With an external application, *.Ibl* files format parsing, Collections management and database inspection are handled by that application, you write that Framework once and then you can reuse it for other 3d packages.
 
-The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the Autodesk Softimage Mental Ray Template into an Autodesk Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
+The bridge between **sIBL_GUI** and the 3d package is done through Templates that output simple loader scripts. That’s one of **sIBL_GUI** strength: It only took a few hours to convert the Autodesk Softimage Mental Ray Template into an Autodesk Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as **sIBL_GUI** would have taken days if not weeks.
 
-*sIBL_GUI* is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
+**sIBL_GUI** is built around `Umbra <https://github.com/KelSolaar/Umbra>`_ Framework in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
 -  `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `PyQt <http://www.riverbankcomputing.co.uk/>`_ bindings.
 -  `SQLAlchemy <http://www.sqlalchemy.org/>`_ provides the database backbone.
@@ -164,7 +164,7 @@ Some highlights:
 
 and much more…
 
-Additional informations about *sIBL_GUI* are available into this development thread: `sIBL_GUI Thread <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371>`_
+Additional informations about **sIBL_GUI** are available into this development thread: `sIBL_GUI Thread <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371>`_
 
 The source code is available on `github <http://github.com/>`_: http://github.com/KelSolaar
 
@@ -248,14 +248,14 @@ _`Usage`
 _`User Preferences`
 -------------------
 
-*sIBL_GUI* preferences are stored per user in their home directory:
+**sIBL_GUI** preferences are stored per user in their home directory:
 
 -  C:\\Users\\$USER\\AppData\\Roaming\\HDRLabs\\sIBL_GUI on Windows 7
 -  C:\\Documents and Settings\\$USER\\Application Data\\HDRLabs\\sIBL_GUI on Windows XP
 -  /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI on Mac Os X
 -  /home/$USER/.HDRLabs/sIBL_GUI on Linux
 
-The typical *sIBL_GUI* preferences directory structure is the following:
+The typical **sIBL_GUI** preferences directory structure is the following:
 
 +-------------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_PreferencesFolder.jpg     |
@@ -263,7 +263,7 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **$MAJOR_VERSION.$MINOR_VERSION**: Current *sIBL_GUI* version.
+-  **$MAJOR_VERSION.$MINOR_VERSION**: Current **sIBL_GUI** version.
 
    -  **components**: Directory storing user components.
    -  **database**: Directory storing the SQLite database.
@@ -273,19 +273,19 @@ Structure Description:
 
          -  **versions**: Directory used by to store the various migrations scripts.
 
-   -  **io**: Directory used for *sIBL_GUI* input / output operations.
+   -  **io**: Directory used for **sIBL_GUI** input / output operations.
 
       -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
       -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
       -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
 
-   -  **logging**: Directory storing *sIBL_GUI* logging file.
-   -  **patches**: Directory storing *sIBL_GUI* patches file.
-   -  **settings**: Directory storing *sIBL_GUI* settings file.
+   -  **logging**: Directory storing **sIBL_GUI** logging file.
+   -  **patches**: Directory storing **sIBL_GUI** patches file.
+   -  **settings**: Directory storing **sIBL_GUI** settings file.
 
       -  **templates**: Directory storing Templates settings.
 
-   -  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
+   -  **templates**: Directory storing user Templates (This directory is scanned by **sIBL_GUI** when importing default Templates).
 
 .. raw:: html
 
@@ -294,7 +294,7 @@ Structure Description:
 _`Command Line Parameters`
 --------------------------
 
-*sIBL_GUI* accepts various command line parameters:
+**sIBL_GUI** accepts various command line parameters:
 
 -  **-h, —help**: Display the command line parameters help message and exit. (Mac Os X and Linux only)
 -  **-a, —about**: Display application *About* message. (Mac Os X and Linux only)
@@ -308,7 +308,7 @@ _`Command Line Parameters`
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
 -  **-o LOADERSCRIPTSOUTPUTDIRECTORY, —loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY**: Loader scripts output directory.
 
-Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
+Note: On Mac Os X, **sIBL_GUI** is launched from command line doing the following::
 
       cd sIBL_GUI.app
       ./Contents/MacOS/sIBL_GUI
@@ -320,11 +320,11 @@ Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following:
 _`Shared Database Configuration`
 --------------------------------
 
-If you want to share the same Database between multiple installed versions of *sIBL_GUI* there are 2 solutions:
+If you want to share the same Database between multiple installed versions of **sIBL_GUI** there are 2 solutions:
 
 **Dirty Method**
 
-Copy the Database file **sIBL_Database.sqlite** on every machine that have *sIBL_GUI* installed.
+Copy the Database file **sIBL_Database.sqlite** on every machine that have **sIBL_GUI** installed.
 
 The file is located in one of those directory depending your OS:
 
@@ -335,9 +335,9 @@ The file is located in one of those directory depending your OS:
 
 **Recommended Method**
 
-It’s possible to share one Database file between multiple *sIBL_GUI* install. In order to do that you need to start *sIBL_GUI* with some command line parameters:
+It’s possible to share one Database file between multiple **sIBL_GUI** install. In order to do that you need to start **sIBL_GUI** with some command line parameters:
 
--  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: This one is mandatory for what you want to do, it will tell *sIBL_GUI* to store / use the database on the provided path.
+-  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: This one is mandatory for what you want to do, it will tell **sIBL_GUI** to store / use the database on the provided path.
 -  **-r, —databaseReadOnly**: This one is optional, but HIGHLY recommended: It will hide / unexpose from the UI all methods that can write to the Database. That’s something important because the last thing you want is someone screwing the whole database by doing a mistake.
 
 Example Command Line::
@@ -346,7 +346,7 @@ Example Command Line::
 
 When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won’t be added automatically.
 
-It’s a good idea to put the Database with a real file system write lock in case someone launch a *sIBL_GUI* instance without the command line arguments.
+It’s a good idea to put the Database with a real file system write lock in case someone launch a **sIBL_GUI** instance without the command line arguments.
 
 That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
 
@@ -357,7 +357,7 @@ That way you can have artists using the Database a supervisor has defined, and e
 _`IBL Sets Wizard`
 ------------------
 
-The first time *sIBL_GUI* is started a wizard asks to add IBL Sets into the database:
+The first time **sIBL_GUI** is started a wizard asks to add IBL Sets into the database:
 
 +-----------------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg     |
@@ -376,7 +376,7 @@ Choose a directory where are stored some IBL Sets and they will be added to the 
 _`Interface`
 ------------
 
-*sIBL_GUI* Interface is customizable and comes with 3 main layouts directly available from the main toolbar:
+**sIBL_GUI** Interface is customizable and comes with 3 main layouts directly available from the main toolbar:
 
 -  `Library Layout`_
 -  `Inspect Layout`_
@@ -463,7 +463,7 @@ This layout is built around 3 components:
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
 
-The *Export layout* is where the bridge between *sIBL_GUI* and the 3d packages is created.
+The *Export layout* is where the bridge between **sIBL_GUI** and the 3d packages is created.
 
 This layout is built around 4 components:
 
@@ -504,7 +504,7 @@ This layout is built around 1 component:
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
 
-The *Preferences layout* is where *sIBL_GUI* behavior is configured.
+The *Preferences layout* is where **sIBL_GUI** behavior is configured.
 
 This layout is built around 2 components:
 
@@ -524,7 +524,7 @@ This layout is built around 2 components:
 _`Components`
 =============
 
-*sIBL_GUI* has currently 3 categories of components:
+**sIBL_GUI** has currently 3 categories of components:
 
 -  **Default Component** (Components inheriting from *Python Object*).
 -  **QWidget Component** (Components inheriting from *Qt QWidget*).
@@ -557,7 +557,7 @@ _`Components Manager Ui` (factory.componentsManagerUi)
 | ..  image:: resources/pictures/sIBL_GUI_ComponentsManagerUi.jpg     |
 +---------------------------------------------------------------------+
 
-The *Components Manager Ui* component allows *sIBL_GUI* addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
+The *Components Manager Ui* component allows **sIBL_GUI** addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
 
 Interactions:
 
@@ -598,20 +598,20 @@ _`Preferences Manager` (factory.preferencesManager)
 | ..  image:: resources/pictures/sIBL_GUI_PreferencesManager.jpg     |
 +--------------------------------------------------------------------+
 
-The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
+The *Preferences Manager* component is used to configure **sIBL_GUI** behavior. There are 2 pages where settings can be changed:
 
--  **General**: Overall *sIBL_GUI* settings.
+-  **General**: Overall **sIBL_GUI** settings.
 -  **Others**: Components settings.
 
 General Page:
 
--  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
+-  **Logging Formatter**: Adjusts **sIBL_GUI** logging formatter:
 
    -  Default: Default logging formatter: **Logging Level: Message**.
    -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
    -  Standard: Simple standard logging formatter: **Message**.
 
--  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
+-  **Verbose Level**: Adjusts **sIBL_GUI** verbose level between different modes (Debug being the most verbosing, Critical the less):
 
    -  Debug
    -  Info
@@ -619,7 +619,7 @@ General Page:
    -  Error
    -  Critical
 
--  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
+-  **Restore Geometry On Layout Change**: **sIBL_GUI** window size and position will be restored when switching layouts.
 
 Others Page:
 
@@ -638,10 +638,10 @@ _`Script Editor` (factory.scriptEditor)
 | ..  image:: resources/pictures/sIBL_GUI_ScriptEditor.jpg     |
 +--------------------------------------------------------------+
 
-The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+The *Script Editor* component allows directly interaction with **sIBL_GUI** through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
 
 | Languages support is provided using custom grammars files but mechanism will be replaced by *Textmate* compliant system in the future.
-| *sIBL_GUI* logging messages and commands execution results are displayed in the upper pane.
+| **sIBL_GUI** logging messages and commands execution results are displayed in the upper pane.
 | By default the *Script Editor* component is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
 
 Interactions:
@@ -650,7 +650,7 @@ Interactions:
 -  **Drag’n’drop**:
 
    -  Drag’n’dropping an IBL Sets or Templates selection into the *Script Editor* component will open their associated files.
-   -  Drag’n’dropping any other type of file on *sIBL_GUI* will open it in the *Script Editor* component.
+   -  Drag’n’dropping any other type of file on **sIBL_GUI** will open it in the *Script Editor* component.
 
 Menus Bar:
 
@@ -921,7 +921,7 @@ Context menu:
 
 Addons Functionalities:
 
--  **Edit In sIBLedit ...**: Sends selected IBL Sets to *sIBLedit*.
+-  **Edit In sIBLedit ...**: Sends selected IBL Sets to **sIBLedit**.
 -  **Open Ibl Set(s) Location(s) ...**: Opens selected IBL Sets directories.
 -  **Edit Ibl Set(s) File(s) ...**: Edits selected IBL Sets in the *Script Editor* component or custom user defined text editor.
 -  **View Background Image ...**: Views selected IBL Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
@@ -942,7 +942,7 @@ Search widget context menu:
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
-The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
+The *Db* component is the heart of **sIBL_GUI** data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
 
 .. raw:: html
 
@@ -983,7 +983,7 @@ Context menu:
 
 Addons Functionalities:
 
--  **Edit In sIBLedit ...**: Sends Inspector Ibl Set to *sIBLedit*.
+-  **Edit In sIBLedit ...**: Sends Inspector Ibl Set to **sIBLedit**.
 -  **Open Ibl Set Location ...**: Opens Inspector IBL Sets directory.
 -  **Edit Ibl Set File ...**: Edits  Inspector Ibl Set in the *Script Editor* component or custom user defined text editor.
 -  **View Background Image ...**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
@@ -1008,8 +1008,8 @@ The *Templates Outliner* component is where Templates are organized and reviewed
 
 Templates are sorted into 2 main categories:
 
--  **Factory** (Templates from *sIBL_GUI* installation directory).
--  **User** (Templates not from *sIBL_GUI* installation directory).
+-  **Factory** (Templates from **sIBL_GUI** installation directory).
+-  **User** (Templates not from **sIBL_GUI** installation directory).
 
 In those categories, Templates are sorted by 3d packages.
 
@@ -1034,8 +1034,8 @@ Context menu:
 
 -  **Add Template ...**: Adds the selected Templates file to the database.
 -  **Remove Templates(s) ...**: Removes selected Templates from the database.
--  **Import Default Templates**: *sIBL_GUI* will scan for Templates into it’s installation directory and the user preferences directories.
--  **Filter Templates Versions**: *sIBL_GUI* will filter the Templates keeping the highest version of multiple same Templates.
+-  **Import Default Templates**: **sIBL_GUI** will scan for Templates into it’s installation directory and the user preferences directories.
+-  **Filter Templates Versions**: **sIBL_GUI** will filter the Templates keeping the highest version of multiple same Templates.
 -  **Display Help File(s) ...**: Displays Templates associated help files.
 
 Addons Functionalities:
@@ -1097,7 +1097,7 @@ _`Gps Map` (addons.gpsMap)
 | ..  image:: resources/pictures/sIBL_GUI_GpsMap.jpg     |
 +--------------------------------------------------------+
 
-The *Gps Map* component is embedding a Microsoft Bing Map into *sIBL_GUI*: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
+The *Gps Map* component is embedding a Microsoft Bing Map into **sIBL_GUI**: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
 
 Interactions:
 
@@ -1133,7 +1133,7 @@ _`Images Caches Operations` (addons.imagesCachesOperations)
 | ..  image:: resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg     |
 +------------------------------------------------------------------------+
 
-The *Images Caches Operations* component allows the user to manipulate *sIBL_GUI* images caches.
+The *Images Caches Operations* component allows the user to manipulate **sIBL_GUI** images caches.
 
 Interactions:
 
@@ -1153,7 +1153,7 @@ _`Loader Script` (addons.loaderScript)
 | ..  image:: resources/pictures/sIBL_GUI_LoaderScript.jpg     |
 +--------------------------------------------------------------+
 
-The *Loader Script* component is providing the bridge between *sIBL_GUI* and the 3d packages. It parses the selected Ibl Set, extracts data from it, and feeds the selected Template with those data resulting in a loader script that can be executed by the 3d package.
+The *Loader Script* component is providing the bridge between **sIBL_GUI** and the 3d packages. It parses the selected Ibl Set, extracts data from it, and feeds the selected Template with those data resulting in a loader script that can be executed by the 3d package.
 
 Interactions:
 
@@ -1185,7 +1185,7 @@ The *Loader Script Options* component allows the user to tweak the way the loade
 -  **Common Attributes**: Common Template attributes (Refer to the current Template help file for details about an attribute).
 -  **Additional Attributes**: Additional Template attributes (Refer to the current Template help file for details about an attribute).
 
-Templates settings are stored per version and restored each time one is selected in *sIBL_GUI* preferences directory.
+Templates settings are stored per version and restored each time one is selected in **sIBL_GUI** preferences directory.
 
 .. raw:: html
 
@@ -1200,7 +1200,7 @@ _`Locations Browser` (addons.locationsBrowser)
 | ..  image:: resources/pictures/sIBL_GUI_LocationsBrowser.jpg     |
 +------------------------------------------------------------------+
 
-The *Locations Browser* component provides browsing capability to *sIBL_GUI*, adding directory browsing at various entry points in *sIBL_GUI* Ui. The browsing is done either by the Os default file browser or an user defined file browser.
+The *Locations Browser* component provides browsing capability to **sIBL_GUI**, adding directory browsing at various entry points in **sIBL_GUI** Ui. The browsing is done either by the Os default file browser or an user defined file browser.
 
 Default Supported File Browsers:
 
@@ -1247,11 +1247,11 @@ _`Online Updater` (addons.onlineUpdater)
 | ..  image:: resources/pictures/sIBL_GUI_OnlineUpdater.jpg     |
 +---------------------------------------------------------------+
 
-The *Online Updater* component maintains *sIBL_GUI* and it’s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
+The *Online Updater* component maintains **sIBL_GUI** and it’s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
 
 Interactions:
 
--  **Get sIBL_GUI Push Button**: Starts *sIBL_GUI* download.
+-  **Get sIBL_GUI Push Button**: Starts **sIBL_GUI** download.
 -  **Get Lastest Templates**: Starts selected Templates download.
 -  **Open Repository**: Opens HDRLabs repository.
 
@@ -1270,8 +1270,8 @@ The *Online Updater* component is configurable in the *Preferences Manager* comp
 Interactions:
 
 -  **Check For New Releases Push Button**: Checks for new releases on HDRLabs repository.
--  **Check For New Releases On Startup Check Box**: *sIBL_GUI* will check for new releases on startup.
--  **Ignore Non Existing Templates Check Box**: *sIBL_GUI* will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
+-  **Check For New Releases On Startup Check Box**: **sIBL_GUI** will check for new releases on startup.
+-  **Ignore Non Existing Templates Check Box**: **sIBL_GUI** will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
 
 .. raw:: html
 
@@ -1286,7 +1286,7 @@ _`Preview` (addons.preview)
 | ..  image:: resources/pictures/sIBL_GUI_Preview.jpg     |
 +---------------------------------------------------------+
 
-The *Preview* component provides image viewing capability to *sIBL_GUI* through the use of the Internal Images Previewer or the application defined in the *Preview* component preferences.
+The *Preview* component provides image viewing capability to **sIBL_GUI** through the use of the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 Interactions:
 
@@ -1323,7 +1323,7 @@ _`Raw Editing Utilities` (addons.rawEditingUtilities)
 | ..  image:: resources/pictures/sIBL_GUI_RawEditingUtilities.jpg     |
 +---------------------------------------------------------------------+
 
-The *Raw Editing Utilities* component provides text editing capability to *sIBL_GUI*, adding text edition at various entry points in *sIBL_GUI* Ui. The text edition is done either by the *Script Editor* component or an user defined text editor.
+The *Raw Editing Utilities* component provides text editing capability to **sIBL_GUI**, adding text edition at various entry points in **sIBL_GUI** Ui. The text edition is done either by the *Script Editor* component or an user defined text editor.
 
 Interactions:
 
@@ -1342,7 +1342,7 @@ _`Rewiring Tool` (addons.rewiringTool)
 | ..  image:: resources/pictures/sIBL_GUI_RewiringTool.jpg     |
 +--------------------------------------------------------------+
 
-The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from *sIBL_GUI* one click lighting setup.
+The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from **sIBL_GUI** one click lighting setup.
 
 Interactions:
 
@@ -1390,11 +1390,11 @@ _`sIBLedit Utilities` (addons.sIBLeditUtilities)
 | ..  image:: resources/pictures/sIBL_GUI_sIBLeditUtilities.jpg     |
 +-------------------------------------------------------------------+
 
-The *sIBLedit Utilities* component provides a bridge between *sIBL_GUI* and *sIBLedit*.
+The *sIBLedit Utilities* component provides a bridge between **sIBL_GUI** and **sIBLedit**.
 
 Interactions:
 
--  **sIBLedit Executable Path Line Edit**: *sIBLedit* executable path.
+-  **sIBLedit Executable Path Line Edit**: **sIBLedit** executable path.
 
 .. raw:: html
 
@@ -1405,7 +1405,7 @@ Interactions:
 Api
 ===
 
-*sIBL_GUI* Api documentation is available here: `sIBL_GUI - Api <http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html>`_
+**sIBL_GUI** Api documentation is available here: `sIBL_GUI - Api <http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html>`_
 
 .. raw:: html
 
@@ -1416,7 +1416,7 @@ Api
 Faq
 ===
 
-The following questions are answered by *sIBL_GUI* developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
+The following questions are answered by **sIBL_GUI** developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
 
 .. raw:: html
 
@@ -1437,7 +1437,7 @@ _`Overall`
 
       Is sIBL_GUI Open Source?
 
-| Yes *sIBL_GUI* is Open Source and licensed under: `GNU GPL V3 license <http://www.gnu.org/copyleft/gpl.html>`_
+| Yes **sIBL_GUI** is Open Source and licensed under: `GNU GPL V3 license <http://www.gnu.org/copyleft/gpl.html>`_
 | You can grab the source code from: `sIBL_GUI Git Repository on GitHub <http://kelsolaar.github.com/sIBL_GUI/>`_
 
 .. raw:: html
@@ -1448,7 +1448,7 @@ _`Overall`
 
       I'm using sIBL_GUI 1 / 2 / 3, is there still support for it?
 
-No, *sIBL_GUI* is developed by one person on his free time, cross version support can't be achieved. Any new version deprecate the previous one.
+No, **sIBL_GUI** is developed by one person on his free time, cross version support can't be achieved. Any new version deprecate the previous one.
 
 .. raw:: html
 
@@ -1460,7 +1460,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 | No, since I cannot provide a real quality support (Although I'm doing my best), I don't want money, only happy people doing nice renders with HDRLabs team stuff.
 | If you are having issues, it's my duty to make my best solving them.
-| However if you feel *sIBL_GUI* is worth something I'm receiving donations: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
+| However if you feel **sIBL_GUI** is worth something I'm receiving donations: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
 
 .. raw:: html
 
@@ -1470,7 +1470,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
       Can I pay you to make a custom template?
 
-No, same as above, however if you need a custom template, we can discuss of what can be done. Just remember that *sIBL_GUI* is done on my free time.
+No, same as above, however if you need a custom template, we can discuss of what can be done. Just remember that **sIBL_GUI** is done on my free time.
 
 .. raw:: html
 
@@ -1493,7 +1493,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
       I installed sIBL_GUI and its not starting, what can I do?
 
-You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
+You need to launch **sIBL_GUI** into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
 
 .. raw:: html
 
@@ -1526,9 +1526,9 @@ Please refer to the first post of this thread: http://www.hdrlabs.com/cgi-bin/fo
 
       Is there a difference between an Helper Script and a Loader Script?
 
-Yes! *Helper Scripts* are additional scripts that help integrating *sIBL_GUI* into the target 3d package whereas *Loader Scripts* are native 3d package scripts enabling direct *Smart Ibl* support.
-One confusion source is that I also call *Loader Scripts* the scripts *sIBL_GUI* generates.
-Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
+Yes! *Helper Scripts* are additional scripts that help integrating **sIBL_GUI** into the target 3d package whereas *Loader Scripts* are native 3d package scripts enabling direct *Smart Ibl* support.
+One confusion source is that I also call *Loader Scripts* the scripts **sIBL_GUI** generates.
+Here is a link to the **sIBL_GUI** Helper Scripts: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
 
 .. raw:: html
 
@@ -1538,7 +1538,7 @@ Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/
 
       Is it possible to move the user preferences directory into sIBL_GUI installation directory, like in sIBL_GUI 2?
 
-Using the *-u / --userApplicationDatasDirectory* command line parameter, you can define where *sIBL_GUI 4* preferences are stored. You can easily pass *sIBL_GUI* installation folder to retrieve the portability of *sIBL_GUI 2*.
+Using the *-u / --userApplicationDatasDirectory* command line parameter, you can define where *sIBL_GUI 4* preferences are stored. You can easily pass **sIBL_GUI** installation folder to retrieve the portability of *sIBL_GUI 2*.
 
 .. raw:: html
 
@@ -1632,8 +1632,8 @@ _`Autodesk Maya`
 
       I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
 
-| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Maya.
-| You need to make Autodesk Maya listen to the port *sIBL_GUI* is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
+| **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Maya.
+| You need to make Autodesk Maya listen to the port **sIBL_GUI** is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
 
 -  Autodesk Maya 2008 - 2012:
    
@@ -1669,7 +1669,7 @@ Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if 
 
       I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Executable Path field?
 
-It's a convenient method to directly launch *sIBL_GUI* from within Autodesk Maya, just point to *sIBL_GUI* executable, then you can use the second shelf button to launch *sIBL_GUI*.
+It's a convenient method to directly launch **sIBL_GUI** from within Autodesk Maya, just point to **sIBL_GUI** executable, then you can use the second shelf button to launch **sIBL_GUI**.
    
       ``/Applications/sIBL_GUI.app/Contents/MacOs/sIBL_GUI 4.app``
 
@@ -1684,8 +1684,8 @@ _`Autodesk Softimage`
 
       I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
 
-| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Softimage.
-| You need to make Autodesk Softimage listen to the port *sIBL_GUI* is using. You can do that using the *sIBL_GUI_XSI_Server Addon*:
+| **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Softimage.
+| You need to make Autodesk Softimage listen to the port **sIBL_GUI** is using. You can do that using the *sIBL_GUI_XSI_Server Addon*:
 
 sIBL_GUI_XSI_Server Addon ( Windows Only ):
 
@@ -1734,7 +1734,7 @@ _`Autodesk 3ds Max`
 
       I'm getting that error: "LoaderScript | Win32 OLE server connection error: '(-2147221164, 'Class not registered', None, None)'!"
 
-| *sIBL_GUI* is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
+| **sIBL_GUI** is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
 | You need to register Autodesk 3ds Max as an OLE Server and expose the communication class. The easiest way to do that is to use *Autodesk 3ds Max - Helper Script* and trigger the *Register OLE Server* button: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
 
 Notice that you need to launch Autodesk 3ds Max as Administrator for that purpose.
@@ -1778,7 +1778,7 @@ Changes
 About
 =====
 
-| *sIBL_GUI* by Thomas Mansencal - 2008 - 2012
+| **sIBL_GUI** by Thomas Mansencal - 2008 - 2012
 | Copyright© 2008 - 2012 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This software is released under terms of GNU GPL V3 license: http://www.gnu.org/licenses/
 | http://www.thomasmansencal.com/
