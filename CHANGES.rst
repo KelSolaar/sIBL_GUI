@@ -514,7 +514,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 0.9.0 - Alpha
 -------------
 
--  Initial Release of sIBL_GUI For Windows.
+-  Initial release of sIBL_GUI For Windows.
 
 .. .about
 
