@@ -5,12 +5,12 @@ AppVersion=4.0.2
 CompanyName=HDRLabs
 WebSite=http://www.hdrlabs.com/
 SupportLink=mailto:thomas.mansencal@gmail.com
-SetupFile=Z:\Documents\Developement\sIBL_GUI\releases\Windows\sIBL_GUI_Setup.exe
+SetupFile=Z:\Documents\Development\sIBL_GUI\releases\Windows\sIBL_GUI_Setup.exe
 CompressionType=2
-WizardBitmap=Z:\Documents\Developement\sIBL_GUI\utilities\actualInstaller\Wizard.bmp
-HeaderBitmap=Z:\Documents\Developement\sIBL_GUI\utilities\actualInstaller\Header.bmp
+WizardBitmap=Z:\Documents\Development\sIBL_GUI\utilities\actualInstaller\Wizard.bmp
+HeaderBitmap=Z:\Documents\Development\sIBL_GUI\utilities\actualInstaller\Header.bmp
 CustomIcon=1
-CustomIconFile=Z:\Documents\Developement\sIBL_GUI\src\sibl_gui\resources\images\Icon_Light.ico
+CustomIconFile=Z:\Documents\Development\sIBL_GUI\src\sibl_gui\resources\images\Icon_Light.ico
 Win9x=0
 WinNT=0
 Win2000=0
@@ -37,7 +37,7 @@ SQLVersion=0
 SQLE=0
 SQLEVersion=0
 InstallationPath=<ProgramFiles>\<CompanyName>\<AppName> 4
-SourceFolder=Z:\Documents\Developement\sIBL_GUI\releases\Windows\sIBL_GUI 4
+SourceFolder=Z:\Documents\Development\sIBL_GUI\releases\Windows\sIBL_GUI 4
 MainExecutable=<InstallDir>\sIBL_GUI.exe
 ExistMode=1
 NotRemove=0
@@ -92,7 +92,7 @@ FolderSize=0
 [Languages]
 English=
 [License]
-(Default)=Z:\Documents\Developement\sIBL_GUI\utilities\actualInstaller\LICENSE.rtf
+(Default)=Z:\Documents\Development\sIBL_GUI\utilities\actualInstaller\LICENSE.rtf
 English=
 [Readme]
 (Default)=

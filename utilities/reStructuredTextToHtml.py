@@ -53,7 +53,7 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)
 
-RST2HTML = "/Users/$USER/Documents/Developement/VirtualEnv/HDRLabs/bin/rst2html.py"
+RST2HTML = "/Users/$USER/Documents/Development/VirtualEnv/HDRLabs/bin/rst2html.py"
 CSS_FILE = "css/style.css"
 TIDY_SETTINGS_FILE = "tidy/tidySettings.rc"
 

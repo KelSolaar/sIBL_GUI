@@ -6,7 +6,7 @@ echo ---------------------------------------------------------------------------
 export PYINSTALLER=c:/pyinstaller
 export PYTHONPATH=$PROJECT/src
 
-export PROJECT=z:/Documents/Developement/sIBL_GUI
+export PROJECT=z:/Documents/Development/sIBL_GUI
 export MAJOR_VERSION=4
 
 export UTILITIES=$PROJECT/utilities
