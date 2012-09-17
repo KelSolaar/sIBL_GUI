@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**getImports.py
+**listImports.py
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Gets Application imports.
+	Lists Application imports.
 
 **Others:**
 
@@ -39,7 +39,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "LOGGING_CONSOLE_HANDLER", "IMPORTS", "FILTERS_IN", "FILTERS_OUT", "getImports"]
+__all__ = ["LOGGER", "LOGGING_CONSOLE_HANDLER", "IMPORTS", "FILTERS_IN", "FILTERS_OUT", "listImports"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -57,9 +57,9 @@ FILTERS_OUT = ("defaultScript\.py", "tests")
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def getImports(sourceDirectory, filtersIn, filtersOut):
+def listImports(sourceDirectory, filtersIn, filtersOut):
 	"""
-	This definition gets Application imports.
+	This definition lists Application imports.
 
 	:param sourceDirectory: Source directory. ( String )
 	:param filtersIn: Filters in. ( Tuple / List )
@@ -80,5 +80,5 @@ def getImports(sourceDirectory, filtersIn, filtersOut):
 	return imports
 
 if __name__ == "__main__":
-	imports = getImports(sys.argv[1], filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
-	LOGGER.info("{0} | Imports: \"{1}\"".format(getImports.__name__, ",".join(sorted(imports))))
+	imports = listImports(sys.argv[1], filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
+	LOGGER.info("{0} | Imports: \"{1}\"".format(listImports.__name__, ",".join(sorted(imports))))
