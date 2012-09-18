@@ -9,6 +9,8 @@
 *.pyo
 *.nsh
 
+sIBL_GUI.egg-info/
+dist/
 references/
 releases/Changes.html
 releases/Darwin/

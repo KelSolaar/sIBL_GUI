@@ -1,0 +1,13 @@
+include COPYING
+include LICENSE
+include *.rst
+graft docs
+prune docs/sphinx/source/resources/packages
+graft utilities
+graft sibl_gui/components
+graft sibl_gui/resources
+prune sibl_gui/resources/images/builders
+global-exclude ._*
+global-exclude .DS_Store
+global-exclude *.pyc
+global-exclude *.pyo
