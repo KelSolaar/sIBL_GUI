@@ -2,6 +2,9 @@ language: python
 python:
   - "2.6"
   - "2.7"
+env:
+  global:
+    - TIMEOUT=1500
 before_install:
   - cd ..
   - curl -O http://thomasmansencal.com/Sharing/ThirdParty/Riverbank/sip-4.13.3/sip-4.13.3.tar.gz
