@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Database_Operations_Form</class>
  <widget class="QWidget" name="Database_Operations_Form">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>198</width>
-    <height>64</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Database Operations</string>
   </property>
@@ -39,6 +31,16 @@
         </property>
         <property name="text">
          <string>Synchronise Database</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="Remove_Invalid_Data_pushButton">
+        <property name="statusTip">
+         <string>Remove Invalid Data Push Button: Removes invalid or missing data from the Database.</string>
+        </property>
+        <property name="text">
+         <string>Remove Invalid Data</string>
         </property>
        </widget>
       </item>

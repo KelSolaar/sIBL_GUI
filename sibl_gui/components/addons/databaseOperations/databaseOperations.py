@@ -68,7 +68,7 @@ class DbType(foundations.dataStructures.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
+		:param kwargs: type, getMethod, updateContentMethod, removeMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -396,11 +396,13 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__dbTypes = (DbType(type="Ibl Set",
 						getMethod=dbCommon.getIblSets,
 						updateContentMethod=dbCommon.updateIblSetContent,
+						removeMethod=dbCommon.removeIblSet,
 						modelContainer=self.__databaseBrowser,
 						updateLocationMethod=self.__databaseBrowser.updateIblSetLocation),
 						DbType(type="Template",
 						getMethod=dbCommon.getTemplates,
 						updateContentMethod=dbCommon.updateTemplateContent,
+						removeMethod=dbCommon.removeTemplate,
 						modelContainer=self.__templatesOutliner,
 						updateLocationMethod=self.__templatesOutliner.updateTemplateLocation))
 
@@ -443,6 +445,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		if not self.__engine.parameters.databaseReadOnly:
 			self.Synchronize_Database_pushButton.clicked.connect(self.__Synchronize_Database_pushButton__clicked)
+			self.Remove_Invalid_Data_pushButton.clicked.connect(self.__Remove_Invalid_Data_pushButton__clicked)
 		else:
 			LOGGER.info(
 			"{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(
@@ -463,8 +466,9 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		not self.__engine.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(
-															self.__Synchronize_Database_pushButton__clicked)
+		if not self.__engine.parameters.databaseReadOnly:
+			self.Synchronize_Database_pushButton.clicked.disconnect(self.__Synchronize_Database_pushButton__clicked)
+			self.Remove_Invalid_Data_pushButton.clicked.disconnect(self.__Remove_Invalid_Data_pushButton__clicked)
 
 		self.initializedUi = False
 		return True
@@ -511,6 +515,16 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.synchronizeDatabase()
 
 	@core.executionTrace
+	def __Remove_Invalid_Data_pushButton__clicked(self, checked):
+		"""
+		This method is triggered when **Remove_Invalid_Data_pushButton** Widget is clicked.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		self.removeInvalidData()
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Synchronizing Database ...")
 	def synchronizeDatabase(self):
@@ -545,4 +559,34 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			dbType.modelContainer.modelRefresh.emit()
 		self.__engine.stopProcessing()
 		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Removing Invalid Data ...")
+	def removeInvalidData(self):
+		"""
+		This method removes invalid data from the Database.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		if messageBox.messageBox("Question", "Question",
+		"Are you sure you want to remove invalid data from the Database?",
+		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+			for dbType in self.__dbTypes:
+				for item in dbType.getMethod(self.__db.dbSession):
+					if foundations.common.pathExists(item.path):
+						continue
+
+					LOGGER.info("{0} | Removing non existing '{1}' {2} from the Database!".format(self.__class__.__name__,
+																								item.name,
+																								dbType.type))
+					dbType.removeMethod(self.__db.dbSession, item.id)
+
+					self.__engine.processEvents()
+				dbType.modelContainer.modelRefresh.emit()
+			self.__engine.stopProcessing()
+			self.__engine.notificationsManager.notify(
+			"{0} | Invalid data removed from Database!".format(self.__class__.__name__))
 		return True
