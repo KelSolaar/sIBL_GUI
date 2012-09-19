@@ -21,7 +21,11 @@ import logging
 import os
 import platform
 import re
-from collections import OrderedDict
+import sys
+if sys.version_info[:2] <= (2, 6):
+	from ordereddict import OrderedDict
+else:
+	from collections import OrderedDict
 from PyQt4.QtCore import QMargins
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import QUrl

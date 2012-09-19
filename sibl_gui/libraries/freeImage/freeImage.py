@@ -461,8 +461,8 @@ else:
 FREEIMAGE_MAJOR_VERSION = 3
 FREEIMAGE_MINOR_VERSION = 15
 FREEIMAGE_RELEASE_SERIAL = 1
-FREEIMAGE_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-													if re.search(r"^FREEIMAGE_\w+", key)})
+FREEIMAGE_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+													if re.search(r"^FREEIMAGE_\w+", key)))
 
 """
 Internal types.
@@ -714,8 +714,8 @@ else:
 		FI_RGBA_ALPHA_SHIFT = 0
 
 FI_RGBA_RGB_MASK = ((FI_RGBA_RED_MASK | FI_RGBA_GREEN_MASK) | FI_RGBA_BLUE_MASK)
-FI_RGBA_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-													if re.search(r"^FI_RGBA_\w+", key)})
+FI_RGBA_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+													if re.search(r"^FI_RGBA_\w+", key)))
 
 FI16_555_RED_MASK = 0x7C00
 FI16_555_GREEN_MASK = 0x03E0
@@ -729,16 +729,16 @@ FI16_565_BLUE_MASK = 0x001F
 FI16_565_RED_SHIFT = 11
 FI16_565_GREEN_SHIFT = 5
 FI16_565_BLUE_SHIFT = 0
-FI16_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FI16_\w+", key)})
+FI16_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FI16_\w+", key)))
 
 """
 ICC Profile support
 """
 FIICC_DEFAULT = 0x00
 FIICC_COLOR_IS_CMYK = 0x01
-FIICC_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIICC_\w+", key)})
+FIICC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIICC_\w+", key)))
 
 class FIICCPROFILE(ctypes.Structure):
 	"""
@@ -788,8 +788,8 @@ FIF_JP2 = 31
 FIF_PFM = 32
 FIF_PICT = 33
 FIF_RAW = 34
-FIF_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIF_\w+", key)})
+FIF_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIF_\w+", key)))
 
 FREE_IMAGE_TYPE = ctypes.c_int
 FIT_UNKNOWN = 0
@@ -805,8 +805,8 @@ FIT_RGB16 = 9
 FIT_RGBA16 = 10
 FIT_RGBF = 11
 FIT_RGBAF = 12
-FIT_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIT_\w+", key)})
+FIT_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIT_\w+", key)))
 
 FREE_IMAGE_COLOR_TYPE = ctypes.c_int
 FIC_MINISWHITE = 0
@@ -815,14 +815,14 @@ FIC_RGB = 2
 FIC_PALETTE = 3
 FIC_RGBALPHA = 4
 FIC_CMYK = 5
-FIC_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIC_\w+", key)})
+FIC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIC_\w+", key)))
 
 FREE_IMAGE_QUANTIZE = ctypes.c_int
 FIQ_WUQUANT = 0
 FIQ_NNQUANT = 1
-FIQ_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIQ_\w+", key)})
+FIQ_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIQ_\w+", key)))
 
 FREE_IMAGE_DITHER = ctypes.c_int
 FID_FS = 0
@@ -832,8 +832,8 @@ FID_CLUSTER6x6 = 3
 FID_CLUSTER8x8 = 4
 FID_CLUSTER16x16 = 5
 FID_BAYER16x16 = 6
-FID_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FID_\w+", key)})
+FID_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FID_\w+", key)))
 
 FREE_IMAGE_JPEG_OPERATION = ctypes.c_int
 FIJPEG_OP_NONE = 0
@@ -844,15 +844,15 @@ FIJPEG_OP_TRANSVERSE = 4
 FIJPEG_OP_ROTATE_90 = 5
 FIJPEG_OP_ROTATE_180 = 6
 FIJPEG_OP_ROTATE_270 = 7
-FIJPEG_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-													if re.search(r"^FIJPEG_\w+", key)})
+FIJPEG_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+													if re.search(r"^FIJPEG_\w+", key)))
 
 FREE_IMAGE_TMO = ctypes.c_int
 FITMO_DRAGO03 = 0
 FITMO_REINHARD05 = 1
 FITMO_FATTAL02 = 2
-FITMO_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FITMO_\w+", key)})
+FITMO_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FITMO_\w+", key)))
 
 FREE_IMAGE_FILTER = ctypes.c_int
 FILTER_BOX = 0
@@ -861,8 +861,8 @@ FILTER_BILINEAR = 2
 FILTER_BSPLINE = 3
 FILTER_CATMULLROM = 4
 FILTER_LANCZOS3 = 5
-FILTER_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FILTER_\w+", key)})
+FILTER_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FILTER_\w+", key)))
 
 FREE_IMAGE_COLOR_CHANNEL = ctypes.c_int
 FICC_RGB = 0
@@ -875,8 +875,8 @@ FICC_REAL = 6
 FICC_IMAG = 7
 FICC_MAG = 8
 FICC_PHASE = 9
-FICC_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FICC_\w+", key)})
+FICC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FICC_\w+", key)))
 
 FREE_IMAGE_MDTYPE = ctypes.c_int
 FIDT_NOTYPE = 0
@@ -894,8 +894,8 @@ FIDT_FLOAT = 11
 FIDT_DOUBLE = 12
 FIDT_IFD = 13
 FIDT_PALETTE = 14
-FIDT_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIDT_\w+", key)})
+FIDT_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIDT_\w+", key)))
 
 FREE_IMAGE_MDMODEL = ctypes.c_int
 FIMD_NODATA = -1
@@ -911,8 +911,8 @@ FIMD_GEOTIFF = 8
 FIMD_ANIMATION = 9
 FIMD_CUSTOM = 10
 FIMD_EXIF_RAW = 11
-FIMD_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^FIMD_\w+", key)})
+FIMD_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^FIMD_\w+", key)))
 
 class FIMETADATA(ctypes.Structure):
 	"""
@@ -1129,8 +1129,8 @@ FI_COLOR_IS_RGBA_COLOR = 0x01
 FI_COLOR_FIND_EQUAL_COLOR = 0x02
 FI_COLOR_ALPHA_IS_INDEX = 0x04
 FI_COLOR_PALETTE_SEARCH_MASK = (FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX)
-FI_COLOR_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-													if re.search(r"^FI_COLOR_\w+", key)})
+FI_COLOR_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+													if re.search(r"^FI_COLOR_\w+", key)))
 
 """
 Custom constants
@@ -1148,18 +1148,18 @@ BPP_1TO8 = (BPP_1, BPP_4, BPP_8)
 BPP_16TO32 = (BPP_16, BPP_24, BPP_32)
 BPP_1TO32 = (BPP_1, BPP_4, BPP_8, BPP_16, BPP_24, BPP_32)
 BPP_1TO48 = BPP_1TO32 + (BPP_48,)
-BPP_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^BPP_\w+", key)})
+BPP_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^BPP_\w+", key)))
 
 CPC_8 = 255
 CPC_16 = 65535
-CPC_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-												if re.search(r"^CPC_\w+", key)})
+CPC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+												if re.search(r"^CPC_\w+", key)))
 
 FI_DEFAULT_NULL = 0
 FI_DEFAULT_GAMMA = 2.2
-FI_DEFAULT_LOOKUP = foundations.dataStructures.Lookup(**{key:value for key, value in locals().iteritems()
-														if re.search(r"^FI_DEFAULT_\w+", key)})
+FI_DEFAULT_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, value in locals().iteritems()
+														if re.search(r"^FI_DEFAULT_\w+", key)))
 
 FreeImage_OutputMessageFunctionStdCall = ctypes.CFUNCTYPE(unchecked(None), FREE_IMAGE_FORMAT, ctypes.c_char_p)
 FreeImage_OutputMessageFunction = ctypes.CFUNCTYPE(unchecked(None), FREE_IMAGE_FORMAT, ctypes.c_char_p)

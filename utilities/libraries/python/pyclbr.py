@@ -42,9 +42,12 @@ Instances of this class have the following instance variables:
 import sys
 import imp
 import tokenize
-from collections import OrderedDict
 from token import NAME, DEDENT, OP
 from operator import itemgetter
+if sys.version_info[:2] <= (2, 6):
+	from ordereddict import OrderedDict
+else:
+	from collections import OrderedDict
 
 __all__ = ["readmodule", "readmodule_ex", "Class", "Function"]
 

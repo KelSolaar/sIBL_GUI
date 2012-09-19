@@ -20,7 +20,10 @@
 import logging
 import subprocess
 import sys
-from collections import OrderedDict
+if sys.version_info[:2] <= (2, 6):
+	from ordereddict import OrderedDict
+else:
+	from collections import OrderedDict
 
 #**********************************************************************************************************************
 #***	Internal imports.

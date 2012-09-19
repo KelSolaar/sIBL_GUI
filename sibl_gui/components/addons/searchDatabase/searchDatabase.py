@@ -17,11 +17,15 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import collections
 import logging
 import os
 import re
 import itertools
+import sys
+if sys.version_info[:2] <= (2, 6):
+	from counter import Counter
+else:
+	from collections import Counter
 from PyQt4.QtCore import Qt
 
 #**********************************************************************************************************************
@@ -588,7 +592,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Tags_Cloud_listWidget.clear()
 		self.Tags_Cloud_listWidget.addItems(sorted(allTags, key=lambda x:x.lower()))
-		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
+		if Counter(filteredIblSets) != Counter(iblSets) or \
 		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
@@ -627,7 +631,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(filteredIblSets)]
 
-		if collections.Counter(filteredIblSets) != collections.Counter(iblSets) or \
+		if Counter(filteredIblSets) != Counter(iblSets) or \
 		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
 			", ".join((iblSet.name for iblSet in filteredIblSets))))
