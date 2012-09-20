@@ -644,21 +644,16 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.actionsManager.unregisterAction(action)
 
 		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
-		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
-		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetBackgroundImageAction)
 		viewInspectorIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
-		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(viewInspectorIblSetLightingImageAction))
-		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetLightingImageAction)
 		viewInspectorIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
-		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(viewInspectorIblSetReflectionImageAction))
-		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetReflectionImageAction)
 		viewInspectorIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
-		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(viewInspectorIblSetPlatesAction))
-		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetPlatesAction)
+		actions = (viewInspectorIblSetBackgroundImageAction,
+					viewInspectorIblSetLightingImageAction,
+					viewInspectorIblSetReflectionImageAction,
+					viewInspectorIblSetPlatesAction)
+		for action in actions:
+			self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(action))
+			self.__engine.actionsManager.unregisterAction(action)
 
 	@core.executionTrace
 	def __addInspectorButtons(self):
