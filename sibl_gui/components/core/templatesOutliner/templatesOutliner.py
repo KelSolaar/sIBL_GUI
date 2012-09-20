@@ -1281,12 +1281,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Collection id. ( Integer )
 		"""
 
-		collections = self.getCollections()
-		collection = foundations.common.getFirstItem(collections)
+		collection = self.getCollectionByName(self.__userCollection)
 		identity = collection and collection.id or None
 
 		factoryCollectionPath = self.__defaultCollections[self.__factoryCollection]
-		if path and factoryCollectionPath :
+		if path and factoryCollectionPath:
 			if os.path.normpath(factoryCollectionPath) in os.path.normpath(path):
 				collection = self.getCollectionByName(self.__factoryCollection)
 				identity = collection and collection.id or None
