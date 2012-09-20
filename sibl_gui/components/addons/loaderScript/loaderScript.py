@@ -99,6 +99,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__databaseBrowser = None
 		self.__templatesOutliner = None
+		self.__tcpClientUi = None
 
 		self.__ioDirectory = "loaderScripts/"
 
@@ -244,6 +245,38 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
+
+	@property
+	def tcpClientUi(self):
+		"""
+		This method is the property for **self.__tcpClientUi** attribute.
+
+		:return: self.__tcpClientUi. ( QWidget )
+		"""
+
+		return self.__tcpClientUi
+
+	@tcpClientUi.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def tcpClientUi(self, value):
+		"""
+		This method is the setter method for **self.__tcpClientUi** attribute.
+
+		:param value: Attribute value. ( QWidget )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tcpClientUi"))
+
+	@tcpClientUi.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def tcpClientUi(self):
+		"""
+		This method is the deleter method for **self.__tcpClientUi** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tcpClientUi"))
 
 	@property
 	def ioDirectory(self):
@@ -535,6 +568,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
+		self.__tcpClientUi = self.__engine.componentsManager["addons.tcpClientUi"]
 
 		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.ioDirectory,
@@ -559,6 +593,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__databaseBrowser = None
 		self.__templatesOutliner = None
+		self.__tcpClientUi = None
 
 		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
@@ -576,8 +611,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Remote_Connection_groupBox.hide()
-		if platform.system() == "Linux" or platform.system() == "Darwin":
+		if platform.system() in ("Darwin", "Linux"):
 			self.Options_groupBox.hide()
 
 		# Signals / Slots.
@@ -681,25 +715,21 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		rawSections=(self.__templateScriptSection))
 
 		if not self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
-			self.Remote_Connection_groupBox.hide()
 			return
 
 		LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
-		self.Remote_Connection_groupBox.show()
 		connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
 		templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 		if connectionType.value == "Socket":
 			LOGGER.debug("> Remote connection type: 'Socket'.")
-			self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort",
-			templateSectionsFileParser.getValue("DefaultPort",
-												self.__templateRemoteConnectionSection)).value))
-			self.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress",
+			self.__tcpClientUi.address = foundations.parsers.getAttributeCompound("DefaultAddress",
 			templateSectionsFileParser.getValue("DefaultAddress",
-												self.__templateRemoteConnectionSection)).value))
-			self.Remote_Connection_Options_frame.show()
+												self.__templateRemoteConnectionSection)).value
+			self.__tcpClientUi.port = int(foundations.parsers.getAttributeCompound("DefaultPort",
+			templateSectionsFileParser.getValue("DefaultPort",
+												self.__templateRemoteConnectionSection)).value)
 		elif connectionType.value == "Win32":
 			LOGGER.debug("> Remote connection: 'Win32'.")
-			self.Remote_Connection_Options_frame.hide()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
@@ -843,8 +873,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.settimeout(2.5)
-				connection.connect((strings.encode(self.Address_lineEdit.text()),
-				int(self.Software_Port_spinBox.value())))
+				connection.connect((strings.encode(self.__tcpClientUi.address), 	self.__tcpClientUi.port))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand",
 								templateSectionsFileParser.getValue("ExecutionCommand",
 								self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath",

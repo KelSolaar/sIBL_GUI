@@ -2,108 +2,11 @@
 <ui version="4.0">
  <class>Loader_Script_DockWidget</class>
  <widget class="QDockWidget" name="Loader_Script_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>282</width>
-    <height>431</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Loader Script</string>
   </property>
   <widget class="QWidget" name="Loader_Script_dockWidgetContents">
    <layout class="QGridLayout" name="Loader_Script_dockWidgetContents_gridLayout">
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="Remote_Connection_groupBox">
-      <property name="title">
-       <string>Remote Connection</string>
-      </property>
-      <layout class="QGridLayout" name="Remote_Connection_groupBox_gridLayout">
-       <item row="0" column="0" colspan="2">
-        <widget class="QPushButton" name="Send_To_Software_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="statusTip">
-          <string>Send To Software Push Button: Direct connection to target 3d package if remote connection is available.</string>
-         </property>
-         <property name="text">
-          <string>Send To Software</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QFrame" name="Remote_Connection_Options_frame">
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="Remote_Connection_Options_frame_gridLayout">
-          <property name="margin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="Port_label">
-            <property name="text">
-             <string>Port:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QSpinBox" name="Software_Port_spinBox">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="statusTip">
-             <string>Software Port Spin Box: Port of the target 3d package.</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-            <property name="value">
-             <number>2048</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="Address_lineEdit">
-            <property name="statusTip">
-             <string>Ip Address Line Edit: Ip adress of the computer running the target 3d package.</string>
-            </property>
-            <property name="text">
-             <string>127.0.0.1</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="Address_label">
-            <property name="text">
-             <string>IP:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="Loader_Script_verticalLayout">
       <item>
@@ -122,22 +25,25 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="Send_To_Software_pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="statusTip">
+         <string>Send To Software Push Button: Direct connection to target 3d package if remote connection is available.</string>
+        </property>
+        <property name="text">
+         <string>Send To Software</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
-    <item row="5" column="0">
-     <spacer name="Loader_Script_verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>117</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="0">
+    <item row="3" column="0">
      <widget class="QGroupBox" name="Options_groupBox">
       <property name="title">
        <string>Options</string>
@@ -194,6 +100,19 @@
        </item>
       </layout>
      </widget>
+    </item>
+    <item row="4" column="0">
+     <spacer name="Loader_Script_verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>117</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
