@@ -3,7 +3,7 @@ Name = addons.iblSetsScanner
 Title = Ibl Sets Scanner
 Module = iblSetsScanner
 Object = IblSetsScanner
-Rank = 80
+Require = core.databaseBrowser|core.collectionsOutliner
 Version = 1.0
 
 [Informations]

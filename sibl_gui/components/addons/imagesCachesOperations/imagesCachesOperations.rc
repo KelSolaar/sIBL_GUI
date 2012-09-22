@@ -3,7 +3,7 @@ Name = addons.imagesCachesOperations
 Title = Images Caches Operations
 Module = imagesCachesOperations
 Object = ImagesCachesOperations
-Rank = 70
+Require = factory.preferencesManager
 Version = 1.0
 
 [Informations]

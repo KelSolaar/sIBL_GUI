@@ -3,7 +3,7 @@ Name = addons.preview
 Title = Preview
 Module = preview
 Object = Preview
-Rank = 85
+Require = core.databaseBrowser|core.inspector|factory.preferencesManager
 Version = 1.0
 
 [Informations]

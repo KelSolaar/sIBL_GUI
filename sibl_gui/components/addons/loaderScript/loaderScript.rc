@@ -3,7 +3,7 @@ Name = addons.loaderScript
 Title = Loader Script
 Module = loaderScript
 Object = LoaderScript
-Rank = 75
+Require = addons.tcpClientUi|core.databaseBrowser|core.templatesOutliner
 Version = 1.0
 
 [Informations]

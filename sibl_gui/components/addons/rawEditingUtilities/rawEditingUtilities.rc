@@ -3,7 +3,7 @@ Name = addons.rawEditingUtilities
 Title = Raw Editing Utilities
 Module = rawEditingUtilities
 Object = RawEditingUtilities
-Rank = 80
+Require = core.databaseBrowser|core.inspector|core.templatesOutliner|factory.componentsManagerUi|factory.preferencesManager|factory.scriptEditor
 Version = 1.0
 
 [Informations]

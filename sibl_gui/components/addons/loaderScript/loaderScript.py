@@ -22,7 +22,6 @@ import os
 import platform
 import re
 import socket
-from PyQt4.QtCore import QString
 from PyQt4.QtCore import Qt
 
 #**********************************************************************************************************************

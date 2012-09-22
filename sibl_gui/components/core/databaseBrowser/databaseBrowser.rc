@@ -3,7 +3,7 @@ Name = core.databaseBrowser
 Title = Database Browser
 Module = databaseBrowser
 Object = DatabaseBrowser
-Rank = 25
+Require = core.collectionsOutliner|core.db|factory.scriptEditor
 Version = 1.0
 
 [Informations]

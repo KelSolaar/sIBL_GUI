@@ -3,7 +3,6 @@ Name = addons.about
 Title = About
 Module = about
 Object = About
-Rank = 95
 Version = 1.0
 
 [Informations]

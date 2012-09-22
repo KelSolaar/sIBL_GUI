@@ -3,7 +3,7 @@ Name = core.templatesOutliner
 Title = Templates Outliner
 Module = templatesOutliner
 Object = TemplatesOutliner
-Rank = 35
+Require = core.db|factory.scriptEditor
 Version = 1.0
 
 [Informations]

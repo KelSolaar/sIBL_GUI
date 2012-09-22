@@ -3,7 +3,7 @@ Name = core.inspector
 Title = Inspector
 Module = inspector
 Object = Inspector
-Rank = 30
+Require = core.databaseBrowser|factory.preferencesManager
 Version = 1.0
 
 [Informations]

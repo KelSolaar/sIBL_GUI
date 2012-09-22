@@ -3,7 +3,7 @@ Name = addons.searchDatabase
 Title = Search Database
 Module = searchDatabase
 Object = SearchDatabase
-Rank = 75
+Require = core.databaseBrowser|core.collectionsOutliner
 Version = 1.0
 
 [Informations]

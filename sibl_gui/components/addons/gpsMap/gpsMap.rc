@@ -3,7 +3,7 @@ Name = addons.gpsMap
 Title = Gps Map
 Module = gpsMap
 Object = GpsMap
-Rank = 75
+Require = core.databaseBrowser
 Version = 1.0
 
 [Informations]

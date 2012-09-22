@@ -3,7 +3,6 @@ Name = addons.loggingNotifier
 Title = Logging Notifier
 Module = loggingNotifier
 Object = LoggingNotifier
-Rank = 70
 Version = 1.0
 
 [Informations]

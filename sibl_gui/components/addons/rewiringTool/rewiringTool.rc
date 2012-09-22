@@ -3,7 +3,7 @@ Name = addons.rewiringTool
 Title = Rewiring Tool
 Module = rewiringTool
 Object = RewiringTool
-Rank = 85
+Require = addons.loaderScript
 Version = 1.0
 
 [Informations]

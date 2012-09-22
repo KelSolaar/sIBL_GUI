@@ -3,7 +3,7 @@ Name = addons.loaderScriptOptions
 Title = Loader Script Options
 Module = loaderScriptOptions
 Object = LoaderScriptOptions
-Rank = 80
+Require = addons.loaderScript|core.templatesOutliner
 Version = 1.0
 
 [Informations]

@@ -3,7 +3,7 @@ Name = addons.sIBLeditUtilities
 Title = sIBLedit Utilities
 Module = sIBLeditUtilities
 Object = sIBLeditUtilities
-Rank = 75
+Require = core.databaseBrowser|core.inspector|factory.preferencesManager
 Version = 1.0
 
 [Informations]
