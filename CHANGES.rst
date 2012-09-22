@@ -6,7 +6,7 @@
     <div style="color: rgb(160, 48, 32);">
         <h2>IMPORTANT NOTICES:</h2>
         <ul>
-            <li>**sIBL_GUI** 4.x.x preferences are now stored per version in a directory following this structure : "./HDRLabs/**sIBL_GUI**/$MAJOR_VERSION.$MINOR_VERSION".
+            <li>**sIBL_GUI** 4.x.x preferences are now stored per version in a directory following this structure : "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION".
             </li>
             <li>On Windows, **sIBL_GUI** 4.x.x needs <a href="http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe">Microsoft Visual C++ 2010 Redistributable Package (x64)</a> to have third party images formats support.
             </li>
@@ -25,7 +25,7 @@ Changes
 
 I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
 
-| **sIBL_GUI** 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/**sIBL_GUI**/issues?milestone=3&state=closed
+| **sIBL_GUI** 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
 | Umbra 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented notifications manager code.
@@ -36,7 +36,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 -  Implemented **Delete Line(s)** methods in **Script Editor** Component.
 -  Implemented **Move Up / Down** methods in **Script Editor** Component.
 -  Implemented **Font Size Increase / Decrease** methods in **Script Editor** Component.
--  The FAQ have been moved into the documentation: http://kelsolaar.hdrlabs.com/**sIBL_GUI**/Support/Documentation/Api/resources/pages/faq.html
+-  The FAQ have been moved into the documentation: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/resources/pages/faq.html
 -  Added support for command line files arguments.
 -  Refactored the layouts management code.
 -  Optimized **Search Database** Component speed.
@@ -50,7 +50,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 4.0.1 - Beta
 ------------
 
-Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/**sIBL_GUI**/issues?milestone=2&state=closed
+Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
 
 -  Implemented asynchronous images loading in related **sIBL_GUI** Components for increased speed and responsiveness.
 -  A new **Images Caches Operations** Component has been introduced to allow images caches operations.
@@ -63,12 +63,12 @@ Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/**sIBL_GUI**/
 4.0.0 - Alpha
 --------------
 
-Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/**sIBL_GUI**/issues?milestone=1&state=closed
+Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
 
 -  **sIBL_GUI** is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  **sIBL_GUI** now features a refreshed new dark Ui theme with new logo, splashscreen and more!
 -  x64 is the default new **sIBL_GUI** architecture, there won't be anymore support for x86.
--  **sIBL_GUI** 4.x.x preferences a now stored per version in **./HDRLabs/**sIBL_GUI**/$MAJOR_VERSION.$MINOR_VERSION** directory.
+-  **sIBL_GUI** 4.x.x preferences a now stored per version in **./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION** directory.
 -  A new **Inspect** layout has been implemented, it makes use of the new **PREVIEWfile** attribute of .ibl files and allows you to browse your collections using large preview images.
 -  A new **Edit** layout has been implemented, it features **Umbra** **Script Editor** Component and allows you to directly edit Ibl Sets or Templates files and interact with **sIBL_GUI**. 
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
@@ -97,7 +97,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/**sIBL_GUI**
 -  3dsMax and Softimage / XSI templates have been refactored for better maintainability.
 -  Most Templates allows the user to define the prefix the setup will use for better customization.
 -  The Maya, 3dsMax, Softimage / XSI helper scripts have been refactored to be inline with **sIBL_GUI** 4.0.0 release.
--  A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/**sIBL_GUI**/Support/Donations/Make_A_Donation.html
+-  A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
 
 3.5.0 - Stable
 --------------
