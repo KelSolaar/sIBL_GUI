@@ -71,10 +71,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 		LOGGER.debug("> Central Widget button clicked!")
 
-		if self.__container.centralwidget.isVisible():
-			self.__container.centralwidget.hide()
+		if self.__container.centralWidget().isVisible():
+			self.__container.centralWidget().hide()
 		else:
-			self.__container.centralwidget.show()
+			self.__container.centralWidget().show()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

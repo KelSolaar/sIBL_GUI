@@ -1185,7 +1185,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__engine.centralwidget_gridLayout.addWidget(self)
+		self.__engine.setCentralWidget(self)
 
 		return True
 
