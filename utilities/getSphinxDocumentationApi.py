@@ -156,13 +156,11 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 
 			sourceFile = File(source)
 			sourceFile.read()
-			trimStartIndex = trimEndIndex = None
+			trimFromIndex = trimEndIndex = None
 			inMultilineString = inDecorator = False
 			for i, line in enumerate(sourceFile.content):
 				if re.search(r"__name__ +\=\= +\"__main__\"", line):
-					trimStartIndex = i
-				if trimStartIndex and re.search(r"^\s*$", line):
-					trimEndIndex = i
+					trimFromIndex = i
 				for pattern, value in CONTENT_SUBSTITUTIONS.iteritems():
 					if re.search(pattern, line):
 						sourceFile.content[i] = re.sub(pattern, value, line)
@@ -190,11 +188,10 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 
 				sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
-			if trimStartIndex and trimEndIndex:
+			if trimFromIndex:
 				LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__))
-				content = [sourceFile.content[i] for i in range(trimStartIndex)]
-				content.append("\n{0}\n".format(STATEMENTS_UPDATE_MESSAGGE))
-				content.extend([sourceFile.content[i] for i in range(trimEndIndex, len(sourceFile.content))])
+				content = [sourceFile.content[i] for i in range(trimFromIndex)]
+				content.append("{0}\n".format(STATEMENTS_UPDATE_MESSAGGE))
 				sourceFile.content = content
 			sourceFile.write()
 
