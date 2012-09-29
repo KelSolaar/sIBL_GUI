@@ -64,7 +64,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| It provides methods for the user to search into the Database using various filters.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -322,7 +321,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -343,7 +341,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -363,7 +360,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -396,7 +392,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -422,7 +417,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -437,7 +431,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -453,7 +446,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
 		This method is triggered when **Search_Database_lineEdit** text changes.
@@ -463,7 +455,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setTagsCloudMatchingIblsSetsUi()
 
-	@core.executionTrace
 	def __Case_Sensitive_Matching_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Case_Sensitive_Matching_pushButton** Widget is clicked.
@@ -473,7 +464,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setTagsCloudMatchingIblsSetsUi()
 
-	@core.executionTrace
 	def __Time_Low_timeEdit__timeChanged(self, time):
 		"""
 		This method is triggered when **Time_Low_timeEdit** time changes.
@@ -485,7 +475,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_Low_timeEdit.setTime(self.Time_High_timeEdit.time().addSecs(-60))
 		self.setTimeMatchingIblSetsUi()
 
-	@core.executionTrace
 	def __Time_High_timeEdit__timeChanged(self, time):
 		"""
 		This method is triggered when **Time_Low_timeEdit** time changes.
@@ -497,7 +486,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_High_timeEdit.setTime(self.Time_Low_timeEdit.time().addSecs(60))
 		self.setTimeMatchingIblSetsUi()
 
-	@core.executionTrace
 	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
 		"""
 		This method is triggered when **Tags_Cloud_listWidget** is double clicked.
@@ -507,7 +495,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
-	@core.executionTrace
 	def __collectionsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **collectionsOutliner.view** Model selection has changed.
@@ -518,7 +505,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setTagsCloudMatchingIblsSetsUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setTagsCloudMatchingIblsSetsUi(self):
 		"""
@@ -533,7 +519,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.setTagsCloudMatchingIblsSets(strings.encode(self.Search_Database_lineEdit.text()),
 		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setTimeMatchingIblSetsUi(self):
 		"""
@@ -547,7 +532,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.setTimeMatchingIblSets(self.Time_Low_timeEdit.time(), self.Time_High_timeEdit.time())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
@@ -602,7 +586,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__databaseBrowser.setIblSets(filteredIblSets)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTimeMatchingIblSets(self, timeLow, timeHigh):
 		"""

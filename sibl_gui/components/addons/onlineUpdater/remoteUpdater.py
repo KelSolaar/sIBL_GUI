@@ -72,7 +72,6 @@ class ReleaseObject(foundations.dataStructures.Structure):
 	This class represents a storage object for a :class:`RemoteUpdater` class release.
 	"""
 
-	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
 		This method initializes the class.
@@ -91,7 +90,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		( List of :class:`ReleaseObject` class instances ).
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, releases=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -628,7 +626,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -710,7 +707,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
 		self.Close_pushButton.clicked.connect(self.__Close_pushButton__clicked)
 
-	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Get_sIBL_GUI_pushButton** Widget is clicked.
@@ -736,7 +732,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadManager.show()
 		self.__downloadManager.startDownload()
 
-	@core.executionTrace
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Get_Latest_Templates_pushButton** Widget is clicked.
@@ -766,7 +761,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadManager.show()
 		self.__downloadManager.startDownload()
 
-	@core.executionTrace
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Open_Repository_pushButton** Widget is clicked.
@@ -777,7 +771,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.debug("> Opening url: '{0}'.".format(self.__repositoryUrl))
 		QDesktopServices.openUrl(QUrl(QString(self.__repositoryUrl)))
 
-	@core.executionTrace
 	def __Close_pushButton__clicked(self, checked):
 		"""
 		This method closes the RemoteUpdater.
@@ -788,7 +781,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.info("{0} | Closing '{1}' updater!".format(self.__class__.__name__, Constants.applicationName))
 		self.close()
 
-	@core.executionTrace
 	def __downloadManager__finished(self):
 		"""
 		This method is triggered when the download Manager finishes.
@@ -817,7 +809,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 				if self.__container.locationsBrowser.activated:
 					self.__container.locationsBrowser.exploreDirectory(os.path.dirname(download))
 
-	@core.executionTrace
 	def __getTemplatesDownloadDirectory(self):
 		"""
 		This method gets the Templates directory.
@@ -842,7 +833,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 											"Choose Templates Directory:",
 											self.__container.container.lastBrowsedPath))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def extractZipFile(self, file):
 		"""

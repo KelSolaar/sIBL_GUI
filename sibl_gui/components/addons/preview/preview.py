@@ -71,7 +71,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| It provides a basic image previewer.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -445,7 +444,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -472,7 +470,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -498,7 +495,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -521,7 +517,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -542,7 +537,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -557,7 +551,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -573,7 +566,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __addActions(self):
 		"""
 		This method sets Component actions.
@@ -621,7 +613,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Actions|Umbra|Components|core.inspector|View Plate(s) ...",
 		slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
 
-	@core.executionTrace
 	def __removeActions(self):
 		"""
 		This method removes actions.
@@ -655,7 +646,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(action))
 			self.__engine.actionsManager.unregisterAction(action)
 
-	@core.executionTrace
 	def __addInspectorButtons(self):
 		"""
 		This method adds buttons to the :mod:`sibl_gui.components.core.inspector.inspector` Component.
@@ -677,7 +667,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for value in self.__inspectorButtons.itervalues():
 			value["object"].setParent(None)
 
-	@core.executionTrace
 	def __databaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
@@ -688,7 +677,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Background")
 
-	@core.executionTrace
 	def __databaseBrowser_views_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
@@ -699,7 +687,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Lighting")
 
-	@core.executionTrace
 	def __databaseBrowser_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
@@ -710,7 +697,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Reflection")
 
-	@core.executionTrace
 	def __databaseBrowser_views_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
@@ -721,7 +707,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Plate")
 
-	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
@@ -732,7 +717,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewInspectorIblSetImagesUi("Background")
 
-	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
@@ -743,7 +727,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewInspectorIblSetImagesUi("Lighting")
 
-	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
@@ -754,7 +737,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewInspectorIblSetImagesUi("Reflection")
 
-	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
@@ -765,7 +747,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewInspectorIblSetImagesUi("Plate")
 
-	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
 		"""
 		This method fills **Custom_Previewer_Path_lineEdit** Widget.
@@ -776,7 +757,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Custom_Previewer_Path_lineEdit", customPreviewer.toString()))
 		self.Custom_Previewer_Path_lineEdit.setText(customPreviewer.toString())
 
-	@core.executionTrace
 	def __Custom_Previewer_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Custom_Previewer_Path_toolButton** Widget is clicked.
@@ -793,7 +773,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customPreviewer",
 									self.Custom_Previewer_Path_lineEdit.text())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -812,7 +791,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.Custom_Previewer_Path_lineEdit.text())
 
-	@core.executionTrace
 	def __hasMaximumImagesPreviewersInstances(self):
 		"""
 		This method returns if the maximum Previewers instances allowed is reached.
@@ -828,7 +806,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			return False
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def viewIblSetsImagesUi(self, imageType, *args):
 		"""
@@ -862,7 +839,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set(s) image(s)!".format(
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError,
@@ -902,7 +878,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																		inspectorIblSet.title,
 																		imageType))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def viewImages(self, paths, customPreviewer=None):
 		"""
@@ -931,7 +906,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				LOGGER.warning("!> {0} | You can only launch '{1}' images Previewer instances at same time!".format(
 				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addImagesPreviewer(self, imagesPreviewer):
 		"""
@@ -946,7 +920,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers.append(imagesPreviewer)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
@@ -960,7 +933,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers.remove(imagesPreviewer)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	@umbra.ui.common.showWaitCursor
 	@umbra.engine.showProcessing("Reading Images...")
@@ -978,7 +950,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers[-1].show()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, paths, customPreviewer):
 		"""
@@ -999,7 +970,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
 		return processCommand
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getIblSetImagesPaths(self, iblSet, imageType):
 		"""

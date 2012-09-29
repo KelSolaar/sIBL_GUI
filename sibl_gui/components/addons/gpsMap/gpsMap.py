@@ -62,7 +62,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/qdockwidget.html>`_ window.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -420,7 +419,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -442,7 +440,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -462,7 +459,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -498,7 +494,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -522,7 +517,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -537,7 +531,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -553,7 +546,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
@@ -567,7 +559,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__map.stop()
 		return True
 
-	@core.executionTrace
 	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **Data** Model selection has changed.
@@ -578,7 +569,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.setMarkersUi()
 
-	@core.executionTrace
 	def __Map_Type_comboBox__activated(self, index):
 		"""
 		This method is triggered when **Map_Type_comboBox** index changes.
@@ -588,7 +578,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__map.setMapType(self.__mapTypeIds[index][1])
 
-	@core.executionTrace
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_In_pushButton** Widget is clicked.
@@ -598,7 +587,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__map.setZoom("In")
 
-	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_Out_pushButton** Widget is clicked.
@@ -608,7 +596,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__map.setZoom("Out")
 
-	@core.executionTrace
 	def __map__loadFinished(self, state):
 		"""
 		This method is triggered when the GPS map finishes loading.
@@ -618,7 +605,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.setMarkersUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setMarkersUi(self):
 		"""
@@ -642,7 +628,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise Exception("{0} | Exception raised while setting '{1}' GPS markers!".format(
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setMarker(self, iblSet):
 		"""
@@ -666,7 +651,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		 							iblSet.title,
 		 							strings.toForwardSlashes(iblSet.icon), content)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeMarkers(self):
 		"""

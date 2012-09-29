@@ -57,7 +57,6 @@ class CacheMetrics(foundations.dataStructures.Structure):
 	This class represents a storage object for cache metrics.
 	"""
 
-	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
 		This method initializes the class.
@@ -90,7 +89,6 @@ class AbstractResourcesCache(QObject):
 	:return: Content removed from the cache. ( List )	
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None):
 		"""
 		This method initializes the class.
@@ -140,7 +138,6 @@ class AbstractResourcesCache(QObject):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __getitem__(self, item):
 		"""
 		This method reimplements the :meth:`object.__getitem__` method.
@@ -151,7 +148,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.__getitem__(item)
 
-	@core.executionTrace
 	def __setitem__(self, key, value):
 		"""
 		This method reimplements the :meth:`object.__setitem__` method.
@@ -162,7 +158,6 @@ class AbstractResourcesCache(QObject):
 
 		self.__mapping.__setitem__(key, value)
 
-	@core.executionTrace
 	def __iter__(self):
 		"""
 		This method reimplements the :meth:`object.__iter__` method.
@@ -172,7 +167,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.iteritems()
 
-	@core.executionTrace
 	def __contains__(self, item):
 		"""
 		This method reimplements the :meth:`object.__contains__` method.
@@ -183,7 +177,6 @@ class AbstractResourcesCache(QObject):
 
 		return item in self.__mapping.keys()
 
-	@core.executionTrace
 	def __len__(self):
 		"""
 		This method reimplements the :meth:`object.__len__` method.
@@ -193,7 +186,6 @@ class AbstractResourcesCache(QObject):
 
 		return len(self.__mapping.keys())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def isCached(self, key):
 		"""
@@ -205,7 +197,6 @@ class AbstractResourcesCache(QObject):
 
 		return key in self
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listContent(self):
 		"""
@@ -216,7 +207,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.keys()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addContent(self, **content):
 		"""
@@ -232,7 +222,6 @@ class AbstractResourcesCache(QObject):
 		self.contentAdded.emit(content.keys())
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeContent(self, *keys):
 		"""
@@ -252,7 +241,6 @@ class AbstractResourcesCache(QObject):
 			self.contentRemoved.emit([key])
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getContent(self, key):
 		"""
@@ -266,7 +254,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.get(key)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def flushContent(self):
 		"""
@@ -282,7 +269,6 @@ class AbstractResourcesCache(QObject):
 		self.contentRemoved.emit(content)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getMetrics(self):
 		"""
@@ -299,7 +285,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	This class provides an asynchronous graphics items cache.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, type=None, default=None):
 		"""
 		This method initializes the class.
@@ -461,7 +446,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __worker__imageLoaded(self, image):
 		"""
 		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
@@ -475,7 +459,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self[path] = graphicsItem
 		self.contentAdded.emit([path])
 
-	@core.executionTrace
 	def __setDefaultGraphicsItem(self, path):
 		"""
 		This method sets the defaultGraphicsItem graphics item.
@@ -492,7 +475,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addContent(self, **content):
 		"""
@@ -522,7 +504,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 			self.contentAdded.emit([key])
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def addDeferredContent(self, *content):
 		"""
@@ -560,7 +541,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 			self.__worker.addRequest(path)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getMetrics(self):
 		"""

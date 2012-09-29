@@ -83,7 +83,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			- Thunar
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -442,7 +441,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -468,7 +466,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -493,7 +490,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -524,7 +520,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -553,7 +548,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -568,7 +562,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -583,7 +576,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __addActions(self):
 		"""
 		This method sets Component actions.
@@ -610,7 +602,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...",
 		slot=self.__templatesOutliner_view_openTemplatesLocationsAction__triggered))
 
-	@core.executionTrace
 	def __removeActions(self):
 		"""
 		This method removes actions.
@@ -637,7 +628,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.getAction(openTemplatesLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
-	@core.executionTrace
 	def __databaseBrowser_views_openIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -649,7 +639,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openIblSetsLocationsUi()
 
-	@core.executionTrace
 	def __inspector_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
@@ -660,7 +649,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openInspectorIblSetLocationsUi()
 
-	@core.executionTrace
 	def __componentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -672,7 +660,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openComponentsLocationsUi()
 
-	@core.executionTrace
 	def __templatesOutliner_view_openTemplatesLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -684,7 +671,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openTemplatesLocationsUi()
 
-	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
 		"""
 		This method fills **Custom_File_Browser_Path_lineEdit** Widget.
@@ -695,7 +681,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Custom_File_Browser_Path_lineEdit", customFileBrowser.toString()))
 		self.Custom_File_Browser_Path_lineEdit.setText(customFileBrowser.toString())
 
-	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Custom_File_Browser_Path_toolButton** Widget is clicked.
@@ -712,7 +697,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customFileBrowser",
 									self.Custom_File_Browser_Path_lineEdit.text())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -734,7 +718,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customFileBrowser",
 									self.Custom_File_Browser_Path_lineEdit.text())
 
-	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Open_Output_Directory_pushButton** Widget is clicked.
@@ -744,7 +727,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.openOutputDirectoryUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openIblSetsLocationsUi(self):
 		"""
@@ -773,7 +755,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(
 			self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
@@ -797,7 +778,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, inspectorIblSet.title))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openComponentsLocationsUi(self):
 		"""
@@ -826,7 +806,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Components directories!".format(
 			self.__class__.__name__, ", ".join(component.name for component in selectedComponents)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def openTemplatesLocationsUi(self):
 		"""
@@ -855,7 +834,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Templates directories!".format(
 			self.__class__.__name__, ", ".join(template.name for template in selectedTemplates)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
@@ -882,7 +860,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(
 			self.__class__.__name__, directory))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, directory, customBrowser=None):
 		"""
@@ -931,7 +908,6 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					self.__class__.__name__))
 		return processCommand
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def exploreDirectory(self, directory, customBrowser=None):
 		"""

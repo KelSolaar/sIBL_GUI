@@ -121,7 +121,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -312,7 +311,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -334,7 +332,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -354,7 +351,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -368,7 +364,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -382,7 +377,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -395,7 +389,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -408,7 +401,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __addActions(self):
 		"""
 		This method sets Component actions.
@@ -420,7 +412,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName),
 																slot=self.__miscellaneousMenu_aboutAction__triggered))
 
-	@core.executionTrace
 	def __removeActions(self):
 		"""
 		This method removes actions.
@@ -432,7 +423,6 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__miscellaneousMenu.removeAction(self.__engine.actionsManager.getAction(aboutAction))
 		self.__engine.actionsManager.unregisterAction(aboutAction)
 
-	@core.executionTrace
 	def __miscellaneousMenu_aboutAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.

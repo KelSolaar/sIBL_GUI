@@ -68,7 +68,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		through options exposed in the :mod:`sibl_gui.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -425,7 +424,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -451,7 +449,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -476,7 +473,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -501,7 +497,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -525,7 +520,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -540,7 +534,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -556,7 +549,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __addActions(self):
 		"""
 		This method sets Component actions.
@@ -589,7 +581,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...",
 		slot=self.__componentsManagerUi_view_editComponentsAction__triggered))
 
-	@core.executionTrace
 	def __removeActions(self):
 		"""
 		This method removes actions.
@@ -615,7 +606,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.getAction(editComponenetsAction))
 		self.__engine.actionsManager.unregisterAction(editComponenetsAction)
 
-	@core.executionTrace
 	def __databaseBrowser_views_editIblSetsFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -627,7 +617,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editIblSetsFilesUi()
 
-	@core.executionTrace
 	def __inspector_editInspectorIblSetFileAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
@@ -638,7 +627,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editInspectorIblSetFileUi()
 
-	@core.executionTrace
 	def __templatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -650,7 +638,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editTemplatesFilesUi()
 
-	@core.executionTrace
 	def __componentsManagerUi_view_editComponentsAction__triggered(self, checked):
 		"""
 		This method is triggered by
@@ -662,7 +649,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editComponentsUi()
 
-	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
 		"""
 		This method fills **Custom_Text_Editor_Path_lineEdit** Widget.
@@ -673,7 +659,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																customTextEditor.toString()))
 		self.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
-	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Custom_Text_Editor_Path_toolButton** Widget is clicked.
@@ -690,7 +675,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customTextEditor",
 									self.Custom_Text_Editor_Path_lineEdit.text())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -712,7 +696,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customTextEditor",
 									self.Custom_Text_Editor_Path_lineEdit.text())
 
-	@core.executionTrace
 	@umbra.engine.encapsulateProcessing
 	def __engine__contentDropped(self, event):
 		"""
@@ -740,7 +723,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-	@core.executionTrace
 	def __scriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
 		"""
 		This method is triggered when content is dropped in the **scriptEditor.Script_Editor_tabWidget** Widget.
@@ -753,7 +735,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		elif event.source() is self.__templatesOutliner.view:
 			self.editTemplatesFilesUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def editIblSetsFilesUi(self):
 		"""
@@ -781,7 +762,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__,
 																", ".join(iblSet.title for iblSet in selectedIblSets)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
@@ -804,7 +784,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, inspectorIblSet.title))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def editTemplatesFilesUi(self):
 		"""
@@ -832,7 +811,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__,
 															", ".join(template.name for template in selectedTemplates)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def editComponentsUi(self):
 		"""
@@ -860,7 +838,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Components!".format(self.__class__.__name__,
 															", ".join(component.name for component in selectedComponents)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, path, customTextEditor):
 		"""
@@ -881,7 +858,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, path)
 		return processCommand
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editPath(self, path, customTextEditor=None):
 		"""

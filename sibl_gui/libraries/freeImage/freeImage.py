@@ -2015,7 +2015,6 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 	This class represents a storage object for image informations header.
 	"""
 
-	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
 		This method initializes the class.
@@ -2032,7 +2031,6 @@ class Image(object):
 	This class provides various methods to manipulate images files.
 	"""
 
-	@core.executionTrace
 	def __init__(self, imagePath=None):
 		"""
 		This method initializes the class.
@@ -2191,7 +2189,6 @@ class Image(object):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):
 		"""
@@ -2201,7 +2198,6 @@ class Image(object):
 		raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(
 		self.__class__.__name__, errorCode, message))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getImageFormat(self, imagePath=None):
 		"""
@@ -2220,7 +2216,6 @@ class Image(object):
 			fileFormat = self.__library.FreeImage_GetFIFFromFilename(imagePath)
 		return fileFormat
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def load(self, imagePath=None):
 		"""
@@ -2243,7 +2238,6 @@ class Image(object):
 				raise foundations.exceptions.LibraryExecutionError("{0} | '{1}' format read isn't supported!".format(
 				self.__class__.__name__, FIF_LOOKUP.getFirstKeyFromValue(imageFormat)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def save(self):
 		"""
@@ -2254,7 +2248,6 @@ class Image(object):
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
@@ -2276,7 +2269,6 @@ class Image(object):
 			raise foundations.exceptions.LibraryExecutionError(
 			"{0} | '{1}' format write isn't supported!".format(imageFormat))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToType(self, targetType, linearScale=True):
 		"""
@@ -2293,7 +2285,6 @@ class Image(object):
 			LOGGER.debug("> '{0}' image bitmap conversion to type '{1}' done!".format(self.__imagePath, targetType))
 			return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToLdr(self, gamma=2.2):
 		"""
@@ -2309,7 +2300,6 @@ class Image(object):
 			LOGGER.debug("> '{0}' HDR image bitmap conversion to LDR done!".format(self.__imagePath))
 			return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""

@@ -74,7 +74,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		- Establish a connection with the 3d package and trigger the Loader Script execution.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -551,7 +550,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -577,7 +575,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -599,7 +596,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -622,7 +618,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -642,7 +637,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -657,7 +651,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -673,7 +666,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __Output_Loader_Script_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Output_Loader_Script_pushButton** Widget is clicked.
@@ -683,7 +675,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.outputLoaderScriptUi()
 
-	@core.executionTrace
 	def __Send_To_Software_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Send_To_Software_pushButton** Widget is clicked.
@@ -693,7 +684,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.sendLoaderScriptToSoftwareUi()
 
-	@core.executionTrace
 	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **templatesOutliner.view** Model selection has changed.
@@ -730,7 +720,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		elif connectionType.value == "Win32":
 			LOGGER.debug("> Remote connection: 'Win32'.")
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError,
@@ -785,7 +774,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise Exception("{0} | Exception raised: '{1}' output failed!".format(self.__class__.__name__,
 			template.outputScript))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def sendLoaderScriptToSoftwareUi(self):
 		"""
@@ -812,7 +800,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		else:
 			raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DirectoryExistsError)
 	def outputLoaderScript(self, template, iblSet):
 		"""
@@ -848,7 +835,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if loaderScript.content and loaderScript.write():
 			return loaderScript.file
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											sibl_gui.exceptions.SocketConnectionError)
@@ -911,7 +897,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getDefaultOverrideKeys(self):
 		"""
@@ -960,7 +945,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 																			iblSet.reflectionImage))
 		return overrideKeys
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLoaderScript(self, template, iblSet, overrideKeys):
 		"""

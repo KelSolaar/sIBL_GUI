@@ -54,7 +54,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	This class is used to display Database Collections.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, model=None, readOnly=False):
 		"""
 		This method initializes the class.
@@ -145,7 +144,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def dragEnterEvent(self, event):
 		"""
 		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.
@@ -159,7 +157,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		else:
 			event.ignore()
 
-	@core.executionTrace
 	def dragMoveEvent(self, event):
 		"""
 		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragMoveEvent` method.
@@ -169,7 +166,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		pass
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
@@ -209,7 +205,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(
 			self.__class__.__name__))
 
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -228,7 +223,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
 		This method sets the Widget default ui state.
@@ -244,7 +238,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
@@ -263,7 +256,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				self.modelSelection["Collections"].append(node.id.value)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""

@@ -53,7 +53,6 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 
 	__family = "OverallCollection"
 
-	@core.executionTrace
 	def __init__(self,
 				name=None,
 				parent=None,
@@ -83,7 +82,6 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __initializeNode(self, attributesFlags):
 		"""
 		This method initializes the node.

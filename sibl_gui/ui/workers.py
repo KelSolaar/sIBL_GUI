@@ -64,7 +64,6 @@ class GraphicsItem_worker(QThread):
 	:return: Loaded image. ( QImage )		
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None):
 		"""
 		This method initializes the class.
@@ -118,7 +117,6 @@ class GraphicsItem_worker(QThread):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def addRequest(self, path):
 		"""
@@ -136,7 +134,6 @@ class GraphicsItem_worker(QThread):
 		self.__requests.put(path)
 		return True
 
-	@core.executionTrace
 	def run(self):
 		"""
 		This method reimplements the :meth:`QThread.run` method.
@@ -156,7 +153,6 @@ class GraphicsItem_worker(QThread):
 												osStats=os.stat(path))
 			self.imageLoaded.emit(image)
 
-	@core.executionTrace
 	def quit(self):
 		"""
 		This method reimplements the :meth:`QThread.quit` method.

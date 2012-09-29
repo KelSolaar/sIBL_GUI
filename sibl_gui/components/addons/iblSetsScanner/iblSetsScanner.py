@@ -57,7 +57,6 @@ class IblSetsScanner(QObjectComponent):
 		from Database registered directories parents.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -249,7 +248,6 @@ class IblSetsScanner(QObjectComponent):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -270,7 +268,6 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -290,7 +287,6 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initialize(self):
 		"""
@@ -318,7 +314,6 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitialize(self):
 		"""
@@ -342,7 +337,6 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
@@ -357,7 +351,6 @@ class IblSetsScanner(QObjectComponent):
 		not self.__engine.parameters.deactivateWorkerThreads and self.__iblSetsScannerWorkerThread.start()
 		return True
 
-	@core.executionTrace
 	@umbra.engine.encapsulateProcessing
 	def __iblSetsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""

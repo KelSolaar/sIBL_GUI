@@ -128,7 +128,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 	This class is the main class of the **sIBL_GUI** package.
 	"""
 
-	@core.executionTrace
 	def __init__(self,
 				parent=None,
 				componentsPaths=None,
@@ -196,7 +195,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def onPreInitialisation(self):
 		"""
 		This method is called by the :class:`umbra.engine.Umbra` class before Application main class initialisation.
@@ -205,7 +203,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		# Binding Application images caches.
 		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
 
-	@core.executionTrace
 	def onPostInitialisation(self):
 		"""
 		This method is called by the :class:`umbra.engine.Umbra` class after Application main class initialisation.
@@ -220,7 +217,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		scriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		self.contentDropped.disconnect(scriptEditor._ScriptEditor__engine__contentDropped)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def extendCommandLineParametersParser(parser):
 	"""

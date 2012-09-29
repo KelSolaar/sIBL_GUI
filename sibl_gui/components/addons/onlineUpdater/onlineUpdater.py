@@ -68,7 +68,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		the :mod:`sibl_gui.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -560,7 +559,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -592,7 +590,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -621,7 +618,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -650,7 +646,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -671,7 +666,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
@@ -688,7 +682,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.checkForNewReleases()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -701,7 +694,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Online_Updater_groupBox)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -714,7 +706,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Online_Updater_groupBox.setParent(None)
 
-	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		"""
 		This method sets the **Check_For_New_Releases_On_Startup_checkBox** Widget.
@@ -730,7 +721,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Check_For_New_Releases_On_Startup_checkBox.setCheckState(
 		foundations.common.getFirstItem(checkForNewReleasesOnStartup.toInt()))
 
-	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
 		This method is triggered when **Check_For_New_Releases_On_Startup_checkBox** Widget state changes.
@@ -741,7 +731,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(state))
 		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", state)
 
-	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		"""
 		This method sets the **Ignore_Non_Existing_Templates_checkBox** Widget.
@@ -757,7 +746,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Ignore_Non_Existing_Templates_checkBox.setCheckState(
 		foundations.common.getFirstItem(ignoreNonExistingTemplates.toInt()))
 
-	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
 		This method is triggered when **Ignore_Non_Existing_Templates_checkBox** Widget state changes.
@@ -768,7 +756,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(state))
 		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", state)
 
-	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Check_For_New_Releases_pushButton** Widget is clicked.
@@ -778,7 +765,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.checkForNewReleasesUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError)
 	def __releasesFileReply__finished(self):
 		"""
@@ -855,7 +841,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise sibl_gui.exceptions.NetworkError("{0} | QNetworkAccessManager error code: '{1}'.".format(
 			self.__class__.__name__, self.__releasesFileReply.error()))
 
-	@core.executionTrace
 	def __getReleasesFile(self, url):
 		"""
 		This method gets the releases file.
@@ -867,7 +852,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False, sibl_gui.exceptions.NetworkError,
 											Exception)
@@ -889,7 +873,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			raise Exception("{0} | Exception raised while checking for new releases!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError, Exception)
 	def checkForNewReleases(self):
 		"""

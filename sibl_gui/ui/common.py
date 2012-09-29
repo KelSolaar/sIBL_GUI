@@ -70,7 +70,6 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def convertImage(image, type):
 	"""
@@ -88,7 +87,6 @@ def convertImage(image, type):
 
 	return graphicsItem
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def loadGraphicsItem(path, type):
 	"""
@@ -125,7 +123,6 @@ def loadGraphicsItem(path, type):
 				graphicsItem = type(errorImage)
 	return graphicsItem
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	"""
@@ -150,7 +147,6 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
 	return cache.getContent(path)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path, asynchronousLoading=True, imagesCache=None):
 	"""
@@ -165,7 +161,6 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
 	return getGraphicsItem(path, QIcon, asynchronousLoading, cache)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 	"""
@@ -180,7 +175,6 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
 	return getGraphicsItem(path, QPixmap, asynchronousLoading, cache)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path, asynchronousLoading=True, imagesCache=None):
 	"""
@@ -195,7 +189,6 @@ def getImage(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
 	return getGraphicsItem(path, QImage, asynchronousLoading, cache)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def createPixmap(width=128, height=128, text=None):
 	"""
@@ -217,7 +210,6 @@ def createPixmap(width=128, height=128, text=None):
 		painter.drawText(pointX, pointY, text)
 	return loadingPixmap
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 def getImageInformationsHeader(path, graphicsItem):
 	"""
@@ -242,7 +234,6 @@ def getImageInformationsHeader(path, graphicsItem):
 									bpp=graphicsItem.depth(),
 									osStats=os.stat(path))
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterImagePath(path):
 	"""
@@ -262,7 +253,6 @@ def filterImagePath(path):
 	else:
 		return umbra.ui.common.getResourcePath(UiConstants.missingImage)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getFormatedShotDate(date, time):
 	"""

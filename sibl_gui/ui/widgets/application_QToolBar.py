@@ -63,7 +63,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __centralWidgetButton__clicked(self):
 		"""
 		This method sets the **Central** Widget visibility.
@@ -76,7 +75,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		else:
 			self.__container.centralWidget().show()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setToolBarChildrenWidgets(self):
 		"""
@@ -115,7 +113,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLayoutsActiveLabels(self):
 		"""
@@ -166,7 +163,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 																					"preferencesCentric",
 																					Qt.Key_0))
 		return self.__layoutsActiveLabelsCollection.activeLabels
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCentralWidgetActiveLabel(self):
 		"""
@@ -185,7 +181,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 		return centralWidgetButton
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def extendMiscellaneousActiveLabel(self):
 		"""
@@ -200,7 +195,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		self.miscellaneousMenu.addSeparator()
 		return True
 
-	@core.executionTrace
 	def __makeDonationDisplayMiscAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.

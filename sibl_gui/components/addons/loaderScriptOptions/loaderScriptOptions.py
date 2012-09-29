@@ -74,7 +74,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		the user can configure the behavior of the Loader Script.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -646,7 +645,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -673,7 +671,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -695,7 +692,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -715,7 +711,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -733,7 +728,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -748,7 +742,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -764,7 +757,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __tableWidget_setUi(self, section, tableWidget, overrides):
 		"""
 		This method defines and sets the given table widget.
@@ -843,7 +835,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
 		tableWidget.show()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def __commonAndAdditionalAttributesTablesWidgets_setUi(self):
 		"""
@@ -901,7 +892,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection],
 								self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
-	@core.executionTrace
 	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **templatesOutliner.view** Model selection has changed.
@@ -912,7 +902,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
-	@core.executionTrace
 	def __tableWidget__valueChanged(self, *args):
 		"""
 		This method is triggered when a **Common_Attributes_tableWidget** or 
@@ -943,7 +932,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
 
-	@core.executionTrace
 	def __updateOverrideKeys(self, tableWidget):
 		"""
 		This method updates the Loader Script Component override keys.
@@ -970,7 +958,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__loaderScript.overrideKeys[widget.data.name] = widget.data
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getOverrideKeys(self):
 		"""

@@ -61,7 +61,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| It provides override keys on request for the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -326,7 +325,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -346,7 +344,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -365,7 +362,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -403,7 +399,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -429,7 +424,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -444,7 +438,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -460,7 +453,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Background_ToolButton** Widget is clicked.
@@ -470,7 +462,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__setReWireCustomPath("Background")
 
-	@core.executionTrace
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Lighting_ToolButton** Widget is clicked.
@@ -480,7 +471,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__setReWireCustomPath("Lighting")
 
-	@core.executionTrace
 	def __Reflection_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **Reflection_ToolButton** Widget is clicked.
@@ -490,7 +480,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__setReWireCustomPath("Reflection")
 
-	@core.executionTrace
 	def __setReWireWidgetFramesVisibility(self, index):
 		"""
 		This method shows / hides rewire Widget frames.
@@ -506,7 +495,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				LOGGER.debug("> Hiding rewire frame '{0}'.".format(self.__reWireFramesWidgets[index]))
 				self.__reWireFramesWidgets[index].hide()
 
-	@core.executionTrace
 	def __setReWireCustomPath(self, component):
 		"""
 		This method sets the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component
@@ -527,7 +515,6 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif component == "Reflection":
 				self.Reflection_Path_lineEdit.setText(QString(customFile))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getOverrideKeys(self):
 		"""

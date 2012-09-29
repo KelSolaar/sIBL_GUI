@@ -57,7 +57,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| It provides various methods to operate on the images caches.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -183,7 +182,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -201,7 +199,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -219,7 +216,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -238,7 +234,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -257,7 +252,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -272,7 +266,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -288,7 +281,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __Clear_Images_Caches_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Clear_Images_Caches_pushButton** Widget is clicked.
@@ -298,7 +290,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.clearImagesCaches()
 
-	@core.executionTrace
 	def __Output_Images_Caches_Metrics_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Output_Images_Caches_Metrics_pushButton** Widget is clicked.
@@ -309,7 +300,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.outputImagesCachesMetrics()
 		self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def outputImagesCachesMetrics(self):
 		"""
@@ -332,7 +322,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info(separator)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											sibl_gui.exceptions.CacheOperationError)

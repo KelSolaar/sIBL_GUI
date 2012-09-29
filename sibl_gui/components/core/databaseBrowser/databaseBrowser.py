@@ -105,7 +105,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	:return: Current active view index. ( Integer )	
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -1038,7 +1037,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -1063,7 +1061,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
@@ -1073,7 +1070,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -1164,7 +1160,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
@@ -1174,7 +1169,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -1189,7 +1183,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
@@ -1199,7 +1192,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
@@ -1270,7 +1262,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.restoreModelSelection()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
@@ -1292,7 +1283,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return True
 
-	@core.executionTrace
 	def __views_addActions(self):
 		"""
 		This method sets the Views actions.
@@ -1326,7 +1316,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-	@core.executionTrace
 	def __views_addContentAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
@@ -1337,7 +1326,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.addContentUi()
 
-	@core.executionTrace
 	def __views_addIblSetAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
@@ -1348,7 +1336,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.addIblSetUi()
 
-	@core.executionTrace
 	def __views_removeIblSetsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
@@ -1359,7 +1346,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.removeIblSetsUi()
 
-	@core.executionTrace
 	def __views_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by 
@@ -1371,7 +1357,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.updateIblSetsLocationUi()
 
-	@core.executionTrace
 	def __views_pushButtons__clicked(self, index, checked):
 		"""
 		This method is triggered when **\*_View_pushButton** Widget is clicked.
@@ -1382,7 +1367,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.setActiveViewIndex(index)
 
-	@core.executionTrace
 	def __views__doubleClicked(self, index):
 		"""
 		This method is triggered when a **\*_View** Widget is double clicked.
@@ -1392,7 +1376,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.__engine.layoutsManager.restoreLayout(self.__inspectLayout)
 
-	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
 		This method is triggered when **Search_Database_lineEdit** text changes.
@@ -1404,7 +1387,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											self.__searchContexts[self.__activeSearchContext],
 											not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
 
-	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
 		This method scales the View icons.
@@ -1420,7 +1402,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
-	@core.executionTrace
 	def __databaseBrowser__modelRefresh(self):
 		"""
 		This method is triggered when the Model data need refresh.
@@ -1428,7 +1409,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.setIblSets()
 
-	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
 		This method is triggered when the Model data has changed.
@@ -1445,7 +1425,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.__db.commit()
 
-	@core.executionTrace
 	def __views__activeViewChanged(self, index):
 		"""
 		This method is triggered when the active View has changed.
@@ -1458,7 +1437,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			viewPushButton, image = data
 			viewPushButton.setChecked(viewIndex == index and True or False)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -1509,7 +1487,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(
 			self.__class__.__name__))
 
-	@core.executionTrace
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
 		This method is triggered by the **fileSystemEventsManager** when a file is changed.
@@ -1527,7 +1504,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__class__.__name__, iblSet.title))
 			self.modelRefresh.emit()
 
-	@core.executionTrace
 	def __getCandidateCollectionId(self):
 		"""
 		This method returns a Collection id.
@@ -1541,7 +1517,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		return identity and identity or self.__collectionsOutliner.getCollectionId(
 		self.__collectionsOutliner.defaultCollection)
 
-	@core.executionTrace
 	def __searchIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the current Collection Ibl Sets.
@@ -1568,7 +1543,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return iblSets
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getActiveView(self):
 		"""
@@ -1579,7 +1553,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentWidget()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getActiveViewIndex(self):
 		"""
@@ -1590,7 +1563,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentIndex()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setActiveView(self, view):
 		"""
@@ -1605,7 +1577,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setActiveViewIndex(self, index):
 		"""
@@ -1619,7 +1590,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setActiveSearchContext(self, context, *args):
 		"""
@@ -1639,7 +1609,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.Search_Database_lineEdit.setPlaceholderText(text)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
@@ -1664,7 +1633,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSetUi(self):
@@ -1694,7 +1662,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeIblSetsUi(self):
@@ -1728,7 +1695,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(
 				self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def updateIblSetsLocationUi(self):
@@ -1763,7 +1729,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while updating '{1}' Ibls sets locations!".format(
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None,
 											False,
 											foundations.exceptions.ProgrammingError,
@@ -1790,7 +1755,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
@@ -1826,7 +1790,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet):
 		"""
@@ -1845,7 +1808,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
 																							iblSet.title))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file):
 		"""
@@ -1866,7 +1828,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
 			self.__class__.__name__, iblSet.title))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getIblSets(self):
 		"""
@@ -1877,7 +1838,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__db.dbSession)]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1901,7 +1861,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								attribute,
 								flags)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def iblSetExists(self, path):
 		"""
@@ -1913,7 +1872,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.iblSetExists(self.__db.dbSession, path)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listIblSets(self):
 		"""
@@ -1926,7 +1884,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet.title for iblSet in self.getIblSets()]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setIblSets(self, iblSets=None):
 		"""
@@ -1960,7 +1917,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getIblSetByName(self, name):
 		"""
@@ -1975,7 +1931,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = self.filterIblSets(r"^{0}$".format(name), "title")
 		return foundations.common.getFirstItem(iblSets)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
@@ -1986,7 +1941,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.getActiveView().getSelectedNodes()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSetsNodes(self):
 		"""
@@ -1997,7 +1951,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [node for node in self.getSelectedNodes() if node.family == "IblSet"]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSets(self):
 		"""

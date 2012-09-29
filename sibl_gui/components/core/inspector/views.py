@@ -54,7 +54,6 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Ibl Sets Plates as thumbnails.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, model=None, readOnly=False):
 		"""
 		This method initializes the class.
@@ -111,7 +110,6 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -132,7 +130,6 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
 		This method sets the Widget default ui state.

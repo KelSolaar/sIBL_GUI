@@ -52,7 +52,6 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	Component Interface class. 
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
 		This method initializes the class.
@@ -71,7 +70,6 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeModel(self, rootNode):
 		"""

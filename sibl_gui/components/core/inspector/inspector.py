@@ -83,7 +83,6 @@ class Plate(foundations.dataStructures.Structure):
 	This class represents a storage object for an Ibl Set Plate.
 	"""
 
-	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
 		This method initializes the class.
@@ -100,7 +99,6 @@ class Light(foundations.dataStructures.Structure):
 	This class represents a storage object for an Ibl Set light.
 	"""
 
-	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
 		This method initializes the class.
@@ -136,7 +134,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	This signal is emited by the :class:`Inspector` class when the Ui needs to be cleared. ( pyqtSignal )
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -915,7 +912,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -939,7 +935,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
@@ -949,7 +944,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -1003,7 +997,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
@@ -1013,7 +1006,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -1028,7 +1020,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
@@ -1038,7 +1029,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
@@ -1071,7 +1061,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.__Inspector_DockWidget_clearUi()
 
-	@core.executionTrace
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
@@ -1079,7 +1068,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__Inspector_DockWidget_setUi()
 
-	@core.executionTrace
 	def __Inspector_DockWidget_clearUi(self):
 		"""
 		This method clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
@@ -1092,7 +1080,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Plates_frame.hide()
 
-	@core.executionTrace
 	def __Inspector_Overall_frame_addActions(self):
 		"""
 		This method sets the **Inspector_Overall_frame** actions.
@@ -1100,7 +1087,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		pass
 
-	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **Plates_listView** Model selection has changed.
@@ -1119,7 +1105,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.uiRefresh.emit()
 
-	@core.executionTrace
 	def __databaseBrowser__modelReset(self):
 		"""
 		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
@@ -1128,7 +1113,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__setInspectorIblSet()
 
-	@core.executionTrace
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
 		This method is triggered by the **fileSystemEventsManager** when a file is changed.
@@ -1148,7 +1132,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__setInspectorIblSet()
 				self.uiRefresh.emit()
 
-	@core.executionTrace
 	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
@@ -1168,7 +1151,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.uiClear.emit()
 
-	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Previous_Ibl_Set_pushButton** Widget is clicked.
@@ -1178,7 +1160,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.loopThroughIblSets(True)
 
-	@core.executionTrace
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Next_Ibl_Set_pushButton** Widget is clicked.
@@ -1188,7 +1169,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.loopThroughIblSets()
 
-	@core.executionTrace
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Previous_Plate_pushButton** Widget is clicked.
@@ -1198,7 +1178,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.loopThroughPlates(True)
 
-	@core.executionTrace
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Next_Plate_pushButton** Widget is clicked.
@@ -1208,7 +1187,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.loopThroughPlates()
 
-	@core.executionTrace
 	def __inspector__modelRefresh(self):
 		"""
 		This method refreshes the **Plates_listView** Model.
@@ -1216,7 +1194,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setPlates()
 
-	@core.executionTrace
 	def __Image_label__linkActivated(self, url):
 		"""
 		This method is triggered when a link is clicked in the **Image_label** Widget.
@@ -1226,7 +1203,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		QDesktopServices.openUrl(QUrl(url))
 
-	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
@@ -1239,7 +1215,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).dbItem
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
-	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
@@ -1253,7 +1228,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				sectionsFileParser.read() and sectionsFileParser.parse()
 				self.__sectionsFileParsersCache.addContent(**{self.__inspectorIblSet.path : sectionsFileParser})
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def __setInspectorIblSetPlates(self):
 		"""
@@ -1279,7 +1253,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
 														sectionsFileParser.getValue("PLATEfile", section))))
 
-	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
 		"""
 		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
@@ -1304,7 +1277,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
 		painter.end()
 
-	@core.executionTrace
 	def __drawLightLabel(self, painter, light):
 		"""
 		This method draws a light label on given QPainter.
@@ -1348,7 +1320,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 50)), 2))
 		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setPlates(self):
 		"""
@@ -1379,7 +1350,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
@@ -1413,7 +1383,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.uiClear.emit()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""

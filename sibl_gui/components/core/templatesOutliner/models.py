@@ -51,7 +51,6 @@ class TemplatesModel(sibl_gui.ui.models.GraphModel):
 	:class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class. 
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
 		This method initializes the class.
@@ -70,7 +69,6 @@ class TemplatesModel(sibl_gui.ui.models.GraphModel):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeModel(self, rootNode):
 		"""

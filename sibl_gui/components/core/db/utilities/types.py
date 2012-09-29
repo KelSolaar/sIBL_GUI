@@ -79,7 +79,6 @@ class DbIblSet(DbBase):
 	time = sqlalchemy.Column(sqlalchemy.String)
 	comment = sqlalchemy.Column(sqlalchemy.String)
 
-	@core.executionTrace
 	def __init__(self,
 			name=None,
 			path=None,
@@ -144,7 +143,6 @@ class DbIblSet(DbBase):
 		self.time = time
 		self.comment = comment
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
@@ -224,7 +222,6 @@ class DbTemplate(DbBase):
 	outputScript = sqlalchemy.Column(sqlalchemy.String)
 	comment = sqlalchemy.Column(sqlalchemy.String)
 
-	@core.executionTrace
 	def __init__(self,
 			name=None,
 			path=None,
@@ -283,7 +280,6 @@ class DbTemplate(DbBase):
 		self.outputScript = outputScript
 		self.comment = comment
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
@@ -369,7 +365,6 @@ class DbCollection(DbBase):
 	type = sqlalchemy.Column(sqlalchemy.String)
 	comment = sqlalchemy.Column(sqlalchemy.String)
 
-	@core.executionTrace
 	def __init__(self, name=None, type=None, comment=None):
 		"""
 		This method initializes the class.

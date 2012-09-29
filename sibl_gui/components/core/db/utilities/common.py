@@ -93,7 +93,6 @@ DB_EXCEPTIONS = {
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, sibl_gui.components.core.db.exceptions.DatabaseOperationError)
 def commit(session):
 	"""
@@ -111,7 +110,6 @@ def commit(session):
 		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError(
 		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def addItem(session, item):
 	"""
@@ -128,7 +126,6 @@ def addItem(session, item):
 
 	return commit(session)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def addStandardItem(session, type, name, path, collection):
 	"""
@@ -154,7 +151,6 @@ def addStandardItem(session, type, name, path, collection):
 		core.getModule(addStandardItem).__name__, path, type.__name__))
 		return False
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def removeItem(session, item):
 	"""
@@ -171,7 +167,6 @@ def removeItem(session, item):
 
 	return commit(session)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def removeStandardItem(session, type, identity):
 	"""
@@ -188,7 +183,6 @@ def removeStandardItem(session, type, identity):
 	item = session.query(type).filter_by(id=identity).one()
 	return removeItem(session, item)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def updateItemContent(session, item):
 	"""
@@ -209,7 +203,6 @@ def updateItemContent(session, item):
 		item.name, item.__class__.__name__))
 		return False
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def updateItemLocation(session, item, path):
 	"""
@@ -231,7 +224,6 @@ def updateItemLocation(session, item, path):
 		core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
 		return False
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterItems(session, items, pattern, field, flags=0):
 	"""
@@ -247,7 +239,6 @@ def filterItems(session, items, pattern, field, flags=0):
 
 	return [item for item in items if re.search(pattern, strings.encode(item.__dict__[field]), flags)]
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def itemExists(session, items, pattern, field, flags=0):
 	"""
@@ -263,7 +254,6 @@ def itemExists(session, items, pattern, field, flags=0):
 
 	return filterItems(session, items, pattern, field, flags) and True or False
 
-@core.executionTrace
 def getIblSets(session):
 	"""
 	This definition returns the Ibl Sets from the Database.
@@ -274,7 +264,6 @@ def getIblSets(session):
 
 	return session.query(dbTypes.DbIblSet)
 
-@core.executionTrace
 def filterIblSets(session, pattern, field, flags=0):
 	"""
 	This definition filters the sets from the Database.
@@ -288,7 +277,6 @@ def filterIblSets(session, pattern, field, flags=0):
 
 	return filterItems(session, getIblSets(session), pattern, field, flags)
 
-@core.executionTrace
 def iblSetExists(session, path):
 	"""
 	This method returns if given Ibl Set exists in the Database.
@@ -299,7 +287,6 @@ def iblSetExists(session, path):
 
 	return filterIblSets(session, "^{0}$".format(re.escape(path)), "path") and True or False
 
-@core.executionTrace
 def addIblSet(session, name, path, collection):
 	"""
 	This definition adds a new Ibl Set to the Database.
@@ -313,7 +300,6 @@ def addIblSet(session, name, path, collection):
 
 	return addStandardItem(session, dbTypes.DbIblSet, name, path, collection)
 
-@core.executionTrace
 def removeIblSet(session, identity):
 	"""
 	This definition removes an Ibl Set from the Database.
@@ -325,7 +311,6 @@ def removeIblSet(session, identity):
 
 	return removeStandardItem(session, dbTypes.DbIblSet, identity)
 
-@core.executionTrace
 def updateIblSetContent(session, iblSet):
 	"""
 	This definition update an Ibl Set content.
@@ -337,7 +322,6 @@ def updateIblSetContent(session, iblSet):
 
 	return updateItemContent(session, iblSet)
 
-@core.executionTrace
 def updateIblSetLocation(session, iblSet, path):
 	"""
 	This definition updates an Ibl Set location.
@@ -350,7 +334,6 @@ def updateIblSetLocation(session, iblSet, path):
 
 	return updateItemLocation(session, iblSet, path)
 
-@core.executionTrace
 def checkIblSetsTableIntegrity(session):
 	"""
 	This definition checks sets table integrity.
@@ -389,7 +372,6 @@ def checkIblSetsTableIntegrity(session):
 
 	return erroneousIblSets
 
-@core.executionTrace
 def getCollections(session):
 	"""
 	This definition returns the Collections from the Database.
@@ -400,7 +382,6 @@ def getCollections(session):
 
 	return session.query(dbTypes.DbCollection)
 
-@core.executionTrace
 def filterCollections(session, pattern, field, flags=0):
 	"""
 	This definition filters the Collections from the Database.
@@ -414,7 +395,6 @@ def filterCollections(session, pattern, field, flags=0):
 
 	return filterItems(session, getCollections(session), pattern, field, flags)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getCollectionsByType(session, type):
 	"""
@@ -427,7 +407,6 @@ def getCollectionsByType(session, type):
 
 	return [collection for collection in filterCollections(session, type, "type")]
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterCollectionsByType(session, type, pattern, field, flags=0):
 	"""
@@ -444,7 +423,6 @@ def filterCollectionsByType(session, type, pattern, field, flags=0):
 	return list(set(getCollectionsByType(session, type)).intersection(
 	filterCollections(session, "{0}".format(pattern), field, flags)))
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterIblSetsCollections(session, pattern, field, flags=0):
 	"""
@@ -459,7 +437,6 @@ def filterIblSetsCollections(session, pattern, field, flags=0):
 
 	return filterCollectionsByType(session, "IblSets", pattern, field, flags)
 
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterTemplatesCollections(session, pattern, field, flags=0):
 	"""
@@ -474,7 +451,6 @@ def filterTemplatesCollections(session, pattern, field, flags=0):
 
 	return filterCollectionsByType(session, "Templates", pattern, field, flags)
 
-@core.executionTrace
 def collectionExists(session, name):
 	"""
 	This method returns if the Collection exists in the Database.
@@ -485,7 +461,6 @@ def collectionExists(session, name):
 
 	return filterCollections(session, "^{0}$".format(name), "name") and True or False
 
-@core.executionTrace
 def addCollection(session, collection, type, comment):
 	"""
 	This definition adds a Collection to the Database.
@@ -507,7 +482,6 @@ def addCollection(session, collection, type, comment):
 		core.getModule(addCollection).__name__, collection))
 		return False
 
-@core.executionTrace
 def removeCollection(session, identity):
 	"""
 	This definition removes a Collection from the Database.
@@ -519,7 +493,6 @@ def removeCollection(session, identity):
 
 	return removeStandardItem(session, dbTypes.DbCollection, identity)
 
-@core.executionTrace
 def getCollectionsIblSets(session, identities):
 	"""
 	This definition returns Ibl Sets from Collections ids
@@ -537,7 +510,6 @@ def getCollectionsIblSets(session, identities):
 				iblSets.append(iblSet)
 	return iblSets
 
-@core.executionTrace
 def getTemplates(session):
 	"""
 	This definition returns the Templates from the Database.
@@ -548,7 +520,6 @@ def getTemplates(session):
 
 	return session.query(dbTypes.DbTemplate)
 
-@core.executionTrace
 def filterTemplates(session, pattern, field, flags=0):
 	"""
 	This definition filters the Templates from the Database.
@@ -562,7 +533,6 @@ def filterTemplates(session, pattern, field, flags=0):
 
 	return filterItems(session, getTemplates(session), pattern, field, flags)
 
-@core.executionTrace
 def templateExists(session, path):
 	"""
 	This method returns if given Template exists in the Database.
@@ -573,7 +543,6 @@ def templateExists(session, path):
 
 	return filterTemplates(session, "^{0}$".format(re.escape(path)), "path") and True or False
 
-@core.executionTrace
 def addTemplate(session, name, path, collection):
 	"""
 	This definition adds a new Template to the Database.
@@ -587,7 +556,6 @@ def addTemplate(session, name, path, collection):
 
 	return addStandardItem(session, dbTypes.DbTemplate, name, path, collection)
 
-@core.executionTrace
 def removeTemplate(session, identity):
 	"""
 	This definition removes a Template from the Database.
@@ -599,7 +567,6 @@ def removeTemplate(session, identity):
 
 	return removeStandardItem(session, dbTypes.DbTemplate, identity)
 
-@core.executionTrace
 def updateTemplateContent(session, template):
 	"""
 	This definition update a Template content.
@@ -611,7 +578,6 @@ def updateTemplateContent(session, template):
 
 	return updateItemContent(session, template)
 
-@core.executionTrace
 def updateTemplateLocation(session, template, path):
 	"""
 	This definition updates a Template location.
@@ -624,7 +590,6 @@ def updateTemplateLocation(session, template, path):
 
 	return updateItemLocation(session, template, path)
 
-@core.executionTrace
 def checkTemplatesTableIntegrity(session):
 	"""
 	This definition checks Templates table integrity.

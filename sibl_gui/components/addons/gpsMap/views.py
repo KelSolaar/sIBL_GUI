@@ -53,7 +53,6 @@ class Map_QWebView(QWebView):
 		in the Component resources html file through Javascript evaluation.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None):
 		"""
 		This method initializes the class.
@@ -63,7 +62,6 @@ class Map_QWebView(QWebView):
 
 		QWebView.__init__(self, parent)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addMarker(self, coordinates, title, icon, content):
 		"""
@@ -87,7 +85,6 @@ class Map_QWebView(QWebView):
 																						content))
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeMarkers(self):
 		"""
@@ -101,7 +98,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setCenter(self):
 		"""
@@ -115,7 +111,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setCenter()")
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setMapType(self, mapTypeId):
 		"""
@@ -136,7 +131,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setZoom(self, type):
 		"""

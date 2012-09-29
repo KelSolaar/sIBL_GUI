@@ -54,7 +54,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	This class is used to display Database Collections.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, model=None, readOnly=False):
 		"""
 		This method initializes the class.
@@ -145,7 +144,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -164,7 +162,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
 		This method sets the Widget default ui state.
@@ -180,7 +177,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
@@ -201,7 +197,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				self.modelSelection["Softwares"].append(foundations.namespace.setNamespace(node.parent.id.value, node.name))
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""

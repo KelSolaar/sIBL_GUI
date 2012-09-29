@@ -93,7 +93,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	model needs to be refreshed. ( pyqtSignal )
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -845,7 +844,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -876,7 +874,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
@@ -886,7 +883,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -932,7 +928,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
@@ -942,7 +937,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -957,7 +951,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
@@ -967,7 +960,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
@@ -1033,7 +1025,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__view.restoreModelSelection()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
@@ -1059,7 +1050,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
-	@core.executionTrace
 	def __view_addActions(self):
 		"""
 		This method sets the View actions.
@@ -1099,7 +1089,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		separatorAction.setSeparator(True)
 		self.__view.addAction(separatorAction)
 
-	@core.executionTrace
 	def __view_addTemplateAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
@@ -1110,7 +1099,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.addTemplateUi()
 
-	@core.executionTrace
 	def __view_removeTemplatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
@@ -1121,7 +1109,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.removeTemplatesUi()
 
-	@core.executionTrace
 	def __view_importDefaultTemplatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
@@ -1132,7 +1119,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.importDefaultTemplatesUi()
 
-	@core.executionTrace
 	def __view_displayHelpFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
@@ -1143,7 +1129,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.displayHelpFilesUi()
 
-	@core.executionTrace
 	def __view_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
@@ -1154,7 +1139,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.filterTemplatesVersionsUi()
 
-	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method sets the **Template_Informations_textEdit** Widget.
@@ -1185,7 +1169,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.Template_Informations_textBrowser.setText(separator.join(content))
 
-	@core.executionTrace
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
 		"""
 		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
@@ -1195,7 +1178,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		QDesktopServices.openUrl(url)
 
-	@core.executionTrace
 	def __templatesOutliner__modelRefresh(self):
 		"""
 		This method is triggered when the Model data need refresh.
@@ -1203,7 +1185,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.setTemplates()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -1254,7 +1235,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.UserError(
 			"{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
 		This method is triggered by the **fileSystemEventsManager** when a file is changed.
@@ -1272,7 +1252,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__class__.__name__, template.title))
 			self.modelRefresh.emit()
 
-	@core.executionTrace
 	def __getCandidateCollectionId(self, path=None):
 		"""
 		This method returns a Collection id.
@@ -1291,7 +1270,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				identity = collection and collection.id or None
 		return identity
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplateUi(self):
@@ -1321,7 +1299,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeTemplatesUi(self):
@@ -1370,7 +1347,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
 				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplatesUi(self):
@@ -1388,7 +1364,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(
 			self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFilesUi(self):
@@ -1414,7 +1389,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersionsUi(self):
@@ -1446,7 +1420,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None,
 											False,
 											foundations.exceptions.ProgrammingError,
@@ -1474,7 +1447,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
@@ -1510,7 +1482,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
@@ -1545,7 +1516,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(
 			self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeTemplate(self, template):
 		"""
@@ -1564,7 +1534,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__,
 																							template.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def templateExists(self, path):
 		"""
@@ -1576,7 +1545,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.templateExists(self.__db.dbSession, path)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template):
 		"""
@@ -1602,7 +1570,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise dbExceptions.DatabaseOperationError(
 			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
@@ -1623,7 +1590,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
 			self.__class__.__name__, template.name, template.helpFile))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollections(self):
 		"""
@@ -1634,7 +1600,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.getCollectionsByType(self.__db.dbSession, "Templates")
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1657,7 +1622,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 													attribute,
 													flags)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getTemplates(self):
 		"""
@@ -1668,7 +1632,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [template for template in dbCommon.getTemplates(self.__db.dbSession)]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1692,7 +1655,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								attribute,
 								flags)))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listTemplates(self):
 		"""
@@ -1703,7 +1665,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [template.title for template in self.getTemplates()]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTemplates(self):
 		"""
@@ -1765,7 +1726,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getTemplateByName(self, name):
 		"""
@@ -1780,7 +1740,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		templates = self.filterTemplates(r"^{0}$".format(name), "title")
 		return foundations.common.getFirstItem(templates)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionByName(self, name):
 		"""
@@ -1793,7 +1752,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
 		return foundations.common.getFirstItem(collections)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionId(self, collection):
 		"""
@@ -1807,7 +1765,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		child = foundations.common.getFirstItem(children)
 		return child and child.dbItem.id or None
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
@@ -1818,7 +1775,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.__view.getSelectedNodes()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedTemplatesNodes(self):
 		"""
@@ -1829,7 +1785,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [node for node in self.getSelectedNodes() if node.family == "Template"]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedTemplates(self):
 		"""

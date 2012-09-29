@@ -66,7 +66,6 @@ class Image_QGraphicsItem(QGraphicsItem):
 		to display given `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, image=None):
 		"""
 		This method initializes the class.
@@ -190,7 +189,6 @@ class Image_QGraphicsItem(QGraphicsItem):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def boundingRect(self):
 		"""
 		This method reimplements the :meth:`QGraphicsItem.boundingRect` method.
@@ -201,7 +199,6 @@ class Image_QGraphicsItem(QGraphicsItem):
 					self.__image.width(),
 					self.__image.height())
 
-	@core.executionTrace
 	def paint(self, painter, options, widget):
 		"""
 		This method reimplements the :meth:`QGraphicsItem.paint` method.
@@ -220,7 +217,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		zoom in / out and fit the displayed image, etc...
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, paths=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -824,7 +820,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def show(self):
 		"""
 		This method reimplements the :meth:`QWidget.show` method.
@@ -834,7 +829,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		foundations.ui.common.centerWidgetOnScreen(self)
 
-	@core.executionTrace
 	def closeEvent(self, event):
 		"""
 		This method reimplements the :meth:`QWidget.closeEvent` method.
@@ -847,7 +841,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		event.accept()
 
-	@core.executionTrace
 	def wheelEvent(self, event):
 		"""
 		This method reimplements the :meth:`QWidget.wheelEvent` method.
@@ -857,7 +850,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.scaleView(pow(1.5, event.delta() / self.__wheelZoomFactor))
 
-	@core.executionTrace
 	def keyPressEvent(self, event):
 		"""
 		This method reimplements the :meth:`QWidget.keyPressEvent` method.
@@ -873,7 +865,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		else:
 			super(ImagesPreviewer, self).keyPressEvent(event)
 
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -917,7 +908,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
 		self.Zoom_Fit_pushButton.clicked.connect(self.__Zoom_Fit_pushButton__clicked)
 
-	@core.executionTrace
 	def __Images_Informations_label_setUi(self):
 		"""
 		This method sets the **Images_Informations_label** Widget ui.
@@ -932,7 +922,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 																				image.data.height,
 																				image.data.bpp / 4))
 
-	@core.executionTrace
 	def __engine_imagesCaches_QImage__contentAdded(self, content):
 		"""
 		This method is triggered by the Application **QImage** images cache when content has been added.
@@ -950,7 +939,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		image = self.__container.engine.imagesCaches.QImage.getContent(path)
 		self.__setDisplayGraphicsItem(image)
 
-	@core.executionTrace
 	def __Previous_Image_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Previous_Image_pushButton** Widget is clicked.
@@ -960,7 +948,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.loopThroughImages(True)
 
-	@core.executionTrace
 	def __Next_Image_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Next_Image_pushButton** Widget is clicked.
@@ -970,7 +957,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.loopThroughImages()
 
-	@core.executionTrace
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_In_pushButton** Widget is clicked.
@@ -980,7 +966,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.scaleView(self.__keyZoomFactor)
 
-	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_Out_pushButton** Widget is clicked.
@@ -990,7 +975,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.scaleView(1 / self.__keyZoomFactor)
 
-	@core.executionTrace
 	def __Zoom_Fit_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Zoom_Fit_pushButton** Widget is clicked.
@@ -1000,7 +984,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.fitImage()
 
-	@core.executionTrace
 	def __setDisplayGraphicsItem(self, image):
 		"""
 		This method sets the display graphics item using given image.
@@ -1017,7 +1000,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.__Images_Informations_label_setUi()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def loadImage(self, index=0):
 		"""
@@ -1035,7 +1017,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def scaleView(self, scaleFactor):
 		"""
@@ -1053,7 +1034,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		graphicsView.scale(scaleFactor, scaleFactor)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def fitWindow(self):
 		"""
@@ -1075,7 +1055,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def fitImage(self):
 		"""
@@ -1095,7 +1074,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 				Qt.KeepAspectRatio)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def loopThroughImages(self, backward=False):
 		"""

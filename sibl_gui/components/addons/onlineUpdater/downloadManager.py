@@ -70,7 +70,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	This signal is emited by the :class:`DownloadManager` class when a download is finished. ( pyqtSignal )
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent, networkAccessManager, downloadDirectory, requests=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -471,7 +470,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def closeEvent(self, event):
 		"""
 		This method reimplements the :meth:`QWidget.closeEvent` method.
@@ -483,7 +481,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		super(DownloadManager, self).closeEvent(event)
 
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
@@ -499,7 +496,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		# Signals / Slots.
 		self.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
 
-	@core.executionTrace
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
 		This method is triggered when **Cancel_Close_pushButton** Widget is clicked.
@@ -509,7 +505,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.close()
 
-	@core.executionTrace
 	def __downloadNext(self):
 		"""
 		This method downloads the next request.
@@ -543,7 +538,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentRequest.finished.connect(self.__downloadComplete)
 		self.__currentRequest.readyRead.connect(self.__requestReady)
 
-	@core.executionTrace
 	def __downloadProgress(self, bytesReceived, bytesTotal):
 		"""
 		This method updates the download progress.
@@ -560,7 +554,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Download_progressBar.setRange(0, bytesTotal)
 		self.Download_progressBar.setValue(bytesReceived)
 
-	@core.executionTrace
 	def __requestReady(self):
 		"""
 		This method is triggered when the request is ready to write.
@@ -570,7 +563,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.__currentFile.write(self.__currentRequest.readAll())
 
-	@core.executionTrace
 	def __downloadComplete(self):
 		"""
 		This method is triggered when the request download is complete.
@@ -593,7 +585,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Cancel_Close_pushButton.setText("Close")
 			self.downloadFinished.emit()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def startDownload(self):
 		"""
@@ -606,7 +597,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadNext()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def abortDownload(self):
 		"""

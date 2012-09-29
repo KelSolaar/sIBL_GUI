@@ -88,7 +88,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	property model needs to be refreshed. ( pyqtSignal )
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -646,7 +645,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -670,7 +668,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
@@ -680,7 +677,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -716,7 +712,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
@@ -726,7 +721,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -741,7 +735,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
@@ -751,7 +744,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
@@ -785,7 +777,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view.restoreModelSelection()
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
@@ -808,7 +799,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
-	@core.executionTrace
 	def __view_addActions(self):
 		"""
 		This method sets the View actions.
@@ -829,7 +819,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-	@core.executionTrace
 	def __view_addContentAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Content ...'** action.
@@ -840,7 +829,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.addContentUi()
 
-	@core.executionTrace
 	def __view_addCollectionAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...'** action.
@@ -851,7 +839,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.addCollectionUi()
 
-	@core.executionTrace
 	def __view_removeCollectionsAction__triggered(self, checked):
 		"""
 		This method is triggered by 
@@ -863,7 +850,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.removeCollectionsUi()
 
-	@core.executionTrace
 	def __collectionsOutliner__modelRefresh(self):
 		"""
 		This method is triggered when the Model data need refresh.
@@ -871,7 +857,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setCollections()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -905,7 +890,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__db.commit()
 
-	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when the View **selectionModel** has changed.
@@ -916,7 +900,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__databaseBrowser.modelRefresh.emit()
 
-	@core.executionTrace
 	def __view_setIblSetsCounts(self):
 		"""
 		This method sets the View Ibl Sets counts.
@@ -949,7 +932,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 															QVariant(iblSetsCount),
 															Qt.DisplayRole)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
@@ -978,7 +960,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError,
@@ -1024,7 +1005,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(
 			self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeCollectionsUi(self):
@@ -1068,7 +1048,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise Exception("{0} | Exception raised while removing '{1}' Collections from the Database!".format(
 				self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections))))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None,
 											False,
 											foundations.exceptions.ProgrammingError,
@@ -1099,7 +1078,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None,
 											False,
 											dbExceptions.DatabaseOperationError)
@@ -1125,7 +1103,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise dbExceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__,
 																								collection.name))
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollections(self):
 		"""
@@ -1136,7 +1113,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return dbCommon.getCollectionsByType(self.__db.dbSession, "IblSets")
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1157,7 +1133,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return dbCommon.filterIblSetsCollections(self.__db.dbSession, "{0}".format(strings.encode(pattern.pattern)),
 																						attribute, flags)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def collectionExists(self, name):
 		"""
@@ -1169,7 +1144,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return dbCommon.collectionExists(self.__db.dbSession, name)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def listCollections(self):
 		"""
@@ -1180,7 +1154,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return [collection.name for collection in self.getCollections()]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setCollections(self):
 		"""
@@ -1224,7 +1197,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionByName(self, name):
 		"""
@@ -1237,7 +1209,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
 		return foundations.common.getFirstItem(collections)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionsIblSets(self, collections):
 		"""
@@ -1250,7 +1221,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [iblSet for iblSet in dbCommon.getCollectionsIblSets(self.__db.dbSession,
 																	[collection.id for collection in collections])]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionIblSetsCount(self, collection):
 		"""
@@ -1262,7 +1232,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.__db.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionId(self, collection):
 		"""
@@ -1276,7 +1245,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		child = foundations.common.getFirstItem(children)
 		return child and child.dbItem.id or None
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
@@ -1287,7 +1255,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.__view.getSelectedNodes()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedCollectionsNodes(self):
 		"""
@@ -1298,7 +1265,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return [node for node in self.getSelectedNodes() if node.family == "Collection"]
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedCollections(self):
 		"""

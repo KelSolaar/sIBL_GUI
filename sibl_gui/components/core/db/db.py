@@ -62,7 +62,6 @@ class Db(Component):
 		the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""
 
-	@core.executionTrace
 	def __init__(self, name=None):
 		"""
 		This method initializes the class.
@@ -451,7 +450,6 @@ class Db(Component):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -468,7 +466,6 @@ class Db(Component):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
@@ -478,7 +475,6 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
@@ -578,7 +574,6 @@ class Db(Component):
 		self.initialized = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitialize(self):
 		"""
@@ -588,7 +583,6 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def commit(self):
 		"""

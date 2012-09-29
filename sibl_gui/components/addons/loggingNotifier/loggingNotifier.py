@@ -52,7 +52,6 @@ class LoggingNotifier(Component):
 		the :mod:`sibl_gui.components.addons.loggingWindow.loggingWindow` Component.
 	"""
 
-	@core.executionTrace
 	def __init__(self, name=None):
 		"""
 		This method initializes the class.
@@ -141,7 +140,6 @@ class LoggingNotifier(Component):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -158,7 +156,6 @@ class LoggingNotifier(Component):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -174,7 +171,6 @@ class LoggingNotifier(Component):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initialize(self):
 		"""
@@ -191,7 +187,6 @@ class LoggingNotifier(Component):
 		self.initialized = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitialize(self):
 		"""
@@ -208,7 +203,6 @@ class LoggingNotifier(Component):
 		self.initialized = False
 		return True
 
-	# @core.executionTrace
 	def __statusBar_showLoggingMessages(self):
 		"""
 		This method updates the engine status bar with logging messages.

@@ -60,7 +60,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| It provides methods to link the Application to sIBLedit.
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
@@ -284,7 +283,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
@@ -307,7 +305,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
@@ -329,7 +326,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeUi(self):
 		"""
@@ -351,7 +347,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitializeUi(self):
 		"""
@@ -371,7 +366,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addWidget(self):
 		"""
@@ -386,7 +380,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeWidget(self):
 		"""
@@ -401,7 +394,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@core.executionTrace
 	def __addActions(self):
 		"""
 		This method sets Component actions.
@@ -423,7 +415,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-	@core.executionTrace
 	def __removeActions(self):
 		"""
 		This method removes actions.
@@ -441,7 +432,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			editInspectorIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
-	@core.executionTrace
 	def __databaseBrowser_views_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
@@ -452,7 +442,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editIblSetInSIBLEditUi()
 
-	@core.executionTrace
 	def __inspector_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
@@ -463,7 +452,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editInspectorIblSetInSIBLEditUi()
 
-	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
 		"""
 		This method fills **sIBLedit_Path_lineEdit** Widget.
@@ -473,7 +461,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
 		self.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
-	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
 		This method is triggered when **sIBLedit_Path_toolButton** Widget is clicked.
@@ -489,7 +476,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
@@ -507,7 +493,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
@@ -535,7 +520,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.notificationsManager.warnify(
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.FileExistsError)
@@ -563,7 +547,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.notificationsManager.warnify(
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, path, sIBLedit):
 		"""
@@ -576,7 +559,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""

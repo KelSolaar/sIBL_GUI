@@ -54,7 +54,6 @@ class SoftwareNode(umbra.ui.nodes.GraphModelNode):
 	__family = "Software"
 	"""Node family. ( String )"""
 
-	@core.executionTrace
 	def __init__(self,
 				name=None,
 				parent=None,
@@ -84,7 +83,6 @@ class SoftwareNode(umbra.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def __initializeNode(self, attributesFlags):
 		"""
 		This method initializes the node.

@@ -52,7 +52,6 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	:class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
 		This method initializes the class.
@@ -71,7 +70,6 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeModel(self, rootNode):
 		"""
@@ -88,7 +86,6 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		self.endResetModel()
 		return True
 
-	# @core.executionTrace
 	# @foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def sort(self, column, order=Qt.AscendingOrder):
 		"""

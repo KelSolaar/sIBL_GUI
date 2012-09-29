@@ -67,7 +67,6 @@ class IblSetsScanner_worker(QThread):
 	:return: New Ibl Sets. ( Dictionary )
 	"""
 
-	@core.executionTrace
 	def __init__(self, parent):
 		"""
 		This method initializes the class.
@@ -222,7 +221,6 @@ class IblSetsScanner_worker(QThread):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@core.executionTrace
 	def run(self):
 		"""
 		This method reimplements the :meth:`QThread.run` method.
@@ -230,7 +228,6 @@ class IblSetsScanner_worker(QThread):
 
 		self.scanIblSetsDirectories()
 
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def scanIblSetsDirectories(self):
 		"""
