@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import platform
 from PyQt4.QtCore import QByteArray
@@ -40,6 +39,7 @@ import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.ui.common
+import foundations.verbose
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.pkzip import Pkzip
@@ -60,7 +60,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "ReleaseObject", "RemoteUpdater"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Remote_Updater.ui")
 

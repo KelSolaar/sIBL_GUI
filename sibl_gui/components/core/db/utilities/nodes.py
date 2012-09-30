@@ -40,14 +40,13 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER",
-			"getTemplateUserName",
+__all__ = ["LOGGER", "getTemplateUserName",
 			"AbstractDatabaseNode",
 			"IblSetNode",
 			"TemplateNode",
 			"CollectionNode"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

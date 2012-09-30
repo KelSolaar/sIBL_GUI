@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import re
 import sys
@@ -41,6 +40,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.walkers
 import foundations.strings as strings
+import foundations.verbose
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -53,7 +53,6 @@ from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.collectionsOutliner.models import CollectionsModel
 from sibl_gui.components.core.collectionsOutliner.nodes import OverallCollectionNode
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
-from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
@@ -68,7 +67,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "CollectionsOutliner"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_Outliner.ui")
 

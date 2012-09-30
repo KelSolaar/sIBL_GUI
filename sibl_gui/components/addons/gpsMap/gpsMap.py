@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 from PyQt4.QtCore import QSize
 from PyQt4.QtCore import QUrl
@@ -31,6 +30,7 @@ import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import foundations.verbose
 import sibl_gui.ui.common
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -49,7 +49,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_FILE", "GpsMap"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 

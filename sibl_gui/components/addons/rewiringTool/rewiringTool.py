@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import Qt
@@ -27,13 +26,12 @@ from PyQt4.QtGui import QFileDialog
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
 import foundations.exceptions
 import foundations.parsers
 import foundations.strings as strings
+import foundations.verbose
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
-from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
@@ -48,7 +46,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "RewiringTool"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool.ui")
 

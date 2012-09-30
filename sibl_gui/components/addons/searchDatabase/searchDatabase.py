@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import re
 import itertools
@@ -31,12 +30,11 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import foundations.verbose
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
-from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #**********************************************************************************************************************
@@ -51,7 +49,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "SearchDatabase"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Search_Database.ui")
 

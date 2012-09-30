@@ -13,10 +13,10 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import shutil
 import sqlalchemy
@@ -27,6 +27,7 @@ from PyQt4.QtGui import QMessageBox
 #**********************************************************************************************************************
 import foundations.common
 import foundations.core as core
+import foundations.verbose
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.widgets.messageBox
 from umbra.globals.constants import Constants
@@ -42,9 +43,9 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["UID", "apply"]
+__all__ = ["LOGGER", "UID", "apply"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 UID = "f23bedfa0def170bb6f70f24b4e1b047"
 

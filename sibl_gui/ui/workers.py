@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import pyqtSignal
@@ -27,11 +26,10 @@ from Queue import Queue
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
+import foundations.verbose
 import sibl_gui.ui.common
 from sibl_gui.libraries.freeImage.freeImage import ImageInformationsHeader
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -45,7 +43,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "GraphicsItem_worker"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

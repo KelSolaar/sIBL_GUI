@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import platform
 import re
@@ -28,11 +27,11 @@ from PyQt4.QtCore import Qt
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.parsers
 import foundations.strings as strings
+import foundations.verbose
 import sibl_gui.exceptions
 import umbra.ui.common
 from foundations.io import File
@@ -52,7 +51,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_FILE", "LoaderScript"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script.ui")
 

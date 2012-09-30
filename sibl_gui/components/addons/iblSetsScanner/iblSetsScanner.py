@@ -17,21 +17,19 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
 import foundations.namespace
+import foundations.verbose
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qobjectComponent import QObjectComponent
 from sibl_gui.components.addons.iblSetsScanner.workers import IblSetsScanner_worker
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -45,7 +43,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "IblSetsScanner"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

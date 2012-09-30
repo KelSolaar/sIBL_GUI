@@ -19,7 +19,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import functools
-import logging
 import os
 import platform
 import re
@@ -38,12 +37,12 @@ import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import foundations.verbose
 import umbra.engine
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.preview.imagesPreviewer import ImagesPreviewer
-from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
@@ -58,7 +57,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "Preview"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Preview.ui")
 

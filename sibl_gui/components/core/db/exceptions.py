@@ -29,7 +29,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["AbstractDatabaseError",
+__all__ = ["LOGGER", "AbstractDatabaseError",
 			"DatabaseOperationError",
 			"AbstractIblSetError",
 			"MissingIblSetFileError",

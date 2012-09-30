@@ -13,10 +13,10 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 
 #**********************************************************************************************************************
@@ -24,6 +24,7 @@ import os
 #**********************************************************************************************************************
 import foundations.common
 import foundations.core as core
+import foundations.verbose
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -37,9 +38,9 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["UID", "apply"]
+__all__ = ["LOGGER", "UID", "apply"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 UID = "00fd997f2a2c395b59aa31f1997f831b"
 

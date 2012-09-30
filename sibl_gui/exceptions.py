@@ -29,7 +29,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["AbstractNetworkError",
+__all__ = ["LOGGER",
+			"AbstractNetworkError",
 			"NetworkError",
 			"SocketConnectionError",
 			"Win32OLEServerConnectionError"]

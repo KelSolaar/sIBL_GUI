@@ -18,7 +18,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 from PyQt4.QtCore import QRectF
 from PyQt4.QtCore import Qt
@@ -38,8 +37,8 @@ import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
+import foundations.verbose
 import sibl_gui.ui.common
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -53,7 +52,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "Image_QGraphicsItem", "ImagesPreviewer"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Previewer.ui")
 

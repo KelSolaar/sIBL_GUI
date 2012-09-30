@@ -17,17 +17,15 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import re
 import sys
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
+import foundations.verbose
 import foundations.walkers
 from foundations.io import File
-from foundations.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -39,20 +37,17 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "LOGGING_CONSOLE_HANDLER", "IMPORTS", "FILTERS_IN", "FILTERS_OUT", "listImports"]
+__all__ = ["LOGGER", "IMPORTS", "FILTERS_IN", "FILTERS_OUT", "listImports"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
-
-core.setVerbosityLevel(3)
+LOGGER = foundations.verbose.installLogger()
 
 IMPORTS = ["PyQt.uic"]
 
 FILTERS_IN = ("\.py$",)
 FILTERS_OUT = ("defaultScript\.py", "tests")
+
+foundations.verbose.getLoggingConsoleHandler()
+foundations.verbose.setVerbosityLevel(3)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

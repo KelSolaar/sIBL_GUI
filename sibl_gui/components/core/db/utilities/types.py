@@ -44,7 +44,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "DbBase", "DbIblSet", "DbTemplate", "DbCollection"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

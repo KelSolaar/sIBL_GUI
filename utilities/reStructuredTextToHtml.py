@@ -13,19 +13,18 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import sys
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
+import foundations.verbose
 from foundations.io import File
-from foundations.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -38,26 +37,22 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"LOGGING_CONSOLE_HANDLER",
 		"RST2HTML",
 		"CSS_FILE",
 		"TIDY_SETTINGS_FILE",
 		"NORMALIZATION",
 		"reStructuredTextToHtml"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
-
-core.setVerbosityLevel(3)
+LOGGER = foundations.verbose.installLogger()
 
 RST2HTML = "/Users/$USER/Documents/Development/VirtualEnv/HDRLabs/bin/rst2html.py"
 CSS_FILE = "css/style.css"
 TIDY_SETTINGS_FILE = "tidy/tidySettings.rc"
 
 NORMALIZATION = {"document": "document"}
+
+foundations.verbose.getLoggingConsoleHandler()
+foundations.verbose.setVerbosityLevel(3)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

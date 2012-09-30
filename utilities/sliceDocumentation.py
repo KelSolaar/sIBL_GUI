@@ -13,10 +13,10 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import re
 import sys
@@ -28,9 +28,8 @@ else:
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
+import foundations.verbose
 from foundations.io import File
-from foundations.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -43,26 +42,23 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"LOGGING_CONSOLE_HANDLER",
 		"OUTPUT_FILES_EXTENSION",
 		"SLICE_ATTRIBUTE_INDENT",
 		"CONTENT_DELETION",
 		"CONTENT_SUBSTITUTIONS",
 		"sliceDocumentation"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
-
-core.setVerbosityLevel(3)
+LOGGER = foundations.verbose.installLogger()
 
 OUTPUT_FILES_EXTENSION = "rst"
 SLICE_ATTRIBUTE_INDENT = 2
 CONTENT_DELETION = ()
 CONTENT_SUBSTITUTIONS = {"resources/": "../",
 						"     \|":"            |" }
+
+foundations.verbose.getLoggingConsoleHandler()
+foundations.verbose.setVerbosityLevel(3)
+
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

@@ -19,7 +19,6 @@
 #**********************************************************************************************************************
 import inspect
 import itertools
-import logging
 import os
 import re
 from PyQt4.QtGui import QColor
@@ -33,8 +32,8 @@ from PyQt4.QtGui import QPen
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
 import foundations.exceptions
+import foundations.verbose
 import sibl_gui.exceptions
 import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
@@ -65,7 +64,7 @@ __all__ = ["LOGGER",
 			"filterImagePath",
 			"getFormatedShotDate"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

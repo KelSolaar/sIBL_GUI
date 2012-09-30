@@ -19,7 +19,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import ctypes
-import logging
 import os
 import platform
 import re
@@ -29,13 +28,13 @@ import sys
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.library
+import foundations.verbose
+import sibl_gui
 from foundations.library import LibraryHook
 from umbra.globals.constants import Constants
-import sibl_gui
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -406,7 +405,7 @@ __all__ = ["LOGGER",
 			"ImageInformationsHeader",
 			"Image"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Ctypes manipulations from ctypesgen.

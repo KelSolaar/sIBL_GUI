@@ -19,13 +19,12 @@
 #*** External imports
 #**********************************************************************************************************************
 import sqlalchemy
-import logging
 import sibl_gui.components.core.db.utilities.common as dbCommon
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-from umbra.globals.constants import Constants
+import foundations.verbose
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -39,7 +38,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "renameTable", "upgrade", "downgrade"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

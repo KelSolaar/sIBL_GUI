@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import platform
 import re
@@ -42,8 +41,8 @@ from PyQt4.QtGui import QMessageBox
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
-import foundations.namespace as namespace
 import foundations.strings as strings
+import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -73,7 +72,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "TemplatesOutliner"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Outliner.ui")
 

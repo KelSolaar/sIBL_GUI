@@ -18,7 +18,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 from PyQt4.QtCore import QSize
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QAbstractItemView
@@ -27,10 +26,9 @@ from PyQt4.QtGui import QListView
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
+import foundations.verbose
 import sibl_gui.ui.views
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -44,7 +42,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "Plates_QListView"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

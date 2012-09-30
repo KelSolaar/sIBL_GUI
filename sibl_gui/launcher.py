@@ -18,7 +18,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import sys
 from PyQt4.QtGui import QIcon
@@ -80,7 +79,7 @@ _overrideApplicationToolbar()
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.verbose
 import sibl_gui.ui.cache
 import sibl_gui.ui.models
 import umbra.engine
@@ -97,11 +96,9 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER",
-		"sIBL_GUI",
-		"extendCommandLineParametersParser"]
+__all__ = ["LOGGER", "sIBL_GUI", "extendCommandLineParametersParser"]
 
-LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

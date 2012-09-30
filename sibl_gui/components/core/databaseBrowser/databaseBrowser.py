@@ -18,7 +18,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import functools
-import logging
 import os
 import platform
 import re
@@ -46,8 +45,8 @@ from PyQt4.QtGui import QStringListModel
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
-import foundations.namespace as namespace
 import foundations.strings as strings
+import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -61,7 +60,6 @@ from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
 from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
 from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
 from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
-from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -78,7 +76,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Browser.ui")
 

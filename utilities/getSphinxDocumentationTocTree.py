@@ -13,11 +13,11 @@
 **Others:**
 
 """
+
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import glob
-import logging
 import os
 import re
 import sys
@@ -29,10 +29,9 @@ else:
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.strings as strings
+import foundations.verbose
 from foundations.io import File
-from foundations.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -45,19 +44,12 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"LOGGING_CONSOLE_HANDLER",
 		"FILES_EXTENSION",
 		"TOCTREE_TEMPLATE_BEGIN",
 		"TOCTREE_TEMPLATE_END",
 		"getSphinxDocumentationTocTree"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
-
-core.setVerbosityLevel(3)
+LOGGER = foundations.verbose.installLogger()
 
 FILES_EXTENSION = ".rst"
 
@@ -75,6 +67,9 @@ TOCTREE_TEMPLATE_END = ["Search:\n",
 					"* :ref:`genindex`\n",
 					"* :ref:`modindex`\n",
 					"* :ref:`search`\n", ]
+
+foundations.verbose.getLoggingConsoleHandler()
+foundations.verbose.setVerbosityLevel(3)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

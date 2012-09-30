@@ -43,8 +43,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER",
-			"DB_EXCEPTIONS"
+__all__ = ["LOGGER", "DB_EXCEPTIONS"
 			"commit",
 			"addItem",
 			"addStandardItem",
@@ -78,7 +77,7 @@ __all__ = ["LOGGER",
 			"updateTemplateLocation",
 			"checkTemplatesTableIntegrity"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 DB_EXCEPTIONS = {
 	sibl_gui.components.core.db.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",

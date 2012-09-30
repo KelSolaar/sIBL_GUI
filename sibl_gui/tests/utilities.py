@@ -15,17 +15,9 @@
 """
 
 #**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
-import logging
-import sys
-
-#**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
-from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+import foundations.verbose
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -39,13 +31,5 @@ __status__ = "Production"
 
 __all__ = ["LOGGER"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-# Starting the console handler.
-RuntimeGlobals.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
-RuntimeGlobals.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(RuntimeGlobals.loggingConsoleHandler)
-
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
+LOGGER = foundations.verbose.installLogger()
+foundations.verbose.getLoggingConsoleHandler()

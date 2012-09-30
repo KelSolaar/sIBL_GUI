@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import subprocess
 import sys
 if sys.version_info[:2] <= (2, 6):
@@ -29,8 +28,8 @@ else:
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.verbose
 from foundations.io import File
-from foundations.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -43,7 +42,6 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"LOGGING_CONSOLE_HANDLER",
 		"GIT_EXECUTABLE",
 		"FOUNDATIONS_DIRECTORY",
 		"MANAGER_DIRECTORY",
@@ -53,13 +51,7 @@ __all__ = ["LOGGER",
 		"DEPENDENCIES_FILE",
 		"getDependenciesInformations"]
 
-LOGGER = logging.getLogger(Constants.logger)
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
-
-core.setVerbosityLevel(3)
+LOGGER = foundations.verbose.installLogger()
 
 GIT_EXECUTABLE = "/usr/local/git/bin/git"
 FOUNDATIONS_DIRECTORY = "../../Foundations"
@@ -71,6 +63,9 @@ DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
 							("Umbra", UMBRA_DIRECTORY),
 							("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
+
+foundations.verbose.getLoggingConsoleHandler()
+foundations.verbose.setVerbosityLevel(3)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

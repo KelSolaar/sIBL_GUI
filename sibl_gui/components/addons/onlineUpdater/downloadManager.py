@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 from PyQt4.QtCore import QFile
 from PyQt4.QtCore import QIODevice
@@ -34,8 +33,8 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import foundations.ui.common
+import foundations.verbose
 import umbra.ui.common
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -49,7 +48,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "UI_FILE", "DownloadManager"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Download_Manager.ui")
 

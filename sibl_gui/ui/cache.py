@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import itertools
 from PyQt4.QtCore import QObject
@@ -26,11 +25,10 @@ from PyQt4.QtCore import pyqtSignal
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
+import foundations.verbose
 import sibl_gui.ui.common
 import sibl_gui.ui.workers
-from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -47,7 +45,7 @@ __all__ = ["LOGGER",
 			"AbstractResourcesCache",
 			"AsynchronousGraphicsItemsCache"]
 
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
