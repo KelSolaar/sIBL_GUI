@@ -17,15 +17,14 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 from PyQt4.QtCore import Qt
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
+import foundations.verbose
 import umbra.ui.nodes
 import sibl_gui.ui.common
 from umbra.globals.constants import Constants
@@ -40,7 +39,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "getTemplateUserName",
+__all__ = ["LOGGER",
+			"getTemplateUserName",
 			"AbstractDatabaseNode",
 			"IblSetNode",
 			"TemplateNode",
@@ -60,7 +60,7 @@ def getTemplateUserName(title, software):
 	:return: Template user name. ( String )
 	"""
 
-	return strings.removeStrip(title, software)
+	return foundations.strings.removeStrip(title, software)
 
 class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	"""

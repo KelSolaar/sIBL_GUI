@@ -28,7 +28,7 @@ from PyQt4.QtCore import pyqtSignal
 #**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.db.utilities.common as dbCommon
@@ -244,7 +244,7 @@ class IblSetsScanner_worker(QThread):
 			if foundations.common.pathExists(directory):
 				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
 					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
-						iblSet = strings.getSplitextBasename(path)
+						iblSet = foundations.strings.getSplitextBasename(path)
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:

@@ -31,7 +31,7 @@ from PyQt4.QtCore import Qt
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -514,7 +514,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		return self.setTagsCloudMatchingIblsSets(strings.encode(self.Search_Database_lineEdit.text()),
+		return self.setTagsCloudMatchingIblsSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
 		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
@@ -556,7 +556,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not comment:
 				continue
 
-			tagsCloud = strings.filterWords(strings.getWords(comment), filtersOut=self.__cloudExcludedTags, flags=flags)
+			tagsCloud = foundations.strings.filterWords(foundations.strings.getWords(comment), filtersOut=self.__cloudExcludedTags, flags=flags)
 
 			patternsMatched = True
 			if patternTokens != patternsDefault:

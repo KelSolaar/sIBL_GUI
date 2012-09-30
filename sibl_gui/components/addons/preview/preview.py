@@ -34,9 +34,9 @@ from PyQt4.QtGui import QPushButton
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import umbra.engine
 import umbra.ui.common
@@ -454,7 +454,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
@@ -780,7 +780,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		value = strings.encode(self.Custom_Previewer_Path_lineEdit.text())
+		value = foundations.strings.encode(self.Custom_Previewer_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
@@ -826,7 +826,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
 			if paths:
 				success *= self.viewImages(paths, \
-				strings.encode(self.Custom_Previewer_Path_lineEdit.text())) or False
+				foundations.strings.encode(self.Custom_Previewer_Path_lineEdit.text())) or False
 			else:
 				self.__engine.notificationsManager.warnify(
 				"{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(
@@ -866,7 +866,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
 		if paths:
 			if self.viewImages(paths, \
-			strings.encode(self.Custom_Previewer_Path_lineEdit.text())):
+			foundations.strings.encode(self.Custom_Previewer_Path_lineEdit.text())):
 				return True
 			else:
 				raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(

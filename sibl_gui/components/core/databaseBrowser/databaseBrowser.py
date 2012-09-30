@@ -43,9 +43,9 @@ from PyQt4.QtGui import QStringListModel
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
@@ -1046,7 +1046,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
@@ -1251,7 +1251,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		for view in self.__views:
 			viewName = view.objectName()
-			viewSelectedIblSetsIdentities = strings.encode(self.__settings.getKey(self.__settingsSection,
+			viewSelectedIblSetsIdentities = foundations.strings.encode(self.__settings.getKey(self.__settingsSection,
 																	"{0}_viewSelecteIblSets".format(viewName)).toString())
 			LOGGER.debug("> '{0}' View stored selected Ibl Sets identities: '{1}'.".format(viewName,
 																							viewSelectedIblSetsIdentities))
@@ -1274,7 +1274,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.storeModelSelection()
 			self.__settings.setKey(self.__settingsSection,
 								"{0}_viewSelecteIblSets".format(view.objectName()),
-								self.__settingsSeparator.join(strings.encode(identity) \
+								self.__settingsSeparator.join(foundations.strings.encode(identity) \
 								for identity in view.modelSelection["Default"]))
 
 		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
@@ -1381,7 +1381,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setIblSets(self.__searchIblSets(strings.encode(self.Search_Database_lineEdit.text()),
+		self.setIblSets(self.__searchIblSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
 											self.__searchContexts[self.__activeSearchContext],
 											not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
 
@@ -1454,10 +1454,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] \
-				or strings.encode(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), strings.encode(url.path())):
-					name = strings.getSplitextBasename(path)
+				re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] \
+				or foundations.strings.encode(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), foundations.strings.encode(url.path())):
+					name = foundations.strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
 'Edit' it in the Script Editor?".format(name),
@@ -1534,7 +1534,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = [iblSet for iblSet in set(self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or \
 		self.__collectionsOutliner.getCollections())).intersection(
-		dbCommon.filterIblSets(self.__db.dbSession, "{0}".format(strings.encode(pattern.pattern)), attribute, flags))]
+		dbCommon.filterIblSets(self.__db.dbSession, "{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
@@ -1651,7 +1651,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.iblSetExists(path):
 			LOGGER.debug("> Chosen Ibl Set path: '{0}'.".format(path))
-			if self.addIblSet(strings.getSplitextBasename(path), path):
+			if self.addIblSet(foundations.strings.getSplitextBasename(path), path):
 				return True
 			else:
 				raise Exception("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
@@ -1774,7 +1774,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if not self.iblSetExists(path):
 				success *= umbra.ui.common.signalsBlocker(self,
 														self.addIblSet,
-														strings.getSplitextBasename(path),
+														foundations.strings.getSplitextBasename(path),
 														path,
 														collectionId or self.__getCandidateCollectionId()) or False
 			self.__engine.stepProcessing()
@@ -1855,7 +1855,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return list(set(self.getIblSets()).intersection(
 		dbCommon.filterIblSets(self.__db.dbSession,
-								"{0}".format(strings.encode(pattern.pattern)),
+								"{0}".format(foundations.strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
 
@@ -1903,7 +1903,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											nodeFlags=nodeFlags,
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
-			path = strings.encode(iblSet.path)
+			path = foundations.strings.encode(iblSet.path)
 			if not foundations.common.pathExists(path):
 				continue
 

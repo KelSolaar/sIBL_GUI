@@ -29,9 +29,9 @@ from PyQt4.QtNetwork import QNetworkRequest
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.ui.common
 import foundations.verbose
 import umbra.ui.common
@@ -91,7 +91,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadDirectory = downloadDirectory
 
 		self.__uiResourcesDirectory = "resources/"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 
@@ -517,7 +517,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
 		self.__currentFilePath = os.path.join(self.__downloadDirectory,
-											os.path.basename(strings.encode(self.__currentRequest.url().path())))
+											os.path.basename(foundations.strings.encode(self.__currentRequest.url().path())))
 		if foundations.common.pathExists(self.__currentFilePath):
 			LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(
 			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
@@ -549,7 +549,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 																									bytesTotal))
 
 		self.Current_File_label.setText("Downloading: '{0}'.".format(
-		os.path.basename(strings.encode(self.__currentRequest.url().path()))))
+		os.path.basename(foundations.strings.encode(self.__currentRequest.url().path()))))
 		self.Download_progressBar.setRange(0, bytesTotal)
 		self.Download_progressBar.setValue(bytesReceived)
 

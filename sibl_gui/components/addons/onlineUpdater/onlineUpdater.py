@@ -28,7 +28,7 @@ from PyQt4.QtNetwork import QNetworkRequest
 #**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.exceptions
@@ -775,7 +775,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__releasesFileReply.error():
 			content = []
 			while not self.__releasesFileReply.atEnd ():
-				content.append(strings.encode(self.__releasesFileReply.readLine()))
+				content.append(foundations.strings.encode(self.__releasesFileReply.readLine()))
 
 			LOGGER.debug("> Parsing releases file content.")
 			sectionsFileParser = SectionsFileParser()
@@ -791,7 +791,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												for dbTemplate in sorted(((dbTemplate, dbTemplate.release)
 												for dbTemplate in dbTemplates),
 												reverse=True,
-												key=lambda x:(strings.getVersionRank(x[1])))])
+												key=lambda x:(foundations.strings.getVersionRank(x[1])))])
 					if not self.__engine.parameters.databaseReadOnly:
 						if dbTemplate:
 							if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):

@@ -26,7 +26,7 @@ from PyQt4.QtGui import QAbstractItemView
 #**********************************************************************************************************************
 import foundations.namespace
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import sibl_gui.ui.views
 
@@ -225,7 +225,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				for item in self.modelSelection["Softwares"]:
 					parentId, name = item.split(foundations.namespace.NAMESPACE_SPLITTER)
 					for collection in self.model().rootNode.children:
-						if not strings.encode(collection.id.value) == parentId:
+						if not foundations.strings.encode(collection.id.value) == parentId:
 							continue
 
 						for software in collection.children:

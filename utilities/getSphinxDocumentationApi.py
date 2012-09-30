@@ -30,7 +30,7 @@ else:
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import foundations.walkers
 from foundations.io import File
@@ -138,7 +138,7 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 		filtersOut=EXCLUDED_PYTHON_MODULES))):
 			LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 			module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
-												strings.getSplitextBasename(file)).strip(".")
+												foundations.strings.getSplitextBasename(file)).strip(".")
 			LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))
 			directory = os.path.dirname(os.path.join(cloneDirectory, module.replace(".", "/")))
 			if not foundations.common.pathExists(directory):

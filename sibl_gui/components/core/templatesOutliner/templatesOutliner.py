@@ -39,9 +39,9 @@ from PyQt4.QtGui import QMessageBox
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
@@ -854,7 +854,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
@@ -1001,7 +1001,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIdentities = strings.encode(self.__settings.getKey(
+		activeCollectionsIdentities = foundations.strings.encode(self.__settings.getKey(
 		self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
 																				activeCollectionsIdentities))
@@ -1009,11 +1009,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																		for identity in activeCollectionsIdentities.split(
 																		self.__settingsSeparator)] or []
 
-		activeSoftwares = strings.encode(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
+		activeSoftwares = foundations.strings.encode(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		self.__view.modelSelection["Softwares"] = activeSoftwares and activeSoftwares.split(self.__settingsSeparator) or []
 
-		activeTemplatesIdentities = strings.encode(
+		activeTemplatesIdentities = foundations.strings.encode(
 		self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
 		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__,
 																						activeTemplatesIdentities))
@@ -1037,15 +1037,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection,
 								"activeTemplates",
-								self.__settingsSeparator.join(strings.encode(identity)
+								self.__settingsSeparator.join(foundations.strings.encode(identity)
 															for identity in self.__view.modelSelection["Templates"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeCollections",
-								self.__settingsSeparator.join(strings.encode(identity)
+								self.__settingsSeparator.join(foundations.strings.encode(identity)
 															for identity in self.__view.modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeSoftwares",
-								self.__settingsSeparator.join(strings.encode(name)
+								self.__settingsSeparator.join(foundations.strings.encode(name)
 															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
@@ -1203,10 +1203,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", strings.encode(url.path())) and strings.encode(url.path())[1:] or \
-				strings.encode(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), strings.encode(url.path())):
-					name = strings.getSplitextBasename(path)
+				re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] or \
+				foundations.strings.encode(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), foundations.strings.encode(url.path())):
+					name = foundations.strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
 'Edit' it in the Script Editor?".format(name),
@@ -1289,7 +1289,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.templateExists(path):
 			LOGGER.debug("> Chosen Template path: '{0}'.".format(path))
-			if self.addTemplate(strings.getSplitextBasename(path), path):
+			if self.addTemplate(foundations.strings.getSplitextBasename(path), path):
 				return True
 			else:
 				raise Exception("{0} | Exception raised while adding '{1}' Template to the Database!".format(
@@ -1329,7 +1329,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove '{0}' Template(s)?".format(
-		", ".join([strings.encode(template.name) for template in selectedTemplates])),
+		", ".join([foundations.strings.encode(template.name) for template in selectedTemplates])),
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
@@ -1407,7 +1407,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if len(matchingTemplates) != 1:
 				for identity in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
 								reverse=True,
-								key=lambda x:(strings.getVersionRank(x[1])))[1:]:
+								key=lambda x:(foundations.strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(
 							self.__db.dbSession, foundations.common.getFirstItem(identity)) or False
 				self.modelRefresh.emit()
@@ -1467,7 +1467,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if not self.templateExists(path):
 				success *= umbra.ui.common.signalsBlocker(self,
 														self.addTemplate,
-														strings.getSplitextBasename(path),
+														foundations.strings.getSplitextBasename(path),
 														path,
 														collectionId) or False
 			self.__engine.stepProcessing()
@@ -1525,7 +1525,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if dbCommon.removeTemplate(self.__db.dbSession, strings.encode(template.id)) :
+		if dbCommon.removeTemplate(self.__db.dbSession, foundations.strings.encode(template.id)) :
 			self.modelRefresh.emit()
 			return True
 		else:
@@ -1617,7 +1617,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return dbCommon.filterTemplatesCollections(self.__db.dbSession,
-													"{0}".format(strings.encode(pattern.pattern)),
+													"{0}".format(foundations.strings.encode(pattern.pattern)),
 													attribute,
 													flags)
 
@@ -1650,7 +1650,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return list(set(self.getTemplates()).intersection(
 		dbCommon.filterTemplates(self.__db.dbSession,
-								"{0}".format(strings.encode(pattern.pattern)),
+								"{0}".format(foundations.strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
 
@@ -1708,12 +1708,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 				for template in templates:
 					templateNode = dbNodes.TemplateNode(template,
-														name=strings.removeStrip(template.title, template.software),
+														name=foundations.strings.removeStrip(template.title, template.software),
 														parent=softwareNode,
 														nodeFlags=nodeFlags,
 														attributesFlags=attributesFlags)
 
-					path = strings.encode(template.path)
+					path = foundations.strings.encode(template.path)
 					if not foundations.common.pathExists(path):
 						continue
 

@@ -28,7 +28,7 @@ from PyQt4.QtGui import QFileDialog
 import foundations.common
 import foundations.exceptions
 import foundations.parsers
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -532,16 +532,16 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]
 			if comboBox.currentText() == "Custom image":
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(
-				comboBox.data, strings.encode(self.__reWireLineEditWidgets[index].text())))
+				comboBox.data, foundations.strings.encode(self.__reWireLineEditWidgets[index].text())))
 				self.__loaderScript.overrideKeys[comboBox.data] = foundations.parsers.getAttributeCompound(
 																		parameter[1],
-																		strings.getNormalizedPath(
-																		strings.encode(
+																		foundations.strings.getNormalizedPath(
+																		foundations.strings.encode(
 																		self.__reWireLineEditWidgets[index].text())))
 			else:
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox.data,
 																					getattr(iblSet, parameter[2])))
 				self.__loaderScript.overrideKeys[comboBox.data] = getattr(iblSet, parameter[2]) and \
 																foundations.parsers.getAttributeCompound(parameter[1],
-																strings.getNormalizedPath(getattr(iblSet, parameter[2])))
+																foundations.strings.getNormalizedPath(getattr(iblSet, parameter[2])))
 		return True

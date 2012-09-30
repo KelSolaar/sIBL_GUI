@@ -27,9 +27,9 @@ from PyQt4.QtGui import QIcon
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import sibl_gui.ui.common
 import umbra.ui.common
@@ -430,7 +430,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 																	self.__uiResourcesDirectory)
 
 		self.__engine = engine
@@ -649,7 +649,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
 		return self.__map.addMarker((iblSet.latitude, iblSet.longitude),
 		 							iblSet.title,
-		 							strings.toForwardSlashes(iblSet.icon), content)
+		 							foundations.strings.toForwardSlashes(iblSet.icon), content)
 
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeMarkers(self):

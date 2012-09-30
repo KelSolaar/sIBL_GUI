@@ -28,9 +28,9 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
-import foundations.namespace as namespace
+import foundations.namespace
 import foundations.parsers
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import sibl_gui.exceptions
 import umbra.ui.common
@@ -791,9 +791,9 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if not template:
 			return False
 
-		loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
+		loaderScriptPath = foundations.strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
 		if self.Convert_To_Posix_Paths_checkBox.isChecked():
-			loaderScriptPath = strings.toPosixPath(loaderScriptPath)
+			loaderScriptPath = foundations.strings.toPosixPath(loaderScriptPath)
 		if self.sendLoaderScriptToSoftware(template, loaderScriptPath):
 			return True
 		else:
@@ -857,7 +857,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.settimeout(2.5)
-				connection.connect((strings.encode(self.__tcpClientUi.address), 	self.__tcpClientUi.port))
+				connection.connect((foundations.strings.encode(self.__tcpClientUi.address), 	self.__tcpClientUi.port))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand",
 								templateSectionsFileParser.getValue("ExecutionCommand",
 								self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath",
@@ -920,27 +920,27 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))
 			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parsers.getAttributeCompound("Ibl Set|Path",
-															strings.getNormalizedPath(iblSet.path))
+															foundations.strings.getNormalizedPath(iblSet.path))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Background|BGfile",
 																				iblSet.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parsers.getAttributeCompound(
 																			"Background|BGfile",
-																			strings.getNormalizedPath(
+																			foundations.strings.getNormalizedPath(
 																			iblSet.backgroundImage))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Enviroment|EVfile",
 			 																	iblSet.lightingImage))
 			overrideKeys["Enviroment|EVfile"] = iblSet.lightingImage and foundations.parsers.getAttributeCompound(
 																		"Enviroment|EVfile",
-																		strings.getNormalizedPath(
+																		foundations.strings.getNormalizedPath(
 																		iblSet.lightingImage))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Reflection|REFfile",
 			 															iblSet.reflectionImage))
 			overrideKeys["Reflection|REFfile"] = iblSet.reflectionImage and foundations.parsers.getAttributeCompound(
 																			"Reflection|REFfile",
-																			strings.getNormalizedPath(
+																			foundations.strings.getNormalizedPath(
 																			iblSet.reflectionImage))
 		return overrideKeys
 
@@ -962,7 +962,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		templateSections = dict.copy(templateSectionsFileParser.sections)
 
 		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).iteritems():
-			templateSections[self.__templateIblSetAttributesSection][namespace.removeNamespace(attribute,
+			templateSections[self.__templateIblSetAttributesSection][foundations.namespace.removeNamespace(attribute,
 																								rootOnly=True)] = value
 			del templateSections[self.__templateIblSetAttributesSection][attribute]
 

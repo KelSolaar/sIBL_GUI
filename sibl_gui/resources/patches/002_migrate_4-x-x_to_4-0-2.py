@@ -23,7 +23,7 @@ import os
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.verbose
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -61,6 +61,6 @@ def apply():
 
 	if foundations.common.pathExists(defaultScriptEditorFile):
 		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(
-		core.getModule(apply).__name__, defaultScriptEditorFile))
+		foundations.core.getModule(apply).__name__, defaultScriptEditorFile))
 		os.remove(defaultScriptEditorFile)
 	return True

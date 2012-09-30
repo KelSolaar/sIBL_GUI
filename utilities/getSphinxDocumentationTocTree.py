@@ -29,7 +29,7 @@ else:
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 from foundations.io import File
 
@@ -89,7 +89,7 @@ def getSphinxDocumentationTocTree(title, fileIn, fileOut, contentDirectory):
 	file = File(fileIn)
 	file.read()
 
-	existingFiles = [strings.getSplitextBasename(item)
+	existingFiles = [foundations.strings.getSplitextBasename(item)
 					for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]
 	relativeDirectory = contentDirectory.replace("{0}/".format(os.path.dirname(fileOut)), "")
 

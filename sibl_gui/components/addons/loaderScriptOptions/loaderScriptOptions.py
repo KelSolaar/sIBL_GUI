@@ -37,9 +37,9 @@ from PyQt4.QtGui import QPalette
 #**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
-import foundations.io as io
+import foundations.io
 import foundations.parsers
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -793,7 +793,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if attributeCompound.name:
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
-				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
+				verticalHeaderLabels.append(foundations.strings.getNiceName(attributeCompound.name))
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(overridesValue or attributeCompound.value) and True or False
@@ -855,7 +855,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										os.path.basename(template.path))
 
 		not foundations.common.pathExists(currentTemplateSettingsDirectory) and \
-		io.setDirectory(currentTemplateSettingsDirectory)
+		foundations.io.setDirectory(currentTemplateSettingsDirectory)
 
 		templateSettingsFile = None
 		if foundations.common.pathExists(self.__templateSettingsFile):
@@ -863,7 +863,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			for version in sorted((
 							path for path in os.listdir(templateSettingsDirectory)
-							if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
+							if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(foundations.strings.getVersionRank(x))):
 				path = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
 				if foundations.common.pathExists(path):
 					templateSettingsFile = path
@@ -922,11 +922,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if type(widget) is Variable_QPushButton:
 					value = widget.text() == "True" and "1" or "0"
 				elif type(widget) is QDoubleSpinBox:
-					value = strings.encode(widget.value())
+					value = foundations.strings.encode(widget.value())
 				elif type(widget) is QComboBox:
-					value = strings.encode(widget.currentText())
+					value = foundations.strings.encode(widget.currentText())
 				else:
-					value = strings.encode(widget.text())
+					value = foundations.strings.encode(widget.text())
 				templateSettingsSectionsFileParser.sections[
 				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
@@ -946,11 +946,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if type(widget) is Variable_QPushButton:
 				value = widget.text() == "True" and "1" or "0"
 			elif type(widget) is QDoubleSpinBox:
-				value = strings.encode(widget.value())
+				value = foundations.strings.encode(widget.value())
 			elif type(widget) is QComboBox:
-				value = strings.encode(widget.currentText())
+				value = foundations.strings.encode(widget.currentText())
 			else:
-				value = strings.encode(widget.text())
+				value = foundations.strings.encode(widget.text())
 			widget.data.value = value
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget.data.name, widget.data.value))

@@ -26,7 +26,7 @@ from PyQt4.QtGui import QMessageBox
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.verbose
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.widgets.messageBox
@@ -67,11 +67,11 @@ If you are using an already migrated shared database, you can ignore this messag
 																"sIBL_GUI | Question",
 																message,
 																buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
-			core.exit(1)
+			foundations.core.exit(1)
 
 	if RuntimeGlobals.parameters.databaseReadOnly:
 		LOGGER.warning("!> {0} | Database has been set read only by '{1}' command line parameter value!".format(
-		core.getModule(apply).__name__, "databaseReadOnly"))
+		foundations.core.getModule(apply).__name__, "databaseReadOnly"))
 		return True
 
 	if RuntimeGlobals.parameters.databaseDirectory:
@@ -94,13 +94,13 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 														buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			try:
 				LOGGER.info("{0} | Copying '{1}' database file to '{2}' destination!".format(
-				core.getModule(apply).__name__, legacyDatabaseFile, databaseFile))
+				foundations.core.getModule(apply).__name__, legacyDatabaseFile, databaseFile))
 				shutil.copyfile(legacyDatabaseFile, databaseFile)
 			except:
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
-sIBL_GUI will now exit!".format(core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
+sIBL_GUI will now exit!".format(foundations.core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
 				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
-				core.exit(1)
+				foundations.core.exit(1)
 
 			if RuntimeGlobals.parameters.databaseDirectory:
 				deprecatedDatabaseDirectory = os.path.join(databaseDirectory, "backup", "deprecated")
@@ -117,7 +117,7 @@ sIBL_GUI will now exit!".format(core.getModule(apply).__name__, legacyDatabaseFi
 			for template in dbCommon.getTemplates(dbSession):
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
-				core.getModule(apply).__name__, id))
+				foundations.core.getModule(apply).__name__, id))
 				dbCommon.removeTemplate(dbSession, id)
 
 	return True

@@ -43,10 +43,10 @@ from PyQt4.QtGui import QPen
 #**********************************************************************************************************************
 import foundations.cache
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.dataStructures
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.ui.common
@@ -923,7 +923,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
@@ -1120,7 +1120,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param file: File changed. ( String )
 		"""
 
-		file = strings.encode(file)
+		file = foundations.strings.encode(file)
 		if file in self.__sectionsFileParsersCache:
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
 			self.__sectionsFileParsersCache.removeContent(file)
@@ -1245,7 +1245,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for section in sectionsFileParser.sections:
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
-				Plate(name=strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
+				Plate(name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
 					icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
 														sectionsFileParser.getValue("PLATEthumb", section))),
 					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),

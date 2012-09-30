@@ -34,7 +34,7 @@ from PyQt4.QtGui import QImage
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core as core
+import foundations.core
 import foundations.exceptions
 import foundations.ui.common
 import foundations.verbose
@@ -236,7 +236,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.paths = paths
 
 		self.__uiResourcesDirectory = "resources"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"

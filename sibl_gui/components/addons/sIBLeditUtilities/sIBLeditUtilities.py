@@ -27,7 +27,7 @@ from PyQt4.QtGui import QFileDialog
 #**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.strings
 import foundations.verbose
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -482,7 +482,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		value = strings.encode(self.sIBLedit_Path_lineEdit.text())
+		value = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
@@ -503,13 +503,13 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
 			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
 							foundations.common.getFirstItem(selectedIblSets)
 			if selectedIblSet:
-				return self.editIblSetInSIBLedit(selectedIblSet.path, strings.encode(self.sIBLedit_Path_lineEdit.text()))
+				return self.editIblSetInSIBLedit(selectedIblSet.path, foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:
 				raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(
@@ -530,7 +530,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = strings.encode(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			inspectorIblSet = self.__inspector.inspectorIblSet
 			inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \

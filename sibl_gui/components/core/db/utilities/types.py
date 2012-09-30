@@ -18,7 +18,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import logging
 import os
 import sqlalchemy.ext.declarative
 from sqlalchemy import ForeignKey
@@ -26,10 +25,9 @@ from sqlalchemy import ForeignKey
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core as core
 import foundations.exceptions
 import foundations.parsers
-from umbra.globals.constants import Constants
+import foundations.verbose
 from foundations.parsers import SectionsFileParser
 
 #**********************************************************************************************************************
@@ -292,7 +290,7 @@ class DbTemplate(DbBase):
 		sectionsFileParser.read() and sectionsFileParser.parse(rawSections=("Script"))
 
 		if sectionsFileParser.sections:
-			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile", 
+			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile",
 							sectionsFileParser.getValue("HelpFile",
 														"Template",
 														encode=True)).value and \
