@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 
 #**********************************************************************************************************************
@@ -61,6 +62,6 @@ def apply():
 
 	if foundations.common.pathExists(defaultScriptEditorFile):
 		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(
-		foundations.core.getModule(apply).__name__, defaultScriptEditorFile))
+		inspect.getmodulename(apply), defaultScriptEditorFile))
 		os.remove(defaultScriptEditorFile)
 	return True

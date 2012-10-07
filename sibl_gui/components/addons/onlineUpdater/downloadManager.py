@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 from PyQt4.QtCore import QFile
 from PyQt4.QtCore import QIODevice
@@ -29,7 +30,6 @@ from PyQt4.QtNetwork import QNetworkRequest
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core
 import foundations.exceptions
 import foundations.strings
 import foundations.ui.common
@@ -91,8 +91,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadDirectory = downloadDirectory
 
 		self.__uiResourcesDirectory = "resources/"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
-													self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 
 		self.__requests = None

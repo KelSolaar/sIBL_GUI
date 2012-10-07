@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 import platform
 from PyQt4.QtCore import QByteArray
@@ -35,7 +36,6 @@ from PyQt4.QtGui import QTableWidgetItem
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.core
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.ui.common
@@ -109,8 +109,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__releases = None
 		self.releases = releases
 		self.__uiResourcesDirectory = "resources/"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
-													self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 		self.__uiTemplatesImage = "Templates_Logo.png"
 		self.__uiLightGrayColor = QColor(240, 240, 240)

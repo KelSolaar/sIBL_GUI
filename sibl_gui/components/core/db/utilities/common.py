@@ -18,7 +18,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import inspect
-import logging
 import os
 import re
 
@@ -26,7 +25,6 @@ import re
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core
 import foundations.exceptions
 import foundations.strings
 import sibl_gui.components.core.db.exceptions
@@ -146,7 +144,7 @@ def addStandardItem(session, type, name, path, collection):
 			return addItem(session, dbItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
-		foundations.core.getModule(addStandardItem).__name__, path, type.__name__))
+		inspect.getmodule(addStandardItem).__name__, path, type.__name__))
 		return False
 
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -197,7 +195,7 @@ def updateItemContent(session, item):
 	if item.setContent():
 		return commit(session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(foundations.core.getModule(updateItemContent).__name__,
+		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(inspect.getmodulename(updateItemContent),
 		item.name, item.__class__.__name__))
 		return False
 
@@ -219,7 +217,7 @@ def updateItemLocation(session, item, path):
 		return updateItemContent(session, item)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
-		foundations.core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
+		inspect.getmodulename(updateItemLocation), path, item.__class__.__name__))
 		return False
 
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -477,7 +475,7 @@ def addCollection(session, collection, type, comment):
 		return addItem(session, dbItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
-		foundations.core.getModule(addCollection).__name__, collection))
+		inspect.getmodulename(addCollection), collection))
 		return False
 
 def removeCollection(session, identity):

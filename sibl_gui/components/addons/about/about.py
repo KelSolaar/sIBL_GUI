@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 
 #**********************************************************************************************************************
@@ -321,8 +322,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
-													self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__miscellaneousMenu = self.__engine.toolBar.miscellaneousMenu
 

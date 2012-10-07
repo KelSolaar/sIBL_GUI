@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 import shutil
 import sqlalchemy
@@ -71,7 +72,7 @@ If you are using an already migrated shared database, you can ignore this messag
 
 	if RuntimeGlobals.parameters.databaseReadOnly:
 		LOGGER.warning("!> {0} | Database has been set read only by '{1}' command line parameter value!".format(
-		foundations.core.getModule(apply).__name__, "databaseReadOnly"))
+		inspect.getmodulename(apply), "databaseReadOnly"))
 		return True
 
 	if RuntimeGlobals.parameters.databaseDirectory:
@@ -94,11 +95,11 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 														buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			try:
 				LOGGER.info("{0} | Copying '{1}' database file to '{2}' destination!".format(
-				foundations.core.getModule(apply).__name__, legacyDatabaseFile, databaseFile))
+				inspect.getmodulename(apply), legacyDatabaseFile, databaseFile))
 				shutil.copyfile(legacyDatabaseFile, databaseFile)
 			except:
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
-sIBL_GUI will now exit!".format(foundations.core.getModule(apply).__name__, legacyDatabaseFile, databaseFile)
+sIBL_GUI will now exit!".format(inspect.getmodulename(apply), legacyDatabaseFile, databaseFile)
 				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
 				foundations.core.exit(1)
 
@@ -117,7 +118,7 @@ sIBL_GUI will now exit!".format(foundations.core.getModule(apply).__name__, lega
 			for template in dbCommon.getTemplates(dbSession):
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
-				foundations.core.getModule(apply).__name__, id))
+				inspect.getmodulename(apply), id))
 				dbCommon.removeTemplate(dbSession, id)
 
 	return True

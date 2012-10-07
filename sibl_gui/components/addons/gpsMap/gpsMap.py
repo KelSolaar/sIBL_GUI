@@ -17,6 +17,7 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import inspect
 import os
 from PyQt4.QtCore import QSize
 from PyQt4.QtCore import QUrl
@@ -27,7 +28,6 @@ from PyQt4.QtGui import QIcon
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.core
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
@@ -430,8 +430,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(foundations.core.getModule(self).__file__),
-																	self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
 
 		self.__engine = engine
 
