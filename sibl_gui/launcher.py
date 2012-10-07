@@ -168,7 +168,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		return self.__imagesCaches
 
 	@imagesCaches.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def imagesCaches(self, value):
 		"""
 		This method is the setter method for **self.__imagesCaches** attribute.
@@ -180,7 +180,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesCaches"))
 
 	@imagesCaches.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def imagesCaches(self):
 		"""
 		This method is the deleter method for **self.__imagesCaches** attribute.
@@ -214,7 +214,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		scriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		self.contentDropped.disconnect(scriptEditor._ScriptEditor__engine__contentDropped)
 
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
+@foundations.exceptions.handleExceptions(None, False, Exception)
 def extendCommandLineParametersParser(parser):
 	"""
 	This definition returns the command line parameters parser.

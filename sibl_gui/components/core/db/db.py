@@ -105,7 +105,7 @@ class Db(Component):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -117,7 +117,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -137,7 +137,7 @@ class Db(Component):
 		return self.__dbName
 
 	@dbName.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self, value):
 		"""
 		This method is the setter method for **self.__dbName** attribute.
@@ -149,7 +149,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbName"))
 
 	@dbName.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self):
 		"""
 		This method is the deleter method for **self.__dbName** attribute.
@@ -169,7 +169,7 @@ class Db(Component):
 		return self.__dbEngine
 
 	@dbEngine.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self, value):
 		"""
 		This method is the setter method for **self.__dbEngine** attribute.
@@ -181,7 +181,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbEngine"))
 
 	@dbEngine.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self):
 		"""
 		This method is the deleter method for **self.__dbEngine** attribute.
@@ -201,7 +201,7 @@ class Db(Component):
 		return self.__dbCatalog
 
 	@dbCatalog.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self, value):
 		"""
 		This method is the setter method for **self.__dbCatalog** attribute.
@@ -213,7 +213,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbCatalog"))
 
 	@dbCatalog.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self):
 		"""
 		This method is the deleter method for **self.__dbCatalog** attribute.
@@ -233,7 +233,7 @@ class Db(Component):
 		return self.__dbSession
 
 	@dbSession.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
 		This method is the setter method for **self.__dbSession** attribute.
@@ -245,7 +245,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
 
 	@dbSession.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
 		This method is the deleter method for **self.__dbSession** attribute.
@@ -265,7 +265,7 @@ class Db(Component):
 		return self.__dbSessionMaker
 
 	@dbSessionMaker.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self, value):
 		"""
 		This method is the setter method for **self.__dbSessionMaker** attribute.
@@ -277,7 +277,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSessionMaker"))
 
 	@dbSessionMaker.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self):
 		"""
 		This method is the deleter method for **self.__dbSessionMaker** attribute.
@@ -297,7 +297,7 @@ class Db(Component):
 		return self.__dbConnectionString
 
 	@dbConnectionString.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbConnectionString(self, value):
 		"""
 		This method is the setter method for **self.__dbConnectionString** attribute.
@@ -309,7 +309,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbConnectionString"))
 
 	@dbConnectionString.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbConnectionString(self):
 		"""
 		This method is the deleter method for **self.__dbConnectionString** attribute.
@@ -329,7 +329,7 @@ class Db(Component):
 		return self.__dbMigrationsRepositoryDirectory
 
 	@dbMigrationsRepositoryDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsRepositoryDirectory(self, value):
 		"""
 		This method is the setter method for **self.__dbMigrationsRepositoryDirectory** attribute.
@@ -341,7 +341,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
 
 	@dbMigrationsRepositoryDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsRepositoryDirectory(self):
 		"""
 		This method is the deleter method for **self.__dbMigrationsRepositoryDirectory** attribute.
@@ -361,7 +361,7 @@ class Db(Component):
 		return self.__dbMigrationsTemplatesDirectory
 
 	@dbMigrationsTemplatesDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsTemplatesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__dbMigrationsTemplatesDirectory** attribute.
@@ -373,7 +373,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
 
 	@dbMigrationsTemplatesDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsTemplatesDirectory(self):
 		"""
 		This method is the deleter method for **self.__dbMigrationsTemplatesDirectory** attribute.
@@ -393,7 +393,7 @@ class Db(Component):
 		return self.__dbBackupDirectory
 
 	@dbBackupDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupDirectory(self, value):
 		"""
 		This method is the setter method for **self.__dbBackupDirectory** attribute.
@@ -405,7 +405,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupDirectory"))
 
 	@dbBackupDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupDirectory(self):
 		"""
 		This method is the deleter method for **self.__dbBackupDirectory** attribute.
@@ -425,7 +425,7 @@ class Db(Component):
 		return self.__dbBackupCount
 
 	@dbBackupCount.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupCount(self, value):
 		"""
 		This method is the setter method for **self.__dbBackupCount** attribute.
@@ -437,7 +437,7 @@ class Db(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupCount"))
 
 	@dbBackupCount.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupCount(self):
 		"""
 		This method is the deleter method for **self.__dbBackupCount** attribute.
@@ -449,7 +449,7 @@ class Db(Component):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -465,7 +465,7 @@ class Db(Component):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -474,7 +474,7 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.ui.common.uiSystemExitExceptionHandler,
 											False,
 											foundations.exceptions.DirectoryExistsError,
 											Exception)
@@ -573,7 +573,7 @@ class Db(Component):
 		self.initialized = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.
@@ -582,7 +582,7 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def commit(self):
 		"""
 		This method commits pending changes in the Database.

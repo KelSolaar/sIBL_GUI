@@ -84,7 +84,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		return self.__listViewIconSize
 
 	@listViewIconSize.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self, value):
 		"""
 		This method is the setter method for **self.__listViewIconSize** attribute.
@@ -96,7 +96,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "listViewIconSize"))
 
 	@listViewIconSize.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
 		This method is the deleter method for **self.__listViewIconSize** attribute.

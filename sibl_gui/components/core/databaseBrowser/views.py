@@ -86,7 +86,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		return self.__listViewSpacing
 
 	@listViewSpacing.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def listViewSpacing(self, value):
 		"""
 		This method is the setter method for **self.__listViewSpacing** attribute.
@@ -100,7 +100,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.__listViewSpacing = value
 
 	@listViewSpacing.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def listViewSpacing(self):
 		"""
 		This method is the deleter method for **self.__listViewSpacing** attribute.
@@ -120,7 +120,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		return self.__listViewMargin
 
 	@listViewMargin.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def listViewMargin(self, value):
 		"""
 		This method is the setter method for **self.__listViewMargin** attribute.
@@ -134,7 +134,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.__listViewMargin = value
 
 	@listViewMargin.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def listViewMargin(self):
 		"""
 		This method is the deleter method for **self.__listViewMargin** attribute.
@@ -154,7 +154,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		return self.__listViewIconSize
 
 	@listViewIconSize.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def listViewIconSize(self, value):
 		"""
 		This method is the setter method for **self.__listViewIconSize** attribute.
@@ -168,7 +168,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.__listViewIconSize = value
 
 	@listViewIconSize.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
 		This method is the deleter method for **self.__listViewIconSize** attribute.
@@ -290,7 +290,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		return self.__treeViewIndentation
 
 	@treeViewIndentation.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
 		This method is the setter method for **self.__treeViewIndentation** attribute.
@@ -302,7 +302,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	@treeViewIndentation.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
 		This method is the deleter method for **self.__treeViewIndentation** attribute.

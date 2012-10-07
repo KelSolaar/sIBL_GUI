@@ -179,7 +179,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -191,7 +191,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -211,7 +211,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiThumbnailsViewImage
 
 	@uiThumbnailsViewImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiThumbnailsViewImage(self, value):
 		"""
 		This method is the setter method for **self.__uiThumbnailsViewImage** attribute.
@@ -223,7 +223,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiThumbnailsViewImage"))
 
 	@uiThumbnailsViewImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiThumbnailsViewImage(self):
 		"""
 		This method is the deleter method for **self.__uiThumbnailsViewImage** attribute.
@@ -243,7 +243,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiColumnsViewImage
 
 	@uiColumnsViewImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiColumnsViewImage(self, value):
 		"""
 		This method is the setter method for **self.__uiColumnsViewImage** attribute.
@@ -255,7 +255,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiColumnsViewImage"))
 
 	@uiColumnsViewImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiColumnsViewImage(self):
 		"""
 		This method is the deleter method for **self.__uiColumnsViewImage** attribute.
@@ -275,7 +275,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiDetailsViewImage
 
 	@uiDetailsViewImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiDetailsViewImage(self, value):
 		"""
 		This method is the setter method for **self.__uiDetailsViewImage** attribute.
@@ -287,7 +287,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDetailsViewImage"))
 
 	@uiDetailsViewImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiDetailsViewImage(self):
 		"""
 		This method is the deleter method for **self.__uiDetailsViewImage** attribute.
@@ -307,7 +307,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiLargestSizeImage
 
 	@uiLargestSizeImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self, value):
 		"""
 		This method is the setter method for **self.__uiLargestSizeImage** attribute.
@@ -319,7 +319,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLargestSizeImage"))
 
 	@uiLargestSizeImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self):
 		"""
 		This method is the deleter method for **self.__uiLargestSizeImage** attribute.
@@ -339,7 +339,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiSmallestSizeImage
 
 	@uiSmallestSizeImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self, value):
 		"""
 		This method is the setter method for **self.__uiSmallestSizeImage** attribute.
@@ -351,7 +351,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSmallestSizeImage"))
 
 	@uiSmallestSizeImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self):
 		"""
 		This method is the deleter method for **self.__uiSmallestSizeImage** attribute.
@@ -371,7 +371,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -383,7 +383,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -403,7 +403,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -415,7 +415,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -435,7 +435,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settings
 
 	@settings.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
 		This method is the setter method for **self.__settings** attribute.
@@ -447,7 +447,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
 		This method is the deleter method for **self.__settings** attribute.
@@ -467,7 +467,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSection
 
 	@settingsSection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
 		This method is the setter method for **self.__settingsSection** attribute.
@@ -479,7 +479,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
 		This method is the deleter method for **self.__settingsSection** attribute.
@@ -499,7 +499,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSeparator
 
 	@settingsSeparator.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
 		This method is the setter method for **self.__settingsSeparator** attribute.
@@ -511,7 +511,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@settingsSeparator.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
 		This method is the deleter method for **self.__settingsSeparator** attribute.
@@ -531,7 +531,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__extension
 
 	@extension.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
 		This method is the setter method for **self.__extension** attribute.
@@ -543,7 +543,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
 	@extension.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
 		This method is the deleter method for **self.__extension** attribute.
@@ -563,7 +563,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__editLayout
 
 	@editLayout.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def editLayout(self, value):
 		"""
 		This method is the setter method for **self.__editLayout** attribute.
@@ -575,7 +575,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
 
 	@editLayout.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def editLayout(self):
 		"""
 		This method is the deleter method for **self.__editLayout** attribute.
@@ -595,7 +595,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__editLayout
 
 	@inspectLayout.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def inspectLayout(self, value):
 		"""
 		This method is the setter method for **self.__editLayout** attribute.
@@ -607,7 +607,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectLayout"))
 
 	@inspectLayout.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def inspectLayout(self):
 		"""
 		This method is the deleter method for **self.__editLayout** attribute.
@@ -627,7 +627,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__scriptEditor
 
 	@scriptEditor.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
 		This method is the setter method for **self.__scriptEditor** attribute.
@@ -639,7 +639,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
 	@scriptEditor.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
 		This method is the deleter method for **self.__scriptEditor** attribute.
@@ -659,7 +659,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -671,7 +671,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -691,7 +691,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__collectionsOutliner
 
 	@collectionsOutliner.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
 		This method is the setter method for **self.__collectionsOutliner** attribute.
@@ -703,7 +703,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@collectionsOutliner.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
 		This method is the deleter method for **self.__collectionsOutliner** attribute.
@@ -723,7 +723,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__model
 
 	@model.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
 		This method is the setter method for **self.__model** attribute.
@@ -735,7 +735,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
 		This method is the deleter method for **self.__model** attribute.
@@ -755,7 +755,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__views
 
 	@views.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def views(self, value):
 		"""
 		This method is the setter method for **self.__views** attribute.
@@ -767,7 +767,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
 
 	@views.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def views(self):
 		"""
 		This method is the deleter method for **self.__views** attribute.
@@ -787,7 +787,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__viewsPushButtons
 
 	@viewsPushButtons.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def viewsPushButtons(self, value):
 		"""
 		This method is the setter method for **self.__viewsPushButtons** attribute.
@@ -799,7 +799,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "viewsPushButtons"))
 
 	@viewsPushButtons.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def viewsPushButtons(self):
 		"""
 		This method is the deleter method for **self.__viewsPushButtons** attribute.
@@ -819,7 +819,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__thumbnailsView
 
 	@thumbnailsView.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def thumbnailsView(self, value):
 		"""
 		This method is the setter method for **self.__thumbnailsView** attribute.
@@ -831,7 +831,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnailsView"))
 
 	@thumbnailsView.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def thumbnailsView(self):
 		"""
 		This method is the deleter method for **self.__thumbnailsView** attribute.
@@ -851,7 +851,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__columnsView
 
 	@columnsView.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def columnsView(self, value):
 		"""
 		This method is the setter method for **self.__columnsView** attribute.
@@ -863,7 +863,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "columnsView"))
 
 	@columnsView.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def columnsView(self):
 		"""
 		This method is the deleter method for **self.__columnsView** attribute.
@@ -883,7 +883,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__detailsView
 
 	@detailsView.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def detailsView(self, value):
 		"""
 		This method is the setter method for **self.__detailsView** attribute.
@@ -895,7 +895,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "detailsView"))
 
 	@detailsView.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def detailsView(self):
 		"""
 		This method is the deleter method for **self.__detailsView** attribute.
@@ -915,7 +915,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__detailsViewHeaders
 
 	@detailsViewHeaders.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def detailsViewHeaders(self, value):
 		"""
 		This method is the setter method for **self.__detailsViewHeaders** attribute.
@@ -927,7 +927,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "detailsViewHeaders"))
 
 	@detailsViewHeaders.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def detailsViewHeaders(self):
 		"""
 		This method is the deleter method for **self.__detailsViewHeaders** attribute.
@@ -947,7 +947,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__searchContexts
 
 	@searchContexts.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def searchContexts(self, value):
 		"""
 		This method is the setter method for **self.__searchContexts** attribute.
@@ -959,7 +959,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "searchContexts"))
 
 	@searchContexts.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def searchContexts(self):
 		"""
 		This method is the deleter method for **self.__searchContexts** attribute.
@@ -979,7 +979,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__activeSearchContext
 
 	@activeSearchContext.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def activeSearchContext(self, value):
 		"""
 		This method is the setter method for **self.__activeSearchContext** attribute.
@@ -991,7 +991,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeSearchContext"))
 
 	@activeSearchContext.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def activeSearchContext(self):
 		"""
 		This method is the deleter method for **self.__activeSearchContext** attribute.
@@ -1011,7 +1011,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__searchContextMenu
 
 	@searchContextMenu.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def searchContextMenu(self, value):
 		"""
 		This method is the setter method for **self.__searchContextMenu** attribute.
@@ -1023,7 +1023,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "searchContextMenu"))
 
 	@searchContextMenu.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def searchContextMenu(self):
 		"""
 		This method is the deleter method for **self.__searchContextMenu** attribute.
@@ -1035,7 +1035,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -1058,7 +1058,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -1067,7 +1067,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -1157,7 +1157,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
@@ -1166,7 +1166,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -1180,7 +1180,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the engine.
@@ -1189,7 +1189,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -1259,7 +1259,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.restoreModelSelection()
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onClose(self):
 		"""
 		This method is triggered on Framework close.
@@ -1434,7 +1434,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			viewPushButton, image = data
 			viewPushButton.setChecked(viewIndex == index and True or False)
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											False,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Ibl Sets ...")
@@ -1540,7 +1540,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return iblSets
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getActiveView(self):
 		"""
 		This method returns the current active View.
@@ -1550,7 +1550,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentWidget()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getActiveViewIndex(self):
 		"""
 		This method returns the current active View index.
@@ -1560,7 +1560,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentIndex()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveView(self, view):
 		"""
 		This method sets the active View to given View.
@@ -1574,7 +1574,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveViewIndex(self, index):
 		"""
 		This method sets the active View to given index.
@@ -1587,7 +1587,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveSearchContext(self, context, *args):
 		"""
 		This method sets the active search context.
@@ -1606,7 +1606,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.Search_Database_lineEdit.setPlaceholderText(text)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
 		"""
@@ -1630,7 +1630,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSetUi(self):
 		"""
@@ -1659,7 +1659,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeIblSetsUi(self):
 		"""
@@ -1692,7 +1692,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(
 				self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def updateIblSetsLocationUi(self):
 		"""
@@ -1726,7 +1726,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while updating '{1}' Ibls sets locations!".format(
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@foundations.exceptions.exceptionsHandler(None,
+	@foundations.exceptions.handleExceptions(None,
 											False,
 											foundations.exceptions.ProgrammingError,
 											dbExceptions.DatabaseOperationError)
@@ -1752,7 +1752,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
@@ -1787,7 +1787,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(None, False, dbExceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet):
 		"""
 		This method removes given Ibl Set from the Database.
@@ -1805,7 +1805,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
 																							iblSet.title))
 
-	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(None, False, dbExceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file):
 		"""
 		This method updates given Ibl Set location.
@@ -1825,7 +1825,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
 			self.__class__.__name__, iblSet.title))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getIblSets(self):
 		"""
 		This method returns Database Ibl Sets.
@@ -1835,7 +1835,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__db.dbSession)]
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the Database Ibl Sets on given attribute using given pattern.
@@ -1858,7 +1858,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								attribute,
 								flags)))
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def iblSetExists(self, path):
 		"""
 		This method returns if given Ibl Set path exists in the Database.
@@ -1869,7 +1869,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.iblSetExists(self.__db.dbSession, path)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listIblSets(self):
 		"""
 		This method lists Database Ibl Sets names.
@@ -1881,7 +1881,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet.title for iblSet in self.getIblSets()]
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setIblSets(self, iblSets=None):
 		"""
 		This method sets the Ibl Sets Model nodes.
@@ -1914,7 +1914,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getIblSetByName(self, name):
 		"""
 		This method returns Database Ibl Set with given name.
@@ -1928,7 +1928,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = self.filterIblSets(r"^{0}$".format(name), "title")
 		return foundations.common.getFirstItem(iblSets)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the current active View selected nodes.
@@ -1938,7 +1938,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.getActiveView().getSelectedNodes()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedIblSetsNodes(self):
 		"""
 		This method returns the current active View selected Ibl Sets nodes.
@@ -1948,7 +1948,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [node for node in self.getSelectedNodes() if node.family == "IblSet"]
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedIblSets(self):
 		"""
 		This method returns the current active View selected Ibl Sets.

@@ -141,7 +141,7 @@ class DbIblSet(DbBase):
 		self.time = time
 		self.comment = comment
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
 		This method initializes the class attributes.
@@ -278,7 +278,7 @@ class DbTemplate(DbBase):
 		self.outputScript = outputScript
 		self.comment = comment
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
 		This method initializes the class attributes.

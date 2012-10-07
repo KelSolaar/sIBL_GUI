@@ -99,7 +99,7 @@ class IblSetsScanner_worker(QThread):
 		return self.__container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
 		This method is the setter method for **self.__container** attribute.
@@ -111,7 +111,7 @@ class IblSetsScanner_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
 		This method is the deleter method for **self.__container** attribute.
@@ -131,7 +131,7 @@ class IblSetsScanner_worker(QThread):
 		return self.__dbSession
 
 	@dbSession.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
 		This method is the setter method for **self.__dbSession** attribute.
@@ -143,7 +143,7 @@ class IblSetsScanner_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
 
 	@dbSession.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
 		This method is the deleter method for **self.__dbSession** attribute.
@@ -163,7 +163,7 @@ class IblSetsScanner_worker(QThread):
 		return self.__extension
 
 	@extension.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
 		This method is the setter method for **self.__extension** attribute.
@@ -175,7 +175,7 @@ class IblSetsScanner_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
 	@extension.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
 		This method is the deleter method for **self.__extension** attribute.
@@ -195,7 +195,7 @@ class IblSetsScanner_worker(QThread):
 		return self.__newIblSets
 
 	@newIblSets.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def newIblSets(self, value):
 		"""
 		This method is the setter method for **self.__newIblSets** attribute.
@@ -207,7 +207,7 @@ class IblSetsScanner_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "newIblSets"))
 
 	@newIblSets.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def newIblSets(self):
 		"""
 		This method is the deleter method for **self.__newIblSets** attribute.
@@ -226,7 +226,7 @@ class IblSetsScanner_worker(QThread):
 
 		self.scanIblSetsDirectories()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def scanIblSetsDirectories(self):
 		"""
 		This method scans Ibl Sets directories.

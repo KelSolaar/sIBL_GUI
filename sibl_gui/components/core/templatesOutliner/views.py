@@ -86,7 +86,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		return self.__container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
 		This method is the setter method for **self.__container** attribute.
@@ -98,7 +98,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
 		This method is the deleter method for **self.__container** attribute.
@@ -118,7 +118,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		return self.__treeViewIndentation
 
 	@treeViewIndentation.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
 		This method is the setter method for **self.__treeViewIndentation** attribute.
@@ -130,7 +130,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	@treeViewIndentation.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
 		This method is the deleter method for **self.__treeViewIndentation** attribute.
@@ -175,7 +175,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -195,7 +195,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				self.modelSelection["Softwares"].append(foundations.namespace.setNamespace(node.parent.id.value, node.name))
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.

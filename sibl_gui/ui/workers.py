@@ -91,7 +91,7 @@ class GraphicsItem_worker(QThread):
 		return self.__requests
 
 	@requests.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def requests(self, value):
 		"""
 		This method is the setter method for **self.__requests** attribute.
@@ -103,7 +103,7 @@ class GraphicsItem_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "requests"))
 
 	@requests.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
 		This method is the deleter method for **self.__requests** attribute.
@@ -115,7 +115,7 @@ class GraphicsItem_worker(QThread):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileExistsError)
 	def addRequest(self, path):
 		"""
 		This method adds given image path to the requests queue.

@@ -69,7 +69,7 @@ class GraphModel(umbra.ui.models.GraphModel):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	# @foundations.exceptions.exceptionsHandler(None, False, Exception)
+	# @foundations.exceptions.handleExceptions(None, False, Exception)
 	def data(self, index, role=Qt.DisplayRole):
 		"""
 		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.

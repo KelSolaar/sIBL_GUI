@@ -112,7 +112,7 @@ class AbstractResourcesCache(QObject):
 		return self.__mapping
 
 	@mapping.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def mapping(self, value):
 		"""
 		This method is the setter method for **self.__mapping** attribute.
@@ -124,7 +124,7 @@ class AbstractResourcesCache(QObject):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "mapping"))
 
 	@mapping.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def mapping(self):
 		"""
 		This method is the deleter method for **self.__mapping** attribute.
@@ -184,7 +184,7 @@ class AbstractResourcesCache(QObject):
 
 		return len(self.__mapping.keys())
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def isCached(self, key):
 		"""
 		This method returns if given content is cached.
@@ -195,7 +195,7 @@ class AbstractResourcesCache(QObject):
 
 		return key in self
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listContent(self):
 		"""
 		This method lists the cache content.
@@ -205,7 +205,7 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.keys()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method adds given content to the cache.
@@ -220,7 +220,7 @@ class AbstractResourcesCache(QObject):
 		self.contentAdded.emit(content.keys())
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeContent(self, *keys):
 		"""
 		This method removes given content from the cache.
@@ -239,7 +239,7 @@ class AbstractResourcesCache(QObject):
 			self.contentRemoved.emit([key])
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getContent(self, key):
 		"""
 		This method gets given content from the cache.
@@ -252,7 +252,7 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.get(key)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def flushContent(self):
 		"""
 		This method flushes the cache content.
@@ -267,7 +267,7 @@ class AbstractResourcesCache(QObject):
 		self.contentRemoved.emit(content)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getMetrics(self):
 		"""
 		This method returns the cache metrics.
@@ -321,7 +321,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		return self.__type
 
 	@type.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def type(self, value):
 		"""
 		This method is the setter method for **self.__type** attribute.
@@ -333,7 +333,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "type"))
 
 	@type.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def type(self):
 		"""
 		This method is the deleter method for **self.__type** attribute.
@@ -353,7 +353,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		return self.__default
 
 	@default.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def default(self, value):
 		"""
 		This method is the setter method for **self.__default** attribute.
@@ -365,7 +365,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default"))
 
 	@default.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def default(self):
 		"""
 		This method is the deleter method for **self.__default** attribute.
@@ -385,7 +385,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		return self.__defaultGraphicsItem
 
 	@defaultGraphicsItem.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def defaultGraphicsItem(self, value):
 		"""
 		This method is the setter method for **self.__defaultGraphicsItem** attribute.
@@ -397,7 +397,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultGraphicsItem"))
 
 	@defaultGraphicsItem.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def defaultGraphicsItem(self):
 		"""
 		This method is the deleter method for **self.__defaultGraphicsItem** attribute.
@@ -417,7 +417,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		return self.__worker
 
 	@worker.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def worker(self, value):
 		"""
 		This method is the setter method for **self.__worker** attribute.
@@ -432,7 +432,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__worker = value
 
 	@worker.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def worker(self):
 		"""
 		This method is the deleter method for **self.__worker** attribute.
@@ -473,7 +473,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method reimplements the :meth:`AbstractResourcesCache.addContent` method.
@@ -502,7 +502,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 			self.contentAdded.emit([key])
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileExistsError)
 	def addDeferredContent(self, *content):
 		"""
 		This method adds given content to the cache.
@@ -539,7 +539,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 			self.__worker.addRequest(path)
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getMetrics(self):
 		"""
 		This method reimplements the :meth:`AbstractResourcesCache.getMetrics` method.

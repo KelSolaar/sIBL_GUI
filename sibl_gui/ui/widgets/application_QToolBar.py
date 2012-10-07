@@ -73,7 +73,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		else:
 			self.__container.centralWidget().show()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setToolBarChildrenWidgets(self):
 		"""
 		This method sets the toolBar children widgets.
@@ -111,7 +111,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getLayoutsActiveLabels(self):
 		"""
 		This method returns the layouts **Active_QLabel** widgets.
@@ -161,7 +161,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 																					"preferencesCentric",
 																					Qt.Key_0))
 		return self.__layoutsActiveLabelsCollection.activeLabels
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCentralWidgetActiveLabel(self):
 		"""
 		This method provides the default **Central_Widget_activeLabel** widget.
@@ -179,7 +179,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 		return centralWidgetButton
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def extendMiscellaneousActiveLabel(self):
 		"""
 		This method extends the default **Miscellaneous_activeLabel** widget.

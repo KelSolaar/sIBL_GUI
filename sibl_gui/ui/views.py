@@ -43,7 +43,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
+@foundations.exceptions.handleExceptions(None, False, Exception)
 def storeViewModelSelection(view):
 	"""
 	This method stores the View Model selection.
@@ -59,7 +59,7 @@ def storeViewModelSelection(view):
 		view.modelSelection["Default"].append(node.id.value)
 	return True
 
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
+@foundations.exceptions.handleExceptions(None, False, Exception)
 def restoreViewModelSelection(view):
 	"""
 	This method restores the View Model selection.
@@ -122,7 +122,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.
@@ -140,7 +140,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		self.__modelSelection = value
 
 	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
 		This method is the deleter method for **self.__modelSelection** attribute.
@@ -152,7 +152,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setModel(self, model):
 		"""
 		This method reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
@@ -185,7 +185,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 
 		self.restoreModelSelection()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -195,7 +195,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 
 		return storeViewModelSelection(self)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.
@@ -244,7 +244,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(None, False, AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.
@@ -262,7 +262,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 			self.__modelSelection = value
 
 	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
 		This method is the deleter method for **self.__modelSelection** attribute.
@@ -274,7 +274,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setModel(self, model):
 		"""
 		This method reimplements the **umbra.ui.views.Abstract_QTreeView.setModel** method.
@@ -307,7 +307,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 
 		self.restoreModelSelection()
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -317,7 +317,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 
 		return storeViewModelSelection(self)
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.

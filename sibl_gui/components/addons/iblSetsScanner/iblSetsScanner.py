@@ -94,7 +94,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -106,7 +106,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -126,7 +126,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -138,7 +138,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -158,7 +158,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__collectionsOutliner
 
 	@collectionsOutliner.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
 		This method is the setter method for **self.__collectionsOutliner** attribute.
@@ -170,7 +170,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@collectionsOutliner.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
 		This method is the deleter method for **self.__collectionsOutliner** attribute.
@@ -190,7 +190,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -202,7 +202,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -222,7 +222,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__iblSetsScannerWorkerThread
 
 	@iblSetsScannerWorkerThread.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self, value):
 		"""
 		This method is the setter method for **self.__iblSetsScannerWorkerThread** attribute.
@@ -234,7 +234,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsScannerWorkerThread"))
 
 	@iblSetsScannerWorkerThread.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self):
 		"""
 		This method is the deleter method for **self.__iblSetsScannerWorkerThread** attribute.
@@ -246,7 +246,7 @@ class IblSetsScanner(QObjectComponent):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -266,7 +266,7 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -285,7 +285,7 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = False
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -312,7 +312,7 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = True
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.
@@ -335,7 +335,7 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = False
 		return True
 
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
