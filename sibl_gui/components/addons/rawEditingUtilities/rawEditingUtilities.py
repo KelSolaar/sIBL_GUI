@@ -856,7 +856,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, path)
 		return processCommand
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def editPath(self, path, customTextEditor=None):
 		"""
 		This method provides editing capability.

@@ -876,7 +876,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																		inspectorIblSet.title,
 																		imageType))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def viewImages(self, paths, customPreviewer=None):
 		"""
 		This method launches an Ibl Set Images Previewer.

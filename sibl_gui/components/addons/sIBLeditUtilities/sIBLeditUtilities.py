@@ -557,7 +557,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
 		This method edits given Ibl Set in sIBLedit.

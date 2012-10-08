@@ -41,6 +41,7 @@ import foundations.io
 import foundations.parsers
 import foundations.strings
 import foundations.verbose
+import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
@@ -957,7 +958,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__loaderScript.overrideKeys[widget.data.name] = widget.data
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def getOverrideKeys(self):
 		"""
 		This method gets override keys.

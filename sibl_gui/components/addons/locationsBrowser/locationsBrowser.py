@@ -858,7 +858,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def getProcessCommand(self, directory, customBrowser=None):
 		"""
 		This method gets process command.
