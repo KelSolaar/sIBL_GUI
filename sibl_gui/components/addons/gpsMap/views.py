@@ -60,7 +60,6 @@ class Map_QWebView(QWebView):
 
 		QWebView.__init__(self, parent)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addMarker(self, coordinates, title, icon, content):
 		"""
 		This method adds a marker to the GPS map.
@@ -83,7 +82,6 @@ class Map_QWebView(QWebView):
 																						content))
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeMarkers(self):
 		"""
 		This method removes the GPS map markers.
@@ -96,7 +94,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setCenter(self):
 		"""
 		This method centers the GPS map.
@@ -109,7 +106,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setCenter()")
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setMapType(self, mapTypeId):
 		"""
 		This method sets the GPS map type.
@@ -129,7 +125,6 @@ class Map_QWebView(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setZoom(self, type):
 		"""
 		This method sets the GPS map zoom.

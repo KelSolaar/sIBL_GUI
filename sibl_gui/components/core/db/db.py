@@ -449,7 +449,6 @@ class Db(Component):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -582,7 +581,6 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def commit(self):
 		"""
 		This method commits pending changes in the Database.

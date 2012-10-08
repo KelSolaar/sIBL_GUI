@@ -998,7 +998,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.__Images_Informations_label_setUi()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def loadImage(self, index=0):
 		"""
 		This method loads the display image.
@@ -1015,7 +1014,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def scaleView(self, scaleFactor):
 		"""
 		This method scales the QGraphicsView.
@@ -1032,7 +1030,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		graphicsView.scale(scaleFactor, scaleFactor)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def fitWindow(self):
 		"""
 		This method fits the previewer window.
@@ -1053,7 +1050,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def fitImage(self):
 		"""
 		This method fits the display image.
@@ -1072,7 +1068,6 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 				Qt.KeepAspectRatio)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def loopThroughImages(self, backward=False):
 		"""
 		This method loops through Images Previewer images.

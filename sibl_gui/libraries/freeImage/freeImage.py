@@ -2197,7 +2197,6 @@ class Image(object):
 		raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(
 		self.__class__.__name__, errorCode, message))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getImageFormat(self, imagePath=None):
 		"""
 		This method gets the file format.
@@ -2237,7 +2236,6 @@ class Image(object):
 				raise foundations.exceptions.LibraryExecutionError("{0} | '{1}' format read isn't supported!".format(
 				self.__class__.__name__, FIF_LOOKUP.getFirstKeyFromValue(imageFormat)))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def save(self):
 		"""
 		This method saves the file.
@@ -2268,7 +2266,6 @@ class Image(object):
 			raise foundations.exceptions.LibraryExecutionError(
 			"{0} | '{1}' format write isn't supported!".format(imageFormat))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def convertToType(self, targetType, linearScale=True):
 		"""
 		This method converts the bitmap to given type.
@@ -2284,7 +2281,6 @@ class Image(object):
 			LOGGER.debug("> '{0}' image bitmap conversion to type '{1}' done!".format(self.__imagePath, targetType))
 			return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def convertToLdr(self, gamma=2.2):
 		"""
 		This method converts the HDR bitmap to LDR.

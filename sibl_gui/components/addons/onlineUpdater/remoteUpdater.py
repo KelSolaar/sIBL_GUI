@@ -832,7 +832,6 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 											"Choose Templates Directory:",
 											self.__container.container.lastBrowsedPath))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def extractZipFile(self, file):
 		"""
 		This method uncompress the given zip file.

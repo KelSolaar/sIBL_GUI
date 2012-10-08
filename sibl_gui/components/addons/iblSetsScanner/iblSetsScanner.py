@@ -246,7 +246,6 @@ class IblSetsScanner(QObjectComponent):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -266,7 +265,6 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -285,7 +283,6 @@ class IblSetsScanner(QObjectComponent):
 		self.activated = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -312,7 +309,6 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.
@@ -335,7 +331,6 @@ class IblSetsScanner(QObjectComponent):
 		self.initialized = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -359,7 +354,7 @@ class IblSetsScanner(QObjectComponent):
 
 		if messageBox.messageBox("Question", "Question",
 		"One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(
-		", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets))),
+		", ".join(iblSets.keys())),
 		 buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets))
 			for iblSet, path in iblSets.iteritems():

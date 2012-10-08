@@ -583,7 +583,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Cancel_Close_pushButton.setText("Close")
 			self.downloadFinished.emit()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def startDownload(self):
 		"""
 		This method triggers the download.
@@ -595,7 +594,6 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__downloadNext()
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def abortDownload(self):
 		"""
 		This method aborts the current download.

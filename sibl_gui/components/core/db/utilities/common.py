@@ -106,7 +106,6 @@ def commit(session):
 		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError(
 		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def addItem(session, item):
 	"""
 	This definition adds an item to the Database.
@@ -122,7 +121,6 @@ def addItem(session, item):
 
 	return commit(session)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def addStandardItem(session, type, name, path, collection):
 	"""
 	This definition adds a new standard item to the Database.
@@ -147,7 +145,6 @@ def addStandardItem(session, type, name, path, collection):
 		inspect.getmodule(addStandardItem).__name__, path, type.__name__))
 		return False
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def removeItem(session, item):
 	"""
 	This definition removes an item from the Database.
@@ -163,7 +160,6 @@ def removeItem(session, item):
 
 	return commit(session)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def removeStandardItem(session, type, identity):
 	"""
 	This definition removes a standard item from the Database.
@@ -179,7 +175,6 @@ def removeStandardItem(session, type, identity):
 	item = session.query(type).filter_by(id=identity).one()
 	return removeItem(session, item)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def updateItemContent(session, item):
 	"""
 	This definition update an item content.
@@ -199,7 +194,6 @@ def updateItemContent(session, item):
 		item.name, item.__class__.__name__))
 		return False
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def updateItemLocation(session, item, path):
 	"""
 	This definition updates an item location.
@@ -220,7 +214,6 @@ def updateItemLocation(session, item, path):
 		inspect.getmodulename(updateItemLocation), path, item.__class__.__name__))
 		return False
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def filterItems(session, items, pattern, field, flags=0):
 	"""
 	This definition filters items from the Database.
@@ -235,7 +228,6 @@ def filterItems(session, items, pattern, field, flags=0):
 
 	return [item for item in items if re.search(pattern, foundations.strings.encode(item.__dict__[field]), flags)]
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def itemExists(session, items, pattern, field, flags=0):
 	"""
 	This definition returns if given item exists in the Database.
@@ -391,7 +383,6 @@ def filterCollections(session, pattern, field, flags=0):
 
 	return filterItems(session, getCollections(session), pattern, field, flags)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getCollectionsByType(session, type):
 	"""
 	This method returns Collections of given type.
@@ -403,7 +394,6 @@ def getCollectionsByType(session, type):
 
 	return [collection for collection in filterCollections(session, type, "type")]
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def filterCollectionsByType(session, type, pattern, field, flags=0):
 	"""
 	This definition filters the Ibl Sets Collections from the Database.
@@ -419,7 +409,6 @@ def filterCollectionsByType(session, type, pattern, field, flags=0):
 	return list(set(getCollectionsByType(session, type)).intersection(
 	filterCollections(session, "{0}".format(pattern), field, flags)))
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def filterIblSetsCollections(session, pattern, field, flags=0):
 	"""
 	This definition filters the Ibl Sets Collections from the Database.
@@ -433,7 +422,6 @@ def filterIblSetsCollections(session, pattern, field, flags=0):
 
 	return filterCollectionsByType(session, "IblSets", pattern, field, flags)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def filterTemplatesCollections(session, pattern, field, flags=0):
 	"""
 	This definition filters the Templates Collections from the Database.

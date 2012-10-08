@@ -184,7 +184,6 @@ class AbstractResourcesCache(QObject):
 
 		return len(self.__mapping.keys())
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def isCached(self, key):
 		"""
 		This method returns if given content is cached.
@@ -195,7 +194,6 @@ class AbstractResourcesCache(QObject):
 
 		return key in self
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listContent(self):
 		"""
 		This method lists the cache content.
@@ -205,7 +203,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.keys()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method adds given content to the cache.
@@ -220,7 +217,6 @@ class AbstractResourcesCache(QObject):
 		self.contentAdded.emit(content.keys())
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeContent(self, *keys):
 		"""
 		This method removes given content from the cache.
@@ -239,7 +235,6 @@ class AbstractResourcesCache(QObject):
 			self.contentRemoved.emit([key])
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getContent(self, key):
 		"""
 		This method gets given content from the cache.
@@ -252,7 +247,6 @@ class AbstractResourcesCache(QObject):
 
 		return self.__mapping.get(key)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def flushContent(self):
 		"""
 		This method flushes the cache content.
@@ -267,7 +261,6 @@ class AbstractResourcesCache(QObject):
 		self.contentRemoved.emit(content)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getMetrics(self):
 		"""
 		This method returns the cache metrics.
@@ -473,7 +466,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addContent(self, **content):
 		"""
 		This method reimplements the :meth:`AbstractResourcesCache.addContent` method.
@@ -539,7 +531,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 			self.__worker.addRequest(path)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getMetrics(self):
 		"""
 		This method reimplements the :meth:`AbstractResourcesCache.getMetrics` method.

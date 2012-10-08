@@ -443,7 +443,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -468,7 +467,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -493,7 +491,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -515,7 +512,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
@@ -535,7 +531,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -549,7 +544,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the engine.
@@ -904,7 +898,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				LOGGER.warning("!> {0} | You can only launch '{1}' images Previewer instances at same time!".format(
 				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addImagesPreviewer(self, imagesPreviewer):
 		"""
 		This method adds an Images Previewer.
@@ -918,7 +911,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers.append(imagesPreviewer)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
 		This method removes an Images Previewer.
@@ -931,7 +923,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers.remove(imagesPreviewer)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	@umbra.ui.common.showWaitCursor
 	@umbra.engine.showProcessing("Reading Images...")
 	def getImagesPreviewer(self, paths):
@@ -948,7 +939,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers[-1].show()
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getProcessCommand(self, paths, customPreviewer):
 		"""
 		This method gets process command.
@@ -968,7 +958,6 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
 		return processCommand
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getIblSetImagesPaths(self, iblSet, imageType):
 		"""
 		This method gets Ibl Set images paths.

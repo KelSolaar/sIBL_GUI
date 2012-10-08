@@ -644,7 +644,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -675,7 +674,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -719,7 +717,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -742,7 +739,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -775,7 +771,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view.restoreModelSelection()
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onClose(self):
 		"""
 		This method is triggered on Framework close.
@@ -1101,7 +1096,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise dbExceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__,
 																								collection.name))
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollections(self):
 		"""
 		This method returns Database Ibl Sets Collections.
@@ -1111,7 +1105,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return dbCommon.getCollectionsByType(self.__db.dbSession, "IblSets")
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the Database Ibl Sets Collections on given attribute using given pattern.
@@ -1131,7 +1124,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return dbCommon.filterIblSetsCollections(self.__db.dbSession, "{0}".format(foundations.strings.encode(pattern.pattern)),
 																						attribute, flags)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def collectionExists(self, name):
 		"""
 		This method returns if given Collection name exists in the Database.
@@ -1142,7 +1134,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return dbCommon.collectionExists(self.__db.dbSession, name)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listCollections(self):
 		"""
 		This method lists Database Ibl Sets Collections names.
@@ -1152,7 +1143,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return [collection.name for collection in self.getCollections()]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setCollections(self):
 		"""
 		This method sets the Collections Model nodes.
@@ -1195,7 +1185,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionByName(self, name):
 		"""
 		This method returns Database Ibl Sets Collection with given name.
@@ -1207,7 +1196,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
 		return foundations.common.getFirstItem(collections)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionsIblSets(self, collections):
 		"""
 		This method gets given Collections Ibl Sets.
@@ -1219,7 +1207,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [iblSet for iblSet in dbCommon.getCollectionsIblSets(self.__db.dbSession,
 																	[collection.id for collection in collections])]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionIblSetsCount(self, collection):
 		"""
 		This method returns given Collection Ibl Sets count.
@@ -1230,7 +1217,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.__db.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionId(self, collection):
 		"""
 		This method returns given Collection id.
@@ -1243,7 +1229,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		child = foundations.common.getFirstItem(children)
 		return child and child.dbItem.id or None
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the View selected nodes.
@@ -1253,7 +1238,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.__view.getSelectedNodes()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedCollectionsNodes(self):
 		"""
 		This method returns the View selected Collections nodes.
@@ -1263,7 +1247,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return [node for node in self.getSelectedNodes() if node.family == "Collection"]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedCollections(self):
 		"""
 		This method gets the View selected Collections.

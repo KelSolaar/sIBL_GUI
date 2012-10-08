@@ -116,7 +116,7 @@ def _setImagesCaches():
 
 	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
 	# with asynchronous images loading.
-	umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data.__func__
+	umbra.ui.models.GraphModel.data = sibl_gui.ui.models.GraphModel.data
 
 _setImagesCaches()
 
@@ -214,7 +214,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		scriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
 		self.contentDropped.disconnect(scriptEditor._ScriptEditor__engine__contentDropped)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def extendCommandLineParametersParser(parser):
 	"""
 	This definition returns the command line parameters parser.

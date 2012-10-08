@@ -1035,7 +1035,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -1067,7 +1066,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -1166,7 +1164,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -1259,7 +1256,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.restoreModelSelection()
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onClose(self):
 		"""
 		This method is triggered on Framework close.
@@ -1540,7 +1536,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return iblSets
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getActiveView(self):
 		"""
 		This method returns the current active View.
@@ -1550,7 +1545,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentWidget()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getActiveViewIndex(self):
 		"""
 		This method returns the current active View index.
@@ -1560,7 +1554,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.Database_Browser_stackedWidget.currentIndex()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveView(self, view):
 		"""
 		This method sets the active View to given View.
@@ -1574,7 +1567,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveViewIndex(self, index):
 		"""
 		This method sets the active View to given index.
@@ -1587,7 +1579,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.activeViewChanged.emit(index)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setActiveSearchContext(self, context, *args):
 		"""
 		This method sets the active search context.
@@ -1825,7 +1816,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
 			self.__class__.__name__, iblSet.title))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getIblSets(self):
 		"""
 		This method returns Database Ibl Sets.
@@ -1835,7 +1825,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__db.dbSession)]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the Database Ibl Sets on given attribute using given pattern.
@@ -1858,7 +1847,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								attribute,
 								flags)))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def iblSetExists(self, path):
 		"""
 		This method returns if given Ibl Set path exists in the Database.
@@ -1869,7 +1857,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.iblSetExists(self.__db.dbSession, path)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listIblSets(self):
 		"""
 		This method lists Database Ibl Sets names.
@@ -1881,7 +1868,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [iblSet.title for iblSet in self.getIblSets()]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setIblSets(self, iblSets=None):
 		"""
 		This method sets the Ibl Sets Model nodes.
@@ -1914,7 +1900,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getIblSetByName(self, name):
 		"""
 		This method returns Database Ibl Set with given name.
@@ -1928,7 +1913,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = self.filterIblSets(r"^{0}$".format(name), "title")
 		return foundations.common.getFirstItem(iblSets)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the current active View selected nodes.
@@ -1938,7 +1922,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.getActiveView().getSelectedNodes()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedIblSetsNodes(self):
 		"""
 		This method returns the current active View selected Ibl Sets nodes.
@@ -1948,7 +1931,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [node for node in self.getSelectedNodes() if node.family == "IblSet"]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedIblSets(self):
 		"""
 		This method returns the current active View selected Ibl Sets.

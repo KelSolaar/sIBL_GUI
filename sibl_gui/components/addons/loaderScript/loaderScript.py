@@ -549,7 +549,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -574,7 +573,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -595,7 +593,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.activated = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -617,7 +614,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
@@ -636,7 +632,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.initializedUi = False
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -650,7 +645,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the engine.
@@ -896,7 +890,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getDefaultOverrideKeys(self):
 		"""
 		This method gets default override keys.
@@ -944,7 +937,6 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 																			iblSet.reflectionImage))
 		return overrideKeys
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getLoaderScript(self, template, iblSet, overrideKeys):
 		"""
 		This method builds a Loader Script.

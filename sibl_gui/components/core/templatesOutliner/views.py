@@ -175,7 +175,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -195,7 +194,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				self.modelSelection["Softwares"].append(foundations.namespace.setNamespace(node.parent.id.value, node.name))
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.

@@ -226,7 +226,6 @@ class IblSetsScanner_worker(QThread):
 
 		self.scanIblSetsDirectories()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def scanIblSetsDirectories(self):
 		"""
 		This method scans Ibl Sets directories.

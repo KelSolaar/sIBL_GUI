@@ -843,7 +843,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -881,7 +880,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
@@ -935,7 +933,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the engine.
@@ -958,7 +955,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -1023,7 +1019,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__view.restoreModelSelection()
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def onClose(self):
 		"""
 		This method is triggered on Framework close.
@@ -1532,7 +1527,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__,
 																							template.name))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def templateExists(self, path):
 		"""
 		This method returns if given Template path exists in the Database.
@@ -1588,7 +1582,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			"{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
 			self.__class__.__name__, template.name, template.helpFile))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollections(self):
 		"""
 		This method returns Database Templates Collections.
@@ -1598,7 +1591,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.getCollectionsByType(self.__db.dbSession, "Templates")
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the Database Templates Collections on given attribute using given pattern.
@@ -1620,7 +1612,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 													attribute,
 													flags)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getTemplates(self):
 		"""
 		This method returns Database Templates.
@@ -1630,7 +1621,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [template for template in dbCommon.getTemplates(self.__db.dbSession)]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the Database Templates on given attribute using given pattern.
@@ -1653,7 +1643,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								attribute,
 								flags)))
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def listTemplates(self):
 		"""
 		This method lists Database Templates names.
@@ -1663,7 +1652,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [template.title for template in self.getTemplates()]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def setTemplates(self):
 		"""
 		This method sets the Templates Model nodes.
@@ -1724,7 +1712,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__model.initializeModel(rootNode)
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getTemplateByName(self, name):
 		"""
 		This method returns Database Template with given name.
@@ -1738,7 +1725,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		templates = self.filterTemplates(r"^{0}$".format(name), "title")
 		return foundations.common.getFirstItem(templates)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionByName(self, name):
 		"""
 		This method gets Templates Collection from given Collection name.
@@ -1750,7 +1736,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
 		return foundations.common.getFirstItem(collections)
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getCollectionId(self, collection):
 		"""
 		This method returns given Collection id.
@@ -1763,7 +1748,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		child = foundations.common.getFirstItem(children)
 		return child and child.dbItem.id or None
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the View selected nodes.
@@ -1773,7 +1757,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return self.__view.getSelectedNodes()
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedTemplatesNodes(self):
 		"""
 		This method returns the View selected Templates nodes.
@@ -1783,7 +1766,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return [node for node in self.getSelectedNodes() if node.family == "Template"]
 
-	@foundations.exceptions.handleExceptions(None, False, Exception)
 	def getSelectedTemplates(self):
 		"""
 		This method gets the View selected Templates.

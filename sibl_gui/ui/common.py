@@ -69,7 +69,6 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def convertImage(image, type):
 	"""
 	This method converts given image to given type.
@@ -86,7 +85,6 @@ def convertImage(image, type):
 
 	return graphicsItem
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def loadGraphicsItem(path, type):
 	"""
 	This method loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
@@ -122,7 +120,6 @@ def loadGraphicsItem(path, type):
 				graphicsItem = type(errorImage)
 	return graphicsItem
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	"""
 	This method returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
@@ -146,7 +143,6 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
 	return cache.getContent(path)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getIcon(path, asynchronousLoading=True, imagesCache=None):
 	"""
 	This method returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
@@ -160,7 +156,6 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
 	return getGraphicsItem(path, QIcon, asynchronousLoading, cache)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 	"""
 	This method returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
@@ -174,7 +169,6 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
 	return getGraphicsItem(path, QPixmap, asynchronousLoading, cache)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getImage(path, asynchronousLoading=True, imagesCache=None):
 	"""
 	This method returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
@@ -188,7 +182,6 @@ def getImage(path, asynchronousLoading=True, imagesCache=None):
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
 	return getGraphicsItem(path, QImage, asynchronousLoading, cache)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def createPixmap(width=128, height=128, text=None):
 	"""
 	This method create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
@@ -233,7 +226,6 @@ def getImageInformationsHeader(path, graphicsItem):
 									bpp=graphicsItem.depth(),
 									osStats=os.stat(path))
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def filterImagePath(path):
 	"""
 	This method filters the image path.
@@ -252,7 +244,6 @@ def filterImagePath(path):
 	else:
 		return umbra.ui.common.getResourcePath(UiConstants.missingImage)
 
-@foundations.exceptions.handleExceptions(None, False, Exception)
 def getFormatedShotDate(date, time):
 	"""
 	This method returns a formated shot date.
