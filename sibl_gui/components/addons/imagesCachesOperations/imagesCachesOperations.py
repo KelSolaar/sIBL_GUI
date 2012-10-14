@@ -291,7 +291,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.outputImagesCachesMetrics()
-		self.__engine.layoutsManager.currentLayout != self.__editLayout and self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+		self.__engine.layoutsManager.currentLayout != self.__editLayout and \
+		self.__engine.layoutsManager.restoreLayout(self.__editLayout)
 
 	def outputImagesCachesMetrics(self):
 		"""

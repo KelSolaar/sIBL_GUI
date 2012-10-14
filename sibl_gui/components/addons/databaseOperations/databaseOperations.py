@@ -531,7 +531,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
 					if choice == 0:
-							break
+						break
 
 					if choice == QMessageBox.Yes:
 						dbType.updateLocationMethod(item)

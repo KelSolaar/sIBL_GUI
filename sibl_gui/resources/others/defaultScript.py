@@ -5,7 +5,6 @@ The purpose of this file is to give a quick overview of some sIBL_GUI Api featur
 """
 
 import os
-import time
 
 import foundations.core
 import umbra.ui.common

@@ -1114,8 +1114,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except Exception:
 			return list()
 
-		return dbCommon.filterIblSetsCollections(self.__db.dbSession, "{0}".format(foundations.strings.encode(pattern.pattern)),
-																						attribute, flags)
+		return dbCommon.filterIblSetsCollections(self.__db.dbSession,
+												"{0}".format(foundations.strings.encode(pattern.pattern)),
+												attribute,
+												flags)
 
 	def collectionExists(self, name):
 		"""

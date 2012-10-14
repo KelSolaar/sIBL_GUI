@@ -165,11 +165,11 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 					continue
 
 				if re.search(r"^@\w+", strippedLine) and \
-					not re.search(r"@property", strippedLine) and \
-					not re.search(r"^@\w+\.setter", strippedLine) and \
-					not re.search(r"^@\w+\.deleter", strippedLine):
-						inDecorator = True
-						indent = re.search(r"^([ \t]*)", line)
+				not re.search(r"@property", strippedLine) and \
+				not re.search(r"^@\w+\.setter", strippedLine) and \
+				not re.search(r"^@\w+\.deleter", strippedLine):
+					inDecorator = True
+					indent = re.search(r"^([ \t]*)", line)
 
 				if re.search(r"^[ \t]*def \w+", sourceFile.content[i]) or \
 					re.search(r"^[ \t]*class \w+", sourceFile.content[i]):

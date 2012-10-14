@@ -435,26 +435,26 @@ class UiConstantsTestCase(unittest.TestCase):
 		self.assertRegexpMatches(UiConstants.apiFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 	def testNativeImageFormatsAttribute(self):
-			"""
-			This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.nativeImageFormats` attribute.
-			"""
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.nativeImageFormats` attribute.
+		"""
 
-			self.assertIsInstance(UiConstants.nativeImageFormats, dict)
-			for key, value in UiConstants.nativeImageFormats.iteritems():
-				self.assertIsInstance(key, str)
-				self.assertIsInstance(value, str)
-				self.assertTrue(re.compile(value))
+		self.assertIsInstance(UiConstants.nativeImageFormats, dict)
+		for key, value in UiConstants.nativeImageFormats.iteritems():
+			self.assertIsInstance(key, str)
+			self.assertIsInstance(value, str)
+			self.assertTrue(re.compile(value))
 
 	def testThirdPartyImageFormatsAttribute(self):
-			"""
-			This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.thirdPartyImageFormats` attribute.
-			"""
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.thirdPartyImageFormats` attribute.
+		"""
 
-			self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
-			for key, value in UiConstants.thirdPartyImageFormats.iteritems():
-				self.assertIsInstance(key, str)
-				self.assertIsInstance(value, str)
-				self.assertTrue(re.compile(value))
+		self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
+		for key, value in UiConstants.thirdPartyImageFormats.iteritems():
+			self.assertIsInstance(key, str)
+			self.assertIsInstance(value, str)
+			self.assertTrue(re.compile(value))
 
 if __name__ == "__main__":
 	unittest.main()

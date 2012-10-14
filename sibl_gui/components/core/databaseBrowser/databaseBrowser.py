@@ -1526,8 +1526,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		iblSets = [iblSet for iblSet in set(self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or \
-		self.__collectionsOutliner.getCollections())).intersection(
-		dbCommon.filterIblSets(self.__db.dbSession, "{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags))]
+		self.__collectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__db.dbSession,
+																"{0}".format(foundations.strings.encode(pattern.pattern)),
+																attribute,
+																flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))

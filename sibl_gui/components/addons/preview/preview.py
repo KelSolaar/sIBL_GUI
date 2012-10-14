@@ -19,7 +19,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import functools
-import inspect
 import os
 import platform
 import re

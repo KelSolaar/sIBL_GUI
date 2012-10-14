@@ -501,7 +501,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
 							foundations.common.getFirstItem(selectedIblSets)
 			if selectedIblSet:
-				return self.editIblSetInSIBLedit(selectedIblSet.path, foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
+				return self.editIblSetInSIBLedit(selectedIblSet.path,
+												foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:
 				raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(

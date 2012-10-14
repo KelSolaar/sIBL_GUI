@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import inspect
 import os
 import platform
 import re
@@ -1004,7 +1003,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																		for identity in activeCollectionsIdentities.split(
 																		self.__settingsSeparator)] or []
 
-		activeSoftwares = foundations.strings.encode(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
+		activeSoftwares = foundations.strings.encode(
+		self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		self.__view.modelSelection["Softwares"] = activeSoftwares and activeSoftwares.split(self.__settingsSeparator) or []
 

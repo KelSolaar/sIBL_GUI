@@ -33,7 +33,6 @@ from PyQt4.QtCore import Qt
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
@@ -547,7 +546,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not comment:
 				continue
 
-			tagsCloud = foundations.strings.filterWords(foundations.strings.getWords(comment), filtersOut=self.__cloudExcludedTags, flags=flags)
+			tagsCloud = foundations.strings.filterWords(foundations.strings.getWords(comment),
+														filtersOut=self.__cloudExcludedTags,
+														flags=flags)
 
 			patternsMatched = True
 			if patternTokens != patternsDefault:
