@@ -89,10 +89,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelRefresh = pyqtSignal()
+	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`DatabaseBrowser` class when :obj:`DatabaseBrowser.model` class property model
-	needs to be refreshed. ( pyqtSignal )
+	nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	activeViewChanged = pyqtSignal(int)
@@ -1140,8 +1140,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 
-		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
-		self.__model.modelReset.connect(self.__collectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
+		self.refreshNodes.connect(self.__model__refreshNodes)
+		self.__model.modelReset.connect(self.__collectionsOutliner._CollectionsOutliner__model__refreshAttributes)
 
 		if not self.__engine.parameters.databaseReadOnly:
 			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
@@ -1275,6 +1275,29 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return True
 
+	def __model__dataChanged(self, startIndex, endIndex):
+		"""
+		This method is triggered when the Model data has changed.
+
+		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
+		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
+		"""
+
+		iblSetNode = self.__model.getNode(startIndex)
+
+		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
+		iblSetNode.synchronizeDbItem()
+		iblSetNode.synchronizeToolTip()
+
+		self.__db.commit()
+
+	def __model__refreshNodes(self):
+		"""
+		This method is triggered when the Model nodes need refresh.
+		"""
+
+		self.setIblSets()
+
 	def __views_addActions(self):
 		"""
 		This method sets the Views actions.
@@ -1368,6 +1391,18 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.__engine.layoutsManager.restoreLayout(self.__inspectLayout)
 
+	def __views__activeViewChanged(self, index):
+		"""
+		This method is triggered when the active View has changed.
+
+		:param index: Current active View. ( integer )
+		"""
+
+		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
+		for viewIndex, data in self.__viewsPushButtons.iteritems():
+			viewPushButton, image = data
+			viewPushButton.setChecked(viewIndex == index and True or False)
+
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
 		This method is triggered when **Search_Database_lineEdit** text changes.
@@ -1393,41 +1428,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
-
-	def __databaseBrowser__modelRefresh(self):
-		"""
-		This method is triggered when the Model data need refresh.
-		"""
-
-		self.setIblSets()
-
-	def __model__dataChanged(self, startIndex, endIndex):
-		"""
-		This method is triggered when the Model data has changed.
-
-		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
-		"""
-
-		iblSetNode = self.__model.getNode(startIndex)
-
-		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
-		iblSetNode.synchronizeDbItem()
-		iblSetNode.synchronizeToolTip()
-
-		self.__db.commit()
-
-	def __views__activeViewChanged(self, index):
-		"""
-		This method is triggered when the active View has changed.
-
-		:param index: Current active View. ( integer )
-		"""
-
-		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
-		for viewIndex, data in self.__viewsPushButtons.iteritems():
-			viewPushButton, image = data
-			viewPushButton.setChecked(viewIndex == index and True or False)
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.UserError)
@@ -1493,7 +1493,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, iblSet.title))
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 
 	def __getCandidateCollectionId(self):
 		"""
@@ -1675,7 +1675,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 
 			if success:
 				return True
@@ -1709,7 +1709,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-		self.modelRefresh.emit()
+		self.refreshNodes.emit()
 
 		if success:
 			return True
@@ -1732,7 +1732,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__db.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
-				self.modelRefresh.emit()
+				self.refreshNodes.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError(
@@ -1768,7 +1768,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-		self.modelRefresh.emit()
+		self.refreshNodes.emit()
 
 		if success:
 			return True
@@ -1787,7 +1787,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__db.dbSession, iblSet.id):
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(
@@ -1808,7 +1808,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																					iblSet.title,
 																					file))
 		if dbCommon.updateIblSetLocation(self.__db.dbSession, iblSet, file):
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(

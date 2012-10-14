@@ -370,4 +370,4 @@ class IblSetsScanner(QObjectComponent):
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.__databaseBrowser.modelRefresh.emit()
+			self.__databaseBrowser.refreshNodes.emit()

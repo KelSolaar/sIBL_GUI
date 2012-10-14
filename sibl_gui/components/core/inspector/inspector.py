@@ -117,10 +117,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelRefresh = pyqtSignal()
+	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`Inspector` class when :obj:`Inspector.model` class property model
-	needs to be refreshed. ( pyqtSignal )
+	nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	uiRefresh = pyqtSignal()
@@ -986,7 +986,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
 		self.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
 		self.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
-		self.modelRefresh.connect(self.__inspector__modelRefresh)
+		self.refreshNodes.connect(self.__model__refreshNodes)
 		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
 		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
 
@@ -1082,6 +1082,13 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		pass
 
+	def __model__refreshNodes(self):
+		"""
+		This method refreshes the **Plates_listView** Model nodes.
+		"""
+
+		self.setPlates()
+
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **Plates_listView** Model selection has changed.
@@ -1099,14 +1106,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(node.plate.previewImage, asynchronousLoading=False))
 		else:
 			self.uiRefresh.emit()
-
-	def __databaseBrowser__modelReset(self):
-		"""
-		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
-		Component Model has changed.
-		"""
-
-		self.__setInspectorIblSet()
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
@@ -1127,6 +1126,14 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__setInspectorIblSet()
 				self.uiRefresh.emit()
 
+	def __databaseBrowser__modelReset(self):
+		"""
+		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
+		Component Model has changed.
+		"""
+
+		self.__setInspectorIblSet()
+
 	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
@@ -1139,7 +1146,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__setInspectorIblSet()
 
 		self.__setInspectorIblSetPlates()
-		self.modelRefresh.emit()
+		self.refreshNodes.emit()
 
 		if self.__inspectorIblSet:
 			self.uiRefresh.emit()
@@ -1181,13 +1188,6 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.loopThroughPlates()
-
-	def __inspector__modelRefresh(self):
-		"""
-		This method refreshes the **Plates_listView** Model.
-		"""
-
-		self.setPlates()
 
 	def __Image_label__linkActivated(self, url):
 		"""

@@ -85,10 +85,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelRefresh = pyqtSignal()
+	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`TemplatesOutliner` class when :obj:`TemplatesOutliner.model` class property
-	model needs to be refreshed. ( pyqtSignal )
+	model nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -912,7 +912,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
-		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
+		self.refreshNodes.connect(self.__model__refreshNodes)
 		if not self.__engine.parameters.databaseReadOnly:
 			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
 			self.__engine.contentDropped.connect(self.__engine__contentDropped)
@@ -1043,6 +1043,13 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
+	def __model__refreshNodes(self):
+		"""
+		This method is triggered when the Model nodes need refresh.
+		"""
+
+		self.setTemplates()
+
 	def __view_addActions(self):
 		"""
 		This method sets the View actions.
@@ -1162,22 +1169,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.Template_Informations_textBrowser.setText(separator.join(content))
 
-	def __Template_Informations_textBrowser__anchorClicked(self, url):
-		"""
-		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
-
-		:param url: Url to explore. ( QUrl )
-		"""
-
-		QDesktopServices.openUrl(url)
-
-	def __templatesOutliner__modelRefresh(self):
-		"""
-		This method is triggered when the Model data need refresh.
-		"""
-
-		self.setTemplates()
-
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Templates ...")
@@ -1242,7 +1233,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, template.title))
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
+
+	def __Template_Informations_textBrowser__anchorClicked(self, url):
+		"""
+		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
+
+		:param url: Url to explore. ( QUrl )
+		"""
+
+		QDesktopServices.openUrl(url)
 
 	def __getCandidateCollectionId(self, path=None):
 		"""
@@ -1331,7 +1331,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 
 			if success:
 				return True
@@ -1403,7 +1403,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 								key=lambda x:(foundations.strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(
 							self.__db.dbSession, foundations.common.getFirstItem(identity)) or False
-				self.modelRefresh.emit()
+				self.refreshNodes.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
@@ -1428,7 +1428,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addTemplate(self.__db.dbSession, name, path, collectionId or \
 			self.__getCandidateCollectionId(path)):
-				self.modelRefresh.emit()
+				self.refreshNodes.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError(
@@ -1464,7 +1464,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-		self.modelRefresh.emit()
+		self.refreshNodes.emit()
 
 		if success:
 			return True
@@ -1517,7 +1517,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
 		if dbCommon.removeTemplate(self.__db.dbSession, foundations.strings.encode(template.id)) :
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(
@@ -1553,7 +1553,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__db.dbSession, template, file):
-			self.modelRefresh.emit()
+			self.refreshNodes.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(

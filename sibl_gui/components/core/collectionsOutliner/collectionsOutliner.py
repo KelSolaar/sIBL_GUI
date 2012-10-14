@@ -80,10 +80,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelRefresh = pyqtSignal()
+	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`CollectionsOutliner` class when :obj:`CollectionsOutliner.model` class
-	property model needs to be refreshed. ( pyqtSignal )
+	property model nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -701,7 +701,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-		self.modelRefresh.connect(self.__collectionsOutliner__modelRefresh)
+		self.refreshNodes.connect(self.__model__refreshNodes)
 		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__model__dataChanged)
 
 		self.initializedUi = True
@@ -791,6 +791,77 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+											foundations.exceptions.UserError)
+	def __model__dataChanged(self, startIndex, endIndex):
+		"""
+		This method is triggered when the Model data has changed.
+		
+		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
+		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
+		"""
+
+		collectionNode = self.__model.getNode(startIndex)
+		if collectionNode.family != "Collection":
+			return
+
+		if startIndex.column() == 0:
+			if self.collectionExists(collectionNode.name):
+				self.__engine.notificationsManager.warnify(
+				"{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__,
+																				collectionNode.name))
+				return
+
+			if not collectionNode.name:
+				collectionNode.synchronizeNode()
+				raise foundations.exceptions.UserError(
+				"{0} | Exception while editing a Collection field: Cannot use an empty value!".format(
+				self.__class__.__name__))
+
+		collectionNode.synchronizeDbItem()
+		collectionNode.synchronizeToolTip()
+
+		self.__db.commit()
+
+	def __model__refreshNodes(self):
+		"""
+		This method is triggered when the Model nodes need refresh.
+		"""
+
+		self.setCollections()
+
+	def __model__refreshAttributes(self):
+		"""
+		This method refreshes the Model nodes attributes.
+		"""
+
+		iblSetsCount = 0
+		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
+			if not node.family == "Collection":
+				continue
+
+			collectionIblSetsCount = self.getCollectionIblSetsCount(node.dbItem)
+			iblSetsCount += collectionIblSetsCount
+			if collectionIblSetsCount == node.count.value:
+				continue
+
+			node.count.value = collectionIblSetsCount
+			self.__model.setData(self.__model.getAttributeIndex(node,
+																self.__headers.keys().index(self.__iblSetsCountLabel)),
+																QVariant(collectionIblSetsCount),
+																Qt.DisplayRole)
+
+		overallCollectionNode = foundations.common.getFirstItem(
+								self.__model.findChildren("^{0}$".format(self.__overallCollection)))
+		if iblSetsCount == overallCollectionNode.count.value:
+			return
+
+		overallCollectionNode.count.value = iblSetsCount
+		self.__model.setData(self.__model.getAttributeIndex(overallCollectionNode,
+															self.__headers.keys().index(self.__iblSetsCountLabel)),
+															QVariant(iblSetsCount),
+															Qt.DisplayRole)
+
 	def __view_addActions(self):
 		"""
 		This method sets the View actions.
@@ -842,45 +913,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.removeCollectionsUi()
 
-	def __collectionsOutliner__modelRefresh(self):
-		"""
-		This method is triggered when the Model data need refresh.
-		"""
-
-		self.setCollections()
-
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											foundations.exceptions.UserError)
-	def __model__dataChanged(self, startIndex, endIndex):
-		"""
-		This method is triggered when the Model data has changed.
-		
-		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
-		"""
-
-		collectionNode = self.__model.getNode(startIndex)
-		if collectionNode.family != "Collection":
-			return
-
-		if startIndex.column() == 0:
-			if self.collectionExists(collectionNode.name):
-				self.__engine.notificationsManager.warnify(
-				"{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__,
-																				collectionNode.name))
-				return
-
-			if not collectionNode.name:
-				collectionNode.synchronizeNode()
-				raise foundations.exceptions.UserError(
-				"{0} | Exception while editing a Collection field: Cannot use an empty value!".format(
-				self.__class__.__name__))
-
-		collectionNode.synchronizeDbItem()
-		collectionNode.synchronizeToolTip()
-
-		self.__db.commit()
-
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when the View **selectionModel** has changed.
@@ -889,39 +921,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		self.__databaseBrowser.modelRefresh.emit()
-
-	def __view_setIblSetsCounts(self):
-		"""
-		This method sets the View Ibl Sets counts.
-		"""
-
-		iblSetsCount = 0
-		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
-			if not node.family == "Collection":
-				continue
-
-			collectionIblSetsCount = self.getCollectionIblSetsCount(node.dbItem)
-			iblSetsCount += collectionIblSetsCount
-			if collectionIblSetsCount == node.count.value:
-				continue
-
-			node.count.value = collectionIblSetsCount
-			self.__model.setData(self.__model.getAttributeIndex(node,
-																self.__headers.keys().index(self.__iblSetsCountLabel)),
-																QVariant(collectionIblSetsCount),
-																Qt.DisplayRole)
-
-		overallCollectionNode = foundations.common.getFirstItem(
-								self.__model.findChildren("^{0}$".format(self.__overallCollection)))
-		if iblSetsCount == overallCollectionNode.count.value:
-			return
-
-		overallCollectionNode.count.value = iblSetsCount
-		self.__model.setData(self.__model.getAttributeIndex(overallCollectionNode,
-															self.__headers.keys().index(self.__iblSetsCountLabel)),
-															QVariant(iblSetsCount),
-															Qt.DisplayRole)
+		self.__databaseBrowser.refreshNodes.emit()
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
@@ -1053,7 +1053,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 				if dbCommon.addCollection(self.__db.dbSession, name, "IblSets", comment):
-					self.modelRefresh.emit()
+					self.refreshNodes.emit()
 					return True
 				else:
 					raise dbExceptions.DatabaseOperationError(
@@ -1082,8 +1082,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 		if dbCommon.removeCollection(self.__db.dbSession, foundations.strings.encode(collection.id)):
-			self.modelRefresh.emit()
-			self.__databaseBrowser.modelRefresh.emit()
+			self.refreshNodes.emit()
+			self.__databaseBrowser.refreshNodes.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError(

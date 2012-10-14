@@ -197,7 +197,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 																					collectionNode.dbItem.name))
 					node.dbItem.collection = collectionNode.dbItem.id
 			if self.__container.db.commit():
-				self.__container.modelRefresh.emit()
+				self.__container.refreshNodes.emit()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(
 			self.__class__.__name__))

@@ -536,7 +536,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					if choice == QMessageBox.Yes:
 						dbType.updateLocationMethod(item)
 				self.__engine.processEvents()
-			dbType.modelContainer.modelRefresh.emit()
+			dbType.modelContainer.refreshNodes.emit()
 		self.__engine.stopProcessing()
 		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))
 		return True
@@ -563,7 +563,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					dbType.removeMethod(self.__db.dbSession, item.id)
 
 					self.__engine.processEvents()
-				dbType.modelContainer.modelRefresh.emit()
+				dbType.modelContainer.refreshNodes.emit()
 			self.__engine.stopProcessing()
 			self.__engine.notificationsManager.notify(
 			"{0} | Invalid data removed from Database!".format(self.__class__.__name__))
