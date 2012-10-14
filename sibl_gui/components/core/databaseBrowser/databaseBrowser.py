@@ -1377,7 +1377,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.setIblSets(self.__searchIblSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
 											self.__searchContexts[self.__activeSearchContext],
-											not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
+											re.IGNORECASE if self.Case_Sensitive_Matching_pushButton.isChecked() else 0))
 
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""

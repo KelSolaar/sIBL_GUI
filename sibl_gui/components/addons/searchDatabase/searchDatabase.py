@@ -366,8 +366,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.Search_Database_lineEdit = Search_QLineEdit(self)
-		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Search_Database_lineEdit.setPlaceholderText("Search In Tags Cloud ...")
+		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
 		self.__cloudExcludedTags = list(itertools.chain.from_iterable(
@@ -524,7 +524,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.setTimeMatchingIblSets(self.Time_Low_timeEdit.time(), self.Time_High_timeEdit.time())
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.UserError)
 	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
 		This method sets the pattern matching Ibl Sets and 
