@@ -120,7 +120,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__container
 
 	@container.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
 		This method is the setter method for **self.__container** attribute.
@@ -132,7 +132,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
 		This method is the deleter method for **self.__container** attribute.
@@ -152,7 +152,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__networkAccessManager
 
 	@networkAccessManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
 		This method is the setter method for **self.__networkAccessManager** attribute.
@@ -164,7 +164,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "networkAccessManager"))
 
 	@networkAccessManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
 		This method is the deleter method for **self.__networkAccessManager** attribute.
@@ -184,7 +184,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__downloadDirectory
 
 	@downloadDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self, value):
 		"""
 		This method is the setter method for **self.__downloadDirectory** attribute.
@@ -196,7 +196,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloadDirectory"))
 
 	@downloadDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self):
 		"""
 		This method is the deleter method for **self.__downloadDirectory** attribute.
@@ -216,7 +216,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -228,7 +228,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -248,7 +248,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiLogoImage
 
 	@uiLogoImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
 		This method is the setter method for **self.__uiLogoImage** attribute.
@@ -260,7 +260,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@uiLogoImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
 		This method is the deleter method for **self.__uiLogoImage** attribute.
@@ -280,7 +280,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__requests
 
 	@requests.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def requests(self, value):
 		"""
 		This method is the setter method for **self.__requests** attribute.
@@ -296,7 +296,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__requests = value
 
 	@requests.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
 		This method is the deleter method for **self.__requests** attribute.
@@ -316,7 +316,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__downloads
 
 	@downloads.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloads(self, value):
 		"""
 		This method is the setter method for **self.__downloads** attribute.
@@ -328,7 +328,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloads"))
 
 	@downloads.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloads(self):
 		"""
 		This method is the deleter method for **self.__downloads** attribute.
@@ -348,7 +348,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__currentRequest
 
 	@currentRequest.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentRequest(self, value):
 		"""
 		This method is the setter method for **self.__currentRequest** attribute.
@@ -360,7 +360,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "currentRequest"))
 
 	@currentRequest.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentRequest(self):
 		"""
 		This method is the deleter method for **self.__currentRequest** attribute.
@@ -380,7 +380,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__currentFile
 
 	@currentFile.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFile(self, value):
 		"""
 		This method is the setter method for **self.__currentFile** attribute.
@@ -392,7 +392,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "currentFile"))
 
 	@currentFile.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFile(self):
 		"""
 		This method is the deleter method for **self.__currentFile** attribute.
@@ -412,7 +412,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__currentFilePath
 
 	@currentFilePath.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFilePath(self, value):
 		"""
 		This method is the setter method for **self.__currentFilePath** attribute.
@@ -424,7 +424,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "currentFilePath"))
 
 	@currentFilePath.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFilePath(self):
 		"""
 		This method is the deleter method for **self.__currentFilePath** attribute.
@@ -444,7 +444,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__downloadStatus
 
 	@downloadStatus.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadStatus(self, value):
 		"""
 		This method is the setter method for **self.__downloadStatus** attribute.
@@ -456,7 +456,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloadStatus"))
 
 	@downloadStatus.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadStatus(self):
 		"""
 		This method is the deleter method for **self.__downloadStatus** attribute.

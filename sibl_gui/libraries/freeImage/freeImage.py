@@ -2067,7 +2067,7 @@ class Image(object):
 		return self.__library
 
 	@library.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self, value):
 		"""
 		This method is the setter method for **self.__library** attribute.
@@ -2079,7 +2079,7 @@ class Image(object):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "library"))
 
 	@library.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self):
 		"""
 		This method is the deleter method for **self.__library** attribute.
@@ -2099,7 +2099,7 @@ class Image(object):
 		return self.__errorsCallback
 
 	@errorsCallback.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self, value):
 		"""
 		This method is the setter method for **self.__errorsCallback** attribute.
@@ -2111,7 +2111,7 @@ class Image(object):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "errorsCallback"))
 
 	@errorsCallback.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
 		"""
 		This method is the deleter method for **self.__errorsCallback** attribute.
@@ -2131,7 +2131,7 @@ class Image(object):
 		return self.__imagePath
 
 	@imagePath.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def imagePath(self, value):
 		"""
 		This method is the setter method for **self.__imagePath** attribute.
@@ -2145,7 +2145,7 @@ class Image(object):
 		self.__imagePath = value
 
 	@imagePath.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagePath(self):
 		"""
 		This method is the deleter method for **self.__imagePath** attribute.
@@ -2165,7 +2165,7 @@ class Image(object):
 		return self.__bitmap
 
 	@bitmap.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def bitmap(self, value):
 		"""
 		This method is the setter method for **self.__bitmap** attribute.
@@ -2176,7 +2176,7 @@ class Image(object):
 		self.__bitmap = value
 
 	@bitmap.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def bitmap(self):
 		"""
 		This method is the deleter method for **self.__bitmap** attribute.
@@ -2188,7 +2188,7 @@ class Image(object):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.LibraryExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):
 		"""
 		This method logs the Library errors.
@@ -2214,7 +2214,7 @@ class Image(object):
 			fileFormat = self.__library.FreeImage_GetFIFFromFilename(imagePath)
 		return fileFormat
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.LibraryExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def load(self, imagePath=None):
 		"""
 		This method loads the file.
@@ -2245,7 +2245,7 @@ class Image(object):
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.LibraryExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
 		This method saves the image to the given file.
@@ -2295,7 +2295,7 @@ class Image(object):
 			LOGGER.debug("> '{0}' HDR image bitmap conversion to LDR done!".format(self.__imagePath))
 			return True
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.LibraryExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
 		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.

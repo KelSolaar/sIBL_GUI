@@ -78,7 +78,7 @@ class LoggingNotifier(Component):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -90,7 +90,7 @@ class LoggingNotifier(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -110,7 +110,7 @@ class LoggingNotifier(Component):
 		return self.__memoryHandlerStackDepth
 
 	@memoryHandlerStackDepth.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
 		This method is the setter method for **self.__memoryHandlerStackDepth** attribute.
@@ -122,7 +122,7 @@ class LoggingNotifier(Component):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "memoryHandlerStackDepth"))
 
 	@memoryHandlerStackDepth.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
 		This method is the deleter method for **self.__memoryHandlerStackDepth** attribute.

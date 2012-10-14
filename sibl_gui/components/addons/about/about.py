@@ -159,7 +159,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -171,7 +171,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -191,7 +191,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiLogoImage
 
 	@uiLogoImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
 		This method is the setter method for **self.__uiLogoImage** attribute.
@@ -203,7 +203,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@uiLogoImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
 		This method is the deleter method for **self.__uiLogoImage** attribute.
@@ -223,7 +223,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiGpl3Image
 
 	@uiGpl3Image.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self, value):
 		"""
 		This method is the setter method for **self.__uiGpl3Image** attribute.
@@ -235,7 +235,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiGpl3Image"))
 
 	@uiGpl3Image.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self):
 		"""
 		This method is the deleter method for **self.__uiGpl3Image** attribute.
@@ -255,7 +255,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -267,7 +267,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -287,7 +287,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__miscellaneousMenu
 
 	@miscellaneousMenu.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self, value):
 		"""
 		This method is the setter method for **self.__miscellaneousMenu** attribute.
@@ -299,7 +299,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneousMenu"))
 
 	@miscellaneousMenu.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self):
 		"""
 		This method is the deleter method for **self.__miscellaneousMenu** attribute.

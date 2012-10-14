@@ -107,7 +107,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -119,7 +119,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -139,7 +139,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -151,7 +151,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -171,7 +171,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -183,7 +183,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -203,7 +203,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__reWireFramesWidgets
 
 	@reWireFramesWidgets.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self, value):
 		"""
 		This method is the setter method for **self.__reWireFramesWidgets** attribute.
@@ -215,7 +215,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "reWireFramesWidgets"))
 
 	@reWireFramesWidgets.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self):
 		"""
 		This method is the deleter method for **self.__reWireFramesWidgets** attribute.
@@ -235,7 +235,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__reWireComboBoxesWidgets
 
 	@reWireComboBoxesWidgets.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self, value):
 		"""
 		This method is the setter method for **self.__reWireComboBoxesWidgets** attribute.
@@ -247,7 +247,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "reWireComboBoxesWidgets"))
 
 	@reWireComboBoxesWidgets.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self):
 		"""
 		This method is the deleter method for **self.__reWireComboBoxesWidgets** attribute.
@@ -267,7 +267,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__reWireLineEditWidgets
 
 	@reWireLineEditWidgets.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self, value):
 		"""
 		This method is the setter method for **self.__reWireLineEditWidgets** attribute.
@@ -279,7 +279,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "reWireLineEditWidgets"))
 
 	@reWireLineEditWidgets.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self):
 		"""
 		This method is the deleter method for **self.__reWireLineEditWidgets** attribute.
@@ -299,7 +299,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__rewiringParameters
 
 	@rewiringParameters.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self, value):
 		"""
 		This method is the setter method for **self.__rewiringParameters** attribute.
@@ -311,7 +311,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewiringParameters"))
 
 	@rewiringParameters.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self):
 		"""
 		This method is the deleter method for **self.__rewiringParameters** attribute.

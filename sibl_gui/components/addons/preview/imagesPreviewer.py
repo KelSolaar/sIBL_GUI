@@ -97,7 +97,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		return self.__image
 
 	@image.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def image(self, value):
 		"""
 		This method is the setter method for **self.__image** attribute.
@@ -110,7 +110,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__image = value
 
 	@image.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def image(self):
 		"""
 		This method is the deleter method for **self.__image** attribute.
@@ -130,7 +130,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		return self.__width
 
 	@width.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def width(self, value):
 		"""
 		This method is the setter method for **self.__width** attribute.
@@ -143,7 +143,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__width = value
 
 	@width.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def width(self):
 		"""
 		This method is the deleter method for **self.__width** attribute.
@@ -163,7 +163,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		return self.__height
 
 	@height.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def height(self, value):
 		"""
 		This method is the setter method for **self.__height** attribute.
@@ -176,7 +176,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__height = value
 
 	@height.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def height(self):
 		"""
 		This method is the deleter method for **self.__height** attribute.
@@ -278,7 +278,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__container
 
 	@container.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
 		This method is the setter method for **self.__container** attribute.
@@ -290,7 +290,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
 		This method is the deleter method for **self.__container** attribute.
@@ -310,7 +310,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__paths
 
 	@paths.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def paths(self, value):
 		"""
 		This method is the setter method for **self.__paths** attribute.
@@ -326,7 +326,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__paths = value
 
 	@paths.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def paths(self):
 		"""
 		This method is the deleter method for **self.__paths** attribute.
@@ -346,7 +346,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -358,7 +358,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -378,7 +378,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiPreviousImage
 
 	@uiPreviousImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
 		This method is the setter method for **self.__uiPreviousImage** attribute.
@@ -390,7 +390,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@uiPreviousImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
 		This method is the deleter method for **self.__uiPreviousImage** attribute.
@@ -410,7 +410,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiNextImage
 
 	@uiNextImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
 		This method is the setter method for **self.__uiNextImage** attribute.
@@ -422,7 +422,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
 
 	@uiNextImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
 		This method is the deleter method for **self.__uiNextImage** attribute.
@@ -442,7 +442,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiZoomOutImage
 
 	@uiZoomOutImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self, value):
 		"""
 		This method is the setter method for **self.__uiZoomOutImage** attribute.
@@ -454,7 +454,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@uiZoomOutImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self):
 		"""
 		This method is the deleter method for **self.__uiZoomOutImage** attribute.
@@ -474,7 +474,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiZoomInImage
 
 	@uiZoomInImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self, value):
 		"""
 		This method is the setter method for **self.__uiZoomInImage** attribute.
@@ -486,7 +486,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@uiZoomInImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self):
 		"""
 		This method is the deleter method for **self.__uiZoomInImage** attribute.
@@ -506,7 +506,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__graphicsSceneBackgroundColor
 
 	@graphicsSceneBackgroundColor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self, value):
 		"""
 		This method is the setter method for **self.__graphicsSceneBackgroundColor** attribute.
@@ -518,7 +518,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
 
 	@graphicsSceneBackgroundColor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self):
 		"""
 		This method is the deleter method for **self.__graphicsSceneBackgroundColor** attribute.
@@ -538,7 +538,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__graphicsSceneWidth
 
 	@graphicsSceneWidth.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self, value):
 		"""
 		This method is the setter method for **self.__graphicsSceneWidth** attribute.
@@ -550,7 +550,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneWidth"))
 
 	@graphicsSceneWidth.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self):
 		"""
 		This method is the deleter method for **self.__graphicsSceneWidth** attribute.
@@ -570,7 +570,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__graphicsSceneHeight
 
 	@graphicsSceneHeight.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self, value):
 		"""
 		This method is the setter method for **self.__graphicsSceneHeight** attribute.
@@ -582,7 +582,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneHeight"))
 
 	@graphicsSceneHeight.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self):
 		"""
 		This method is the deleter method for **self.__graphicsSceneHeight** attribute.
@@ -602,7 +602,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__minimumZoomFactor
 
 	@minimumZoomFactor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self, value):
 		"""
 		This method is the setter method for **self.__minimumZoomFactor** attribute.
@@ -614,7 +614,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "minimumZoomFactor"))
 
 	@minimumZoomFactor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self):
 		"""
 		This method is the deleter method for **self.__minimumZoomFactor** attribute.
@@ -634,7 +634,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__maximumZoomFactor
 
 	@maximumZoomFactor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self, value):
 		"""
 		This method is the setter method for **self.__maximumZoomFactor** attribute.
@@ -646,7 +646,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "maximumZoomFactor"))
 
 	@maximumZoomFactor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self):
 		"""
 		This method is the deleter method for **self.__maximumZoomFactor** attribute.
@@ -666,7 +666,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__wheelZoomFactor
 
 	@wheelZoomFactor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self, value):
 		"""
 		This method is the setter method for **self.__wheelZoomFactor** attribute.
@@ -678,7 +678,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "wheelZoomFactor"))
 
 	@wheelZoomFactor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self):
 		"""
 		This method is the deleter method for **self.__wheelZoomFactor** attribute.
@@ -698,7 +698,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__keyZoomFactor
 
 	@keyZoomFactor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self, value):
 		"""
 		This method is the setter method for **self.__keyZoomFactor** attribute.
@@ -710,7 +710,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "keyZoomFactor"))
 
 	@keyZoomFactor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self):
 		"""
 		This method is the deleter method for **self.__keyZoomFactor** attribute.
@@ -730,7 +730,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__graphicsView
 
 	@graphicsView.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsView(self, value):
 		"""
 		This method is the setter method for **self.__graphicsView** attribute.
@@ -742,7 +742,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsView"))
 
 	@graphicsView.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsView(self):
 		"""
 		This method is the deleter method for **self.__graphicsView** attribute.
@@ -762,7 +762,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__graphicsScene
 
 	@graphicsScene.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsScene(self, value):
 		"""
 		This method is the setter method for **self.__graphicsScene** attribute.
@@ -774,7 +774,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsScene"))
 
 	@graphicsScene.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsScene(self):
 		"""
 		This method is the deleter method for **self.__graphicsScene** attribute.
@@ -794,7 +794,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__displayGraphicsItem
 
 	@displayGraphicsItem.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self, value):
 		"""
 		This method is the setter method for **self.__displayGraphicsItem** attribute.
@@ -806,7 +806,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "displayGraphicsItem"))
 
 	@displayGraphicsItem.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self):
 		"""
 		This method is the deleter method for **self.__displayGraphicsItem** attribute.

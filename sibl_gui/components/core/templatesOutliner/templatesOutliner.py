@@ -179,7 +179,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -191,7 +191,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -211,7 +211,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiSoftwareAffixe
 
 	@uiSoftwareAffixe.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self, value):
 		"""
 		This method is the setter method for **self.__uiSoftwareAffixe** attribute.
@@ -223,7 +223,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSoftwareAffixe"))
 
 	@uiSoftwareAffixe.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self):
 		"""
 		This method is the deleter method for **self.__uiSoftwareAffixe** attribute.
@@ -243,7 +243,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiUnknownSoftwareImage
 
 	@uiUnknownSoftwareImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self, value):
 		"""
 		This method is the setter method for **self.__uiUnknownSoftwareImage** attribute.
@@ -255,7 +255,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
 
 	@uiUnknownSoftwareImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self):
 		"""
 		This method is the deleter method for **self.__uiUnknownSoftwareImage** attribute.
@@ -275,7 +275,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -287,7 +287,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -307,7 +307,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -319,7 +319,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -339,7 +339,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settings
 
 	@settings.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
 		This method is the setter method for **self.__settings** attribute.
@@ -351,7 +351,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
 		This method is the deleter method for **self.__settings** attribute.
@@ -371,7 +371,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSection
 
 	@settingsSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
 		This method is the setter method for **self.__settingsSection** attribute.
@@ -383,7 +383,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
 		This method is the deleter method for **self.__settingsSection** attribute.
@@ -403,7 +403,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSeparator
 
 	@settingsSeparator.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
 		This method is the setter method for **self.__settingsSeparator** attribute.
@@ -415,7 +415,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@settingsSeparator.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
 		This method is the deleter method for **self.__settingsSeparator** attribute.
@@ -435,7 +435,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__editLayout
 
 	@editLayout.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self, value):
 		"""
 		This method is the setter method for **self.__editLayout** attribute.
@@ -447,7 +447,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
 
 	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self):
 		"""
 		This method is the deleter method for **self.__editLayout** attribute.
@@ -467,7 +467,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__scriptEditor
 
 	@scriptEditor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
 		This method is the setter method for **self.__scriptEditor** attribute.
@@ -479,7 +479,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
 	@scriptEditor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
 		This method is the deleter method for **self.__scriptEditor** attribute.
@@ -499,7 +499,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -511,7 +511,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -531,7 +531,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__model
 
 	@model.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
 		This method is the setter method for **self.__model** attribute.
@@ -543,7 +543,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
 		This method is the deleter method for **self.__model** attribute.
@@ -563,7 +563,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__view
 
 	@view.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
 		This method is the setter method for **self.__view** attribute.
@@ -575,7 +575,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
 	@view.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
 		This method is the deleter method for **self.__view** attribute.
@@ -595,7 +595,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__headers
 
 	@headers.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self, value):
 		"""
 		This method is the setter method for **self.__headers** attribute.
@@ -607,7 +607,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
 
 	@headers.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self):
 		"""
 		This method is the deleter method for **self.__headers** attribute.
@@ -627,7 +627,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__extension
 
 	@extension.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
 		This method is the setter method for **self.__extension** attribute.
@@ -639,7 +639,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
 	@extension.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
 		This method is the deleter method for **self.__extension** attribute.
@@ -659,7 +659,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__defaultCollections
 
 	@defaultCollections.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self, value):
 		"""
 		This method is the setter method for **self.__defaultCollections** attribute.
@@ -671,7 +671,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultCollections"))
 
 	@defaultCollections.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self):
 		"""
 		This method is the deleter method for **self.__defaultCollections** attribute.
@@ -691,7 +691,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__factoryCollection
 
 	@factoryCollection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self, value):
 		"""
 		This method is the setter method for **self.__factoryCollection** attribute.
@@ -703,7 +703,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryCollection"))
 
 	@factoryCollection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self):
 		"""
 		This method is the deleter method for **self.__factoryCollection** attribute.
@@ -723,7 +723,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__userCollection
 
 	@userCollection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self, value):
 		"""
 		This method is the setter method for **self.__userCollection** attribute.
@@ -735,7 +735,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "userCollection"))
 
 	@userCollection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self):
 		"""
 		This method is the deleter method for **self.__userCollection** attribute.
@@ -755,7 +755,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesInformationsDefaultText
 
 	@templatesInformationsDefaultText.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self, value):
 		"""
 		This method is the setter method for **self.__templatesInformationsDefaultText** attribute.
@@ -767,7 +767,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsDefaultText"))
 
 	@templatesInformationsDefaultText.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self):
 		"""
 		This method is the deleter method for **self.__templatesInformationsDefaultText** attribute.
@@ -787,7 +787,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__treeViewInnerMargins
 
 	@treeViewInnerMargins.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
 		This method is the setter method for **self.__treeViewInnerMargins** attribute.
@@ -799,7 +799,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewInnerMargins"))
 
 	@treeViewInnerMargins.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
 		This method is the deleter method for **self.__treeViewInnerMargins** attribute.
@@ -819,7 +819,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesInformationsText
 
 	@templatesInformationsText.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self, value):
 		"""
 		This method is the setter method for **self.__templatesInformationsText** attribute.
@@ -831,7 +831,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsText"))
 
 	@templatesInformationsText.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self):
 		"""
 		This method is the deleter method for **self.__templatesInformationsText** attribute.
@@ -871,7 +871,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.activated = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -924,7 +924,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.initializedUi = True
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
@@ -946,7 +946,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the engine.
@@ -1179,7 +1179,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.setTemplates()
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __engine__contentDropped(self, event):
@@ -1263,7 +1262,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				identity = collection and collection.id or None
 		return identity
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplateUi(self):
 		"""
@@ -1292,7 +1291,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeTemplatesUi(self):
 		"""
@@ -1340,7 +1339,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
 				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplatesUi(self):
 		"""
@@ -1357,7 +1356,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(
 			self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFilesUi(self):
 		"""
@@ -1382,7 +1381,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersionsUi(self):
 		"""
@@ -1413,9 +1412,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(None,
-											False,
-											foundations.exceptions.ProgrammingError,
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError,
 											dbExceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None):
 		"""
@@ -1440,7 +1437,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
@@ -1475,7 +1472,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
 		This method adds default Templates Collections / Templates to the Database.
@@ -1509,7 +1506,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(
 			self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(None, False, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
 	def removeTemplate(self, template):
 		"""
 		This method removes given Template from the Database.
@@ -1537,7 +1534,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return dbCommon.templateExists(self.__db.dbSession, path)
 
-	@foundations.exceptions.handleExceptions(None, False, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template):
 		"""
 		This method updates given Template location.
@@ -1562,7 +1559,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise dbExceptions.DatabaseOperationError(
 			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileExistsError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
 		This method displays given Templates help file.

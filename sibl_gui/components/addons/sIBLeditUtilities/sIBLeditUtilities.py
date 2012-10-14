@@ -97,7 +97,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -109,7 +109,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -129,7 +129,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settings
 
 	@settings.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
 		This method is the setter method for **self.__settings** attribute.
@@ -141,7 +141,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
 		This method is the deleter method for **self.__settings** attribute.
@@ -161,7 +161,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSection
 
 	@settingsSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
 		This method is the setter method for **self.__settingsSection** attribute.
@@ -173,7 +173,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
 		This method is the deleter method for **self.__settingsSection** attribute.
@@ -193,7 +193,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__preferencesManager
 
 	@preferencesManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
 		This method is the setter method for **self.__preferencesManager** attribute.
@@ -205,7 +205,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
 	@preferencesManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
 		This method is the deleter method for **self.__preferencesManager** attribute.
@@ -225,7 +225,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -237,7 +237,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -257,7 +257,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__inspector
 
 	@inspector.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self, value):
 		"""
 		This method is the setter method for **self.__inspector** attribute.
@@ -269,7 +269,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
 	@inspector.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self):
 		"""
 		This method is the deleter method for **self.__inspector** attribute.
@@ -469,7 +469,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
@@ -486,7 +485,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.FileExistsError)
 	def editIblSetInSIBLEditUi(self):
 		"""
@@ -513,7 +511,6 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.FileExistsError)
 	def editInspectorIblSetInSIBLEditUi(self):
 		"""
@@ -550,7 +547,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
 		This method edits given Ibl Set in sIBLedit.

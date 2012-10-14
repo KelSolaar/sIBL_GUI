@@ -110,7 +110,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -122,7 +122,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -142,7 +142,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settings
 
 	@settings.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
 		This method is the setter method for **self.__settings** attribute.
@@ -154,7 +154,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
 		This method is the deleter method for **self.__settings** attribute.
@@ -174,7 +174,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSection
 
 	@settingsSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
 		This method is the setter method for **self.__settingsSection** attribute.
@@ -186,7 +186,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
 		This method is the deleter method for **self.__settingsSection** attribute.
@@ -206,7 +206,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__editLayout
 
 	@editLayout.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self, value):
 		"""
 		This method is the setter method for **self.__editLayout** attribute.
@@ -218,7 +218,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
 
 	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self):
 		"""
 		This method is the deleter method for **self.__editLayout** attribute.
@@ -238,7 +238,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__scriptEditor
 
 	@scriptEditor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
 		This method is the setter method for **self.__scriptEditor** attribute.
@@ -250,7 +250,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
 
 	@scriptEditor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
 		This method is the deleter method for **self.__scriptEditor** attribute.
@@ -270,7 +270,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__preferencesManager
 
 	@preferencesManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
 		This method is the setter method for **self.__preferencesManager** attribute.
@@ -282,7 +282,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
 	@preferencesManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
 		This method is the deleter method for **self.__preferencesManager** attribute.
@@ -302,7 +302,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__componentsManagerUi
 
 	@componentsManagerUi.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self, value):
 		"""
 		This method is the setter method for **self.__componentsManagerUi** attribute.
@@ -314,7 +314,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "componentsManagerUi"))
 
 	@componentsManagerUi.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self):
 		"""
 		This method is the deleter method for **self.__componentsManagerUi** attribute.
@@ -334,7 +334,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -346,7 +346,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -366,7 +366,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__inspector
 
 	@inspector.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self, value):
 		"""
 		This method is the setter method for **self.__inspector** attribute.
@@ -378,7 +378,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
 	@inspector.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self):
 		"""
 		This method is the deleter method for **self.__inspector** attribute.
@@ -398,7 +398,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesOutliner
 
 	@templatesOutliner.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
 		This method is the setter method for **self.__templatesOutliner** attribute.
@@ -410,7 +410,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@templatesOutliner.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
 		This method is the deleter method for **self.__templatesOutliner** attribute.
@@ -668,7 +668,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									self.Custom_Text_Editor_Path_lineEdit.text())
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
@@ -727,7 +726,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		elif event.source() is self.__templatesOutliner.view:
 			self.editTemplatesFilesUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editIblSetsFilesUi(self):
 		"""
 		This method edits selected Ibl Sets files.
@@ -755,7 +754,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																", ".join(iblSet.title for iblSet in selectedIblSets)))
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											foundations.exceptions.FileExistsError)
 	def editInspectorIblSetFileUi(self):
 		"""
@@ -776,7 +774,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, inspectorIblSet.title))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editTemplatesFilesUi(self):
 		"""
 		This method edits selected Templates files.
@@ -803,7 +801,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__,
 															", ".join(template.name for template in selectedTemplates)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editComponentsUi(self):
 		"""
 		This method edits selected Components packages.
@@ -849,7 +847,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, path)
 		return processCommand
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editPath(self, path, customTextEditor=None):
 		"""
 		This method provides editing capability.

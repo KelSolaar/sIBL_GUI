@@ -116,7 +116,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		return self.__dbItem
 
 	@dbItem.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dbItem(self, value):
 		"""
 		This method is the setter method for **self.__dbItem** attribute.
@@ -128,7 +128,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbItem"))
 
 	@dbItem.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dbItem(self):
 		"""
 		This method is the deleter method for **self.__dbItem** attribute.
@@ -148,7 +148,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		return self.__toolTipText
 
 	@toolTipText.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def toolTipText(self, value):
 		"""
 		This method is the setter method for **self.__toolTipText** attribute.
@@ -162,7 +162,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		self.__toolTipText = value
 
 	@toolTipText.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
 		This method is the deleter method for **self.__toolTipText** attribute.

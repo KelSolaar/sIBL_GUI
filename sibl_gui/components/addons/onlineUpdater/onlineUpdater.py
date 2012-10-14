@@ -118,7 +118,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -130,7 +130,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -150,7 +150,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settings
 
 	@settings.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
 		This method is the setter method for **self.__settings** attribute.
@@ -162,7 +162,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
 		This method is the deleter method for **self.__settings** attribute.
@@ -182,7 +182,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__settingsSection
 
 	@settingsSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
 		This method is the setter method for **self.__settingsSection** attribute.
@@ -194,7 +194,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
 		This method is the deleter method for **self.__settingsSection** attribute.
@@ -214,7 +214,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__preferencesManager
 
 	@preferencesManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
 		This method is the setter method for **self.__preferencesManager** attribute.
@@ -226,7 +226,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
 	@preferencesManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
 		This method is the deleter method for **self.__preferencesManager** attribute.
@@ -246,7 +246,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -258,7 +258,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -278,7 +278,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesOutliner
 
 	@templatesOutliner.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
 		This method is the setter method for **self.__templatesOutliner** attribute.
@@ -290,7 +290,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@templatesOutliner.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
 		This method is the deleter method for **self.__templatesOutliner** attribute.
@@ -310,7 +310,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__locationsBrowser
 
 	@locationsBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def locationsBrowser(self, value):
 		"""
 		This method is the setter method for **self.__locationsBrowser** attribute.
@@ -322,7 +322,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "locationsBrowser"))
 
 	@locationsBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def locationsBrowser(self):
 		"""
 		This method is the deleter method for **self.__locationsBrowser** attribute.
@@ -342,7 +342,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__ioDirectory
 
 	@ioDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def ioDirectory(self, value):
 		"""
 		This method is the setter method for **self.__ioDirectory** attribute.
@@ -354,7 +354,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ioDirectory"))
 
 	@ioDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def ioDirectory(self):
 		"""
 		This method is the deleter method for **self.__ioDirectory** attribute.
@@ -374,7 +374,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__repositoryUrl
 
 	@repositoryUrl.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
 		This method is the setter method for **self.__repositoryUrl** attribute.
@@ -386,7 +386,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repositoryUrl"))
 
 	@repositoryUrl.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
 		This method is the deleter method for **self.__repositoryUrl** attribute.
@@ -406,7 +406,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__releasesFileUrl
 
 	@releasesFileUrl.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self, value):
 		"""
 		This method is the setter method for **self.__releasesFileUrl** attribute.
@@ -418,7 +418,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "releasesFileUrl"))
 
 	@releasesFileUrl.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self):
 		"""
 		This method is the deleter method for **self.__releasesFileUrl** attribute.
@@ -438,7 +438,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__networkAccessManager
 
 	@networkAccessManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
 		This method is the setter method for **self.__networkAccessManager** attribute.
@@ -450,7 +450,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "networkAccessManager"))
 
 	@networkAccessManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
 		This method is the deleter method for **self.__networkAccessManager** attribute.
@@ -470,7 +470,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__releasesFileReply
 
 	@releaseReply.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releaseReply(self, value):
 		"""
 		This method is the setter method for **self.__releasesFileReply** attribute.
@@ -482,7 +482,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "releaseReply"))
 
 	@releaseReply.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releaseReply(self):
 		"""
 		This method is the deleter method for **self.__releasesFileReply** attribute.
@@ -502,7 +502,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__remoteUpdater
 
 	@remoteUpdater.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self, value):
 		"""
 		This method is the setter method for **self.__remoteUpdater** attribute.
@@ -514,7 +514,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "remoteUpdater"))
 
 	@remoteUpdater.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self):
 		"""
 		This method is the deleter method for **self.__remoteUpdater** attribute.
@@ -534,7 +534,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__reportUpdateStatus
 
 	@reportUpdateStatus.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self, value):
 		"""
 		This method is the setter method for **self.__reportUpdateStatus** attribute.
@@ -546,7 +546,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "reportUpdateStatus"))
 
 	@reportUpdateStatus.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self):
 		"""
 		This method is the deleter method for **self.__reportUpdateStatus** attribute.
@@ -757,7 +757,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.checkForNewReleasesUi()
 
-	@foundations.exceptions.handleExceptions(None, False, sibl_gui.exceptions.NetworkError)
+	@foundations.exceptions.handleExceptions(sibl_gui.exceptions.NetworkError)
 	def __releasesFileReply__finished(self):
 		"""
 		This method is triggered when the releases file reply finishes.
@@ -845,7 +845,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False, sibl_gui.exceptions.NetworkError,
+											sibl_gui.exceptions.NetworkError,
 											Exception)
 	def checkForNewReleasesUi(self):
 		"""
@@ -865,7 +865,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			raise Exception("{0} | Exception raised while checking for new releases!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(None, False, sibl_gui.exceptions.NetworkError, Exception)
+	@foundations.exceptions.handleExceptions(sibl_gui.exceptions.NetworkError, Exception)
 	def checkForNewReleases(self):
 		"""
 		This method checks for new releases.

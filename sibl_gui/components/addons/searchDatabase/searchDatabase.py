@@ -103,7 +103,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -115,7 +115,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -135,7 +135,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__tagsCloudListWidgetSpacing
 
 	@tagsCloudListWidgetSpacing.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tagsCloudListWidgetSpacing(self, value):
 		"""
 		This method is the setter method for **self.__tagsCloudListWidgetSpacing** attribute.
@@ -147,7 +147,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tagsCloudListWidgetSpacing"))
 
 	@tagsCloudListWidgetSpacing.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tagsCloudListWidgetSpacing(self):
 		"""
 		This method is the deleter method for **self.__tagsCloudListWidgetSpacing** attribute.
@@ -167,7 +167,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -179,7 +179,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -199,7 +199,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -211,7 +211,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -231,7 +231,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -243,7 +243,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -263,7 +263,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__collectionsOutliner
 
 	@collectionsOutliner.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
 		This method is the setter method for **self.__collectionsOutliner** attribute.
@@ -275,7 +275,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@collectionsOutliner.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
 		This method is the deleter method for **self.__collectionsOutliner** attribute.
@@ -295,7 +295,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__cloudExcludedTags
 
 	@cloudExcludedTags.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def cloudExcludedTags(self, value):
 		"""
 		This method is the setter method for **self.__cloudExcludedTags** attribute.
@@ -307,7 +307,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "cloudExcludedTags"))
 
 	@cloudExcludedTags.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def cloudExcludedTags(self):
 		"""
 		This method is the deleter method for **self.__cloudExcludedTags** attribute.
@@ -497,7 +497,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.setTagsCloudMatchingIblsSetsUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setTagsCloudMatchingIblsSetsUi(self):
 		"""
 		This method sets the user defined pattern matching Ibl Sets and 
@@ -511,7 +510,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.setTagsCloudMatchingIblsSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
 		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
 	def setTimeMatchingIblSetsUi(self):
 		"""
 		This method sets the user defined time matching Ibl Sets and 

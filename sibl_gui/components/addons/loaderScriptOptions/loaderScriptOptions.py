@@ -129,7 +129,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -141,7 +141,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -161,7 +161,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -173,7 +173,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -193,7 +193,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesOutliner
 
 	@templatesOutliner.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
 		This method is the setter method for **self.__templatesOutliner** attribute.
@@ -205,7 +205,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@templatesOutliner.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
 		This method is the deleter method for **self.__templatesOutliner** attribute.
@@ -225,7 +225,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__loaderScript
 
 	@loaderScript.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self, value):
 		"""
 		This method is the setter method for **self.__loaderScript** attribute.
@@ -237,7 +237,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loaderScript"))
 
 	@loaderScript.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self):
 		"""
 		This method is the deleter method for **self.__loaderScript** attribute.
@@ -257,7 +257,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__namespaceSplitter
 
 	@namespaceSplitter.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def namespaceSplitter(self, value):
 		"""
 		This method is the setter method for **self.__namespaceSplitter** attribute.
@@ -275,7 +275,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__namespaceSplitter = value
 
 	@namespaceSplitter.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def namespaceSplitter(self):
 		"""
 		This method is the deleter method for **self.__namespaceSplitter** attribute.
@@ -295,7 +295,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templatesSettingsDirectory
 
 	@templatesSettingsDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesSettingsDirectory(self, value):
 		"""
 		This method is the setter method for **self.__templatesSettingsDirectory** attribute.
@@ -307,7 +307,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesSettingsDirectory"))
 
 	@templatesSettingsDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesSettingsDirectory(self):
 		"""
 		This method is the deleter method for **self.__templatesSettingsDirectory** attribute.
@@ -327,7 +327,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templateSettingsFile
 
 	@templateSettingsFile.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateSettingsFile(self, value):
 		"""
 		This method is the setter method for **self.__templateSettingsFile** attribute.
@@ -339,7 +339,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateSettingsFile"))
 
 	@templateSettingsFile.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateSettingsFile(self):
 		"""
 		This method is the deleter method for **self.__templateSettingsFile** attribute.
@@ -359,7 +359,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templateCommonAttributesSection
 
 	@templateCommonAttributesSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self, value):
 		"""
 		This method is the setter method for **self.__templateCommonAttributesSection** attribute.
@@ -371,7 +371,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateCommonAttributesSection"))
 
 	@templateCommonAttributesSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self):
 		"""
 		This method is the deleter method for **self.__templateCommonAttributesSection** attribute.
@@ -391,7 +391,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templateAdditionalAttributesSection
 
 	@templateAdditionalAttributesSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self, value):
 		"""
 		This method is the setter method for **self.__templateAdditionalAttributesSection** attribute.
@@ -403,7 +403,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateAdditionalAttributesSection"))
 
 	@templateAdditionalAttributesSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self):
 		"""
 		This method is the deleter method for **self.__templateAdditionalAttributesSection** attribute.
@@ -424,7 +424,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__templateScriptSection
 
 	@templateScriptSection.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self, value):
 		"""
 		This method is the setter method for **self.__templateScriptSection** attribute.
@@ -436,7 +436,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateScriptSection"))
 
 	@templateScriptSection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self):
 		"""
 		This method is the deleter method for **self.__templateScriptSection** attribute.
@@ -456,7 +456,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__optionsToolboxesHeaders
 
 	@optionsToolboxesHeaders.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self, value):
 		"""
 		This method is the setter method for **self.__optionsToolboxesHeaders** attribute.
@@ -468,7 +468,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "optionsToolboxesHeaders"))
 
 	@optionsToolboxesHeaders.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self):
 		"""
 		This method is the deleter method for **self.__optionsToolboxesHeaders** attribute.
@@ -488,7 +488,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiLightGrayColor
 
 	@uiLightGrayColor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
 		This method is the setter method for **self.__uiLightGrayColor** attribute.
@@ -500,7 +500,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
 		This method is the deleter method for **self.__uiLightGrayColor** attribute.
@@ -520,7 +520,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__uiDarkGrayColor
 
 	@uiDarkGrayColor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
 		This method is the setter method for **self.__uiDarkGrayColor** attribute.
@@ -532,7 +532,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
 		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
@@ -552,7 +552,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__tableWidgetRowHeight
 
 	@tableWidgetRowHeight.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self, value):
 		"""
 		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
@@ -564,7 +564,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self):
 		"""
 		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
@@ -584,7 +584,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__tableWidgetHeaderHeight
 
 	@tableWidgetHeaderHeight.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self, value):
 		"""
 		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
@@ -596,7 +596,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self):
 		"""
 		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
@@ -616,7 +616,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__enumSplitter
 
 	@enumSplitter.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def enumSplitter(self, value):
 		"""
 		This method is the setter method for **self.__enumSplitter** attribute.
@@ -633,7 +633,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__enumSplitter = value
 
 	@enumSplitter.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def enumSplitter(self):
 		"""
 		This method is the deleter method for **self.__enumSplitter** attribute.
@@ -951,7 +951,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__loaderScript.overrideKeys[widget.data.name] = widget.data
 		return True
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def getOverrideKeys(self):
 		"""
 		This method gets override keys.

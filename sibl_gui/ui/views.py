@@ -120,7 +120,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.
@@ -138,7 +138,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		self.__modelSelection = value
 
 	@modelSelection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
 		This method is the deleter method for **self.__modelSelection** attribute.
@@ -239,7 +239,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		return self.__modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def modelSelection(self, value):
 		"""
 		This method is the setter method for **self.__modelSelection** attribute.
@@ -257,7 +257,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 			self.__modelSelection = value
 
 	@modelSelection.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
 		This method is the deleter method for **self.__modelSelection** attribute.

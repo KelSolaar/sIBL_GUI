@@ -89,7 +89,7 @@ DB_EXCEPTIONS = {
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@foundations.exceptions.handleExceptions(None, False, sibl_gui.components.core.db.exceptions.DatabaseOperationError)
+@foundations.exceptions.handleExceptions(sibl_gui.components.core.db.exceptions.DatabaseOperationError)
 def commit(session):
 	"""
 	This definition commits changes to the Database.

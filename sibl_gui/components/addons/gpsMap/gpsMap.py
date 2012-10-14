@@ -107,7 +107,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -119,7 +119,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -139,7 +139,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__uiZoomInImage
 
 	@uiZoomInImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self, value):
 		"""
 		This method is the setter method for **self.__uiZoomInImage** attribute.
@@ -151,7 +151,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@uiZoomInImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self):
 		"""
 		This method is the deleter method for **self.__uiZoomInImage** attribute.
@@ -171,7 +171,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__uiZoomOutImage
 
 	@uiZoomOutImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self, value):
 		"""
 		This method is the setter method for **self.__uiZoomOutImage** attribute.
@@ -183,7 +183,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@uiZoomOutImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self):
 		"""
 		This method is the deleter method for **self.__uiZoomOutImage** attribute.
@@ -203,7 +203,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__gpsMapHtmlFile
 
 	@gpsMapHtmlFile.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def gpsMapHtmlFile(self, value):
 		"""
 		This method is the setter method for **self.__gpsMapHtmlFile** attribute.
@@ -215,7 +215,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gpsMapHtmlFile"))
 
 	@gpsMapHtmlFile.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def gpsMapHtmlFile(self):
 		"""
 		This method is the deleter method for **self.__gpsMapHtmlFile** attribute.
@@ -235,7 +235,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__gpsMapBaseSize
 
 	@gpsMapBaseSize.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def gpsMapBaseSize(self, value):
 		"""
 		This method is the setter method for **self.__gpsMapBaseSize** attribute.
@@ -247,7 +247,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gpsMapBaseSize"))
 
 	@gpsMapBaseSize.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def gpsMapBaseSize(self):
 		"""
 		This method is the deleter method for **self.__gpsMapBaseSize** attribute.
@@ -267,7 +267,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
 		This method is the setter method for **self.__dockArea** attribute.
@@ -279,7 +279,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
 		This method is the deleter method for **self.__dockArea** attribute.
@@ -299,7 +299,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -311,7 +311,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -331,7 +331,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -343,7 +343,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -363,7 +363,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__map
 
 	@map.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def map(self, value):
 		"""
 		This method is the setter method for **self.__map** attribute.
@@ -375,7 +375,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map"))
 
 	@map.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def map(self):
 		"""
 		This method is the deleter method for **self.__map** attribute.
@@ -395,7 +395,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return self.__mapTypeIds
 
 	@mapTypeIds.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def mapTypeIds(self, value):
 		"""
 		This method is the setter method for **self.__mapTypeIds** attribute.
@@ -407,7 +407,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "mapTypeIds"))
 
 	@mapTypeIds.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def mapTypeIds(self):
 		"""
 		This method is the deleter method for **self.__mapTypeIds** attribute.
@@ -597,7 +597,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.setMarkersUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, False, Exception)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def setMarkersUi(self):
 		"""
 		This method sets selected Ibl Sets markers.

@@ -102,7 +102,7 @@ class PlatesNode(umbra.ui.nodes.GraphModelNode):
 		return self.__plate
 
 	@plate.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self, value):
 		"""
 		This method is the setter method for **self.__plate** attribute.
@@ -114,7 +114,7 @@ class PlatesNode(umbra.ui.nodes.GraphModelNode):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
 
 	@plate.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self):
 		"""
 		This method is the deleter method for **self.__plate** attribute.
@@ -134,7 +134,7 @@ class PlatesNode(umbra.ui.nodes.GraphModelNode):
 		return self.__toolTipText
 
 	@toolTipText.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self, value):
 		"""
 		This method is the setter method for **self.__toolTipText** attribute.
@@ -146,7 +146,7 @@ class PlatesNode(umbra.ui.nodes.GraphModelNode):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
 
 	@toolTipText.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
 		This method is the deleter method for **self.__toolTipText** attribute.

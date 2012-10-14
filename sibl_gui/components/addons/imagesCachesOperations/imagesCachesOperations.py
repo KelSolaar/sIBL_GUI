@@ -93,7 +93,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -105,7 +105,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -125,7 +125,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__preferencesManager
 
 	@preferencesManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
 		This method is the setter method for **self.__preferencesManager** attribute.
@@ -137,7 +137,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferencesManager"))
 
 	@preferencesManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
 		This method is the deleter method for **self.__preferencesManager** attribute.
@@ -157,7 +157,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__editLayout
 
 	@editLayout.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self, value):
 		"""
 		This method is the setter method for **self.__editLayout** attribute.
@@ -169,7 +169,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
 
 	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def editLayout(self):
 		"""
 		This method is the deleter method for **self.__editLayout** attribute.
@@ -315,7 +315,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
-											False,
 											sibl_gui.exceptions.CacheOperationError)
 	def clearImagesCaches(self):
 		"""

@@ -94,7 +94,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		This method is the setter method for **self.__engine** attribute.
@@ -106,7 +106,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		This method is the deleter method for **self.__engine** attribute.
@@ -126,7 +126,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__db
 
 	@db.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self, value):
 		"""
 		This method is the setter method for **self.__db** attribute.
@@ -138,7 +138,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
 
 	@db.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def db(self):
 		"""
 		This method is the deleter method for **self.__db** attribute.
@@ -158,7 +158,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__collectionsOutliner
 
 	@collectionsOutliner.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
 		This method is the setter method for **self.__collectionsOutliner** attribute.
@@ -170,7 +170,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@collectionsOutliner.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
 		This method is the deleter method for **self.__collectionsOutliner** attribute.
@@ -190,7 +190,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__databaseBrowser
 
 	@databaseBrowser.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self, value):
 		"""
 		This method is the setter method for **self.__databaseBrowser** attribute.
@@ -202,7 +202,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
 
 	@databaseBrowser.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBrowser(self):
 		"""
 		This method is the deleter method for **self.__databaseBrowser** attribute.
@@ -222,7 +222,7 @@ class IblSetsScanner(QObjectComponent):
 		return self.__iblSetsScannerWorkerThread
 
 	@iblSetsScannerWorkerThread.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self, value):
 		"""
 		This method is the setter method for **self.__iblSetsScannerWorkerThread** attribute.
@@ -234,7 +234,7 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsScannerWorkerThread"))
 
 	@iblSetsScannerWorkerThread.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self):
 		"""
 		This method is the deleter method for **self.__iblSetsScannerWorkerThread** attribute.

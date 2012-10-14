@@ -147,7 +147,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__container
 
 	@container.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
 		This method is the setter method for **self.__container** attribute.
@@ -159,7 +159,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
 		This method is the deleter method for **self.__container** attribute.
@@ -179,7 +179,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__releases
 
 	@releases.setter
-	@foundations.exceptions.handleExceptions(None, False, AssertionError)
+	@foundations.exceptions.handleExceptions(AssertionError)
 	def releases(self, value):
 		"""
 		This method is the setter method for **self.__releases** attribute.
@@ -197,7 +197,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__releases = value
 
 	@releases.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releases(self):
 		"""
 		This method is the deleter method for **self.__releases** attribute.
@@ -217,7 +217,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiResourcesDirectory
 
 	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
 		This method is the setter method for **self.__uiResourcesDirectory** attribute.
@@ -229,7 +229,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
@@ -249,7 +249,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiLogoImage
 
 	@uiLogoImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
 		This method is the setter method for **self.__uiLogoImage** attribute.
@@ -261,7 +261,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@uiLogoImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
 		This method is the deleter method for **self.__uiLogoImage** attribute.
@@ -281,7 +281,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiTemplatesImage
 
 	@uiTemplatesImage.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self, value):
 		"""
 		This method is the setter method for **self.__uiTemplatesImage** attribute.
@@ -293,7 +293,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiTemplatesImage"))
 
 	@uiTemplatesImage.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self):
 		"""
 		This method is the deleter method for **self.__uiTemplatesImage** attribute.
@@ -313,7 +313,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiLightGrayColor
 
 	@uiLightGrayColor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
 		This method is the setter method for **self.__uiLightGrayColor** attribute.
@@ -325,7 +325,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
 		This method is the deleter method for **self.__uiLightGrayColor** attribute.
@@ -345,7 +345,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__uiDarkGrayColor
 
 	@uiDarkGrayColor.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
 		This method is the setter method for **self.__uiDarkGrayColor** attribute.
@@ -357,7 +357,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
 		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
@@ -377,7 +377,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__splitter
 
 	@splitter.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def splitter(self, value):
 		"""
 		This method is the setter method for **self.__splitter** attribute.
@@ -389,7 +389,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "splitter"))
 
 	@splitter.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def splitter(self):
 		"""
 		This method is the deleter method for **self.__splitter** attribute.
@@ -409,7 +409,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__tableWidgetRowHeight
 
 	@tableWidgetRowHeight.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self, value):
 		"""
 		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
@@ -421,7 +421,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self):
 		"""
 		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
@@ -441,7 +441,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__tableWidgetHeaderHeight
 
 	@tableWidgetHeaderHeight.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self, value):
 		"""
 		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
@@ -453,7 +453,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self):
 		"""
 		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
@@ -473,7 +473,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__templatesTableWidgetHeaders
 
 	@templatesTableWidgetHeaders.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self, value):
 		"""
 		This method is the setter method for **self.__templatesTableWidgetHeaders** attribute.
@@ -485,7 +485,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
 
 	@templatesTableWidgetHeaders.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self):
 		"""
 		This method is the deleter method for **self.__templatesTableWidgetHeaders** attribute.
@@ -505,7 +505,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__applicationChangesUrl
 
 	@applicationChangesUrl.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def applicationChangesUrl(self, value):
 		"""
 		This method is the setter method for **self.__applicationChangesUrl** attribute.
@@ -517,7 +517,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "applicationChangesUrl"))
 
 	@applicationChangesUrl.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def applicationChangesUrl(self):
 		"""
 		This method is the deleter method for **self.__applicationChangesUrl** attribute.
@@ -537,7 +537,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__repositoryUrl
 
 	@repositoryUrl.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
 		This method is the setter method for **self.__repositoryUrl** attribute.
@@ -549,7 +549,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repositoryUrl"))
 
 	@repositoryUrl.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
 		This method is the deleter method for **self.__repositoryUrl** attribute.
@@ -569,7 +569,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__downloadManager
 
 	@downloadManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadManager(self, value):
 		"""
 		This method is the setter method for **self.__downloadManager** attribute.
@@ -581,7 +581,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloadManager"))
 
 	@downloadManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadManager(self):
 		"""
 		This method is the deleter method for **self.__downloadManager** attribute.
@@ -601,7 +601,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		return self.__networkAccessManager
 
 	@networkAccessManager.setter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
 		This method is the setter method for **self.__networkAccessManager** attribute.
@@ -613,7 +613,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "networkAccessManager"))
 
 	@networkAccessManager.deleter
-	@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
 		This method is the deleter method for **self.__networkAccessManager** attribute.

@@ -202,7 +202,7 @@ def createPixmap(width=128, height=128, text=None):
 		painter.drawText(pointX, pointY, text)
 	return loadingPixmap
 
-@foundations.exceptions.handleExceptions(None, False, foundations.exceptions.FileExistsError)
+@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 def getImageInformationsHeader(path, graphicsItem):
 	"""
 	This method returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
