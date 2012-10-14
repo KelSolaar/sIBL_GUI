@@ -571,7 +571,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
 			LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
-			", ".join((iblSet.name for iblSet in filteredIblSets))))
+			", ".join((foundations.strings.encode(iblSet.name) for iblSet in filteredIblSets))))
 
 			self.__databaseBrowser.setIblSets(filteredIblSets)
 		return True
