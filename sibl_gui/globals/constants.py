@@ -108,8 +108,8 @@ class Constants():
 	"""Application Database file: '**sIBL_GUI_Database.sqlite**' ( String )"""
 	settingsFile = "sIBL_GUI_Settings.rc"
 	"""Application settings file: '**sIBL_GUI_Settings.rc**' ( String )"""
-	loggingFile = "sIBL_GUI_Logging.log"
-	"""Application logging file: '**sIBL_GUI_Logging.log**' ( String )"""
+	loggingFile = "sIBL_GUI_Logging_{0}.log"
+	"""Application logging file: '**sIBL_GUI_Logging_{0}.log**' ( String )"""
 
 	databaseMigrationsFilesExtension = "py"
 	"""Application Database migrations files extension: '**py**' ( String )"""
