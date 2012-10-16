@@ -188,36 +188,36 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def db(self):
+	def database(self):
 		"""
-		This method is the property for **self.__db** attribute.
+		This method is the property for **self.__database** attribute.
 
-		:return: self.__db. ( Object )
+		:return: self.__database. ( Object )
 		"""
 
-		return self.__db
+		return self.__database
 
-	@db.setter
+	@database.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self, value):
+	def database(self, value):
 		"""
-		This method is the setter method for **self.__db** attribute.
+		This method is the setter method for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
-	@db.deleter
+	@database.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self):
+	def database(self):
 		"""
-		This method is the deleter method for **self.__db** attribute.
+		This method is the deleter method for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def databaseBrowser(self):
@@ -330,7 +330,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__db = self.__engine.componentsManager["core.db"]
+		self.__database = self.__engine.componentsManager["core.database"]
 		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
@@ -348,7 +348,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__db = None
+		self.__database = None
 		self.__databaseBrowser = None
 		self.__collectionsOutliner = None
 

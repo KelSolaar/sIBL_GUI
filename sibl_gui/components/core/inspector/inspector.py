@@ -47,7 +47,7 @@ import foundations.dataStructures
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.db.utilities.nodes as dbNodes
+import sibl_gui.components.core.database.nodes as databaseNodes
 import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.nodes
@@ -1207,7 +1207,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspectorIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__inspectorIblSet:
 			rootNode = self.__databaseBrowser.model.rootNode
-			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).dbItem
+			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
 	def __setInspectorIblSetParser(self):
@@ -1326,7 +1326,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
-		iblSetNode = dbNodes.IblSetNode(self.__inspectorIblSet,
+		iblSetNode = databaseNodes.IblSetNode(self.__inspectorIblSet,
 										name=self.__inspectorIblSet.title,
 										parent=rootNode,
 										nodeFlags=nodeFlags,
@@ -1355,7 +1355,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if self.__inspectorIblSet:
 			model = self.__databaseBrowser.model
 
-			inspectorIblSetNode = [node for node in model.rootNode.children if node.dbItem.path == self.__inspectorIblSet.path]
+			inspectorIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__inspectorIblSet.path]
 			inspectorIblSetNode = foundations.common.getFirstItem(inspectorIblSetNode)
 			if not inspectorIblSetNode:
 				return True

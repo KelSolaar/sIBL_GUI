@@ -1,8 +1,8 @@
 [Component]
-Name = core.db
-Title = Db
-Module = db
-Object = Db
+Name = core.database
+Title = Database
+Module = database
+Object = Database
 Version = 1.0
 
 [Informations]

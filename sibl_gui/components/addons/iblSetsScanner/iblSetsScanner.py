@@ -25,7 +25,7 @@ from PyQt4.QtGui import QMessageBox
 import foundations.exceptions
 import foundations.namespace
 import foundations.verbose
-import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.database.common as databaseCommon
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qobjectComponent import QObjectComponent
@@ -74,7 +74,7 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__db = None
+		self.__database = None
 		self.__collectionsOutliner = None
 		self.__databaseBrowser = None
 
@@ -116,36 +116,36 @@ class IblSetsScanner(QObjectComponent):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def db(self):
+	def database(self):
 		"""
-		This method is the property for **self.__db** attribute.
+		This method is the property for **self.__database** attribute.
 
-		:return: self.__db. ( Object )
+		:return: self.__database. ( Object )
 		"""
 
-		return self.__db
+		return self.__database
 
-	@db.setter
+	@database.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self, value):
+	def database(self, value):
 		"""
-		This method is the setter method for **self.__db** attribute.
+		This method is the setter method for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
-	@db.deleter
+	@database.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self):
+	def database(self):
 		"""
-		This method is the deleter method for **self.__db** attribute.
+		This method is the deleter method for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def collectionsOutliner(self):
@@ -258,7 +258,7 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = engine
 
-		self.__db = self.__engine.componentsManager["core.db"]
+		self.__database = self.__engine.componentsManager["core.database"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 
@@ -276,7 +276,7 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__db = None
+		self.__database = None
 		self.__collectionsOutliner = None
 		self.__databaseBrowser = None
 
@@ -360,7 +360,7 @@ class IblSetsScanner(QObjectComponent):
 			for iblSet, path in iblSets.iteritems():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				if not dbCommon.addIblSet(self.__db.dbSession,
+				if not databaseCommon.addIblSet(self.__database.databaseSession,
 				 						iblSet,
 										path,
 										self.__collectionsOutliner.getCollectionId(

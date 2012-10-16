@@ -27,8 +27,8 @@ import re
 import foundations.common
 import foundations.exceptions
 import foundations.strings
-import sibl_gui.components.core.db.exceptions
-import sibl_gui.components.core.db.utilities.types as dbTypes
+import sibl_gui.components.core.database.exceptions
+import sibl_gui.components.core.database.types as databaseTypes
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -77,19 +77,19 @@ __all__ = ["LOGGER", "DB_EXCEPTIONS"
 LOGGER = foundations.verbose.installLogger()
 
 DB_EXCEPTIONS = {
-	sibl_gui.components.core.db.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",
-	sibl_gui.components.core.db.exceptions.MissingIblSetIconError : "Ibl Set's icon is missing!",
-	sibl_gui.components.core.db.exceptions.MissingIblSetPreviewImageError : "Ibl Set's preview image is missing!",
-	sibl_gui.components.core.db.exceptions.MissingIblSetBackgroundImageError : "Ibl Set's background image is missing!",
-	sibl_gui.components.core.db.exceptions.MissingIblSetLightingImageError : "Ibl Set's lighting image is missing!",
-	sibl_gui.components.core.db.exceptions.MissingIblSetReflectionImageError : "Ibl Set's reflection image is missing!",
-	sibl_gui.components.core.db.exceptions.MissingTemplateFileError : "Template file is missing!",
-	sibl_gui.components.core.db.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
+	sibl_gui.components.core.database.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",
+	sibl_gui.components.core.database.exceptions.MissingIblSetIconError : "Ibl Set's icon is missing!",
+	sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError : "Ibl Set's preview image is missing!",
+	sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError : "Ibl Set's background image is missing!",
+	sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError : "Ibl Set's lighting image is missing!",
+	sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError : "Ibl Set's reflection image is missing!",
+	sibl_gui.components.core.database.exceptions.MissingTemplateFileError : "Template file is missing!",
+	sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-@foundations.exceptions.handleExceptions(sibl_gui.components.core.db.exceptions.DatabaseOperationError)
+@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 def commit(session):
 	"""
 	This definition commits changes to the Database.
@@ -103,7 +103,7 @@ def commit(session):
 		return True
 	except Exception as error:
 		session.rollback()
-		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError(
+		raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
 		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
 def addItem(session, item):
@@ -111,7 +111,7 @@ def addItem(session, item):
 	This definition adds an item to the Database.
 
 	:param session: Database session. ( Session )
-	:param item: Item to add. ( Db object )
+	:param item: Item to add. ( Database object )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -137,9 +137,9 @@ def addStandardItem(session, type, name, path, collection):
 
 	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
 		osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(path)))
-		dbItem = type(name=name, path=path, collection=collection, osStats=osStats)
-		if dbItem.setContent():
-			return addItem(session, dbItem)
+		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
+		if databaseItem.setContent():
+			return addItem(session, databaseItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
 		inspect.getmodule(addStandardItem).__name__, path, type.__name__))
@@ -150,7 +150,7 @@ def removeItem(session, item):
 	This definition removes an item from the Database.
 
 	:param session: Database session. ( Session )
-	:param item: Item to remove. ( Db object )
+	:param item: Item to remove. ( Database object )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -250,7 +250,7 @@ def getIblSets(session):
 	:return: Database Ibl Sets. ( List )
 	"""
 
-	return session.query(dbTypes.DbIblSet)
+	return session.query(databaseTypes.DbIblSet)
 
 def filterIblSets(session, pattern, field, flags=0):
 	"""
@@ -286,7 +286,7 @@ def addIblSet(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, dbTypes.DbIblSet, name, path, collection)
+	return addStandardItem(session, databaseTypes.DbIblSet, name, path, collection)
 
 def removeIblSet(session, identity):
 	"""
@@ -297,7 +297,7 @@ def removeIblSet(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbIblSet, identity)
+	return removeStandardItem(session, databaseTypes.DbIblSet, identity)
 
 def updateIblSetContent(session, iblSet):
 	"""
@@ -337,23 +337,23 @@ def checkIblSetsTableIntegrity(session):
 		for iblSet in getIblSets(session):
 			exceptions = []
 			if not foundations.common.pathExists(iblSet.path):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetFileError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetFileError)
 
 			if not foundations.common.pathExists(iblSet.icon):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetIconError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetIconError)
 
 			if iblSet.previewImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																	iblSet.previewImage)):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetPreviewImageError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError)
 			if iblSet.backgroundImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.backgroundImage)):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetBackgroundImageError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError)
 			if iblSet.lightingImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.lightingImage)):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetLightingImageError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError)
 			if iblSet.reflectionImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
 																		iblSet.reflectionImage)):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingIblSetReflectionImageError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError)
 
 			if exceptions:
 				erroneousIblSets[iblSet] = exceptions
@@ -368,7 +368,7 @@ def getCollections(session):
 	:return: Database Collections. ( List )
 	"""
 
-	return session.query(dbTypes.DbCollection)
+	return session.query(databaseTypes.DbCollection)
 
 def filterCollections(session, pattern, field, flags=0):
 	"""
@@ -459,8 +459,8 @@ def addCollection(session, collection, type, comment):
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
-		dbItem = dbTypes.DbCollection(name=collection, type=type, comment=comment)
-		return addItem(session, dbItem)
+		databaseItem = databaseTypes.DbCollection(name=collection, type=type, comment=comment)
+		return addItem(session, databaseItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
 		inspect.getmodulename(addCollection), collection))
@@ -475,7 +475,7 @@ def removeCollection(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbCollection, identity)
+	return removeStandardItem(session, databaseTypes.DbCollection, identity)
 
 def getCollectionsIblSets(session, identities):
 	"""
@@ -502,7 +502,7 @@ def getTemplates(session):
 	:return: Database Templates. ( List )
 	"""
 
-	return session.query(dbTypes.DbTemplate)
+	return session.query(databaseTypes.DbTemplate)
 
 def filterTemplates(session, pattern, field, flags=0):
 	"""
@@ -538,7 +538,7 @@ def addTemplate(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, dbTypes.DbTemplate, name, path, collection)
+	return addStandardItem(session, databaseTypes.DbTemplate, name, path, collection)
 
 def removeTemplate(session, identity):
 	"""
@@ -549,7 +549,7 @@ def removeTemplate(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbTypes.DbTemplate, identity)
+	return removeStandardItem(session, databaseTypes.DbTemplate, identity)
 
 def updateTemplateContent(session, template):
 	"""
@@ -589,10 +589,10 @@ def checkTemplatesTableIntegrity(session):
 		for template in getTemplates(session):
 			exceptions = []
 			if not foundations.common.pathExists(template.path):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingTemplateFileError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingTemplateFileError)
 
 			if not foundations.common.pathExists(template.helpFile):
-				exceptions.append(sibl_gui.components.core.db.exceptions.MissingTemplateHelpFileError)
+				exceptions.append(sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError)
 
 			if exceptions:
 				erroneousTemplates[template] = exceptions

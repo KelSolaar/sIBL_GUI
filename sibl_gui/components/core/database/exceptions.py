@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **db** component exceptions. 
+	This module defines **database** component exceptions. 
 
 **Others:**
 

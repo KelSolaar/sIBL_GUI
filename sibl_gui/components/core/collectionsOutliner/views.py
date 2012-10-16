@@ -191,12 +191,12 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				if node.family != "IblSet":
 					continue
 
-				node._AbstractDatabaseNode__dbItem = self.__container.db.dbSession.merge(node.dbItem)
-				if collectionNode.dbItem.id != node.dbItem.collection:
-					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title,
-																					collectionNode.dbItem.name))
-					node.dbItem.collection = collectionNode.dbItem.id
-			if self.__container.db.commit():
+				node._AbstractDatabaseNode__databaseItem = self.__container.database.databaseSession.merge(node.databaseItem)
+				if collectionNode.databaseItem.id != node.databaseItem.collection:
+					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.databaseItem.title,
+																					collectionNode.databaseItem.name))
+					node.databaseItem.collection = collectionNode.databaseItem.id
+			if self.__container.database.commit():
 				self.__container.refreshNodes.emit()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(

@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**db.py**
+**database.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Db` Component Interface class.
+	This module defines the :class:`Database` Component Interface class.
 
 **Others:**
 
@@ -30,8 +30,8 @@ import foundations.common
 import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.db.utilities.common as dbCommon
-import sibl_gui.components.core.db.utilities.types as dbTypes
+import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.types as databaseTypes
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
@@ -47,16 +47,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Db"]
+__all__ = ["LOGGER", "Database"]
 
 LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class Db(Component):
+class Database(Component):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.db.db` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.core.database.database` Component Interface class.
 	| It provides Application Database creation and session, proceed to its backup using
 		the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""
@@ -77,19 +77,19 @@ class Db(Component):
 
 		self.__engine = None
 
-		self.__dbName = None
-		self.__dbSession = None
-		self.__dbSessionMaker = None
-		self.__dbEngine = None
-		self.__dbCatalog = None
+		self.__databaseName = None
+		self.__databaseSession = None
+		self.__databaseSessionMaker = None
+		self.__databaseEngine = None
+		self.__databaseCatalog = None
 
-		self.__dbConnectionString = None
+		self.__databaseConnectionString = None
 
-		self.__dbMigrationsRepositoryDirectory = None
-		self.__dbMigrationsTemplatesDirectory = None
+		self.__databaseMigrationsRepositoryDirectory = None
+		self.__databaseMigrationsTemplatesDirectory = None
 
-		self.__dbBackupDirectory = "backup"
-		self.__dbBackupCount = 6
+		self.__databaseBackupDirectory = "backup"
+		self.__databaseBackupCount = 6
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -127,324 +127,324 @@ class Db(Component):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def dbName(self):
+	def databaseName(self):
 		"""
-		This method is the property for **self.__dbName** attribute.
+		This method is the property for **self.__databaseName** attribute.
 
-		:return: self.__dbName. ( String )
+		:return: self.__databaseName. ( String )
 		"""
 
-		return self.__dbName
+		return self.__databaseName
 
-	@dbName.setter
+	@databaseName.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbName(self, value):
+	def databaseName(self, value):
 		"""
-		This method is the setter method for **self.__dbName** attribute.
+		This method is the setter method for **self.__databaseName** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbName"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseName"))
 
-	@dbName.deleter
+	@databaseName.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbName(self):
+	def databaseName(self):
 		"""
-		This method is the deleter method for **self.__dbName** attribute.
+		This method is the deleter method for **self.__databaseName** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbName"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseName"))
 
 	@property
-	def dbEngine(self):
+	def databaseEngine(self):
 		"""
-		This method is the property for **self.__dbEngine** attribute.
+		This method is the property for **self.__databaseEngine** attribute.
 
-		:return: self.__dbEngine. ( Object )
+		:return: self.__databaseEngine. ( Object )
 		"""
 
-		return self.__dbEngine
+		return self.__databaseEngine
 
-	@dbEngine.setter
+	@databaseEngine.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbEngine(self, value):
+	def databaseEngine(self, value):
 		"""
-		This method is the setter method for **self.__dbEngine** attribute.
+		This method is the setter method for **self.__databaseEngine** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbEngine"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseEngine"))
 
-	@dbEngine.deleter
+	@databaseEngine.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbEngine(self):
+	def databaseEngine(self):
 		"""
-		This method is the deleter method for **self.__dbEngine** attribute.
+		This method is the deleter method for **self.__databaseEngine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbEngine"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseEngine"))
 
 	@property
-	def dbCatalog(self):
+	def databaseCatalog(self):
 		"""
-		This method is the property for **self.__dbCatalog** attribute.
+		This method is the property for **self.__databaseCatalog** attribute.
 
-		:return: self.__dbCatalog. ( Object )
+		:return: self.__databaseCatalog. ( Object )
 		"""
 
-		return self.__dbCatalog
+		return self.__databaseCatalog
 
-	@dbCatalog.setter
+	@databaseCatalog.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbCatalog(self, value):
+	def databaseCatalog(self, value):
 		"""
-		This method is the setter method for **self.__dbCatalog** attribute.
+		This method is the setter method for **self.__databaseCatalog** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbCatalog"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseCatalog"))
 
-	@dbCatalog.deleter
+	@databaseCatalog.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbCatalog(self):
+	def databaseCatalog(self):
 		"""
-		This method is the deleter method for **self.__dbCatalog** attribute.
+		This method is the deleter method for **self.__databaseCatalog** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbCatalog"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseCatalog"))
 
 	@property
-	def dbSession(self):
+	def databaseSession(self):
 		"""
-		This method is the property for **self.__dbSession** attribute.
+		This method is the property for **self.__databaseSession** attribute.
 
-		:return: self.__dbSession. ( Object )
+		:return: self.__databaseSession. ( Object )
 		"""
 
-		return self.__dbSession
+		return self.__databaseSession
 
-	@dbSession.setter
+	@databaseSession.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSession(self, value):
+	def databaseSession(self, value):
 		"""
-		This method is the setter method for **self.__dbSession** attribute.
+		This method is the setter method for **self.__databaseSession** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseSession"))
 
-	@dbSession.deleter
+	@databaseSession.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSession(self):
+	def databaseSession(self):
 		"""
-		This method is the deleter method for **self.__dbSession** attribute.
+		This method is the deleter method for **self.__databaseSession** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseSession"))
 
 	@property
-	def dbSessionMaker(self):
+	def databaseSessionMaker(self):
 		"""
-		This method is the property for **self.__dbSessionMaker** attribute.
+		This method is the property for **self.__databaseSessionMaker** attribute.
 
-		:return: self.__dbSessionMaker. ( Object )
+		:return: self.__databaseSessionMaker. ( Object )
 		"""
 
-		return self.__dbSessionMaker
+		return self.__databaseSessionMaker
 
-	@dbSessionMaker.setter
+	@databaseSessionMaker.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSessionMaker(self, value):
+	def databaseSessionMaker(self, value):
 		"""
-		This method is the setter method for **self.__dbSessionMaker** attribute.
+		This method is the setter method for **self.__databaseSessionMaker** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSessionMaker"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseSessionMaker"))
 
-	@dbSessionMaker.deleter
+	@databaseSessionMaker.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSessionMaker(self):
+	def databaseSessionMaker(self):
 		"""
-		This method is the deleter method for **self.__dbSessionMaker** attribute.
+		This method is the deleter method for **self.__databaseSessionMaker** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSessionMaker"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseSessionMaker"))
 
 	@property
-	def dbConnectionString(self):
+	def databaseConnectionString(self):
 		"""
-		This method is the property for **self.__dbConnectionString** attribute.
+		This method is the property for **self.__databaseConnectionString** attribute.
 
-		:return: self.__dbConnectionString. ( String )
+		:return: self.__databaseConnectionString. ( String )
 		"""
 
-		return self.__dbConnectionString
+		return self.__databaseConnectionString
 
-	@dbConnectionString.setter
+	@databaseConnectionString.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbConnectionString(self, value):
+	def databaseConnectionString(self, value):
 		"""
-		This method is the setter method for **self.__dbConnectionString** attribute.
+		This method is the setter method for **self.__databaseConnectionString** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbConnectionString"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseConnectionString"))
 
-	@dbConnectionString.deleter
+	@databaseConnectionString.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbConnectionString(self):
+	def databaseConnectionString(self):
 		"""
-		This method is the deleter method for **self.__dbConnectionString** attribute.
+		This method is the deleter method for **self.__databaseConnectionString** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbConnectionString"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseConnectionString"))
 
 	@property
-	def dbMigrationsRepositoryDirectory(self):
+	def databaseMigrationsRepositoryDirectory(self):
 		"""
-		This method is the property for **self.__dbMigrationsRepositoryDirectory** attribute.
+		This method is the property for **self.__databaseMigrationsRepositoryDirectory** attribute.
 
-		:return: self.__dbMigrationsRepositoryDirectory. ( String )
+		:return: self.__databaseMigrationsRepositoryDirectory. ( String )
 		"""
 
-		return self.__dbMigrationsRepositoryDirectory
+		return self.__databaseMigrationsRepositoryDirectory
 
-	@dbMigrationsRepositoryDirectory.setter
+	@databaseMigrationsRepositoryDirectory.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbMigrationsRepositoryDirectory(self, value):
+	def databaseMigrationsRepositoryDirectory(self, value):
 		"""
-		This method is the setter method for **self.__dbMigrationsRepositoryDirectory** attribute.
+		This method is the setter method for **self.__databaseMigrationsRepositoryDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseMigrationsRepositoryDirectory"))
 
-	@dbMigrationsRepositoryDirectory.deleter
+	@databaseMigrationsRepositoryDirectory.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbMigrationsRepositoryDirectory(self):
+	def databaseMigrationsRepositoryDirectory(self):
 		"""
-		This method is the deleter method for **self.__dbMigrationsRepositoryDirectory** attribute.
+		This method is the deleter method for **self.__databaseMigrationsRepositoryDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseMigrationsRepositoryDirectory"))
 
 	@property
-	def dbMigrationsTemplatesDirectory(self):
+	def databaseMigrationsTemplatesDirectory(self):
 		"""
-		This method is the property for **self.__dbMigrationsTemplatesDirectory** attribute.
+		This method is the property for **self.__databaseMigrationsTemplatesDirectory** attribute.
 
-		:return: self.__dbMigrationsTemplatesDirectory. ( String )
+		:return: self.__databaseMigrationsTemplatesDirectory. ( String )
 		"""
 
-		return self.__dbMigrationsTemplatesDirectory
+		return self.__databaseMigrationsTemplatesDirectory
 
-	@dbMigrationsTemplatesDirectory.setter
+	@databaseMigrationsTemplatesDirectory.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbMigrationsTemplatesDirectory(self, value):
+	def databaseMigrationsTemplatesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__dbMigrationsTemplatesDirectory** attribute.
+		This method is the setter method for **self.__databaseMigrationsTemplatesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseMigrationsTemplatesDirectory"))
 
-	@dbMigrationsTemplatesDirectory.deleter
+	@databaseMigrationsTemplatesDirectory.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbMigrationsTemplatesDirectory(self):
+	def databaseMigrationsTemplatesDirectory(self):
 		"""
-		This method is the deleter method for **self.__dbMigrationsTemplatesDirectory** attribute.
+		This method is the deleter method for **self.__databaseMigrationsTemplatesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseMigrationsTemplatesDirectory"))
 
 	@property
-	def dbBackupDirectory(self):
+	def databaseBackupDirectory(self):
 		"""
-		This method is the property for **self.__dbBackupDirectory** attribute.
+		This method is the property for **self.__databaseBackupDirectory** attribute.
 
-		:return: self.__dbBackupDirectory. ( String )
+		:return: self.__databaseBackupDirectory. ( String )
 		"""
 
-		return self.__dbBackupDirectory
+		return self.__databaseBackupDirectory
 
-	@dbBackupDirectory.setter
+	@databaseBackupDirectory.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbBackupDirectory(self, value):
+	def databaseBackupDirectory(self, value):
 		"""
-		This method is the setter method for **self.__dbBackupDirectory** attribute.
+		This method is the setter method for **self.__databaseBackupDirectory** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupDirectory"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupDirectory"))
 
-	@dbBackupDirectory.deleter
+	@databaseBackupDirectory.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbBackupDirectory(self):
+	def databaseBackupDirectory(self):
 		"""
-		This method is the deleter method for **self.__dbBackupDirectory** attribute.
+		This method is the deleter method for **self.__databaseBackupDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupDirectory"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupDirectory"))
 
 	@property
-	def dbBackupCount(self):
+	def databaseBackupCount(self):
 		"""
-		This method is the property for **self.__dbBackupCount** attribute.
+		This method is the property for **self.__databaseBackupCount** attribute.
 
-		:return: self.__dbBackupCount. ( String )
+		:return: self.__databaseBackupCount. ( String )
 		"""
 
-		return self.__dbBackupCount
+		return self.__databaseBackupCount
 
-	@dbBackupCount.setter
+	@databaseBackupCount.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbBackupCount(self, value):
+	def databaseBackupCount(self, value):
 		"""
-		This method is the setter method for **self.__dbBackupCount** attribute.
+		This method is the setter method for **self.__databaseBackupCount** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupCount"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupCount"))
 
-	@dbBackupCount.deleter
+	@databaseBackupCount.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbBackupCount(self):
+	def databaseBackupCount(self):
 		"""
-		This method is the deleter method for **self.__dbBackupCount** attribute.
+		This method is the deleter method for **self.__databaseBackupCount** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupCount"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupCount"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -488,32 +488,32 @@ class Db(Component):
 		LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.databaseFile))
 		if self.__engine.parameters.databaseDirectory:
 			if foundations.common.pathExists(self.__engine.parameters.databaseDirectory):
-				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
-				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
+				self.__databaseName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
+				self.__databaseMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
 																	Constants.databaseMigrationsDirectory)
 			else:
 				raise foundations.exceptions.DirectoryExistsError(
 				"{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(
 				self.__class__.__name__, self.__engine.parameters.databaseDirectory, Constants.applicationName))
 		else:
-			self.__dbName = os.path.join(self.__engine.userApplicationDataDirectory,
+			self.__databaseName = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.databaseDirectory,
 										Constants.databaseFile)
-			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
+			self.__databaseMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
 																Constants.databaseDirectory,
 																Constants.databaseMigrationsDirectory)
 
-		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
-		self.__dbConnectionString = "sqlite:///{0}".format(self.__dbName)
+		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__databaseName))
+		self.__databaseConnectionString = "sqlite:///{0}".format(self.__databaseName)
 
-		if foundations.common.pathExists(self.__dbName):
+		if foundations.common.pathExists(self.__databaseName):
 			if not self.__engine.parameters.databaseReadOnly:
-				backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
+				backupDestination = os.path.join(os.path.dirname(self.databaseName), self.__databaseBackupDirectory)
 
 				LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__,
 																				Constants.databaseFile,
 																				backupDestination))
-				rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
+				rotatingBackup = RotatingBackup(self.__databaseName, backupDestination, self.__databaseBackupCount)
 				rotatingBackup.backup()
 			else:
 				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(
@@ -521,13 +521,13 @@ class Db(Component):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			LOGGER.info("{0} | SQLAlchemy Migrate repository location: '{1}'.".format(self.__class__.__name__,
-																				self.__dbMigrationsRepositoryDirectory))
+																				self.__databaseMigrationsRepositoryDirectory))
 			LOGGER.debug("> Creating SQLAlchemy Migrate migrations directory and requisites.")
 			try:
 				repositoryTemplate = os.path.join(os.path.dirname(__file__),
 												Constants.databaseMigrationsDirectory,
 												Constants.databaseMigrationsTemplatesDirectory)
-				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory,
+				migrate.versioning.api.create(self.__databaseMigrationsRepositoryDirectory,
 											"Migrations",
 											version_table="Migrate",
 											templates_path=repositoryTemplate)
@@ -539,34 +539,34 @@ class Db(Component):
 								Constants.databaseMigrationsDirectory,
 								Constants.databaseMigrationsFilesDirectory)
 			for file in foundations.walkers.filesWalker(directory, (Constants.databaseMigrationsFilesExtension,)):
-				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory,
+				shutil.copy(file, os.path.join(self.__databaseMigrationsRepositoryDirectory,
 											Constants.databaseMigrationsFilesDirectory))
 
-			if foundations.common.pathExists(self.__dbName):
+			if foundations.common.pathExists(self.__databaseName):
 				LOGGER.debug("> Placing Database under SQLAlchemy Migrate version control.")
 				try:
-					migrate.versioning.api.version_control(self.__dbConnectionString,
-															self.__dbMigrationsRepositoryDirectory)
+					migrate.versioning.api.version_control(self.__databaseConnectionString,
+															self.__databaseMigrationsRepositoryDirectory)
 				except migrate.exceptions.DatabaseAlreadyControlledError:
 					LOGGER.debug("> Database is already under SQLAlchemy Migrate version control!")
 
 				LOGGER.debug("> Upgrading Database.")
-				migrate.versioning.api.upgrade(self.__dbConnectionString, self.__dbMigrationsRepositoryDirectory)
+				migrate.versioning.api.upgrade(self.__databaseConnectionString, self.__databaseMigrationsRepositoryDirectory)
 		else:
 			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
 		LOGGER.debug("> Creating Database engine.")
-		self.__dbEngine = sqlalchemy.create_engine(self.__dbConnectionString)
+		self.__databaseEngine = sqlalchemy.create_engine(self.__databaseConnectionString)
 
 		LOGGER.debug("> Creating Database metadata.")
-		self.__dbCatalog = dbTypes.DbBase.metadata
-		self.__dbCatalog.create_all(self.__dbEngine)
+		self.__databaseCatalog = databaseTypes.DbBase.metadata
+		self.__databaseCatalog.create_all(self.__databaseEngine)
 
 		LOGGER.debug("> Initializing Database session.")
-		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
+		self.__databaseSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__databaseEngine)
 
-		self.__dbSession = self.__dbSessionMaker()
+		self.__databaseSession = self.__databaseSessionMaker()
 
 		self.initialized = True
 		return True
@@ -587,4 +587,4 @@ class Db(Component):
 		:return: Method success. ( Boolean )
 		"""
 
-		return dbCommon.commit(self.__dbSession)
+		return databaseCommon.commit(self.__databaseSession)

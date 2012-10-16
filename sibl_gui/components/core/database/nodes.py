@@ -71,7 +71,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	"""Node family. ( String )"""
 
 	def __init__(self,
-				dbItem,
+				databaseItem,
 				name=None,
 				parent=None,
 				children=None,
@@ -82,7 +82,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		"""
 		This method initializes the class.
 
-		:param dbItem: Database object.  ( Object )
+		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( GraphModelNode )
 		:param children: Children. ( List )
@@ -97,7 +97,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		umbra.ui.nodes.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
 
 		# --- Setting class attributes. ---
-		self.__dbItem = dbItem
+		self.__databaseItem = databaseItem
 		self.__toolTipText = unicode()
 
 		AbstractDatabaseNode.__initializeNode(self, attributesFlags)
@@ -106,36 +106,36 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def dbItem(self):
+	def databaseItem(self):
 		"""
-		This method is the property for **self.__dbItem** attribute.
+		This method is the property for **self.__databaseItem** attribute.
 
-		:return: self.__dbItem. ( Object )
+		:return: self.__databaseItem. ( Object )
 		"""
 
-		return self.__dbItem
+		return self.__databaseItem
 
-	@dbItem.setter
+	@databaseItem.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbItem(self, value):
+	def databaseItem(self, value):
 		"""
-		This method is the setter method for **self.__dbItem** attribute.
+		This method is the setter method for **self.__databaseItem** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbItem"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseItem"))
 
-	@dbItem.deleter
+	@databaseItem.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbItem(self):
+	def databaseItem(self):
 		"""
-		This method is the deleter method for **self.__dbItem** attribute.
+		This method is the deleter method for **self.__databaseItem** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbItem"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseItem"))
 
 	@property
 	def toolTipText(self):
@@ -181,52 +181,19 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		for column in self.__dbItem.__table__.columns:
+		for column in self.__databaseItem.__table__.columns:
 			attribute = column.key
 			if attribute == "name":
 				continue
 
-			value = getattr(self.__dbItem, attribute)
+			value = getattr(self.__databaseItem, attribute)
 			roles = {Qt.DisplayRole : value,
 					Qt.EditRole : value}
 			self[attribute] = umbra.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
 
-	def synchronizeNodeAttributes(self):
-		"""
-		This method synchronizes the node attributes from the dbItem attributes.
-		
-		:return: Method success. ( Boolean )
-		"""
-
-		for column in self.__dbItem.__table__.columns:
-			attribute = column.key
-			if not attribute in self:
-				continue
-
-			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
-				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
-				getattr(self.__dbItem, attribute)
-		return True
-
-	def synchronizeDbItemAttributes(self):
-		"""
-		This method synchronizes the dbItem attributes from the node attributes.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		for column in self.__dbItem.__table__.columns:
-			attribute = column.key
-			if not attribute in self:
-				continue
-
-			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
-				setattr(self.__dbItem, attribute, self[attribute].value)
-		return True
-
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the dbItem.
+		This method synchronizes the node from the databaseItem.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -236,13 +203,46 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 
 	def synchronizeDbItem(self):
 		"""
-		This method synchronizes the dbItem from the node.
+		This method synchronizes the databaseItem from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
 		self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
+
+	def synchronizeNodeAttributes(self):
+		"""
+		This method synchronizes the node attributes from the databaseItem attributes.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		for column in self.__databaseItem.__table__.columns:
+			attribute = column.key
+			if not attribute in self:
+				continue
+
+			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
+				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
+				getattr(self.__databaseItem, attribute)
+		return True
+
+	def synchronizeDbItemAttributes(self):
+		"""
+		This method synchronizes the databaseItem attributes from the node attributes.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		for column in self.__databaseItem.__table__.columns:
+			attribute = column.key
+			if not attribute in self:
+				continue
+
+			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
+				setattr(self.__databaseItem, attribute, self[attribute].value)
+		return True
 
 	def synchronizeToolTip(self):
 		"""
@@ -263,7 +263,7 @@ class IblSetNode(AbstractDatabaseNode):
 	"""Node family. ( String )"""
 
 	def __init__(self,
-				dbItem,
+				databaseItem,
 				name=None,
 				parent=None,
 				children=None,
@@ -274,7 +274,7 @@ class IblSetNode(AbstractDatabaseNode):
 		"""
 		This method initializes the class.
 
-		:param dbItem: Database object.  ( Object )
+		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( GraphModelNode )
 		:param children: Children. ( List )
@@ -286,7 +286,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -307,29 +307,29 @@ class IblSetNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : self.dbItem.title,
-							Qt.DecorationRole : self.dbItem.icon,
-							Qt.EditRole : self.dbItem.title})
+		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
+							Qt.DecorationRole : self.databaseItem.icon,
+							Qt.EditRole : self.databaseItem.title})
 		self.synchronizeToolTip()
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the dbItem.
+		This method synchronizes the node from the databaseItem.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__dbItem.title
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__databaseItem.title
 		return self.synchronizeNodeAttributes()
 
 	def synchronizeDbItem(self):
 		"""
-		This method synchronizes the dbItem from the node.
+		This method synchronizes the databaseItem from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.title = self.dbItem.title = self.name
+		self.title = self.databaseItem.title = self.name
 		return self.synchronizeDbItemAttributes()
 
 	def synchronizeToolTip(self):
@@ -339,12 +339,12 @@ class IblSetNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.dbItem.title,
-															self.dbItem.author or Constants.nullObject,
-															self.dbItem.location or Constants.nullObject,
-															sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date,
-																			self.dbItem.time) or Constants.nullObject,
-															self.dbItem.comment or Constants.nullObject)
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.databaseItem.title,
+															self.databaseItem.author or Constants.nullObject,
+															self.databaseItem.location or Constants.nullObject,
+															sibl_gui.ui.common.getFormatedShotDate(self.databaseItem.date,
+																			self.databaseItem.time) or Constants.nullObject,
+															self.databaseItem.comment or Constants.nullObject)
 		return True
 
 class TemplateNode(AbstractDatabaseNode):
@@ -356,7 +356,7 @@ class TemplateNode(AbstractDatabaseNode):
 	"""Node family. ( String )"""
 
 	def __init__(self,
-				dbItem,
+				databaseItem,
 				name=None,
 				parent=None,
 				children=None,
@@ -367,7 +367,7 @@ class TemplateNode(AbstractDatabaseNode):
 		"""
 		This method initializes the class.
 
-		:param dbItem: Database object.  ( Object )
+		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( GraphModelNode )
 		:param children: Children. ( List )
@@ -379,7 +379,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -399,31 +399,31 @@ class TemplateNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		templateUserName = getTemplateUserName(self.dbItem.title, self.dbItem.software)
+		templateUserName = getTemplateUserName(self.databaseItem.title, self.databaseItem.software)
 		self.roles.update({Qt.DisplayRole : templateUserName,
 							Qt.EditRole : templateUserName})
 		self.synchronizeToolTip()
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the dbItem.
+		This method synchronizes the node from the databaseItem.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = getTemplateUserName(self.dbItem.title,
-																								self.dbItem.software)
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = getTemplateUserName(self.databaseItem.title,
+																								self.databaseItem.software)
 
 		return self.synchronizeNodeAttributes()
 
 	def synchronizeDbItem(self):
 		"""
-		This method synchronizes the dbItem from the node.
+		This method synchronizes the databaseItem from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.title = self.dbItem.title = self.name
+		self.title = self.databaseItem.title = self.name
 		return self.synchronizeDbItemAttributes()
 
 	def synchronizeToolTip(self):
@@ -433,11 +433,11 @@ class TemplateNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(getTemplateUserName(self.dbItem.title,
-																				self.dbItem.software),
-																	self.dbItem.author,
-																	self.dbItem.date,
-																	self.dbItem.comment)
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(getTemplateUserName(self.databaseItem.title,
+																				self.databaseItem.software),
+																	self.databaseItem.author,
+																	self.databaseItem.date,
+																	self.databaseItem.comment)
 		return True
 
 class CollectionNode(AbstractDatabaseNode):
@@ -449,7 +449,7 @@ class CollectionNode(AbstractDatabaseNode):
 	"""Node family. ( String )"""
 
 	def __init__(self,
-				dbItem,
+				databaseItem,
 				name=None,
 				parent=None,
 				children=None,
@@ -460,7 +460,7 @@ class CollectionNode(AbstractDatabaseNode):
 		"""
 		This method initializes the class.
 
-		:param dbItem: Database object.  ( Object )
+		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( GraphModelNode )
 		:param children: Children. ( List )
@@ -472,7 +472,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -490,8 +490,8 @@ class CollectionNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : self.dbItem.name,
-			Qt.EditRole : self.dbItem.name})
+		self.roles.update({Qt.DisplayRole : self.databaseItem.name,
+			Qt.EditRole : self.databaseItem.name})
 		self["count"] = umbra.ui.nodes.GraphModelAttribute(name="count",
 															value=None,
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
@@ -499,22 +499,22 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the dbItem.
+		This method synchronizes the node from the databaseItem.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.dbItem.name
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.databaseItem.name
 		return self.synchronizeNodeAttributes()
 
 	def synchronizeDbItem(self):
 		"""
-		This method synchronizes the dbItem from the node.
+		This method synchronizes the databaseItem from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		self.dbItem.name = self.name
+		self.databaseItem.name = self.name
 		return self.synchronizeDbItemAttributes()
 
 	def synchronizeToolTip(self):
@@ -524,6 +524,6 @@ class CollectionNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.dbItem.name,
-																self.dbItem.comment)
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.databaseItem.name,
+																self.databaseItem.comment)
 		return True

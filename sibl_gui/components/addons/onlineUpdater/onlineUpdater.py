@@ -30,7 +30,7 @@ import foundations.common
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.database.common as databaseCommon
 import sibl_gui.exceptions
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
@@ -89,7 +89,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__db = None
+		self.__database = None
 		self.__templatesOutliner = None
 		self.__locationsBrowser = None
 
@@ -236,36 +236,36 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def db(self):
+	def database(self):
 		"""
-		This method is the property for **self.__db** attribute.
+		This method is the property for **self.__database** attribute.
 
-		:return: self.__db. ( Object )
+		:return: self.__database. ( Object )
 		"""
 
-		return self.__db
+		return self.__database
 
-	@db.setter
+	@database.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self, value):
+	def database(self, value):
 		"""
-		This method is the setter method for **self.__db** attribute.
+		This method is the setter method for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
-	@db.deleter
+	@database.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self):
+	def database(self):
 		"""
-		This method is the deleter method for **self.__db** attribute.
+		This method is the deleter method for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def templatesOutliner(self):
@@ -573,7 +573,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__db = self.__engine.componentsManager["core.db"]
+		self.__database = self.__engine.componentsManager["core.database"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 		self.__locationsBrowser = self.__engine.componentsManager["addons.locationsBrowser"]
 
@@ -602,7 +602,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__db = None
+		self.__database = None
 		self.__templatesOutliner = None
 		self.__locationsBrowser = None
 
@@ -778,20 +778,20 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			releases = {}
 			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
-					dbTemplates = dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(
+					databaseTemplates = databaseCommon.filterTemplates(self.__database.databaseSession, "^{0}$".format(
 								remoteObject), "name")
-					dbTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(dbTemplate)
-												for dbTemplate in sorted(((dbTemplate, dbTemplate.release)
-												for dbTemplate in dbTemplates),
+					databaseTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(databaseTemplate)
+												for databaseTemplate in sorted(((databaseTemplate, databaseTemplate.release)
+												for databaseTemplate in databaseTemplates),
 												reverse=True,
 												key=lambda x:(foundations.strings.getVersionRank(x[1])))])
 					if not self.__engine.parameters.databaseReadOnly:
-						if dbTemplate:
-							if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
+						if databaseTemplate:
+							if databaseTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
 								releases[remoteObject] = ReleaseObject(name=remoteObject,
 																	repositoryVersion=sectionsFileParser.getValue(
 																	"Release", remoteObject),
-																	localVersion=dbTemplate.release,
+																	localVersion=databaseTemplate.release,
 																	type=sectionsFileParser.getValue("Type",
 																									remoteObject),
 																	url=sectionsFileParser.getValue("Url",

@@ -29,7 +29,7 @@ from PyQt4.QtGui import QMessageBox
 import foundations.common
 import foundations.core
 import foundations.verbose
-import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.database.common as databaseCommon
 import umbra.ui.widgets.messageBox
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -112,13 +112,13 @@ sIBL_GUI will now exit!".format(inspect.getmodulename(apply), legacyDatabaseFile
 				shutil.move(legacyDatabaseFile,
 							os.path.join(deprecatedDatabaseDirectory, os.path.basename(legacyDatabaseFile)))
 
-			dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(databaseFile))
-			dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=dbEngine)
-			dbSession = dbSessionMaker()
-			for template in dbCommon.getTemplates(dbSession):
+			databaseEngine = sqlalchemy.create_engine("sqlite:///{0}".format(databaseFile))
+			databaseSessionMaker = sqlalchemy.orm.sessionmaker(bind=databaseEngine)
+			databaseSession = databaseSessionMaker()
+			for template in databaseCommon.getTemplates(databaseSession):
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
 				inspect.getmodulename(apply), id))
-				dbCommon.removeTemplate(dbSession, id)
+				databaseCommon.removeTemplate(databaseSession, id)
 
 	return True

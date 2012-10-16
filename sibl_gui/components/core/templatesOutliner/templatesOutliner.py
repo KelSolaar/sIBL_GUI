@@ -43,10 +43,10 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.db.exceptions as dbExceptions
-import sibl_gui.components.core.db.utilities.common as dbCommon
-import sibl_gui.components.core.db.utilities.nodes as dbNodes
-import sibl_gui.components.core.db.utilities.types as dbTypes
+import sibl_gui.components.core.database.exceptions as databaseExceptions
+import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.nodes as databaseNodes
+import sibl_gui.components.core.database.types as databaseTypes
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
@@ -121,7 +121,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__editLayout = UiConstants.developmentLayout
 
 		self.__scriptEditor = None
-		self.__db = None
+		self.__database = None
 
 		self.__model = None
 		self.__view = None
@@ -488,36 +488,36 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def db(self):
+	def database(self):
 		"""
-		This method is the property for **self.__db** attribute.
+		This method is the property for **self.__database** attribute.
 
-		:return: self.__db. ( Object )
+		:return: self.__database. ( Object )
 		"""
 
-		return self.__db
+		return self.__database
 
-	@db.setter
+	@database.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self, value):
+	def database(self, value):
 		"""
-		This method is the setter method for **self.__db** attribute.
+		This method is the setter method for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
-	@db.deleter
+	@database.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self):
+	def database(self):
 		"""
-		This method is the deleter method for **self.__db** attribute.
+		This method is the deleter method for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def model(self):
@@ -858,7 +858,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__db = self.__engine.componentsManager["core.db"]
+		self.__database = self.__engine.componentsManager["core.database"]
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
 		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
@@ -968,11 +968,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.addDefaultTemplates()
 
 			# Templates table integrity checking.
-			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__db.dbSession)
+			erroneousTemplates = databaseCommon.checkTemplatesTableIntegrity(self.__database.databaseSession)
 			try:
 				for template, exceptions in erroneousTemplates.iteritems():
 					for exception in exceptions:
-						if exception is dbExceptions.MissingTemplateFileError:
+						if exception is databaseExceptions.MissingTemplateFileError:
 							choice = messageBox.messageBox("Question", "Error",
 							"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
 							self.__class__.__name__, template.name),
@@ -988,7 +988,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							self.__engine.notificationsManager.warnify(
 							"{0} | '{1}' {2}".format(self.__class__.__name__,
 													template.name,
-													 dbCommon.DB_EXCEPTIONS[exception]))
+													 databaseCommon.DB_EXCEPTIONS[exception]))
 			except foundations.exceptions.BreakIteration:
 				pass
 		else:
@@ -1229,7 +1229,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not template:
 			return
 
-		if dbCommon.updateTemplateContent(self.__db.dbSession, template):
+		if databaseCommon.updateTemplateContent(self.__database.databaseSession, template):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, template.title))
@@ -1392,17 +1392,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:note: This method may require user interaction.
 		"""
 
-		templates = dbCommon.getTemplates(self.__db.dbSession)
+		templates = databaseCommon.getTemplates(self.__database.databaseSession)
 		self.__engine.startProcessing("Filtering Templates ...", len(templates.all()))
 		success = True
 		for template in templates:
-			matchingTemplates = dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(template.name), "name")
+			matchingTemplates = databaseCommon.filterTemplates(self.__database.databaseSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
-				for identity in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
+				for identity in sorted([(databaseTemplate.id, databaseTemplate.release) for databaseTemplate in matchingTemplates],
 								reverse=True,
 								key=lambda x:(foundations.strings.getVersionRank(x[1])))[1:]:
-					success *= dbCommon.removeTemplate(
-							self.__db.dbSession, foundations.common.getFirstItem(identity)) or False
+					success *= databaseCommon.removeTemplate(
+							self.__database.databaseSession, foundations.common.getFirstItem(identity)) or False
 				self.refreshNodes.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1413,7 +1413,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError,
-											dbExceptions.DatabaseOperationError)
+											databaseExceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None):
 		"""
 		This method adds a Template to the Database.
@@ -1424,14 +1424,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		if not dbCommon.filterTemplates(self.__db.dbSession, "^{0}$".format(re.escape(path)), "path"):
+		if not databaseCommon.filterTemplates(self.__database.databaseSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addTemplate(self.__db.dbSession, name, path, collectionId or \
+			if databaseCommon.addTemplate(self.__database.databaseSession, name, path, collectionId or \
 			self.__getCandidateCollectionId(path)):
 				self.refreshNodes.emit()
 				return True
 			else:
-				raise dbExceptions.DatabaseOperationError(
+				raise databaseExceptions.DatabaseOperationError(
 				"{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 		else:
 			raise foundations.exceptions.ProgrammingError(
@@ -1491,11 +1491,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if not foundations.common.pathExists(path):
 				continue
 
-			if not set(dbCommon.filterCollections(self.__db.dbSession,
+			if not set(databaseCommon.filterCollections(self.__database.databaseSession,
 												"^{0}$".format(collection), "name")).intersection(
-												dbCommon.filterCollections(self.__db.dbSession, "Templates", "type")):
+												databaseCommon.filterCollections(self.__database.databaseSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
-				dbCommon.addCollection(self.__db.dbSession,
+				databaseCommon.addCollection(self.__database.databaseSession,
 										collection,
 										"Templates", "Template {0} Collection".format(collection))
 			success *= self.addDirectory(path, self.getCollectionByName(collection).id)
@@ -1506,7 +1506,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(
 			self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(databaseExceptions.DatabaseOperationError)
 	def removeTemplate(self, template):
 		"""
 		This method removes given Template from the Database.
@@ -1516,11 +1516,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if dbCommon.removeTemplate(self.__db.dbSession, foundations.strings.encode(template.id)) :
+		if databaseCommon.removeTemplate(self.__database.databaseSession, foundations.strings.encode(template.id)) :
 			self.refreshNodes.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError(
+			raise databaseExceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__,
 																							template.name))
 
@@ -1532,9 +1532,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Template exists. ( Boolean )
 		"""
 
-		return dbCommon.templateExists(self.__db.dbSession, path)
+		return databaseCommon.templateExists(self.__database.databaseSession, path)
 
-	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(databaseExceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template):
 		"""
 		This method updates given Template location.
@@ -1552,11 +1552,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
-		if not dbCommon.updateTemplateLocation(self.__db.dbSession, template, file):
+		if not databaseCommon.updateTemplateLocation(self.__database.databaseSession, template, file):
 			self.refreshNodes.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError(
+			raise databaseExceptions.DatabaseOperationError(
 			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
@@ -1586,7 +1586,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates Collections. ( List )
 		"""
 
-		return dbCommon.getCollectionsByType(self.__db.dbSession, "Templates")
+		return databaseCommon.getCollectionsByType(self.__database.databaseSession, "Templates")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1604,7 +1604,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		except Exception:
 			return list()
 
-		return dbCommon.filterTemplatesCollections(self.__db.dbSession,
+		return databaseCommon.filterTemplatesCollections(self.__database.databaseSession,
 													"{0}".format(foundations.strings.encode(pattern.pattern)),
 													attribute,
 													flags)
@@ -1616,7 +1616,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates. ( List )
 		"""
 
-		return [template for template in dbCommon.getTemplates(self.__db.dbSession)]
+		return [template for template in databaseCommon.getTemplates(self.__database.databaseSession)]
 
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1635,7 +1635,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getTemplates()).intersection(
-		dbCommon.filterTemplates(self.__db.dbSession,
+		databaseCommon.filterTemplates(self.__database.databaseSession,
 								"{0}".format(foundations.strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
@@ -1658,14 +1658,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
-		collections = dbCommon.filterCollections(self.__db.dbSession, "Templates", "type")
+		collections = databaseCommon.filterCollections(self.__database.databaseSession, "Templates", "type")
 		for collection in collections:
-			softwares = set((foundations.common.getFirstItem(software) for software in self.__db.dbSession.query(
-						dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
+			softwares = set((foundations.common.getFirstItem(software) for software in self.__database.databaseSession.query(
+						databaseTypes.DbTemplate.software).filter(databaseTypes.DbTemplate.collection == collection.id)))
 			if not softwares:
 				continue
 
-			collectionNode = dbNodes.CollectionNode(collection,
+			collectionNode = databaseNodes.CollectionNode(collection,
 													name=collection.name,
 													parent=rootNode,
 													nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
@@ -1676,8 +1676,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
-				templates = set((template for template in self.__db.dbSession.query(dbTypes.DbTemplate).filter(
-				dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
+				templates = set((template for template in self.__database.databaseSession.query(databaseTypes.DbTemplate).filter(
+				databaseTypes.DbTemplate.collection == collection.id).filter(databaseTypes.DbTemplate.software == software)))
 
 				if not templates:
 					continue
@@ -1691,7 +1691,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 												os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
 
 				for template in templates:
-					templateNode = dbNodes.TemplateNode(template,
+					templateNode = databaseNodes.TemplateNode(template,
 														name=foundations.strings.removeStrip(template.title, template.software),
 														parent=softwareNode,
 														nodeFlags=nodeFlags,
@@ -1743,7 +1743,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		children = self.__model.findChildren(r"^{0}$".format(collection))
 		child = foundations.common.getFirstItem(children)
-		return child and child.dbItem.id or None
+		return child and child.databaseItem.id or None
 
 	def getSelectedNodes(self):
 		"""
@@ -1770,4 +1770,4 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: View selected Templates. ( List )
 		"""
 
-		return [node.dbItem for node in self.getSelectedTemplatesNodes()]
+		return [node.databaseItem for node in self.getSelectedTemplatesNodes()]

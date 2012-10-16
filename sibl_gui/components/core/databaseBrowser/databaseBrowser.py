@@ -47,9 +47,9 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.db.exceptions as dbExceptions
-import sibl_gui.components.core.db.utilities.common as dbCommon
-import sibl_gui.components.core.db.utilities.nodes as dbNodes
+import sibl_gui.components.core.database.exceptions as databaseExceptions
+import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.nodes as databaseNodes
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
@@ -138,7 +138,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspectLayout = "inspectCentric"
 
 		self.__scriptEditor = None
-		self.__db = None
+		self.__database = None
 		self.__collectionsOutliner = None
 
 		self.__model = None
@@ -648,36 +648,36 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def db(self):
+	def database(self):
 		"""
-		This method is the property for **self.__db** attribute.
+		This method is the property for **self.__database** attribute.
 
-		:return: self.__db. ( Object )
+		:return: self.__database. ( Object )
 		"""
 
-		return self.__db
+		return self.__database
 
-	@db.setter
+	@database.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self, value):
+	def database(self, value):
 		"""
-		This method is the setter method for **self.__db** attribute.
+		This method is the setter method for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
-	@db.deleter
+	@database.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def db(self):
+	def database(self):
 		"""
-		This method is the deleter method for **self.__db** attribute.
+		This method is the deleter method for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "db"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def collectionsOutliner(self):
@@ -1050,7 +1050,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__db = self.__engine.componentsManager["core.db"]
+		self.__database = self.__engine.componentsManager["core.database"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
@@ -1211,11 +1211,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							self.__class__.__name__, directory))
 
 			# Ibl Sets table integrity checking.
-			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__db.dbSession)
+			erroneousIblSets = databaseCommon.checkIblSetsTableIntegrity(self.__database.databaseSession)
 			try:
 				for iblSet, exceptions in erroneousIblSets.iteritems():
 					for exception in exceptions:
-						if exception is dbExceptions.MissingIblSetFileError:
+						if exception is databaseExceptions.MissingIblSetFileError:
 							choice = messageBox.messageBox("Question", "Error",
 							"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
 							self.__class__.__name__, iblSet.title),
@@ -1234,7 +1234,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						else:
 							self.__engine.notificationsManager.warnify(
 							"{0} | '{1}' {2}".format(self.__class__.__name__,
-							iblSet.title, dbCommon.DB_EXCEPTIONS[exception]))
+							iblSet.title, databaseCommon.DB_EXCEPTIONS[exception]))
 			except foundations.exceptions.BreakIteration:
 				pass
 		else:
@@ -1285,11 +1285,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		iblSetNode = self.__model.getNode(startIndex)
 
-		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
+		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.databaseItem.title, iblSetNode.name))
 		iblSetNode.synchronizeDbItem()
 		iblSetNode.synchronizeToolTip()
 
-		self.__db.commit()
+		self.__database.commit()
 
 	def __model__refreshNodes(self):
 		"""
@@ -1489,7 +1489,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not iblSet:
 			return
 
-		if dbCommon.updateIblSetContent(self.__db.dbSession, iblSet):
+		if databaseCommon.updateIblSetContent(self.__database.databaseSession, iblSet):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, iblSet.title))
@@ -1526,7 +1526,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		iblSets = [iblSet for iblSet in set(self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or \
-		self.__collectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__db.dbSession,
+		self.__collectionsOutliner.getCollections())).intersection(databaseCommon.filterIblSets(self.__database.databaseSession,
 																"{0}".format(foundations.strings.encode(pattern.pattern)),
 																attribute,
 																flags))]
@@ -1718,7 +1718,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError,
-											dbExceptions.DatabaseOperationError)
+											databaseExceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None):
 		"""
 		This method adds an Ibl Set to the Database.
@@ -1731,11 +1731,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
-			if dbCommon.addIblSet(self.__db.dbSession, name, path, collectionId or self.__getCandidateCollectionId()):
+			if databaseCommon.addIblSet(self.__database.databaseSession, name, path, collectionId or self.__getCandidateCollectionId()):
 				self.refreshNodes.emit()
 				return True
 			else:
-				raise dbExceptions.DatabaseOperationError(
+				raise databaseExceptions.DatabaseOperationError(
 				"{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 		else:
 			raise foundations.exceptions.ProgrammingError(
@@ -1776,7 +1776,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(databaseExceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet):
 		"""
 		This method removes given Ibl Set from the Database.
@@ -1786,15 +1786,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
-		if dbCommon.removeIblSet(self.__db.dbSession, iblSet.id):
+		if databaseCommon.removeIblSet(self.__database.databaseSession, iblSet.id):
 			self.refreshNodes.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError(
+			raise databaseExceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
 																							iblSet.title))
 
-	@foundations.exceptions.handleExceptions(dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(databaseExceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file):
 		"""
 		This method updates given Ibl Set location.
@@ -1807,11 +1807,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__,
 																					iblSet.title,
 																					file))
-		if dbCommon.updateIblSetLocation(self.__db.dbSession, iblSet, file):
+		if databaseCommon.updateIblSetLocation(self.__database.databaseSession, iblSet, file):
 			self.refreshNodes.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
+			raise databaseExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(
 			self.__class__.__name__, iblSet.title))
 
 	def getIblSets(self):
@@ -1821,7 +1821,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Ibl Sets. ( List )
 		"""
 
-		return [iblSet for iblSet in dbCommon.getIblSets(self.__db.dbSession)]
+		return [iblSet for iblSet in databaseCommon.getIblSets(self.__database.databaseSession)]
 
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1840,7 +1840,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getIblSets()).intersection(
-		dbCommon.filterIblSets(self.__db.dbSession,
+		databaseCommon.filterIblSets(self.__database.databaseSession,
 								"{0}".format(foundations.strings.encode(pattern.pattern)),
 								attribute,
 								flags)))
@@ -1853,7 +1853,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return dbCommon.iblSetExists(self.__db.dbSession, path)
+		return databaseCommon.iblSetExists(self.__database.databaseSession, path)
 
 	def listIblSets(self):
 		"""
@@ -1880,7 +1880,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.IblSetNode(iblSet,
+			iblSetNode = databaseNodes.IblSetNode(iblSet,
 											name=iblSet.title,
 											parent=rootNode,
 											nodeFlags=nodeFlags,
@@ -1936,4 +1936,4 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: View selected Ibl Sets. ( List )
 		"""
 
-		return [node.dbItem for node in self.getSelectedIblSetsNodes()]
+		return [node.databaseItem for node in self.getSelectedIblSetsNodes()]

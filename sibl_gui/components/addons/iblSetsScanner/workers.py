@@ -31,8 +31,8 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.db.utilities.common as dbCommon
-import sibl_gui.components.core.db.utilities.types as dbTypes
+import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.types as databaseTypes
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -79,7 +79,7 @@ class IblSetsScanner_worker(QThread):
 		# --- Setting class attributes. ---
 		self.__container = parent
 
-		self.__dbSession = self.__container.db.dbSessionMaker()
+		self.__databaseSession = self.__container.database.databaseSessionMaker()
 
 		self.__newIblSets = None
 
@@ -121,36 +121,36 @@ class IblSetsScanner_worker(QThread):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
-	def dbSession(self):
+	def databaseSession(self):
 		"""
-		This method is the property for **self.__dbSession** attribute.
+		This method is the property for **self.__databaseSession** attribute.
 
-		:return: self.__dbSession. ( Object )
+		:return: self.__databaseSession. ( Object )
 		"""
 
-		return self.__dbSession
+		return self.__databaseSession
 
-	@dbSession.setter
+	@databaseSession.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSession(self, value):
+	def databaseSession(self, value):
 		"""
-		This method is the setter method for **self.__dbSession** attribute.
+		This method is the setter method for **self.__databaseSession** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseSession"))
 
-	@dbSession.deleter
+	@databaseSession.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dbSession(self):
+	def databaseSession(self):
 		"""
-		This method is the deleter method for **self.__dbSession** attribute.
+		This method is the deleter method for **self.__databaseSession** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseSession"))
 
 	@property
 	def extension(self):
@@ -236,20 +236,20 @@ class IblSetsScanner_worker(QThread):
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
-		paths = [foundations.common.getFirstItem(path) for path in self.__dbSession.query(dbTypes.DbIblSet.path).all()]
+		paths = [foundations.common.getFirstItem(path) for path in self.__databaseSession.query(databaseTypes.DbIblSet.path).all()]
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for directory in directories:
 			if foundations.common.pathExists(directory):
 				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
-					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
+					if not databaseCommon.filterIblSets(self.__databaseSession, "^{0}$".format(re.escape(path)), "path"):
 						iblSet = foundations.strings.getSplitextBasename(path)
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:
 				LOGGER.warning("!> '{0}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(directory))
 
-		self.__dbSession.close()
+		self.__databaseSession.close()
 
 		LOGGER.info("{0} | Scanning done!".format(self.__class__.__name__))
 		needModelRefresh and self.iblSetsRetrieved.emit(self.__newIblSets)

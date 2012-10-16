@@ -272,7 +272,7 @@ def main():
 						("factory.scriptEditor",
 						"factory.preferencesManager",
 						"factory.componentsManagerUi",
-						"core.db",
+						"core.database",
 						"core.collectionsOutliner",
 						"core.databaseBrowser",
 						"core.inspector",
