@@ -20,6 +20,11 @@
 Changes
 =======
 
+4.0.3 - Stable
+--------------
+
+-  Rename "Db" Component to "Database".
+
 4.0.2 - Stable
 --------------
 

@@ -80,7 +80,7 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self, attributesFlags):
+	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
 		This method initializes the node.
 		
