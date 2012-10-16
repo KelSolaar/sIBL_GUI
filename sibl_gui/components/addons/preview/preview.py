@@ -959,7 +959,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method gets Ibl Set images paths.
 
-		:param iblSet: Ibl Set. ( DbIblSet )
+		:param iblSet: Ibl Set. ( DatabaseIblSet )
 		:param imageType: Image type. ( String )
 		:return: Images paths. ( List )
 		"""

@@ -45,16 +45,17 @@ import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.common
-import sibl_gui.components.core.database.nodes
-import sibl_gui.components.core.database.types
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.core.database.nodes import CollectionNode
+from sibl_gui.components.core.database.nodes import TemplateNode
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
+from sibl_gui.components.core.database.types import DatabaseTemplate
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
@@ -989,7 +990,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							self.__engine.notificationsManager.warnify(
 							"{0} | '{1}' {2}".format(self.__class__.__name__,
 													template.name,
-													 sibl_gui.components.core.database.common.DB_EXCEPTIONS[exception]))
+													 sibl_gui.components.core.database.common.DATABASE_EXCEPTIONS[exception]))
 			except foundations.exceptions.BreakIteration:
 				pass
 		else:
@@ -1544,7 +1545,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method updates given Template location.
 
-		:param template: Template to update. ( DbTemplate )
+		:param template: Template to update. ( DatabaseTemplate )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1569,7 +1570,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method displays given Templates help file.
 
-		:param template: Template to display help file. ( DbTemplate )
+		:param template: Template to display help file. ( DatabaseTemplate )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1666,26 +1667,26 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		collections = sibl_gui.components.core.database.common.filterCollections(self.__database.databaseSession, "Templates", "type")
 		for collection in collections:
 			softwares = set((foundations.common.getFirstItem(software) for software in self.__database.databaseSession.query(
-						sibl_gui.components.core.database.types.DbTemplate.software).filter(
-						sibl_gui.components.core.database.types.DbTemplate.collection == collection.id)))
+						DatabaseTemplate.software).filter(
+						DatabaseTemplate.collection == collection.id)))
 			if not softwares:
 				continue
 
-			collectionNode = sibl_gui.components.core.database.nodes.CollectionNode(collection,
-													name=collection.name,
-													parent=rootNode,
-													nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-													attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-													release=umbra.ui.nodes.GraphModelAttribute(name="release",
-															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)),
-													version=umbra.ui.nodes.GraphModelAttribute(name="version",
-															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
+			collectionNode = CollectionNode(collection,
+											name=collection.name,
+											parent=rootNode,
+											nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+											release=umbra.ui.nodes.GraphModelAttribute(name="release",
+													flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)),
+											version=umbra.ui.nodes.GraphModelAttribute(name="version",
+													flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
 				templates = set((template for template in self.__database.databaseSession.query(
-							sibl_gui.components.core.database.types.DbTemplate).filter(
-							sibl_gui.components.core.database.types.DbTemplate.collection == collection.id).filter(
-							sibl_gui.components.core.database.types.DbTemplate.software == software)))
+							DatabaseTemplate).filter(
+							DatabaseTemplate.collection == collection.id).filter(
+							DatabaseTemplate.software == software)))
 
 				if not templates:
 					continue
@@ -1699,11 +1700,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 												os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
 
 				for template in templates:
-					templateNode = sibl_gui.components.core.database.nodes.TemplateNode(template,
-														name=foundations.strings.removeStrip(template.title, template.software),
-														parent=softwareNode,
-														nodeFlags=nodeFlags,
-														attributesFlags=attributesFlags)
+					templateNode = TemplateNode(template,
+												name=foundations.strings.removeStrip(template.title, template.software),
+												parent=softwareNode,
+												nodeFlags=nodeFlags,
+												attributesFlags=attributesFlags)
 
 					path = foundations.strings.encode(template.path)
 					if not foundations.common.pathExists(path):
@@ -1722,7 +1723,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method returns Database Template with given name.
 
 		:param name: Template name. ( String )
-		:return: Database Template. ( DbTemplate )
+		:return: Database Template. ( DatabaseTemplate )
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
@@ -1735,7 +1736,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method gets Templates Collection from given Collection name.
 
 		:param collection: Collection name. ( String )
-		:return: Collection. ( DbCollection )
+		:return: Collection. ( DatabaseCollection )
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")

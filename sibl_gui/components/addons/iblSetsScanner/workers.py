@@ -32,7 +32,7 @@ import foundations.strings
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.common
-import sibl_gui.components.core.database.types
+from sibl_gui.components.core.database.types import DatabaseIblSet
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -236,8 +236,7 @@ class IblSetsScanner_worker(QThread):
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
-		paths = [foundations.common.getFirstItem(path) \
-		for path in self.__databaseSession.query(sibl_gui.components.core.database.types.DbIblSet.path).all()]
+		paths = [foundations.common.getFirstItem(path) for path in self.__databaseSession.query(DatabaseIblSet.path).all()]
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for directory in directories:

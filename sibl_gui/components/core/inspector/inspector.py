@@ -47,12 +47,11 @@ import foundations.dataStructures
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.database.nodes
 import sibl_gui.ui.common
-import umbra.ui.common
 import umbra.ui.nodes
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.core.database.nodes import IblSetNode
 from sibl_gui.components.core.inspector.models import PlatesModel
 from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
@@ -1326,11 +1325,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
-		iblSetNode = sibl_gui.components.core.database.nodes.IblSetNode(self.__inspectorIblSet,
-										name=self.__inspectorIblSet.title,
-										parent=rootNode,
-										nodeFlags=nodeFlags,
-										attributesFlags=attributesFlags)
+		iblSetNode = IblSetNode(self.__inspectorIblSet,
+								name=self.__inspectorIblSet.title,
+								parent=rootNode,
+								nodeFlags=nodeFlags,
+								attributesFlags=attributesFlags)
 		iblSetNode.roles[Qt.DisplayRole] = unicode()
 
 		if not self.__inspectorPlates:

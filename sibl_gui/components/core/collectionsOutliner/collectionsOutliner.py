@@ -42,8 +42,6 @@ import foundations.strings
 import foundations.verbose
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.common
-import sibl_gui.components.core.database.nodes
-import sibl_gui.components.core.database.types
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
@@ -52,6 +50,8 @@ from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.collectionsOutliner.models import CollectionsModel
 from sibl_gui.components.core.collectionsOutliner.nodes import OverallCollectionNode
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
+from sibl_gui.components.core.database.nodes import CollectionNode
+from sibl_gui.components.core.database.types import DatabaseIblSet
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
@@ -1072,7 +1072,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method removes given Collection from the Database.
 
-		:param collection: Collection to remove. ( DbCollection )
+		:param collection: Collection to remove. ( DatabaseCollection )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1161,18 +1161,18 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for collection in collections:
 			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
-				collectionNode = sibl_gui.components.core.database.nodes.CollectionNode(collection,
-														name=collection.name,
-														parent=overallCollectionNode,
-														nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-														attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+				collectionNode = CollectionNode(collection,
+												name=collection.name,
+												parent=overallCollectionNode,
+												nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+												attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage)
 			else:
-				collectionNode = sibl_gui.components.core.database.nodes.CollectionNode(collection,
-														name=collection.name,
-														parent=overallCollectionNode,
-														nodeFlags=nodeFlags,
-														attributesFlags=attributesFlags)
+				collectionNode = CollectionNode(collection,
+												name=collection.name,
+												parent=overallCollectionNode,
+												nodeFlags=nodeFlags,
+												attributesFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
 			collectionIblSetsCount = self.getCollectionIblSetsCount(collection)
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
@@ -1188,7 +1188,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method returns Database Ibl Sets Collection with given name.
 
 		:param name: Collection name. ( String )
-		:return: Database Ibl Sets Collection. ( DbCollection )
+		:return: Database Ibl Sets Collection. ( DatabaseCollection )
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
@@ -1209,12 +1209,11 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method returns given Collection Ibl Sets count.
 
-		:param collection: Collection. ( DbCollection )
+		:param collection: Collection. ( DatabaseCollection )
 		:return: Collection Ibl Sets count. ( Integer )
 		"""
 
-		return self.__database.databaseSession.query(
-		sibl_gui.components.core.database.types.DbIblSet).filter_by(collection=collection.id).count()
+		return self.__database.databaseSession.query(DatabaseIblSet).filter_by(collection=collection.id).count()
 
 	def getCollectionId(self, collection):
 		"""

@@ -8,8 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines Application Database types: :class:`DbIblSet`, :class:`DbTemplate`
-	and :class:`DbCollection` classes.
+	This module defines Application Database types: :class:`DatabaseIblSet`, :class:`DatabaseTemplate`
+	and :class:`DatabaseCollection` classes.
 
 **Others:**
 
@@ -40,16 +40,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "DbBase", "DbIblSet", "DbTemplate", "DbCollection"]
+__all__ = ["LOGGER", "DatabaseBase", "DatabaseIblSet", "DatabaseTemplate", "DatabaseCollection"]
 
 LOGGER = foundations.verbose.installLogger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-DbBase = sqlalchemy.ext.declarative.declarative_base()
+DatabaseBase = sqlalchemy.ext.declarative.declarative_base()
 
-class DbIblSet(DbBase):
+class DatabaseIblSet(DatabaseBase):
 	"""
 	This class defines the Database IblSets type.
 	"""
@@ -194,7 +194,7 @@ class DbIblSet(DbBase):
 			raise foundations.exceptions.FileStructureParsingError(
 			"{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
 
-class DbTemplate(DbBase):
+class DatabaseTemplate(DatabaseBase):
 	"""
 	This class defines the Database Template type.
 	"""
@@ -350,7 +350,7 @@ class DbTemplate(DbBase):
 			raise foundations.exceptions.FileStructureParsingError(
 			"{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
 
-class DbCollection(DbBase):
+class DatabaseCollection(DatabaseBase):
 	"""
 	This class defines the Database Collection type.
 	"""

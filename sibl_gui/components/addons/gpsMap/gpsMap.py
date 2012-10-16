@@ -623,7 +623,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		This method sets given Ibl Set marker.
 
-		:param iblSet: Ibl Set to display marker. ( DbIblSet )
+		:param iblSet: Ibl Set to display marker. ( DatabaseIblSet )
 		:return: Method success. ( Boolean )
 		"""
 

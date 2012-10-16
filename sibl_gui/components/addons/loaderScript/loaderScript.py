@@ -797,8 +797,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		This method outputs the Loader Script.
 
-		:param template: Template. ( DbTemplate )
-		:param iblSet: Ibl Set. ( DbIblSet )
+		:param template: Template. ( DatabaseTemplate )
+		:param iblSet: Ibl Set. ( DatabaseIblSet )
 		:return: Loader Script file. ( String )
 		"""
 
@@ -834,7 +834,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		This method sends the Loader Script to associated 3d package.
 
-		:param template: Template. ( DbTemplate )
+		:param template: Template. ( DatabaseTemplate )
 		:param loaderScriptPath: Loader Script path. ( String )
 		:return: Method success. ( Boolean )
 		"""

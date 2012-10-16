@@ -49,12 +49,12 @@ import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.common
-import sibl_gui.components.core.database.nodes
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.core.database.nodes import IblSetNode
 from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
 from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
 from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
@@ -1234,7 +1234,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						else:
 							self.__engine.notificationsManager.warnify(
 							"{0} | '{1}' {2}".format(self.__class__.__name__,
-							iblSet.title, sibl_gui.components.core.database.common.DB_EXCEPTIONS[exception]))
+							iblSet.title, sibl_gui.components.core.database.common.DATABASE_EXCEPTIONS[exception]))
 			except foundations.exceptions.BreakIteration:
 				pass
 		else:
@@ -1783,7 +1783,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method removes given Ibl Set from the Database.
 
-		:param iblSet: Ibl Set to remove. ( DbIblSet )
+		:param iblSet: Ibl Set to remove. ( DatabaseIblSet )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1801,7 +1801,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method updates given Ibl Set location.
 
-		:param iblSet: Ibl Set to update. ( DbIblSet )
+		:param iblSet: Ibl Set to update. ( DatabaseIblSet )
 		:param iblSet: New Ibl Set file. ( String )
 		:return: Method success. ( Boolean )
 		"""
@@ -1882,11 +1882,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = sibl_gui.components.core.database.nodes.IblSetNode(iblSet,
-											name=iblSet.title,
-											parent=rootNode,
-											nodeFlags=nodeFlags,
-											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+			iblSetNode = IblSetNode(iblSet,
+									name=iblSet.title,
+									parent=rootNode,
+									nodeFlags=nodeFlags,
+									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 			path = foundations.strings.encode(iblSet.path)
 			if not foundations.common.pathExists(path):
@@ -1905,7 +1905,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method returns Database Ibl Set with given name.
 
 		:param name: Ibl Set name. ( String )
-		:return: Database Ibl Set. ( DbIblSet )
+		:return: Database Ibl Set. ( DatabaseIblSet )
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
