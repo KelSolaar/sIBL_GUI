@@ -64,7 +64,6 @@ class UiConstantsTestCase(unittest.TestCase):
 								"linuxStyle",
 								"layoutsFile",
 								"applicationWindowsIcon",
-								"applicationDarwinIcon",
 								"splashScreenImage",
 								"logoImage",
 								"defaultToolbarIconSize",
@@ -175,14 +174,6 @@ class UiConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\w+")
 		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\.[pP][nN][gG]$")
-
-	def testApplicationDarwinIconAttribute(self):
-		"""
-		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.applicationDarwinIcon` attribute.
-		"""
-
-		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\w+")
-		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\.[pP][nN][gG]$")
 
 	def testSplashscreemImageAttribute(self):
 		"""

@@ -57,9 +57,7 @@ class UiConstants():
 	"""Application defaults layouts file: '**layouts/Default_Layouts.rc**' ( String )"""
 
 	applicationWindowsIcon = "images/Icon_Light.png"
-	"""Application Windows Os icon file: '**images/Icon_Light.png**' ( String )"""
-	applicationDarwinIcon = "images/Icon_Light.png"
-	"""Application Mac Os X icon file: '**images/Icon_Light.png**' ( String )"""
+	"""Application icon file: '**images/Icon_Light.png**' ( String )"""
 
 	splashScreenImage = "images/sIBL_GUI_SpashScreen.png"
 	"""Application splashscreen image: '**images/sIBL_GUI_SpashScreen.png**' ( String )"""
