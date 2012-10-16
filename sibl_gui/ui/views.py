@@ -33,8 +33,7 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"storeViewModelSelection",
-			"restoreViewModelSelection",
+			"Mixin_AbstractView"
 			"Abstract_QListView",
 			"Abstract_QTreeView"]
 
@@ -43,68 +42,25 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def storeViewModelSelection(view):
+class Mixin_AbstractView(object):
 	"""
-	This method stores the View Model selection.
-
-	:param view: View. ( QWidget )
-	:return: Definition success. ( Boolean )
+	This class is a mixin used to bring common capabilities in Application views classes.
 	"""
 
-	LOGGER.debug("> Storing Model selection!")
-
-	view.modelSelection = {"Default" : []}
-	for node in view.getSelectedNodes():
-		view.modelSelection["Default"].append(node.id.value)
-	return True
-
-def restoreViewModelSelection(view):
-	"""
-	This method restores the View Model selection.
-
-	:param view: View. ( QWidget )
-	:return: Method success. ( Boolean )
-	"""
-
-	LOGGER.debug("> Restoring Model selection!")
-
-	if not view.modelSelection:
-		return False
-
-	selection = view.modelSelection.get("Default", None)
-	if not selection:
-		return False
-
-	indexes = []
-	for node in foundations.walkers.nodesWalker(view.model().rootNode):
-		node.id.value in selection and indexes.append(view.model().getNodeIndex(node))
-
-	return umbra.ui.views.selectViewIndexes(view, indexes)
-
-class Abstract_QListView(umbra.ui.views.Abstract_QListView):
-	"""
-	This class used as base by others Application views classes.
-	"""
-
-	def __init__(self, parent=None, model=None, readOnly=False):
+	def __init__(self, model=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		umbra.ui.views.Abstract_QListView.__init__(self, parent, readOnly)
 
 		# --- Setting class attributes. ---
 		self.__modelSelection = {"Default" : []}
 
 		self.setModel(model)
-
-		Abstract_QListView.__initializeUi(self)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -189,7 +145,12 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return storeViewModelSelection(self)
+		LOGGER.debug("> Storing Model selection!")
+
+		self.modelSelection = {"Default" : []}
+		for node in self.getSelectedNodes():
+			self.modelSelection["Default"].append(node.id.value)
+		return True
 
 	def restoreModelSelection(self):
 		"""
@@ -198,123 +159,58 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		:return: Method success. ( Boolean )
 		"""
 
-		return restoreViewModelSelection(self)
+		LOGGER.debug("> Restoring Model selection!")
 
-class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
+		if not self.modelSelection:
+			return False
+
+		selection = self.modelSelection.get("Default", None)
+		if not selection:
+			return False
+
+		indexes = []
+		for node in foundations.walkers.nodesWalker(self.model().rootNode):
+			node.id.value in selection and indexes.append(self.model().getNodeIndex(node))
+
+		return self.selectViewIndexes(indexes)
+
+class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 	"""
 	This class used as base by others Application views classes.
 	"""
 
-	def __init__(self, parent=None, model=None, readOnly=False):
+	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.views.Abstract_QTreeView.__init__(self, parent, readOnly)
+		umbra.ui.views.Abstract_QListView.__init__(self, parent, readOnly, message)
+		Mixin_AbstractView.__init__(self, model)
 
-		# --- Setting class attributes. ---
-		self.__modelSelection = {"Default" : []}
+class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
+	"""
+	This class used as base by others Application views classes.
+	"""
 
-		self.setModel(model)
-
-		Abstract_QTreeView.__initializeUi(self)
-
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
-	@property
-	def modelSelection(self):
+	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
-		This method is the property for **self.__modelSelection** attribute.
+		This method initializes the class.
 
-		:return: self.__modelSelection. ( Dictionary )
+		:param parent: Object parent. ( QObject )
+		:param model: Model. ( QObject )
+		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
-		return self.__modelSelection
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-	@modelSelection.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def modelSelection(self, value):
-		"""
-		This method is the setter method for **self.__modelSelection** attribute.
+		umbra.ui.views.Abstract_QTreeView.__init__(self, parent, readOnly, message)
+		Mixin_AbstractView.__init__(self, model)
 
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value is not None:
-			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
-			for key, element in value.iteritems():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
-				"modelSelection", key)
-				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
-																								element)
-			self.__modelSelection = value
-
-	@modelSelection.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
-		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
-
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
-	def setModel(self, model):
-		"""
-		This method reimplements the **umbra.ui.views.Abstract_QTreeView.setModel** method.
-		
-		:param model: Model to set. ( QObject )
-		"""
-
-		if not model:
-			return
-
-		LOGGER.debug("> Setting '{0}' model.".format(model))
-
-		umbra.ui.views.Abstract_QTreeView.setModel(self, model)
-
-		# Signals / Slots.
-		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
-		self.model().modelReset.connect(self.__model__modelReset)
-
-	def __model__modelAboutToBeReset(self):
-		"""
-		This method is triggered when the Model is about to be reset.
-		"""
-
-		self.storeModelSelection()
-
-	def __model__modelReset(self):
-		"""
-		This method is triggered when the Model is changed.
-		"""
-
-		self.restoreModelSelection()
-
-	def storeModelSelection(self):
-		"""
-		This method stores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		return storeViewModelSelection(self)
-
-	def restoreModelSelection(self):
-		"""
-		This method restores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		return restoreViewModelSelection(self)
