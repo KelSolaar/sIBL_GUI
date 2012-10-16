@@ -31,7 +31,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.operations
 from sibl_gui.components.core.database.types import DatabaseIblSet
 
 #**********************************************************************************************************************
@@ -242,7 +242,7 @@ class IblSetsScanner_worker(QThread):
 		for directory in directories:
 			if foundations.common.pathExists(directory):
 				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
-					if not sibl_gui.components.core.database.common.filterIblSets(
+					if not sibl_gui.components.core.database.operations.filterIblSets(
 					self.__databaseSession, "^{0}$".format(re.escape(path)), "path"):
 						iblSet = foundations.strings.getSplitextBasename(path)
 						needModelRefresh = True

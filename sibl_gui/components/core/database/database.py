@@ -30,7 +30,7 @@ import foundations.common
 import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.operations
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
@@ -587,4 +587,4 @@ class Database(Component):
 		:return: Method success. ( Boolean )
 		"""
 
-		return sibl_gui.components.core.database.common.commit(self.__databaseSession)
+		return sibl_gui.components.core.database.operations.commit(self.__databaseSession)

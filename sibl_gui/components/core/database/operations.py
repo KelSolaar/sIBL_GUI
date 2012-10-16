@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**common.py**
+**operations.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines Application Database manipulations objects.
+	This module defines Application Database operations objects.
 
 **Others:**
 

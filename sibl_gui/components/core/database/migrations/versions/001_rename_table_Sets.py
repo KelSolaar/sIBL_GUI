@@ -19,7 +19,7 @@
 #*** External imports
 #**********************************************************************************************************************
 import sqlalchemy
-import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.operations
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -67,11 +67,11 @@ def renameTable(databaseEngine, currrentName, newName):
 		sessionMaker = sqlalchemy.orm.sessionmaker(bind=databaseEngine)
 		session = sessionMaker()
 
-		for collection in sibl_gui.components.core.database.common.getCollectionsByType(session, currrentName):
+		for collection in sibl_gui.components.core.database.operations.getCollectionsByType(session, currrentName):
 			LOGGER.info("{0} | SQLAlchemy Migrate: Changing '{1}' Collection type to '{2}'!".format(
 			__name__, collection.name, newName))
 			collection.type = newName
-		sibl_gui.components.core.database.common.commit(session)
+		sibl_gui.components.core.database.operations.commit(session)
 		session.close()
 	else:
 		LOGGER.info("{0} | SQLAlchemy Migrate: '{1}' table name is already up to date!".format(__name__, newName))

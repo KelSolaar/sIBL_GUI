@@ -29,7 +29,7 @@ import foundations.common
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.verbose
-import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.operations
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -387,15 +387,15 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__types = (DatabaseType(type="Ibl Set",
-						getMethod=sibl_gui.components.core.database.common.getIblSets,
-						updateContentMethod=sibl_gui.components.core.database.common.updateIblSetContent,
-						removeMethod=sibl_gui.components.core.database.common.removeIblSet,
+						getMethod=sibl_gui.components.core.database.operations.getIblSets,
+						updateContentMethod=sibl_gui.components.core.database.operations.updateIblSetContent,
+						removeMethod=sibl_gui.components.core.database.operations.removeIblSet,
 						modelContainer=self.__databaseBrowser,
 						updateLocationMethod=self.__databaseBrowser.updateIblSetLocation),
 						DatabaseType(type="Template",
-						getMethod=sibl_gui.components.core.database.common.getTemplates,
-						updateContentMethod=sibl_gui.components.core.database.common.updateTemplateContent,
-						removeMethod=sibl_gui.components.core.database.common.removeTemplate,
+						getMethod=sibl_gui.components.core.database.operations.getTemplates,
+						updateContentMethod=sibl_gui.components.core.database.operations.updateTemplateContent,
+						removeMethod=sibl_gui.components.core.database.operations.removeTemplate,
 						modelContainer=self.__templatesOutliner,
 						updateLocationMethod=self.__templatesOutliner.updateTemplateLocation))
 
