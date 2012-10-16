@@ -30,7 +30,7 @@ import foundations.common
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.common
 import sibl_gui.exceptions
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
@@ -778,8 +778,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			releases = {}
 			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
-					databaseTemplates = databaseCommon.filterTemplates(self.__database.databaseSession, "^{0}$".format(
-								remoteObject), "name")
+					databaseTemplates = sibl_gui.components.core.database.common.filterTemplates(
+										self.__database.databaseSession, "^{0}$".format(remoteObject), "name")
 					databaseTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(databaseTemplate)
 												for databaseTemplate in sorted(((databaseTemplate, databaseTemplate.release)
 												for databaseTemplate in databaseTemplates),

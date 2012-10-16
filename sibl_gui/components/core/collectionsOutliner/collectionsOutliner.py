@@ -40,10 +40,10 @@ import foundations.exceptions
 import foundations.walkers
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.database.exceptions as databaseExceptions
-import sibl_gui.components.core.database.common as databaseCommon
-import sibl_gui.components.core.database.nodes as databaseNodes
-import sibl_gui.components.core.database.types as databaseTypes
+import sibl_gui.components.core.database.exceptions
+import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.nodes
+import sibl_gui.components.core.database.types
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.nodes
@@ -1039,7 +1039,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections))))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError,
-											databaseExceptions.DatabaseOperationError)
+											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def addCollection(self, name, comment="Double click to set a comment!"):
 		"""
 		This method adds a Collection to the Database.
@@ -1052,11 +1052,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
-				if databaseCommon.addCollection(self.__database.databaseSession, name, "IblSets", comment):
+				if sibl_gui.components.core.database.common.addCollection(
+				self.__database.databaseSession, name, "IblSets", comment):
 					self.refreshNodes.emit()
 					return True
 				else:
-					raise databaseExceptions.DatabaseOperationError(
+					raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
 					"{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__,
 																									name))
 			else:
@@ -1066,7 +1067,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
 
-	@foundations.exceptions.handleExceptions(databaseExceptions.DatabaseOperationError)
+	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
 		This method removes given Collection from the Database.
@@ -1075,18 +1076,20 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		iblSets = databaseCommon.getCollectionsIblSets(self.__database.databaseSession, (collection.id,))
+		iblSets = sibl_gui.components.core.database.common.getCollectionsIblSets(
+				self.__database.databaseSession, (collection.id,))
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
-		if databaseCommon.removeCollection(self.__database.databaseSession, foundations.strings.encode(collection.id)):
+		if sibl_gui.components.core.database.common.removeCollection(
+		self.__database.databaseSession, foundations.strings.encode(collection.id)):
 			self.refreshNodes.emit()
 			self.__databaseBrowser.refreshNodes.emit()
 			return True
 		else:
-			raise databaseExceptions.DatabaseOperationError(
+			raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
 			"{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__,
 																								collection.name))
 	def getCollections(self):
@@ -1096,7 +1099,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return databaseCommon.getCollectionsByType(self.__database.databaseSession, "IblSets")
+		return sibl_gui.components.core.database.common.getCollectionsByType(self.__database.databaseSession, "IblSets")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1114,7 +1117,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except Exception:
 			return list()
 
-		return databaseCommon.filterIblSetsCollections(self.__database.databaseSession,
+		return sibl_gui.components.core.database.common.filterIblSetsCollections(self.__database.databaseSession,
 												"{0}".format(foundations.strings.encode(pattern.pattern)),
 												attribute,
 												flags)
@@ -1127,7 +1130,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return databaseCommon.collectionExists(self.__database.databaseSession, name)
+		return sibl_gui.components.core.database.common.collectionExists(self.__database.databaseSession, name)
 
 	def listCollections(self):
 		"""
@@ -1158,14 +1161,14 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for collection in collections:
 			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
-				collectionNode = databaseNodes.CollectionNode(collection,
+				collectionNode = sibl_gui.components.core.database.nodes.CollectionNode(collection,
 														name=collection.name,
 														parent=overallCollectionNode,
 														nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 														attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage)
 			else:
-				collectionNode = databaseNodes.CollectionNode(collection,
+				collectionNode = sibl_gui.components.core.database.nodes.CollectionNode(collection,
 														name=collection.name,
 														parent=overallCollectionNode,
 														nodeFlags=nodeFlags,
@@ -1199,7 +1202,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Ibl Sets list. ( List )
 		"""
 
-		return [iblSet for iblSet in databaseCommon.getCollectionsIblSets(self.__database.databaseSession,
+		return [iblSet for iblSet in sibl_gui.components.core.database.common.getCollectionsIblSets(self.__database.databaseSession,
 																	[collection.id for collection in collections])]
 
 	def getCollectionIblSetsCount(self, collection):
@@ -1210,7 +1213,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection Ibl Sets count. ( Integer )
 		"""
 
-		return self.__database.databaseSession.query(databaseTypes.DbIblSet).filter_by(collection=collection.id).count()
+		return self.__database.databaseSession.query(
+		sibl_gui.components.core.database.types.DbIblSet).filter_by(collection=collection.id).count()
 
 	def getCollectionId(self, collection):
 		"""

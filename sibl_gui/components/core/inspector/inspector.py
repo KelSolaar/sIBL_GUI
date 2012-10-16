@@ -47,7 +47,7 @@ import foundations.dataStructures
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import sibl_gui.components.core.database.nodes as databaseNodes
+import sibl_gui.components.core.database.nodes
 import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.nodes
@@ -1326,7 +1326,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
-		iblSetNode = databaseNodes.IblSetNode(self.__inspectorIblSet,
+		iblSetNode = sibl_gui.components.core.database.nodes.IblSetNode(self.__inspectorIblSet,
 										name=self.__inspectorIblSet.title,
 										parent=rootNode,
 										nodeFlags=nodeFlags,

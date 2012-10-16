@@ -29,9 +29,8 @@ import foundations.common
 import foundations.dataStructures
 import foundations.exceptions
 import foundations.verbose
-import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.common
 import umbra.engine
-import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 
@@ -45,7 +44,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DbType", "DatabaseOperations"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseType", "DatabaseOperations"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -54,7 +53,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Oper
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class DbType(foundations.dataStructures.Structure):
+class DatabaseType(foundations.dataStructures.Structure):
 	"""
 	| This class represents a storage object for manipulation methods associated to a given Database type.
 	| See :mod:`sibl_gui.components.core.database.types` module for more informations
@@ -104,7 +103,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__databaseBrowser = None
 		self.__templatesOutliner = None
 
-		self.__databaseTypes = None
+		self.__types = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -334,36 +333,36 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutliner"))
 
 	@property
-	def databaseTypes(self):
+	def types(self):
 		"""
-		This method is the property for **self.__databaseTypes** attribute.
+		This method is the property for **self.__types** attribute.
 
-		:return: self.__databaseTypes. ( Tuple )
+		:return: self.__types. ( Tuple )
 		"""
 
-		return self.__databaseTypes
+		return self.__types
 
-	@databaseTypes.setter
+	@types.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseTypes(self, value):
+	def types(self, value):
 		"""
-		This method is the setter method for **self.__databaseTypes** attribute.
+		This method is the setter method for **self.__types** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseTypes"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "types"))
 
-	@databaseTypes.deleter
+	@types.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseTypes(self):
+	def types(self):
 		"""
-		This method is the deleter method for **self.__databaseTypes** attribute.
+		This method is the deleter method for **self.__types** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseTypes"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "types"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -387,16 +386,16 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
-		self.__databaseTypes = (DbType(type="Ibl Set",
-						getMethod=databaseCommon.getIblSets,
-						updateContentMethod=databaseCommon.updateIblSetContent,
-						removeMethod=databaseCommon.removeIblSet,
+		self.__types = (DatabaseType(type="Ibl Set",
+						getMethod=sibl_gui.components.core.database.common.getIblSets,
+						updateContentMethod=sibl_gui.components.core.database.common.updateIblSetContent,
+						removeMethod=sibl_gui.components.core.database.common.removeIblSet,
 						modelContainer=self.__databaseBrowser,
 						updateLocationMethod=self.__databaseBrowser.updateIblSetLocation),
-						DbType(type="Template",
-						getMethod=databaseCommon.getTemplates,
-						updateContentMethod=databaseCommon.updateTemplateContent,
-						removeMethod=databaseCommon.removeTemplate,
+						DatabaseType(type="Template",
+						getMethod=sibl_gui.components.core.database.common.getTemplates,
+						updateContentMethod=sibl_gui.components.core.database.common.updateTemplateContent,
+						removeMethod=sibl_gui.components.core.database.common.removeTemplate,
 						modelContainer=self.__templatesOutliner,
 						updateLocationMethod=self.__templatesOutliner.updateTemplateLocation))
 
@@ -510,23 +509,23 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def synchronizeDatabase(self):
 		"""
 		| This method synchronizes the Database.
-		| Each type defined by :meth:`DatabaseOperations.databaseTypes` attribute
+		| Each type defined by :meth:`DatabaseOperations.sibl_gui.components.core.database.types` attribute
 			will have its instances checked and updated by their associated methods.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		for databaseType in self.__databaseTypes:
-			for item in databaseType.getMethod(self.__database.databaseSession):
+		for type in self.__types:
+			for item in type.getMethod(self.__database.databaseSession):
 				if foundations.common.pathExists(item.path):
-					if databaseType.updateContentMethod(self.__database.databaseSession, item):
+					if type.updateContentMethod(self.__database.databaseSession, item):
 						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__,
 																					item.name,
-																					databaseType.type))
+																					type.type))
 				else:
 					choice = messageBox.messageBox("Question", "Error",
 					"{0} | '{1}' {2} file is missing, would you like to update it's location?".format(
-					self.__class__.__name__, item.name, databaseType.type),
+					self.__class__.__name__, item.name, type.type),
 					QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
 					customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
@@ -534,9 +533,9 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						break
 
 					if choice == QMessageBox.Yes:
-						databaseType.updateLocationMethod(item)
+						type.updateLocationMethod(item)
 				self.__engine.processEvents()
-			databaseType.modelContainer.refreshNodes.emit()
+			type.modelContainer.refreshNodes.emit()
 		self.__engine.stopProcessing()
 		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))
 		return True
@@ -552,18 +551,18 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove invalid data from the Database?",
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-			for databaseType in self.__databaseTypes:
-				for item in databaseType.getMethod(self.__database.databaseSession):
+			for type in self.__types:
+				for item in type.getMethod(self.__database.databaseSession):
 					if foundations.common.pathExists(item.path):
 						continue
 
 					LOGGER.info("{0} | Removing non existing '{1}' {2} from the Database!".format(self.__class__.__name__,
 																								item.name,
-																								databaseType.type))
-					databaseType.removeMethod(self.__database.databaseSession, item.id)
+																								type.type))
+					type.removeMethod(self.__database.databaseSession, item.id)
 
 					self.__engine.processEvents()
-				databaseType.modelContainer.refreshNodes.emit()
+				type.modelContainer.refreshNodes.emit()
 			self.__engine.stopProcessing()
 			self.__engine.notificationsManager.notify(
 			"{0} | Invalid data removed from Database!".format(self.__class__.__name__))

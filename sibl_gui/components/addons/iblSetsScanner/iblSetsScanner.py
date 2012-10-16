@@ -25,7 +25,7 @@ from PyQt4.QtGui import QMessageBox
 import foundations.exceptions
 import foundations.namespace
 import foundations.verbose
-import sibl_gui.components.core.database.common as databaseCommon
+import sibl_gui.components.core.database.common
 import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qobjectComponent import QObjectComponent
@@ -360,7 +360,7 @@ class IblSetsScanner(QObjectComponent):
 			for iblSet, path in iblSets.iteritems():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				if not databaseCommon.addIblSet(self.__database.databaseSession,
+				if not sibl_gui.components.core.database.common.addIblSet(self.__database.databaseSession,
 				 						iblSet,
 										path,
 										self.__collectionsOutliner.getCollectionId(

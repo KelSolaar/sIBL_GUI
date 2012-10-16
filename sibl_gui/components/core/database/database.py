@@ -30,8 +30,8 @@ import foundations.common
 import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
-import sibl_gui.components.core.database.common as databaseCommon
-import sibl_gui.components.core.database.types as databaseTypes
+import sibl_gui.components.core.database.common
+import sibl_gui.components.core.database.types
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
@@ -560,7 +560,7 @@ class Database(Component):
 		self.__databaseEngine = sqlalchemy.create_engine(self.__databaseConnectionString)
 
 		LOGGER.debug("> Creating Database metadata.")
-		self.__databaseCatalog = databaseTypes.DbBase.metadata
+		self.__databaseCatalog = sibl_gui.components.core.database.types.DbBase.metadata
 		self.__databaseCatalog.create_all(self.__databaseEngine)
 
 		LOGGER.debug("> Initializing Database session.")
@@ -587,4 +587,4 @@ class Database(Component):
 		:return: Method success. ( Boolean )
 		"""
 
-		return databaseCommon.commit(self.__databaseSession)
+		return sibl_gui.components.core.database.common.commit(self.__databaseSession)

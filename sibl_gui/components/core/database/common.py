@@ -28,7 +28,7 @@ import foundations.common
 import foundations.exceptions
 import foundations.strings
 import sibl_gui.components.core.database.exceptions
-import sibl_gui.components.core.database.types as databaseTypes
+import sibl_gui.components.core.database.types
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -250,7 +250,7 @@ def getIblSets(session):
 	:return: Database Ibl Sets. ( List )
 	"""
 
-	return session.query(databaseTypes.DbIblSet)
+	return session.query(sibl_gui.components.core.database.types.DbIblSet)
 
 def filterIblSets(session, pattern, field, flags=0):
 	"""
@@ -286,7 +286,7 @@ def addIblSet(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, databaseTypes.DbIblSet, name, path, collection)
+	return addStandardItem(session, sibl_gui.components.core.database.types.DbIblSet, name, path, collection)
 
 def removeIblSet(session, identity):
 	"""
@@ -297,7 +297,7 @@ def removeIblSet(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, databaseTypes.DbIblSet, identity)
+	return removeStandardItem(session, sibl_gui.components.core.database.types.DbIblSet, identity)
 
 def updateIblSetContent(session, iblSet):
 	"""
@@ -368,7 +368,7 @@ def getCollections(session):
 	:return: Database Collections. ( List )
 	"""
 
-	return session.query(databaseTypes.DbCollection)
+	return session.query(sibl_gui.components.core.database.types.DbCollection)
 
 def filterCollections(session, pattern, field, flags=0):
 	"""
@@ -459,7 +459,7 @@ def addCollection(session, collection, type, comment):
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
-		databaseItem = databaseTypes.DbCollection(name=collection, type=type, comment=comment)
+		databaseItem = sibl_gui.components.core.database.types.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, databaseItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
@@ -475,7 +475,7 @@ def removeCollection(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, databaseTypes.DbCollection, identity)
+	return removeStandardItem(session, sibl_gui.components.core.database.types.DbCollection, identity)
 
 def getCollectionsIblSets(session, identities):
 	"""
@@ -502,7 +502,7 @@ def getTemplates(session):
 	:return: Database Templates. ( List )
 	"""
 
-	return session.query(databaseTypes.DbTemplate)
+	return session.query(sibl_gui.components.core.database.types.DbTemplate)
 
 def filterTemplates(session, pattern, field, flags=0):
 	"""
@@ -538,7 +538,7 @@ def addTemplate(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, databaseTypes.DbTemplate, name, path, collection)
+	return addStandardItem(session, sibl_gui.components.core.database.types.DbTemplate, name, path, collection)
 
 def removeTemplate(session, identity):
 	"""
@@ -549,7 +549,7 @@ def removeTemplate(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, databaseTypes.DbTemplate, identity)
+	return removeStandardItem(session, sibl_gui.components.core.database.types.DbTemplate, identity)
 
 def updateTemplateContent(session, template):
 	"""
