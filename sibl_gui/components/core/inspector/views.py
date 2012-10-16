@@ -52,18 +52,19 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Ibl Sets Plates as thumbnails.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly)
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
 		self.__listViewIconSize = 30

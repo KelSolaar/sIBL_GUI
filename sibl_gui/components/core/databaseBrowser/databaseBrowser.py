@@ -1082,7 +1082,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Database_Browser_stackedWidget = QStackedWidget(self)
 		self.Database_Browser_gridLayout.addWidget(self.Database_Browser_stackedWidget)
 
-		self.__thumbnailsView = Thumbnails_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__thumbnailsView = Thumbnails_QListView(self,
+													self.__model,
+													self.__engine.parameters.databaseReadOnly,
+													"No Ibl Set to view!")
 		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
@@ -1090,12 +1093,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__thumbnailsView.listViewIconSize = listViewIconSize
 		self.Database_Browser_stackedWidget.addWidget(self.__thumbnailsView)
 
-		self.__columnsView = Columns_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__columnsView = Columns_QListView(self,
+											self.__model,
+											self.__engine.parameters.databaseReadOnly,
+											"No Ibl Set to view!")
 		self.__columnsView.setObjectName("Columns_listView")
 		self.__columnsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Database_Browser_stackedWidget.addWidget(self.__columnsView)
 
-		self.__detailsView = Details_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__detailsView = Details_QTreeView(self,
+											self.__model,
+											self.__engine.parameters.databaseReadOnly,
+											"No Ibl Set to view!")
 		self.__detailsView.setObjectName("Details_treeView")
 		self.__detailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Database_Browser_stackedWidget.addWidget(self.__detailsView)

@@ -896,7 +896,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.setTemplates()
 
 		self.Templates_Outliner_treeView.setParent(None)
-		self.Templates_Outliner_treeView = Templates_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.Templates_Outliner_treeView = Templates_QTreeView(self,
+															self.__model,
+															self.__engine.parameters.databaseReadOnly,
+															"No Template to view!")
 		self.Templates_Outliner_treeView.setObjectName("Templates_Outliner_treeView")
 		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)

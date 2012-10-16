@@ -52,18 +52,19 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	This class is used to display Database Collections.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly)
+		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
 		self.__container = parent

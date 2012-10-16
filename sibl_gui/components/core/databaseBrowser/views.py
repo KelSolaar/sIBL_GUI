@@ -52,18 +52,19 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Database Ibl Sets as thumbnails.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly)
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
 		self.__listViewSpacing = 24
@@ -213,18 +214,19 @@ class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Database Ibl Sets in columns.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly)
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
 
 		Columns_QListView.__initializeUi(self)
 
@@ -258,18 +260,19 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	This class is used to display Database Ibl Sets columns.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		:param readOnly: View is read only. ( Boolean )
+		:param message: View default message when Model is empty. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly)
+		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
 		self.__treeViewIndentation = 15
