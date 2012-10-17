@@ -1295,7 +1295,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSetNode = self.__model.getNode(startIndex)
 
 		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.databaseItem.title, iblSetNode.name))
-		iblSetNode.synchronizeDbItem()
+		iblSetNode.synchronizeDatabaseItem()
 		iblSetNode.synchronizeToolTip()
 
 		self.__database.commit()
@@ -1792,7 +1792,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method removes given Ibl Set from the Database.
 
-		:param iblSet: Ibl Set to remove. ( DatabaseIblSet )
+		:param iblSet: Ibl Set to remove. ( IblSet )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1810,7 +1810,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method updates given Ibl Set location.
 
-		:param iblSet: Ibl Set to update. ( DatabaseIblSet )
+		:param iblSet: Ibl Set to update. ( IblSet )
 		:param iblSet: New Ibl Set file. ( String )
 		:return: Method success. ( Boolean )
 		"""
@@ -1914,7 +1914,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method returns Database Ibl Set with given name.
 
 		:param name: Ibl Set name. ( String )
-		:return: Database Ibl Set. ( DatabaseIblSet )
+		:return: Database Ibl Set. ( IblSet )
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""

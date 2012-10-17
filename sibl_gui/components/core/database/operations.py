@@ -28,9 +28,9 @@ import foundations.common
 import foundations.exceptions
 import foundations.strings
 import sibl_gui.components.core.database.exceptions
-from sibl_gui.components.core.database.types import DatabaseCollection
-from sibl_gui.components.core.database.types import DatabaseIblSet
-from sibl_gui.components.core.database.types import DatabaseTemplate
+from sibl_gui.components.core.database.types import Collection
+from sibl_gui.components.core.database.types import IblSet
+from sibl_gui.components.core.database.types import Template
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -182,7 +182,7 @@ def updateItemContent(session, item):
 	This definition update an item content.
 
 	:param session: Database session. ( Session )
-	:param item: Item to set content. ( DatabaseIblSet )
+	:param item: Item to set content. ( IblSet )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -252,7 +252,7 @@ def getIblSets(session):
 	:return: Database Ibl Sets. ( List )
 	"""
 
-	return session.query(DatabaseIblSet)
+	return session.query(IblSet)
 
 def filterIblSets(session, pattern, field, flags=0):
 	"""
@@ -288,7 +288,7 @@ def addIblSet(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, DatabaseIblSet, name, path, collection)
+	return addStandardItem(session, IblSet, name, path, collection)
 
 def removeIblSet(session, identity):
 	"""
@@ -299,14 +299,14 @@ def removeIblSet(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, DatabaseIblSet, identity)
+	return removeStandardItem(session, IblSet, identity)
 
 def updateIblSetContent(session, iblSet):
 	"""
 	This definition update an Ibl Set content.
 
 	:param session: Database session. ( Session )
-	:param iblSet: Ibl Set to set content. ( DatabaseIblSet )
+	:param iblSet: Ibl Set to set content. ( IblSet )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -317,7 +317,7 @@ def updateIblSetLocation(session, iblSet, path):
 	This definition updates an Ibl Set location.
 
 	:param session: Database session. ( Session )
-	:param iblSet: Ibl Set to update. ( DatabaseIblSet )
+	:param iblSet: Ibl Set to update. ( IblSet )
 	:param path: Ibl Set path. ( Path )
 	:return: Database commit success. ( Boolean )
 	"""
@@ -370,7 +370,7 @@ def getCollections(session):
 	:return: Database Collections. ( List )
 	"""
 
-	return session.query(DatabaseCollection)
+	return session.query(Collection)
 
 def filterCollections(session, pattern, field, flags=0):
 	"""
@@ -461,7 +461,7 @@ def addCollection(session, collection, type, comment):
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
-		databaseItem = DatabaseCollection(name=collection, type=type, comment=comment)
+		databaseItem = Collection(name=collection, type=type, comment=comment)
 		return addItem(session, databaseItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
@@ -477,7 +477,7 @@ def removeCollection(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, DatabaseCollection, identity)
+	return removeStandardItem(session, Collection, identity)
 
 def getCollectionsIblSets(session, identities):
 	"""
@@ -504,7 +504,7 @@ def getTemplates(session):
 	:return: Database Templates. ( List )
 	"""
 
-	return session.query(DatabaseTemplate)
+	return session.query(Template)
 
 def filterTemplates(session, pattern, field, flags=0):
 	"""
@@ -540,7 +540,7 @@ def addTemplate(session, name, path, collection):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, DatabaseTemplate, name, path, collection)
+	return addStandardItem(session, Template, name, path, collection)
 
 def removeTemplate(session, identity):
 	"""
@@ -551,14 +551,14 @@ def removeTemplate(session, identity):
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, DatabaseTemplate, identity)
+	return removeStandardItem(session, Template, identity)
 
 def updateTemplateContent(session, template):
 	"""
 	This definition update a Template content.
 
 	:param session: Database session. ( Session )
-	:param template: Template to Template content. ( DatabaseTemplate )
+	:param template: Template to Template content. ( Template )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -569,7 +569,7 @@ def updateTemplateLocation(session, template, path):
 	This definition updates a Template location.
 
 	:param session: Database session. ( Session )
-	:param template: Template to update. ( DatabaseTemplate )
+	:param template: Template to update. ( Template )
 	:param path: Template path. ( Path )
 	:return: Database commit success. ( Boolean )
 	"""

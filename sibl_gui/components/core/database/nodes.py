@@ -193,7 +193,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the databaseItem.
+		This method synchronizes the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -201,19 +201,19 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
 		self.__class__.__name__, self.synchronizeNode.__name__, self.__class__.__name__))
 
-	def synchronizeDbItem(self):
+	def synchronizeDatabaseItem(self):
 		"""
-		This method synchronizes the databaseItem from the node.
+		This method synchronizes the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.synchronizeDatabaseItem.__name__, self.__class__.__name__))
 
 	def synchronizeNodeAttributes(self):
 		"""
-		This method synchronizes the node attributes from the databaseItem attributes.
+		This method synchronizes the node attributes from the database item attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -228,9 +228,9 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 				getattr(self.__databaseItem, attribute)
 		return True
 
-	def synchronizeDbItemAttributes(self):
+	def synchronizeDatabaseItemAttributes(self):
 		"""
-		This method synchronizes the databaseItem attributes from the node attributes.
+		This method synchronizes the database item attributes from the node attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -244,6 +244,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 				setattr(self.__databaseItem, attribute, self[attribute].value)
 		return True
 
+	@foundations.exceptions.handleExceptions(NotImplementedError)
 	def synchronizeToolTip(self):
 		"""
 		This method synchronizes the node tooltip.
@@ -314,7 +315,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the databaseItem.
+		This method synchronizes the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -322,15 +323,15 @@ class IblSetNode(AbstractDatabaseNode):
 		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__databaseItem.title
 		return self.synchronizeNodeAttributes()
 
-	def synchronizeDbItem(self):
+	def synchronizeDatabaseItem(self):
 		"""
-		This method synchronizes the databaseItem from the node.
+		This method synchronizes the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.title = self.databaseItem.title = self.name
-		return self.synchronizeDbItemAttributes()
+		return self.synchronizeDatabaseItemAttributes()
 
 	def synchronizeToolTip(self):
 		"""
@@ -406,7 +407,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the databaseItem.
+		This method synchronizes the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -416,15 +417,15 @@ class TemplateNode(AbstractDatabaseNode):
 
 		return self.synchronizeNodeAttributes()
 
-	def synchronizeDbItem(self):
+	def synchronizeDatabaseItem(self):
 		"""
-		This method synchronizes the databaseItem from the node.
+		This method synchronizes the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.title = self.databaseItem.title = self.name
-		return self.synchronizeDbItemAttributes()
+		return self.synchronizeDatabaseItemAttributes()
 
 	def synchronizeToolTip(self):
 		"""
@@ -499,7 +500,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def synchronizeNode(self):
 		"""
-		This method synchronizes the node from the databaseItem.
+		This method synchronizes the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -507,15 +508,15 @@ class CollectionNode(AbstractDatabaseNode):
 		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.databaseItem.name
 		return self.synchronizeNodeAttributes()
 
-	def synchronizeDbItem(self):
+	def synchronizeDatabaseItem(self):
 		"""
-		This method synchronizes the databaseItem from the node.
+		This method synchronizes the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.databaseItem.name = self.name
-		return self.synchronizeDbItemAttributes()
+		return self.synchronizeDatabaseItemAttributes()
 
 	def synchronizeToolTip(self):
 		"""

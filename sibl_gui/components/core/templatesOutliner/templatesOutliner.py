@@ -55,7 +55,7 @@ from sibl_gui.components.core.database.nodes import TemplateNode
 from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.nodes import SoftwareNode
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
-from sibl_gui.components.core.database.types import DatabaseTemplate
+from sibl_gui.components.core.database.types import Template
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
@@ -1548,7 +1548,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method updates given Template location.
 
-		:param template: Template to update. ( DatabaseTemplate )
+		:param template: Template to update. ( Template )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1573,7 +1573,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		This method displays given Templates help file.
 
-		:param template: Template to display help file. ( DatabaseTemplate )
+		:param template: Template to display help file. ( Template )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1670,8 +1670,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		collections = sibl_gui.components.core.database.operations.filterCollections(self.__database.databaseSession, "Templates", "type")
 		for collection in collections:
 			softwares = set((foundations.common.getFirstItem(software) for software in self.__database.databaseSession.query(
-						DatabaseTemplate.software).filter(
-						DatabaseTemplate.collection == collection.id)))
+						Template.software).filter(
+						Template.collection == collection.id)))
 			if not softwares:
 				continue
 
@@ -1687,9 +1687,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 			for software in softwares:
 				templates = set((template for template in self.__database.databaseSession.query(
-							DatabaseTemplate).filter(
-							DatabaseTemplate.collection == collection.id).filter(
-							DatabaseTemplate.software == software)))
+							Template).filter(
+							Template.collection == collection.id).filter(
+							Template.software == software)))
 
 				if not templates:
 					continue
@@ -1726,7 +1726,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method returns Database Template with given name.
 
 		:param name: Template name. ( String )
-		:return: Database Template. ( DatabaseTemplate )
+		:return: Database Template. ( Template )
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
@@ -1739,7 +1739,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		This method gets Templates Collection from given Collection name.
 
 		:param collection: Collection name. ( String )
-		:return: Collection. ( DatabaseCollection )
+		:return: Collection. ( Collection )
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")

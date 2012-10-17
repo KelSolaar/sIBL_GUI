@@ -34,7 +34,7 @@ import sibl_gui.components.core.database.operations
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
-from sibl_gui.components.core.database.types import DatabaseBase
+from sibl_gui.components.core.database.types import Base
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -560,7 +560,7 @@ class Database(Component):
 		self.__databaseEngine = sqlalchemy.create_engine(self.__databaseConnectionString)
 
 		LOGGER.debug("> Creating Database metadata.")
-		self.__databaseCatalog = DatabaseBase.metadata
+		self.__databaseCatalog = Base.metadata
 		self.__databaseCatalog.create_all(self.__databaseEngine)
 
 		LOGGER.debug("> Initializing Database session.")
