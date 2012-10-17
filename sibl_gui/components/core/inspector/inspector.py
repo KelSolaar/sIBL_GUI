@@ -160,7 +160,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 
 		self.__sectionsFileParsersCache = None
 
@@ -426,36 +426,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def sectionsFileParsersCache(self):
@@ -926,7 +926,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 
 		self.activated = True
 		return True
@@ -976,10 +976,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-		self.__databaseBrowser.model.modelReset.connect(self.__databaseBrowser__modelReset)
+		self.__iblSetsOutliner.model.modelReset.connect(self.__iblSetsOutliner__modelReset)
 		self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
-		for view in self.__databaseBrowser.views:
-			view.selectionModel().selectionChanged.connect(self.__databaseBrowser_view_selectionModel__selectionChanged)
+		for view in self.__iblSetsOutliner.views:
+			view.selectionModel().selectionChanged.connect(self.__iblSetsOutliner_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
 		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
@@ -1125,17 +1125,17 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__setInspectorIblSet()
 				self.uiRefresh.emit()
 
-	def __databaseBrowser__modelReset(self):
+	def __iblSetsOutliner__modelReset(self):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
+		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
 		Component Model has changed.
 		"""
 
 		self.__setInspectorIblSet()
 
-	def __databaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __iblSetsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser`
+		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
 		Component Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
@@ -1202,10 +1202,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 		self.__inspectorIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__inspectorIblSet:
-			rootNode = self.__databaseBrowser.model.rootNode
+			rootNode = self.__iblSetsOutliner.model.rootNode
 			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
@@ -1345,14 +1345,14 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This method loops through :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
+		This method loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )
 		"""
 
 		if self.__inspectorIblSet:
-			model = self.__databaseBrowser.model
+			model = self.__iblSetsOutliner.model
 
 			inspectorIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__inspectorIblSet.path]
 			inspectorIblSetNode = foundations.common.getFirstItem(inspectorIblSetNode)
@@ -1368,7 +1368,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif idx > model.rootNode.childrenCount() - 1:
 				idx = 0
 
-			selectionModel = self.__databaseBrowser.getActiveView().selectionModel()
+			selectionModel = self.__iblSetsOutliner.getActiveView().selectionModel()
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(model.index(idx), QItemSelectionModel.Select)
 		else:

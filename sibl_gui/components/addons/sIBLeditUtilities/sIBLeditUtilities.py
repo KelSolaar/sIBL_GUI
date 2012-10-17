@@ -80,7 +80,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 
 	#******************************************************************************************************************
@@ -215,36 +215,36 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def inspector(self):
@@ -296,7 +296,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__inspector = self.__engine.componentsManager["core.inspector"]
 
 		self.activated = True
@@ -316,7 +316,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 
 		self.activated = False
@@ -395,9 +395,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...",
-			slot=self.__databaseBrowser_views_editIblSetInSIBLEditAction__triggered)
-			for view in self.__databaseBrowser.views:
+			"Actions|Umbra|Components|core.iblSetsOutliner|Edit In sIBLedit ...",
+			slot=self.__iblSetsOutliner_views_editIblSetInSIBLEditAction__triggered)
+			for view in self.__iblSetsOutliner.views:
 				view.addAction(editIblSetInSIBLEditAction)
 
 			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
@@ -415,8 +415,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ..."
-			for view in self.__databaseBrowser.views:
+			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.iblSetsOutliner|Edit In sIBLedit ..."
+			for view in self.__iblSetsOutliner.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
 			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
@@ -424,9 +424,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			editInspectorIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
-	def __databaseBrowser_views_editIblSetInSIBLEditAction__triggered(self, checked):
+	def __iblSetsOutliner_views_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Edit In sIBLedit ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -497,7 +497,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+			selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
 							foundations.common.getFirstItem(selectedIblSets)
 			if selectedIblSet:

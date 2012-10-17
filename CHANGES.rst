@@ -24,6 +24,7 @@ Changes
 --------------
 
 -  Rename "Db" Component to "Database".
+-  Rename "DatabaseBrowser" Component to "IblSetsOutliner".
 
 4.0.2 - Stable
 --------------

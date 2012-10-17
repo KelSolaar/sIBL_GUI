@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**databaseBrowser.py**
+**iblSetsOutliner.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseBrowser` Component Interface class.
+	This module defines the :class:`IblSetsOutliner` Component Interface class.
 
 **Others:**
 
@@ -55,10 +55,10 @@ import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.database.nodes import IblSetNode
-from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
-from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
-from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
-from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
+from sibl_gui.components.core.iblSetsOutliner.models import IblSetsModel
+from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
+from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
+from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -73,31 +73,31 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "IblSetsOutliner"]
 
 LOGGER = foundations.verbose.installLogger()
 
-COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Browser.ui")
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Ibl_Sets_Outliner.ui")
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
+class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Interface class.
 	| It defines methods for Database Ibl Sets management.
 	"""
 
 	# Custom signals definitions.
 	refreshNodes = pyqtSignal()
 	"""
-	This signal is emited by the :class:`DatabaseBrowser` class when :obj:`DatabaseBrowser.model` class property model
+	This signal is emited by the :class:`IblSetsOutliner` class when :obj:`IblSetsOutliner.model` class property model
 	nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	activeViewChanged = pyqtSignal(int)
 	"""
-	This signal is emited by the :class:`DatabaseBrowser` class when the current active view is changed. ( pyqtSignal )
+	This signal is emited by the :class:`IblSetsOutliner` class when the current active view is changed. ( pyqtSignal )
 	
 	:return: Current active view index. ( Integer )	
 	"""
@@ -114,7 +114,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		super(DatabaseBrowser, self).__init__(parent, name, *args, **kwargs)
+		super(IblSetsOutliner, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
@@ -1079,8 +1079,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																									"databaseReadOnly"))
 		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
-		self.Database_Browser_stackedWidget = QStackedWidget(self)
-		self.Database_Browser_gridLayout.addWidget(self.Database_Browser_stackedWidget)
+		self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
+		self.Ibl_Sets_Outliner_gridLayout.addWidget(self.Ibl_Sets_Outliner_stackedWidget)
 
 		self.__thumbnailsView = Thumbnails_QListView(self,
 													self.__model,
@@ -1091,7 +1091,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
 		if state:
 			self.__thumbnailsView.listViewIconSize = listViewIconSize
-		self.Database_Browser_stackedWidget.addWidget(self.__thumbnailsView)
+		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__thumbnailsView)
 
 		self.__columnsView = Columns_QListView(self,
 											self.__model,
@@ -1099,7 +1099,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											"No Ibl Set to view!")
 		self.__columnsView.setObjectName("Columns_listView")
 		self.__columnsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Database_Browser_stackedWidget.addWidget(self.__columnsView)
+		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__columnsView)
 
 		self.__detailsView = Details_QTreeView(self,
 											self.__model,
@@ -1107,7 +1107,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											"No Ibl Set to view!")
 		self.__detailsView.setObjectName("Details_treeView")
 		self.__detailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Database_Browser_stackedWidget.addWidget(self.__detailsView)
+		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__detailsView)
 
 		self.__views = (self.__thumbnailsView, self.__columnsView, self.__detailsView)
 		self.__views_addActions()
@@ -1125,7 +1125,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__searchContextsMenu = QMenu()
 		for context in self.__searchContexts.iterkeys():
 			self.__searchContextsMenu.addAction(self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context),
+			"Actions|Umbra|Components|core.iblSetsOutliner|Search|Set '{0}' Context ...".format(context),
 			text="{0} ...".format(context),
 			checkable=True,
 			slot=functools.partial(self.setActiveSearchContext, context)))
@@ -1314,16 +1314,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.__engine.parameters.databaseReadOnly:
 			addContentAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Add Content ...",
+			"Actions|Umbra|Components|core.iblSetsOutliner|Add Content ...",
 			slot=self.__views_addContentAction__triggered)
 			addIblSetAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...",
+			"Actions|Umbra|Components|core.iblSetsOutliner|Add Ibl Set ...",
 			slot=self.__views_addIblSetAction__triggered)
 			removeIblSetsAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...",
+			"Actions|Umbra|Components|core.iblSetsOutliner|Remove Ibl Set(s) ...",
 			slot=self.__views_removeIblSetsAction__triggered)
 			updateIblSetsLocationsAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...",
+			"Actions|Umbra|Components|core.iblSetsOutliner|Update Ibl Set(s) Location(s) ...",
 			slot=self.__views_updateIblSetsLocationsAction__triggered)
 
 			for view in self.__views:
@@ -1342,7 +1342,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1352,7 +1352,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_addIblSetAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Ibl Set ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1362,7 +1362,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_removeIblSetsAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Remove Ibl Set(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1373,7 +1373,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	def __views_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by 
-		**'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
+		**'Actions|Umbra|Components|core.iblSetsOutliner|Update Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1407,7 +1407,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param index: Current active View. ( integer )
 		"""
 
-		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
+		self.Ibl_Sets_Outliner_Thumbnails_Slider_frame.setVisible(not index)
 		for viewIndex, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
 			viewPushButton.setChecked(viewIndex == index and True or False)
@@ -1553,7 +1553,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Current active View. ( QWidget )
 		"""
 
-		return self.Database_Browser_stackedWidget.currentWidget()
+		return self.Ibl_Sets_Outliner_stackedWidget.currentWidget()
 
 	def getActiveViewIndex(self):
 		"""
@@ -1562,7 +1562,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Current active View index. ( Integer )
 		"""
 
-		return self.Database_Browser_stackedWidget.currentIndex()
+		return self.Ibl_Sets_Outliner_stackedWidget.currentIndex()
 
 	def setActiveView(self, view):
 		"""
@@ -1572,8 +1572,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		index = self.Database_Browser_stackedWidget.indexOf(view)
-		self.Database_Browser_stackedWidget.setCurrentIndex()
+		index = self.Ibl_Sets_Outliner_stackedWidget.indexOf(view)
+		self.Ibl_Sets_Outliner_stackedWidget.setCurrentIndex()
 		self.activeViewChanged.emit(index)
 		return True
 
@@ -1585,7 +1585,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		self.Database_Browser_stackedWidget.setCurrentIndex(index)
+		self.Ibl_Sets_Outliner_stackedWidget.setCurrentIndex(index)
 		self.activeViewChanged.emit(index)
 		return True
 
@@ -1600,7 +1600,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		text = "{0} ...".format(context)
 		for action in  self.__engine.actionsManager.getCategory(
-		"Actions|Umbra|Components|core.databaseBrowser|Search").itervalues():
+		"Actions|Umbra|Components|core.iblSetsOutliner|Search").itervalues():
 			action.setChecked(action.text() == text and True or False)
 
 		self.__activeSearchContext = context

@@ -80,7 +80,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 
 		self.__reWireFramesWidgets = None
 		self.__reWireComboBoxesWidgets = None
@@ -161,36 +161,36 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def reWireFramesWidgets(self):
@@ -335,7 +335,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__loaderScript = self.__engine.componentsManager["addons.loaderScript"]
 
 		self.activated = True
@@ -352,7 +352,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__loaderScript = None
 
 		self.activated = False
@@ -516,7 +516,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))
 
-		selectedIblSet = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSet = self.__iblSetsOutliner.getSelectedIblSets()
 		iblSet = foundations.common.getFirstItem(selectedIblSet)
 		if not iblSet:
 			return False

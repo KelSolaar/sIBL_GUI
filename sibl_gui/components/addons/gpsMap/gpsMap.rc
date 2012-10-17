@@ -3,7 +3,7 @@ Name = addons.gpsMap
 Title = Gps Map
 Module = gpsMap
 Object = GpsMap
-Require = core.databaseBrowser
+Require = core.iblSetsOutliner
 Version = 1.0
 
 [Informations]

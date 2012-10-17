@@ -92,7 +92,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__scriptEditor = None
 		self.__preferencesManager = None
 		self.__componentsManagerUi = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 		self.__templatesOutliner = None
 
@@ -324,36 +324,36 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "componentsManagerUi"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def inspector(self):
@@ -439,7 +439,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
 		self.__componentsManagerUi = self.__engine.componentsManager["factory.componentsManagerUi"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__inspector = self.__engine.componentsManager["core.inspector"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
@@ -462,7 +462,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__scriptEditor = None
 		self.__preferencesManager = None
 		self.__componentsManagerUi = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 		self.__templatesOutliner = None
 
@@ -550,9 +550,9 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetsFilesAction = self.__engine.actionsManager.registerAction(
-			"Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...",
-			slot=self.__databaseBrowser_views_editIblSetsFilesAction__triggered)
-			for view in self.__databaseBrowser.views:
+			"Actions|Umbra|Components|core.iblSetsOutliner|Edit Ibl Set(s) File(s) ...",
+			slot=self.__iblSetsOutliner_views_editIblSetsFilesAction__triggered)
+			for view in self.__iblSetsOutliner.views:
 				view.addAction(editIblSetsFilesAction)
 
 			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
@@ -581,8 +581,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
-			for view in self.__databaseBrowser.views:
+			editIblSetsFilesAction = "Actions|Umbra|Components|core.iblSetsOutliner|Edit Ibl Set(s) File(s) ..."
+			for view in self.__iblSetsOutliner.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)
 			editInspectorIblSetFileAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
@@ -598,10 +598,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.actionsManager.getAction(editComponenetsAction))
 		self.__engine.actionsManager.unregisterAction(editComponenetsAction)
 
-	def __databaseBrowser_views_editIblSetsFilesAction__triggered(self, checked):
+	def __iblSetsOutliner_views_editIblSetsFilesAction__triggered(self, checked):
 		"""
 		This method is triggered by
-		**'Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...'** action.
+		**'Actions|Umbra|Components|core.iblSetsOutliner|Edit Ibl Set(s) File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -707,7 +707,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
 			re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] or \
 			foundations.strings.encode(url.path())
-			if not re.search(r"\.{0}$".format(self.__databaseBrowser.extension), foundations.strings.encode(url.path())) and \
+			if not re.search(r"\.{0}$".format(self.__iblSetsOutliner.extension), foundations.strings.encode(url.path())) and \
 			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), foundations.strings.encode(url.path())) and \
 			not os.path.isdir(path):
 				self.editPath(path, self.Custom_Text_Editor_Path_lineEdit.text())
@@ -721,7 +721,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param event: Event. ( QEvent )
 		"""
 
-		if event.source() in self.__databaseBrowser.views:
+		if event.source() in self.__iblSetsOutliner.views:
 			self.editIblSetsFilesUi()
 		elif event.source() is self.__templatesOutliner.view:
 			self.editTemplatesFilesUi()
@@ -736,7 +736,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 
 		success = True
 		for iblSet in selectedIblSets:

@@ -274,10 +274,10 @@ def main():
 						"factory.componentsManagerUi",
 						"core.database",
 						"core.collectionsOutliner",
-						"core.databaseBrowser",
+						"core.iblSetsOutliner",
 						"core.inspector",
 						"core.templatesOutliner"),
-						("core.databaseBrowser",))
+						("core.iblSetsOutliner",))
 
 if __name__ == "__main__":
 	main()

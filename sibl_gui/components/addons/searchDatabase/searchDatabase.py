@@ -83,7 +83,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__collectionsOutliner = None
 
 		self.__cloudExcludedTags = ("a", "and", "by", "for", "from", "in", "of", "on", "or", "the", "to", "with")
@@ -220,36 +220,36 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def collectionsOutliner(self):
@@ -331,7 +331,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine = engine
 
 		self.__database = self.__engine.componentsManager["core.database"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
@@ -349,7 +349,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine = None
 
 		self.__database = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__collectionsOutliner = None
 
 		self.activated = False
@@ -499,7 +499,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTagsCloudMatchingIblsSetsUi(self):
 		"""
 		This method sets the user defined pattern matching Ibl Sets and 
-		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:return: Method success. ( Boolean )
 		
@@ -512,7 +512,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTimeMatchingIblSetsUi(self):
 		"""
 		This method sets the user defined time matching Ibl Sets and 
-		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:return: Method success. ( Boolean )
 		
@@ -524,7 +524,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
 		This method sets the pattern matching Ibl Sets and 
-		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 
 		:param pattern: Filtering pattern. ( String )
 		:param flags: Regex filtering flags. ( Integer )
@@ -567,19 +567,19 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Tags_Cloud_listWidget.clear()
 		self.Tags_Cloud_listWidget.addItems(sorted(allTags, key=lambda x:x.lower()))
 		if Counter(filteredIblSets) != Counter(iblSets) or \
-		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+		len(self.__iblSetsOutliner.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
 			LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
 			", ".join((foundations.strings.encode(iblSet.name) for iblSet in filteredIblSets))))
 
-			self.__databaseBrowser.setIblSets(filteredIblSets)
+			self.__iblSetsOutliner.setIblSets(filteredIblSets)
 		return True
 
 	def setTimeMatchingIblSets(self, timeLow, timeHigh):
 		"""
 		This method sets the time matching Ibl Sets and 
-		updates :mod:`sibl_gui.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:param timeLow: Time low. ( QTime )
 		:param timeHigh: Time high. ( QTime )
@@ -604,9 +604,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(filteredIblSets)]
 
 		if Counter(filteredIblSets) != Counter(iblSets) or \
-		len(self.__databaseBrowser.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
+		len(self.__iblSetsOutliner.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
 			", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-			self.__databaseBrowser.setIblSets(filteredIblSets)
+			self.__iblSetsOutliner.setIblSets(filteredIblSets)
 		return True

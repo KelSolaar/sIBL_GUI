@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Database_Browser_Widget</class>
- <widget class="QWidget" name="Database_Browser_Widget">
+ <class>Ibl_Sets_Outliner_Widget</class>
+ <widget class="QWidget" name="Ibl_Sets_Outliner_Widget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,15 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Database Browser</string>
+   <string>Ibl Sets Outliner</string>
   </property>
-  <layout class="QGridLayout" name="Database_Browser_Widget_gridLayout">
+  <layout class="QGridLayout" name="Ibl_Sets_Outliner_Widget_gridLayout">
    <property name="margin">
     <number>0</number>
    </property>
    <item row="1" column="0" colspan="3">
-    <widget class="QFrame" name="Database_Browser_Overall_frame">
-     <layout class="QGridLayout" name="Database_Browser_Overall_frame_gridLayout">
+    <widget class="QFrame" name="Ibl_Sets_Outliner_Overall_frame">
+     <layout class="QGridLayout" name="Ibl_Sets_Outliner_Overall_frame_gridLayout">
       <property name="horizontalSpacing">
        <number>41</number>
       </property>
@@ -27,8 +27,8 @@
        <number>0</number>
       </property>
       <item row="1" column="2">
-       <widget class="QFrame" name="Database_Browser_Thumbnails_Slider_frame">
-        <layout class="QGridLayout" name="Database_Browser_Thumbnails_Slider_frame_gridLayout">
+       <widget class="QFrame" name="Ibl_Sets_Outliner_Thumbnails_Slider_frame">
+        <layout class="QGridLayout" name="Ibl_Sets_Outliner_Thumbnails_Slider_frame_gridLayout">
          <property name="margin">
           <number>0</number>
          </property>
@@ -171,7 +171,7 @@
     </widget>
    </item>
    <item row="0" column="0" colspan="3">
-    <layout class="QGridLayout" name="Database_Browser_gridLayout"/>
+    <layout class="QGridLayout" name="Ibl_Sets_Outliner_gridLayout"/>
    </item>
   </layout>
  </widget>

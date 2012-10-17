@@ -3,7 +3,7 @@ Name = core.inspector
 Title = Inspector
 Module = inspector
 Object = Inspector
-Require = core.databaseBrowser|factory.preferencesManager
+Require = core.iblSetsOutliner|factory.preferencesManager
 Version = 1.0
 
 [Informations]

@@ -139,9 +139,9 @@ ____()
 Components interface access through various access points:
 """
 scriptEditor = componentsManager.getInterface("factory.scriptEditor")
-databaseBrowser = componentsManager.components["core.databaseBrowser"].interface
+iblSetsOutliner = componentsManager.components["core.iblSetsOutliner"].interface
 gpsMap = componentsManager["addons.gpsMap"]
-print(scriptEditor, databaseBrowser, gpsMap)
+print(scriptEditor, iblSetsOutliner, gpsMap)
 
 ____()
 
@@ -189,21 +189,21 @@ collectionsOutliner.removeCollection(collection)
 ____()
 
 """
-'core.databaseBrowser' Component interactions:
+'core.iblSetsOutliner' Component interactions:
 """
-databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
+iblSetsOutliner = componentsManager.getInterface("core.iblSetsOutliner")
 exampleIblSet = umbra.ui.common.getResourcePath("others/Ditch_River_Example/Ditch-River_Example.ibl")
 if exampleIblSet:
-	databaseBrowser.addIblSet("Example Ibl Set", exampleIblSet)
-	iblSets = databaseBrowser.getIblSets()
+	iblSetsOutliner.addIblSet("Example Ibl Set", exampleIblSet)
+	iblSets = iblSetsOutliner.getIblSets()
 	print("Ibl Sets: '{0}'".format(iblSets))
-	iblSetsNames = databaseBrowser.listIblSets()
+	iblSetsNames = iblSetsOutliner.listIblSets()
 	print("Ibl Sets names: '{0}'".format(iblSetsNames))
 	# Ibl Sets management:
-	iblSet = databaseBrowser.getIblSetByName("Ditch River \( Example \)")
-	databaseBrowser.removeIblSet(iblSet)
-	databaseBrowser.addDirectory(os.path.dirname(exampleIblSet))
-	databaseBrowser.removeIblSet(databaseBrowser.getIblSetByName("Ditch River \( Example \)"))
+	iblSet = iblSetsOutliner.getIblSetByName("Ditch River \( Example \)")
+	iblSetsOutliner.removeIblSet(iblSet)
+	iblSetsOutliner.addDirectory(os.path.dirname(exampleIblSet))
+	iblSetsOutliner.removeIblSet(iblSetsOutliner.getIblSetByName("Ditch River \( Example \)"))
 
 ____()
 
@@ -236,8 +236,8 @@ ____()
 'addons.gpsMap' Component interactions:
 """
 gpsMap = componentsManager.getInterface("addons.gpsMap")
-databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
-iblSets = databaseBrowser.getIblSets()
+iblSetsOutliner = componentsManager.getInterface("core.iblSetsOutliner")
+iblSets = iblSetsOutliner.getIblSets()
 if iblSets:
 	gpsMap.show()
 	for iblSet in iblSets:
@@ -251,8 +251,8 @@ ____()
 'addons.loaderScript' Component interactions:
 """
 loaderScript = componentsManager.getInterface("addons.loaderScript")
-databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
-iblSets = databaseBrowser.getIblSets()
+iblSetsOutliner = componentsManager.getInterface("core.iblSetsOutliner")
+iblSets = iblSetsOutliner.getIblSets()
 templatesOutliner = componentsManager.getInterface("core.templatesOutliner")
 templatesOutliner.addDefaultTemplates()
 templates = templatesOutliner.getTemplates()
@@ -286,8 +286,8 @@ ____()
 'addons.preview' Component interactions:
 """
 preview = componentsManager.getInterface("addons.preview")
-databaseBrowser = componentsManager.getInterface("core.databaseBrowser")
-iblSets = databaseBrowser.getIblSets()
+iblSetsOutliner = componentsManager.getInterface("core.iblSetsOutliner")
+iblSets = iblSetsOutliner.getIblSets()
 if iblSets:
 	preview.viewImages(paths=(iblSets[0].lightingImage, iblSets[0].icon))
 

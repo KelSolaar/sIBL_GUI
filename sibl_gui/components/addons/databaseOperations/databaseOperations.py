@@ -100,7 +100,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__database = None
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__templatesOutliner = None
 
 		self.__types = None
@@ -269,36 +269,36 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def templatesOutliner(self):
@@ -383,15 +383,15 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__database = self.__engine.componentsManager["core.database"]
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 
 		self.__types = (DatabaseType(type="Ibl Set",
 						getMethod=sibl_gui.components.core.database.operations.getIblSets,
 						updateContentMethod=sibl_gui.components.core.database.operations.updateIblSetContent,
 						removeMethod=sibl_gui.components.core.database.operations.removeIblSet,
-						modelContainer=self.__databaseBrowser,
-						updateLocationMethod=self.__databaseBrowser.updateIblSetLocation),
+						modelContainer=self.__iblSetsOutliner,
+						updateLocationMethod=self.__iblSetsOutliner.updateIblSetLocation),
 						DatabaseType(type="Template",
 						getMethod=sibl_gui.components.core.database.operations.getTemplates,
 						updateContentMethod=sibl_gui.components.core.database.operations.updateTemplateContent,
@@ -416,7 +416,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__templatesOutliner = None
 
 		self.activated = False

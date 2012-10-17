@@ -3,7 +3,7 @@ Name = addons.locationsBrowser
 Title = Locations Browser
 Module = locationsBrowser
 Object = LocationsBrowser
-Require = addons.loaderScript|core.databaseBrowser|core.inspector|core.templatesOutliner|factory.componentsManagerUi|factory.preferencesManager
+Require = addons.loaderScript|core.iblSetsOutliner|core.inspector|core.templatesOutliner|factory.componentsManagerUi|factory.preferencesManager
 Version = 1.0
 
 [Informations]

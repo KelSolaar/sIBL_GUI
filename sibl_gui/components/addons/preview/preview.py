@@ -93,7 +93,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 
 		self.__imagesPreviewers = None
@@ -280,36 +280,36 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def inspector(self):
@@ -458,7 +458,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__inspector = self.__engine.componentsManager["core.inspector"]
 
 		self.__imagesPreviewers = []
@@ -481,7 +481,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__inspector = None
 
 		for imagesPreviewer in self.__imagesPreviewers[:]:
@@ -566,18 +566,18 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 
 		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction(
-		"Actions|Umbra|Components|core.databaseBrowser|View Background Image ...",
-		slot=self.__databaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered)
+		"Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ...",
+		slot=self.__iblSetsOutliner_views_viewIblSetsBackgroundImagesAction__triggered)
 		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction(
-		"Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...",
-		slot=self.__databaseBrowser_views_viewIblSetsLightingImagesAction__triggered)
+		"Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ...",
+		slot=self.__iblSetsOutliner_views_viewIblSetsLightingImagesAction__triggered)
 		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction(
-		"Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...",
-		slot=self.__databaseBrowser_views_viewIblSetsReflectionImagesAction__triggered)
+		"Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ...",
+		slot=self.__iblSetsOutliner_views_viewIblSetsReflectionImagesAction__triggered)
 		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction(
-		"Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...",
-		slot=self.__databaseBrowser_views_viewIblSetsPlatesAction__triggered)
-		for view in self.__databaseBrowser.views:
+		"Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ...",
+		slot=self.__iblSetsOutliner_views_viewIblSetsPlatesAction__triggered)
+		for view in self.__iblSetsOutliner.views:
 			separatorAction = QAction(view)
 			separatorAction.setSeparator(True)
 			for action in (separatorAction,
@@ -611,15 +611,15 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		viewIblSetsBackgroundImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Background Image ..."
-		viewIblSetsLightingImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ..."
-		viewIblSetsReflectionImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ..."
-		viewIblSetsPlatesAction = "Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ..."
+		viewIblSetsBackgroundImagesAction = "Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ..."
+		viewIblSetsLightingImagesAction = "Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ..."
+		viewIblSetsReflectionImagesAction = "Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ..."
+		viewIblSetsPlatesAction = "Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ..."
 		actions = (viewIblSetsBackgroundImagesAction,
 					viewIblSetsLightingImagesAction,
 					viewIblSetsReflectionImagesAction,
 					viewIblSetsPlatesAction)
-		for view in self.__databaseBrowser.views:
+		for view in self.__iblSetsOutliner.views:
 			for action in actions:
 				view.removeAction(self.__engine.actionsManager.getAction(action))
 		for action in actions:
@@ -658,9 +658,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for value in self.__inspectorButtons.itervalues():
 			value["object"].setParent(None)
 
-	def __databaseBrowser_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
+	def __iblSetsOutliner_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -668,9 +668,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Background")
 
-	def __databaseBrowser_views_viewIblSetsLightingImagesAction__triggered(self, checked):
+	def __iblSetsOutliner_views_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -678,9 +678,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Lighting")
 
-	def __databaseBrowser_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
+	def __iblSetsOutliner_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -688,9 +688,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Reflection")
 
-	def __databaseBrowser_views_viewIblSetsPlatesAction__triggered(self, checked):
+	def __iblSetsOutliner_views_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -808,7 +808,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 		success = True
 		for iblSet in selectedIblSets:
 			if self.__hasMaximumImagesPreviewersInstances():

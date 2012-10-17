@@ -94,7 +94,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__templatesOutliner = None
 		self.__tcpClientUi = None
 
@@ -180,36 +180,36 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__databaseBrowser** attribute.
+		This method is the property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__databaseBrowser. ( QWidget )
+		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
 
-		return self.__databaseBrowser
+		return self.__iblSetsOutliner
 
-	@databaseBrowser.setter
+	@iblSetsOutliner.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self, value):
+	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__databaseBrowser** attribute.
+		This method is the setter method for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
-	@databaseBrowser.deleter
+	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseBrowser(self):
+	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__databaseBrowser** attribute.
+		This method is the deleter method for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowser"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def templatesOutliner(self):
@@ -561,7 +561,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = engine
 
-		self.__databaseBrowser = self.__engine.componentsManager["core.databaseBrowser"]
+		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 		self.__tcpClientUi = self.__engine.componentsManager["addons.tcpClientUi"]
 
@@ -584,7 +584,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__engine = None
 
-		self.__databaseBrowser = None
+		self.__iblSetsOutliner = None
 		self.__templatesOutliner = None
 		self.__tcpClientUi = None
 
@@ -743,7 +743,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(
 			self.__class__.__name__, template.name))
 
-		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 		if selectedIblSets and len(selectedIblSets) != 1:
 			self.__engine.notificationsManager.warnify(
 			"{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
@@ -907,7 +907,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Template|Path", template.path))
 			overrideKeys["Template|Path"] = foundations.parsers.getAttributeCompound("Template|Path", template.path)
 
-		selectedIblSets = self.__databaseBrowser.getSelectedIblSets()
+		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 		iblSet = foundations.common.getFirstItem(selectedIblSets)
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))

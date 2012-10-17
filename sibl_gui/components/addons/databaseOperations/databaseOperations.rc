@@ -3,7 +3,7 @@ Name = addons.databaseOperations
 Title = Database Operations
 Module = databaseOperations
 Object = DatabaseOperations
-Require = core.databaseBrowser|core.database|core.templatesOutliner|factory.preferencesManager
+Require = core.iblSetsOutliner|core.database|core.templatesOutliner|factory.preferencesManager
 Version = 1.0
 
 [Informations]
