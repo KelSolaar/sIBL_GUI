@@ -584,7 +584,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspector.Inspector_Overall_frame.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
-		slot=self.__inspector_openInspectorIblSetLocationsAction__triggered))
+		slot=self.__inspector_openActiveIblSetLocationsAction__triggered))
 		self.__componentsManagerUi.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
@@ -605,10 +605,10 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for view in self.__iblSetsOutliner.views:
 			view.removeAction(self.__engine.actionsManager.getAction(openIblSetsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openIblSetsLocationsAction)
-		openInspectorIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
+		openActiveIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
 		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(openInspectorIblSetLocationsAction))
-		self.__engine.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
+		self.__engine.actionsManager.getAction(openActiveIblSetLocationsAction))
+		self.__engine.actionsManager.unregisterAction(openActiveIblSetLocationsAction)
 		openComponentsLocationsAction = \
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
 		self.__componentsManagerUi.view.removeAction(
@@ -631,7 +631,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openIblSetsLocationsUi()
 
-	def __inspector_openInspectorIblSetLocationsAction__triggered(self, checked):
+	def __inspector_openActiveIblSetLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
@@ -639,7 +639,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.openInspectorIblSetLocationsUi()
+		return self.openActiveIblSetLocationsUi()
 
 	def __componentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
@@ -748,7 +748,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
-	def openInspectorIblSetLocationsUi(self):
+	def openActiveIblSetLocationsUi(self):
 		"""
 		This method opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
 
@@ -757,16 +757,16 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__inspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
-						inspectorIblSet or None
-		if inspectorIblSet:
-			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path),
+		activeIblSet = self.__inspector.activeIblSet
+		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
+						activeIblSet or None
+		if activeIblSet:
+			return self.exploreDirectory(os.path.dirname(activeIblSet.path),
 										foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, inspectorIblSet.title))
+			self.__class__.__name__, activeIblSet.title))
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def openComponentsLocationsUi(self):

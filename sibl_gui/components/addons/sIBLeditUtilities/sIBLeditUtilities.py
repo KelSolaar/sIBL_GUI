@@ -402,7 +402,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...",
-			slot=self.__inspector_editInspectorIblSetInSIBLEditAction__triggered))
+			slot=self.__inspector_editActiveIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
@@ -419,10 +419,10 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			for view in self.__iblSetsOutliner.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetInSIBLEditAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
-			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
+			editActiveIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
 			self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(
-			editInspectorIblSetInSIBLEditAction))
-			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
+			editActiveIblSetInSIBLEditAction))
+			self.__engine.actionsManager.unregisterAction(editActiveIblSetInSIBLEditAction)
 
 	def __iblSetsOutliner_views_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
@@ -434,7 +434,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editIblSetInSIBLEditUi()
 
-	def __inspector_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
+	def __inspector_editActiveIblSetInSIBLEditAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
 
@@ -442,7 +442,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editInspectorIblSetInSIBLEditUi()
+		return self.editActiveIblSetInSIBLEditUi()
 
 	def __sIBLedit_Path_lineEdit_setUi(self):
 		"""
@@ -513,7 +513,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
-	def editInspectorIblSetInSIBLEditUi(self):
+	def editActiveIblSetInSIBLEditUi(self):
 		"""
 		This method edits :mod:`sibl_gui.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
 
@@ -524,15 +524,15 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			inspectorIblSet = self.__inspector.inspectorIblSet
-			inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
-			inspectorIblSet or None
-			if inspectorIblSet:
-				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
+			activeIblSet = self.__inspector.activeIblSet
+			activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
+			activeIblSet or None
+			if activeIblSet:
+				return self.editIblSetInSIBLedit(activeIblSet.path, sIBLedit)
 			else:
 				raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(
-				self.__class__.__name__, inspectorIblSet.title))
+				self.__class__.__name__, activeIblSet.title))
 		else:
 			self.__engine.notificationsManager.warnify(
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))

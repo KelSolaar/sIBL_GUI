@@ -593,16 +593,16 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Background Image ...",
-		slot=self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered))
+		slot=self.__Inspector_Overall_frame_viewActiveIblSetBackgroundImageAction__triggered))
 		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Lighting Image ...",
-		slot=self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered))
+		slot=self.__Inspector_Overall_frame_viewActiveIblSetLightingImageAction__triggered))
 		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Reflection Image ...",
-		slot=self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered))
+		slot=self.__Inspector_Overall_frame_viewActiveIblSetReflectionImageAction__triggered))
 		self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|View Plate(s) ...",
-		slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
+		slot=self.__Inspector_Overall_frame_viewActiveIblSetPlatesAction__triggered))
 
 	def __removeActions(self):
 		"""
@@ -625,14 +625,14 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for action in actions:
 			self.__engine.actionsManager.unregisterAction(action)
 
-		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
-		viewInspectorIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
-		viewInspectorIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
-		viewInspectorIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
-		actions = (viewInspectorIblSetBackgroundImageAction,
-					viewInspectorIblSetLightingImageAction,
-					viewInspectorIblSetReflectionImageAction,
-					viewInspectorIblSetPlatesAction)
+		viewActiveIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
+		viewActiveIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
+		viewActiveIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
+		viewActiveIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
+		actions = (viewActiveIblSetBackgroundImageAction,
+					viewActiveIblSetLightingImageAction,
+					viewActiveIblSetReflectionImageAction,
+					viewActiveIblSetPlatesAction)
 		for action in actions:
 			self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(action))
 			self.__engine.actionsManager.unregisterAction(action)
@@ -648,7 +648,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__inspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
 																				value["row"],
 																				value["column"])
-			value["object"].clicked.connect(functools.partial(self.viewInspectorIblSetImagesUi, key))
+			value["object"].clicked.connect(functools.partial(self.viewActiveIblSetImagesUi, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -698,7 +698,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.viewIblSetsImagesUi("Plate")
 
-	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewActiveIblSetBackgroundImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
 
@@ -706,9 +706,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImagesUi("Background")
+		return self.viewActiveIblSetImagesUi("Background")
 
-	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewActiveIblSetLightingImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
 
@@ -716,9 +716,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImagesUi("Lighting")
+		return self.viewActiveIblSetImagesUi("Lighting")
 
-	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewActiveIblSetReflectionImageAction__triggered(self, checked):
 		"""
 		This method is triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
 
@@ -726,9 +726,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImagesUi("Reflection")
+		return self.viewActiveIblSetImagesUi("Reflection")
 
-	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewActiveIblSetPlatesAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
 
@@ -736,7 +736,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.viewInspectorIblSetImagesUi("Plate")
+		return self.viewActiveIblSetImagesUi("Plate")
 
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
 		"""
@@ -832,7 +832,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError,
 											Exception)
-	def viewInspectorIblSetImagesUi(self, imageType, *args):
+	def viewActiveIblSetImagesUi(self, imageType, *args):
 		"""
 		This method launches :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
@@ -843,28 +843,28 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__inspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and inspectorIblSet or None
-		if not inspectorIblSet:
+		activeIblSet = self.__inspector.activeIblSet
+		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and activeIblSet or None
+		if not activeIblSet:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, inspectorIblSet.title))
+			self.__class__.__name__, activeIblSet.title))
 
 		if self.__hasMaximumImagesPreviewersInstances():
 			return False
 
-		paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
+		paths = self.getIblSetImagesPaths(activeIblSet, imageType)
 		if paths:
 			if self.viewImages(paths, \
 			foundations.strings.encode(self.Custom_Previewer_Path_lineEdit.text())):
 				return True
 			else:
 				raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(
-				self.__class__.__name__, inspectorIblSet.title))
+				self.__class__.__name__, activeIblSet.title))
 		else:
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__,
-																		inspectorIblSet.title,
+																		activeIblSet.title,
 																		imageType))
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)

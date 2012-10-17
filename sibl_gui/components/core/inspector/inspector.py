@@ -167,7 +167,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model = None
 		self.__view = None
 
-		self.__inspectorIblSet = None
+		self.__activeIblSet = None
 		self.__inspectorPlates = None
 
 		self.__noPreviewImageText = """
@@ -198,7 +198,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								</table>
 								</center>
 								"""
-		self.__noInspectorIblSetText = """
+		self.__noActiveIblSetText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -213,7 +213,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								</table>
 								</center>
 								"""
-		self.__inspectorIblSetToolTipText = """
+		self.__activeIblSetToolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -554,36 +554,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
-	def inspectorIblSet(self):
+	def activeIblSet(self):
 		"""
-		This method is the property for **self.__inspectorIblSet** attribute.
+		This method is the property for **self.__activeIblSet** attribute.
 
-		:return: self.__inspectorIblSet. ( QStandardItem )
+		:return: self.__activeIblSet. ( IblSet )
 		"""
 
-		return self.__inspectorIblSet
+		return self.__activeIblSet
 
-	@inspectorIblSet.setter
+	@activeIblSet.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorIblSet(self, value):
+	def activeIblSet(self, value):
 		"""
-		This method is the setter method for **self.__inspectorIblSet** attribute.
+		This method is the setter method for **self.__activeIblSet** attribute.
 
-		:param value: Attribute value. ( QStandardItem )
+		:param value: Attribute value. ( IblSet )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorIblSet"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
 
-	@inspectorIblSet.deleter
+	@activeIblSet.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorIblSet(self):
+	def activeIblSet(self):
 		"""
-		This method is the deleter method for **self.__inspectorIblSet** attribute.
+		This method is the deleter method for **self.__activeIblSet** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorIblSet"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
 
 	@property
 	def inspectorPlates(self):
@@ -650,68 +650,68 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
 
 	@property
-	def noInspectorIblSetText(self):
+	def noActiveIblSetText(self):
 		"""
-		This method is the property for **self.__noInspectorIblSetText** attribute.
+		This method is the property for **self.__noActiveIblSetText** attribute.
 
-		:return: self.__noInspectorIblSetText. ( String )
+		:return: self.__noActiveIblSetText. ( String )
 		"""
 
-		return self.__noInspectorIblSetText
+		return self.__noActiveIblSetText
 
-	@noInspectorIblSetText.setter
+	@noActiveIblSetText.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noInspectorIblSetText(self, value):
+	def noActiveIblSetText(self, value):
 		"""
-		This method is the setter method for **self.__noInspectorIblSetText** attribute.
+		This method is the setter method for **self.__noActiveIblSetText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noInspectorIblSetText"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
 
-	@noInspectorIblSetText.deleter
+	@noActiveIblSetText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noInspectorIblSetText(self):
+	def noActiveIblSetText(self):
 		"""
-		This method is the deleter method for **self.__noInspectorIblSetText** attribute.
+		This method is the deleter method for **self.__noActiveIblSetText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noInspectorIblSetText"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
 
 	@property
-	def inspectorIblSetToolTipText(self):
+	def activeIblSetToolTipText(self):
 		"""
-		This method is the property for **self.__inspectorIblSetToolTipText** attribute.
+		This method is the property for **self.__activeIblSetToolTipText** attribute.
 
-		:return: self.__inspectorIblSetToolTipText. ( String )
+		:return: self.__activeIblSetToolTipText. ( String )
 		"""
 
-		return self.__inspectorIblSetToolTipText
+		return self.__activeIblSetToolTipText
 
-	@inspectorIblSetToolTipText.setter
+	@activeIblSetToolTipText.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorIblSetToolTipText(self, value):
+	def activeIblSetToolTipText(self, value):
 		"""
-		This method is the setter method for **self.__inspectorIblSetToolTipText** attribute.
+		This method is the setter method for **self.__activeIblSetToolTipText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorIblSetToolTipText"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
-	@inspectorIblSetToolTipText.deleter
+	@activeIblSetToolTipText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorIblSetToolTipText(self):
+	def activeIblSetToolTipText(self):
 		"""
-		This method is the deleter method for **self.__inspectorIblSetToolTipText** attribute.
+		This method is the deleter method for **self.__activeIblSetToolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorIblSetToolTipText"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
 	@property
 	def lightLabelRadius(self):
@@ -1028,28 +1028,28 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
-		if self.__inspectorIblSet:
-			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__inspectorIblSet.title,
-																				self.__inspectorIblSet.location))
+		if self.__activeIblSet:
+			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__activeIblSet.title,
+																				self.__activeIblSet.location))
 
-			if foundations.common.pathExists(self.__inspectorIblSet.previewImage):
-				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__inspectorIblSet.previewImage,
+			if foundations.common.pathExists(self.__activeIblSet.previewImage):
+				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__activeIblSet.previewImage,
 																		asynchronousLoading=False))
-				self.__drawInspectorIblSetOverlay()
+				self.__drawActiveIblSetOverlay()
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(
-				sibl_gui.ui.common.filterImagePath(self.__inspectorIblSet.icon),
-				self.__inspectorIblSet.author, self.__inspectorIblSet.link))
+				sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
+				self.__activeIblSet.author, self.__activeIblSet.link))
 
-			self.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(
-													self.__inspectorIblSet.title,
-													self.__inspectorIblSet.author or Constants.nullObject,
-													self.__inspectorIblSet.location or Constants.nullObject,
-													sibl_gui.ui.common.getFormatedShotDate(self.__inspectorIblSet.date,
-																self.__inspectorIblSet.time) or Constants.nullObject,
-																self.__inspectorIblSet.comment or Constants.nullObject))
+			self.Image_label.setToolTip(self.__activeIblSetToolTipText.format(
+													self.__activeIblSet.title,
+													self.__activeIblSet.author or Constants.nullObject,
+													self.__activeIblSet.location or Constants.nullObject,
+													sibl_gui.ui.common.getFormatedShotDate(self.__activeIblSet.date,
+																self.__activeIblSet.time) or Constants.nullObject,
+																self.__activeIblSet.comment or Constants.nullObject))
 
-			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__inspectorIblSet.comment))
+			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__activeIblSet.comment))
 
 			self.Plates_frame.setVisible(bool(self.__inspectorPlates))
 		else:
@@ -1068,7 +1068,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.Title_label.setText(QString())
-		self.Image_label.setText(self.__noInspectorIblSetText.format(sibl_gui.ui.common.filterImagePath(unicode())))
+		self.Image_label.setText(self.__noActiveIblSetText.format(sibl_gui.ui.common.filterImagePath(unicode())))
 		self.Image_label.setToolTip(QString())
 		self.Details_label.setText(QString())
 
@@ -1118,11 +1118,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
 			self.__sectionsFileParsersCache.removeContent(file)
 
-			if not self.__inspectorIblSet:
+			if not self.__activeIblSet:
 				return
 
-			if self.__inspectorIblSet.path == file:
-				self.__setInspectorIblSet()
+			if self.__activeIblSet.path == file:
+				self.__setActiveIblSet()
 				self.uiRefresh.emit()
 
 	def __iblSetsOutliner__modelReset(self):
@@ -1131,7 +1131,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Component Model has changed.
 		"""
 
-		self.__setInspectorIblSet()
+		self.__setActiveIblSet()
 
 	def __iblSetsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
@@ -1142,12 +1142,12 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		self.__setInspectorIblSet()
+		self.__setActiveIblSet()
 
-		self.__setInspectorIblSetPlates()
+		self.__setActiveIblSetPlates()
 		self.refreshNodes.emit()
 
-		if self.__inspectorIblSet:
+		if self.__activeIblSet:
 			self.uiRefresh.emit()
 		else:
 			self.uiClear.emit()
@@ -1197,42 +1197,42 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		QDesktopServices.openUrl(QUrl(url))
 
-	def __setInspectorIblSet(self):
+	def __setActiveIblSet(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
-		self.__inspectorIblSet = foundations.common.getFirstItem(selectedIblSets)
-		if not self.__inspectorIblSet:
+		self.__activeIblSet = foundations.common.getFirstItem(selectedIblSets)
+		if not self.__activeIblSet:
 			rootNode = self.__iblSetsOutliner.model.rootNode
-			self.__inspectorIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
-		self.__inspectorIblSet and self.__setInspectorIblSetParser()
+			self.__activeIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
+		self.__activeIblSet and self.__setActiveIblSetParser()
 
-	def __setInspectorIblSetParser(self):
+	def __setActiveIblSetParser(self):
 		"""
 		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
-		if foundations.common.pathExists(self.__inspectorIblSet.path):
-			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
+		if foundations.common.pathExists(self.__activeIblSet.path):
+			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__activeIblSet))
 
-			if not self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path):
-				sectionsFileParser = SectionsFileParser(self.__inspectorIblSet.path)
+			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
+				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__inspectorIblSet.path : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
-	def __setInspectorIblSetPlates(self):
+	def __setActiveIblSetPlates(self):
 		"""
 		This method sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		path = self.__inspectorIblSet.path
+		path = self.__activeIblSet.path
 		if not foundations.common.pathExists(path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, self.__inspectorIblSet.title))
+			self.__class__.__name__, self.__activeIblSet.title))
 
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(path)
 		self.__inspectorPlates = OrderedDict()
@@ -1240,21 +1240,21 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
 				Plate(name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
-					icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
+					icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 														sectionsFileParser.getValue("PLATEthumb", section))),
-					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
+					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 															sectionsFileParser.getValue("PLATEpreview", section))),
-					image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
+					image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 														sectionsFileParser.getValue("PLATEfile", section))))
 
-	def __drawInspectorIblSetOverlay(self):
+	def __drawActiveIblSetOverlay(self):
 		"""
 		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
 		"""
 
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path)
+		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path)
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
 				self.__drawLightLabel(painter, Light(name="Sun",
@@ -1325,8 +1325,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
-		iblSetNode = IblSetNode(self.__inspectorIblSet,
-								name=self.__inspectorIblSet.title,
+		iblSetNode = IblSetNode(self.__activeIblSet,
+								name=self.__activeIblSet.title,
 								parent=rootNode,
 								nodeFlags=nodeFlags,
 								attributesFlags=attributesFlags)
@@ -1351,15 +1351,15 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		if self.__inspectorIblSet:
+		if self.__activeIblSet:
 			model = self.__iblSetsOutliner.model
 
-			inspectorIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__inspectorIblSet.path]
-			inspectorIblSetNode = foundations.common.getFirstItem(inspectorIblSetNode)
-			if not inspectorIblSetNode:
+			activeIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__activeIblSet.path]
+			activeIblSetNode = foundations.common.getFirstItem(activeIblSetNode)
+			if not activeIblSetNode:
 				return True
 
-			row = inspectorIblSetNode.row()
+			row = activeIblSetNode.row()
 
 			step = not backward and 1 or -1
 			idx = row + step

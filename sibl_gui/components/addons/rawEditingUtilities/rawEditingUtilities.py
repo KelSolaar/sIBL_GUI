@@ -557,7 +557,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
-			slot=self.__inspector_editInspectorIblSetFileAction__triggered))
+			slot=self.__inspector_editActiveIblSetFileAction__triggered))
 			self.__templatesOutliner.view.addAction(self.__engine.actionsManager.registerAction(
 			"Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...",
 			slot=self.__templatesOutliner_view_editTemplatesFilesAction__triggered))
@@ -585,10 +585,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			for view in self.__iblSetsOutliner.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)
-			editInspectorIblSetFileAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
+			editActiveIblSetFileAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
 			self.__inspector.Inspector_Overall_frame.removeAction(
-			self.__engine.actionsManager.getAction(editInspectorIblSetFileAction))
-			self.__engine.actionsManager.unregisterAction(editInspectorIblSetFileAction)
+			self.__engine.actionsManager.getAction(editActiveIblSetFileAction))
+			self.__engine.actionsManager.unregisterAction(editActiveIblSetFileAction)
 			editTemplatesFilesAction = "Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ..."
 			self.__templatesOutliner.view.removeAction(
 			self.__engine.actionsManager.getAction(editTemplatesFilesAction))
@@ -609,7 +609,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.editIblSetsFilesUi()
 
-	def __inspector_editInspectorIblSetFileAction__triggered(self, checked):
+	def __inspector_editActiveIblSetFileAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
 
@@ -617,7 +617,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editInspectorIblSetFileUi()
+		return self.editActiveIblSetFileUi()
 
 	def __templatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
 		"""
@@ -755,7 +755,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
-	def editInspectorIblSetFileUi(self):
+	def editActiveIblSetFileUi(self):
 		"""
 		This method edits :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set file.
 
@@ -764,15 +764,15 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		inspectorIblSet = self.__inspector.inspectorIblSet
-		inspectorIblSet = inspectorIblSet and foundations.common.pathExists(inspectorIblSet.path) and \
-		inspectorIblSet or None
-		if inspectorIblSet:
-			return self.editPath(inspectorIblSet.path, foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
+		activeIblSet = self.__inspector.activeIblSet
+		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
+		activeIblSet or None
+		if activeIblSet:
+			return self.editPath(activeIblSet.path, foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, inspectorIblSet.title))
+			self.__class__.__name__, activeIblSet.title))
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
 	def editTemplatesFilesUi(self):
