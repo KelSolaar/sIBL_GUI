@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>364</width>
-    <height>502</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -25,27 +17,17 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>340</width>
-         <height>384</height>
+         <width>290</width>
+         <height>308</height>
         </rect>
        </property>
        <attribute name="label">
         <string>Search In Tags Cloud</string>
        </attribute>
-       <layout class="QGridLayout" name="Fields_page_gridLayout">
-        <item row="7" column="0" colspan="2">
-         <spacer name="Tags_Cloud_Page_verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
+       <layout class="QGridLayout" name="Tags_Cloud_page_gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
         <item row="6" column="0">
          <widget class="QListWidget" name="Tags_Cloud_listWidget">
           <property name="statusTip">
@@ -101,14 +83,17 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>340</width>
-         <height>384</height>
+         <width>290</width>
+         <height>308</height>
         </rect>
        </property>
        <attribute name="label">
         <string>Search In Shot Time</string>
        </attribute>
        <layout class="QGridLayout" name="Shot_Time_page_gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
         <item row="0" column="0">
          <widget class="QGroupBox" name="Shot_Time_groupBox">
           <property name="title">

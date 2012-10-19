@@ -26,6 +26,7 @@ if sys.version_info[:2] <= (2, 6):
 else:
 	from collections import Counter
 from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QListView
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -34,6 +35,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.addons.searchDatabase.views import TagsCloud_QListView
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #**********************************************************************************************************************
@@ -79,12 +81,14 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.deactivatable = True
 
 		self.__dockArea = 2
-		self.__tagsCloudListWidgetSpacing = 4
+		self.__viewSpacing = 4
 
 		self.__engine = None
 
 		self.__iblSetsOutliner = None
 		self.__collectionsOutliner = None
+
+		self.__view = None
 
 		self.__cloudExcludedTags = ("a", "and", "by", "for", "from", "in", "of", "on", "or", "the", "to", "with")
 
@@ -124,36 +128,36 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
-	def tagsCloudListWidgetSpacing(self):
+	def viewSpacing(self):
 		"""
-		This method is the property for **self.__tagsCloudListWidgetSpacing** attribute.
+		This method is the property for **self.__viewSpacing** attribute.
 
-		:return: self.__tagsCloudListWidgetSpacing. ( Integer )
+		:return: self.__viewSpacing. ( Integer )
 		"""
 
-		return self.__tagsCloudListWidgetSpacing
+		return self.__viewSpacing
 
-	@tagsCloudListWidgetSpacing.setter
+	@viewSpacing.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tagsCloudListWidgetSpacing(self, value):
+	def viewSpacing(self, value):
 		"""
-		This method is the setter method for **self.__tagsCloudListWidgetSpacing** attribute.
+		This method is the setter method for **self.__viewSpacing** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tagsCloudListWidgetSpacing"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "viewSpacing"))
 
-	@tagsCloudListWidgetSpacing.deleter
+	@viewSpacing.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tagsCloudListWidgetSpacing(self):
+	def viewSpacing(self):
 		"""
-		This method is the deleter method for **self.__tagsCloudListWidgetSpacing** attribute.
+		This method is the deleter method for **self.__viewSpacing** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tagsCloudListWidgetSpacing"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "viewSpacing"))
 
 	@property
 	def engine(self):
@@ -284,6 +288,38 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collectionsOutliner"))
 
 	@property
+	def view(self):
+		"""
+		This method is the property for **self.__view** attribute.
+
+		:return: self.__view. ( QWidget )
+		"""
+
+		return self.__view
+
+	@view.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def view(self, value):
+		"""
+		This method is the setter method for **self.__view** attribute.
+
+		:param value: Attribute value. ( QWidget )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+
+	@view.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def view(self):
+		"""
+		This method is the deleter method for **self.__view** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
 	def cloudExcludedTags(self):
 		"""
 		This method is the property for **self.__cloudExcludedTags** attribute.
@@ -364,10 +400,19 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.Tags_Cloud_listWidget.setParent(None)
+		self.Tags_Cloud_listWidget = TagsCloud_QListView(self, message="No Tag to view!")
+		self.Tags_Cloud_listWidget.setObjectName("Tags_Cloud_listWidget")
+		self.Tags_Cloud_page_gridLayout.addWidget(self.Tags_Cloud_listWidget, 0, 0)
+		self.__view = self.Tags_Cloud_listWidget
+		self.__view.setMovement(QListView.Static)
+		self.__view.setResizeMode(QListView.Adjust)
+		self.__view.setViewMode(QListView.IconMode)
+
 		self.Search_Database_lineEdit = Search_QLineEdit(self)
 		self.Search_Database_lineEdit.setPlaceholderText("Search In Tags Cloud ...")
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
-		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
+		self.__view.setSpacing(self.__viewSpacing)
 
 		self.__cloudExcludedTags = list(itertools.chain.from_iterable(
 									[(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper()))
@@ -379,7 +424,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Case_Sensitive_Matching_pushButton.clicked.connect(self.__Case_Sensitive_Matching_pushButton__clicked)
 		self.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
-		self.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
+		self.__view.itemDoubleClicked.connect(self.__view__doubleClicked)
 		self.__collectionsOutliner.view.selectionModel().selectionChanged.connect(
 		self.__collectionsOutliner_view_selectionModel__selectionChanged)
 
@@ -400,7 +445,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Case_Sensitive_Matching_pushButton.clicked.disconnect(self.__Case_Sensitive_Matching_pushButton__clicked)
 		self.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
-		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
+		self.__view.itemDoubleClicked.disconnect(self.__view__doubleClicked)
 		self.__collectionsOutliner.view.selectionModel().selectionChanged.disconnect(
 		self.__collectionsOutliner_view_selectionModel__selectionChanged)
 
@@ -477,9 +522,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_High_timeEdit.setTime(self.Time_Low_timeEdit.time().addSecs(60))
 		self.setTimeMatchingIblSetsUi()
 
-	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
+	def __view__doubleClicked(self, listWidgetItem):
 		"""
-		This method is triggered when **Tags_Cloud_listWidget** is double clicked.
+		This method is triggered when the View is double clicked.
 
 		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
 		"""
@@ -564,8 +609,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				allTags.update(tagsCloud)
 				filteredIblSets.append(iblSet)
 
-		self.Tags_Cloud_listWidget.clear()
-		self.Tags_Cloud_listWidget.addItems(sorted(allTags, key=lambda x:x.lower()))
+		self.__view.clear()
+		self.__view.addItems(sorted(allTags, key=lambda x:x.lower()))
 		if Counter(filteredIblSets) != Counter(iblSets) or \
 		len(self.__iblSetsOutliner.getActiveView().filterNodes("IblSet", "family")) != len(iblSets):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]

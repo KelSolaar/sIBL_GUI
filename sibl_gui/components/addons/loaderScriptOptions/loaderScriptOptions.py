@@ -44,6 +44,7 @@ import foundations.verbose
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.addons.loaderScriptOptions.views import TemplatesAttributes_QTableWidget
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
@@ -98,6 +99,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__templatesOutliner = None
 		self.__loaderScript = None
 
+		self.__views = None
+		self.__commonView = None
+		self.__additionalView = None
+
 		self.__namespaceSplitter = "|"
 
 		self.__templatesSettingsDirectory = "templates/"
@@ -109,9 +114,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__uiLightGrayColor = QColor(240, 240, 240)
 		self.__uiDarkGrayColor = QColor(160, 160, 160)
-
-		self.__tableWidgetRowHeight = 30
-		self.__tableWidgetHeaderHeight = 26
 
 		self.__enumSplitter = ";"
 
@@ -245,6 +247,102 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loaderScript"))
+
+	@property
+	def views(self):
+		"""
+		This method is the property for **self.__views** attribute.
+
+		:return: self.__views. ( Tuple )
+		"""
+
+		return self.__views
+
+	@views.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def views(self, value):
+		"""
+		This method is the setter method for **self.__views** attribute.
+
+		:param value: Attribute value. ( Tuple )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
+
+	@views.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def views(self):
+		"""
+		This method is the deleter method for **self.__views** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
+
+	@property
+	def commonView(self):
+		"""
+		This method is the property for **self.__commonView** attribute.
+
+		:return: self.__commonView. ( QListView )
+		"""
+
+		return self.__commonView
+
+	@commonView.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def commonView(self, value):
+		"""
+		This method is the setter method for **self.__commonView** attribute.
+
+		:param value: Attribute value. ( QListView )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "commonView"))
+
+	@commonView.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def commonView(self):
+		"""
+		This method is the deleter method for **self.__commonView** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
+	def additionalView(self):
+		"""
+		This method is the property for **self.__additionalView** attribute.
+
+		:return: self.__additionalView. ( QListView )
+		"""
+
+		return self.__additionalView
+
+	@additionalView.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def additionalView(self, value):
+		"""
+		This method is the setter method for **self.__additionalView** attribute.
+
+		:param value: Attribute value. ( QListView )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "additionalView"))
+
+	@additionalView.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def additionalView(self):
+		"""
+		This method is the deleter method for **self.__additionalView** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
 	def namespaceSplitter(self):
@@ -542,70 +640,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@property
-	def tableWidgetRowHeight(self):
-		"""
-		This method is the property for **self.__tableWidgetRowHeight** attribute.
-
-		:return: self.__tableWidgetRowHeight. ( Integer )
-		"""
-
-		return self.__tableWidgetRowHeight
-
-	@tableWidgetRowHeight.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self, value):
-		"""
-		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
-
-	@tableWidgetRowHeight.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
-
-	@property
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the property for **self.__tableWidgetHeaderHeight** attribute.
-
-		:return: self.__tableWidgetHeaderHeight. ( Integer )
-		"""
-
-		return self.__tableWidgetHeaderHeight
-
-	@tableWidgetHeaderHeight.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self, value):
-		"""
-		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
-
-	@tableWidgetHeaderHeight.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
-
-	@property
 	def enumSplitter(self):
 		"""
 		This method is the property for **self.__enumSplitter** attribute.
@@ -699,7 +733,19 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
+		self.Common_Attributes_tableWidget.setParent(None)
+		self.Common_Attributes_tableWidget = TemplatesAttributes_QTableWidget(self, message="No Attributes to view!")
+		self.Common_Attributes_tableWidget.setObjectName("Common_Attributes_tableWidget")
+		self.Common_Attributes_page_gridLayout.addWidget(self.Common_Attributes_tableWidget, 0, 0)
+		self.__commonView = self.Common_Attributes_tableWidget
+
+		self.Additional_Attributes_tableWidget.setParent(None)
+		self.Additional_Attributes_tableWidget = TemplatesAttributes_QTableWidget(self, message="No Attributes to view!")
+		self.Additional_Attributes_tableWidget.setObjectName("Additional_Attributes_tableWidget")
+		self.Additional_Attributes_page_gridLayout.addWidget(self.Additional_Attributes_tableWidget, 0, 0)
+		self.__additionalView = self.Additional_Attributes_tableWidget
+
+		self.__views = (self.__commonView, self.__additionalView)
 
 		# Signals / Slots.
 		self.__templatesOutliner.view.selectionModel().selectionChanged.connect(
@@ -716,6 +762,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		self.__views = None
+		self.__commonView = None
+		self.__additionalView = None
 
 		# Signals / Slots.
 		self.__templatesOutliner.view.selectionModel().selectionChanged.disconnect(
@@ -751,31 +801,30 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	def __tableWidget_setUi(self, section, tableWidget, overrides):
+	def __view_setUi(self, section, view, overrides):
 		"""
-		This method defines and sets the given table widget.
+		This method defines and sets the given View.
 
 		:param section: Section attributes. ( Dictionary )
-		:param tableWidget: Table Widget. ( QTableWidget )
+		:param view: Table Widget. ( QTableWidget )
 		:param overrides: Attributes overrides. ( Dictionary )
 		"""
 
-		LOGGER.debug("> Updating '{0}'.".format(tableWidget.objectName()))
+		LOGGER.debug("> Updating '{0}'.".format(view.objectName()))
 
-		tableWidget.hide()
+		view.hide()
 
-		tableWidget.clear()
-		tableWidget.setRowCount(len(section))
-		tableWidget.setColumnCount(len(self.__optionsToolboxesHeaders))
-		tableWidget.horizontalHeader().setStretchLastSection(True)
-		tableWidget.setHorizontalHeaderLabels(self.__optionsToolboxesHeaders)
-		tableWidget.horizontalHeader().hide()
+		self.__view_clearUi(view)
 
-		tableWidget.setMinimumHeight(len(section) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
+		view.setRowCount(len(section))
+		view.setColumnCount(len(self.__optionsToolboxesHeaders))
+		view.horizontalHeader().setStretchLastSection(True)
+		view.setHorizontalHeaderLabels(self.__optionsToolboxesHeaders)
+		view.horizontalHeader().hide()
 
 		palette = QPalette()
 		palette.setColor(QPalette.Base, Qt.transparent)
-		tableWidget.setPalette(palette)
+		view.setPalette(palette)
 
 		verticalHeaderLabels = []
 		for row, attribute in enumerate(section):
@@ -799,7 +848,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				item.setChecked(state)
 
 				# Signals / Slots.
-				item.clicked.connect(self.__tableWidget__valueChanged)
+				item.clicked.connect(self.__view__valueChanged)
 			elif attributeCompound.type == "Float":
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
@@ -807,7 +856,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				item.setValue(float(overridesValue or attributeCompound.value))
 
 				# Signals / Slots.
-				item.valueChanged.connect(self.__tableWidget__valueChanged)
+				item.valueChanged.connect(self.__view__valueChanged)
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
 				comboBoxItems = [enumItem.strip() for enumItem in attributeCompound.value.split(self.__enumSplitter)]
@@ -816,27 +865,42 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					item.setCurrentIndex(comboBoxItems.index(overridesValue))
 
 				# Signals / Slots.
-				item.currentIndexChanged.connect(self.__tableWidget__valueChanged)
+				item.currentIndexChanged.connect(self.__view__valueChanged)
 			elif attributeCompound.type == "String":
 				item = QLineEdit(QString(overridesValue or attributeCompound.value))
 
 				# Signals / Slots.
-				item.editingFinished.connect(self.__tableWidget__valueChanged)
+				item.editingFinished.connect(self.__view__valueChanged)
 
 			item.data = attributeCompound
-			tableWidget.setCellWidget(row, 0, item)
+			view.setCellWidget(row, 0, item)
 
-		tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
-		tableWidget.show()
+		view.setVerticalHeaderLabels(verticalHeaderLabels)
+		view.show()
 
-	def __commonAndAdditionalAttributesTablesWidgets_setUi(self):
+	def __view_clearUi(self, view):
 		"""
-		This method sets the **Common_Attributes_tableWidget** and  **Additional_Attributes_tableWidget** widgets.
+		This method defines and sets the given View.
+
+		:param view: Table Widget. ( QTableWidget )
+		"""
+
+		LOGGER.debug("> Clearing '{0}'.".format(view.objectName()))
+
+		view.clear()
+		view.setRowCount(0)
+		view.setColumnCount(0)
+
+	def __views_setUi(self):
+		"""
+		This method sets the Views.
 		"""
 
 		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
 		template = foundations.common.getFirstItem(selectedTemplates)
 		if not (template and foundations.common.pathExists(template.path)):
+			for view in self.__views:
+				self.__view_clearUi(view)
 			return
 
 		LOGGER.debug("> Attempting to read '{0}' Template settings file.".format(template.name))
@@ -880,25 +944,14 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
 		rawSections=(self.__templateScriptSection))
 
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection],
-								self.Common_Attributes_tableWidget, commonAttributesOverrides)
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection],
-								self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
+		self.__view_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection],
+								self.__commonView, commonAttributesOverrides)
+		self.__view_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection],
+								self.__additionalView, additionalAttributesOverrides)
 
-	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __view__valueChanged(self, *args):
 		"""
-		This method is triggered when **templatesOutliner.view** Model selection has changed.
-
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
-		"""
-
-		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
-
-	def __tableWidget__valueChanged(self, *args):
-		"""
-		This method is triggered when a **Common_Attributes_tableWidget** or 
-		**Additional_Attributes_tableWidget** Widget value has changed.
+		This method is triggered when a View Widget value has changed.
 
 		:param \*args: Arguments. ( \* )
 		"""
@@ -906,13 +959,13 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Template settings file content.".format(self.__templateSettingsFile))
 		templateSettingsSectionsFileParser = SectionsFileParser(self.__templateSettingsFile)
 		templateSettingsSectionsFileParser.sections = OrderedDict()
-		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection,
+		for section, view in OrderedDict([(self.__templateCommonAttributesSection,
 												self.Common_Attributes_tableWidget),
 												(self.__templateAdditionalAttributesSection,
 												self.Additional_Attributes_tableWidget)]).iteritems():
 			templateSettingsSectionsFileParser.sections[section] = OrderedDict()
-			for row in range(tableWidget.rowCount()):
-				widget = tableWidget.cellWidget(row, 0)
+			for row in range(view.rowCount()):
+				widget = view.cellWidget(row, 0)
 				if type(widget) is Variable_QPushButton:
 					value = widget.text() == "True" and "1" or "0"
 				elif type(widget) is QDoubleSpinBox:
@@ -925,18 +978,28 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
 
-	def __updateOverrideKeys(self, tableWidget):
+	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This method is triggered when **templatesOutliner.view** Model selection has changed.
+
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
+		"""
+
+		self.__views_setUi()
+
+	def __updateOverrideKeys(self, view):
 		"""
 		This method updates the Loader Script Component override keys.
 
-		:param tableWidget: Table Widget. ( QTableWidget )
+		:param view: Table Widget. ( QTableWidget )
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Updating override keys with '{0}' attributes.".format(tableWidget.objectName()))
+		LOGGER.debug("> Updating override keys with '{0}' attributes.".format(view.objectName()))
 
-		for row in range(tableWidget.rowCount()):
-			widget = tableWidget.cellWidget(row, 0)
+		for row in range(view.rowCount()):
+			widget = view.cellWidget(row, 0)
 			if type(widget) is Variable_QPushButton:
 				value = widget.text() == "True" and "1" or "0"
 			elif type(widget) is QDoubleSpinBox:

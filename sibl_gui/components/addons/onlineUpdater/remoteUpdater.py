@@ -43,6 +43,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.pkzip import Pkzip
 from sibl_gui.components.addons.onlineUpdater.downloadManager import DownloadManager
+from sibl_gui.components.addons.onlineUpdater.views import TemplatesReleases_QTableWidget
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
@@ -114,10 +115,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__uiLightGrayColor = QColor(240, 240, 240)
 		self.__uiDarkGrayColor = QColor(160, 160, 160)
 		self.__splitter = "|"
-		self.__tableWidgetRowHeight = 30
-		self.__tableWidgetHeaderHeight = 25
 
-		self.__templatesTableWidgetHeaders = ["data",
+		self.__view = None
+
+		self.__headers = ["data",
 											"Get it!",
 											"Local version",
 											"Repository version",
@@ -366,6 +367,38 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@property
+	def view(self):
+		"""
+		This method is the property for **self.__view** attribute.
+
+		:return: self.__view. ( QWidget )
+		"""
+
+		return self.__view
+
+	@view.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def view(self, value):
+		"""
+		This method is the setter method for **self.__view** attribute.
+
+		:param value: Attribute value. ( QWidget )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+
+	@view.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def view(self):
+		"""
+		This method is the deleter method for **self.__view** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
 	def splitter(self):
 		"""
 		This method is the property for **self.__splitter** attribute.
@@ -398,100 +431,36 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "splitter"))
 
 	@property
-	def tableWidgetRowHeight(self):
+	def headers(self):
 		"""
-		This method is the property for **self.__tableWidgetRowHeight** attribute.
+		This method is the property for **self.__headers** attribute.
 
-		:return: self.__tableWidgetRowHeight. ( Integer )
+		:return: self.__headers. ( String )
 		"""
 
-		return self.__tableWidgetRowHeight
+		return self.__headers
 
-	@tableWidgetRowHeight.setter
+	@headers.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self, value):
+	def headers(self, value):
 		"""
-		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
-
-	@tableWidgetRowHeight.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
-
-	@property
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the property for **self.__tableWidgetHeaderHeight** attribute.
-
-		:return: self.__tableWidgetHeaderHeight. ( Integer )
-		"""
-
-		return self.__tableWidgetHeaderHeight
-
-	@tableWidgetHeaderHeight.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self, value):
-		"""
-		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
-
-	@tableWidgetHeaderHeight.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
-
-	@property
-	def templatesTableWidgetHeaders(self):
-		"""
-		This method is the property for **self.__templatesTableWidgetHeaders** attribute.
-
-		:return: self.__templatesTableWidgetHeaders. ( String )
-		"""
-
-		return self.__templatesTableWidgetHeaders
-
-	@templatesTableWidgetHeaders.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def templatesTableWidgetHeaders(self, value):
-		"""
-		This method is the setter method for **self.__templatesTableWidgetHeaders** attribute.
+		This method is the setter method for **self.__headers** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
 
-	@templatesTableWidgetHeaders.deleter
+	@headers.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def templatesTableWidgetHeaders(self):
+	def headers(self):
 		"""
-		This method is the deleter method for **self.__templatesTableWidgetHeaders** attribute.
+		This method is the deleter method for **self.__headers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
 	@property
 	def applicationChangesUrl(self):
@@ -651,21 +620,22 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Get_Latest_Templates_pushButton.hide()
 		else:
 			self.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiTemplatesImage)))
-			self.Templates_tableWidget.clear()
-			self.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-			self.Templates_tableWidget.setRowCount(len(templatesReleases))
-			self.Templates_tableWidget.setColumnCount(len(self.__templatesTableWidgetHeaders))
-			self.Templates_tableWidget.setHorizontalHeaderLabels(self.__templatesTableWidgetHeaders)
-			self.Templates_tableWidget.hideColumn(0)
-			self.Templates_tableWidget.horizontalHeader().setStretchLastSection(True)
-			self.Templates_tableWidget.setMinimumHeight(
-			len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
-			self.Templates_tableWidget.setMaximumHeight(
-			len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
+			self.Templates_tableWidget.setParent(None)
+			self.Templates_tableWidget = TemplatesReleases_QTableWidget(self, message="No Releases to view!")
+			self.Templates_tableWidget.setObjectName("Templates_tableWidget")
+			self.Templates_gridLayout.addWidget(self.Templates_tableWidget, 0, 0)
+			self.__view = self.Templates_tableWidget
+			self.__view.clear()
+			self.__view.setEditTriggers(QAbstractItemView.NoEditTriggers)
+			self.__view.setRowCount(len(templatesReleases))
+			self.__view.setColumnCount(len(self.__headers))
+			self.__view.setHorizontalHeaderLabels(self.__headers)
+			self.__view.hideColumn(0)
+			self.__view.horizontalHeader().setStretchLastSection(True)
 
 			palette = QPalette()
 			palette.setColor(QPalette.Base, Qt.transparent)
-			self.Templates_tableWidget.setPalette(palette)
+			self.__view.setPalette(palette)
 
 			verticalHeaderLabels = []
 			for row, release in enumerate(sorted(templatesReleases)):
@@ -673,31 +643,31 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 				tableWidgetItem = QTableWidgetItem()
 				tableWidgetItem.data = templatesReleases[release]
-				self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
+				self.__view.setItem(row, 0, tableWidgetItem)
 
 				tableWidgetItem = Variable_QPushButton(self,
 														True,
 														(self.__uiLightGrayColor, self.__uiDarkGrayColor),
 														("Yes", "No"))
-				self.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
+				self.__view.setCellWidget(row, 1, tableWidgetItem)
 
 				tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
 				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-				self.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
+				self.__view.setItem(row, 2, tableWidgetItem)
 
 				tableWidgetItem = QTableWidgetItem(templatesReleases[release].repositoryVersion)
 				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-				self.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
+				self.__view.setItem(row, 3, tableWidgetItem)
 
 				tableWidgetItem = QTableWidgetItem(templatesReleases[release].type)
 				tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-				self.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
+				self.__view.setItem(row, 4, tableWidgetItem)
 
 				tableWidgetItem = QTableWidgetItem(templatesReleases[release].comment)
-				self.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
+				self.__view.setItem(row, 5, tableWidgetItem)
 
-			self.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
-			self.Templates_tableWidget.resizeColumnsToContents()
+			self.__view.setVerticalHeaderLabels(verticalHeaderLabels)
+			self.__view.resizeColumnsToContents()
 
 		# Signals / Slots.
 		self.Get_sIBL_GUI_pushButton.clicked.connect(self.__Get_sIBL_GUI_pushButton__clicked)
@@ -738,9 +708,9 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		requests = []
-		for row in range(self.Templates_tableWidget.rowCount()):
-			if self.Templates_tableWidget.cellWidget(row, 1).state:
-				requests.append(self.Templates_tableWidget.item(row, 0).data)
+		for row in range(self.__view.rowCount()):
+			if self.__view.cellWidget(row, 1).state:
+				requests.append(self.__view.item(row, 0).data)
 
 		if not requests:
 			return
