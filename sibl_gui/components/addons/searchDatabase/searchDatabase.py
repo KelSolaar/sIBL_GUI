@@ -191,37 +191,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
-	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def iblSetsOutliner(self):
@@ -366,7 +335,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
@@ -384,7 +352,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
-		self.__database = None
 		self.__iblSetsOutliner = None
 		self.__collectionsOutliner = None
 

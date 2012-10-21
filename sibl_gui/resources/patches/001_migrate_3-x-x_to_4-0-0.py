@@ -119,6 +119,6 @@ sIBL_GUI will now exit!".format(inspect.getmodulename(apply), legacyDatabaseFile
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
 				inspect.getmodulename(apply), id))
-				sibl_gui.components.core.database.operations.removeTemplate(databaseSession, id)
+				sibl_gui.components.core.database.operations.removeTemplate(id, databaseSession)
 
 	return True

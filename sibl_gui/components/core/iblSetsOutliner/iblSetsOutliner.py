@@ -138,7 +138,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspectLayout = "inspectCentric"
 
 		self.__scriptEditor = None
-		self.__database = None
 		self.__collectionsOutliner = None
 
 		self.__model = None
@@ -648,38 +647,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
 
 	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
-
-	@property
 	def collectionsOutliner(self):
 		"""
 		This method is the property for **self.__collectionsOutliner** attribute.
@@ -1050,7 +1017,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 
 		self.activated = True
@@ -1220,7 +1186,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 							self.__class__.__name__, directory))
 
 			# Ibl Sets table integrity checking.
-			erroneousIblSets = sibl_gui.components.core.database.operations.checkIblSetsTableIntegrity(self.__database.databaseSession)
+			erroneousIblSets = sibl_gui.components.core.database.operations.checkIblSetsTableIntegrity()
 			try:
 				for iblSet, exceptions in erroneousIblSets.iteritems():
 					for exception in exceptions:
@@ -1298,7 +1264,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSetNode.synchronizeDatabaseItem()
 		iblSetNode.synchronizeToolTip()
 
-		self.__database.commit()
+		sibl_gui.components.core.database.operations.commit()
 
 	def __model__refreshNodes(self):
 		"""
@@ -1498,7 +1464,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not iblSet:
 			return
 
-		if sibl_gui.components.core.database.operations.updateIblSetContent(self.__database.databaseSession, iblSet):
+		if sibl_gui.components.core.database.operations.updateIblSetContent(iblSet):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, iblSet.title))
@@ -1536,10 +1502,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = [iblSet for iblSet in set(self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or \
 		self.__collectionsOutliner.getCollections())).intersection(
-		sibl_gui.components.core.database.operations.filterIblSets(self.__database.databaseSession,
-																"{0}".format(foundations.strings.encode(pattern.pattern)),
-																attribute,
-																flags))]
+		sibl_gui.components.core.database.operations.filterIblSets(
+		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
@@ -1742,7 +1706,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if sibl_gui.components.core.database.operations.addIblSet(
-			self.__database.databaseSession, name, path, collectionId or self.__getCandidateCollectionId()):
+			name, path, collectionId or self.__getCandidateCollectionId()):
 				self.refreshNodes.emit()
 				return True
 			else:
@@ -1797,7 +1761,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
-		if sibl_gui.components.core.database.operations.removeIblSet(self.__database.databaseSession, iblSet.id):
+		if sibl_gui.components.core.database.operations.removeIblSet(iblSet.id):
 			self.refreshNodes.emit()
 			return True
 		else:
@@ -1818,7 +1782,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__,
 																					iblSet.title,
 																					file))
-		if sibl_gui.components.core.database.operations.updateIblSetLocation(self.__database.databaseSession, iblSet, file):
+		if sibl_gui.components.core.database.operations.updateIblSetLocation(iblSet, file):
 			self.refreshNodes.emit()
 			return True
 		else:
@@ -1832,7 +1796,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Ibl Sets. ( List )
 		"""
 
-		return [iblSet for iblSet in sibl_gui.components.core.database.operations.getIblSets(self.__database.databaseSession)]
+		return [iblSet for iblSet in sibl_gui.components.core.database.operations.getIblSets()]
 
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1851,10 +1815,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getIblSets()).intersection(
-		sibl_gui.components.core.database.operations.filterIblSets(self.__database.databaseSession,
-								"{0}".format(foundations.strings.encode(pattern.pattern)),
-								attribute,
-								flags)))
+		sibl_gui.components.core.database.operations.filterIblSets(
+		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)))
 
 	def iblSetExists(self, path):
 		"""
@@ -1864,7 +1826,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return sibl_gui.components.core.database.operations.iblSetExists(self.__database.databaseSession, path)
+		return sibl_gui.components.core.database.operations.iblSetExists(path)
 
 	def listIblSets(self):
 		"""

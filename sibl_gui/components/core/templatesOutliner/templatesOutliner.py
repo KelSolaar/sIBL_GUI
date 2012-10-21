@@ -972,8 +972,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.addDefaultTemplates()
 
 			# Templates table integrity checking.
-			erroneousTemplates = sibl_gui.components.core.database.operations.checkTemplatesTableIntegrity(
-								self.__database.databaseSession)
+			erroneousTemplates = sibl_gui.components.core.database.operations.checkTemplatesTableIntegrity()
 			try:
 				for template, exceptions in erroneousTemplates.iteritems():
 					for exception in exceptions:
@@ -1234,7 +1233,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not template:
 			return
 
-		if sibl_gui.components.core.database.operations.updateTemplateContent(self.__database.databaseSession, template):
+		if sibl_gui.components.core.database.operations.updateTemplateContent(template):
 			self.__engine.notificationsManager.notify(
 			"{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
 			self.__class__.__name__, template.title))
@@ -1397,18 +1396,18 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:note: This method may require user interaction.
 		"""
 
-		templates = sibl_gui.components.core.database.operations.getTemplates(self.__database.databaseSession)
+		templates = sibl_gui.components.core.database.operations.getTemplates()
 		self.__engine.startProcessing("Filtering Templates ...", len(templates.all()))
 		success = True
 		for template in templates:
 			matchingTemplates = sibl_gui.components.core.database.operations.filterTemplates(
-								self.__database.databaseSession, "^{0}$".format(template.name), "name")
+								 "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
 				for identity in sorted([(databaseTemplate.id, databaseTemplate.release) for databaseTemplate in matchingTemplates],
 								reverse=True,
 								key=lambda x:(foundations.strings.getVersionRank(x[1])))[1:]:
-					success *= sibl_gui.components.core.database.operations.removeTemplate(
-							self.__database.databaseSession, foundations.common.getFirstItem(identity)) or False
+					success *= 	sibl_gui.components.core.database.operations.removeTemplate(
+								foundations.common.getFirstItem(identity)) or False
 				self.refreshNodes.emit()
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -1430,11 +1429,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		if not sibl_gui.components.core.database.operations.filterTemplates(
-		self.__database.databaseSession, "^{0}$".format(re.escape(path)), "path"):
+		if not sibl_gui.components.core.database.operations.filterTemplates("^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 			if sibl_gui.components.core.database.operations.addTemplate(
-			self.__database.databaseSession, name, path, collectionId or self.__getCandidateCollectionId(path)):
+			name, path, collectionId or self.__getCandidateCollectionId(path)):
 				self.refreshNodes.emit()
 				return True
 			else:
@@ -1498,14 +1496,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			if not foundations.common.pathExists(path):
 				continue
 
-			if not set(sibl_gui.components.core.database.operations.filterCollections(self.__database.databaseSession,
-												"^{0}$".format(collection), "name")).intersection(
-												sibl_gui.components.core.database.operations.filterCollections(
-												self.__database.databaseSession, "Templates", "type")):
+			if not set(sibl_gui.components.core.database.operations.filterCollections(
+									"^{0}$".format(collection), "name")).intersection(
+									sibl_gui.components.core.database.operations.filterCollections("Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
-				sibl_gui.components.core.database.operations.addCollection(self.__database.databaseSession,
-										collection,
-										"Templates", "Template {0} Collection".format(collection))
+				sibl_gui.components.core.database.operations.addCollection(
+				collection, "Templates", "Template {0} Collection".format(collection))
 			success *= self.addDirectory(path, self.getCollectionByName(collection).id)
 
 		if success:
@@ -1524,8 +1520,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if sibl_gui.components.core.database.operations.removeTemplate(
-		self.__database.databaseSession, foundations.strings.encode(template.id)):
+		if sibl_gui.components.core.database.operations.removeTemplate(foundations.strings.encode(template.id)):
 			self.refreshNodes.emit()
 			return True
 		else:
@@ -1541,7 +1536,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Template exists. ( Boolean )
 		"""
 
-		return sibl_gui.components.core.database.operations.templateExists(self.__database.databaseSession, path)
+		return sibl_gui.components.core.database.operations.templateExists(path)
 
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template):
@@ -1561,7 +1556,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
 																					template.name, file))
-		if not sibl_gui.components.core.database.operations.updateTemplateLocation(self.__database.databaseSession, template, file):
+		if not sibl_gui.components.core.database.operations.updateTemplateLocation(template, file):
 			self.refreshNodes.emit()
 			return True
 		else:
@@ -1595,7 +1590,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates Collections. ( List )
 		"""
 
-		return sibl_gui.components.core.database.operations.getCollectionsByType(self.__database.databaseSession, "Templates")
+		return sibl_gui.components.core.database.operations.getCollectionsByType("Templates")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1613,10 +1608,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		except Exception:
 			return list()
 
-		return sibl_gui.components.core.database.operations.filterTemplatesCollections(self.__database.databaseSession,
-													"{0}".format(foundations.strings.encode(pattern.pattern)),
-													attribute,
-													flags)
+		return sibl_gui.components.core.database.operations.filterTemplatesCollections(
+		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)
 
 	def getTemplates(self):
 		"""
@@ -1625,7 +1618,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Database Templates. ( List )
 		"""
 
-		return [template for template in sibl_gui.components.core.database.operations.getTemplates(self.__database.databaseSession)]
+		return [template for template in sibl_gui.components.core.database.operations.getTemplates()]
 
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1644,10 +1637,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return list(set(self.getTemplates()).intersection(
-		sibl_gui.components.core.database.operations.filterTemplates(self.__database.databaseSession,
-								"{0}".format(foundations.strings.encode(pattern.pattern)),
-								attribute,
-								flags)))
+		sibl_gui.components.core.database.operations.filterTemplates(
+		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)))
 
 	def listTemplates(self):
 		"""
@@ -1667,10 +1658,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
-		collections = sibl_gui.components.core.database.operations.filterCollections(self.__database.databaseSession, "Templates", "type")
+		collections = sibl_gui.components.core.database.operations.filterCollections("Templates", "type")
 		for collection in collections:
-			softwares = set((foundations.common.getFirstItem(software) for software in self.__database.databaseSession.query(
-						Template.software).filter(
+			softwares = set((foundations.common.getFirstItem(software) for software in \
+						sibl_gui.components.core.database.operations.query(Template.software).filter(
 						Template.collection == collection.id)))
 			if not softwares:
 				continue
@@ -1686,9 +1677,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 													flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
-				templates = set((template for template in self.__database.databaseSession.query(
-							Template).filter(
-							Template.collection == collection.id).filter(
+				templates = set((template for template in sibl_gui.components.core.database.operations.query(
+							Template).filter(Template.collection == collection.id).filter(
 							Template.software == software)))
 
 				if not templates:

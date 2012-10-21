@@ -113,7 +113,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
 
-		self.__database = None
 		self.__iblSetsOutliner = None
 
 		self.__model = None
@@ -385,38 +384,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
-
-	@property
 	def iblSetsOutliner(self):
 		"""
 		This method is the property for **self.__iblSetsOutliner** attribute.
@@ -658,7 +625,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 
 		self.activated = True
@@ -821,7 +787,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		collectionNode.synchronizeDatabaseItem()
 		collectionNode.synchronizeToolTip()
 
-		self.__database.commit()
+		sibl_gui.components.core.database.operations.commit()
 
 	def __model__refreshNodes(self):
 		"""
@@ -840,7 +806,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not node.family == "Collection":
 				continue
 
-			collectionIblSetsCount = self.getCollectionIblSetsCount(node.databaseItem)
+			collectionIblSetsCount = \
+			sibl_gui.components.core.database.operations.getCollectionIblSetsCount(node.databaseItem)
 			iblSetsCount += collectionIblSetsCount
 			if collectionIblSetsCount == node.count.value:
 				continue
@@ -1052,8 +1019,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
-				if sibl_gui.components.core.database.operations.addCollection(
-				self.__database.databaseSession, name, "IblSets", comment):
+				if sibl_gui.components.core.database.operations.addCollection(name, "IblSets", comment):
 					self.refreshNodes.emit()
 					return True
 				else:
@@ -1076,15 +1042,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		iblSets = sibl_gui.components.core.database.operations.getCollectionsIblSets(
-				self.__database.databaseSession, (collection.id,))
+		iblSets = sibl_gui.components.core.database.operations.getCollectionsIblSets((collection.id,))
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
-		if sibl_gui.components.core.database.operations.removeCollection(
-		self.__database.databaseSession, foundations.strings.encode(collection.id)):
+		if sibl_gui.components.core.database.operations.removeCollection(foundations.strings.encode(collection.id)):
 			self.refreshNodes.emit()
 			self.__iblSetsOutliner.refreshNodes.emit()
 			return True
@@ -1099,7 +1063,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return sibl_gui.components.core.database.operations.getCollectionsByType(self.__database.databaseSession, "IblSets")
+		return sibl_gui.components.core.database.operations.getCollectionsByType("IblSets")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
@@ -1117,10 +1081,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		except Exception:
 			return list()
 
-		return sibl_gui.components.core.database.operations.filterIblSetsCollections(self.__database.databaseSession,
-												"{0}".format(foundations.strings.encode(pattern.pattern)),
-												attribute,
-												flags)
+		return sibl_gui.components.core.database.operations.filterIblSetsCollections(
+		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)
 
 	def collectionExists(self, name):
 		"""
@@ -1130,7 +1092,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection exists. ( Boolean )
 		"""
 
-		return sibl_gui.components.core.database.operations.collectionExists(self.__database.databaseSession, name)
+		return sibl_gui.components.core.database.operations.collectionExists(name)
 
 	def listCollections(self):
 		"""
@@ -1174,7 +1136,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												nodeFlags=nodeFlags,
 												attributesFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
-			collectionIblSetsCount = self.getCollectionIblSetsCount(collection)
+			collectionIblSetsCount = \
+			sibl_gui.components.core.database.operations.getCollectionIblSetsCount(collection)
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
 			iblSetsCount += collectionIblSetsCount
 		overallCollectionNode.count.value = overallCollectionNode.count.roles[Qt.DisplayRole] = iblSetsCount
@@ -1202,18 +1165,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Ibl Sets list. ( List )
 		"""
 
-		return [iblSet for iblSet in sibl_gui.components.core.database.operations.getCollectionsIblSets(self.__database.databaseSession,
-																	[collection.id for collection in collections])]
-
-	def getCollectionIblSetsCount(self, collection):
-		"""
-		This method returns given Collection Ibl Sets count.
-
-		:param collection: Collection. ( Collection )
-		:return: Collection Ibl Sets count. ( Integer )
-		"""
-
-		return self.__database.databaseSession.query(IblSet).filter_by(collection=collection.id).count()
+		return [iblSet for iblSet in \
+		sibl_gui.components.core.database.operations.getCollectionsIblSets([collection.id for collection in collections])]
 
 	def getCollectionId(self, collection):
 		"""

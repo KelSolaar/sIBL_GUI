@@ -98,7 +98,6 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__database = None
 		self.__preferencesManager = None
 		self.__iblSetsOutliner = None
 		self.__templatesOutliner = None
@@ -203,38 +202,6 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
-
-	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def preferencesManager(self):
@@ -381,7 +348,6 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
 		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
@@ -516,9 +482,9 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		for type in self.__types:
-			for item in type.getMethod(self.__database.databaseSession):
+			for item in type.getMethod():
 				if foundations.common.pathExists(item.path):
-					if type.updateContentMethod(self.__database.databaseSession, item):
+					if type.updateContentMethod(item):
 						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__,
 																					item.name,
 																					type.type))
@@ -552,14 +518,14 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"Are you sure you want to remove invalid data from the Database?",
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			for type in self.__types:
-				for item in type.getMethod(self.__database.databaseSession):
+				for item in type.getMethod():
 					if foundations.common.pathExists(item.path):
 						continue
 
 					LOGGER.info("{0} | Removing non existing '{1}' {2} from the Database!".format(self.__class__.__name__,
 																								item.name,
 																								type.type))
-					type.removeMethod(self.__database.databaseSession, item.id)
+					type.removeMethod(item.id)
 
 					self.__engine.processEvents()
 				type.modelContainer.refreshNodes.emit()

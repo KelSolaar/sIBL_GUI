@@ -566,7 +566,7 @@ class Database(Component):
 		LOGGER.debug("> Initializing Database session.")
 		self.__databaseSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__databaseEngine)
 
-		self.__databaseSession = self.__databaseSessionMaker()
+		self.__databaseSession = sibl_gui.components.core.database.operations.DEFAULT_SESSION = self.__databaseSessionMaker()
 
 		self.initialized = True
 		return True

@@ -67,7 +67,7 @@ def renameTable(databaseEngine, currrentName, newName):
 		sessionMaker = sqlalchemy.orm.sessionmaker(bind=databaseEngine)
 		session = sessionMaker()
 
-		for collection in sibl_gui.components.core.database.operations.getCollectionsByType(session, currrentName):
+		for collection in sibl_gui.components.core.database.operations.getCollectionsByType(currrentName, session):
 			LOGGER.info("{0} | SQLAlchemy Migrate: Changing '{1}' Collection type to '{2}'!".format(
 			__name__, collection.name, newName))
 			collection.type = newName

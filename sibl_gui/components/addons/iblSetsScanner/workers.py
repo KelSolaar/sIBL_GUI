@@ -79,7 +79,7 @@ class IblSetsScanner_worker(QThread):
 		# --- Setting class attributes. ---
 		self.__container = parent
 
-		self.__databaseSession = self.__container.database.databaseSessionMaker()
+		self.__databaseSession = self.__container.engine.componentsManager["core.database"].databaseSessionMaker()
 
 		self.__newIblSets = None
 
@@ -242,8 +242,9 @@ class IblSetsScanner_worker(QThread):
 		for directory in directories:
 			if foundations.common.pathExists(directory):
 				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
-					if not sibl_gui.components.core.database.operations.filterIblSets(
-					self.__databaseSession, "^{0}$".format(re.escape(path)), "path"):
+					if not sibl_gui.components.core.database.operations.filterIblSets("^{0}$".format(re.escape(path)),
+																					"path",
+																					session=self.__databaseSession):
 						iblSet = foundations.strings.getSplitextBasename(path)
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path

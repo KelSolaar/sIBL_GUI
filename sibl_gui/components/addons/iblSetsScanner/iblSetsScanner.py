@@ -74,7 +74,6 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__database = None
 		self.__collectionsOutliner = None
 		self.__iblSetsOutliner = None
 
@@ -114,38 +113,6 @@ class IblSetsScanner(QObjectComponent):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
-
-	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def collectionsOutliner(self):
@@ -258,7 +225,6 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = engine
 
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__collectionsOutliner = self.__engine.componentsManager["core.collectionsOutliner"]
 		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
 
@@ -276,7 +242,6 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__engine = None
 
-		self.__database = None
 		self.__collectionsOutliner = None
 		self.__iblSetsOutliner = None
 
@@ -360,11 +325,8 @@ class IblSetsScanner(QObjectComponent):
 			for iblSet, path in iblSets.iteritems():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				if not sibl_gui.components.core.database.operations.addIblSet(self.__database.databaseSession,
-				 						iblSet,
-										path,
-										self.__collectionsOutliner.getCollectionId(
-										self.__collectionsOutliner.defaultCollection)):
+				if not sibl_gui.components.core.database.operations.addIblSet(
+				iblSet, path, self.__collectionsOutliner.getCollectionId(self.__collectionsOutliner.defaultCollection)):
 					LOGGER.error("!> {0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
 					self.__class__.__name__, iblSet))
 				self.__engine.stepProcessing()

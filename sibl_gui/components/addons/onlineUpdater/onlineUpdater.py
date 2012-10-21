@@ -89,7 +89,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__database = None
 		self.__templatesOutliner = None
 		self.__locationsBrowser = None
 
@@ -234,38 +233,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
-
-	@property
-	def database(self):
-		"""
-		This method is the property for **self.__database** attribute.
-
-		:return: self.__database. ( Object )
-		"""
-
-		return self.__database
-
-	@database.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self, value):
-		"""
-		This method is the setter method for **self.__database** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
-
-	@database.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def database(self):
-		"""
-		This method is the deleter method for **self.__database** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
 	@property
 	def templatesOutliner(self):
@@ -573,7 +540,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = self.name
 
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__database = self.__engine.componentsManager["core.database"]
 		self.__templatesOutliner = self.__engine.componentsManager["core.templatesOutliner"]
 		self.__locationsBrowser = self.__engine.componentsManager["addons.locationsBrowser"]
 
@@ -602,7 +568,6 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 
 		self.__preferencesManager = None
-		self.__database = None
 		self.__templatesOutliner = None
 		self.__locationsBrowser = None
 
@@ -778,8 +743,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			releases = {}
 			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
-					databaseTemplates = sibl_gui.components.core.database.operations.filterTemplates(
-										self.__database.databaseSession, "^{0}$".format(remoteObject), "name")
+					databaseTemplates = \
+					sibl_gui.components.core.database.operations.filterTemplates("^{0}$".format(remoteObject), "name")
 					databaseTemplate = foundations.common.getFirstItem([foundations.common.getFirstItem(databaseTemplate)
 												for databaseTemplate in sorted(((databaseTemplate, databaseTemplate.release)
 												for databaseTemplate in databaseTemplates),

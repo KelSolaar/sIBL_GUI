@@ -42,7 +42,10 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "DATABASE_EXCEPTIONS"
+__all__ = ["LOGGER",
+			"DATABASE_EXCEPTIONS",
+			"DEFAULT_SESSION",
+			"getSession",
 			"commit",
 			"addItem",
 			"addStandardItem",
@@ -67,6 +70,8 @@ __all__ = ["LOGGER", "DATABASE_EXCEPTIONS"
 			"addCollection",
 			"removeCollection",
 			"getCollectionsIblSets",
+			"getCollectionIblSetsCount",
+			"getCollectionTemplatesCount",
 			"getTemplates",
 			"filterTemplates",
 			"templateExists",
@@ -88,17 +93,49 @@ DATABASE_EXCEPTIONS = {
 	sibl_gui.components.core.database.exceptions.MissingTemplateFileError : "Template file is missing!",
 	sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
 
+DEFAULT_SESSION = None
+
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+def getSession(session=None):
+	"""
+	This definition returns either given session or the default one.
+
+	:param session: Database session. ( Session )
+	:return: Database session. ( Session )
+	"""
+
+	if session is not None:
+		return session
+
+	if DEFAULT_SESSION is not None:
+		return DEFAULT_SESSION
+	else:
+		LOGGER.warning("!> {0} | Default session is not set!".format(
+					inspect.getmodule(addStandardItem).__name__))
+
+def query(*args, **kwargs):
+	"""
+	This definition queries given session or the default one.
+
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Keywords arguments. ( \*\* )
+	:return: Query result. ( Object )
+	"""
+
+	return getSession(kwargs.get("session")).query(*args, **kwargs)
+
 @foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
-def commit(session):
+def commit(session=None):
 	"""
 	This definition commits changes to the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
+
+	session = getSession(session)
 
 	try:
 		session.commit()
@@ -108,81 +145,83 @@ def commit(session):
 		raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
 		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
-def addItem(session, item):
+def addItem(item, session=None):
 	"""
 	This definition adds an item to the Database.
 
-	:param session: Database session. ( Session )
 	:param item: Item to add. ( Database object )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Adding: '{0}' item to the Database.".format(item))
 
+	session = getSession(session)
 	session.add(item)
-
 	return commit(session)
 
-def addStandardItem(session, type, name, path, collection):
+def addStandardItem(type, name, path, collection, session=None):
 	"""
 	This definition adds a new standard item to the Database.
 
 	:param type: Item type. ( Object )
-	:param session: Database session. ( Session )
 	:param name: Item name. ( String )
 	:param path: Item path. ( String )
 	:param collection: Collection id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Adding: '{0}' '{1}' to the Database.".format(name, type.__name__))
 
-	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
+	session = getSession(session)
+
+	if not filterItems(session.query(type), "^{0}$".format(re.escape(path)), "path", session=session):
 		osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(path)))
 		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if databaseItem.setContent():
-			return addItem(session, databaseItem)
+			return addItem(databaseItem, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
 		inspect.getmodule(addStandardItem).__name__, path, type.__name__))
 		return False
 
-def removeItem(session, item):
+def removeItem(item, session=None):
 	"""
 	This definition removes an item from the Database.
 
-	:param session: Database session. ( Session )
 	:param item: Item to remove. ( Database object )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Removing: '{0}' item from the Database.".format(item))
 
+	session = getSession(session)
 	session.delete(item)
-
 	return commit(session)
 
-def removeStandardItem(session, type, identity):
+def removeStandardItem(type, identity, session=None):
 	"""
 	This definition removes a standard item from the Database.
 
-	:param session: Database session. ( Session )
 	:param type: Item type. ( Object )
 	:param identity: Item id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Removing item type '{0}' with id '{1}' from the Database.".format(type.__name__, identity))
 
 	item = session.query(type).filter_by(id=identity).one()
-	return removeItem(session, item)
+	return removeItem(item, getSession(session))
 
-def updateItemContent(session, item):
+def updateItemContent(item, session=None):
 	"""
 	This definition update an item content.
 
-	:param session: Database session. ( Session )
 	:param item: Item to set content. ( IblSet )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
@@ -190,37 +229,38 @@ def updateItemContent(session, item):
 
 	item.osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(item.path)))
 	if item.setContent():
-		return commit(session)
+		return commit(getSession(session))
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(inspect.getmodulename(updateItemContent),
 		item.name, item.__class__.__name__))
 		return False
 
-def updateItemLocation(session, item, path):
+def updateItemLocation(item, path, session=None):
 	"""
 	This definition updates an item location.
 
-	:param session: Database session. ( Session )
 	:param item: Item to update. ( Object )
 	:param path: Item path. ( Path )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' location.".format(item, item.__class__.__name__))
 
-	if not filterItems(session, session.query(item.__class__), "^{0}$".format(re.escape(path)), "path"):
+	session = getSession(session)
+
+	if not filterItems(session.query(item.__class__), "^{0}$".format(re.escape(path)), "path", session=session):
 		item.path = path
-		return updateItemContent(session, item)
+		return updateItemContent(item, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
 		inspect.getmodulename(updateItemLocation), path, item.__class__.__name__))
 		return False
 
-def filterItems(session, items, pattern, field, flags=0):
+def filterItems(items, pattern, field, flags=0):
 	"""
 	This definition filters items from the Database.
 
-	:param session: Database session. ( Session )
 	:param items: Database items. ( List )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -230,11 +270,10 @@ def filterItems(session, items, pattern, field, flags=0):
 
 	return [item for item in items if re.search(pattern, foundations.strings.encode(item.__dict__[field]), flags)]
 
-def itemExists(session, items, pattern, field, flags=0):
+def itemExists(items, pattern, field, flags=0):
 	"""
 	This definition returns if given item exists in the Database.
 
-	:param session: Database session. ( Session )
 	:param items: Database items. ( List )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -242,9 +281,9 @@ def itemExists(session, items, pattern, field, flags=0):
 	:return: Filtered items. ( List )
 	"""
 
-	return filterItems(session, items, pattern, field, flags) and True or False
+	return filterItems(items, pattern, field, flags) and True or False
 
-def getIblSets(session):
+def getIblSets(session=None):
 	"""
 	This definition returns the Ibl Sets from the Database.
 
@@ -252,79 +291,80 @@ def getIblSets(session):
 	:return: Database Ibl Sets. ( List )
 	"""
 
-	return session.query(IblSet)
+	return getSession(session).query(IblSet)
 
-def filterIblSets(session, pattern, field, flags=0):
+def filterIblSets(pattern, field, flags=0, session=None):
 	"""
 	This definition filters the sets from the Database.
 
-	:param session: Database session. ( Session )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Ibl Sets. ( List )
 	"""
 
-	return filterItems(session, getIblSets(session), pattern, field, flags)
+	return filterItems(getIblSets(getSession(session)), pattern, field, flags)
 
-def iblSetExists(session, path):
+def iblSetExists(path, session=None):
 	"""
 	This method returns if given Ibl Set exists in the Database.
 
 	:param name: Ibl Set path. ( String )
+	:param session: Database session. ( Session )
 	:return: Ibl Set exists. ( Boolean )
 	"""
 
-	return filterIblSets(session, "^{0}$".format(re.escape(path)), "path") and True or False
+	return filterIblSets("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
 
-def addIblSet(session, name, path, collection):
+def addIblSet(name, path, collection, session=None):
 	"""
 	This definition adds a new Ibl Set to the Database.
 
-	:param session: Database session. ( Session )
 	:param name: Ibl Set name. ( String )
 	:param path: Ibl Set path. ( String )
 	:param collection: Collection id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, IblSet, name, path, collection)
+	return addStandardItem(IblSet, name, path, collection, getSession(session))
 
-def removeIblSet(session, identity):
+def removeIblSet(identity, session=None):
 	"""
 	This definition removes an Ibl Set from the Database.
 
-	:param session: Database session. ( Session )
 	:param identity: Ibl Set id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, IblSet, identity)
+	return removeStandardItem(IblSet, identity, getSession(session))
 
-def updateIblSetContent(session, iblSet):
+def updateIblSetContent(iblSet, session=None):
 	"""
 	This definition update an Ibl Set content.
 
-	:param session: Database session. ( Session )
 	:param iblSet: Ibl Set to set content. ( IblSet )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return updateItemContent(session, iblSet)
+	return updateItemContent(iblSet, getSession(session))
 
-def updateIblSetLocation(session, iblSet, path):
+def updateIblSetLocation(iblSet, path, session=None):
 	"""
 	This definition updates an Ibl Set location.
 
-	:param session: Database session. ( Session )
 	:param iblSet: Ibl Set to update. ( IblSet )
 	:param path: Ibl Set path. ( Path )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return updateItemLocation(session, iblSet, path)
+	return updateItemLocation(iblSet, path, getSession(session))
 
-def checkIblSetsTableIntegrity(session):
+def checkIblSetsTableIntegrity(session=None):
 	"""
 	This definition checks sets table integrity.
 
@@ -333,6 +373,8 @@ def checkIblSetsTableIntegrity(session):
 	"""
 
 	LOGGER.debug("> Checking 'Sets' Database table integrity.")
+
+	session = getSession(session)
 
 	erroneousIblSets = {}
 	if getIblSets(session):
@@ -362,7 +404,7 @@ def checkIblSetsTableIntegrity(session):
 
 	return erroneousIblSets
 
-def getCollections(session):
+def getCollections(session=None):
 	"""
 	This definition returns the Collections from the Database.
 
@@ -370,133 +412,158 @@ def getCollections(session):
 	:return: Database Collections. ( List )
 	"""
 
-	return session.query(Collection)
+	return getSession(session).query(Collection)
 
-def filterCollections(session, pattern, field, flags=0):
+def filterCollections(pattern, field, flags=0, session=None):
 	"""
 	This definition filters the Collections from the Database.
 
-	:param session: Database session. ( Session )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Collections. ( List )
 	"""
 
-	return filterItems(session, getCollections(session), pattern, field, flags)
+	return filterItems(getCollections(getSession(session)), pattern, field, flags)
 
-def getCollectionsByType(session, type):
+def getCollectionsByType(type, session=None):
 	"""
 	This method returns Collections of given type.
 
-	:param session: Database session. ( Session )
 	:param type: Type name. ( String )
+	:param session: Database session. ( Session )
 	:return: Ibl Sets Collections. ( List )
 	"""
 
-	return [collection for collection in filterCollections(session, type, "type")]
+	return [collection for collection in filterCollections(type, "type", session=getSession(session))]
 
-def filterCollectionsByType(session, type, pattern, field, flags=0):
+def filterCollectionsByType(type, pattern, field, flags=0, session=None):
 	"""
 	This definition filters the Ibl Sets Collections from the Database.
 
-	:param session: Database session. ( Session )
 	:param type: Type name. ( String )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Collections. ( List )
 	"""
 
-	return list(set(getCollectionsByType(session, type)).intersection(
-	filterCollections(session, "{0}".format(pattern), field, flags)))
+	return list(set(getCollectionsByType(type, session)).intersection(
+	filterCollections("{0}".format(pattern), field, flags, getSession(session))))
 
-def filterIblSetsCollections(session, pattern, field, flags=0):
+def filterIblSetsCollections(pattern, field, flags=0, session=None):
 	"""
 	This definition filters the Ibl Sets Collections from the Database.
 
-	:param session: Database session. ( Session )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Collections. ( List )
 	"""
 
-	return filterCollectionsByType(session, "IblSets", pattern, field, flags)
+	return filterCollectionsByType("IblSets", pattern, field, flags, getSession(session))
 
-def filterTemplatesCollections(session, pattern, field, flags=0):
+def filterTemplatesCollections(pattern, field, flags=0, session=None):
 	"""
 	This definition filters the Templates Collections from the Database.
 
-	:param session: Database session. ( Session )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Collections. ( List )
 	"""
 
-	return filterCollectionsByType(session, "Templates", pattern, field, flags)
+	return filterCollectionsByType("Templates", pattern, field, flags, getSession(session))
 
-def collectionExists(session, name):
+def collectionExists(name, session=None):
 	"""
 	This method returns if the Collection exists in the Database.
 
 	:param name: Collection name. ( String )
+	:param session: Database session. ( Session )
 	:return: Collection exists. ( Boolean )
 	"""
 
-	return filterCollections(session, "^{0}$".format(name), "name") and True or False
+	return filterCollections("^{0}$".format(name), "name", session=getSession(session)) and True or False
 
-def addCollection(session, collection, type, comment):
+def addCollection(collection, type, comment, session=None):
 	"""
 	This definition adds a Collection to the Database.
 
-	:param session: Database session. ( Session )
 	:param collection: Collection name. ( String )
 	:param type: Collection type. ( String )
 	:param comment: Collection comment. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
-	if not filterCollections(session, "^{0}$".format(collection), "name"):
+	session = getSession(session)
+
+	if not filterCollections("^{0}$".format(collection), "name", session=session):
 		databaseItem = Collection(name=collection, type=type, comment=comment)
-		return addItem(session, databaseItem)
+		return addItem(databaseItem, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
 		inspect.getmodulename(addCollection), collection))
 		return False
 
-def removeCollection(session, identity):
+def removeCollection(identity, session=None):
 	"""
 	This definition removes a Collection from the Database.
 
-	:param session: Database session. ( Session )
 	:param identity: Collection id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, Collection, identity)
+	return removeStandardItem(Collection, identity, getSession(session))
 
-def getCollectionsIblSets(session, identities):
+def getCollectionsIblSets(identities, session=None):
 	"""
 	This definition returns Ibl Sets from Collections ids
 
-	:param session: Database session. ( Session )
 	:param identities: Collections ids. ( List )
+	:param session: Database session. ( Session )
 	:return: Ibl Sets list. ( List )
 	"""
 
 	iblSets = []
 	for identity in identities:
-		collectionSets = filterIblSets(session, "^{0}$".format(identity), "collection")
+		collectionSets = filterIblSets("^{0}$".format(identity), "collection", session=getSession(session))
 		if collectionSets:
 			for iblSet in collectionSets:
 				iblSets.append(iblSet)
 	return iblSets
 
-def getTemplates(session):
+def getCollectionIblSetsCount(collection, session=None):
+	"""
+	This method returns given Collection Ibl Sets count.
+
+	:param collection: Collection. ( Collection )
+	:param session: Database session. ( Session )
+	:return: Collection Ibl Sets count. ( Integer )
+	"""
+
+	return getSession(session).query(IblSet).filter_by(collection=collection.id).count()
+
+def getCollectionTemplatesCount(collection, session=None):
+	"""
+	This method returns given Collection Tempates count.
+
+	:param collection: Collection. ( Collection )
+	:param session: Database session. ( Session )
+	:return: Collection Templates count. ( Integer )
+	"""
+
+	return getSession(session).query(Template).filter_by(collection=collection.id).count()
+
+def getTemplates(session=None):
 	"""
 	This definition returns the Templates from the Database.
 
@@ -504,79 +571,80 @@ def getTemplates(session):
 	:return: Database Templates. ( List )
 	"""
 
-	return session.query(Template)
+	return getSession(session).query(Template)
 
-def filterTemplates(session, pattern, field, flags=0):
+def filterTemplates(pattern, field, flags=0, session=None):
 	"""
 	This definition filters the Templates from the Database.
 
-	:param session: Database session. ( Session )
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
 	:param flags: Flags passed to the regex engine. ( Integer )
+	:param session: Database session. ( Session )
 	:return: Filtered Templates. ( List )
 	"""
 
-	return filterItems(session, getTemplates(session), pattern, field, flags)
+	return filterItems(getTemplates(getSession(session)), pattern, field, flags)
 
-def templateExists(session, path):
+def templateExists(path, session=None):
 	"""
 	This method returns if given Template exists in the Database.
 
 	:param name: Template path. ( String )
+	:param session: Database session. ( Session )
 	:return: Template exists. ( Boolean )
 	"""
 
-	return filterTemplates(session, "^{0}$".format(re.escape(path)), "path") and True or False
+	return filterTemplates("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
 
-def addTemplate(session, name, path, collection):
+def addTemplate(name, path, collection, session=None):
 	"""
 	This definition adds a new Template to the Database.
 
-	:param session: Database session. ( Session )
 	:param name: Template name. ( String )
 	:param path: Template path. ( String )
 	:param collection: Collection id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return addStandardItem(session, Template, name, path, collection)
+	return addStandardItem(Template, name, path, collection, getSession(session))
 
-def removeTemplate(session, identity):
+def removeTemplate(identity, session=None):
 	"""
 	This definition removes a Template from the Database.
 
-	:param session: Database session. ( Session )
 	:param identity: Template id. ( String )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, Template, identity)
+	return removeStandardItem(Template, identity, getSession(session))
 
-def updateTemplateContent(session, template):
+def updateTemplateContent(template, session=None):
 	"""
 	This definition update a Template content.
 
-	:param session: Database session. ( Session )
 	:param template: Template to Template content. ( Template )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return updateItemContent(session, template)
+	return updateItemContent(template, getSession(session))
 
-def updateTemplateLocation(session, template, path):
+def updateTemplateLocation(template, path, session=None):
 	"""
 	This definition updates a Template location.
 
-	:param session: Database session. ( Session )
 	:param template: Template to update. ( Template )
 	:param path: Template path. ( Path )
+	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
 	"""
 
-	return updateItemLocation(session, template, path)
+	return updateItemLocation(template, path, getSession(session))
 
-def checkTemplatesTableIntegrity(session):
+def checkTemplatesTableIntegrity(session=None):
 	"""
 	This definition checks Templates table integrity.
 
@@ -585,6 +653,8 @@ def checkTemplatesTableIntegrity(session):
 	"""
 
 	LOGGER.debug("> Checking 'Templates' Database table integrity.")
+
+	session = getSession(session)
 
 	erroneousTemplates = {}
 	if getTemplates(session):
