@@ -62,6 +62,6 @@ def apply():
 
 	if foundations.common.pathExists(defaultScriptEditorFile):
 		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(
-		inspect.getmodulename(apply), defaultScriptEditorFile))
+		inspect.getmodulename(__file__), defaultScriptEditorFile))
 		os.remove(defaultScriptEditorFile)
 	return True

@@ -176,7 +176,7 @@ def addStandardItem(type, name, path, collection, session=None):
 
 	session = getSession(session)
 
-	if not filterItems(session.query(type), "^{0}$".format(re.escape(path)), "path", session=session):
+	if not filterItems(query(type), "^{0}$".format(re.escape(path)), "path"):
 		osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(path)))
 		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if databaseItem.setContent():
@@ -231,7 +231,7 @@ def updateItemContent(item, session=None):
 	if item.setContent():
 		return commit(getSession(session))
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(inspect.getmodulename(updateItemContent),
+		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(inspect.getmodulename(__file__),
 		item.name, item.__class__.__name__))
 		return False
 
@@ -249,12 +249,12 @@ def updateItemLocation(item, path, session=None):
 
 	session = getSession(session)
 
-	if not filterItems(session.query(item.__class__), "^{0}$".format(re.escape(path)), "path", session=session):
+	if not filterItems(query(item.__class__), "^{0}$".format(re.escape(path)), "path"):
 		item.path = path
 		return updateItemContent(item, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
-		inspect.getmodulename(updateItemLocation), path, item.__class__.__name__))
+		inspect.getmodulename(__file__), path, item.__class__.__name__))
 		return False
 
 def filterItems(items, pattern, field, flags=0):
@@ -510,7 +510,7 @@ def addCollection(collection, type, comment, session=None):
 		return addItem(databaseItem, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
-		inspect.getmodulename(addCollection), collection))
+		inspect.getmodulename(__file__), collection))
 		return False
 
 def removeCollection(identity, session=None):

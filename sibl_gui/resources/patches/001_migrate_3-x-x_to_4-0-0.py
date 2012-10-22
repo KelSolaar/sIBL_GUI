@@ -72,7 +72,7 @@ If you are using an already migrated shared database, you can ignore this messag
 
 	if RuntimeGlobals.parameters.databaseReadOnly:
 		LOGGER.warning("!> {0} | Database has been set read only by '{1}' command line parameter value!".format(
-		inspect.getmodulename(apply), "databaseReadOnly"))
+		inspect.getmodulename(__file__), "databaseReadOnly"))
 		return True
 
 	if RuntimeGlobals.parameters.databaseDirectory:
@@ -95,11 +95,11 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 														buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			try:
 				LOGGER.info("{0} | Copying '{1}' database file to '{2}' destination!".format(
-				inspect.getmodulename(apply), legacyDatabaseFile, databaseFile))
+				inspect.getmodulename(__file__), legacyDatabaseFile, databaseFile))
 				shutil.copyfile(legacyDatabaseFile, databaseFile)
 			except:
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
-sIBL_GUI will now exit!".format(inspect.getmodulename(apply), legacyDatabaseFile, databaseFile)
+sIBL_GUI will now exit!".format(inspect.getmodulename(__file__), legacyDatabaseFile, databaseFile)
 				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
 				foundations.core.exit(1)
 
@@ -118,7 +118,7 @@ sIBL_GUI will now exit!".format(inspect.getmodulename(apply), legacyDatabaseFile
 			for template in sibl_gui.components.core.database.operations.getTemplates(databaseSession):
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(
-				inspect.getmodulename(apply), id))
+				inspect.getmodulename(__file__), id))
 				sibl_gui.components.core.database.operations.removeTemplate(id, databaseSession)
 
 	return True
