@@ -79,7 +79,7 @@ class IblSetsScanner_worker(QThread):
 		# --- Setting class attributes. ---
 		self.__container = parent
 
-		self.__databaseSession = self.__container.engine.componentsManager["core.database"].databaseSessionMaker()
+		self.__databaseSession = sibl_gui.components.core.database.operations.createSession()
 
 		self.__newIblSets = None
 

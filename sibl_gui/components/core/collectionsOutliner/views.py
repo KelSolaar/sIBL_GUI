@@ -27,6 +27,7 @@ from PyQt4.QtGui import QAbstractItemView
 #**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
+import sibl_gui.components.core.database.operations
 import sibl_gui.ui.views
 import umbra.ui.common
 
@@ -187,17 +188,20 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 			LOGGER.debug("> Item at drop position: '{0}'.".format(collectionNode))
 
+			databaseSession = sibl_gui.components.core.database.operations.getSession()
+
 			nodes = pickle.loads(event.mimeData().data("application/x-umbragraphmodeldatalist"))
 			for node in nodes:
 				if node.family != "IblSet":
 					continue
 
-				node._AbstractDatabaseNode__databaseItem = self.__container.database.databaseSession.merge(node.databaseItem)
+				node._AbstractDatabaseNode__databaseItem = databaseSession.merge(node.databaseItem)
 				if collectionNode.databaseItem.id != node.databaseItem.collection:
 					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.databaseItem.title,
 																					collectionNode.databaseItem.name))
 					node.databaseItem.collection = collectionNode.databaseItem.id
-			if self.__container.database.commit():
+
+			if sibl_gui.components.core.database.operations.commit():
 				self.__container.refreshNodes.emit()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(

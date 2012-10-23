@@ -44,7 +44,9 @@ __status__ = "Production"
 
 __all__ = ["LOGGER",
 			"DATABASE_EXCEPTIONS",
+			"DEFAULT_SESSION_MAKER",
 			"DEFAULT_SESSION",
+			"createSession",
 			"getSession",
 			"commit",
 			"addItem",
@@ -93,11 +95,21 @@ DATABASE_EXCEPTIONS = {
 	sibl_gui.components.core.database.exceptions.MissingTemplateFileError : "Template file is missing!",
 	sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
 
+DEFAULT_SESSION_MAKER = None
 DEFAULT_SESSION = None
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+def createSession():
+	"""
+	This definition creates a default session.
+
+	:return: Database session. ( Session )
+	"""
+
+	return DEFAULT_SESSION_MAKER()
+
 def getSession(session=None):
 	"""
 	This definition returns either given session or the default one.
@@ -112,7 +124,7 @@ def getSession(session=None):
 	if DEFAULT_SESSION is not None:
 		return DEFAULT_SESSION
 	else:
-		LOGGER.warning("!> {0} | Default session is not set!".format(
+		LOGGER.warning("!> {0} | Default session is not set, creating one!".format(
 					inspect.getmodule(addStandardItem).__name__))
 
 def query(*args, **kwargs):
