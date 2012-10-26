@@ -88,6 +88,25 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 		"""
 
 		self["count"] = umbra.ui.nodes.GraphModelAttribute(name="count",
+															value=sum(node["count"].value for node in self.children),
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 		self["comment"] = umbra.ui.nodes.GraphModelAttribute(name="comment",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+
+	def updateNode(self):
+		"""
+		This method updates the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		return self.updateNodeAttributes()
+
+	def updateNodeAttributes(self):
+		"""
+		This method updates the node attributes.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		self.count.value = self.count.roles[Qt.DisplayRole] = sum(node.count.value for node in self.children)

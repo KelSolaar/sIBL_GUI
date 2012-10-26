@@ -399,7 +399,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		if not self.__engine.parameters.databaseReadOnly:
-			self.Synchronize_Database_pushButton.clicked.connect(self.__Synchronize_Database_pushButton__clicked)
+			self.Update_Database_pushButton.clicked.connect(self.__Update_Database_pushButton__clicked)
 			self.Remove_Invalid_Data_pushButton.clicked.connect(self.__Remove_Invalid_Data_pushButton__clicked)
 		else:
 			LOGGER.info(
@@ -420,7 +420,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		if not self.__engine.parameters.databaseReadOnly:
-			self.Synchronize_Database_pushButton.clicked.disconnect(self.__Synchronize_Database_pushButton__clicked)
+			self.Update_Database_pushButton.clicked.disconnect(self.__Update_Database_pushButton__clicked)
 			self.Remove_Invalid_Data_pushButton.clicked.disconnect(self.__Remove_Invalid_Data_pushButton__clicked)
 
 		self.initializedUi = False
@@ -453,14 +453,14 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
-	def __Synchronize_Database_pushButton__clicked(self, checked):
+	def __Update_Database_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Synchronize_Database_pushButton** Widget is clicked.
+		This method is triggered when **Update_Database_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.synchronizeDatabase()
+		self.updateDatabase()
 
 	def __Remove_Invalid_Data_pushButton__clicked(self, checked):
 		"""
@@ -471,10 +471,10 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.removeInvalidData()
 
-	@umbra.engine.showProcessing("Synchronizing Database ...")
-	def synchronizeDatabase(self):
+	@umbra.engine.showProcessing("Updating Database ...")
+	def updateDatabase(self):
 		"""
-		| This method synchronizes the Database.
+		| This method updates the Database.
 		| Each type defined by :meth:`DatabaseOperations.sibl_gui.components.core.database.types` attribute
 			will have its instances checked and updated by their associated methods.
 
@@ -485,7 +485,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			for item in type.getMethod():
 				if foundations.common.pathExists(item.path):
 					if type.updateContentMethod(item):
-						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__,
+						LOGGER.info("{0} | '{1}' {2} has been updated!".format(self.__class__.__name__,
 																					item.name,
 																					type.type))
 				else:
@@ -503,7 +503,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__engine.processEvents()
 			type.modelContainer.refreshNodes.emit()
 		self.__engine.stopProcessing()
-		self.__engine.notificationsManager.notify("{0} | Database synchronization done!".format(self.__class__.__name__))
+		self.__engine.notificationsManager.notify("{0} | Database update done!".format(self.__class__.__name__))
 		return True
 
 	@umbra.engine.showProcessing("Removing Invalid Data ...")

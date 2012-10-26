@@ -1261,8 +1261,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSetNode = self.__model.getNode(startIndex)
 
 		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.databaseItem.title, iblSetNode.name))
-		iblSetNode.synchronizeDatabaseItem()
-		iblSetNode.synchronizeToolTip()
+		iblSetNode.updateDatabaseItem()
+		iblSetNode.updateToolTip()
 
 		sibl_gui.components.core.database.operations.commit()
 

@@ -26,6 +26,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import umbra.ui.nodes
+import sibl_gui.components.core.database.operations
 import sibl_gui.ui.common
 from umbra.globals.constants import Constants
 
@@ -191,29 +192,19 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 					Qt.EditRole : value}
 			self[attribute] = umbra.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
 
-	def synchronizeNode(self):
+	def updateNode(self):
 		"""
-		This method synchronizes the node from the database item.
+		This method updates the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.synchronizeNode.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.updateNode.__name__, self.__class__.__name__))
 
-	def synchronizeDatabaseItem(self):
+	def updateNodeAttributes(self):
 		"""
-		This method synchronizes the database item from the node.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.synchronizeDatabaseItem.__name__, self.__class__.__name__))
-
-	def synchronizeNodeAttributes(self):
-		"""
-		This method synchronizes the node attributes from the database item attributes.
+		This method updates the node attributes from the database item attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -228,9 +219,19 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 				getattr(self.__databaseItem, attribute)
 		return True
 
-	def synchronizeDatabaseItemAttributes(self):
+	def updateDatabaseItem(self):
 		"""
-		This method synchronizes the database item attributes from the node attributes.
+		This method updates the database item from the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
+		self.__class__.__name__, self.updateDatabaseItem.__name__, self.__class__.__name__))
+
+	def updateDatabaseItemAttributes(self):
+		"""
+		This method updates the database item attributes from the node attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -245,15 +246,15 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		return True
 
 	@foundations.exceptions.handleExceptions(NotImplementedError)
-	def synchronizeToolTip(self):
+	def updateToolTip(self):
 		"""
-		This method synchronizes the node tooltip.
+		This method updates the node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.synchronizeToolTip.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.updateToolTip.__name__, self.__class__.__name__))
 
 class IblSetNode(AbstractDatabaseNode):
 	"""
@@ -311,31 +312,40 @@ class IblSetNode(AbstractDatabaseNode):
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
 							Qt.DecorationRole : self.databaseItem.icon,
 							Qt.EditRole : self.databaseItem.title})
-		self.synchronizeToolTip()
+		self.updateToolTip()
 
-	def synchronizeNode(self):
+	def updateNode(self):
 		"""
-		This method synchronizes the node from the database item.
+		This method updates the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__databaseItem.title
-		return self.synchronizeNodeAttributes()
+		return self.updateNodeAttributes()
 
-	def synchronizeDatabaseItem(self):
+	def updateNodeAttributes(self):
 		"""
-		This method synchronizes the database item from the node.
+		This method updates the node attributes from the database item attributes.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		return AbstractDatabaseNode.updateNodeAttributes(self)
+
+	def updateDatabaseItem(self):
+		"""
+		This method updates the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.title = self.databaseItem.title = self.name
-		return self.synchronizeDatabaseItemAttributes()
+		return self.updateDatabaseItemAttributes()
 
-	def synchronizeToolTip(self):
+	def updateToolTip(self):
 		"""
-		This method synchronizes the node tooltip.
+		This method updates the node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -403,11 +413,11 @@ class TemplateNode(AbstractDatabaseNode):
 		templateUserName = getTemplateUserName(self.databaseItem.title, self.databaseItem.software)
 		self.roles.update({Qt.DisplayRole : templateUserName,
 							Qt.EditRole : templateUserName})
-		self.synchronizeToolTip()
+		self.updateToolTip()
 
-	def synchronizeNode(self):
+	def updateNode(self):
 		"""
-		This method synchronizes the node from the database item.
+		This method updates the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -415,21 +425,30 @@ class TemplateNode(AbstractDatabaseNode):
 		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = getTemplateUserName(self.databaseItem.title,
 																								self.databaseItem.software)
 
-		return self.synchronizeNodeAttributes()
+		return self.updateNodeAttributes()
 
-	def synchronizeDatabaseItem(self):
+	def updateNodeAttributes(self):
 		"""
-		This method synchronizes the database item from the node.
+		This method updates the node attributes from the database item attributes.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		return AbstractDatabaseNode.updateNodeAttributes(self)
+
+	def updateDatabaseItem(self):
+		"""
+		This method updates the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.title = self.databaseItem.title = self.name
-		return self.synchronizeDatabaseItemAttributes()
+		return self.updateDatabaseItemAttributes()
 
-	def synchronizeToolTip(self):
+	def updateToolTip(self):
 		"""
-		This method synchronizes the node tooltip.
+		This method updates the node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -491,36 +510,50 @@ class CollectionNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : self.databaseItem.name,
-			Qt.EditRole : self.databaseItem.name})
-		self["count"] = umbra.ui.nodes.GraphModelAttribute(name="count",
-															value=None,
-															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self.synchronizeToolTip()
+		self["count"] = umbra.ui.nodes.GraphModelAttribute(
+						name="count",
+						value=sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem),
+						flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
-	def synchronizeNode(self):
+		self.roles.update({Qt.DisplayRole : self.databaseItem.name, Qt.EditRole : self.databaseItem.name})
+		self.updateToolTip()
+
+	def updateNode(self):
 		"""
-		This method synchronizes the node from the database item.
+		This method updates the node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.databaseItem.name
-		return self.synchronizeNodeAttributes()
+		return self.updateNodeAttributes()
 
-	def synchronizeDatabaseItem(self):
+	def updateNodeAttributes(self):
 		"""
-		This method synchronizes the database item from the node.
+		This method updates the node attributes from the database item attributes.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		self.count.value = self.count.roles[Qt.DisplayRole] = \
+		sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem)
+		self.count.attributeChanged()
+
+		return AbstractDatabaseNode.updateNodeAttributes(self)
+
+	def updateDatabaseItem(self):
+		"""
+		This method updates the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		self.databaseItem.name = self.name
-		return self.synchronizeDatabaseItemAttributes()
+		return self.updateDatabaseItemAttributes()
 
-	def synchronizeToolTip(self):
+	def updateToolTip(self):
 		"""
-		This method synchronizes the node tooltip.
+		This method updates the node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""

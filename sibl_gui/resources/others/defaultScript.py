@@ -228,7 +228,7 @@ ____()
 'addons.databaseOperations' Component interactions:
 """
 databaseOperations = componentsManager.getInterface("addons.databaseOperations")
-databaseOperations.synchronizeDatabase()
+databaseOperations.updateDatabase()
 
 ____()
 

@@ -779,13 +779,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				return
 
 			if not collectionNode.name:
-				collectionNode.synchronizeNode()
+				collectionNode.updateNode()
 				raise foundations.exceptions.UserError(
 				"{0} | Exception while editing a Collection field: Cannot use an empty value!".format(
 				self.__class__.__name__))
 
-		collectionNode.synchronizeDatabaseItem()
-		collectionNode.synchronizeToolTip()
+		collectionNode.updateDatabaseItem()
+		collectionNode.updateToolTip()
 
 		sibl_gui.components.core.database.operations.commit()
 
@@ -801,33 +801,15 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method refreshes the Model nodes attributes.
 		"""
 
-		iblSetsCount = 0
 		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
 			if not node.family == "Collection":
 				continue
 
-			collectionIblSetsCount = \
-			sibl_gui.components.core.database.operations.getCollectionIblSetsCount(node.databaseItem)
-			iblSetsCount += collectionIblSetsCount
-			if collectionIblSetsCount == node.count.value:
-				continue
+			node.updateNodeAttributes()
 
-			node.count.value = collectionIblSetsCount
-			self.__model.setData(self.__model.getAttributeIndex(node,
-																self.__headers.keys().index(self.__iblSetsCountLabel)),
-																QVariant(collectionIblSetsCount),
-																Qt.DisplayRole)
-
-		overallCollectionNode = foundations.common.getFirstItem(
-								self.__model.findChildren("^{0}$".format(self.__overallCollection)))
-		if iblSetsCount == overallCollectionNode.count.value:
-			return
-
-		overallCollectionNode.count.value = iblSetsCount
-		self.__model.setData(self.__model.getAttributeIndex(overallCollectionNode,
-															self.__headers.keys().index(self.__iblSetsCountLabel)),
-															QVariant(iblSetsCount),
-															Qt.DisplayRole)
+		overallCollectionNode = \
+		foundations.common.getFirstItem(self.__model.findChildren("^{0}$".format(self.__overallCollection)))
+		overallCollectionNode.updateNodeAttributes()
 
 	def __view_addActions(self):
 		"""
@@ -1119,7 +1101,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 													attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
-		iblSetsCount = 0
 		for collection in collections:
 			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
@@ -1136,11 +1117,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												nodeFlags=nodeFlags,
 												attributesFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
-			collectionIblSetsCount = \
-			sibl_gui.components.core.database.operations.getCollectionIblSetsCount(collection)
-			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
-			iblSetsCount += collectionIblSetsCount
-		overallCollectionNode.count.value = overallCollectionNode.count.roles[Qt.DisplayRole] = iblSetsCount
+		overallCollectionNode.updateNodeAttributes()
 		rootNode.sortChildren()
 
 		self.__model.initializeModel(rootNode)
