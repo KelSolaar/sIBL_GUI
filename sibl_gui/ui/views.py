@@ -60,7 +60,7 @@ class Mixin_AbstractView(object):
 		# --- Setting class attributes. ---
 		self.__modelSelection = {"Default" : []}
 
-		self.setModel(model)
+		Mixin_AbstractView.setModel(self, model)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -118,7 +118,7 @@ class Mixin_AbstractView(object):
 
 		LOGGER.debug("> Setting '{0}' model.".format(model))
 
-		umbra.ui.views.Abstract_QListView.setModel(self, model)
+		super(type(self), self).setModel(model)
 
 		# Signals / Slots.
 		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
