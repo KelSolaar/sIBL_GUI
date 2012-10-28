@@ -75,5 +75,6 @@ class TemplatesModel(sibl_gui.ui.models.GraphModel):
 
 		self.beginResetModel()
 		self.rootNode = rootNode
+		self.enableModelTriggers(True)
 		self.endResetModel()
 		return True

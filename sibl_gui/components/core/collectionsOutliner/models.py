@@ -18,7 +18,6 @@
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.models
 
@@ -76,5 +75,6 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 
 		self.beginResetModel()
 		self.rootNode = rootNode
+		self.enableModelTriggers(True)
 		self.endResetModel()
 		return True

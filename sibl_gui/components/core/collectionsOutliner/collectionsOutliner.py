@@ -668,7 +668,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.refreshNodes.connect(self.__model__refreshNodes)
-		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__model__dataChanged)
+		if not self.__engine.parameters.databaseReadOnly:
+			self.__model.dataChanged.connect(self.__model__dataChanged)
 
 		self.initializedUi = True
 		return True
@@ -757,6 +758,28 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
+	def __model__refreshNodes(self):
+		"""
+		This method is triggered when the Model nodes need refresh.
+		"""
+
+		self.setCollections()
+
+	def __model__refreshAttributes(self):
+		"""
+		This method refreshes the Model nodes attributes.
+		"""
+
+		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
+			if not node.family == "Collection":
+				continue
+
+			node.updateNodeAttributes()
+
+		overallCollectionNode = \
+		foundations.common.getFirstItem(self.__model.findChildren("^{0}$".format(self.__overallCollection)))
+		overallCollectionNode.updateNodeAttributes()
+
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
@@ -788,28 +811,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		collectionNode.updateToolTip()
 
 		sibl_gui.components.core.database.operations.commit()
-
-	def __model__refreshNodes(self):
-		"""
-		This method is triggered when the Model nodes need refresh.
-		"""
-
-		self.setCollections()
-
-	def __model__refreshAttributes(self):
-		"""
-		This method refreshes the Model nodes attributes.
-		"""
-
-		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
-			if not node.family == "Collection":
-				continue
-
-			node.updateNodeAttributes()
-
-		overallCollectionNode = \
-		foundations.common.getFirstItem(self.__model.findChildren("^{0}$".format(self.__overallCollection)))
-		overallCollectionNode.updateNodeAttributes()
 
 	def __view_addActions(self):
 		"""

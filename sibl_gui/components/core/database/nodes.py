@@ -537,7 +537,6 @@ class CollectionNode(AbstractDatabaseNode):
 
 		self.count.value = self.count.roles[Qt.DisplayRole] = \
 		sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem)
-		self.count.attributeChanged()
 
 		return AbstractDatabaseNode.updateNodeAttributes(self)
 

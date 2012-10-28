@@ -1336,7 +1336,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		for name, plate in self.__inspectorPlates.iteritems():
-			plateNode = PlatesNode(plate, name=name, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
+			plateNode = PlatesNode(plate,
+								name=name,
+								parent=rootNode,
+								nodeFlags=nodeFlags,
+								attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = unicode()
 			plateNode.roles[Qt.DecorationRole] = plate.icon
 

@@ -51,7 +51,6 @@ class Mixin_AbstractView(object):
 		"""
 		This method initializes the class.
 
-		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
 		"""
 

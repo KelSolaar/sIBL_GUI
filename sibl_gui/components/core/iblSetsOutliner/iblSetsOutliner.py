@@ -1121,7 +1121,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
 			self.__engine.contentDropped.connect(self.__engine__contentDropped)
-			self.__model.dataChanged.connect(self.__model__dataChanged)
 		else:
 			LOGGER.info("{0} | Ibl Sets file system events ignored by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
@@ -1249,22 +1248,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
 
 		return True
-
-	def __model__dataChanged(self, startIndex, endIndex):
-		"""
-		This method is triggered when the Model data has changed.
-
-		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
-		"""
-
-		iblSetNode = self.__model.getNode(startIndex)
-
-		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.databaseItem.title, iblSetNode.name))
-		iblSetNode.updateDatabaseItem()
-		iblSetNode.updateToolTip()
-
-		sibl_gui.components.core.database.operations.commit()
 
 	def __model__refreshNodes(self):
 		"""
