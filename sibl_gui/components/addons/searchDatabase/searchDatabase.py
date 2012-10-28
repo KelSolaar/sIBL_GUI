@@ -27,6 +27,7 @@ else:
 	from collections import Counter
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QListView
+from PyQt4.QtGui import QScrollArea
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -370,7 +371,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Tags_Cloud_listWidget.setParent(None)
 		self.Tags_Cloud_listWidget = TagsCloud_QListView(self, message="No Tag to view!")
 		self.Tags_Cloud_listWidget.setObjectName("Tags_Cloud_listWidget")
-		self.Tags_Cloud_page_gridLayout.addWidget(self.Tags_Cloud_listWidget, 0, 0)
+		self.Tags_Cloud_verticalLayout.addWidget(self.Tags_Cloud_listWidget)
 		self.__view = self.Tags_Cloud_listWidget
 		self.__view.setMovement(QListView.Static)
 		self.__view.setResizeMode(QListView.Adjust)
@@ -385,6 +386,10 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									[(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper()))
 									for tag in self.__cloudExcludedTags]))
 		self.setTagsCloudMatchingIblsSetsUi()
+
+		# Remove vertical scrollBars from **Search_toolBox** Widget.
+		for scrollArea in self.findChildren(QScrollArea):
+			scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
 		# Signals / Slots.
 		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
