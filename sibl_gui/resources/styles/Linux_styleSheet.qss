@@ -308,16 +308,13 @@ QGroupBox::title {
 QSlider::groove:horizontal {
 	background-color: rgb(40, 40, 40);
 	border: 2px solid rgb(56, 56, 56);
-	border-radius: 4px;
-	height: 10px;
-	margin: 2px 0;
+	height: 8px;
+	margin: 0px;
 }
 
 QSlider::handle:horizontal {
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(96, 96, 96), stop: 1 rgb(88, 88, 88));
 	border: 0px;
-	border-radius: 2px;
-	image: url(images/Horizontal_Slider_Grip.png);
 	width: 20px;
 }
 
@@ -327,7 +324,6 @@ QSlider::handle:hover {
 
 QSlider::handle:pressed {
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(88, 88, 88), stop: 1 rgb(84, 84, 84));
-	padding: 1px -1px -1px 1px;
 }
 
 /* QToolTip. */
