@@ -1,4 +1,4 @@
-**sIBL_GUI** - 4.0.2 - Stable
+**sIBL_GUI** - 4.0.3 - Stable
 =========================
 
 .. raw:: html
@@ -23,6 +23,7 @@ Changes
 4.0.3 - Stable
 --------------
 
+-  Update various Ui style elements ( ScrollBars, Icons, etc... ).
 -  Rename "Db" Component to "Database".
 -  Rename "DatabaseBrowser" Component to "IblSetsOutliner".
 
