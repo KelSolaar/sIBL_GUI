@@ -2,29 +2,21 @@
 <ui version="4.0">
  <class>Ibl_Sets_Outliner_Widget</class>
  <widget class="QWidget" name="Ibl_Sets_Outliner_Widget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>461</width>
-    <height>44</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Ibl Sets Outliner</string>
   </property>
   <layout class="QGridLayout" name="Ibl_Sets_Outliner_Widget_gridLayout">
+   <property name="verticalSpacing">
+    <number>0</number>
+   </property>
    <property name="margin">
     <number>0</number>
    </property>
    <item row="1" column="0" colspan="3">
     <widget class="QFrame" name="Ibl_Sets_Outliner_Overall_frame">
      <layout class="QGridLayout" name="Ibl_Sets_Outliner_Overall_frame_gridLayout">
-      <property name="horizontalSpacing">
-       <number>41</number>
-      </property>
       <property name="margin">
-       <number>0</number>
+       <number>4</number>
       </property>
       <item row="1" column="2">
        <widget class="QFrame" name="Ibl_Sets_Outliner_Thumbnails_Slider_frame">
