@@ -308,7 +308,7 @@ QGroupBox::title {
 QSlider::groove:horizontal {
 	background-color: rgb(40, 40, 40);
 	border: 2px solid rgb(56, 56, 56);
-	height: 8px;
+	height: 6px;
 	margin: 0px;
 }
 
