@@ -70,9 +70,9 @@ class UiConstantsTestCase(unittest.TestCase):
 								"centralWidgetIcon",
 								"centralWidgetHoverIcon",
 								"centralWidgetActiveIcon",
-								"layoutIcon",
-								"layoutHoverIcon",
-								"layoutActiveIcon",
+								"customLayoutsIcon",
+								"customLayoutsHoverIcon",
+								"customLayoutsActiveIcon",
 								"miscellaneousIcon",
 								"miscellaneousHoverIcon",
 								"miscellaneousActiveIcon",
@@ -223,26 +223,26 @@ class UiConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(UiConstants.centralWidgetActiveIcon, "\w+")
 
-	def testLayoutIconAttribute(self):
+	def testCustomLayoutsIconAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.customLayoutsIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.layoutIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.customLayoutsIcon, "\w+")
 
 	def testLayoutHoverIconAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.customLayoutsHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.layoutHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.customLayoutsHoverIcon, "\w+")
 
 	def testLayoutActiveIconAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.customLayoutsActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.layoutActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.customLayoutsActiveIcon, "\w+")
 
 	def testMiscellaneousIconAttribute(self):
 		"""

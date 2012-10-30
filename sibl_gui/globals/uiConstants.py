@@ -74,12 +74,12 @@ class UiConstants():
 	centralWidgetActiveIcon = "images/Central_Widget_Active.png"
 	"""Application **Central Widget** active icon: '**images/Central_Widget_Active.png**' ( String )"""
 
-	layoutIcon = "images/Layout.png"
-	"""Application **Layout** icon: '**images/Layout.png**' ( String )"""
-	layoutHoverIcon = "images/Layout_Hover.png"
-	"""Application **Layout** hover icon: '**images/Layout_Hover.png**' ( String )"""
-	layoutActiveIcon = "images/Layout_Active.png"
-	"""Application **Layout** active icon: '**images/Layout_Active.png**' ( String )"""
+	customLayoutsIcon = "images/Custom_Layouts.png"
+	"""Application **Custom Layouts** icon: '**images/Custom_Layouts.png**' ( String )"""
+	customLayoutsHoverIcon = "images/Custom_Layouts_Hover.png"
+	"""Application **Custom Layouts** hover icon: '**images/Custom_Layouts_Hover.png**' ( String )"""
+	customLayoutsActiveIcon = "images/Custom_Layouts_Active.png"
+	"""Application **Custom Layouts** active icon: '**images/Custom_Layouts_Active.png**' ( String )"""
 
 	miscellaneousIcon = "images/Miscellaneous.png"
 	"""Application **Miscellaneous** icon: '**images/Miscellaneous.png**' ( String )"""
