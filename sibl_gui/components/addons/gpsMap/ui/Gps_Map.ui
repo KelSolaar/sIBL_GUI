@@ -2,53 +2,11 @@
 <ui version="4.0">
  <class>Gps_Map_DockWidget</class>
  <widget class="QDockWidget" name="Gps_Map_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>313</width>
-    <height>226</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Gps Map</string>
   </property>
   <widget class="QWidget" name="Gps_Map_dockWidgetContents">
    <layout class="QGridLayout" name="Gps_Map_dockWidgetContents_gridLayout">
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="Map_groupBox">
-      <property name="statusTip">
-       <string>Map Group Box: Displays the GPS map.</string>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QGridLayout" name="Map_groupBox_gridLayout">
-       <item row="0" column="0">
-        <widget class="QScrollArea" name="Map_scrollArea">
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="Map_scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>257</width>
-            <height>78</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="Map_scrollAreaWidgetContents_gridLayout">
-           <property name="margin">
-            <number>0</number>
-           </property>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QGroupBox" name="Options_groupBox">
       <property name="title">
@@ -120,6 +78,28 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="Map_scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="Map_scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>287</width>
+         <height>76</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="Map_scrollAreaWidgetContents_gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>

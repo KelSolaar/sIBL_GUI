@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Loader_Script_DockWidget</class>
  <widget class="QDockWidget" name="Loader_Script_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>282</width>
+    <height>325</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Loader Script</string>
   </property>
@@ -11,12 +19,6 @@
      <layout class="QVBoxLayout" name="Loader_Script_verticalLayout">
       <item>
        <widget class="QPushButton" name="Output_Loader_Script_pushButton">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>32</height>
-         </size>
-        </property>
         <property name="statusTip">
          <string>Output Loader Script Push Button: Outputs the Loader Script.</string>
         </property>
@@ -27,12 +29,6 @@
       </item>
       <item>
        <widget class="QPushButton" name="Send_To_Software_pushButton">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>32</height>
-         </size>
-        </property>
         <property name="statusTip">
          <string>Send To Software Push Button: Direct connection to target 3d package if remote connection is available.</string>
         </property>
