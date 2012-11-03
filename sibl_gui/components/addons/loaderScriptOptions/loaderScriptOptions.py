@@ -733,6 +733,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		umbra.ui.common.setToolBoxHeight(self.Loader_Script_Options_toolBox)
+
 		self.Common_Attributes_tableWidget.setParent(None)
 		self.Common_Attributes_tableWidget = TemplatesAttributes_QTableWidget(self, message="No Attributes to view!")
 		self.Common_Attributes_tableWidget.setObjectName("Common_Attributes_tableWidget")

@@ -84,7 +84,7 @@
       <item row="1" column="0">
        <layout class="QHBoxLayout" name="Views_horizontalLayout">
         <property name="spacing">
-         <number>2</number>
+         <number>4</number>
         </property>
         <item>
          <widget class="QPushButton" name="Thumbnails_View_pushButton">
@@ -130,7 +130,7 @@
       <item row="1" column="1">
        <layout class="QHBoxLayout" name="Search_Database_Overall_horizontalLayout">
         <property name="spacing">
-         <number>2</number>
+         <number>4</number>
         </property>
         <item>
          <widget class="QPushButton" name="Case_Sensitive_Matching_pushButton">

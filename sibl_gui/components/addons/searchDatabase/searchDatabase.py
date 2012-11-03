@@ -35,6 +35,7 @@ from PyQt4.QtGui import QScrollArea
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
+import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.searchDatabase.views import TagsCloud_QListView
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -367,6 +368,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		umbra.ui.common.setToolBoxHeight(self.Search_toolBox)
 
 		self.Tags_Cloud_listWidget.setParent(None)
 		self.Tags_Cloud_listWidget = TagsCloud_QListView(self, message="No Tag to view!")

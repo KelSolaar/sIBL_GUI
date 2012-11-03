@@ -25,7 +25,14 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="centralwidget_gridLayout"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

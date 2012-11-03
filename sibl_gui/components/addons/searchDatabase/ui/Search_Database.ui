@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>282</width>
+    <height>354</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -17,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>290</width>
-         <height>308</height>
+         <width>258</width>
+         <height>236</height>
         </rect>
        </property>
        <attribute name="label">
@@ -31,7 +39,7 @@
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="Search_Database_horizontalLayout">
           <property name="spacing">
-           <number>2</number>
+           <number>4</number>
           </property>
           <item>
            <widget class="QPushButton" name="Case_Sensitive_Matching_pushButton">
@@ -87,8 +95,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>290</width>
-         <height>308</height>
+         <width>238</width>
+         <height>71</height>
         </rect>
        </property>
        <attribute name="label">

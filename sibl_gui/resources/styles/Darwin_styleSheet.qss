@@ -4,7 +4,7 @@
 QWidget {
 	background-color: rgb(64, 64, 64);
 	color: rgb(192, 192, 192);
-	selection-background-color: rgb(96, 96, 96);
+	selection-background-color: rgb(128, 128, 128);
 	selection-color: rgb(224, 224, 224);
 }
 
@@ -16,7 +16,7 @@ QMainWindow::separator {
 }
 
 QMainWindow::separator:hover {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 /* Toolbar. */
@@ -39,7 +39,7 @@ QComboBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QPlainTextEdit, 
 /* QCheckBox. */
 QCheckBox::indicator {
 	background-color: rgb(32, 32, 32);
-	color: rgb(88, 88, 88);
+	color: rgb(96, 96, 96);
 	height: 16px;
 	width: 16px;
 }
@@ -80,11 +80,12 @@ QCheckBox::indicator:indeterminate:pressed{
 QComboBox {
 	background-color: rgb(32, 32, 32);
 	border-radius: 0px;
-	padding: 4px;
+	min-height: 32px;
+	min-width: 56px;
 }
 
 QComboBox::drop-down {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 	subcontrol-origin: padding;
 	subcontrol-position: top right;
 	width: 16px;
@@ -101,11 +102,11 @@ QComboBox::down-arrow:on {
 
 /* QDateTimeEdit, QDoubleSpinBox, QSpinBox. */
 QDateTimeEdit, QDoubleSpinBox, QSpinBox {
-	padding: 4px;
+	min-height: 32px;
 }
 
 QDateTimeEdit::up-button, QDoubleSpinBox::up-button, QSpinBox::up-button  {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 QDateTimeEdit::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::up-arrow  {
@@ -113,24 +114,22 @@ QDateTimeEdit::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::up-arrow  {
 }
 
 QDateTimeEdit::up-button:hover, QDoubleSpinBox::up-button:hover, QSpinBox::up-button:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QDateTimeEdit::up-button:pressed, QDoubleSpinBox::up-button:pressed, QSpinBox::up-button:pressed {
-/*	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(32, 32, 32), stop: 1 rgb(84, 84, 84));*/
 	padding: 1px -1px -1px 1px;
 }
 
 QDateTimeEdit::down-button, QDoubleSpinBox::down-button, QSpinBox::down-button  {
-	background-color: rgb(88, 88, 88);
-}
-
-QDateTimeEdit::down-button:hover, QDoubleSpinBox::down-button:hover, QSpinBox::down-button:hover {
 	background-color: rgb(96, 96, 96);
 }
 
+QDateTimeEdit::down-button:hover, QDoubleSpinBox::down-button:hover, QSpinBox::down-button:hover {
+	background-color: rgb(128, 128, 128);
+}
+
 QDateTimeEdit::down-button:pressed, QDoubleSpinBox::down-button:pressed, QSpinBox::down-button:pressed {
-/*	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(84, 84, 84), stop: 1 rgb(32, 32, 32));*/
 	padding: 1px -1px -1px 1px;
 }
 
@@ -201,7 +200,7 @@ QHeaderView::section:vertical {
 }
  
 QHeaderView::section:checked {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QHeaderView::down-arrow {
@@ -214,7 +213,7 @@ QHeaderView::up-arrow {
 
 /* QLineEdit. */
 QLineEdit {
-	padding: 4px;
+	min-height: 32px;
 }
 
 /* QListView. */
@@ -225,11 +224,11 @@ QListView::item {
 }
 
 QListView::item:selected:!active {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QListView::item:selected:active {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QListView::item:hover {
@@ -238,13 +237,26 @@ QListView::item:hover {
 
 /* QPushButton, QToolButton. */
 QPushButton, QToolButton {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 	border-radius: 0px;
-	padding: 8px;
+}
+
+QPushButton {
+	min-height: 32px;
+	min-width: 56px;
+}
+
+QToolButton {
+	min-height: 32px;
+	min-width: 56px;
+}
+
+QPushButton::checked, QToolButton::checked {
+	background-color: rgb(128, 128, 128);
 }
 
 QPushButton::hover, QToolButton::hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QPushButton::pressed, QToolButton::pressed {
@@ -278,12 +290,12 @@ QScrollBar:horizontal:hover, QScrollBar:horizontal:pressed, QScrollBar:vertical:
 }
 
 QScrollBar::handle:horizontal {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 	min-width: 24px;
 }
 
 QScrollBar::handle:horizontal:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QScrollBar::handle:horizontal:pressed {
@@ -291,12 +303,12 @@ QScrollBar::handle:horizontal:pressed {
 }
 
 QScrollBar::handle:vertical {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 	min-height: 24px;
 }
 
 QScrollBar::handle:vertical:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QScrollBar::handle:vertical:pressed {
@@ -329,13 +341,13 @@ QSlider::groove:hover {
 }
 
 QSlider::handle {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 	border: 0px;
 	width: 24px;
 }
 
 QSlider::handle:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QSlider::handle:pressed {
@@ -356,7 +368,7 @@ QSplitter::handle:vertical {
 }
 
 QSplitter::handle:hover {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 QSplitter::handle:pressed {
@@ -386,11 +398,11 @@ QTabBar::tab {
 }
 
 QTabBar::tab:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 QTabBar::tab:last:selected {
@@ -416,16 +428,16 @@ QTabWidget::pane {
 
 /* QToolBox. */
 QToolBox::tab {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 QToolBox::tab:selected {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 	font: inherit;
 }
 
 QToolBox::tab:hover {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(128, 128, 128);
 }
 
 QToolBox::tab:pressed {
@@ -443,15 +455,15 @@ QToolTip {
 
 /* QTreeView. */
 QTreeView::branch:has-siblings:!adjoins-item {
-	border-image: url(images/TreeView_VLine.png) 0;
+	border-image: url(images/TreeView_VLine.png) 0px;
 }
 
 QTreeView::branch:has-siblings:adjoins-item {
-	border-image: url(images/TreeView_Branch_More.png) 0;
+	border-image: url(images/TreeView_Branch_More.png) 0px;
 }
 
 QTreeView::branch:!has-children:!has-siblings:adjoins-item {
-	border-image: url(images/TreeView_Branch_End.png) 0;
+	border-image: url(images/TreeView_Branch_End.png) 0px;
 }
 
 QTreeView::branch:has-children:!has-siblings:closed, QTreeView::branch:closed:has-children:has-siblings {
@@ -468,19 +480,25 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	background-color: rgb(64, 64, 64);
 }
 
-/* Search_QlineEdit. */
+/* Search_Field_activeLabel, Clear_Field_button. */
 #Search_Field_activeLabel, #Clear_Field_button {
 	background-color: transparent;
 }
 
-/* Components. */
-/* Factory Component "Script Editor". */
-#Script_Editor_tabWidget {
-	border: 0px;
+#Clear_Field_button {
+	min-height: 0px;
+	min-width: 0px;
 }
 
+/* Case_Sensitive_Matching_pushButton. */
+#Case_Sensitive_Matching_pushButton {
+	min-width: 32px;
+}
+
+/* Components. */
+/* Factory Component "Script Editor". */
 #Lines_Numbers_textEdit {
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(96, 96, 96);
 }
 
 #Lines_Columns_label {
@@ -499,6 +517,11 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	border-image: none;
 }
 
+#Center_Vertical_line, #Left_Vertical_line {
+	background-color: rgb(32, 32, 32);
+	border: 2px solid rgb(32, 32, 32);
+}
+
 /* Factory Component "Projects Explorer". */
 #Projects_Explorer_treeView::branch:has-siblings:!adjoins-item {
 	border-image: none;
@@ -512,6 +535,11 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	border-image: none;
 }
 
+/* Core Component "IblSetsOutliner". */
+#Thumbnails_View_pushButton, #Columns_View_pushButton, #Details_View_pushButton  {
+	min-width: 32px;
+}
+
 /* Core Component "Inspector". */
 #Inspector_Overall_frame {
 	background-color: rgb(32, 32, 32);
@@ -523,6 +551,10 @@ QTreeView::branch:hover, QTreeView::item:hover {
 
 /* Addon Component "Search Database". */
 #Tags_Cloud_listWidget::item {
-	border: 0px;
-	padding: 2px;
+	padding: 4px;
+}
+
+/* Addon Component "Gps Map". */
+#Zoom_In_pushButton, #Zoom_Out_pushButton {
+	min-width: 32px;
 }
