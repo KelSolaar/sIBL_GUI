@@ -409,7 +409,7 @@ QTableView {
 QTabBar::tab {
 	background-color: rgb(48, 48, 48);
 	margin-right: 4px;
-	padding: 8px;
+	padding: 4px;
 }
 
 QTabBar::tab:hover {
@@ -495,6 +495,7 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	background-color: rgb(64, 64, 64);
 }
 
+/* Processing_progressBar. */
 #Processing_progressBar {
 	height: 22px;
 }
