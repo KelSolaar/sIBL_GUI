@@ -244,7 +244,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		# Ensure the ui object is destroyed on close to avoid memory leaks.
 		self.setAttribute(Qt.WA_DeleteOnClose)
 
-		self.__graphicsSceneBackgroundColor = QColor(48, 48, 48)
+		self.__graphicsSceneBackgroundColor = QColor(32, 32, 32)
 		self.__minimumZoomFactor = 0.05
 		self.__maximumZoomFactor = 25
 		self.__displayGraphicsItemMargin = 32
@@ -873,7 +873,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.Next_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
 		self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomInImage)))
 		self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomOutImage)))
-		len(self.__paths) <= 1 and self.Navigation_groupBox.hide()
+		len(self.__paths) <= 1 and self.Navigation_frame.hide()
 
 		LOGGER.debug("> Initializing graphics View.")
 		self.__graphicsView = QGraphicsView()

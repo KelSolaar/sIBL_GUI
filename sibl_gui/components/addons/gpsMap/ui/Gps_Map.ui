@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Gps_Map_DockWidget</class>
  <widget class="QDockWidget" name="Gps_Map_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>313</width>
+    <height>194</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Gps Map</string>
   </property>
@@ -13,27 +21,29 @@
        <string/>
       </property>
       <layout class="QGridLayout" name="Options_groupBox_gridLayout">
-       <item row="1" column="3">
-        <widget class="QComboBox" name="Map_Type_comboBox">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Zoom_Out_pushButton">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
          <property name="statusTip">
-          <string>Map Type Combo Box: Changes GPS map display type.</string>
+          <string>Zoom Out Push Button: Zooms out of the GPS map.</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <spacer name="Options_horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
+       <item row="1" column="3">
         <widget class="QPushButton" name="Zoom_In_pushButton">
          <property name="minimumSize">
           <size>
@@ -55,27 +65,25 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Zoom_Out_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="Map_Type_comboBox">
          <property name="statusTip">
-          <string>Zoom Out Push Button: Zooms out of the GPS map.</string>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Map Type Combo Box: Changes GPS map display type.</string>
          </property>
         </widget>
+       </item>
+       <item row="1" column="1">
+        <spacer name="Options_horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

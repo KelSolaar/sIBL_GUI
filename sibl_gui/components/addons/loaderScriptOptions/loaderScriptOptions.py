@@ -847,6 +847,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						state,
 						(self.__uiLightGrayColor, self.__uiDarkGrayColor),
 						("True", "False"))
+				item.setObjectName("Spread_Sheet_pushButton")
 				item.setChecked(state)
 
 				# Signals / Slots.

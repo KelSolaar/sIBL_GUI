@@ -623,7 +623,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Templates_tableWidget.setParent(None)
 			self.Templates_tableWidget = TemplatesReleases_QTableWidget(self, message="No Releases to view!")
 			self.Templates_tableWidget.setObjectName("Templates_tableWidget")
-			self.Templates_gridLayout.addWidget(self.Templates_tableWidget, 0, 0)
+			self.Templates_frame_gridLayout.addWidget(self.Templates_tableWidget, 1, 0)
 			self.__view = self.Templates_tableWidget
 			self.__view.clear()
 			self.__view.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -649,6 +649,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 														True,
 														(self.__uiLightGrayColor, self.__uiDarkGrayColor),
 														("Yes", "No"))
+				tableWidgetItem.setObjectName("Spread_Sheet_pushButton")
 				self.__view.setCellWidget(row, 1, tableWidgetItem)
 
 				tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)

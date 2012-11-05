@@ -31,7 +31,7 @@ QMainWindow::separator:hover {
 }
 
 /* Overall. */
-QComboBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QPlainTextEdit, QSpinBox, QTableView, QTreeView, QTextEdit, QTextBrowser {
+QComboBox, QDateTimeEdit, QDoubleSpinBox, QGraphicsView, QListView, QLineEdit, QPlainTextEdit, QProgressBar, QSpinBox, QTableView, QTreeView, QTextEdit, QTextBrowser {
 	background-color: rgb(32, 32, 32);
 	border-radius: 0px;
 }
@@ -44,24 +44,24 @@ QCheckBox::indicator {
 	width: 16px;
 }
 
-/*QCheckBox::indicator:unchecked{
-	image: url(images/ComboBox_Cross.png);
+QCheckBox::indicator:unchecked{
+	image: none;
 }
 
 QCheckBox::indicator:unchecked:hover{
-	image: url(images/ComboBox_Cross.png);
+	image: none;
 }
 
 QCheckBox::indicator:unchecked:pressed{
-	image: url(images/ComboBox_Cross.png);
-}*/
+	image: none;
+}
 
 QCheckBox::indicator:checked{
 	image: url(images/ComboBox_Cross.png);
 }
 
 QCheckBox::indicator:checked:hover{
-	image: url(images/ComboBox_Cross.png);
+	image: url(images/ComboBox_Cross_Hover.png);
 }
 
 QCheckBox::indicator:checked:pressed{
@@ -69,7 +69,7 @@ QCheckBox::indicator:checked:pressed{
 }
 
 QCheckBox::indicator:indeterminate:hover{
-	image: url(images/ComboBox_Cross.png);
+	image: url(images/ComboBox_Cross_Hover.png);
 }
 
 QCheckBox::indicator:indeterminate:pressed{
@@ -107,6 +107,7 @@ QDateTimeEdit, QDoubleSpinBox, QSpinBox {
 
 QDateTimeEdit::up-button, QDoubleSpinBox::up-button, QSpinBox::up-button  {
 	background-color: rgb(96, 96, 96);
+	border-bottom: 2px solid rgb(32, 32, 32);
 }
 
 QDateTimeEdit::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::up-arrow  {
@@ -118,11 +119,13 @@ QDateTimeEdit::up-button:hover, QDoubleSpinBox::up-button:hover, QSpinBox::up-bu
 }
 
 QDateTimeEdit::up-button:pressed, QDoubleSpinBox::up-button:pressed, QSpinBox::up-button:pressed {
+	background-color: rgb(32, 32, 32);
 	padding: 1px -1px -1px 1px;
 }
 
 QDateTimeEdit::down-button, QDoubleSpinBox::down-button, QSpinBox::down-button  {
 	background-color: rgb(96, 96, 96);
+	border-top: 2px solid rgb(32, 32, 32);
 }
 
 QDateTimeEdit::down-button:hover, QDoubleSpinBox::down-button:hover, QSpinBox::down-button:hover {
@@ -130,6 +133,7 @@ QDateTimeEdit::down-button:hover, QDoubleSpinBox::down-button:hover, QSpinBox::d
 }
 
 QDateTimeEdit::down-button:pressed, QDoubleSpinBox::down-button:pressed, QSpinBox::down-button:pressed {
+	background-color: rgb(32, 32, 32);
 	padding: 1px -1px -1px 1px;
 }
 
@@ -235,6 +239,17 @@ QListView::item:hover {
 	background-color: rgb(64, 64, 64);
 }
 
+/* QProgressBar. */
+QProgressBar {
+	text-align: center;
+}
+ 
+QProgressBar::chunk {
+	background-color: rgb(96, 96, 96);
+	margin: 0px 2px 0px 0px;
+	width: 8px;
+}
+ 
 /* QPushButton, QToolButton. */
 QPushButton, QToolButton {
 	background-color: rgb(96, 96, 96);
@@ -387,14 +402,14 @@ QStatusBar::item {
 
 /* QTableView. */
 QTableView {
-	gridline-color: rgb(32, 32, 32);
+	gridline-color: rgb(48, 48, 48);
 }
 
 /* QTabBar. */
 QTabBar::tab {
-	background-color: rgb(64, 64, 64);
+	background-color: rgb(48, 48, 48);
 	margin-right: 4px;
-	padding: 4px;
+	padding: 8px;
 }
 
 QTabBar::tab:hover {
@@ -402,7 +417,7 @@ QTabBar::tab:hover {
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(32, 32, 32);
 }
 
 QTabBar::tab:last:selected {
@@ -480,6 +495,10 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	background-color: rgb(64, 64, 64);
 }
 
+#Processing_progressBar {
+	height: 22px;
+}
+
 /* Search_Field_activeLabel, Clear_Field_button. */
 #Search_Field_activeLabel, #Clear_Field_button {
 	background-color: transparent;
@@ -495,6 +514,11 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	min-width: 32px;
 }
 
+/* Spread_Sheet_pushButton. */
+#Spread_Sheet_pushButton {
+	min-height: 8px;
+}
+
 /* Components. */
 /* Factory Component "Script Editor". */
 #Lines_Numbers_textEdit {
@@ -503,6 +527,10 @@ QTreeView::branch:hover, QTreeView::item:hover {
 
 #Lines_Columns_label {
 	margin: 4px 8px 4px 8px;
+}
+
+#Languages_comboBox {
+	min-height: 22px;
 }
 
 #Search_Results_treeView::branch:has-siblings:!adjoins-item {
@@ -554,7 +582,3 @@ QTreeView::branch:hover, QTreeView::item:hover {
 	padding: 4px;
 }
 
-/* Addon Component "Gps Map". */
-#Zoom_In_pushButton, #Zoom_Out_pushButton {
-	min-width: 32px;
-}
