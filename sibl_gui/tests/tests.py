@@ -39,18 +39,18 @@ __all__ = ["testsSuite"]
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def _setApplicationPackageDirectory():
+def _setPackageDirectory():
 	"""
 	This definition sets the package directory in the path.
 
 	:return: Definition success. ( Boolean )
 	"""
 
-	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
-	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
+	packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+	packageDirectory not in sys.path and sys.path.append(packageDirectory)
 	return True
 
-_setApplicationPackageDirectory()
+_setPackageDirectory()
 
 def testsSuite():
 	"""

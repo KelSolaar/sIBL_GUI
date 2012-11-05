@@ -25,6 +25,19 @@ from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
 
 #**********************************************************************************************************************
+#***	Path manipulations.
+#**********************************************************************************************************************
+def _setPackageDirectory():
+	"""
+	This definition sets the Application package directory in the path.
+	"""
+
+	packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+	packageDirectory not in sys.path and sys.path.append(packageDirectory)
+
+_setPackageDirectory()
+
+#**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import sibl_gui.globals.constants
