@@ -65,9 +65,9 @@ def apply():
 In order to complete the migration, you will need to relaunch sIBL_GUI without the '-r / --databaseReadOnly' parameter!\n\n\
 If you are using an already migrated shared database, you can ignore this message!\n\nWould like to continue?"
 		if umbra.ui.widgets.messageBox.messageBox("Question",
-																"sIBL_GUI | Question",
-																message,
-																buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
+													"sIBL_GUI | Question",
+													message,
+													buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.No:
 			foundations.core.exit(1)
 
 	if RuntimeGlobals.parameters.databaseReadOnly:
