@@ -56,7 +56,7 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 
 	LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))
 	file = File(fileIn)
-	file.read()
+	file.cache()
 
 	LOGGER.info("{0} | Processing 'body' data!".format(getHDRLabsDocumentation.__name__))
 	content = []

@@ -87,7 +87,7 @@ def getSphinxDocumentationTocTree(title, fileIn, fileOut, contentDirectory):
 	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__,
 																				fileOut))
 	file = File(fileIn)
-	file.read()
+	file.cache()
 
 	existingFiles = [foundations.strings.getSplitextBasename(item)
 					for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]

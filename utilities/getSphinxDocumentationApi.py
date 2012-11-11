@@ -147,7 +147,7 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 			shutil.copyfile(file, source)
 
 			sourceFile = File(source)
-			sourceFile.read()
+			sourceFile.cache()
 			trimFromIndex = trimEndIndex = None
 			inMultilineString = inDecorator = False
 			for i, line in enumerate(sourceFile.content):

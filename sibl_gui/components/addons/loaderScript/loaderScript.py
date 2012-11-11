@@ -820,12 +820,12 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		else:
 			loaderScript = File(os.path.join(self.__ioDirectory, template.outputScript))
 
-		LOGGER.debug("> Loader Script output file path: '{0}'.".format(loaderScript.file))
+		LOGGER.debug("> Loader Script output file path: '{0}'.".format(loaderScript.path))
 
 		loaderScript.content = self.getLoaderScript(template.path, iblSet.path, self.__overrideKeys)
 
 		if loaderScript.content and loaderScript.write():
-			return loaderScript.file
+			return loaderScript.path
 
 	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
 											sibl_gui.exceptions.SocketConnectionError,

@@ -65,7 +65,7 @@ def listImports(sourceDirectory, filtersIn, filtersOut):
 	imports = IMPORTS
 	for file in sorted(list(foundations.walkers.filesWalker(sourceDirectory, filtersIn, filtersOut))):
 		source = File(file)
-		source.read()
+		source.cache()
 		for line in source.content:
 			if not re.search("foundations|manager|umbra|sibl_gui", line):
 				search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import", line)

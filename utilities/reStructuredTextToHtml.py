@@ -75,7 +75,7 @@ def reStructuredTextToHtml(fileIn, fileOut):
 	os.system("tidy -config {0} -m '{1}'".format(os.path.join(os.path.dirname(__file__), TIDY_SETTINGS_FILE), fileOut))
 
 	file = File(fileOut)
-	file.read()
+	file.cache()
 	LOGGER.info("{0} | Replacing spaces with tabs!".format(reStructuredTextToHtml.__name__))
 	file.content = [line.replace(" " * 4, "\t") for line in file.content]
 	file.write()

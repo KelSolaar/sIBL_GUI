@@ -73,7 +73,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 
 	LOGGER.info("{0} | Slicing '{1}' file!".format(sliceDocumentation.__name__, fileIn))
 	file = File(fileIn)
-	file.read()
+	file.cache()
 
 	slices = OrderedDict()
 	for i, line in enumerate(file.content):
@@ -84,7 +84,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 	index = 0
 	for slice, sliceStart in slices.iteritems():
 		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, OUTPUT_FILES_EXTENSION)))
-		LOGGER.info("{0} | Outputing '{1}' file!".format(sliceDocumentation.__name__, sliceFile.file))
+		LOGGER.info("{0} | Outputing '{1}' file!".format(sliceDocumentation.__name__, sliceFile.path))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or \
 		len(file.content)
 
