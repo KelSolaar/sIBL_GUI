@@ -792,7 +792,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		else:
 			raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.DirectoryExistsError)
+	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+											foundations.exceptions.DirectoryExistsError)
 	def outputLoaderScript(self, template, iblSet):
 		"""
 		This method outputs the Loader Script.

@@ -473,7 +473,7 @@ class Database(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.uiSystemExitExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.ui.common.uiExtendedSystemExitExceptionHandler,
 											foundations.exceptions.DirectoryExistsError,
 											Exception)
 	def initialize(self):
