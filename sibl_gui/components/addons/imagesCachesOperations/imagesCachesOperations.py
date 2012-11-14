@@ -26,7 +26,7 @@ from PyQt4.QtGui import QGridLayout
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.exceptions
-import umbra.ui.common
+import umbra.exceptions
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.uiConstants import UiConstants
@@ -315,7 +315,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info(separator)
 		return True
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											sibl_gui.exceptions.CacheOperationError)
 	def clearImagesCaches(self):
 		"""

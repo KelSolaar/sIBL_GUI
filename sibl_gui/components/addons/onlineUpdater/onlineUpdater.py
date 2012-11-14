@@ -32,7 +32,7 @@ import foundations.strings
 import foundations.verbose
 import sibl_gui.components.core.database.operations
 import sibl_gui.exceptions
-import umbra.ui.common
+import umbra.exceptions
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.onlineUpdater.remoteUpdater import ReleaseObject
@@ -809,7 +809,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											sibl_gui.exceptions.NetworkError,
 											Exception)
 	def checkForNewReleasesUi(self):

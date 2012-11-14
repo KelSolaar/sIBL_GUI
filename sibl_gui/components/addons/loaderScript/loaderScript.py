@@ -33,7 +33,7 @@ import foundations.parsers
 import foundations.strings
 import foundations.verbose
 import sibl_gui.exceptions
-import umbra.ui.common
+import umbra.exceptions
 from foundations.io import File
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -713,7 +713,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		elif connectionType.value == "Win32":
 			LOGGER.debug("> Remote connection: 'Win32'.")
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError,
 											Exception)
 	def outputLoaderScriptUi(self):
@@ -766,7 +766,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise Exception("{0} | Exception raised: '{1}' output failed!".format(self.__class__.__name__,
 			template.outputScript))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def sendLoaderScriptToSoftwareUi(self):
 		"""
 		This method sends the Loader Script to associated 3d package.
@@ -792,7 +792,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		else:
 			raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.DirectoryExistsError)
 	def outputLoaderScript(self, template, iblSet):
 		"""
@@ -828,7 +828,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if loaderScript.content and loaderScript.write():
 			return loaderScript.path
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											sibl_gui.exceptions.SocketConnectionError,
 											sibl_gui.exceptions.Win32OLEServerConnectionError)
 	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):

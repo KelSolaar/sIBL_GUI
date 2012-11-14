@@ -31,7 +31,7 @@ import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.operations
-import umbra.ui.common
+import umbra.exceptions
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
 from sibl_gui.components.core.database.types import Base
@@ -473,9 +473,6 @@ class Database(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.uiExtendedSystemExitExceptionHandler,
-											foundations.exceptions.DirectoryExistsError,
-											Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.

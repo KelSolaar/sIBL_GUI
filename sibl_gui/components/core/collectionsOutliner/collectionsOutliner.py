@@ -43,6 +43,7 @@ import foundations.verbose
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.operations
 import umbra.engine
+import umbra.exceptions
 import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
@@ -780,7 +781,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		foundations.common.getFirstItem(self.__model.findChildren("^{0}$".format(self.__overallCollection)))
 		overallCollectionNode.updateNodeAttributes()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
@@ -873,7 +874,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__iblSetsOutliner.refreshNodes.emit()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
 		"""
@@ -901,7 +902,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError,
 											Exception)
 	@umbra.engine.showProcessing("Adding Collection ...")
@@ -945,7 +946,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(
 			self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeCollectionsUi(self):
 		"""

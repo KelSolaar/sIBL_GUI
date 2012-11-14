@@ -29,7 +29,7 @@ import foundations.exceptions
 import foundations.verbose
 import sibl_gui.components.core.database.operations
 import sibl_gui.ui.views
-import umbra.ui.common
+import umbra.exceptions
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -166,7 +166,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		pass
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.DirectoryExistsError,
 											foundations.exceptions.UserError)
 	def dropEvent(self, event):

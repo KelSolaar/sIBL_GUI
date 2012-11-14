@@ -29,6 +29,7 @@ import foundations.common
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
+import umbra.exceptions
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -468,7 +469,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
@@ -484,7 +485,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
 	def editIblSetInSIBLEditUi(self):
 		"""
@@ -511,7 +512,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.notificationsManager.warnify(
 			"{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
 	def editActiveIblSetInSIBLEditUi(self):
 		"""
@@ -548,7 +549,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
 		This method edits given Ibl Set in sIBLedit.

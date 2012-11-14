@@ -46,6 +46,7 @@ import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.operations
 import umbra.engine
+import umbra.exceptions
 import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
@@ -1173,7 +1174,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.Template_Informations_textBrowser.setText(separator.join(content))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __engine__contentDropped(self, event):
@@ -1266,7 +1267,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				identity = collection and collection.id or None
 		return identity
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplateUi(self):
 		"""
@@ -1295,7 +1296,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeTemplatesUi(self):
 		"""
@@ -1343,7 +1344,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
 				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplatesUi(self):
 		"""
@@ -1360,7 +1361,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(
 			self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFilesUi(self):
 		"""
@@ -1385,7 +1386,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersionsUi(self):
 		"""
@@ -1442,7 +1443,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
@@ -1477,7 +1478,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
 		This method adds default Templates Collections / Templates to the Database.

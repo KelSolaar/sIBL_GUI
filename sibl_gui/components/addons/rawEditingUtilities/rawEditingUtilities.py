@@ -34,6 +34,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import umbra.engine
+import umbra.exceptions
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -667,7 +668,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customTextEditor",
 									self.Custom_Text_Editor_Path_lineEdit.text())
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
@@ -726,7 +727,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		elif event.source() is self.__templatesOutliner.view:
 			self.editTemplatesFilesUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editIblSetsFilesUi(self):
 		"""
 		This method edits selected Ibl Sets files.
@@ -753,7 +754,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__,
 																", ".join(iblSet.title for iblSet in selectedIblSets)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
 	def editActiveIblSetFileUi(self):
 		"""
@@ -774,7 +775,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, activeIblSet.title))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editTemplatesFilesUi(self):
 		"""
 		This method edits selected Templates files.
@@ -801,7 +802,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__,
 															", ".join(template.name for template in selectedTemplates)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editComponentsUi(self):
 		"""
 		This method edits selected Components packages.
@@ -847,7 +848,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, path)
 		return processCommand
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editPath(self, path, customTextEditor=None):
 		"""
 		This method provides editing capability.

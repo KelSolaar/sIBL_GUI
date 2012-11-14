@@ -50,6 +50,7 @@ import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.operations
 import umbra.engine
+import umbra.exceptions
 import umbra.ui.common
 import umbra.ui.nodes
 import umbra.ui.widgets.messageBox as messageBox
@@ -1159,7 +1160,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def onStartup(self):
 		"""
 		This method is triggered on Framework startup.
@@ -1387,7 +1388,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Ibl Sets ...")
 	def __engine__contentDropped(self, event):
@@ -1554,7 +1555,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.Search_Database_lineEdit.setPlaceholderText(text)
 		return True
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
 		"""
@@ -1578,7 +1579,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSetUi(self):
 		"""
@@ -1607,7 +1608,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			self.__engine.notificationsManager.warnify(
 			"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def removeIblSetsUi(self):
 		"""
@@ -1640,7 +1641,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(
 				self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def updateIblSetsLocationUi(self):
 		"""
@@ -1699,7 +1700,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""

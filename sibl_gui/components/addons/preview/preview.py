@@ -38,6 +38,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import umbra.engine
+import umbra.exceptions
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -764,7 +765,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customPreviewer",
 									self.Custom_Previewer_Path_lineEdit.text())
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
 		"""
@@ -796,7 +797,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			return False
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def viewIblSetsImagesUi(self, imageType, *args):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
@@ -829,7 +830,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set(s) image(s)!".format(
 			self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError,
 											Exception)
 	def viewActiveIblSetImagesUi(self, imageType, *args):
@@ -867,7 +868,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																		activeIblSet.title,
 																		imageType))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def viewImages(self, paths, customPreviewer=None):
 		"""
 		This method launches an Ibl Set Images Previewer.

@@ -31,7 +31,7 @@ import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import sibl_gui.ui.common
-import umbra.ui.common
+import umbra.exceptions
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.addons.gpsMap.views import Map_QWebView
 from umbra.globals.constants import Constants
@@ -596,7 +596,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.setMarkersUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def setMarkersUi(self):
 		"""
 		This method sets selected Ibl Sets markers.

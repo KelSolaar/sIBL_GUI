@@ -689,7 +689,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 									"customFileBrowser",
 									self.Custom_File_Browser_Path_lineEdit.text())
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
@@ -718,7 +718,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.openOutputDirectoryUi()
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openIblSetsLocationsUi(self):
 		"""
 		This method open selected Ibl Sets directories.
@@ -746,7 +746,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(
 			self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
 	def openActiveIblSetLocationsUi(self):
 		"""
@@ -768,7 +768,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, activeIblSet.title))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openComponentsLocationsUi(self):
 		"""
 		This method opens selected Components directories.
@@ -796,7 +796,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Components directories!".format(
 			self.__class__.__name__, ", ".join(component.name for component in selectedComponents)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openTemplatesLocationsUi(self):
 		"""
 		This method opens selected Templates directories.
@@ -824,7 +824,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while opening '{1}' Templates directories!".format(
 			self.__class__.__name__, ", ".join(template.name for template in selectedTemplates)))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler,
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.DirectoryExistsError,
 											Exception)
 	def openOutputDirectoryUi(self):
@@ -849,7 +849,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(
 			self.__class__.__name__, directory))
 
-	@foundations.exceptions.handleExceptions(umbra.ui.common.notifyExceptionHandler, Exception)
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def getProcessCommand(self, directory, customBrowser=None):
 		"""
 		This method gets process command.
