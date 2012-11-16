@@ -43,7 +43,7 @@
         </property>
         <item row="0" column="0">
          <widget class="QTextBrowser" name="Template_Informations_textBrowser">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Template Informations Text Browser: Displays selected Template informations.</string>
           </property>
           <property name="openExternalLinks">

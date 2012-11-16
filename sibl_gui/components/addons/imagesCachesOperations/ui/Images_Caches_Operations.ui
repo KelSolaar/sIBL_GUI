@@ -34,7 +34,7 @@
       </property>
       <item row="0" column="1">
        <widget class="QPushButton" name="Clear_Images_Caches_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Clear Images Caches Push Button: Clears images caches content.</string>
         </property>
         <property name="text">
@@ -44,7 +44,7 @@
       </item>
       <item row="0" column="0">
        <widget class="QPushButton" name="Output_Images_Caches_Metrics_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Output Images Caches Metrics Push Button: Outputs images caches metrics.</string>
         </property>
         <property name="text">

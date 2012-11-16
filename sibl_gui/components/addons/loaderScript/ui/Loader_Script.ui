@@ -19,7 +19,7 @@
      <layout class="QVBoxLayout" name="Loader_Script_verticalLayout">
       <item>
        <widget class="QPushButton" name="Output_Loader_Script_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Output Loader Script Push Button: Outputs the Loader Script.</string>
         </property>
         <property name="text">
@@ -29,7 +29,7 @@
       </item>
       <item>
        <widget class="QPushButton" name="Send_To_Software_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Send To Software Push Button: Direct connection to target 3d package if remote connection is available.</string>
         </property>
         <property name="text">
@@ -81,7 +81,7 @@
             </item>
             <item>
              <widget class="QCheckBox" name="Convert_To_Posix_Paths_checkBox">
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Convert To Posix Paths Check Box: Windows paths will be converted to Unix paths, drive letters will be trimmed.</string>
               </property>
               <property name="layoutDirection">

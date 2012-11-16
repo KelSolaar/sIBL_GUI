@@ -29,7 +29,7 @@
          <height>192</height>
         </rect>
        </property>
-       <property name="statusTip">
+       <property name="toolTip">
         <string>Common Attributes: Common attributes settings of the Loader Script.</string>
        </property>
        <attribute name="label">
@@ -63,7 +63,7 @@
          <height>192</height>
         </rect>
        </property>
-       <property name="statusTip">
+       <property name="toolTip">
         <string>Additional Attributes: Additional attributes settings of the Loader Script.</string>
        </property>
        <attribute name="label">

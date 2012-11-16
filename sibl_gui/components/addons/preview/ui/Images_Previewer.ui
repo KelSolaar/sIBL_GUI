@@ -67,7 +67,7 @@
           <height>32</height>
          </size>
         </property>
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Zoom Out Push Button: Zooms out of the image.</string>
         </property>
         <property name="text">
@@ -102,7 +102,7 @@
           <height>32</height>
          </size>
         </property>
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Fit Push Button: Zooms fit the image.</string>
         </property>
         <property name="text">
@@ -124,7 +124,7 @@
           <height>32</height>
          </size>
         </property>
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Zoom In Push Button: Zooms into the image.</string>
         </property>
         <property name="text">
@@ -152,7 +152,7 @@
              <height>32</height>
             </size>
            </property>
-           <property name="statusTip">
+           <property name="toolTip">
             <string>Previous Image Push Button: Navigates to the previous image.</string>
            </property>
            <property name="text">
@@ -174,7 +174,7 @@
              <height>32</height>
             </size>
            </property>
-           <property name="statusTip">
+           <property name="toolTip">
             <string>Next Image Push Button: Navigates to the next image.</string>
            </property>
            <property name="text">

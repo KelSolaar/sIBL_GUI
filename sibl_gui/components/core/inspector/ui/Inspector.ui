@@ -87,7 +87,7 @@
                 <height>16777215</height>
                </size>
               </property>
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Previous Ibl Set Push Button: Navigates to previous Ibl Set in the current selected Collection.</string>
               </property>
               <property name="text">
@@ -137,7 +137,7 @@
                 <height>16777215</height>
                </size>
               </property>
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Next Ibl Set Push Button: Navigates to next Ibl Set in the current selected Collection.</string>
               </property>
               <property name="text">
@@ -177,7 +177,7 @@
                  <height>52</height>
                 </size>
                </property>
-               <property name="statusTip">
+               <property name="toolTip">
                 <string>Previous Plate Push Button: Navigates to previous Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
@@ -199,7 +199,7 @@
                  <height>52</height>
                 </size>
                </property>
-               <property name="statusTip">
+               <property name="toolTip">
                 <string>Next Plate Push Button: Navigates to next Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">

@@ -56,7 +56,7 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="Downloads_groupBox">
-     <property name="statusTip">
+     <property name="toolTip">
       <string>Downloads Group Box: Current downloads.</string>
      </property>
      <property name="title">
@@ -96,7 +96,7 @@
      </item>
      <item>
       <widget class="QPushButton" name="Cancel_Close_pushButton">
-       <property name="statusTip">
+       <property name="toolTip">
         <string>Cancel / Close Push Button: Cancel / Closes the &quot;Downloads Manager&quot; / current download.</string>
        </property>
        <property name="text">

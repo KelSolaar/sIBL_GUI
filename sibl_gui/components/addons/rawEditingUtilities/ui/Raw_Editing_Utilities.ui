@@ -25,7 +25,7 @@
      <layout class="QGridLayout" name="Custom_Text_Editor_Path_groupBox_gridLayout">
       <item row="0" column="0">
        <widget class="QLineEdit" name="Custom_Text_Editor_Path_lineEdit">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Custom Text Editor Path Line Edit: Custom text editor path.</string>
         </property>
        </widget>

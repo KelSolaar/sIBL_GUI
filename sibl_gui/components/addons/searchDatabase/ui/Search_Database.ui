@@ -49,7 +49,7 @@
               <height>16777215</height>
              </size>
             </property>
-            <property name="statusTip">
+            <property name="toolTip">
              <string>Case Sensitive Matching Push Button: Searchs will be performed case sensitively.</string>
             </property>
             <property name="text">
@@ -69,7 +69,7 @@
          <layout class="QVBoxLayout" name="Tags_Cloud_verticalLayout">
           <item>
            <widget class="QListWidget" name="Tags_Cloud_listWidget">
-            <property name="statusTip">
+            <property name="toolTip">
              <string>Tags Cloud List Widget: Displays current Collection Ibl Sets tags cloud.</string>
             </property>
             <property name="movement">
@@ -133,7 +133,7 @@
                <height>16777215</height>
               </size>
              </property>
-             <property name="statusTip">
+             <property name="toolTip">
               <string>Time Low Time Edit: Time from when to search.</string>
              </property>
              <property name="alignment">
@@ -159,7 +159,7 @@
                <height>16777215</height>
               </size>
              </property>
-             <property name="statusTip">
+             <property name="toolTip">
               <string>High Time Edit: Time to when to search.</string>
              </property>
              <property name="alignment">

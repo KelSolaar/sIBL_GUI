@@ -47,7 +47,7 @@
             </item>
             <item>
              <widget class="QComboBox" name="Background_comboBox">
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Background Combo Box: Rewires background with selected component.</string>
               </property>
              </widget>
@@ -68,7 +68,7 @@
              </property>
              <item row="1" column="0">
               <widget class="QLineEdit" name="Background_Path_lineEdit">
-               <property name="statusTip">
+               <property name="toolTip">
                 <string>Background Path Line Edit: Custom background component.</string>
                </property>
               </widget>
@@ -114,7 +114,7 @@
             </item>
             <item>
              <widget class="QComboBox" name="Lighting_comboBox">
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Lighting Combo Box: Rewires lighting with selected component.</string>
               </property>
              </widget>
@@ -135,7 +135,7 @@
              </property>
              <item row="1" column="0">
               <widget class="QLineEdit" name="Lighting_Path_lineEdit">
-               <property name="statusTip">
+               <property name="toolTip">
                 <string>Lighting Path Line Edit: Custom lighting component.</string>
                </property>
               </widget>
@@ -181,7 +181,7 @@
             </item>
             <item>
              <widget class="QComboBox" name="Reflection_comboBox">
-              <property name="statusTip">
+              <property name="toolTip">
                <string>Reflection Combo Box: Rewires reflection with selected component.</string>
               </property>
              </widget>
@@ -202,7 +202,7 @@
              </property>
              <item row="1" column="0">
               <widget class="QLineEdit" name="Reflection_Path_lineEdit">
-               <property name="statusTip">
+               <property name="toolTip">
                 <string>Reflection Path Line Edit: Custom reflection component.</string>
                </property>
               </widget>

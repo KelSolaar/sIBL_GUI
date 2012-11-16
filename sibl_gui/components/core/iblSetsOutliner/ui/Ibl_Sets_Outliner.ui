@@ -88,7 +88,7 @@
         </property>
         <item>
          <widget class="QPushButton" name="Thumbnails_View_pushButton">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Thumbnails View Push Button: Displays Ibl Sets as thumbnails.</string>
           </property>
           <property name="text">
@@ -101,7 +101,7 @@
         </item>
         <item>
          <widget class="QPushButton" name="Columns_View_pushButton">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Columns View Push Button: Displays Ibl Sets as a list.</string>
           </property>
           <property name="text">
@@ -114,7 +114,7 @@
         </item>
         <item>
          <widget class="QPushButton" name="Details_View_pushButton">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Details View Push Button: Displays Ibl Sets with details.</string>
           </property>
           <property name="text">
@@ -140,7 +140,7 @@
             <height>16777215</height>
            </size>
           </property>
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Case Sensitive Matching Push Button: Searchs will be performed case sensitively.</string>
           </property>
           <property name="text">

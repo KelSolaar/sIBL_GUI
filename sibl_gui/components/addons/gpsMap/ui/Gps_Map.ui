@@ -35,7 +35,7 @@
            <height>32</height>
           </size>
          </property>
-         <property name="statusTip">
+         <property name="toolTip">
           <string>Zoom Out Push Button: Zooms out of the GPS map.</string>
          </property>
          <property name="text">
@@ -57,7 +57,7 @@
            <height>32</height>
           </size>
          </property>
-         <property name="statusTip">
+         <property name="toolTip">
           <string>Zoom In Push Button: Zooms into the GPS map.</string>
          </property>
          <property name="text">
@@ -67,7 +67,7 @@
        </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="Map_Type_comboBox">
-         <property name="statusTip">
+         <property name="toolTip">
           <string>Map Type Combo Box: Changes GPS map display type.</string>
          </property>
         </widget>

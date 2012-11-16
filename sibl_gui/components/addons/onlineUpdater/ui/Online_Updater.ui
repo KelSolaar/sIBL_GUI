@@ -47,7 +47,7 @@
         </item>
         <item>
          <widget class="QCheckBox" name="Check_For_New_Releases_On_Startup_checkBox">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Check For New Releases On Startup Check Box: New releases will be checked on startup.</string>
           </property>
           <property name="layoutDirection">
@@ -84,7 +84,7 @@
         </item>
         <item>
          <widget class="QCheckBox" name="Ignore_Non_Existing_Templates_checkBox">
-          <property name="statusTip">
+          <property name="toolTip">
            <string>Ignore Non Existing Templates Check Box: Online Updater will only consider Templates in the Database when checking for updates.</string>
           </property>
           <property name="layoutDirection">
@@ -99,7 +99,7 @@
       </item>
       <item row="0" column="0">
        <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Check For New Releases Push Button: Checks if new releases are available online.</string>
         </property>
         <property name="text">

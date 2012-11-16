@@ -26,7 +26,7 @@
       </property>
       <item row="0" column="0">
        <widget class="QPushButton" name="Update_Database_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Update Database Push Button: Forces Database update.</string>
         </property>
         <property name="text">
@@ -36,7 +36,7 @@
       </item>
       <item row="0" column="1">
        <widget class="QPushButton" name="Remove_Invalid_Data_pushButton">
-        <property name="statusTip">
+        <property name="toolTip">
          <string>Remove Invalid Data Push Button: Removes invalid or missing data from the Database.</string>
         </property>
         <property name="text">
