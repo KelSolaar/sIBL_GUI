@@ -59,6 +59,15 @@ class Map_QWebView(QWebView):
 
 		QWebView.__init__(self, parent)
 
+	def __evaluateJavascript(self, javascript):
+		"""
+		This method evaluates given javascript content in the View.
+
+		:param javascript: Javascript. ( String )
+		"""
+
+		self.page().mainFrame().evaluateJavaScript(javascript)
+
 	def addMarker(self, coordinates, title, icon, content):
 		"""
 		This method adds a marker to the GPS map.
@@ -73,7 +82,7 @@ class Map_QWebView(QWebView):
 		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
 
 		latitude, longitude = coordinates
-		self.page().mainFrame().evaluateJavaScript(
+		self.__evaluateJavascript(
 		"addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude,
 																						longitude,
 																						title,
@@ -90,7 +99,7 @@ class Map_QWebView(QWebView):
 
 		LOGGER.debug("> Removing GPS map markers.")
 
-		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
+		self.__evaluateJavascript("removeMarkers()")
 		return True
 
 	def setCenter(self):
@@ -102,7 +111,7 @@ class Map_QWebView(QWebView):
 
 		LOGGER.debug("> Centering GPS map.")
 
-		self.page().mainFrame().evaluateJavaScript("setCenter()")
+		self.__evaluateJavascript("setCenter()")
 		return True
 
 	def setMapType(self, mapTypeId):
@@ -121,7 +130,7 @@ class Map_QWebView(QWebView):
 
 		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
 
-		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
+		self.__evaluateJavascript("setMapType(\"{0}\")".format(mapTypeId))
 		return True
 
 	def setZoom(self, type):
@@ -134,5 +143,5 @@ class Map_QWebView(QWebView):
 
 		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))
 
-		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
+		self.__evaluateJavascript("setZoom(\"{0}\")".format(type))
 		return True
