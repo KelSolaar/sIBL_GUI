@@ -84,7 +84,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`CollectionsOutliner` class when :obj:`CollectionsOutliner.model` class
-	property model nodes needs to be refreshed. ( pyqtSignal )
+	property Model Nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -761,14 +761,14 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model nodes need refresh.
+		This method is triggered when the Model Nodes need refresh.
 		"""
 
 		self.setCollections()
 
 	def __model__refreshAttributes(self):
 		"""
-		This method refreshes the Model nodes attributes.
+		This method refreshes the Model Nodes attributes.
 		"""
 
 		for node in foundations.walkers.nodesWalker(self.__model.rootNode):

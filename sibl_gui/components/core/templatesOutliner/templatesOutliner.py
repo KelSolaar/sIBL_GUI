@@ -90,7 +90,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	refreshNodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`TemplatesOutliner` class when :obj:`TemplatesOutliner.model` class property
-	model nodes needs to be refreshed. ( pyqtSignal )
+	model Nodes needs to be refreshed. ( pyqtSignal )
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):

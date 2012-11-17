@@ -98,7 +98,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	activeViewChanged = pyqtSignal(int)
 	"""
-	This signal is emited by the :class:`IblSetsOutliner` class when the current active view is changed. ( pyqtSignal )
+	This signal is emited by the :class:`IblSetsOutliner` class when the current active View is changed. ( pyqtSignal )
 	
 	:return: Current active view index. ( Integer )	
 	"""
@@ -1252,7 +1252,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model nodes need refresh.
+		This method is triggered when the Model Nodes need refresh.
 		"""
 
 		self.setIblSets()

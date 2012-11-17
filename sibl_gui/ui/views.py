@@ -44,7 +44,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Mixin_AbstractView(object):
 	"""
-	This class is a mixin used to bring common capabilities in Application views classes.
+	This class is a mixin used to bring common capabilities in Application Views classes.
 	"""
 
 	def __init__(self, model=None):
@@ -175,7 +175,7 @@ class Mixin_AbstractView(object):
 
 class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 	"""
-	This class used as base by others Application views classes.
+	This class used as base by others Application Views classes.
 	"""
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):
@@ -195,7 +195,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 
 class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 	"""
-	This class used as base by others Application views classes.
+	This class used as base by others Application Views classes.
 	"""
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):

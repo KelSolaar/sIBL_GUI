@@ -65,7 +65,7 @@ def getTemplateUserName(title, software):
 
 class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	"""
-	This class defines Application Database abstract base class used by concrete Database node classes.
+	This class defines Application Database abstract base class used by concrete Database Node classes.
 	"""
 
 	__family = "AbstractDatabaseNode"
@@ -194,7 +194,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 
 	def updateNode(self):
 		"""
-		This method updates the node from the database item.
+		This method updates the Node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -204,7 +204,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the node attributes from the database item attributes.
+		This method updates the Node attributes from the database item attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -231,7 +231,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 
 	def updateDatabaseItemAttributes(self):
 		"""
-		This method updates the database item attributes from the node attributes.
+		This method updates the database item attributes from the Node attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -248,7 +248,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(NotImplementedError)
 	def updateToolTip(self):
 		"""
-		This method updates the node tooltip.
+		This method updates the Node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""

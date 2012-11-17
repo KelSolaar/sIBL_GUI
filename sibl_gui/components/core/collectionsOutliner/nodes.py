@@ -104,7 +104,7 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the node attributes.
+		This method updates the Node attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
