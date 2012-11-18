@@ -972,6 +972,20 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			# Adding default templates.
 			self.addDefaultTemplates()
 
+			# Wizard if Templates table is empty.
+			if not self.getTemplates():
+				if messageBox.messageBox("Question", "Question",
+				"The Database has no Templates, would you like to add some?",
+				buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
+																						 "Add Content:",
+																						RuntimeGlobals.lastBrowsedPath)))
+					if directory:
+						if not self.addDirectory(directory):
+							raise Exception(
+							"{0} | Exception raised while adding '{1}' directory content to the Database!".format(
+							self.__class__.__name__, directory))
+
 			# Templates table integrity checking.
 			erroneousTemplates = sibl_gui.components.core.database.operations.checkTemplatesTableIntegrity()
 			try:
