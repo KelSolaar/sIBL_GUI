@@ -1171,10 +1171,10 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			# Wizard if sets table is empty.
+			# Wizard if Ibl Sets table is empty.
 			if not self.getIblSets():
 				if messageBox.messageBox("Question", "Question",
-				"The Database is empty, would you like to add some Ibl Sets?",
+				"The Database has no Ibl Sets, would you like to add some?",
 				buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
 																						 "Add Content:",
