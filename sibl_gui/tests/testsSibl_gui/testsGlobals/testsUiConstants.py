@@ -55,51 +55,52 @@ class UiConstantsTestCase(unittest.TestCase):
 		"""
 
 		requiredAttributes = ("uiFile",
-								"windowsStylesheetFile",
-								"darwinStylesheetFile",
-								"linuxStylesheetFile",
-								"windowsStyle",
-								"darwinStyle",
-								"settingsFile",
-								"linuxStyle",
-								"layoutsFile",
-								"applicationWindowsIcon",
-								"splashScreenImage",
-								"logoImage",
-								"defaultToolbarIconSize",
-								"centralWidgetIcon",
-								"centralWidgetHoverIcon",
-								"centralWidgetActiveIcon",
-								"customLayoutsIcon",
-								"customLayoutsHoverIcon",
-								"customLayoutsActiveIcon",
-								"miscellaneousIcon",
-								"miscellaneousHoverIcon",
-								"miscellaneousActiveIcon",
-								"libraryIcon",
-								"libraryHoverIcon",
-								"libraryActiveIcon",
-								"inspectIcon",
-								"inspectHoverIcon",
-								"inspectActiveIcon",
-								"exportIcon",
-								"exportHoverIcon",
-								"exportActiveIcon",
-								"editIcon",
-								"editHoverIcon",
-								"editActiveIcon",
-								"preferencesIcon",
-								"preferencesHoverIcon",
-								"preferencesActiveIcon",
-								"formatErrorImage",
-								"missingImage",
-								"loadingImage",
-								"startupLayout",
-								"developmentLayout",
-								"helpFile",
-								"apiFile",
-								"nativeImageFormats",
-								"thirdPartyImageFormats")
+							"windowsStylesheetFile",
+							"darwinStylesheetFile",
+							"linuxStylesheetFile",
+							"windowsStyle",
+							"darwinStyle",
+							"settingsFile",
+							"linuxStyle",
+							"layoutsFile",
+							"applicationWindowsIcon",
+							"splashScreenImage",
+							"logoImage",
+							"defaultToolbarIconSize",
+							"centralWidgetIcon",
+							"centralWidgetHoverIcon",
+							"centralWidgetActiveIcon",
+							"customLayoutsIcon",
+							"customLayoutsHoverIcon",
+							"customLayoutsActiveIcon",
+							"miscellaneousIcon",
+							"miscellaneousHoverIcon",
+							"miscellaneousActiveIcon",
+							"libraryIcon",
+							"libraryHoverIcon",
+							"libraryActiveIcon",
+							"inspectIcon",
+							"inspectHoverIcon",
+							"inspectActiveIcon",
+							"exportIcon",
+							"exportHoverIcon",
+							"exportActiveIcon",
+							"editIcon",
+							"editHoverIcon",
+							"editActiveIcon",
+							"preferencesIcon",
+							"preferencesHoverIcon",
+							"preferencesActiveIcon",
+							"formatErrorImage",
+							"missingImage",
+							"loadingImage",
+							"startupLayout",
+							"developmentLayout",
+							"helpFile",
+							"apiFile",
+							"nativeImageFormats",
+							"thirdPartyImageFormats",
+							"crittercismId")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, UiConstants.__dict__)
@@ -446,6 +447,13 @@ class UiConstantsTestCase(unittest.TestCase):
 			self.assertIsInstance(key, str)
 			self.assertIsInstance(value, str)
 			self.assertTrue(re.compile(value))
+
+	def testCrittercismIdAttribute(self):
+		"""
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.crittercismId` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.crittercismId, "\w+")
 
 if __name__ == "__main__":
 	unittest.main()

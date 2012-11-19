@@ -157,3 +157,7 @@ class UiConstants():
 								"Tiff" : ("\.tiff$"),
 								"Tga" : ("\.tga$")}
 	"""Application third party image file formats. ( Dictionary )"""
+
+	crittercismId = "50aa8ac9866b845bd6000007"
+	"""Crittercism Id: '**50aa8ac9866b845bd6000007**' ( String )"""
+
