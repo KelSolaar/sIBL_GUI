@@ -1,7 +1,7 @@
 Faq
 ===
 
-The following questions are answered by *sIBL_GUI* developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
+The following questions are answered by **sIBL_GUI** developer Thomas Mansencal and don't necessarily reflect other HDRLabs developer opinions and thoughts.
 
 .. raw:: html
 
@@ -22,7 +22,7 @@ _`Overall`
 
       Is sIBL_GUI Open Source?
 
-| Yes *sIBL_GUI* is Open Source and licensed under: `GNU GPL V3 license <http://www.gnu.org/copyleft/gpl.html>`_
+| Yes **sIBL_GUI** is Open Source and licensed under: `GNU GPL V3 license <http://www.gnu.org/copyleft/gpl.html>`_
 | You can grab the source code from: `sIBL_GUI Git Repository on GitHub <http://kelsolaar.github.com/sIBL_GUI/>`_
 
 .. raw:: html
@@ -33,7 +33,7 @@ _`Overall`
 
       I'm using sIBL_GUI 1 / 2 / 3, is there still support for it?
 
-No, *sIBL_GUI* is developed by one person on his free time, cross version support can't be achieved. Any new version deprecate the previous one.
+No, **sIBL_GUI** is developed by one person on his free time, cross version support can't be achieved. Any new version deprecate the previous one.
 
 .. raw:: html
 
@@ -45,7 +45,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
 | No, since I cannot provide a real quality support (Although I'm doing my best), I don't want money, only happy people doing nice renders with HDRLabs team stuff.
 | If you are having issues, it's my duty to make my best solving them.
-| However if you feel *sIBL_GUI* is worth something I'm receiving donations: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
+| However if you feel **sIBL_GUI** is worth something I'm receiving donations: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ No, *sIBL_GUI* is developed by one person on his free time, cross version suppor
 
       Can I pay you to make a custom template?
 
-No, same as above, however if you need a custom template, we can discuss of what can be done. Just remember that *sIBL_GUI* is done on my free time.
+No, same as above, however if you need a custom template, we can discuss of what can be done. Just remember that **sIBL_GUI** is done on my free time.
 
 .. raw:: html
 
@@ -78,7 +78,7 @@ No, same as above, however if you need a custom template, we can discuss of what
 
       I installed sIBL_GUI and its not starting, what can I do?
 
-You need to launch *sIBL_GUI* into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
+You need to launch **sIBL_GUI** into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
 
 .. raw:: html
 
@@ -111,9 +111,9 @@ Please refer to the first post of this thread: http://www.hdrlabs.com/cgi-bin/fo
 
       Is there a difference between an Helper Script and a Loader Script?
 
-Yes! *Helper Scripts* are additional scripts that help integrating *sIBL_GUI* into the target 3d package whereas *Loader Scripts* are native 3d package scripts enabling direct *Smart Ibl* support.
-One confusion source is that I also call *Loader Scripts* the scripts *sIBL_GUI* generates.
-Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
+Yes! *Helper Scripts* are additional scripts that help integrating **sIBL_GUI** into the target 3d package whereas *Loader Scripts* are native 3d package scripts enabling direct *Smart Ibl* support.
+One confusion source is that I also call *Loader Scripts* the scripts **sIBL_GUI** generates.
+Here is a link to the **sIBL_GUI** Helper Scripts: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
 
 .. raw:: html
 
@@ -123,7 +123,7 @@ Here is a link to the *sIBL_GUI* Helper Scripts: http://www.hdrlabs.com/cgi-bin/
 
       Is it possible to move the user preferences directory into sIBL_GUI installation directory, like in sIBL_GUI 2?
 
-Using the *-u / --userApplicationDatasDirectory* command line parameter, you can define where *sIBL_GUI 4* preferences are stored. You can easily pass *sIBL_GUI* installation folder to retrieve the portability of *sIBL_GUI 2*.
+Using the *-u / --userApplicationDatasDirectory* command line parameter, you can define where *sIBL_GUI 4* preferences are stored. You can easily pass **sIBL_GUI** installation folder to retrieve the portability of *sIBL_GUI 2*.
 
 .. raw:: html
 
@@ -217,8 +217,8 @@ _`Autodesk Maya`
 
       I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
 
-| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Maya.
-| You need to make Autodesk Maya listen to the port *sIBL_GUI* is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
+| **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Maya.
+| You need to make Autodesk Maya listen to the port **sIBL_GUI** is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
 
 -  Autodesk Maya 2008 - 2012:
    
@@ -254,7 +254,7 @@ Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if 
 
       I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Executable Path field?
 
-It's a convenient method to directly launch *sIBL_GUI* from within Autodesk Maya, just point to *sIBL_GUI* executable, then you can use the second shelf button to launch *sIBL_GUI*.
+It's a convenient method to directly launch **sIBL_GUI** from within Autodesk Maya, just point to **sIBL_GUI** executable, then you can use the second shelf button to launch **sIBL_GUI**.
    
       ``/Applications/sIBL_GUI.app/Contents/MacOs/sIBL_GUI 4.app``
 
@@ -269,8 +269,8 @@ _`Autodesk Softimage`
 
       I'm getting that error: "LoaderScript | Socket connection error: '[Errno 10061] No connection could be made because the target machine actively refused it'!"
 
-| *sIBL_GUI* is relying on Socket Connection to communicate with Autodesk Softimage.
-| You need to make Autodesk Softimage listen to the port *sIBL_GUI* is using. You can do that using the *sIBL_GUI_XSI_Server Addon*:
+| **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Softimage.
+| You need to make Autodesk Softimage listen to the port **sIBL_GUI** is using. You can do that using the *sIBL_GUI_XSI_Server Addon*:
 
 sIBL_GUI_XSI_Server Addon ( Windows Only ):
 
@@ -319,7 +319,7 @@ _`Autodesk 3ds Max`
 
       I'm getting that error: "LoaderScript | Win32 OLE server connection error: '(-2147221164, 'Class not registered', None, None)'!"
 
-| *sIBL_GUI* is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
+| **sIBL_GUI** is relying on a Win32 OLE Connection to communicate with Autodesk 3ds Max.
 | You need to register Autodesk 3ds Max as an OLE Server and expose the communication class. The easiest way to do that is to use *Autodesk 3ds Max - Helper Script* and trigger the *Register OLE Server* button: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1
 
 Notice that you need to launch Autodesk 3ds Max as Administrator for that purpose.

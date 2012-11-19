@@ -11,6 +11,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: editBlock
+
 .. autofunction:: anchorTextCursor
 
 .. autofunction:: centerTextCursor

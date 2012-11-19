@@ -1,7 +1,7 @@
 _`Components`
 =============
 
-*sIBL_GUI* has currently 3 categories of components:
+**sIBL_GUI** has currently 3 categories of components:
 
 -  **Default Component** (Components inheriting from *Python Object*).
 -  **QWidget Component** (Components inheriting from *Qt QWidget*).
@@ -34,7 +34,7 @@ _`Components Manager Ui` (factory.componentsManagerUi)
 | ..  image:: ../pictures/sIBL_GUI_ComponentsManagerUi.jpg            |
 +---------------------------------------------------------------------+
 
-The *Components Manager Ui* component allows *sIBL_GUI* addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
+The *Components Manager Ui* component allows **sIBL_GUI** addons and user components activation / deactivation (Factory and Core components are required and not deactivable). Selected components details are displayed in the bottom *Components Informations* widget.
 
 Interactions:
 
@@ -75,20 +75,20 @@ _`Preferences Manager` (factory.preferencesManager)
 | ..  image:: ../pictures/sIBL_GUI_PreferencesManager.jpg            |
 +--------------------------------------------------------------------+
 
-The *Preferences Manager* component is used to configure *sIBL_GUI* behavior. There are 2 pages where settings can be changed:
+The *Preferences Manager* component is used to configure **sIBL_GUI** behavior. There are 2 pages where settings can be changed:
 
--  **General**: Overall *sIBL_GUI* settings.
+-  **General**: Overall **sIBL_GUI** settings.
 -  **Others**: Components settings.
 
 General Page:
 
--  **Logging Formatter**: Adjusts *sIBL_GUI* logging formatter:
+-  **Logging Formatter**: Adjusts **sIBL_GUI** logging formatter:
 
    -  Default: Default logging formatter: **Logging Level: Message**.
    -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
    -  Standard: Simple standard logging formatter: **Message**.
 
--  **Verbose Level**: Adjusts *sIBL_GUI* verbose level between different modes (Debug being the most verbosing, Critical the less):
+-  **Verbose Level**: Adjusts **sIBL_GUI** verbose level between different modes (Debug being the most verbosing, Critical the less):
 
    -  Debug
    -  Info
@@ -96,7 +96,7 @@ General Page:
    -  Error
    -  Critical
 
--  **Restore Geometry On Layout Change**: *sIBL_GUI* window size and position will be restored when switching layouts.
+-  **Restore Geometry On Layout Change**: **sIBL_GUI** window size and position will be restored when switching layouts.
 
 Others Page:
 
@@ -115,10 +115,10 @@ _`Script Editor` (factory.scriptEditor)
 | ..  image:: ../pictures/sIBL_GUI_ScriptEditor.jpg            |
 +--------------------------------------------------------------+
 
-The *Script Editor* component allows directly interaction with *sIBL_GUI* through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
+The *Script Editor* component allows directly interaction with **sIBL_GUI** through scripting. It provides various code input acceleration mechanism like basic autocompletion, syntax highlighting, etc ... A status bar widget displays various informations about the currently edited document and allows language grammar change.
 
 | Languages support is provided using custom grammars files but mechanism will be replaced by *Textmate* compliant system in the future.
-| *sIBL_GUI* logging messages and commands execution results are displayed in the upper pane.
+| **sIBL_GUI** logging messages and commands execution results are displayed in the upper pane.
 | By default the *Script Editor* component is using tabs characters to indent lines, at the moment there are no exposed methods to use spaces instead.
 
 Interactions:
@@ -127,7 +127,7 @@ Interactions:
 -  **Drag’n’drop**:
 
    -  Drag’n’dropping an IBL Sets or Templates selection into the *Script Editor* component will open their associated files.
-   -  Drag’n’dropping any other type of file on *sIBL_GUI* will open it in the *Script Editor* component.
+   -  Drag’n’dropping any other type of file on **sIBL_GUI** will open it in the *Script Editor* component.
 
 Menus Bar:
 
@@ -398,7 +398,7 @@ Context menu:
 
 Addons Functionalities:
 
--  **Edit In sIBLedit ...**: Sends selected IBL Sets to *sIBLedit*.
+-  **Edit In sIBLedit ...**: Sends selected IBL Sets to **sIBLedit**.
 -  **Open Ibl Set(s) Location(s) ...**: Opens selected IBL Sets directories.
 -  **Edit Ibl Set(s) File(s) ...**: Edits selected IBL Sets in the *Script Editor* component or custom user defined text editor.
 -  **View Background Image ...**: Views selected IBL Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
@@ -419,7 +419,7 @@ Search widget context menu:
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
-The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
+The *Db* component is the heart of **sIBL_GUI** data storage, it provides the database manipulation, read, write, migration and rotating backup methods.
 
 .. raw:: html
 
@@ -460,7 +460,7 @@ Context menu:
 
 Addons Functionalities:
 
--  **Edit In sIBLedit ...**: Sends Inspector Ibl Set to *sIBLedit*.
+-  **Edit In sIBLedit ...**: Sends Inspector Ibl Set to **sIBLedit**.
 -  **Open Ibl Set Location ...**: Opens Inspector IBL Sets directory.
 -  **Edit Ibl Set File ...**: Edits  Inspector Ibl Set in the *Script Editor* component or custom user defined text editor.
 -  **View Background Image ...**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
@@ -485,8 +485,8 @@ The *Templates Outliner* component is where Templates are organized and reviewed
 
 Templates are sorted into 2 main categories:
 
--  **Factory** (Templates from *sIBL_GUI* installation directory).
--  **User** (Templates not from *sIBL_GUI* installation directory).
+-  **Factory** (Templates from **sIBL_GUI** installation directory).
+-  **User** (Templates not from **sIBL_GUI** installation directory).
 
 In those categories, Templates are sorted by 3d packages.
 
@@ -511,8 +511,8 @@ Context menu:
 
 -  **Add Template ...**: Adds the selected Templates file to the database.
 -  **Remove Templates(s) ...**: Removes selected Templates from the database.
--  **Import Default Templates**: *sIBL_GUI* will scan for Templates into it’s installation directory and the user preferences directories.
--  **Filter Templates Versions**: *sIBL_GUI* will filter the Templates keeping the highest version of multiple same Templates.
+-  **Import Default Templates**: **sIBL_GUI** will scan for Templates into it’s installation directory and the user preferences directories.
+-  **Filter Templates Versions**: **sIBL_GUI** will filter the Templates keeping the highest version of multiple same Templates.
 -  **Display Help File(s) ...**: Displays Templates associated help files.
 
 Addons Functionalities:
@@ -574,7 +574,7 @@ _`Gps Map` (addons.gpsMap)
 | ..  image:: ../pictures/sIBL_GUI_GpsMap.jpg            |
 +--------------------------------------------------------+
 
-The *Gps Map* component is embedding a Microsoft Bing Map into *sIBL_GUI*: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
+The *Gps Map* component is embedding a Microsoft Bing Map into **sIBL_GUI**: Selecting some IBL Sets (Ibl Sets with GEO coordinates) in the *Database Browser* component will display their markers onto the Gps Map.
 
 Interactions:
 
@@ -610,7 +610,7 @@ _`Images Caches Operations` (addons.imagesCachesOperations)
 | ..  image:: ../pictures/sIBL_GUI_ImagesCachesOperations.jpg            |
 +------------------------------------------------------------------------+
 
-The *Images Caches Operations* component allows the user to manipulate *sIBL_GUI* images caches.
+The *Images Caches Operations* component allows the user to manipulate **sIBL_GUI** images caches.
 
 Interactions:
 
@@ -630,7 +630,7 @@ _`Loader Script` (addons.loaderScript)
 | ..  image:: ../pictures/sIBL_GUI_LoaderScript.jpg            |
 +--------------------------------------------------------------+
 
-The *Loader Script* component is providing the bridge between *sIBL_GUI* and the 3d packages. It parses the selected Ibl Set, extracts data from it, and feeds the selected Template with those data resulting in a loader script that can be executed by the 3d package.
+The *Loader Script* component is providing the bridge between **sIBL_GUI** and the 3d packages. It parses the selected Ibl Set, extracts data from it, and feeds the selected Template with those data resulting in a loader script that can be executed by the 3d package.
 
 Interactions:
 
@@ -662,7 +662,7 @@ The *Loader Script Options* component allows the user to tweak the way the loade
 -  **Common Attributes**: Common Template attributes (Refer to the current Template help file for details about an attribute).
 -  **Additional Attributes**: Additional Template attributes (Refer to the current Template help file for details about an attribute).
 
-Templates settings are stored per version and restored each time one is selected in *sIBL_GUI* preferences directory.
+Templates settings are stored per version and restored each time one is selected in **sIBL_GUI** preferences directory.
 
 .. raw:: html
 
@@ -677,7 +677,7 @@ _`Locations Browser` (addons.locationsBrowser)
 | ..  image:: ../pictures/sIBL_GUI_LocationsBrowser.jpg            |
 +------------------------------------------------------------------+
 
-The *Locations Browser* component provides browsing capability to *sIBL_GUI*, adding directory browsing at various entry points in *sIBL_GUI* Ui. The browsing is done either by the Os default file browser or an user defined file browser.
+The *Locations Browser* component provides browsing capability to **sIBL_GUI**, adding directory browsing at various entry points in **sIBL_GUI** Ui. The browsing is done either by the Os default file browser or an user defined file browser.
 
 Default Supported File Browsers:
 
@@ -724,11 +724,11 @@ _`Online Updater` (addons.onlineUpdater)
 | ..  image:: ../pictures/sIBL_GUI_OnlineUpdater.jpg            |
 +---------------------------------------------------------------+
 
-The *Online Updater* component maintains *sIBL_GUI* and it’s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
+The *Online Updater* component maintains **sIBL_GUI** and it’s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
 
 Interactions:
 
--  **Get sIBL_GUI Push Button**: Starts *sIBL_GUI* download.
+-  **Get sIBL_GUI Push Button**: Starts **sIBL_GUI** download.
 -  **Get Lastest Templates**: Starts selected Templates download.
 -  **Open Repository**: Opens HDRLabs repository.
 
@@ -747,8 +747,8 @@ The *Online Updater* component is configurable in the *Preferences Manager* comp
 Interactions:
 
 -  **Check For New Releases Push Button**: Checks for new releases on HDRLabs repository.
--  **Check For New Releases On Startup Check Box**: *sIBL_GUI* will check for new releases on startup.
--  **Ignore Non Existing Templates Check Box**: *sIBL_GUI* will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
+-  **Check For New Releases On Startup Check Box**: **sIBL_GUI** will check for new releases on startup.
+-  **Ignore Non Existing Templates Check Box**: **sIBL_GUI** will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
 
 .. raw:: html
 
@@ -763,7 +763,7 @@ _`Preview` (addons.preview)
 | ..  image:: ../pictures/sIBL_GUI_Preview.jpg            |
 +---------------------------------------------------------+
 
-The *Preview* component provides image viewing capability to *sIBL_GUI* through the use of the Internal Images Previewer or the application defined in the *Preview* component preferences.
+The *Preview* component provides image viewing capability to **sIBL_GUI** through the use of the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 Interactions:
 
@@ -800,7 +800,7 @@ _`Raw Editing Utilities` (addons.rawEditingUtilities)
 | ..  image:: ../pictures/sIBL_GUI_RawEditingUtilities.jpg            |
 +---------------------------------------------------------------------+
 
-The *Raw Editing Utilities* component provides text editing capability to *sIBL_GUI*, adding text edition at various entry points in *sIBL_GUI* Ui. The text edition is done either by the *Script Editor* component or an user defined text editor.
+The *Raw Editing Utilities* component provides text editing capability to **sIBL_GUI**, adding text edition at various entry points in **sIBL_GUI** Ui. The text edition is done either by the *Script Editor* component or an user defined text editor.
 
 Interactions:
 
@@ -819,7 +819,7 @@ _`Rewiring Tool` (addons.rewiringTool)
 | ..  image:: ../pictures/sIBL_GUI_RewiringTool.jpg            |
 +--------------------------------------------------------------+
 
-The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from *sIBL_GUI* one click lighting setup.
+The *Rewiring Tool* component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it’s possible to dynamically generate IBL Sets and arbitrary loads whatever HDR you want and still benefit from **sIBL_GUI** one click lighting setup.
 
 Interactions:
 
@@ -867,11 +867,11 @@ _`sIBLedit Utilities` (addons.sIBLeditUtilities)
 | ..  image:: ../pictures/sIBL_GUI_sIBLeditUtilities.jpg            |
 +-------------------------------------------------------------------+
 
-The *sIBLedit Utilities* component provides a bridge between *sIBL_GUI* and *sIBLedit*.
+The *sIBLedit Utilities* component provides a bridge between **sIBL_GUI** and **sIBLedit**.
 
 Interactions:
 
--  **sIBLedit Executable Path Line Edit**: *sIBLedit* executable path.
+-  **sIBLedit Executable Path Line Edit**: **sIBLedit** executable path.
 
 .. raw:: html
 

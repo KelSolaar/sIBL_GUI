@@ -13,7 +13,7 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: DbType
+.. autoclass:: DatabaseType
 	:show-inheritance:
 	:members:
 

@@ -18,7 +18,7 @@
 body {
 	font-family: sans-serif;
 	font-size: 100%;
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(32, 32, 32);
 	color: rgb(192, 192, 192);
 	margin: 0;
 	padding: 0;
@@ -38,7 +38,7 @@ div.bodywrapper {
 }
 
 div.body {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(32, 32, 32);
 	color: rgb(192, 192, 192);
 	padding: 0 20px 30px 20px;
 }

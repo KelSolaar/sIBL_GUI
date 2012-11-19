@@ -354,7 +354,7 @@ ol.upperroman {
 }
 
 dl {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 dd p {
@@ -460,13 +460,12 @@ table.highlighttable td {
 tt.descname {
     background-color: transparent;
     color: rgb(224, 224, 224);
-    font-weight: bold;
-    font-size: 1.35em;
+    font-size: 1.75em;
 }
 
 tt.descclassname {
     background-color: transparent;
-    font-size: 0.85em;
+    display: none;
 }
 
 tt.xref, a tt {

@@ -358,7 +358,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  Templates names have been changed.
 -  A Splashscreen is now showing on initialization.
 -  **sIBL_GUI** FTP Code has been slightly tweaked.
--  **sIBL_GUI**_Updater is now also checking for Templates releases. This release makes 1.4.X update mechanism obsolete.
+-  **sIBL_GUI_Updater** is now also checking for Templates releases. This release makes 1.4.X update mechanism obsolete.
 -  Catched an exception when the Logging File is deleted while **sIBL_GUI** write into it.
 -  Refinements in **sIBL_GUI** UI.
 -  I wanted **sIBL_GUI** next stable release to be a 1.5, but since we are introducing the sIBL V2 File Format, I'm jumping the release numbers closer to 2.0.
@@ -404,7 +404,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 1.3.0 - Alpha
 -------------
 
--  Added Remote Templates / Help Download with the coding of **sIBL_GUI**_FTP Class. You can now download Templates and the Help directly from HDRLabs FTP. Notice the FTP Code is curently not multithreaded so the interface can be a bit laggy while downloading.
+-  Added Remote Templates / Help Download with the coding of **sIBL_GUI_FTP** Class. You can now download Templates and the Help directly from HDRLabs FTP. Notice the FTP Code is curently not multithreaded so the interface can be a bit laggy while downloading.
 -  Added an Edit button for easier Collection Management.
 -  Refinements in **sIBL_GUI** UI.
 -  Corrected some Mac Os X related Logging issues.

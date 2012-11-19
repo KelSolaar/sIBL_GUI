@@ -8,12 +8,32 @@ Module Attributes
 
 .. attribute:: foundations.exceptions.LOGGER
 
+.. attribute:: foundations.exceptions.EXCEPTIONS_FRAME_SYMBOL
+
 Functions
 ---------
 
-.. autofunction:: exceptionsHandler
+.. autofunction:: getInnerMostFrame
 
-.. autofunction:: defaultExceptionsHandler
+.. autofunction:: extractStack
+
+.. autofunction:: extractArguments
+
+.. autofunction:: extractLocals
+
+.. autofunction:: extractException
+
+.. autofunction:: formatException
+
+.. autofunction:: formatReport
+
+.. autofunction:: baseExceptionHandler
+
+.. autofunction:: installExceptionHandler
+
+.. autofunction:: uninstallExceptionHandler
+
+.. autofunction:: handleExceptions
 
 Classes
 -------

@@ -8,15 +8,12 @@ Module Attributes
 
 .. attribute:: sibl_gui.ui.views.LOGGER
 
-Functions
----------
-
-.. autofunction:: storeViewModelSelection
-
-.. autofunction:: restoreViewModelSelection
-
 Classes
 -------
+
+.. autoclass:: Mixin_AbstractView
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Abstract_QListView
 	:show-inheritance:

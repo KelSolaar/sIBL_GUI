@@ -19,3 +19,7 @@ Functions
 
 .. autofunction:: removeNamespace
 
+.. autofunction:: getRoot
+
+.. autofunction:: getLeaf
+

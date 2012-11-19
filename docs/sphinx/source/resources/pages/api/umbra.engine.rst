@@ -23,6 +23,8 @@ Functions
 
 .. autofunction:: getCommandLineParametersParser
 
+.. autofunction:: getLoggingFile
+
 .. autofunction:: run
 
 .. autofunction:: exit

@@ -85,7 +85,7 @@ STATEMENTS_UPDATE_MESSAGGE = "#*************************************************
 
 DECORATORS_COMMENT_MESSAGE = "#***\tSphinx: Decorator commented for auto-documentation purpose."
 
-CONTENT_SUBSTITUTIONS = {"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
+CONTENT_SUBSTITUTIONS = {"^_initializeApplication\(\)$" : "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
 						"This method initializes the class.\n" :
 						".. Sphinx: Statements updated for auto-documentation purpose.\n",
 						"PYTHON_LANGUAGE \= getPythonLanguage\(\)" :

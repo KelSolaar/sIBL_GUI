@@ -11,15 +11,9 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: getApplicationInstance
+
 .. autofunction:: parseLocation
-
-.. autofunction:: uiExtendedExceptionHandler
-
-.. autofunction:: uiBasicExceptionHandler
-
-.. autofunction:: uiSystemExitExceptionHandler
-
-.. autofunction:: notifyExceptionHandler
 
 .. autofunction:: getResourcePath
 
@@ -36,6 +30,8 @@ Functions
 .. autofunction:: signalsBlocker
 
 .. autofunction:: showWaitCursor
+
+.. autofunction:: setToolBoxHeight
 
 Classes
 -------

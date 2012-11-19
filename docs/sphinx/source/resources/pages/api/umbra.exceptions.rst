@@ -3,6 +3,11 @@ _`umbra.exceptions`
 
 .. automodule:: umbra.exceptions
 
+Functions
+---------
+
+.. autofunction:: notifyExceptionHandler
+
 Classes
 -------
 
@@ -71,6 +76,14 @@ Classes
 	:members:
 
 .. autoclass:: PathExistsError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractLanguageError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: LanguageGrammarError
 	:show-inheritance:
 	:members:
 

@@ -8,6 +8,8 @@ Module Attributes
 
 .. attribute:: foundations.strings.LOGGER
 
+.. attribute:: foundations.strings.ASCII_CHARACTERS
+
 Functions
 ---------
 
@@ -38,6 +40,8 @@ Functions
 .. autofunction:: toPosixPath
 
 .. autofunction:: getNormalizedPath
+
+.. autofunction:: getRandomSequence
 
 .. autofunction:: isEmail
 

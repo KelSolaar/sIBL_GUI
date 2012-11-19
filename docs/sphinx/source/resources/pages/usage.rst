@@ -8,14 +8,14 @@ _`Usage`
 _`User Preferences`
 -------------------
 
-*sIBL_GUI* preferences are stored per user in their home directory:
+**sIBL_GUI** preferences are stored per user in their home directory:
 
 -  C:\\Users\\$USER\\AppData\\Roaming\\HDRLabs\\sIBL_GUI on Windows 7
 -  C:\\Documents and Settings\\$USER\\Application Data\\HDRLabs\\sIBL_GUI on Windows XP
 -  /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI on Mac Os X
 -  /home/$USER/.HDRLabs/sIBL_GUI on Linux
 
-The typical *sIBL_GUI* preferences directory structure is the following:
+The typical **sIBL_GUI** preferences directory structure is the following:
 
 +-------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_PreferencesFolder.jpg            |
@@ -23,7 +23,7 @@ The typical *sIBL_GUI* preferences directory structure is the following:
 
 Structure Description:
 
--  **$MAJOR_VERSION.$MINOR_VERSION**: Current *sIBL_GUI* version.
+-  **$MAJOR_VERSION.$MINOR_VERSION**: Current **sIBL_GUI** version.
 
    -  **components**: Directory storing user components.
    -  **database**: Directory storing the SQLite database.
@@ -33,19 +33,19 @@ Structure Description:
 
          -  **versions**: Directory used by to store the various migrations scripts.
 
-   -  **io**: Directory used for *sIBL_GUI* input / output operations.
+   -  **io**: Directory used for **sIBL_GUI** input / output operations.
 
       -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
       -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
       -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
 
-   -  **logging**: Directory storing *sIBL_GUI* logging file.
-   -  **patches**: Directory storing *sIBL_GUI* patches file.
-   -  **settings**: Directory storing *sIBL_GUI* settings file.
+   -  **logging**: Directory storing **sIBL_GUI** logging file.
+   -  **patches**: Directory storing **sIBL_GUI** patches file.
+   -  **settings**: Directory storing **sIBL_GUI** settings file.
 
       -  **templates**: Directory storing Templates settings.
 
-   -  **templates**: Directory storing user Templates (This directory is scanned by *sIBL_GUI* when importing default Templates).
+   -  **templates**: Directory storing user Templates (This directory is scanned by **sIBL_GUI** when importing default Templates).
 
 .. raw:: html
 
@@ -54,7 +54,7 @@ Structure Description:
 _`Command Line Parameters`
 --------------------------
 
-*sIBL_GUI* accepts various command line parameters:
+**sIBL_GUI** accepts various command line parameters:
 
 -  **-h, —help**: Display the command line parameters help message and exit. (Mac Os X and Linux only)
 -  **-a, —about**: Display application *About* message. (Mac Os X and Linux only)
@@ -63,12 +63,12 @@ _`Command Line Parameters`
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
 -  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 -  **-x, —startupScript**: Execute provided startup script.
--  **-t, —deactivateWorkerThreads**: The Worker Threads are deactivated.
+-  **-w, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
 -  **-o LOADERSCRIPTSOUTPUTDIRECTORY, —loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY**: Loader scripts output directory.
 
-Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following::
+Note: On Mac Os X, **sIBL_GUI** is launched from command line doing the following::
 
       cd sIBL_GUI.app
       ./Contents/MacOS/sIBL_GUI
@@ -80,11 +80,11 @@ Note: On Mac Os X, *sIBL_GUI* is launched from command line doing the following:
 _`Shared Database Configuration`
 --------------------------------
 
-If you want to share the same Database between multiple installed versions of *sIBL_GUI* there are 2 solutions:
+If you want to share the same Database between multiple installed versions of **sIBL_GUI** there are 2 solutions:
 
 **Dirty Method**
 
-Copy the Database file **sIBL_Database.sqlite** on every machine that have *sIBL_GUI* installed.
+Copy the Database file **sIBL_Database.sqlite** on every machine that have **sIBL_GUI** installed.
 
 The file is located in one of those directory depending your OS:
 
@@ -95,9 +95,9 @@ The file is located in one of those directory depending your OS:
 
 **Recommended Method**
 
-It’s possible to share one Database file between multiple *sIBL_GUI* install. In order to do that you need to start *sIBL_GUI* with some command line parameters:
+It’s possible to share one Database file between multiple **sIBL_GUI** install. In order to do that you need to start **sIBL_GUI** with some command line parameters:
 
--  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: This one is mandatory for what you want to do, it will tell *sIBL_GUI* to store / use the database on the provided path.
+-  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: This one is mandatory for what you want to do, it will tell **sIBL_GUI** to store / use the database on the provided path.
 -  **-r, —databaseReadOnly**: This one is optional, but HIGHLY recommended: It will hide / unexpose from the UI all methods that can write to the Database. That’s something important because the last thing you want is someone screwing the whole database by doing a mistake.
 
 Example Command Line::
@@ -106,7 +106,7 @@ Example Command Line::
 
 When the Database is read only, the automatic scanner adding new IBL Sets is deactivated meaning that newly IBL Sets dropped into your library directory won’t be added automatically.
 
-It’s a good idea to put the Database with a real file system write lock in case someone launch a *sIBL_GUI* instance without the command line arguments.
+It’s a good idea to put the Database with a real file system write lock in case someone launch a **sIBL_GUI** instance without the command line arguments.
 
 That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
 
@@ -117,7 +117,7 @@ That way you can have artists using the Database a supervisor has defined, and e
 _`IBL Sets Wizard`
 ------------------
 
-The first time *sIBL_GUI* is started a wizard asks to add IBL Sets into the database:
+The first time **sIBL_GUI** is started a wizard asks to add IBL Sets into the database:
 
 +-----------------------------------------------------------------------+
 | ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg            |
@@ -136,7 +136,7 @@ Choose a directory where are stored some IBL Sets and they will be added to the 
 _`Interface`
 ------------
 
-*sIBL_GUI* Interface is customizable and comes with 3 main layouts directly available from the main toolbar:
+**sIBL_GUI** Interface is customizable and comes with 3 main layouts directly available from the main toolbar:
 
 -  `Library Layout`_
 -  `Inspect Layout`_
@@ -223,7 +223,7 @@ This layout is built around 3 components:
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
 
-The *Export layout* is where the bridge between *sIBL_GUI* and the 3d packages is created.
+The *Export layout* is where the bridge between **sIBL_GUI** and the 3d packages is created.
 
 This layout is built around 4 components:
 
@@ -264,7 +264,7 @@ This layout is built around 1 component:
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
 
-The *Preferences layout* is where *sIBL_GUI* behavior is configured.
+The *Preferences layout* is where **sIBL_GUI** behavior is configured.
 
 This layout is built around 2 components:
 

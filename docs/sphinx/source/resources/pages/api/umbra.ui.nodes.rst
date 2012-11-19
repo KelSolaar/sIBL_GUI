@@ -11,6 +11,10 @@ Module Attributes
 Classes
 -------
 
+.. autoclass:: Mixin_GraphModelObject
+	:show-inheritance:
+	:members:
+
 .. autoclass:: GraphModelAttribute
 	:show-inheritance:
 	:members:
