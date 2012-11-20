@@ -616,7 +616,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			templatesReleases.pop(Constants.applicationName)
 
 		if not templatesReleases:
-			self.Templates_groupBox.hide()
+			self.Templates_frame.hide()
 			self.Get_Latest_Templates_pushButton.hide()
 		else:
 			self.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiTemplatesImage)))
