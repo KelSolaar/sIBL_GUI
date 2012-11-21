@@ -861,7 +861,7 @@ _`Database Browser` (core.databaseBrowser)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +-----------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_DatabaseBrowser.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutliner.jpg     |
 +-----------------------------------------------------------------+
 
 The *Database Browser* component is the central component where IBL Sets are viewed and chosen for export. The component is tracking the IBL Sets files on the disk and reload them automatically when modified.
@@ -871,13 +871,13 @@ IBL Sets can be viewed using different views depending the user needs:
 Columns View:
 
 +----------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_DatabaseBrowserColumnsView.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg     |
 +----------------------------------------------------------------------------+
 
 Details View:
 
 +----------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_DatabaseBrowserDetailsView.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerDetailsView.jpg     |
 +----------------------------------------------------------------------------+
 
 Columns Descriptions:
@@ -911,7 +911,7 @@ Interactions:
 Context menu:
 
 +----------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerContextMenu.jpg     |
 +----------------------------------------------------------------------------+
 
 -  **Add Content ...**: Recursively adds chosen directory IBL Sets into the database assigning them to the selected *Collections Outliner* component Collection or the Default Collection if none is selected.
@@ -932,7 +932,7 @@ Addons Functionalities:
 Search widget context menu:
 
 +----------------------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_DatabaseBrowserSearchWidgetContextMenu.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerSearchWidgetContextMenu.jpg     |
 +----------------------------------------------------------------------------------------+
 
 .. raw:: html
@@ -1244,7 +1244,7 @@ _`Online Updater` (addons.onlineUpdater)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +---------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_OnlineUpdater.jpg     |
+| ..  image:: resources/pictures/sIBL_GUI_RemoteUpdater.jpg     |
 +---------------------------------------------------------------+
 
 The *Online Updater* component maintains **sIBL_GUI** and it’s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
@@ -1263,9 +1263,9 @@ When a download starts the *Download Manager* window will open:
 
 The *Online Updater* component is configurable in the *Preferences Manager* component:
 
-+--------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_OnlineUpdaterPreferences.jpg     |
-+--------------------------------------------------------------------------+
++---------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_OnlineUpdater.jpg     |
++---------------------------------------------------------------+
 
 Interactions:
 
