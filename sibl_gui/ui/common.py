@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import inspect
 import itertools
 import os
 import re
@@ -112,8 +111,9 @@ def loadGraphicsItem(path, type):
 						graphicsItem = convertImage(image, type)
 						break
 					except Exception as error:
-						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(
-						inspect.getmodulename(__file__), path, error))
+						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
+																										path,
+																										error))
 						graphicsItem = type(errorImage)
 						break
 			else:
@@ -133,13 +133,12 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	"""
 
 	if not foundations.common.pathExists(path):
-		LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(inspect.getmodulename(__file__), path))
+		LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(__name__, path))
 		return loadGraphicsItem(path, type)
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get(type.__name__)
 	if cache is None:
-		raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(
-			inspect.getmodulename(__file__), type.__name__))
+		raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(__name__, type.__name__))
 
 	if asynchronousLoading:
 		cache.addDeferredContent(path)
@@ -218,8 +217,7 @@ def getImageInformationsHeader(path, graphicsItem):
 	"""
 
 	if not foundations.common.pathExists(path):
-		raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
-		inspect.getmodulename(__file__), path))
+		raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(__name__, path))
 
 	if type(graphicsItem) is QIcon:
 		graphicsItem = QPixmap(path)

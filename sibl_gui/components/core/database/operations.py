@@ -17,7 +17,6 @@
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import inspect
 import os
 import re
 
@@ -124,8 +123,7 @@ def getSession(session=None):
 	if DEFAULT_SESSION is not None:
 		return DEFAULT_SESSION
 	else:
-		LOGGER.warning("!> {0} | Default session is not set, creating one!".format(
-					inspect.getmodule(addStandardItem).__name__))
+		LOGGER.warning("!> {0} | Default session is not set, creating one!".format(__name__))
 
 def query(*args, **kwargs):
 	"""
@@ -155,7 +153,7 @@ def commit(session=None):
 	except Exception as error:
 		session.rollback()
 		raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
+		"{0} | Database commit error: '{1}'".format(__name__, error))
 
 def addItem(item, session=None):
 	"""
@@ -194,8 +192,7 @@ def addStandardItem(type, name, path, collection, session=None):
 		if databaseItem.setContent():
 			return addItem(databaseItem, session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
-		inspect.getmodule(addStandardItem).__name__, path, type.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__, path, type.__name__))
 		return False
 
 def removeItem(item, session=None):
@@ -243,8 +240,9 @@ def updateItemContent(item, session=None):
 	if item.setContent():
 		return commit(getSession(session))
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(inspect.getmodulename(__file__),
-		item.name, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(__name__,
+																		item.name,
+																		item.__class__.__name__))
 		return False
 
 def updateItemLocation(item, path, session=None):
@@ -265,8 +263,9 @@ def updateItemLocation(item, path, session=None):
 		item.path = path
 		return updateItemContent(item, session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
-		inspect.getmodulename(__file__), path, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__,
+																					path,
+																					item.__class__.__name__))
 		return False
 
 def filterItems(items, pattern, field, flags=0):
@@ -521,8 +520,7 @@ def addCollection(collection, type, comment, session=None):
 		databaseItem = Collection(name=collection, type=type, comment=comment)
 		return addItem(databaseItem, session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
-		inspect.getmodulename(__file__), collection))
+		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(__name__, collection))
 		return False
 
 def removeCollection(identity, session=None):
