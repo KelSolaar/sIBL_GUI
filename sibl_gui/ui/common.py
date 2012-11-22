@@ -132,6 +132,10 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	:return: Graphic display. ( QIcon, QImage, QPixmap )
 	"""
 
+	if not foundations.common.pathExists(path):
+		LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(inspect.getmodulename(__file__), path))
+		return loadGraphicsItem(path, type)
+
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get(type.__name__)
 	if cache is None:
 		raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(
