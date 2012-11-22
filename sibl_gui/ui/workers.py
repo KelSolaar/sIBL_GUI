@@ -144,11 +144,7 @@ class GraphicsItem_worker(QThread):
 				return
 
 			image = sibl_gui.ui.common.loadGraphicsItem(path, QImage)
-			image.data = ImageInformationsHeader(path=path,
-												width=image.width(),
-												height=image.height(),
-												bpp=image.depth(),
-												osStats=os.stat(path))
+			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
 			self.imageLoaded.emit(image)
 
 	def quit(self):
