@@ -5,6 +5,10 @@ _`Usage`
 
    <br/>
 
+Once installed, you can launch **sIBL_GUI** using this shell command::
+
+      sIBL_GUI
+
 _`User Preferences`
 -------------------
 
@@ -25,19 +29,19 @@ Structure Description:
 
 -  **$MAJOR_VERSION.$MINOR_VERSION**: Current **sIBL_GUI** version.
 
-   -  **components**: Directory storing user components.
+   -  **components**: Directory storing user Components.
    -  **database**: Directory storing the SQLite database.
 
-      -  **backup**: Directory used by the *Db* component when it backups the database.
-      -  **migrations**: Directory used by the *Db* migration mechanism responsible to migrate the database.
+      -  **backup**: Directory used by the *Database* Component when it backups the database.
+      -  **migrations**: Directory used by the *Database* migration mechanism responsible to migrate the database.
 
          -  **versions**: Directory used by to store the various migrations scripts.
 
    -  **io**: Directory used for **sIBL_GUI** input / output operations.
 
-      -  **loaderScripts**: Directory used as output directory by the *Loader Script* component.
-      -  **remote**: Directory used by the *Online Updater* component when it downloads online files.
-      -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* component.
+      -  **loaderScripts**: Directory used as output directory by the *Loader Script* Component.
+      -  **remote**: Directory used by the *Online Updater* Component when it downloads online files.
+      -  **scriptEditor**: Directory containing the default scripts used by the *Script Editor* Component.
 
    -  **logging**: Directory storing **sIBL_GUI** logging file.
    -  **patches**: Directory storing **sIBL_GUI** patches file.
@@ -62,8 +66,9 @@ _`Command Line Parameters`
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
 -  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
 -  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
--  **-x, —startupScript**: Execute provided startup script.
 -  **-w, —deactivateWorkerThreads**: The Worker Threads are deactivated.
+-  **-x STARTUPSCRIPT, --startupScript=STARTUPSCRIPT**: Execute given startup script.
+-  **-t TRACEMODULES, --traceModules=TRACEMODULES**: Trace given modules.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.
 -  **-o LOADERSCRIPTSOUTPUTDIRECTORY, —loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY**: Loader scripts output directory.
@@ -163,7 +168,7 @@ Interactions:
 | ..  image:: ../pictures/sIBL_GUI_ToolbarContextMenu.jpg            |
 +--------------------------------------------------------------------+
 
-**Central Widget icon**: Shows / Hides the *Database Browser* component widget Ui.
+**Central Widget icon**: Shows / Hides the *Ibl Sets Outliner* Component widget Ui.
 
 **Layouts icon**: Raises a context menu where the user can store / restore up to 5 custom layouts and recall them whenever needed:
 
@@ -186,10 +191,10 @@ _`Library Layout`
 
 The *Library layout* is where most of the IBL Sets management is done.
 
-This layout is built around 4 components:
+This layout is built around 4 Components:
 
 -  :ref:`core.collectionsOutliner`
--  :ref:`core.databaseBrowser`
+-  :ref:`core.iblSetsOutliner`
 -  :ref:`addons.searchDatabase`
 -  :ref:`addons.gpsMap`
 
@@ -206,7 +211,7 @@ _`Inspect Layout`
 
 The *Inspect layout* is where Ibl Set inspection is done.
 
-This layout is built around 3 components:
+This layout is built around 3 Components:
 
 -  :ref:`core.collectionsOutliner`
 -  :ref:`core.inspector`
@@ -225,14 +230,14 @@ _`Export Layout`
 
 The *Export layout* is where the bridge between **sIBL_GUI** and the 3d packages is created.
 
-This layout is built around 4 components:
+This layout is built around 4 Components:
 
 -  :ref:`core.templatesOutliner`
--  :ref:`core.databaseBrowser`
+-  :ref:`core.iblSetsOutliner`
 -  :ref:`addons.loaderScript`
 -  :ref:`addons.loaderScriptOptions`
 
-An additional but extremely powerful export related component is available by right clicking the main toolbar:
+An additional but extremely powerful export related Component is available by right clicking the main toolbar:
 
 -  :ref:`addons.rewiringTool`
 
@@ -249,8 +254,9 @@ _`Edit Layout`
 
 The *Edit layout* is where Ibl Set are edited.
 
-This layout is built around 1 component:
+This layout is built around 2 Component:
 
+-  :ref:`addons.projectsExplorer`
 -  :ref:`factory.scriptEditor`
 
 +-------------------------------------------------------------------+
@@ -266,7 +272,7 @@ _`Preferences Layout`
 
 The *Preferences layout* is where **sIBL_GUI** behavior is configured.
 
-This layout is built around 2 components:
+This layout is built around 2 Components:
 
 -  :ref:`factory.componentsManagerUi`
 -  :ref:`factory.preferencesManager`

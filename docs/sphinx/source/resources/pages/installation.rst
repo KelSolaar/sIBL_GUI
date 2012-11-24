@@ -30,30 +30,32 @@ _`Linux Platform`
 -----------------
 
 | *sIBL_GUI 4* is currently not built on Linux because of several issues.
-| You can however grab the source code at Github.com: http://github.com/KelSolaar/sIBL_GUI and launch sIBL_GUI.py file from a shell.
 
-You will need those dependencies:
+The following dependencies are needed:
 
-- **Foundations**: https://github.com/KelSolaar/Foundations
-- **Manager**: https://github.com/KelSolaar/Manager
-- **Umbra**: https://github.com/KelSolaar/Umbra
-- **sIBL_GUI_Templates**: https://github.com/KelSolaar/sIBL_GUI_Templates
+-  **Python 2.6.7** or **Python 2.7.3**: http://www.python.org/
+-  **PyQt**: http://www.riverbankcomputing.co.uk/
 
-If you want to support third party images formats through FreeImage, you will need to recompile `FreeImage <3.15.1 http://downloads.sourceforge.net/freeimage/FreeImage3151.zip>`_ with the following patch over it:
+To install **sIBL_GUI** from the `Python Package Index <http://pypi.python.org/pypi/sIBL_GUI>`_ you can issue this command in a shell::
+
+      pip install sIBL_GUI
+
+or this alternative command:
+
+      easy install sIBL_GUI
+
+If you want to support third party images formats through FreeImage, you will need to recompile `FreeImage <https://github.com/KelSolaar/FreeImage>`_ with the following patch over it:
 
 - **FreeImage_For_sIBL_GUI**: https://github.com/KelSolaar/FreeImage_For_sIBL_GUI
 
-The following third party dependencies are also needed:
+Alternatively, if you want to directly install from `Github <http://github.com/KelSolaar/sIBL_GUI>`_ source repository::
 
--  **Python 2.7.1**: http://www.python.org/
--  **PyQt**: http://www.riverbankcomputing.co.uk/
--  **Qt**: http://qt.nokia.com/
--  **SQLAlchemy**: http://www.sqlalchemy.org/
--  **SQLAlchemy-migrate**: http://code.google.com/p/sqlalchemy-migrate/
+      git clone git://github.com/KelSolaar/sIBL_GUI.git
+      cd sIBL_GUI
+      python setup.py install
 
-If you want to build the documentation you will need:
+If you want to build the documentation you will also need:
 
--  **Sphinx**: http://sphinx.pocoo.org/
 -  **Tidy** http://tidy.sourceforge.net/
 
 .. raw:: html
