@@ -23,9 +23,29 @@ Changes
 4.0.3 - Stable
 --------------
 
--  Update various Ui style elements ( ScrollBars, Icons, etc... ).
--  Rename "Db" Component to "Database".
--  Rename "DatabaseBrowser" Component to "IblSetsOutliner".
+| **sIBL_GUI** 4.0.3 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=4&state=closed
+| **Umbra** 1.0.4 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=4&state=closed
+
+-  Implemented an unhandled exceptions reporter connected to https://www.crittercism.com/
+-  Ensure that sIBL_GUI frozen version doesn't require administrator rights on Windows.
+-  Overall Ui style update ( ScrollBars, Icons, etc... ).
+-  Add wizard for case when no Templates were found.
+-  **LoaderScript** Component now uses **TcpClientUi** Component interface.
+-  Implemented mechanism to flush invalid / missing Database entries in **databaseOperations** Component.
+-  Implemented **Yes to All** / **No to All** buttons in relevant dialogs.
+-  Implemented **TraceUi** Component.
+-  Reloading a Component will reload its dependencies in **componentsManagerUi** Component.
+-  Implemented command line support for modules execution tracing through **-t, --traceModules** parameter.
+-  Implemented support for per instance logging file.
+-  Views display user friendly default message.
+-  Rename **Db** Component to **Database**.
+-  Rename **DatabaseBrowser** Component to **IblSetsOutliner**.
+-  Add support for **Python 2.6**.
+-  Dropped support for XSI Templates.
+-  Fixed various widgets classes, implemented small ui test cases.
+-  Fixed inconsistent Ui startup verbose level.
+-  Components are properly displayed in **ComponentsManagerUi** Component.
+-  User Templates are properly imported into the user Collection.
 
 4.0.2 - Stable
 --------------
@@ -33,7 +53,7 @@ Changes
 I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
 
 | **sIBL_GUI** 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
-| Umbra 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
+| **Umbra** 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented notifications manager code.
 -  Implemented **Search In Files** in **Script Editor** Component.
@@ -57,7 +77,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 4.0.1 - Beta
 ------------
 
-Development 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
+| **sIBL_GUI** 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
 
 -  Implemented asynchronous images loading in related **sIBL_GUI** Components for increased speed and responsiveness.
 -  A new **Images Caches Operations** Component has been introduced to allow images caches operations.
@@ -76,7 +96,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  **sIBL_GUI** now features a refreshed new dark Ui theme with new logo, splashscreen and more!
 -  x64 is the default new **sIBL_GUI** architecture, there won't be anymore support for x86.
 -  **sIBL_GUI** 4.x.x preferences a now stored per version in **./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION** directory.
--  A new **Inspect** layout has been implemented, it makes use of the new **PREVIEWfile** attribute of .ibl files and allows you to browse your collections using large preview images.
+-  A new **Inspect** layout has been implemented, it makes use of the new **PREVIEWfile** attribute of .ibl files and allows you to browse your Collections using large preview images.
 -  A new **Edit** layout has been implemented, it features **Umbra** **Script Editor** Component and allows you to directly edit Ibl Sets or Templates files and interact with **sIBL_GUI**. 
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
 -  Major parts of the underlying architecture have been rewrote for better evolutivity and feature a cleaner code base.
@@ -87,7 +107,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  The **Database Backup** Component has been integrated into the **Db** Component.
 -  A database migration mechanism has been implemented using SQLAlchemy Migrate, it should allow database structure manipulation for future releases.
 -  A new **Database Operations** Component has been introduced to allow manual database synchronization.
--  Adding / Renaming a collection using an empty name was possible, this incorrect behavior has been fixed.
+-  Adding / Renaming a Collection using an empty name was possible, this incorrect behavior has been fixed.
 -  A **Logging Formatter** preferences option has been added, allowing to choose between different logging formatters.
 -  Added support for Templates strings: **nodePrefix = @nodePrefix | __Prefix__ | String | Node Prefix**.
 -  Added **-f / --loggingFormatter** command line parameter allowing logging formatter choice.
@@ -99,9 +119,9 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
    -  Sphinx documentation with chapters and API.
    -  Inline monolitic file for HDRLabs.com.
 -  A **defaultScript.py** file is provided to showcase a few high level API features.
--  Templates settings are now stored / restored in preferences folder for each template release. 
--  Most Maya templates have been ported toward Python for better maintainability and performance.
--  3dsMax and Softimage / XSI templates have been refactored for better maintainability.
+-  Templates settings are now stored / restored in preferences folder for each Template release. 
+-  Most Maya Templates have been ported toward Python for better maintainability and performance.
+-  3dsMax and Softimage / XSI Templates have been refactored for better maintainability.
 -  Most Templates allows the user to define the prefix the setup will use for better customization.
 -  The Maya, 3dsMax, Softimage / XSI helper scripts have been refactored to be inline with **sIBL_GUI** 4.0.0 release.
 -  A donations page has been added and is available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html
@@ -112,7 +132,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  Implemented support for **Lightsmith Lights**: http://vimeo.com/20879389.
 -  Most of the Templates have been refactored at different level.
 -  Fixed an issue where Ibl Sets were displayed multiple times in the **Database Browser** Component.
--  Dropped support of Illuminate Labs Turtle Renderer.
+-  Dropped support for Illuminate Labs Turtle Renderer.
 
 3.1.3 - Stable
 --------------
@@ -120,7 +140,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -  Templates have now options to define different light types: **Area**, **Directional**, **Point**, **Spot**, etc...
 -  **Search Database** Component **In Tags Cloud** method is now case sensitive.
 -  Fixed a remaining issue in **Search Database** Component and empty Ibl Set attributes in the **In Tags Cloud** method.
--  Fixed Windows building file to prevent incorrect **templates** folder hierarchy.
+-  Fixed Windows building file to prevent incorrect Templates folder hierarchy.
 
 3.1.2 - Stable
 --------------
@@ -209,7 +229,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 --------------
 
 -  Templates folders hierarchy has been updated. *It's strongly advised to uninstall any previous **sIBL_GUI** 3 version before installing this stable release.*
--  Database Browser is properly refreshing when a collection is removed.
+-  Database Browser is properly refreshing when a Collection is removed.
 -  Database Browser items are again correctly laid out on **sIBL_GUI** resize.
 -  Added **debug** verbose messages in a lot of methods.
 -  Fixed wrong versions numbers calculations.
@@ -225,7 +245,7 @@ Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/iss
 -------------
 
 -  Added application icon.
--  Regenerated templates documentation help files.
+-  Regenerated Templates documentation help files.
 -  Added application documentation help file.
 -  Added Softimage 2011 Template.
 -  Improved startup time.
