@@ -32,7 +32,10 @@ def _setPackageDirectory():
 	This definition sets the Application package directory in the path.
 	"""
 
-	packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+	if hasattr(sys, "frozen"):
+		packageDirectory = os.path.dirname(__file__)
+	else:
+		packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
 	packageDirectory not in sys.path and sys.path.append(packageDirectory)
 
 _setPackageDirectory()

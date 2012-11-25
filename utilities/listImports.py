@@ -52,28 +52,30 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def listImports(sourceDirectory, filtersIn, filtersOut):
+def listImports(packages, filtersIn, filtersOut):
 	"""
 	This definition lists Application imports.
 
-	:param sourceDirectory: Source directory. ( String )
+	:param packages: Packages. ( List )
 	:param filtersIn: Filters in. ( Tuple / List )
 	:param filtersOut: Filters out. ( Tuple / List )
 	:return: Imports. ( List )
 	"""
 
-	imports = IMPORTS
-	for file in sorted(list(foundations.walkers.filesWalker(sourceDirectory, filtersIn, filtersOut))):
-		source = File(file)
-		source.cache()
-		for line in source.content:
-			if not re.search("foundations|manager|umbra|sibl_gui", line):
-				search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import", line)
-				if search:
-					statement = search.group("moduleA") or search.group("moduleB")
-					statement not in imports and statement != "_" and imports.append(statement)
+	imports = set(IMPORTS)
+	for package in packages:
+		path = __import__(package).__path__.pop()
+		for file in sorted(list(foundations.walkers.filesWalker(path, filtersIn, filtersOut))):
+			source = File(file)
+			source.cache()
+			for line in source.content:
+				if not re.search("foundations|manager|umbra|sibl_gui", line):
+					search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import", line)
+					if search:
+						statement = search.group("moduleA") or search.group("moduleB")
+						statement != "_" and imports.add(statement)
 	return imports
 
 if __name__ == "__main__":
-	imports = listImports(sys.argv[1], filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
+	imports = listImports(sys.argv[1].split(","), filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
 	LOGGER.info("{0} | Imports: \"{1}\"".format(listImports.__name__, ",".join(sorted(imports))))

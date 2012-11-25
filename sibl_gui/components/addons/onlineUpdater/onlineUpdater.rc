@@ -3,7 +3,7 @@ Name = addons.onlineUpdater
 Title = Online Updater
 Module = onlineUpdater
 Object = OnlineUpdater
-Require = addons.locationsBrowser|core.database|core.templatesOutliner|factory.preferencesManager
+Require = addons.locationsBrowser|addons.preview|core.database|core.templatesOutliner|factory.preferencesManager
 Version = 1.0
 
 [Informations]
