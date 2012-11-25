@@ -4,14 +4,14 @@ echo sIBL_GUI - Windows - Overall Build
 echo -------------------------------------------------------------------------------
 
 export PYINSTALLER=c:/pyinstaller
-export PYTHONPATH=$PROJECT/src
+export PYTHONPATH=$PROJECT
 
 export PROJECT=z:/Documents/Development/sIBL_GUI
 export MAJOR_VERSION=4
 
 export UTILITIES=$PROJECT/utilities
 
-export SOURCE=$PROJECT/src
+export SOURCE=$PROJECT
 export RELEASES=$PROJECT/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
@@ -24,7 +24,7 @@ IFS=","
 echo -------------------------------------------------------------------------------
 echo Cleanup - Begin
 echo -------------------------------------------------------------------------------
-rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES
+rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES $BUNDLE
 for type in ".pyc,.pyo,.DS_Store,Thumbs.db"
 do
 	python $UTILITIES/recursiveRemove.py $PROJECT $type
@@ -52,7 +52,7 @@ cp -r $DISTRIBUTION/sIBL_GUI $BUNDLE
 packages="foundations,manager,umbra,sibl_gui"
 for package in $packages
 do
-	cp -r $SOURCE/$package $DEPENDENCIES/
+	cp -rL $( cygpath --unix $( $UTILITIES/getPackagePath.py $package ) ) $DEPENDENCIES/$package
 done
 packages="umbra,sibl_gui"
 extensions="bmp,icns,ico"
@@ -67,6 +67,7 @@ do
 done
 rm -f $DEPENDENCIES/sibl_gui/libraries/freeImage/resources/*.dylib
 rm -f $DEPENDENCIES/sibl_gui/libraries/freeImage/resources/*.so
+rm -rf $DEPENDENCIES/*/tests
 echo -------------------------------------------------------------------------------
 echo Release - End
 echo -------------------------------------------------------------------------------

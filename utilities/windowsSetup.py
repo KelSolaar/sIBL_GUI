@@ -28,7 +28,7 @@ __all__ = ["a", "pyz", "exe", "coll", "app"]
 
 a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
 			os.path.join(HOMEPATH, "support\\useUnicode.py"),
-			"z:/Documents/Development/sIBL_GUI/sIBL_GUI.py"],
+			"z:/Documents/Development/sIBL_GUI/sibl_gui/launcher.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
              excludes=["foundations", "manager", "umbra", "sibl_gui"])
 
@@ -42,10 +42,10 @@ exe = EXE(pyz,
 		strip=False,
 		upx=True,
 		console=False,
-		icon="z:\\Documents\\Developement\\sIBL_GUI\\src\\sibl_gui\\resources\\images\\Icon_Light.ico")
+		icon="z:\\Documents\\Development\\sIBL_GUI\\sibl_gui\\resources\\images\\Icon_Light.ico")
 
 coll = COLLECT(exe,
-			a.binaries,
+			filter(lambda x: "API-MS-Win" not in x[0], a.binaries),
 			a.zipfiles,
 			a.datas,
 			strip=False,

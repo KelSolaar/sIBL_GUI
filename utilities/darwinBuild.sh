@@ -21,7 +21,7 @@ IFS=","
 echo -------------------------------------------------------------------------------
 echo Cleanup - Begin
 echo -------------------------------------------------------------------------------
-rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES
+rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES $BUNDLE
 packages="foundations,manager,umbra,sibl_gui"
 for package in $packages
 do
@@ -73,7 +73,6 @@ rm -rf $DEPENDENCIES/sibl_gui/resources/templates/3dsMax*
 rm -rf $DEPENDENCIES/sibl_gui/resources/templates/Softimage*
 rm -rf $DEPENDENCIES/sibl_gui/resources/templates/XSI*
 rm -rf $DEPENDENCIES/*/tests
-
 echo -------------------------------------------------------------------------------
 echo Release - End
 echo -------------------------------------------------------------------------------
