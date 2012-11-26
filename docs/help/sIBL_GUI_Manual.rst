@@ -199,7 +199,7 @@ In order to support third party images formats through FreeImage you may need to
 _`Mac Os X Platform`
 --------------------
 
-Open *sIBL_GUI.dmg* and drag *sIBL_GUI.app* into the *Application* directory.
+Open *sIBL_GUI.dmg* and drag *sIBL_GUI 4.app* into the *Application* directory.
 
 .. raw:: html
 
@@ -219,7 +219,7 @@ To install **sIBL_GUI** from the `Python Package Index <http://pypi.python.org/p
 
       pip install sIBL_GUI
 
-or this alternative command:
+or this alternative command::
 
       easy install sIBL_GUI
 
