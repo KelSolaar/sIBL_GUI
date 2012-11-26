@@ -27,7 +27,7 @@ Changes
 | **Umbra** 1.0.4 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=4&state=closed
 
 -  Implemented an unhandled exceptions reporter connected to https://www.crittercism.com/
--  Ensure that sIBL_GUI frozen version doesn't require administrator rights on Windows.
+-  Ensure that **sIBL_GUI** frozen version doesn't require administrator rights on Windows.
 -  Overall Ui style update ( ScrollBars, Icons, etc... ).
 -  Add wizard for case when no Templates were found.
 -  **LoaderScript** Component now uses **TcpClientUi** Component interface.
@@ -41,6 +41,7 @@ Changes
 -  Rename **Db** Component to **Database**.
 -  Rename **DatabaseBrowser** Component to **IblSetsOutliner**.
 -  Add support for **Python 2.6**.
+-  **sIBL_GUI** is now a distributable Python package: http://pypi.python.org/pypi/sIBL_GUI
 -  Dropped support for XSI Templates.
 -  Fixed various widgets classes, implemented small ui test cases.
 -  Fixed inconsistent Ui startup verbose level.
