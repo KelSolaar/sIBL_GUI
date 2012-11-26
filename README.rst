@@ -47,6 +47,8 @@ or this alternative command::
 
       easy install sIBL_GUI
 
+Templates are not included by default and can be downloaded from `sIBL_GUI_Templates <https://github.com/KelSolaar/sIBL_GUI_Templates>`_ repository.
+
 If you want to support third party images formats through FreeImage, you will need to recompile `FreeImage <https://github.com/KelSolaar/FreeImage>`_ with the following patch over it:
 
 - **FreeImage_For_sIBL_GUI**: https://github.com/KelSolaar/FreeImage_For_sIBL_GUI
