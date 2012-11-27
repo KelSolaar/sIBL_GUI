@@ -25,9 +25,13 @@ echo ---------------------------------------------------------------------------
 echo Cleanup - Begin
 echo -------------------------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES $BUNDLE
-for type in ".pyc,.pyo,.DS_Store,Thumbs.db"
+packages="foundations,manager,umbra,sibl_gui"
+for package in $packages
 do
-	python $UTILITIES/recursiveRemove.py $PROJECT $type
+	for type in ".pyc,.pyo,.DS_Store,Thumbs.db"
+	do
+		python $UTILITIES/recursiveRemove.py $( $UTILITIES/getPackagePath.py $package ) $type
+	done
 done
 echo -------------------------------------------------------------------------------
 echo Cleanup - End
@@ -49,7 +53,6 @@ echo ---------------------------------------------------------------------------
 echo Release - Begin
 echo -------------------------------------------------------------------------------
 cp -r $DISTRIBUTION/sIBL_GUI $BUNDLE
-packages="foundations,manager,umbra,sibl_gui"
 for package in $packages
 do
 	cp -rL $( cygpath --unix $( $UTILITIES/getPackagePath.py $package ) ) $DEPENDENCIES/$package

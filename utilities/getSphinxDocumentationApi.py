@@ -77,6 +77,7 @@ EXCLUDED_PYTHON_MODULES = ("tests",
                         "defaultScript\.py",
 						"001_migrate_3-x-x_to_4-0-0\.py",
 						"002_migrate_4-x-x_to_4-0-2\.py",
+						"003_migrate_4-x-x_to_4-0-3\.py",
 						"001_dummy\.py")
 
 STATEMENTS_UPDATE_MESSAGGE = "#**********************************************************************************************************************\n" \
