@@ -1,20 +1,6 @@
 **sIBL_GUI** - 4.0.3 - Stable
 =============================
 
-.. raw:: html
-
-    <div style="color: rgb(160, 48, 32);">
-        <h2>IMPORTANT NOTICES:</h2>
-        <ul>
-            <li>**sIBL_GUI** 4.x.x preferences are now stored per version in a directory following this structure : "./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION".
-            </li>
-            <li>On Windows, **sIBL_GUI** 4.x.x needs <a href="http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe">Microsoft Visual C++ 2010 Redistributable Package (x64)</a> to have third party images formats support.
-            </li>
-            <li>We are running a survey, if you have 30 seconds it would be awesome: http://kelsolaar.polldaddy.com/s/sibl-gui-3d-softwares-usage-survey.
-            </li>
-        </ul>
-    </div>
-
 .. .changes
 
 Changes
@@ -42,7 +28,10 @@ Changes
 -  Rename **Database Browser** Component to **Ibl Sets Outliner**.
 -  Add support for **Python 2.6**.
 -  **sIBL_GUI** is now a distributable Python package: http://pypi.python.org/pypi/sIBL_GUI
--  Dropped support for XSI Templates.
+-  Dropped support for **XSI_Arnold_Dome_Light**, **XSI_Arnold_Standard** and **XSI_MR_Standard** Templates.
+-  Dropped support for **3dsmax** versions prior to **3dsmax 2010**.
+-  Dropped support for **Maya** versions prior to **Maya 2011**.
+-  Disable **mentalrayGlobals.passAlphaThrough** attribute in **Maya_MR_Standard** and **Maya_MR_Lightsmith** Templates.
 -  Fixed various widgets classes, implemented small ui test cases.
 -  Fixed inconsistent Ui startup verbose level.
 -  Components are properly displayed in **Components Manager Ui** Component.
