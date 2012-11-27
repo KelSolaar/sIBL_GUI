@@ -30,22 +30,22 @@ Changes
 -  Ensure that **sIBL_GUI** frozen version doesn't require administrator rights on Windows.
 -  Overall Ui style update ( ScrollBars, Icons, etc... ).
 -  Add wizard for case when no Templates were found.
--  **LoaderScript** Component now uses **TcpClientUi** Component interface.
--  Implemented mechanism to flush invalid / missing Database entries in **databaseOperations** Component.
+-  **Loader Script** Component now uses **TCP Client Ui** Component interface.
+-  Implemented mechanism to flush invalid / missing Database entries in **Database Operations** Component.
 -  Implemented **Yes to All** / **No to All** buttons in relevant dialogs.
--  Implemented **TraceUi** Component.
--  Reloading a Component will reload its dependencies in **componentsManagerUi** Component.
+-  Implemented **Trace Ui** Component.
+-  Reloading a Component will reload its dependencies in **Components Manager Ui** Component.
 -  Implemented command line support for modules execution tracing through **-t, --traceModules** parameter.
 -  Implemented support for per instance logging file.
 -  Views display user friendly default message.
 -  Rename **Db** Component to **Database**.
--  Rename **DatabaseBrowser** Component to **IblSetsOutliner**.
+-  Rename **Database Browser** Component to **Ibl Sets Outliner**.
 -  Add support for **Python 2.6**.
 -  **sIBL_GUI** is now a distributable Python package: http://pypi.python.org/pypi/sIBL_GUI
 -  Dropped support for XSI Templates.
 -  Fixed various widgets classes, implemented small ui test cases.
 -  Fixed inconsistent Ui startup verbose level.
--  Components are properly displayed in **ComponentsManagerUi** Component.
+-  Components are properly displayed in **Components Manager Ui** Component.
 -  User Templates are properly imported into the user Collection.
 
 4.0.2 - Stable
