@@ -9,11 +9,25 @@ Changes
 4.0.4 - Stable
 --------------
 
+| **sIBL_GUI** 4.0.4 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=5&state=closed
+| **Umbra** 1.0.5 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=5&state=closed
+| **Foundations** 2.0.5 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=3&state=closed
+
+-  Fixed the encoding related issues preventing the application to work properly.
+-  Fixed ui related exception in **Online Updater** component. 
+-  Prevented exception in **TCP Server Ui** Component when requested address is not available.
+
 4.0.3 - Stable
 --------------
 
 | **sIBL_GUI** 4.0.3 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=4&state=closed
 | **Umbra** 1.0.4 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=4&state=closed
+| **Umbra** 1.0.3 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=3&state=closed
+| **Umbra** 1.0.2 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=2&state=closed
+| **Manager** 2.0.3 - Stable - https://github.com/KelSolaar/Manager/issues?milestone=2&state=closed
+| **Manager** 2.0.2 - Stable - https://github.com/KelSolaar/Manager/issues?milestone=1&state=closed
+| **Foundations** 2.0.4 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=2&state=closed
+| **Foundations** 2.0.3 - Stable - https://github.com/KelSolaar/Foundations/issues?milestone=1&state=closed
 
 -  Implemented an unhandled exceptions reporter connected to https://www.crittercism.com/
 -  Ensure that **sIBL_GUI** frozen version doesn't require administrator rights on Windows.
@@ -46,7 +60,7 @@ Changes
 I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
 
 | **sIBL_GUI** 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
-| **Umbra** 1.0.1 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
+| **Umbra** 1.0.1 - Beta - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
 
 -  Implemented notifications manager code.
 -  Implemented **Search In Files** in **Script Editor** Component.
@@ -83,7 +97,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 4.0.0 - Alpha
 --------------
 
-Development 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
+| **sIBL_GUI** 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
 
 -  **sIBL_GUI** is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  **sIBL_GUI** now features a refreshed new dark Ui theme with new logo, splashscreen and more!
