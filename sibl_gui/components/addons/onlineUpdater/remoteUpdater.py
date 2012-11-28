@@ -603,7 +603,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
 
 		if Constants.applicationName not in self.__releases:
-			self.sIBL_GUI_groupBox.hide()
+			self.sIBL_GUI_frame.hide()
 			self.Get_sIBL_GUI_pushButton.hide()
 		else:
 			self.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage)))
