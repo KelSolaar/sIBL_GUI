@@ -63,6 +63,7 @@ DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
 							("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 
+LOGGER = foundations.verbose.installLogger()
 foundations.verbose.getLoggingConsoleHandler()
 foundations.verbose.setVerbosityLevel(3)
 
@@ -76,7 +77,7 @@ def getDependenciesInformations():
 
 	content = ["[Dependencies]\n"]
 	for dependency, path in DEPENDENCIES.iteritems():
-		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE),
+		release = subprocess.Popen("cd {0} && {1} describe".format(path, GIT_EXECUTABLE),
 									shell=True,
 									stdout=subprocess.PIPE,
 									stderr=subprocess.PIPE).communicate()[0]
