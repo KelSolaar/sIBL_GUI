@@ -17,6 +17,8 @@ Functions
 
 .. autofunction:: orderedUniqify
 
+.. autofunction:: unpackDefault
+
 .. autofunction:: pathExists
 
 .. autofunction:: getFirstItem
