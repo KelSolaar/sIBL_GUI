@@ -9,6 +9,9 @@ Changes
 4.0.5 - Stable
 --------------
 
+-  Fixed**onlineUpdater** Component exception when trying to install the Templates in a user defined directory.
+-  Fixed **templatesOutliner** Component exception when selected Template has no help file.
+
 4.0.4 - Stable
 --------------
 
@@ -32,7 +35,7 @@ Changes
 | **Foundations** 2.0.4 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=2&state=closed
 | **Foundations** 2.0.3 - Stable - https://github.com/KelSolaar/Foundations/issues?milestone=1&state=closed
 
--  Implemented an unhandled exceptions reporter connected to https://www.crittercism.com/
+-  Implemented an unhandled exceptions **Reporter** connected to https://www.crittercism.com/
 -  Ensure that **sIBL_GUI** frozen version doesn't require administrator rights on Windows.
 -  Overall Ui style update ( ScrollBars, Icons, etc... ).
 -  Add wizard for case when no Templates were found.

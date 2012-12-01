@@ -797,10 +797,9 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		elif choice == 1:
 			return os.path.join(RuntimeGlobals.templatesUserDirectory)
 		elif choice == 2:
-			return self.__container.container.storeLastBrowsedPath(
-			QFileDialog.getExistingDirectory(self,
-											"Choose Templates Directory:",
-											self.__container.container.lastBrowsedPath))
+			return umbra.ui.common.storeLastBrowsedPath(QFileDialog.getExistingDirectory(self,
+																						"Choose Templates Directory:",
+																						 RuntimeGlobals.lastBrowsedPath))
 
 	def extractZipFile(self, file):
 		"""
