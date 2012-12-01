@@ -161,7 +161,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											<p>
 											<b>Help file:</b> <a href="{7}">
 											<span style=" text-decoration: underline; color:#e0e0e0;">
-											template manual</span></a>
+											Template Manual</span></a>
 											</p>
 											</p>
 											"""
@@ -1173,18 +1173,19 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(self.__templatesInformationsText.format(template.title,
-												template.date,
-												template.author,
-												template.email,
-												template.url,
-												template.outputScript,
-												template.comment,
-												QUrl.fromLocalFile(template.helpFile).toString()))
+				helpFile = template.helpFile or umbra.ui.common.getResourcePath(UiConstants.invalidLinkHtmlFile)
+				content.append(self.__templatesInformationsText.format(template.title,
+																	template.date,
+																	template.author,
+																	template.email,
+																	template.url,
+																	template.outputScript,
+																	template.comment,
+																	QUrl.fromLocalFile(helpFile).toString()))
 		else:
 			content.append(self.__templatesInformationsDefaultText)
 
-		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
+		separator = str() if len(content) == 1 else "<p><center>* * *<center/></p>"
 
 		self.Template_Informations_textBrowser.setText(separator.join(content))
 
@@ -1587,16 +1588,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		if foundations.common.pathExists(template.helpFile):
+		helpFile = template.helpFile or umbra.ui.common.getResourcePath(UiConstants.invalidLinkHtmlFile)
+		if foundations.common.pathExists(helpFile):
 			LOGGER.info("{0} | Opening '{1}' Template help file: '{2}'.".format(self.__class__.__name__,
 																				template.name,
-																				template.helpFile))
-			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
+																				helpFile))
+			QDesktopServices.openUrl(QUrl.fromLocalFile(helpFile))
 			return True
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
-			self.__class__.__name__, template.name, template.helpFile))
+			self.__class__.__name__, template.name, helpFile))
 
 	def getCollections(self):
 		"""
