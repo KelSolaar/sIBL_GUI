@@ -948,9 +948,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
 		rawSections=(self.__templateScriptSection))
 
-		self.__view_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection],
+		self.__view_setUi(templateSectionsFileParser.sections.get(self.__templateCommonAttributesSection, {}),
 								self.__commonView, commonAttributesOverrides)
-		self.__view_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection],
+		self.__view_setUi(templateSectionsFileParser.sections.get(self.__templateAdditionalAttributesSection, {}),
 								self.__additionalView, additionalAttributesOverrides)
 
 	def __view__valueChanged(self, *args):
