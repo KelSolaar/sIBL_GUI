@@ -6,11 +6,26 @@
 Changes
 =======
 
+.. raw:: html
+
+    <div style="color: rgb(160, 96, 64);">
+        <h2>Notes:</h2>
+        <ul>
+            <li>The following changes reflects the changes of <b>sIBL_GUI</b> package and also its dependencies.
+            </li>
+        </ul>
+    </div>
+
 4.0.5 - Stable
 --------------
 
--  Fixed**onlineUpdater** Component exception when trying to install the Templates in a user defined directory.
+-  Implemented a better version rank calculation definition allowing to properly compare various version formats.
+-  Ensured **Reporter** is not initialising the **Crittercism** Client API 2 times.
+-  Handle Templates with no attributes sections.
+-  Fixed **onlineUpdater** Component exception when trying to install the Templates in an user defined directory.
 -  Fixed **templatesOutliner** Component exception when selected Template has no help file.
+-  Fixed **Search And Replace** dialog patterns related exception.
+-  Fixed **Softimage_MR_Standard** Template issue related to **mia_physicalsun** shader intensity being affected by **sIbl_Feedback** rotation.
 
 4.0.4 - Stable
 --------------
@@ -90,7 +105,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 4.0.1 - Beta
 ------------
 
-| **sIBL_GUI** 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
+**sIBL_GUI** 4.0.1 - Beta - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=2&state=closed
 
 -  Implemented asynchronous images loading in related **sIBL_GUI** Components for increased speed and responsiveness.
 -  A new **Images Caches Operations** Component has been introduced to allow images caches operations.
@@ -103,7 +118,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 4.0.0 - Alpha
 --------------
 
-| **sIBL_GUI** 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
+**sIBL_GUI** 4.0.0 - Alpha - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=1&state=closed
 
 -  **sIBL_GUI** is now built around **Umbra**: https://github.com/KelSolaar/Umbra
 -  **sIBL_GUI** now features a refreshed new dark Ui theme with new logo, splashscreen and more!
