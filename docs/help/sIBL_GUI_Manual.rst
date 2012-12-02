@@ -1,4 +1,4 @@
-..  image:: resources/pictures/sIBL_GUI_Logo.png
+.. image:: resources/pictures/sIBL_GUI_Logo.png
 
 Manual - Help File
 ==================
