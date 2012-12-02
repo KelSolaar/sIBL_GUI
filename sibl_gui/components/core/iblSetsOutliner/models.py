@@ -23,7 +23,6 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.models
 
@@ -50,7 +49,7 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	:class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner` Component Interface class. 
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
+	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
 		"""
 		This method initializes the class.
 
@@ -58,12 +57,11 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		:param rootNode: Root node. ( AbstractCompositeNode )
 		:param horizontalHeaders: Headers. ( OrderedDict )
 		:param verticalHeaders: Headers. ( OrderedDict )
-		:param defaultNode: Default node. ( AbstractCompositeNode )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders, defaultNode)
+		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
 
 	#******************************************************************************************************************
 	#***	Class methods.

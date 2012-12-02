@@ -1898,7 +1898,7 @@ Or after backuping the original one, you can directly use one of those already e
 Changes
 =======
 
-**sIBL_GUI - Changes**: http://kelsolaar.hdrlabs.com/sIBL_GUI/Changes/Changes.html
+**sIBL_GUI** Changes file is available here: `sIBL_GUI - Changes <http://kelsolaar.hdrlabs.com/sIBL_GUI/Changes/Changes.html>`_
 
 .. raw:: html
 
