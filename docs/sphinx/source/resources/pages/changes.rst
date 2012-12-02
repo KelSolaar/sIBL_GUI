@@ -14,11 +14,15 @@ Changes
 4.0.5 - Stable
 --------------
 
+| **sIBL_GUI** 4.0.5 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=6&state=closed
+| **Umbra** 1.0.6 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=7&state=closed
+| **Foundations** 2.0.6 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=4&state=closed
+
 -  Implemented a better version rank calculation definition allowing to properly compare various version formats.
 -  Ensured **Reporter** is not initialising the **Crittercism** Client API 2 times.
 -  Handle Templates with no attributes sections.
--  Fixed **onlineUpdater** Component exception when trying to install the Templates in an user defined directory.
--  Fixed **templatesOutliner** Component exception when selected Template has no help file.
+-  Fixed **Online Updater** Component exception when trying to install the Templates in an user defined directory.
+-  Fixed **Templates Outliner** Component exception when selected Template has no help file.
 -  Fixed **Search And Replace** dialog patterns related exception.
 -  Fixed **Softimage_MR_Standard** Template issue related to **mia_physicalsun** shader intensity being affected by **sIbl_Feedback** rotation.
 
