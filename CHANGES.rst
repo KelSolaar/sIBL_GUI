@@ -1,4 +1,4 @@
-**sIBL_GUI** - 4.0.5 - Stable
+**sIBL_GUI** - 4.0.6 - Stable
 =============================
 
 .. .changes
@@ -15,6 +15,9 @@ Changes
             </li>
         </ul>
     </div>
+
+4.0.6 - Stable
+--------------
 
 4.0.5 - Stable
 --------------
