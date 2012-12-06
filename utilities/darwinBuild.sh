@@ -69,6 +69,7 @@ do
 	done
 done
 cp $SOURCE/sibl_gui/resources/images/Icon_Light_256.icns $RESOURCES/icon-windowed.icns
+python $UTILITIES/recursiveRemove.py $BUNDLE .pyc
 rm -f $DEPENDENCIES/sibl_gui/libraries/freeImage/resources/*.dll
 rm -f $DEPENDENCIES/sibl_gui/libraries/freeImage/resources/*.so
 rm -rf $DEPENDENCIES/sibl_gui/resources/templates/3dsMax*
@@ -93,7 +94,7 @@ echo Dmg Compilation - Begin
 echo -------------------------------------------------------------------------------
 rm -f ./*.dmg
 dropdmg -g sIBL_GUI -y sIBL_GUI $BUNDLE
-mv sIBL_GUI\ $MAJOR_VERSION.dmg sIBL_GUI.dmg
+mv $RELEASES/sIBL_GUI\ $MAJOR_VERSION.dmg $RELEASES/sIBL_GUI.dmg
 echo -------------------------------------------------------------------------------
 echo Dmg Compilation - End
 echo -------------------------------------------------------------------------------
