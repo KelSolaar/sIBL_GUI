@@ -1220,7 +1220,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{str(self.__activeIblSet.path) : sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
