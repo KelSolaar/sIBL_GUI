@@ -1301,17 +1301,19 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		pointY = int(light.vCoordinate * height)
 
 		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > \
-		width and -(self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
-		yLabelTextOffset = pointY - \
-		(self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 and \
-		- (self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
+		xLabelTextOffset = -(self.__lightLabelTextOffset + textWidth) if \
+						pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
+						self.__lightLabelTextOffset
+		yLabelTextOffset = -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) if \
+						pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
+						self.__lightLabelTextOffset
 		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
 		painter.drawLine(pointX,
 						pointY,
-						pointX + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset),
-						pointY - (yLabelTextOffset < 0 and yLabelTextOffset + self.__lightLabelTextHeight or yLabelTextOffset))
+						pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
+						pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
+								if yLabelTextOffset < 0 else yLabelTextOffset))
 
 		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
 
