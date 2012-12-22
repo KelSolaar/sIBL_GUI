@@ -1247,6 +1247,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 														sectionsFileParser.getValue("PLATEfile", section))))
 
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
 	def __drawActiveIblSetOverlay(self):
 		"""
 		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
@@ -1254,7 +1255,13 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path)
+
+		iblSetPath = self.__activeIblSet.path
+		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
+		if sectionsFileParser is None:
+			raise foundations.exceptions.ExecutionError(
+			"'{1}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
 				self.__drawLightLabel(painter, Light(name="Sun",
