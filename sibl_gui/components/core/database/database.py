@@ -31,7 +31,6 @@ import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.operations
-import umbra.exceptions
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
 from sibl_gui.components.core.database.types import Base
