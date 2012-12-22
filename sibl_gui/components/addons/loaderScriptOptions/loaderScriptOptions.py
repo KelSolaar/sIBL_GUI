@@ -29,6 +29,7 @@ from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QColor
 from PyQt4.QtGui import QComboBox
 from PyQt4.QtGui import QDoubleSpinBox
+from PyQt4.QtGui import QLabel
 from PyQt4.QtGui import QLineEdit
 from PyQt4.QtGui import QPalette
 
@@ -841,6 +842,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
 				verticalHeaderLabels.append(foundations.strings.getNiceName(attributeCompound.name))
+
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(overridesValue or attributeCompound.value) and True or False
@@ -872,9 +874,14 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				item.currentIndexChanged.connect(self.__view__valueChanged)
 			elif attributeCompound.type == "String":
 				item = QLineEdit(QString(overridesValue or attributeCompound.value))
+				item.setAlignment(Qt.AlignCenter)
 
 				# Signals / Slots.
 				item.editingFinished.connect(self.__view__valueChanged)
+			else:
+				item = QLabel(QString("Attribute Type Error!"))
+				item.setStyleSheet("QLabel {background-color: rgb(210, 64, 32);}")
+				item.setAlignment(Qt.AlignCenter)
 
 			item.data = attributeCompound
 			view.setCellWidget(row, 0, item)
