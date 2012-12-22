@@ -527,8 +527,11 @@ class Database(Component):
 											"Migrations",
 											version_table="Migrate",
 											templates_path=repositoryTemplate)
-			except migrate.exceptions.KnownError:
+			except migrate.exceptions.KnownError as error:
 				LOGGER.debug("> SQLAlchemy Migrate repository directory already exists!")
+			except shutil.Error as error:
+				LOGGER.error("!> {0} | Exception raised while creating SQLAlchemy Migrate repository: '{1}'".format(
+				self.__class__.__name__, error))
 
 			LOGGER.debug("> Copying migrations files to SQLAlchemy Migrate repository.")
 			directory = os.path.join(os.path.dirname(__file__),
