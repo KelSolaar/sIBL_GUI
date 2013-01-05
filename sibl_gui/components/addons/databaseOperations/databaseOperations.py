@@ -357,13 +357,13 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						updateContentMethod=sibl_gui.components.core.database.operations.updateIblSetContent,
 						removeMethod=sibl_gui.components.core.database.operations.removeIblSet,
 						modelContainer=self.__iblSetsOutliner,
-						updateLocationMethod=self.__iblSetsOutliner.updateIblSetLocation),
+						updateLocationMethod=self.__iblSetsOutliner.updateIblSetLocationUi),
 						DatabaseType(type="Template",
 						getMethod=sibl_gui.components.core.database.operations.getTemplates,
 						updateContentMethod=sibl_gui.components.core.database.operations.updateTemplateContent,
 						removeMethod=sibl_gui.components.core.database.operations.removeTemplate,
 						modelContainer=self.__templatesOutliner,
-						updateLocationMethod=self.__templatesOutliner.updateTemplateLocation))
+						updateLocationMethod=self.__templatesOutliner.updateTemplateLocationUi))
 
 		self.activated = True
 		return True
