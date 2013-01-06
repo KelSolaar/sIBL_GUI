@@ -498,10 +498,11 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
-			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
-							foundations.common.getFirstItem(selectedIblSets)
-			if selectedIblSet:
+			selectedIblSet = foundations.common.getFirstItem(self.__iblSetsOutliner.getSelectedIblSets())
+			if selectedIblSet is None:
+				return False
+
+			if foundations.common.pathExists(selectedIblSet.path):
 				return self.editIblSetInSIBLedit(selectedIblSet.path,
 												foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:
