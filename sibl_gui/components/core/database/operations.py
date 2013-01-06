@@ -236,7 +236,7 @@ def updateItemContent(item, session=None):
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
 
-	item.osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(item.path)))
+	item.osStats = ",".join(map(foundations.strings.encode, os.stat(item.path)))
 	if item.setContent():
 		return commit(getSession(session))
 	else:
