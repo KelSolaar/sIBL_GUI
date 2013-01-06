@@ -845,8 +845,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		activeIblSet = self.__inspector.activeIblSet
-		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and activeIblSet or None
-		if not activeIblSet:
+		if activeIblSet is None:
+			return False
+
+		if not foundations.common.pathExists(activeIblSet.path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, activeIblSet.title))

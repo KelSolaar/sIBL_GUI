@@ -758,9 +758,10 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		activeIblSet = self.__inspector.activeIblSet
-		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
-						activeIblSet or None
-		if activeIblSet:
+		if activeIblSet is None:
+			return False
+
+		if foundations.common.pathExists(activeIblSet.path):
 			return self.exploreDirectory(os.path.dirname(activeIblSet.path),
 										foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text()))
 		else:

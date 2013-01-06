@@ -527,9 +527,10 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			activeIblSet = self.__inspector.activeIblSet
-			activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
-			activeIblSet or None
-			if activeIblSet:
+			if activeIblSet is None:
+				return False
+
+			if foundations.common.pathExists(activeIblSet.path):
 				return self.editIblSetInSIBLedit(activeIblSet.path, sIBLedit)
 			else:
 				raise foundations.exceptions.FileExistsError(
