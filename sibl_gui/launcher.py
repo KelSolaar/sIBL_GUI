@@ -72,8 +72,10 @@ umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.run
 
 for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory),
 			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
-	((os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories) and
-	umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path))
+	path = os.path.normpath(path)
+	if os.path.exists(path):
+		path not in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories and \
+		umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path)
 
 import foundations.globals.constants
 import manager.globals.constants
