@@ -135,7 +135,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__extension = "ibl"
 
-		self.__editLayout = UiConstants.developmentLayout
 		self.__inspectLayout = "inspectCentric"
 
 		self.__scriptEditor = None
@@ -552,52 +551,20 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
 	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
-
-	@property
 	def inspectLayout(self):
 		"""
-		This method is the property for **self.__editLayout** attribute.
+		This method is the property for **self.__inspectLayout** attribute.
 
-		:return: self.__editLayout. ( String )
+		:return: self.__inspectLayout. ( String )
 		"""
 
-		return self.__editLayout
+		return self.__inspectLayout
 
 	@inspectLayout.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self, value):
 		"""
-		This method is the setter method for **self.__editLayout** attribute.
+		This method is the setter method for **self.__inspectLayout** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -609,7 +576,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self):
 		"""
-		This method is the deleter method for **self.__editLayout** attribute.
+		This method is the deleter method for **self.__inspectLayout** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1414,9 +1381,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addIblSet(name, path)
 					elif choice == 1:
-						self.__scriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__scriptEditor.loadFile(path) and self.__scriptEditor.restoreDevelopmentLayout()
 				else:
 					if not os.path.isdir(path):
 						return

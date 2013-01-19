@@ -88,8 +88,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__editLayout = UiConstants.developmentLayout
-
 		self.__scriptEditor = None
 		self.__preferencesManager = None
 		self.__componentsManagerUi = None
@@ -195,38 +193,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
-
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
 	def scriptEditor(self):
@@ -871,6 +837,5 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise Exception("{0} | Exception raised: No suitable process command given!".format(
 				self.__class__.__name__))
 		else:
-			self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-			self.__engine.layoutsManager.restoreLayout(self.__editLayout)
-			return self.__scriptEditor.loadPath(path)
+			self.__scriptEditor.loadPath(path) and self.__scriptEditor.restoreDevelopmentLayout()
+			return True

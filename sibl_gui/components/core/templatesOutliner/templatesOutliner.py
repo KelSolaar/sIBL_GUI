@@ -120,8 +120,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
 
-		self.__editLayout = UiConstants.developmentLayout
-
 		self.__scriptEditor = None
 		self.__database = None
 
@@ -424,38 +422,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
-
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
 	def scriptEditor(self):
@@ -1218,9 +1184,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addTemplate(name, path)
 					elif choice == 1:
-						self.__scriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__scriptEditor.loadFile(path) and self.__scriptEditor.restoreDevelopmentLayout()
 				else:
 					if not os.path.isdir(path):
 						return
