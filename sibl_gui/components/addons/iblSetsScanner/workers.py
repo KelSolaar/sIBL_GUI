@@ -58,11 +58,11 @@ class IblSetsScanner_worker(QThread):
 	"""
 
 	# Custom signals definitions.
-	iblSetsRetrieved = pyqtSignal(dict)
+	iblSetsRetrieved = pyqtSignal(list)
 	"""
 	This signal is emited by the :class:`IblSetsScanner_worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
 	
-	:return: New Ibl Sets. ( Dictionary )
+	:return: New Ibl Sets. ( List )
 	"""
 
 	def __init__(self, parent):
@@ -189,7 +189,7 @@ class IblSetsScanner_worker(QThread):
 		"""
 		This method is the property for **self.__newIblSets** attribute.
 
-		:return: self.__newIblSets. ( Dictionary )
+		:return: self.__newIblSets. ( List )
 		"""
 
 		return self.__newIblSets
@@ -200,7 +200,7 @@ class IblSetsScanner_worker(QThread):
 		"""
 		This method is the setter method for **self.__newIblSets** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -235,24 +235,21 @@ class IblSetsScanner_worker(QThread):
 
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
 
-		self.__newIblSets = {}
+		self.__newIblSets = []
 		paths = [foundations.common.getFirstItem(path) for path in self.__databaseSession.query(IblSet.path).all()]
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
-		needModelRefresh = False
 		for directory in directories:
 			if foundations.common.pathExists(directory):
 				for path in foundations.walkers.filesWalker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
 					if not sibl_gui.components.core.database.operations.filterIblSets("^{0}$".format(re.escape(path)),
 																					"path",
 																					session=self.__databaseSession):
-						iblSet = foundations.strings.getSplitextBasename(path)
-						needModelRefresh = True
-						self.__newIblSets[iblSet] = path
+						self.__newIblSets.append(path)
 			else:
 				LOGGER.warning("!> '{0}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(directory))
 
 		self.__databaseSession.close()
 
 		LOGGER.info("{0} | Scanning done!".format(self.__class__.__name__))
-		needModelRefresh and self.iblSetsRetrieved.emit(self.__newIblSets)
+		self.__newIblSets and self.iblSetsRetrieved.emit(self.__newIblSets)
 		return True
