@@ -1767,7 +1767,7 @@ _`Autodesk Maya`
 | **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Maya.
 | You need to make Autodesk Maya listen to the port **sIBL_GUI** is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
 
--  Autodesk Maya 2008 - 2012:
+-  Autodesk Maya 2008 - 2013:
    
       ``commandPort -n "127.0.0.1:2048";``
 
@@ -1785,7 +1785,7 @@ _`Autodesk Maya`
 
 Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
 
--  Autodesk Maya 2008 - 2012:
+-  Autodesk Maya 2008 - 2013:
    
       ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`);``
 
@@ -1910,7 +1910,7 @@ Changes
 About
 =====
 
-| **sIBL_GUI** by Thomas Mansencal - 2008 - 2012
-| Copyright© 2008 - 2012 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| **sIBL_GUI** by Thomas Mansencal - 2008 - 2013
+| Copyright© 2008 - 2013 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This software is released under terms of GNU GPL V3 license: http://www.gnu.org/licenses/
 | http://www.thomasmansencal.com/
