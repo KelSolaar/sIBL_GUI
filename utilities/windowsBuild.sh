@@ -82,3 +82,15 @@ python $UTILITIES/recursiveRemove.py $DEPENDENCIES/sibl_gui/resources/templates/
 echo -------------------------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo -------------------------------------------------------------------------------
+
+echo -------------------------------------------------------------------------------
+echo Console Build - Begin
+echo -------------------------------------------------------------------------------
+rm -rf $BUILD $DISTRIBUTION
+export CONSOLE_BUILD=True
+python $PYINSTALLER/Build.py $RELEASES/sIBL_GUI.spec
+cp -r $DISTRIBUTION/sIBL_GUI/sIBL_GUI.exe $BUNDLE/sIBL_GUI\ $MAJOR_VERSION\ -\ Console.exe
+cp -r $DISTRIBUTION/sIBL_GUI/sIBL_GUI.exe.manifest $BUNDLE/sIBL_GUI\ $MAJOR_VERSION\ -\ Console.exe.manifest
+echo -------------------------------------------------------------------------------
+echo Console Build - End
+echo -------------------------------------------------------------------------------
