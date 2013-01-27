@@ -49,7 +49,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -845,8 +845,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		activeIblSet = self.__inspector.activeIblSet
-		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and activeIblSet or None
-		if not activeIblSet:
+		if activeIblSet is None:
+			return False
+
+		if not foundations.common.pathExists(activeIblSet.path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, activeIblSet.title))

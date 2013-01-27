@@ -61,7 +61,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -1220,7 +1220,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{str(self.__activeIblSet.path) : sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
@@ -1247,6 +1247,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 														sectionsFileParser.getValue("PLATEfile", section))))
 
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
 	def __drawActiveIblSetOverlay(self):
 		"""
 		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
@@ -1254,7 +1255,13 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path)
+
+		iblSetPath = self.__activeIblSet.path
+		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
+		if sectionsFileParser is None:
+			raise foundations.exceptions.ExecutionError(
+			"'{1}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
 				self.__drawLightLabel(painter, Light(name="Sun",
@@ -1294,17 +1301,19 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		pointY = int(light.vCoordinate * height)
 
 		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > \
-		width and -(self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
-		yLabelTextOffset = pointY - \
-		(self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 and \
-		- (self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
+		xLabelTextOffset = -(self.__lightLabelTextOffset + textWidth) if \
+						pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
+						self.__lightLabelTextOffset
+		yLabelTextOffset = -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) if \
+						pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
+						self.__lightLabelTextOffset
 		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
 		painter.drawLine(pointX,
 						pointY,
-						pointX + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset),
-						pointY - (yLabelTextOffset < 0 and yLabelTextOffset + self.__lightLabelTextHeight or yLabelTextOffset))
+						pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
+						pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
+								if yLabelTextOffset < 0 else yLabelTextOffset))
 
 		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
 

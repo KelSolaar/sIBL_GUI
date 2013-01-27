@@ -79,6 +79,7 @@ No, same as above, however if you need a custom template, we can discuss of what
       I installed sIBL_GUI and its not starting, what can I do?
 
 You need to launch **sIBL_GUI** into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
+Some antivirus software like Avast have been reported to prevent **sIBL_GUI** starting, try adding an exception for **sIBL_GUI** in your antivirus software and see if the application is starting.
 
 .. raw:: html
 
@@ -220,7 +221,7 @@ _`Autodesk Maya`
 | **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Maya.
 | You need to make Autodesk Maya listen to the port **sIBL_GUI** is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
 
--  Autodesk Maya 2008 - 2012:
+-  Autodesk Maya 2008 - 2013:
    
       ``commandPort -n "127.0.0.1:2048";``
 
@@ -238,7 +239,7 @@ _`Autodesk Maya`
 
 Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
 
--  Autodesk Maya 2008 - 2012:
+-  Autodesk Maya 2008 - 2013:
    
       ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`);``
 

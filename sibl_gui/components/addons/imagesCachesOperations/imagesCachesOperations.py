@@ -35,7 +35,7 @@ from umbra.globals.uiConstants import UiConstants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -75,9 +75,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
+		self.__scriptEditor = None
 		self.__preferencesManager = None
-
-		self.__editLayout = UiConstants.developmentLayout
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -115,6 +114,38 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
+	def scriptEditor(self):
+		"""
+		This method is the property for **self.__scriptEditor** attribute.
+
+		:return: self.__scriptEditor. ( QWidget )
+		"""
+
+		return self.__scriptEditor
+
+	@scriptEditor.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def scriptEditor(self, value):
+		"""
+		This method is the setter method for **self.__scriptEditor** attribute.
+
+		:param value: Attribute value. ( QWidget )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "scriptEditor"))
+
+	@scriptEditor.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def scriptEditor(self):
+		"""
+		This method is the deleter method for **self.__scriptEditor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "scriptEditor"))
+
+	@property
 	def preferencesManager(self):
 		"""
 		This method is the property for **self.__preferencesManager** attribute.
@@ -146,38 +177,6 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferencesManager"))
 
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
-
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -193,7 +192,9 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = engine
 
+		self.__scriptEditor = self.__engine.componentsManager["factory.scriptEditor"]
 		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
+
 		self.activated = True
 		return True
 
@@ -208,6 +209,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine = None
 
+		self.__scriptEditor = None
 		self.__preferencesManager = None
 
 		self.activated = False
@@ -291,8 +293,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.outputImagesCachesMetrics()
-		self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-		self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+		self.__scriptEditor.restoreDevelopmentLayout()
 
 	def outputImagesCachesMetrics(self):
 		"""

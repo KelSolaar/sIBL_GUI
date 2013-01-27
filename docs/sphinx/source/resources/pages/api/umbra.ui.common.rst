@@ -33,6 +33,8 @@ Functions
 
 .. autofunction:: setToolBoxHeight
 
+.. autofunction:: setChildrenPadding
+
 Classes
 -------
 

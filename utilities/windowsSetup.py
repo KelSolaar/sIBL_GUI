@@ -15,10 +15,15 @@
 """
 
 #**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
+import os
+
+#**********************************************************************************************************************
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -41,7 +46,7 @@ exe = EXE(pyz,
 		debug=False,
 		strip=False,
 		upx=True,
-		console=False,
+		console=True if os.environ.get("CONSOLE_BUILD") else False,
 		icon="z:\\Documents\\Development\\sIBL_GUI\\sibl_gui\\resources\\images\\Icon_Light.ico")
 
 coll = COLLECT(exe,

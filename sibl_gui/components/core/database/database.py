@@ -31,7 +31,6 @@ import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.operations
-import umbra.exceptions
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
 from sibl_gui.components.core.database.types import Base
@@ -41,7 +40,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -528,8 +527,11 @@ class Database(Component):
 											"Migrations",
 											version_table="Migrate",
 											templates_path=repositoryTemplate)
-			except migrate.exceptions.KnownError:
+			except migrate.exceptions.KnownError as error:
 				LOGGER.debug("> SQLAlchemy Migrate repository directory already exists!")
+			except shutil.Error as error:
+				LOGGER.error("!> {0} | Exception raised while creating SQLAlchemy Migrate repository: '{1}'".format(
+				self.__class__.__name__, error))
 
 			LOGGER.debug("> Copying migrations files to SQLAlchemy Migrate repository.")
 			directory = os.path.join(os.path.dirname(__file__),

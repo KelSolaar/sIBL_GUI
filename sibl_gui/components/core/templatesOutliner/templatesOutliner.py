@@ -65,7 +65,7 @@ from umbra.globals.uiConstants import UiConstants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -119,8 +119,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__settings = None
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
-
-		self.__editLayout = UiConstants.developmentLayout
 
 		self.__scriptEditor = None
 		self.__database = None
@@ -424,38 +422,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
-
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
 	def scriptEditor(self):
@@ -988,28 +954,27 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			# Templates table integrity checking.
 			erroneousTemplates = sibl_gui.components.core.database.operations.checkTemplatesTableIntegrity()
-			try:
-				for template, exceptions in erroneousTemplates.iteritems():
-					for exception in exceptions:
-						if exception is sibl_gui.components.core.database.exceptions.MissingTemplateFileError:
-							choice = messageBox.messageBox("Question", "Error",
-							"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
-							self.__class__.__name__, template.name),
-							QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-							customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+			for template, exceptions in erroneousTemplates.iteritems():
+				if sibl_gui.components.core.database.exceptions.MissingTemplateFileError in exceptions:
+					choice = messageBox.messageBox("Question", "Error",
+					"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
+					self.__class__.__name__, template.name),
+					QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+					customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
-							if choice == 0:
-								raise foundations.exceptions.BreakIteration("{0}".format(self.__class__.__name__))
+					if choice == 0:
+						break
 
-							if choice == QMessageBox.Yes:
-								self.updateTemplateLocation(template)
-						else:
-							self.__engine.notificationsManager.warnify(
-							"{0} | '{1}' {2}".format(self.__class__.__name__,
-													template.name,
-													 sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
-			except foundations.exceptions.BreakIteration:
-				pass
+					if choice == QMessageBox.Yes:
+						if self.updateTemplateLocationUi(template):
+							# TODO: Check updated Template file integrity.
+							continue
+
+				for exception in exceptions:
+					self.__engine.notificationsManager.warnify(
+					"{0} | '{1}' {2}".format(self.__class__.__name__,
+									template.name,
+									sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
 		else:
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -1219,9 +1184,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addTemplate(name, path)
 					elif choice == 1:
-						self.__scriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__scriptEditor.loadFile(path) and self.__scriptEditor.restoreDevelopmentLayout()
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1358,6 +1321,34 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			else:
 				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
 				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
+
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
+											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+	def updateTemplateLocationUi(self, template):
+		"""
+		This method updates given Template location.
+
+		:param template: Template to update. ( Template )
+		:return: Method success. ( Boolean )
+
+		:note: This method may require user interaction.
+		"""
+
+		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																"Updating '{0}' Template Location:".format(template.name),
+																RuntimeGlobals.lastBrowsedPath,
+																"Template files (*{0})".format(self.__extension))))
+		if not file:
+			return False
+
+		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
+																					template.name, file))
+		if sibl_gui.components.core.database.operations.updateTemplateLocation(template, file):
+			self.refreshNodes.emit()
+			return True
+		else:
+			raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
+			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.showProcessing("Importing Default Templates ...")
@@ -1553,31 +1544,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		return sibl_gui.components.core.database.operations.templateExists(path)
-
-	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
-	def updateTemplateLocation(self, template):
-		"""
-		This method updates given Template location.
-
-		:param template: Template to update. ( Template )
-		:return: Method success. ( Boolean )
-		"""
-
-		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Template Location:".format(template.name),
-																RuntimeGlobals.lastBrowsedPath,
-																"Template files (*{0})".format(self.__extension))))
-		if not file:
-			return False
-
-		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
-																					template.name, file))
-		if not sibl_gui.components.core.database.operations.updateTemplateLocation(template, file):
-			self.refreshNodes.emit()
-			return True
-		else:
-			raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):

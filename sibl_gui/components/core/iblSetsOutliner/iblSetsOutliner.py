@@ -68,7 +68,7 @@ from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -135,7 +135,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__extension = "ibl"
 
-		self.__editLayout = UiConstants.developmentLayout
 		self.__inspectLayout = "inspectCentric"
 
 		self.__scriptEditor = None
@@ -552,52 +551,20 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
 	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
-
-	@property
 	def inspectLayout(self):
 		"""
-		This method is the property for **self.__editLayout** attribute.
+		This method is the property for **self.__inspectLayout** attribute.
 
-		:return: self.__editLayout. ( String )
+		:return: self.__inspectLayout. ( String )
 		"""
 
-		return self.__editLayout
+		return self.__inspectLayout
 
 	@inspectLayout.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self, value):
 		"""
-		This method is the setter method for **self.__editLayout** attribute.
+		This method is the setter method for **self.__inspectLayout** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -609,7 +576,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self):
 		"""
-		This method is the deleter method for **self.__editLayout** attribute.
+		This method is the deleter method for **self.__inspectLayout** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1187,31 +1154,27 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			# Ibl Sets table integrity checking.
 			erroneousIblSets = sibl_gui.components.core.database.operations.checkIblSetsTableIntegrity()
-			try:
-				for iblSet, exceptions in erroneousIblSets.iteritems():
-					for exception in exceptions:
-						if exception is sibl_gui.components.core.database.exceptions.MissingIblSetFileError:
-							choice = messageBox.messageBox("Question", "Error",
-							"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
-							self.__class__.__name__, iblSet.title),
-							QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-							customButtons=((QString("No To All"), QMessageBox.RejectRole),))
+			for iblSet, exceptions in erroneousIblSets.iteritems():
+				if sibl_gui.components.core.database.exceptions.MissingIblSetFileError in exceptions:
+					choice = messageBox.messageBox("Question", "Error",
+					"{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
+					self.__class__.__name__, iblSet.name),
+					QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+					customButtons=((QString("No To All"), QMessageBox.RejectRole),))
 
-							if choice == 0:
-								raise foundations.exceptions.BreakIteration("{0}".format(self.__class__.__name__))
+					if choice == 0:
+						break
 
-							if choice == QMessageBox.Yes:
-								file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																	"Updating '{0}' Ibl Set Location:".format(iblSet.title),
-																	RuntimeGlobals.lastBrowsedPath,
-																	"Ibls files (*.{0})".format(self.__extension))))
-								file and self.updateIblSetLocation(iblSet, file)
-						else:
-							self.__engine.notificationsManager.warnify(
-							"{0} | '{1}' {2}".format(self.__class__.__name__,
-							iblSet.title, sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
-			except foundations.exceptions.BreakIteration:
-				pass
+					if choice == QMessageBox.Yes:
+						if self.updateIblSetLocationUi(iblSet):
+							# TODO: Check updated Ibl Set file integrity.
+							continue
+
+				for exception in exceptions:
+					self.__engine.notificationsManager.warnify(
+					"{0} | '{1}' {2}".format(self.__class__.__name__,
+									iblSet.name,
+									sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
 		else:
 			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -1329,7 +1292,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.updateIblSetsLocationUi()
+		return self.updateSelectedIblSetsLocationUi()
 
 	def __views_pushButtons__clicked(self, index, checked):
 		"""
@@ -1418,9 +1381,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 					if choice == 0:
 						self.addIblSet(name, path)
 					elif choice == 1:
-						self.__scriptEditor.loadFile(path)
-						self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-						self.__engine.layoutsManager.restoreLayout(self.__editLayout)
+						self.__scriptEditor.loadFile(path) and self.__scriptEditor.restoreDevelopmentLayout()
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1641,9 +1602,37 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 				raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(
 				self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
+											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+	def updateIblSetLocationUi(self, iblSet):
+		"""
+		This method updates given Ibl Set location.
+
+		:param iblSet: Ibl Set to update. ( IblSet )
+		:return: Method success. ( Boolean )
+
+		:note: This method may require user interaction.
+		"""
+
+		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																"Updating '{0}' Template Location:".format(iblSet.name),
+																RuntimeGlobals.lastBrowsedPath,
+																"Ibl Set files (*{0})".format(self.__extension))))
+		if not file:
+			return False
+
+		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location '{2}'!".format(self.__class__.__name__,
+																					iblSet.name, file))
+		if sibl_gui.components.core.database.operations.updateIblSetLocation(iblSet, file):
+			self.refreshNodes.emit()
+			return True
+		else:
+			raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
+			"{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.name))
+
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	@umbra.engine.encapsulateProcessing
-	def updateIblSetsLocationUi(self):
+	def updateSelectedIblSetsLocationUi(self):
 		"""
 		This method updates user selected Ibl Sets locations.
 
@@ -1659,11 +1648,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__engine.startProcessing("Update Ibl Sets Locations ...", len(selectedIblSets))
 		success = True
 		for iblSet in selectedIblSets:
-			file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
-																"Updating '{0}' Ibl Set Location:".format(iblSet.title),
-																RuntimeGlobals.lastBrowsedPath,
-																"Ibls files (*.{0})".format(self.__extension))))
-			success *= file and self.updateIblSetLocation(iblSet, file) or False
+			success *= self.updateIblSetLocationUi(iblSet)
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 

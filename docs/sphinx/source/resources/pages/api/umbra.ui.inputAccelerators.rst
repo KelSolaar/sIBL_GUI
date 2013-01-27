@@ -13,11 +13,13 @@ Functions
 
 .. autofunction:: getEditorCapability
 
+.. autofunction:: isSymbolsPairComplete
+
+.. autofunction:: performCompletion
+
 .. autofunction:: indentationPreEventInputAccelerators
 
 .. autofunction:: indentationPostEventInputAccelerators
-
-.. autofunction:: performCompletion
 
 .. autofunction:: completionPreEventInputAccelerators
 

@@ -24,7 +24,7 @@ import platform
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -46,10 +46,10 @@ class Constants():
 	"""Package major version: '**4**' ( String )"""
 	minorVersion = "0"
 	"""Package minor version: '**0**' ( String )"""
-	changeVersion = "5"
-	"""Package change version: '**5**' ( String )"""
+	changeVersion = "6"
+	"""Package change version: '**6**' ( String )"""
 	releaseVersion = ".".join((majorVersion, minorVersion, changeVersion))
-	"""Package release version: '**4.0.5**' ( String )"""
+	"""Package release version: '**4.0.6**' ( String )"""
 
 	logger = "sIBL_GUI_Logger"
 	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
