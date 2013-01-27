@@ -2,7 +2,7 @@
 Version=4.5
 Edition=0
 AppName=sIBL_GUI
-AppVersion=4.0.5
+AppVersion=4.0.6
 CompanyName=HDRLabs
 WebSite=http://www.hdrlabs.com/
 SupportLink=mailto:thomas.mansencal@gmail.com
@@ -102,5 +102,7 @@ English=
 English=
 [Shortcuts]
 0=<ProgramGroup>*?<AppName> 4*?<InstallDir>\sIBL_GUI.exe*?*?*?<InstallDir>*?*?0*?Normal
-1=<CommonDesktop>*?<AppName> 4*?<InstallDir>\sIBL_GUI.exe*?*?*?<InstallDir>*?*?0*?Normal
+1=<ProgramGroup>*?sIBL_GUI 4 - Console*?<InstallDir>\sIBL_GUI 4 - Console.exe*?*?*?<InstallDir>*?*?0*?Normal
 2=<ProgramGroup>*?Uninstall <AppName>  4*?<InstallDir>\Uninstall.exe*?*?*?<InstallDir>*?*?0*?Normal
+3=<CommonDesktop>*?<AppName> 4*?<InstallDir>\sIBL_GUI.exe*?*?*?<InstallDir>*?*?0*?Normal
+4=<CommonDesktop>*?sIBL_GUI 4 - Console*?<InstallDir>\sIBL_GUI 4 - Console.exe*?*?*?<InstallDir>*?*?0*?Normal

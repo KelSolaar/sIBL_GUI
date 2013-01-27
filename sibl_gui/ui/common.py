@@ -45,7 +45,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -143,7 +143,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	if asynchronousLoading:
 		cache.addDeferredContent(path)
 	else:
-		not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
+		not cache.getContent(path) and cache.addContent(**{str(path) : loadGraphicsItem(path, type)})
 	return cache.getContent(path)
 
 def getIcon(path, asynchronousLoading=True, imagesCache=None):

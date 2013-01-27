@@ -43,7 +43,7 @@ import sibl_gui.ui.common
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -981,17 +981,24 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		self.fitImage()
 
+	def __clearGraphicsScene(self):
+		"""
+		This method clears the View.
+		"""
+
+		for graphicsItem in self.__graphicsScene.items():
+			self.__graphicsScene.removeItem(graphicsItem)
+
 	def __setDisplayGraphicsItem(self, image):
 		"""
-		This method sets the display graphics item using given image.
+		This method sets the View using given image.
 
 		:param image: Image to display. ( Qimage )
 		"""
 
-		LOGGER.debug("> Initializing graphics item.")
-		if self.__displayGraphicsItem:
-			self.__graphicsScene.removeItem(self.__displayGraphicsItem)
+		self.__clearGraphicsScene()
 
+		LOGGER.debug("> Initializing graphics item.")
 		self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
 		self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
@@ -999,7 +1006,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def loadImage(self, index=0):
 		"""
-		This method loads the display image.
+		This method loads the display image in the View.
 
 		:param index: Index to load. ( Integer )
 		:return: Method success. ( Boolean )
@@ -1015,7 +1022,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def scaleView(self, scaleFactor):
 		"""
-		This method scales the QGraphicsView.
+		This method scales the Previewer view.
 
 		:param scaleFactor: Float ( Float )
 		:return: Method success. ( Boolean )
@@ -1031,7 +1038,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def fitWindow(self):
 		"""
-		This method fits the previewer window.
+		This method fits the View window.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -1051,7 +1058,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def fitImage(self):
 		"""
-		This method fits the display image.
+		This method fits the image to the View.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -1069,7 +1076,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def loopThroughImages(self, backward=False):
 		"""
-		This method loops through Images Previewer images.
+		This method loops through View images.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1083,3 +1090,4 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			index = 0
 		self.loadImage(index)
 		return True
+

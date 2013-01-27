@@ -1,4 +1,4 @@
-**sIBL_GUI** - 4.0.5 - Stable
+**sIBL_GUI** - 4.0.6 - Stable
 =============================
 
 .. .changes
@@ -16,14 +16,47 @@ Changes
         </ul>
     </div>
 
+4.0.6 - Stable
+--------------
+
+| **sIBL_GUI** 4.0.6 - Stable - https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
+| **Umbra** 1.0.7 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=8&state=closed
+| **Foundations** 2.0.7 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=5&state=closed
+
+-  Add console support to Windows and Darwin Oses builds.
+-  Replaced **Py2App** with **Pyinstaller** on Darwin Os.
+-  Improved symbols expanding behavior in **Script Editor** Component.
+-  Improved various dialog button sizes.
+-  Darwin Os build should properly raise upon startup.
+-  Fixed exceptions raised by actions triggered in **Inspector** Component when no active Ibl Set is defined.
+-  Fixed exception in **sIBLeditUtilities** Component when attempting to edit an Ibl Set and nothing is selected. 
+-  Fixed exception in **Database Operations** Component raised while updating an Ibl Set file location.
+-  Fixed **shutil.copytree** related exception in **Database** Component. 
+-  Fixed **AttributeError** exception in **Inspector** Component.
+-  Fixed Qt related **RuntimeError** exception in **Preview** Component. 
+-  Fixed exception in **Loader Script Options** Component when an attribute has undefined type. 
+-  Fixed Python 2.6.x related exception in **Inspector** Component.
+-  Fixed duplicated languages on Windows Os build.
+-  Handled **gaierror** exception in **Tcp Client** Component.
+-  Fixed **Script Editor** Component **Save File As** action unexpected behavior.
+-  Fixed **Script Editor** Component **searchAndReplace** replace method.
+-  Fixed slowdown when switching editor in **Script Editor** Component.
+-  Fixed symbols matching in **Script Editor** Component.
+-  Fixed **socket** module related exceptions in **foundations.common.isInternetAvailable** definition.
+-  Handled non existing files and directories in **foundations.pkzip.Pkzip.extract** method.
+
 4.0.5 - Stable
 --------------
+
+| **sIBL_GUI** 4.0.5 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=6&state=closed
+| **Umbra** 1.0.6 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=7&state=closed
+| **Foundations** 2.0.6 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=4&state=closed
 
 -  Implemented a better version rank calculation definition allowing to properly compare various version formats.
 -  Ensured **Reporter** is not initialising the **Crittercism** Client API 2 times.
 -  Handle Templates with no attributes sections.
--  Fixed **onlineUpdater** Component exception when trying to install the Templates in an user defined directory.
--  Fixed **templatesOutliner** Component exception when selected Template has no help file.
+-  Fixed **Online Updater** Component exception when trying to install the Templates in an user defined directory.
+-  Fixed **Templates Outliner** Component exception when selected Template has no help file.
 -  Fixed **Search And Replace** dialog patterns related exception.
 -  Fixed **Softimage_MR_Standard** Template issue related to **mia_physicalsun** shader intensity being affected by **sIbl_Feedback** rotation.
 
@@ -576,7 +609,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 About
 -----
 
-| **sIBL_GUI** by Thomas Mansencal – 2008 - 2012
-| Copyright© 2008 - 2012 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| **sIBL_GUI** by Thomas Mansencal – 2008 - 2013
+| Copyright© 2008 - 2013 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This software is released under terms of GNU GPL V3 license: http://www.gnu.org/licenses/
 | `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_

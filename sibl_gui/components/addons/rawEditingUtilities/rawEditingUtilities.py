@@ -44,7 +44,7 @@ from umbra.globals.uiConstants import UiConstants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -87,8 +87,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
-
-		self.__editLayout = UiConstants.developmentLayout
 
 		self.__scriptEditor = None
 		self.__preferencesManager = None
@@ -195,38 +193,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
-
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
 	def scriptEditor(self):
@@ -766,9 +732,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		activeIblSet = self.__inspector.activeIblSet
-		activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
-		activeIblSet or None
-		if activeIblSet:
+		if activeIblSet is None:
+			return False
+
+		if foundations.common.pathExists(activeIblSet.path):
 			return self.editPath(activeIblSet.path, foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
@@ -870,6 +837,5 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise Exception("{0} | Exception raised: No suitable process command given!".format(
 				self.__class__.__name__))
 		else:
-			self.__engine.layoutsManager.currentLayout != self.__editLayout and \
-			self.__engine.layoutsManager.restoreLayout(self.__editLayout)
-			return self.__scriptEditor.loadPath(path)
+			self.__scriptEditor.loadPath(path) and self.__scriptEditor.restoreDevelopmentLayout()
+			return True

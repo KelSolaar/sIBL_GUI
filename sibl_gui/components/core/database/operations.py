@@ -35,7 +35,7 @@ from sibl_gui.components.core.database.types import Template
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -236,7 +236,7 @@ def updateItemContent(item, session=None):
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
 
-	item.osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(item.path)))
+	item.osStats = ",".join(map(foundations.strings.encode, os.stat(item.path)))
 	if item.setContent():
 		return commit(getSession(session))
 	else:

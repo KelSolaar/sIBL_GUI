@@ -38,7 +38,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2012 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -498,10 +498,11 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
-			selectedIblSet = foundations.common.pathExists(foundations.common.getFirstItem(selectedIblSets).path) and \
-							foundations.common.getFirstItem(selectedIblSets)
-			if selectedIblSet:
+			selectedIblSet = foundations.common.getFirstItem(self.__iblSetsOutliner.getSelectedIblSets())
+			if selectedIblSet is None:
+				return False
+
+			if foundations.common.pathExists(selectedIblSet.path):
 				return self.editIblSetInSIBLedit(selectedIblSet.path,
 												foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
 			else:
@@ -526,9 +527,10 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			activeIblSet = self.__inspector.activeIblSet
-			activeIblSet = activeIblSet and foundations.common.pathExists(activeIblSet.path) and \
-			activeIblSet or None
-			if activeIblSet:
+			if activeIblSet is None:
+				return False
+
+			if foundations.common.pathExists(activeIblSet.path):
 				return self.editIblSetInSIBLedit(activeIblSet.path, sIBLedit)
 			else:
 				raise foundations.exceptions.FileExistsError(
