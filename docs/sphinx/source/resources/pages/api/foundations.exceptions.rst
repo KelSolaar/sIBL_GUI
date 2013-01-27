@@ -42,6 +42,10 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: ExecutionError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: BreakIteration
 	:show-inheritance:
 	:members:

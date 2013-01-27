@@ -11,6 +11,35 @@ Changes
         </ul>
     </div>
 
+4.0.6 - Stable
+--------------
+
+| **sIBL_GUI** 4.0.6 - Stable - https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
+| **Umbra** 1.0.7 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=8&state=closed
+| **Foundations** 2.0.7 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=5&state=closed
+
+-  Add console support to Windows and Darwin Oses builds.
+-  Replaced **Py2App** with **Pyinstaller** on Darwin Os.
+-  Improved symbols expanding behavior in **Script Editor** Component.
+-  Improved various dialog button sizes.
+-  Darwin Os build should properly raise upon startup.
+-  Fixed exceptions raised by actions triggered in **Inspector** Component when no active Ibl Set is defined.
+-  Fixed exception in **sIBLeditUtilities** Component when attempting to edit an Ibl Set and nothing is selected. 
+-  Fixed exception in **Database Operations** Component raised while updating an Ibl Set file location.
+-  Fixed **shutil.copytree** related exception in **Database** Component. 
+-  Fixed **AttributeError** exception in **Inspector** Component.
+-  Fixed Qt related **RuntimeError** exception in **Preview** Component. 
+-  Fixed exception in **Loader Script Options** Component when an attribute has undefined type. 
+-  Fixed Python 2.6.x related exception in **Inspector** Component.
+-  Fixed duplicated languages on Windows Os build.
+-  Handled **gaierror** exception in **Tcp Client** Component.
+-  Fixed **Script Editor** Component **Save File As** action unexpected behavior.
+-  Fixed **Script Editor** Component **searchAndReplace** replace method.
+-  Fixed slowdown when switching editor in **Script Editor** Component.
+-  Fixed symbols matching in **Script Editor** Component.
+-  Fixed **socket** module related exceptions in **foundations.common.isInternetAvailable** definition.
+-  Handled non existing files and directories in **foundations.pkzip.Pkzip.extract** method.
+
 4.0.5 - Stable
 --------------
 

@@ -79,6 +79,7 @@ No, same as above, however if you need a custom template, we can discuss of what
       I installed sIBL_GUI and its not starting, what can I do?
 
 You need to launch **sIBL_GUI** into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
+Some antivirus software like Avast have been reported to prevent **sIBL_GUI** starting, try adding an exception for **sIBL_GUI** in your antivirus software and see if the application is starting.
 
 .. raw:: html
 

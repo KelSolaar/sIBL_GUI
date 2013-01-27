@@ -10,6 +10,8 @@ Module Attributes
 
 .. attribute:: foundations.common.CONNECTION_IP
 
+.. attribute:: foundations.common.DEFAULT_HOST_IP
+
 Functions
 ---------
 
@@ -32,4 +34,6 @@ Functions
 .. autofunction:: dependencyResolver
 
 .. autofunction:: isInternetAvailable
+
+.. autofunction:: getHostAddress
 
