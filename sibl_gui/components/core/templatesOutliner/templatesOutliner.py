@@ -984,7 +984,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIdentities = foundations.strings.encode(self.__settings.getKey(
+		activeCollectionsIdentities = foundations.strings.toUnicode(self.__settings.getKey(
 		self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
 																				activeCollectionsIdentities))
@@ -992,12 +992,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 																		for identity in activeCollectionsIdentities.split(
 																		self.__settingsSeparator)] or []
 
-		activeSoftwares = foundations.strings.encode(
+		activeSoftwares = foundations.strings.toUnicode(
 		self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		self.__view.modelSelection["Softwares"] = activeSoftwares and activeSoftwares.split(self.__settingsSeparator) or []
 
-		activeTemplatesIdentities = foundations.strings.encode(
+		activeTemplatesIdentities = foundations.strings.toUnicode(
 		self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
 		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__,
 																						activeTemplatesIdentities))
@@ -1020,15 +1020,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection,
 								"activeTemplates",
-								self.__settingsSeparator.join(foundations.strings.encode(identity)
+								self.__settingsSeparator.join(foundations.strings.toUnicode(identity)
 															for identity in self.__view.modelSelection["Templates"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeCollections",
-								self.__settingsSeparator.join(foundations.strings.encode(identity)
+								self.__settingsSeparator.join(foundations.strings.toUnicode(identity)
 															for identity in self.__view.modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection,
 								"activeSoftwares",
-								self.__settingsSeparator.join(foundations.strings.encode(name)
+								self.__settingsSeparator.join(foundations.strings.toUnicode(name)
 															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
@@ -1177,9 +1177,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] or \
-				foundations.strings.encode(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), foundations.strings.encode(url.path())):
+				re.search(r"^\/[A-Z]:", foundations.strings.toUnicode(url.path())) and foundations.strings.toUnicode(url.path())[1:] or \
+				foundations.strings.toUnicode(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), foundations.strings.toUnicode(url.path())):
 					name = foundations.strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
@@ -1310,7 +1310,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if messageBox.messageBox("Question", "Question",
 		"Are you sure you want to remove '{0}' Template(s)?".format(
-		", ".join([foundations.strings.encode(template.name) for template in selectedTemplates])),
+		", ".join([foundations.strings.toUnicode(template.name) for template in selectedTemplates])),
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
@@ -1532,7 +1532,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
-		if sibl_gui.components.core.database.operations.removeTemplate(foundations.strings.encode(template.id)):
+		if sibl_gui.components.core.database.operations.removeTemplate(foundations.strings.toUnicode(template.id)):
 			self.refreshNodes.emit()
 			return True
 		else:
@@ -1597,7 +1597,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			return list()
 
 		return sibl_gui.components.core.database.operations.filterTemplatesCollections(
-		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)
+		"{0}".format(foundations.strings.toUnicode(pattern.pattern)), attribute, flags)
 
 	def getTemplates(self):
 		"""
@@ -1626,7 +1626,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return list(set(self.getTemplates()).intersection(
 		sibl_gui.components.core.database.operations.filterTemplates(
-		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)))
+		"{0}".format(foundations.strings.toUnicode(pattern.pattern)), attribute, flags)))
 
 	def listTemplates(self):
 		"""
@@ -1683,7 +1683,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 												nodeFlags=nodeFlags,
 												attributesFlags=attributesFlags)
 
-					path = foundations.strings.encode(template.path)
+					path = foundations.strings.toUnicode(template.path)
 					if not foundations.common.pathExists(path):
 						continue
 

@@ -726,7 +726,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIdentities = foundations.strings.encode(
+		activeCollectionsIdentities = foundations.strings.toUnicode(
 		self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> '{0}' View stored selected Collections identities '{1}'.".format(self.__class__.__name__,
 																						activeCollectionsIdentities))
@@ -734,7 +734,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													[int(identity) for identity in activeCollectionsIdentities.split(
 													self.__settingsSeparator)] or []
 
-		activeOverallCollection = foundations.strings.encode(
+		activeOverallCollection = foundations.strings.toUnicode(
 		self.__settings.getKey(self.__settingsSection, "activeOverallCollection").toString())
 		LOGGER.debug("> '{0}' View stored 'Overall' Collection: '{1}'.".format(self.__class__.__name__,
 																				activeOverallCollection))
@@ -755,12 +755,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection,
 								"activeCollections",
-								self.__settingsSeparator.join((foundations.strings.encode(
+								self.__settingsSeparator.join((foundations.strings.toUnicode(
 								identity) for identity in self.__view.modelSelection[
 								"Collections"])))
 		self.__settings.setKey(self.__settingsSection,
 								"activeOverallCollection",
-								self.__settingsSeparator.join((foundations.strings.encode(name)
+								self.__settingsSeparator.join((foundations.strings.toUnicode(name)
 								for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
@@ -925,7 +925,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		if collectionInformations:
-			collectionInformations = foundations.strings.encode(collectionInformations).split(",")
+			collectionInformations = foundations.strings.toUnicode(collectionInformations).split(",")
 			name = collectionInformations[0].strip()
 			if name != self.__overallCollection:
 				if not self.collectionExists(name):
@@ -977,7 +977,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		if messageBox.messageBox("Question", "Question",
-		"Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((foundations.strings.encode(collection.name)
+		"Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((foundations.strings.toUnicode(collection.name)
 																	for collection in selectedCollections))),
 		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Collections ...", len(selectedCollections))
@@ -1037,7 +1037,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
-		if sibl_gui.components.core.database.operations.removeCollection(foundations.strings.encode(collection.id)):
+		if sibl_gui.components.core.database.operations.removeCollection(foundations.strings.toUnicode(collection.id)):
 			self.refreshNodes.emit()
 			self.__iblSetsOutliner.refreshNodes.emit()
 			return True
@@ -1071,7 +1071,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return list()
 
 		return sibl_gui.components.core.database.operations.filterIblSetsCollections(
-		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)
+		"{0}".format(foundations.strings.toUnicode(pattern.pattern)), attribute, flags)
 
 	def collectionExists(self, name):
 		"""

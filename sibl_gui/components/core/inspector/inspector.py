@@ -1118,7 +1118,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param file: File changed. ( String )
 		"""
 
-		file = foundations.strings.encode(file)
+		file = foundations.strings.toUnicode(file)
 		if file in self.__sectionsFileParsersCache:
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
 			self.__sectionsFileParsersCache.removeContent(file)

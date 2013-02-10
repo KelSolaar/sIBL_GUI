@@ -531,7 +531,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		return self.setTagsCloudMatchingIblsSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
+		return self.setTagsCloudMatchingIblsSets(foundations.strings.toUnicode(self.Search_Database_lineEdit.text()),
 		not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
 	def setTimeMatchingIblSetsUi(self):
@@ -596,7 +596,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
 			LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
-			", ".join((foundations.strings.encode(iblSet.name) for iblSet in filteredIblSets))))
+			", ".join((foundations.strings.toUnicode(iblSet.name) for iblSet in filteredIblSets))))
 
 			self.__iblSetsOutliner.setIblSets(filteredIblSets)
 		return True

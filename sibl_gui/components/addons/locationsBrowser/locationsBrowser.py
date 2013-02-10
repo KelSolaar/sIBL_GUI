@@ -702,7 +702,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		is edited and check that entered path is valid.
 		"""
 
-		value = foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())
+		value = foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
@@ -740,7 +740,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = iblSet.path and foundations.common.pathExists(iblSet.path) and os.path.dirname(iblSet.path)
 			if path:
 				success *= self.exploreDirectory(path, \
-				foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())) or False
+				foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(
 				self.__class__.__name__, iblSet.title))
@@ -768,7 +768,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if foundations.common.pathExists(activeIblSet.path):
 			return self.exploreDirectory(os.path.dirname(activeIblSet.path),
-										foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text()))
+										foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
@@ -791,7 +791,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = component.directory and foundations.common.pathExists(component.directory) and component.directory
 			if path:
 				success *= self.exploreDirectory(path, \
-				foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())) or False
+				foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Component file doesn't exists and will be skipped!".format(
 				self.__class__.__name__, component.name))
@@ -819,7 +819,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			path = template.path and foundations.common.pathExists(template.path) and os.path.dirname(template.path)
 			if path:
 				success *= self.exploreDirectory(path, \
-				foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())) or False
+				foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(
 				self.__class__.__name__, template.name))
@@ -849,7 +849,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise foundations.exceptions.DirectoryExistsError(
 			"{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
 
-		if self.exploreDirectory(directory, foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())):
+		if self.exploreDirectory(directory, foundations.strings.toUnicode(self.Custom_File_Browser_Path_lineEdit.text())):
 			return True
 		else:
 			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(

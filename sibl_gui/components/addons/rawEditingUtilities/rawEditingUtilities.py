@@ -647,7 +647,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		is edited and check that entered path is valid.
 		"""
 
-		value = foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text())
+		value = foundations.strings.toUnicode(self.Custom_Text_Editor_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
@@ -677,10 +677,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.startProcessing("Loading Files ...", len(urls))
 		for url in event.mimeData().urls():
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-			re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] or \
-			foundations.strings.encode(url.path())
-			if not re.search(r"\.{0}$".format(self.__iblSetsOutliner.extension), foundations.strings.encode(url.path())) and \
-			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), foundations.strings.encode(url.path())) and \
+			re.search(r"^\/[A-Z]:", foundations.strings.toUnicode(url.path())) and foundations.strings.toUnicode(url.path())[1:] or \
+			foundations.strings.toUnicode(url.path())
+			if not re.search(r"\.{0}$".format(self.__iblSetsOutliner.extension), foundations.strings.toUnicode(url.path())) and \
+			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), foundations.strings.toUnicode(url.path())) and \
 			not os.path.isdir(path):
 				self.editPath(path, self.Custom_Text_Editor_Path_lineEdit.text())
 			self.__engine.stepProcessing()
@@ -741,7 +741,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		if foundations.common.pathExists(activeIblSet.path):
-			return self.editPath(activeIblSet.path, foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
+			return self.editPath(activeIblSet.path, foundations.strings.toUnicode(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(

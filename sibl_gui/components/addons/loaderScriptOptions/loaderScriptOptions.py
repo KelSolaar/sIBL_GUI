@@ -985,11 +985,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if type(widget) is Variable_QPushButton:
 					value = widget.text() == "True" and "1" or "0"
 				elif type(widget) is QDoubleSpinBox:
-					value = foundations.strings.encode(widget.value())
+					value = foundations.strings.toUnicode(widget.value())
 				elif type(widget) is QComboBox:
-					value = foundations.strings.encode(widget.currentText())
+					value = foundations.strings.toUnicode(widget.currentText())
 				else:
-					value = foundations.strings.encode(widget.text())
+					value = foundations.strings.toUnicode(widget.text())
 				templateSettingsSectionsFileParser.sections[
 				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
@@ -1019,11 +1019,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if type(widget) is Variable_QPushButton:
 				value = widget.text() == "True" and "1" or "0"
 			elif type(widget) is QDoubleSpinBox:
-				value = foundations.strings.encode(widget.value())
+				value = foundations.strings.toUnicode(widget.value())
 			elif type(widget) is QComboBox:
-				value = foundations.strings.encode(widget.currentText())
+				value = foundations.strings.toUnicode(widget.currentText())
 			else:
-				value = foundations.strings.encode(widget.text())
+				value = foundations.strings.toUnicode(widget.text())
 			widget.data.value = value
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget.data.name, widget.data.value))
