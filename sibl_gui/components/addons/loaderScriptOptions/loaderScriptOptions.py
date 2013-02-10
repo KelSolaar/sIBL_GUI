@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -366,7 +371,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"namespaceSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
 			"namespaceSplitter", value)
@@ -661,7 +666,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"enumSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enumSplitter", value)
 			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(

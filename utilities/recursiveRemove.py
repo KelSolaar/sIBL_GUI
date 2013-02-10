@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -49,7 +54,7 @@ def recursiveRemove(rootDirectory, pattern):
 	for root, dirs, files in os.walk(rootDirectory, followlinks=True):
 		for item in files:
 			itemPath = os.path.join(root, item).replace("\\", "/")
-			if pattern in unicode(item):
+			if pattern in item:
 				remove(itemPath)
 
 def remove(item):

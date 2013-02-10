@@ -21,7 +21,7 @@ def getLongDescription():
 				continue
 
 			description.append(line)
-	return str().join(description)
+	return "".join(description)
 
 setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	version=sibl_gui.globals.constants.Constants.releaseVersion,

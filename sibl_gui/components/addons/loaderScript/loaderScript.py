@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -457,7 +462,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("overrideKeys", value)
 			for key, element in value.iteritems():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 				"overrideKeys", key)
 				assert type(element) is foundations.parsers.AttributeCompound, \
 				"'{0}' attribute: '{1}' type is not 'foundations.parsers.AttributeCompound'!".format(
@@ -494,7 +499,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"defaultStringSeparator", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
 			"defaultStringSeparator", value)
@@ -532,7 +537,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"unnamedLightName", value)
 		self.__unnamedLightName = value
 

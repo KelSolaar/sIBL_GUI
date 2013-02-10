@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -190,7 +195,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("releases", value)
 			for key, element in value.iteritems():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 				"variables", key)
 				assert type(element) is ReleaseObject, "'{0}' attribute: '{1}' type is not 'ReleaseObject'!".format(
 				"variables", element)

@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -643,7 +648,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		value = foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 

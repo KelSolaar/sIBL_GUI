@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.exceptions
@@ -86,7 +91,7 @@ class Mixin_AbstractView(object):
 		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
 			for key, element in value.iteritems():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 				"modelSelection", key)
 				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
 																								element)

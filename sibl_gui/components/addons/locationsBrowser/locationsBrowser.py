@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -698,7 +703,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		value = foundations.strings.encode(self.Custom_File_Browser_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
 

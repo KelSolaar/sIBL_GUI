@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -1150,7 +1155,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		else:
 			content.append(self.__templatesInformationsDefaultText)
 
-		separator = str() if len(content) == 1 else "<p><center>* * *<center/></p>"
+		separator = "" if len(content) == 1 else "<p><center>* * *<center/></p>"
 
 		self.Template_Informations_textBrowser.setText(separator.join(content))
 

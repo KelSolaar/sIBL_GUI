@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -290,7 +295,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if value is not None:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
 			for element in value:
-				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				assert type(element) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 				"requests", element)
 		self.__requests = value
 

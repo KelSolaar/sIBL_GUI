@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -419,7 +424,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"worker", value)
 			assert os.path.exists(value), "'{0}' attribute: '{1}' file doesn't exists!".format("worker", value)
 		self.__worker = value
