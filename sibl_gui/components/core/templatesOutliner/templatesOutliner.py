@@ -1660,7 +1660,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											parent=rootNode,
 											nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-
+			collectionNode["release"] = umbra.ui.nodes.GraphModelAttribute(name="release",
+																flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+			collectionNode["version"] = umbra.ui.nodes.GraphModelAttribute(name="version",
+																flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 			for software in softwares:
 				templates = set((template for template in sibl_gui.components.core.database.operations.query(
 							Template).filter(Template.collection == collection.id).filter(
