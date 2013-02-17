@@ -1118,7 +1118,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param file: File changed. ( String )
 		"""
 
-		file = foundations.strings.toUnicode(file)
+		file = foundations.strings.toString(file)
 		if file in self.__sectionsFileParsersCache:
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
 			self.__sectionsFileParsersCache.removeContent(file)
@@ -1225,7 +1225,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{str(self.__activeIblSet.path) : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):

@@ -530,11 +530,11 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]
 			if comboBox.currentText() == "Custom image":
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(
-				comboBox.data, foundations.strings.toUnicode(self.__reWireLineEditWidgets[index].text())))
+				comboBox.data, foundations.strings.toString(self.__reWireLineEditWidgets[index].text())))
 				self.__loaderScript.overrideKeys[comboBox.data] = foundations.parsers.getAttributeCompound(
 																		parameter[1],
 																		foundations.strings.getNormalizedPath(
-																		foundations.strings.toUnicode(
+																		foundations.strings.toString(
 																		self.__reWireLineEditWidgets[index].text())))
 			else:
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox.data,

@@ -148,7 +148,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 	if asynchronousLoading:
 		cache.addDeferredContent(path)
 	else:
-		not cache.getContent(path) and cache.addContent(**{str(path) : loadGraphicsItem(path, type)})
+		not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
 	return cache.getContent(path)
 
 def getIcon(path, asynchronousLoading=True, imagesCache=None):

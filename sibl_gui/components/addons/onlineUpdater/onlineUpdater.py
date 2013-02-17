@@ -738,7 +738,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__releasesFileReply.error():
 			content = []
 			while not self.__releasesFileReply.atEnd ():
-				content.append(foundations.strings.toUnicode(self.__releasesFileReply.readLine()))
+				content.append(foundations.strings.toString(self.__releasesFileReply.readLine()))
 
 			LOGGER.debug("> Parsing releases file content.")
 			sectionsFileParser = SectionsFileParser()

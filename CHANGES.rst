@@ -602,7 +602,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 0.9.0 - Alpha
 -------------
 
--  Initial release of **sIBL_GUI** For Windows.
+-  Initial release of **sIBL_GUI** for Windows.
 
 .. .about
 

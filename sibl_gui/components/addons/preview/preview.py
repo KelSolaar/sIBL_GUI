@@ -777,7 +777,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		value = foundations.strings.toUnicode(self.Custom_Previewer_Path_lineEdit.text())
+		value = foundations.strings.toString(self.Custom_Previewer_Path_lineEdit.text())
 		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
@@ -823,7 +823,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
 			if paths:
 				success *= self.viewImages(paths, \
-				foundations.strings.toUnicode(self.Custom_Previewer_Path_lineEdit.text())) or False
+				foundations.strings.toString(self.Custom_Previewer_Path_lineEdit.text())) or False
 			else:
 				self.__engine.notificationsManager.warnify(
 				"{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(
@@ -864,7 +864,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		paths = self.getIblSetImagesPaths(activeIblSet, imageType)
 		if paths:
 			if self.viewImages(paths, \
-			foundations.strings.toUnicode(self.Custom_Previewer_Path_lineEdit.text())):
+			foundations.strings.toString(self.Custom_Previewer_Path_lineEdit.text())):
 				return True
 			else:
 				raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(
