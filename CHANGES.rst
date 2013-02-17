@@ -1,4 +1,4 @@
-**sIBL_GUI** - 4.0.6 - Stable
+**sIBL_GUI** - 4.0.7 - Stable
 =============================
 
 .. .changes
@@ -16,10 +16,19 @@ Changes
         </ul>
     </div>
 
+4.0.7 - Stable
+--------------
+
+| **sIBL_GUI** 4.0.7 - Stable - Milestone:
+| **Umbra** 1.0.8 - Stable - Milestone:
+| **Foundations** 2.0.8 - Stable - Milestone:
+
+-  Implement better unicode support.
+
 4.0.6 - Stable
 --------------
 
-| **sIBL_GUI** 4.0.6 - Stable - https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
+| **sIBL_GUI** 4.0.6 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
 | **Umbra** 1.0.7 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=8&state=closed
 | **Foundations** 2.0.7 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=5&state=closed
 
