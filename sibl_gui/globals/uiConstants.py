@@ -164,5 +164,5 @@ class UiConstants():
 	"""Application third party image file formats. ( Dictionary )"""
 
 	crittercismId = "5075c158d5f9b9796b000002"
-	"""Crittercism Id: '**50aa8ac9866b845bd6000007**' ( String )"""
+	"""Crittercism Id: '**51290b3589ea7429250004fe**' ( String )"""
 
