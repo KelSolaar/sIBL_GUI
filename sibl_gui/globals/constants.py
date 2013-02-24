@@ -70,12 +70,6 @@ class Constants():
 
 	databaseDirectory = "database"
 	"""Application Database directory: '**database**' ( String )"""
-	databaseMigrationsDirectory = "migrations"
-	"""Application Database migrations directory: '**migrations**' ( String )"""
-	databaseMigrationsFilesDirectory = "versions"
-	"""Application Database migrations files versions directory: '**versions**' ( String )"""
-	databaseMigrationsTemplatesDirectory = "templates"
-	"""Application Database migrations templates files directory: '**templates**' ( String )"""
 	patchesDirectory = "patches"
 	"""Application patches directory: '**patches**' ( String )"""
 	settingsDirectory = "settings"
@@ -88,7 +82,6 @@ class Constants():
 	"""Application templates directory: '**templates**' ( String )"""
 	ioDirectory = "io"
 	"""Application io directory: '**io**' ( String )"""
-
 
 	preferencesDirectories = (databaseDirectory,
 								patchesDirectory,

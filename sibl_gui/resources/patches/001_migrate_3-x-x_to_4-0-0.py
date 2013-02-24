@@ -22,21 +22,21 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import os
-import shutil
-import sqlalchemy
-from PyQt4.QtGui import QMessageBox
+# import os
+# import shutil
+# import sqlalchemy
+# from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
-import foundations.common
-import foundations.core
+# import foundations.common
+# import foundations.core
 import foundations.verbose
-import sibl_gui.components.core.database.operations
-import umbra.ui.widgets.messageBox
-from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+# import sibl_gui.components.core.database.operations
+# import umbra.ui.widgets.messageBox
+# from umbra.globals.constants import Constants
+# from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -64,6 +64,7 @@ def apply():
 	:return: Definition success. ( Boolean )
 	"""
 
+	deprecated = """
 	if RuntimeGlobals.parameters.databaseReadOnly:
 		message = "sIBL_GUI is launched with '-r / --databaseReadOnly' parameter preventing database migration!\n\n\
 In order to complete the migration, you will need to relaunch sIBL_GUI without the '-r / --databaseReadOnly' parameter!\n\n\
@@ -125,5 +126,6 @@ sIBL_GUI will now exit!".format(__name__, legacyDatabaseFile, databaseFile)
 				id = template.id
 				LOGGER.info("{0} | Removing deprecated Template with '{1}' id from database!".format(__name__, id))
 				sibl_gui.components.core.database.operations.removeTemplate(id, databaseSession)
+	"""
 
 	return True

@@ -23,8 +23,6 @@ from __future__ import unicode_literals
 #***	External imports.
 #**********************************************************************************************************************
 import os
-import migrate.exceptions
-import migrate.versioning.api
 import sqlalchemy.orm
 import shutil
 
@@ -34,7 +32,6 @@ import shutil
 import foundations.common
 import foundations.exceptions
 import foundations.verbose
-import foundations.walkers
 import sibl_gui.components.core.database.operations
 from foundations.rotatingBackup import RotatingBackup
 from manager.component import Component
@@ -61,8 +58,8 @@ LOGGER = foundations.verbose.installLogger()
 class Database(Component):
 	"""
 	| This class is the :mod:`sibl_gui.components.core.database.database` Component Interface class.
-	| It provides Application Database creation and session, proceed to its backup using
-		the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
+	| It provides Application Database creation and session, proceeds to its backup using
+		the :mod:`foundations.rotatingBackup`.
 	"""
 
 	def __init__(self, name=None):
@@ -88,9 +85,6 @@ class Database(Component):
 		self.__databaseCatalog = None
 
 		self.__databaseConnectionString = None
-
-		self.__databaseMigrationsRepositoryDirectory = None
-		self.__databaseMigrationsTemplatesDirectory = None
 
 		self.__databaseBackupDirectory = "backup"
 		self.__databaseBackupCount = 6
@@ -323,70 +317,6 @@ class Database(Component):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseConnectionString"))
 
 	@property
-	def databaseMigrationsRepositoryDirectory(self):
-		"""
-		This method is the property for **self.__databaseMigrationsRepositoryDirectory** attribute.
-
-		:return: self.__databaseMigrationsRepositoryDirectory. ( String )
-		"""
-
-		return self.__databaseMigrationsRepositoryDirectory
-
-	@databaseMigrationsRepositoryDirectory.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseMigrationsRepositoryDirectory(self, value):
-		"""
-		This method is the setter method for **self.__databaseMigrationsRepositoryDirectory** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseMigrationsRepositoryDirectory"))
-
-	@databaseMigrationsRepositoryDirectory.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseMigrationsRepositoryDirectory(self):
-		"""
-		This method is the deleter method for **self.__databaseMigrationsRepositoryDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseMigrationsRepositoryDirectory"))
-
-	@property
-	def databaseMigrationsTemplatesDirectory(self):
-		"""
-		This method is the property for **self.__databaseMigrationsTemplatesDirectory** attribute.
-
-		:return: self.__databaseMigrationsTemplatesDirectory. ( String )
-		"""
-
-		return self.__databaseMigrationsTemplatesDirectory
-
-	@databaseMigrationsTemplatesDirectory.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseMigrationsTemplatesDirectory(self, value):
-		"""
-		This method is the setter method for **self.__databaseMigrationsTemplatesDirectory** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseMigrationsTemplatesDirectory"))
-
-	@databaseMigrationsTemplatesDirectory.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseMigrationsTemplatesDirectory(self):
-		"""
-		This method is the deleter method for **self.__databaseMigrationsTemplatesDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseMigrationsTemplatesDirectory"))
-
-	@property
 	def databaseBackupDirectory(self):
 		"""
 		This method is the property for **self.__databaseBackupDirectory** attribute.
@@ -490,8 +420,6 @@ class Database(Component):
 		if self.__engine.parameters.databaseDirectory:
 			if foundations.common.pathExists(self.__engine.parameters.databaseDirectory):
 				self.__databaseName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
-				self.__databaseMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
-																	Constants.databaseMigrationsDirectory)
 			else:
 				raise foundations.exceptions.DirectoryExistsError(
 				"{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(
@@ -500,9 +428,6 @@ class Database(Component):
 			self.__databaseName = os.path.join(self.__engine.userApplicationDataDirectory,
 										Constants.databaseDirectory,
 										Constants.databaseFile)
-			self.__databaseMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
-																Constants.databaseDirectory,
-																Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__databaseName))
 		self.__databaseConnectionString = "sqlite:///{0}".format(self.__databaseName)
@@ -519,46 +444,6 @@ class Database(Component):
 			else:
 				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(
 				self.__class__.__name__, "databaseReadOnly"))
-
-		if not self.__engine.parameters.databaseReadOnly:
-			LOGGER.info("{0} | SQLAlchemy Migrate repository location: '{1}'.".format(self.__class__.__name__,
-																				self.__databaseMigrationsRepositoryDirectory))
-			LOGGER.debug("> Creating SQLAlchemy Migrate migrations directory and requisites.")
-			try:
-				repositoryTemplate = os.path.join(os.path.dirname(__file__),
-												Constants.databaseMigrationsDirectory,
-												Constants.databaseMigrationsTemplatesDirectory)
-				migrate.versioning.api.create(self.__databaseMigrationsRepositoryDirectory,
-											"Migrations",
-											version_table="Migrate",
-											templates_path=repositoryTemplate)
-			except migrate.exceptions.KnownError as error:
-				LOGGER.debug("> SQLAlchemy Migrate repository directory already exists!")
-			except shutil.Error as error:
-				LOGGER.error("!> {0} | Exception raised while creating SQLAlchemy Migrate repository: '{1}'".format(
-				self.__class__.__name__, error))
-
-			LOGGER.debug("> Copying migrations files to SQLAlchemy Migrate repository.")
-			directory = os.path.join(os.path.dirname(__file__),
-								Constants.databaseMigrationsDirectory,
-								Constants.databaseMigrationsFilesDirectory)
-			for file in foundations.walkers.filesWalker(directory, (Constants.databaseMigrationsFilesExtension,)):
-				shutil.copy(file, os.path.join(self.__databaseMigrationsRepositoryDirectory,
-											Constants.databaseMigrationsFilesDirectory))
-
-			if foundations.common.pathExists(self.__databaseName):
-				LOGGER.debug("> Placing Database under SQLAlchemy Migrate version control.")
-				try:
-					migrate.versioning.api.version_control(self.__databaseConnectionString,
-															self.__databaseMigrationsRepositoryDirectory)
-				except migrate.exceptions.DatabaseAlreadyControlledError:
-					LOGGER.debug("> Database is already under SQLAlchemy Migrate version control!")
-
-				LOGGER.debug("> Upgrading Database.")
-				migrate.versioning.api.upgrade(self.__databaseConnectionString, self.__databaseMigrationsRepositoryDirectory)
-		else:
-			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(
-			self.__class__.__name__, "databaseReadOnly"))
 
 		LOGGER.debug("> Creating Database engine.")
 		self.__databaseEngine = sqlalchemy.create_engine(self.__databaseConnectionString)
