@@ -16,6 +16,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 from PyQt4.QtCore import Qt
@@ -224,7 +229,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 				for item in self.modelSelection["Softwares"]:
 					parentId, name = item.split(foundations.namespace.NAMESPACE_SPLITTER)
 					for collection in self.model().rootNode.children:
-						if not foundations.strings.encode(collection.id.value) == parentId:
+						if not foundations.strings.toString(collection.id.value) == parentId:
 							continue
 
 						for software in collection.children:

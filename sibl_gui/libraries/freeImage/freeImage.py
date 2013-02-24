@@ -16,6 +16,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import ctypes
@@ -1189,8 +1194,8 @@ FREEIMAGE_FUNCTIONS = (
 				argumentsTypes=[FreeImage_OutputMessageFunction],
 				returnValue=None),
 	# LibraryHook(name="FreeImage_OutputMessageProc",
-	#			argumentstype=none, 
-	#			returnValue=none),
+	# 			argumentstype=none,
+	# 			returnValue=none),
 	# FreeImage_OutputMessageProc is a variadic function and is not supported by ctypes.
 
 	# Allocate / clone / unload functions.
@@ -1278,8 +1283,8 @@ FREEIMAGE_FUNCTIONS = (
 				argumentsTypes=[FI_InitProc, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p],
 				returnValue=FREE_IMAGE_FORMAT),
 	# LibraryHook(name="FreeImage_RegisterExternalPlugin",
-	#			argumentstype=[ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p], 
-	#			returnValue=FREE_IMAGE_FORMAT),
+	# 			argumentstype=[ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p],
+	# 			returnValue=FREE_IMAGE_FORMAT),
 	LibraryHook(name="FreeImage_GetFIFCount",
 				argumentsTypes=[],
 				returnValue=ctypes.c_int),
@@ -2140,8 +2145,7 @@ class Image(object):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), \
-			"'{0}' attribute: '{1}' type is not 'str', 'unicode'!".format("imagePath", value)
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("imagePath", value)
 		self.__imagePath = value
 
 	@imagePath.deleter

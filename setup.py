@@ -21,7 +21,7 @@ def getLongDescription():
 				continue
 
 			description.append(line)
-	return str().join(description)
+	return "".join(description)
 
 setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	version=sibl_gui.globals.constants.Constants.releaseVersion,
@@ -34,7 +34,7 @@ setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	license="GPLv3",
 	description="sIBL_GUI is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of \"Smart Ibl\" files.",
 	long_description=getLongDescription(),
-	install_requires=["SQLAlchemy>=0.7.8", "Umbra>=1.0.7", "Counter>=1.0.0", "sqlalchemy-migrate>=0.7.2"],
+	install_requires=["SQLAlchemy>=0.7.8", "Umbra>=1.0.7", "Counter>=1.0.0"],
 	classifiers=["Development Status :: 5 - Production/Stable",
 				"Environment :: Console",
 				"Environment :: MacOS X",

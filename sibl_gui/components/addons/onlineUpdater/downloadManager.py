@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -290,7 +295,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if value is not None:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
 			for element in value:
-				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				assert type(element) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 				"requests", element)
 		self.__requests = value
 
@@ -515,7 +520,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
 		self.__currentFilePath = os.path.join(self.__downloadDirectory,
-											os.path.basename(foundations.strings.encode(self.__currentRequest.url().path())))
+											os.path.basename(foundations.strings.toString(self.__currentRequest.url().path())))
 		if foundations.common.pathExists(self.__currentFilePath):
 			LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(
 			self.__class__.__name__, os.path.basename(self.__currentFilePath)))
@@ -547,7 +552,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 																									bytesTotal))
 
 		self.Current_File_label.setText("Downloading: '{0}'.".format(
-		os.path.basename(foundations.strings.encode(self.__currentRequest.url().path()))))
+		os.path.basename(foundations.strings.toString(self.__currentRequest.url().path()))))
 		self.Download_progressBar.setRange(0, bytesTotal)
 		self.Download_progressBar.setValue(bytesReceived)
 

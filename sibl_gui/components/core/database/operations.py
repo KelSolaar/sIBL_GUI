@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -187,7 +192,7 @@ def addStandardItem(type, name, path, collection, session=None):
 	session = getSession(session)
 
 	if not filterItems(query(type), "^{0}$".format(re.escape(path)), "path"):
-		osStats = ",".join((foundations.strings.encode(stat) for stat in os.stat(path)))
+		osStats = ",".join((foundations.strings.toString(stat) for stat in os.stat(path)))
 		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if databaseItem.setContent():
 			return addItem(databaseItem, session)
@@ -236,7 +241,7 @@ def updateItemContent(item, session=None):
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
 
-	item.osStats = ",".join(map(foundations.strings.encode, os.stat(item.path)))
+	item.osStats = ",".join(map(foundations.strings.toString, os.stat(item.path)))
 	if item.setContent():
 		return commit(getSession(session))
 	else:
@@ -279,7 +284,7 @@ def filterItems(items, pattern, field, flags=0):
 	:return: Filtered items. ( List )
 	"""
 
-	return [item for item in items if re.search(pattern, foundations.strings.encode(item.__dict__[field]), flags)]
+	return [item for item in items if re.search(pattern, foundations.strings.toString(item.__dict__[field]), flags)]
 
 def itemExists(items, pattern, field, flags=0):
 	"""

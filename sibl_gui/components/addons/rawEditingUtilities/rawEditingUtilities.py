@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -38,7 +43,6 @@ import umbra.exceptions
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.runtimeGlobals import RuntimeGlobals
-from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -642,8 +646,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		is edited and check that entered path is valid.
 		"""
 
-		value = foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
+		value = foundations.strings.toString(self.Custom_Text_Editor_Path_lineEdit.text())
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
@@ -671,12 +675,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__engine.startProcessing("Loading Files ...", len(urls))
 		for url in event.mimeData().urls():
+			path = foundations.strings.toString(url.path())
+			LOGGER.debug("> Handling dropped '{0}' file.".format(path))
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-			re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] or \
-			foundations.strings.encode(url.path())
-			if not re.search(r"\.{0}$".format(self.__iblSetsOutliner.extension), foundations.strings.encode(url.path())) and \
-			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), foundations.strings.encode(url.path())) and \
-			not os.path.isdir(path):
+			re.search(r"^\/[A-Z]:", path) and path[1:] or path
+			if not re.search(r"\.{0}$".format(self.__iblSetsOutliner.extension), path) and \
+			not re.search(r"\.{0}$".format(self.templatesOutliner.extension), path) and not os.path.isdir(path):
 				self.editPath(path, self.Custom_Text_Editor_Path_lineEdit.text())
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
@@ -736,7 +740,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return False
 
 		if foundations.common.pathExists(activeIblSet.path):
-			return self.editPath(activeIblSet.path, foundations.strings.encode(self.Custom_Text_Editor_Path_lineEdit.text()))
+			return self.editPath(activeIblSet.path, foundations.strings.toString(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(

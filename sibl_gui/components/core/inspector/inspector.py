@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -893,7 +898,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"unnamedLightName", value)
 		self.__unnamedLightName = value
 
@@ -1068,7 +1073,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.Title_label.setText(QString())
-		self.Image_label.setText(self.__noActiveIblSetText.format(sibl_gui.ui.common.filterImagePath(unicode())))
+		self.Image_label.setText(self.__noActiveIblSetText.format(sibl_gui.ui.common.filterImagePath("")))
 		self.Image_label.setToolTip(QString())
 		self.Details_label.setText(QString())
 
@@ -1113,7 +1118,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param file: File changed. ( String )
 		"""
 
-		file = foundations.strings.encode(file)
+		file = foundations.strings.toString(file)
 		if file in self.__sectionsFileParsersCache:
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
 			self.__sectionsFileParsersCache.removeContent(file)
@@ -1220,7 +1225,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{str(self.__activeIblSet.path) : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
@@ -1339,7 +1344,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								parent=rootNode,
 								nodeFlags=nodeFlags,
 								attributesFlags=attributesFlags)
-		iblSetNode.roles[Qt.DisplayRole] = unicode()
+		iblSetNode.roles[Qt.DisplayRole] = ""
 
 		if not self.__inspectorPlates:
 			return False
@@ -1350,7 +1355,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								parent=rootNode,
 								nodeFlags=nodeFlags,
 								attributesFlags=attributesFlags)
-			plateNode.roles[Qt.DisplayRole] = unicode()
+			plateNode.roles[Qt.DisplayRole] = ""
 			plateNode.roles[Qt.DecorationRole] = plate.icon
 
 		self.__model.initializeModel(rootNode)

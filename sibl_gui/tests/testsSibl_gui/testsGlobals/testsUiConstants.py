@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import re
@@ -433,8 +438,8 @@ class UiConstantsTestCase(unittest.TestCase):
 
 		self.assertIsInstance(UiConstants.nativeImageFormats, dict)
 		for key, value in UiConstants.nativeImageFormats.iteritems():
-			self.assertIsInstance(key, str)
-			self.assertIsInstance(value, str)
+			self.assertIsInstance(key, unicode)
+			self.assertIsInstance(value, unicode)
 			self.assertTrue(re.compile(value))
 
 	def testThirdPartyImageFormatsAttribute(self):
@@ -444,8 +449,8 @@ class UiConstantsTestCase(unittest.TestCase):
 
 		self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
 		for key, value in UiConstants.thirdPartyImageFormats.iteritems():
-			self.assertIsInstance(key, str)
-			self.assertIsInstance(value, str)
+			self.assertIsInstance(key, unicode)
+			self.assertIsInstance(value, unicode)
 			self.assertTrue(re.compile(value))
 
 	def testCrittercismIdAttribute(self):
@@ -454,7 +459,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		"""
 
 		self.assertRegexpMatches(UiConstants.crittercismId, "\w+")
-		self.assertEqual(UiConstants.crittercismId, "50aa8ac9866b845bd6000007")
+		self.assertEqual(UiConstants.crittercismId, "51290b3589ea7429250004fe")
 
 if __name__ == "__main__":
 	unittest.main()

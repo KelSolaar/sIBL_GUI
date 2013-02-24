@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -366,7 +371,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"namespaceSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
 			"namespaceSplitter", value)
@@ -661,7 +666,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
 			"enumSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enumSplitter", value)
 			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
@@ -980,11 +985,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if type(widget) is Variable_QPushButton:
 					value = widget.text() == "True" and "1" or "0"
 				elif type(widget) is QDoubleSpinBox:
-					value = foundations.strings.encode(widget.value())
+					value = foundations.strings.toString(widget.value())
 				elif type(widget) is QComboBox:
-					value = foundations.strings.encode(widget.currentText())
+					value = foundations.strings.toString(widget.currentText())
 				else:
-					value = foundations.strings.encode(widget.text())
+					value = foundations.strings.toString(widget.text())
 				templateSettingsSectionsFileParser.sections[
 				section][foundations.namespace.removeNamespace(widget.data.name)] = value
 		templateSettingsSectionsFileParser.write()
@@ -1014,11 +1019,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if type(widget) is Variable_QPushButton:
 				value = widget.text() == "True" and "1" or "0"
 			elif type(widget) is QDoubleSpinBox:
-				value = foundations.strings.encode(widget.value())
+				value = foundations.strings.toString(widget.value())
 			elif type(widget) is QComboBox:
-				value = foundations.strings.encode(widget.currentText())
+				value = foundations.strings.toString(widget.currentText())
 			else:
-				value = foundations.strings.encode(widget.text())
+				value = foundations.strings.toString(widget.text())
 			widget.data.value = value
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget.data.name, widget.data.value))

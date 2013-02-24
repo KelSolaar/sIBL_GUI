@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import functools
@@ -61,7 +66,6 @@ from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
 from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
 from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
 from umbra.globals.runtimeGlobals import RuntimeGlobals
-from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #**********************************************************************************************************************
@@ -1184,7 +1188,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		for view in self.__views:
 			viewName = view.objectName()
-			viewSelectedIblSetsIdentities = foundations.strings.encode(self.__settings.getKey(self.__settingsSection,
+			viewSelectedIblSetsIdentities = foundations.strings.toString(self.__settings.getKey(self.__settingsSection,
 																	"{0}_viewSelecteIblSets".format(viewName)).toString())
 			LOGGER.debug("> '{0}' View stored selected Ibl Sets identities: '{1}'.".format(viewName,
 																							viewSelectedIblSetsIdentities))
@@ -1206,7 +1210,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 			view.storeModelSelection()
 			self.__settings.setKey(self.__settingsSection,
 								"{0}_viewSelecteIblSets".format(view.objectName()),
-								self.__settingsSeparator.join(foundations.strings.encode(identity) \
+								self.__settingsSeparator.join(foundations.strings.toString(identity) \
 								for identity in view.modelSelection["Default"]))
 
 		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
@@ -1332,7 +1336,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setIblSets(self.__searchIblSets(foundations.strings.encode(self.Search_Database_lineEdit.text()),
+		self.setIblSets(self.__searchIblSets(foundations.strings.toString(self.Search_Database_lineEdit.text()),
 											self.__searchContexts[self.__activeSearchContext],
 											re.IGNORECASE if self.Case_Sensitive_Matching_pushButton.isChecked() else 0))
 
@@ -1368,10 +1372,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
+				path = foundations.strings.toString(url.path())
+				LOGGER.debug("> Handling dropped '{0}' file.".format(path))
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-				re.search(r"^\/[A-Z]:", foundations.strings.encode(url.path())) and foundations.strings.encode(url.path())[1:] \
-				or foundations.strings.encode(url.path())
-				if re.search(r"\.{0}$".format(self.__extension), foundations.strings.encode(url.path())):
+				re.search(r"^\/[A-Z]:", path) and path[1:] or path
+				if re.search(r"\.{0}$".format(self.__extension), path):
 					name = foundations.strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question",
 					"'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
@@ -1448,7 +1453,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__collectionsOutliner.getSelectedCollections() or \
 		self.__collectionsOutliner.getCollections())).intersection(
 		sibl_gui.components.core.database.operations.filterIblSets(
-		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags))]
+		"{0}".format(foundations.strings.toString(pattern.pattern)), attribute, flags))]
 		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
 														for value in set((getattr(iblSetNode, attribute)
 														for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
@@ -1785,7 +1790,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return list(set(self.getIblSets()).intersection(
 		sibl_gui.components.core.database.operations.filterIblSets(
-		"{0}".format(foundations.strings.encode(pattern.pattern)), attribute, flags)))
+		"{0}".format(foundations.strings.toString(pattern.pattern)), attribute, flags)))
 
 	def iblSetExists(self, path):
 		"""
@@ -1828,7 +1833,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 									nodeFlags=nodeFlags,
 									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
-			path = foundations.strings.encode(iblSet.path)
+			path = foundations.strings.toString(iblSet.path)
 			if not foundations.common.pathExists(path):
 				continue
 

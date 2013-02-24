@@ -16,6 +16,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -153,43 +158,32 @@ class IblSet(Base):
 		sectionsFileParser.read() and sectionsFileParser.parse()
 
 		if sectionsFileParser.sections:
-			self.title = sectionsFileParser.getValue("Name", "Header", encode=True)
-			self.author = sectionsFileParser.getValue("Author", "Header", encode=True)
-			self.link = sectionsFileParser.getValue("Link", "Header", encode=True)
-			self.icon = sectionsFileParser.getValue("ICOfile", "Header", encode=True) and \
-						os.path.normpath(os.path.join(os.path.dirname(self.path),
-													sectionsFileParser.getValue("ICOfile",
-																				"Header",
-																				encode=True))) or None
-			self.previewImage = sectionsFileParser.getValue("PREVIEWfile", "Header", encode=True) and \
-								os.path.normpath(os.path.join(os.path.dirname(self.path),
-								 							sectionsFileParser.getValue("PREVIEWfile",
-																						"Header",
-																						encode=True))) or None
-			self.backgroundImage = sectionsFileParser.getValue("BGfile", "Background", encode=True) and \
-									os.path.normpath(os.path.join(os.path.dirname(self.path),
-																sectionsFileParser.getValue("BGfile",
-																							"Background",
-																							encode=True))) or None
-			self.lightingImage = sectionsFileParser.getValue("EVfile", "Enviroment", encode=True) and \
-								os.path.normpath(os.path.join(os.path.dirname(self.path),
-															sectionsFileParser.getValue("EVfile",
-																						"Enviroment",
-																						encode=True))) or None
-			self.reflectionImage = sectionsFileParser.getValue("REFfile", "Reflection", encode=True) and \
-									os.path.normpath(os.path.join(os.path.dirname(self.path),
-																sectionsFileParser.getValue("REFfile",
-																"Reflection",
-																encode=True))) or None
-			self.location = sectionsFileParser.getValue("Location", "Header", encode=True)
-			self.latitude = sectionsFileParser.getValue("GEOlat", "Header", encode=True)
-			self.longitude = sectionsFileParser.getValue("GEOlong", "Header", encode=True)
-			self.date = sectionsFileParser.getValue("Date", "Header", encode=True)
-			self.time = sectionsFileParser.getValue("Time", "Header", encode=True)
-			self.comment = sectionsFileParser.getValue("Comment", "Header", encode=True)
+			self.title = sectionsFileParser.getValue("Name", "Header")
+			self.author = sectionsFileParser.getValue("Author", "Header")
+			self.link = sectionsFileParser.getValue("Link", "Header")
+			self.icon = os.path.normpath(os.path.join(os.path.dirname(self.path),
+										sectionsFileParser.getValue("ICOfile", "Header"))) \
+										if sectionsFileParser.getValue("ICOfile", "Header") else None
+			self.previewImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
+								 				sectionsFileParser.getValue("PREVIEWfile", "Header"))) \
+								 				if sectionsFileParser.getValue("PREVIEWfile", "Header") else None
+			self.backgroundImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
+													sectionsFileParser.getValue("BGfile", "Background"))) \
+													if sectionsFileParser.getValue("BGfile", "Background") else None
+			self.lightingImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
+												sectionsFileParser.getValue("EVfile", "Enviroment"))) \
+												if sectionsFileParser.getValue("EVfile", "Enviroment") else None
+			self.reflectionImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
+													sectionsFileParser.getValue("REFfile", "Reflection"))) \
+													if sectionsFileParser.getValue("REFfile", "Reflection") else None
+			self.location = sectionsFileParser.getValue("Location", "Header")
+			self.latitude = sectionsFileParser.getValue("GEOlat", "Header")
+			self.longitude = sectionsFileParser.getValue("GEOlong", "Header")
+			self.date = sectionsFileParser.getValue("Date", "Header")
+			self.time = sectionsFileParser.getValue("Time", "Header")
+			self.comment = sectionsFileParser.getValue("Comment", "Header")
 
 			return True
-
 		else:
 			raise foundations.exceptions.FileStructureParsingError(
 			"{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
@@ -291,58 +285,32 @@ class Template(Base):
 
 		if sectionsFileParser.sections:
 			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile",
-							sectionsFileParser.getValue("HelpFile",
-														"Template",
-														encode=True)).value and \
+							sectionsFileParser.getValue("HelpFile", "Template")).value and \
 							os.path.join(os.path.dirname(self.path),
 										foundations.parsers.getAttributeCompound("HelpFile",
-										sectionsFileParser.getValue("HelpFile",
-																	"Template",
-																	encode=True)).value) or None
+										sectionsFileParser.getValue("HelpFile", 	"Template")).value) or None
 			self.title = foundations.parsers.getAttributeCompound("Name",
-						sectionsFileParser.getValue("Name",
-													"Template",
-													encode=True)).value
+						sectionsFileParser.getValue("Name", 	"Template")).value
 			self.author = foundations.parsers.getAttributeCompound("Author",
-						sectionsFileParser.getValue("Author",
-													"Template",
-													encode=True)).value
+						sectionsFileParser.getValue("Author", "Template")).value
 			self.email = foundations.parsers.getAttributeCompound("Email",
-						sectionsFileParser.getValue("Email",
-													"Template",
-													encode=True)).value
+						sectionsFileParser.getValue("Email", "Template")).value
 			self.url = foundations.parsers.getAttributeCompound("Url",
-						sectionsFileParser.getValue("Url",
-													"Template",
-													encode=True)).value
+						sectionsFileParser.getValue("Url", "Template")).value
 			self.release = foundations.parsers.getAttributeCompound("Release",
-							sectionsFileParser.getValue("Release",
-														"Template",
-														encode=True)).value
+							sectionsFileParser.getValue("Release", "Template")).value
 			self.date = foundations.parsers.getAttributeCompound("Date",
-						sectionsFileParser.getValue("Date",
-													"Template",
-													encode=True)).value
+						sectionsFileParser.getValue("Date", "Template")).value
 			self.software = foundations.parsers.getAttributeCompound("Software",
-							sectionsFileParser.getValue("Software",
-														"Template",
-														encode=True)).value
+							sectionsFileParser.getValue("Software", "Template")).value
 			self.version = foundations.parsers.getAttributeCompound("Version",
-							sectionsFileParser.getValue("Version",
-														"Template",
-														encode=True)).value
+							sectionsFileParser.getValue("Version", "Template")).value
 			self.renderer = foundations.parsers.getAttributeCompound("Renderer",
-							sectionsFileParser.getValue("Renderer",
-														"Template",
-														encode=True)).value
+							sectionsFileParser.getValue("Renderer", "Template")).value
 			self.outputScript = foundations.parsers.getAttributeCompound("OutputScript",
-								sectionsFileParser.getValue("OutputScript",
-															"Template",
-															encode=True)).value
+								sectionsFileParser.getValue("OutputScript", "Template")).value
 			self.comment = foundations.parsers.getAttributeCompound("Comment",
-							sectionsFileParser.getValue("Comment",
-														"Template",
-														encode=True)).value
+							sectionsFileParser.getValue("Comment", "Template")).value
 
 			return True
 

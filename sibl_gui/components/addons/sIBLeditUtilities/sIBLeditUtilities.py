@@ -15,6 +15,11 @@
 """
 
 #**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
@@ -476,8 +481,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		value = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
-		if not foundations.common.pathExists(os.path.abspath(value)) and value != unicode():
+		value = foundations.strings.toString(self.sIBLedit_Path_lineEdit.text())
+		if not foundations.common.pathExists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
@@ -496,7 +501,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = foundations.strings.toString(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSet = foundations.common.getFirstItem(self.__iblSetsOutliner.getSelectedIblSets())
 			if selectedIblSet is None:
@@ -504,7 +509,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			if foundations.common.pathExists(selectedIblSet.path):
 				return self.editIblSetInSIBLedit(selectedIblSet.path,
-												foundations.strings.encode(self.sIBLedit_Path_lineEdit.text()))
+												foundations.strings.toString(self.sIBLedit_Path_lineEdit.text()))
 			else:
 				raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(
@@ -524,7 +529,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = foundations.strings.encode(self.sIBLedit_Path_lineEdit.text())
+		sIBLedit = foundations.strings.toString(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			activeIblSet = self.__inspector.activeIblSet
 			if activeIblSet is None:
