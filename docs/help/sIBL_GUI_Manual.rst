@@ -311,7 +311,7 @@ _`Command Line Parameters`
 -  **-a, —about**: Display application *About* message. (Mac Os X and Linux only)
 -  **-v VERBOSITYLEVEL, —verbose=VERBOSITYLEVEL**: Application verbosity levels: 0 = Critical \| 1 = Error \| 2 = Warning \| 3 = Info \| 4 = Debug.
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
--  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
+-  **-u USERAPPLICATIONDATADIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATADIRECTORY**: User application data directory (Preferences directory).
 -  **-s, —hideSplashScreen**: The SplashScreen is not displayed during application startup.
 -  **-w, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-x STARTUPSCRIPT, --startupScript=STARTUPSCRIPT**: Execute given startup script.
