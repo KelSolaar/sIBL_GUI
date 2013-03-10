@@ -19,11 +19,12 @@ Changes
 4.0.7 - Stable
 --------------
 
-| **sIBL_GUI** 4.0.7 - Stable - Milestone:
+| **sIBL_GUI** 4.0.7 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=9&page=1&state=closed
 | **Umbra** 1.0.8 - Stable - Milestone:
 | **Foundations** 2.0.8 - Stable - Milestone:
 
--  Implement better unicode support.
+-  Implement unicode support.
+-  Drop **sqlalchemy-migrate** support.
 
 4.0.6 - Stable
 --------------

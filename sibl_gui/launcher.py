@@ -303,7 +303,7 @@ def main():
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	return umbra.engine.run(sIBL_GUI,
-						commandLineParametersParser.parse_args(sys.argv),
+						commandLineParametersParser.parse_args(map(unicode, sys.argv)),
 						componentsPaths,
 						("factory.scriptEditor",
 						"factory.preferencesManager",
