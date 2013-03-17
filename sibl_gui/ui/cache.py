@@ -481,22 +481,20 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
-		for path, item in content.items():
+		for path, item in content.iteritems():
 			if not foundations.common.pathExists(path):
 				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
 				self.__class__.__name__, path))
-				del(content[path])
 				continue
 
 			if type(item) is not self.__type:
 				LOGGER.warning("!> {0} | '{1}' item type is not '{2}' type and has been skipped!".format(
 				self.__class__.__name__, item, self.__type))
-				del(content[path])
+				continue
 
-		for key, value in content.iteritems():
-			value.data = sibl_gui.ui.common.getImageInformationsHeader(key, value)
-			self[key] = value
-			self.contentAdded.emit([key])
+			item.data = sibl_gui.ui.common.getImageInformationsHeader(path, item)
+			self[path] = item
+			self.contentAdded.emit([path])
 		return True
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
