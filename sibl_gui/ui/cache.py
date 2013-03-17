@@ -471,9 +471,9 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
-	def addContent(self, **content):
+	def loadContent(self, **content):
 		"""
-		This method reimplements the :meth:`AbstractResourcesCache.addContent` method.
+		This method loads given content into the cache.
 		
 		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
@@ -481,34 +481,30 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
-		for path, item in content.iteritems():
+		for path, data in content.iteritems():
 			if not foundations.common.pathExists(path):
 				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
 				self.__class__.__name__, path))
 				continue
 
-			if type(item) is not self.__type:
-				LOGGER.warning("!> {0} | '{1}' item type is not '{2}' type and has been skipped!".format(
-				self.__class__.__name__, item, self.__type))
-				continue
-
-			item.data = sibl_gui.ui.common.getImageInformationsHeader(path, item)
-			self[path] = item
+			image = sibl_gui.ui.common.loadGraphicsItem(path, foundations.common.getFirstItem(data))
+			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
+			self[path] = image
 			self.contentAdded.emit([path])
 		return True
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
-	def addDeferredContent(self, *content):
+	def loadAsynchronousContent(self, **content):
 		"""
-		This method adds given content to the cache.
+		This method loads given content asynchronously into the cache.
 
-		:param \*content: Paths to add. ( \* )
+		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
-		for path in content:
+		for path, data in content.iteritems():
 			if not foundations.common.pathExists(path):
 				raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
 				self.__class__.__name__, path))

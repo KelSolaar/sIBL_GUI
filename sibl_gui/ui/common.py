@@ -146,9 +146,9 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None):
 		raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(__name__, type.__name__))
 
 	if asynchronousLoading:
-		cache.addDeferredContent(path)
+		cache.loadAsynchronousContent(**{path : (type,)})
 	else:
-		not cache.getContent(path) and cache.addContent(**{path : loadGraphicsItem(path, type)})
+		cache.loadContent(**{path : (type,)})
 	return cache.getContent(path)
 
 def getIcon(path, asynchronousLoading=True, imagesCache=None):
