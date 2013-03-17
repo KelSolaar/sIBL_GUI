@@ -22,7 +22,6 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
-import os
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QImage
@@ -34,7 +33,6 @@ from Queue import Queue
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
-from sibl_gui.libraries.freeImage.freeImage import ImageInformationsHeader
 
 #**********************************************************************************************************************
 #***	Module attributes.
