@@ -105,6 +105,7 @@ class UiConstantsTestCase(unittest.TestCase):
 							"apiFile",
 							"nativeImageFormats",
 							"thirdPartyImageFormats",
+							"thumbnailsSizes",
 							"crittercismId")
 
 		for attribute in requiredAttributes:
@@ -452,6 +453,16 @@ class UiConstantsTestCase(unittest.TestCase):
 			self.assertIsInstance(key, unicode)
 			self.assertIsInstance(value, unicode)
 			self.assertTrue(re.compile(value))
+
+	def testThumbnailsSizesAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.thumbnailsSizes` attribute.
+		"""
+
+		self.assertIsInstance(UiConstants.thumbnailsSizes, dict)
+		for key, value in UiConstants.thumbnailsSizes.iteritems():
+			self.assertIsInstance(key, unicode)
+			self.assertIn(type(value), (type(None), int))
 
 	def testCrittercismIdAttribute(self):
 		"""

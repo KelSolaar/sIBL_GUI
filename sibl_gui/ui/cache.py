@@ -34,6 +34,7 @@ import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
 import sibl_gui.ui.workers
+from sibl_gui.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -273,7 +274,7 @@ class AbstractResourcesCache(QObject):
 
 		cacheMetrics = CacheMetrics()
 		cacheMetrics.type = None
-		cacheMetrics.content = dict(zip(self.__mapping.keys(), itertools.repeat(None, len(self.__mapping))))
+		cacheMetrics.content = dict.fromkeys(self.__mapping.keys())
 		return cacheMetrics
 
 class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
@@ -442,7 +443,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __worker__imageLoaded(self, image):
+	def __worker__imageLoaded(self, image, size):
 		"""
 		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
@@ -452,7 +453,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
 		graphicsItem.data = image.data
 		path = graphicsItem.data.path
-		self[path] = graphicsItem
+		self[path][foundations.strings.toString(size)] = graphicsItem
 		self.contentAdded.emit([path])
 
 	def __setDefaultGraphicsItem(self, path):
@@ -471,6 +472,20 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		self.__defaultGraphicsItem = self.__type(path)
 		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
 
+	def getContent(self, key, size="Default"):
+		"""
+		This method reimplements the :meth:`AbstractResourcesCache.getContent` method.
+
+		:param key: Content to retrieve. ( Object )
+		:return: Content. ( Object )
+		"""
+
+		LOGGER.debug("> Retrieving '{0}' content from the cache.".format(self.__class__.__name__, key))
+
+		content = self.mapping.get(key)
+		if content is not None:
+			return content.get(size)
+
 	def loadContent(self, **content):
 		"""
 		This method loads given content into the cache.
@@ -482,14 +497,20 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
 		for path, data in content.iteritems():
+			type, size = data
+
 			if not foundations.common.pathExists(path):
 				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
 				self.__class__.__name__, path))
 				continue
 
-			image = sibl_gui.ui.common.loadGraphicsItem(path, foundations.common.getFirstItem(data))
+			if not self.isCached(path):
+				self[path] = dict.fromkeys(UiConstants.thumbnailsSizes.keys())
+
+			image = sibl_gui.ui.common.loadGraphicsItem(path, type, size)
 			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
-			self[path] = image
+			self[path][size] = image
+
 			self.contentAdded.emit([path])
 		return True
 
@@ -505,12 +526,17 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
 		for path, data in content.iteritems():
+			type, size = data
+
 			if not foundations.common.pathExists(path):
 				raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
 				self.__class__.__name__, path))
 
-			if path in self:
-				image = self.getContent(path)
+			if not self.isCached(path):
+				self[path] = dict.fromkeys(UiConstants.thumbnailsSizes.keys())
+
+			image = self.getContent(path, size)
+			if image is not None:
 				if not hasattr(image, "data"):
 					LOGGER.debug("> {0} | '{1}' object has not 'data' attribute and has been skipped!".format(
 					self.__class__.__name__, image))
@@ -525,9 +551,9 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 					LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
 					self.__class__.__name__, path))
 
-			self[path] = self.__defaultGraphicsItem
+			self[path][size] = self.__defaultGraphicsItem
 			self.contentAdded.emit([path])
-			self.__worker.addRequest(path)
+			self.__worker.addRequest((path, size))
 		return True
 
 	def getMetrics(self):
@@ -537,5 +563,5 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		cacheMetrics = AbstractResourcesCache.getMetrics(self)
 		cacheMetrics.type = self.__type
-		cacheMetrics.content = dict(zip(self.mapping.keys(), (value.data for value in self.mapping.itervalues())))
+		cacheMetrics.content = dict.fromkeys(self.mapping.keys())
 		return cacheMetrics

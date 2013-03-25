@@ -315,7 +315,7 @@ class IblSetNode(AbstractDatabaseNode):
 		"""
 
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
-							Qt.DecorationRole : self.databaseItem.icon,
+							Qt.DecorationRole : self.databaseItem.backgroundImage,
 							Qt.EditRole : self.databaseItem.title})
 		self.updateToolTip()
 

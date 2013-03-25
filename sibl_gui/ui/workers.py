@@ -58,7 +58,7 @@ class GraphicsItem_worker(QThread):
 
 	# If the signal uses **QImage** as signature instead of **object**, a copy gets passed to the slot instead
 	# of the object itself, the issue is that the copy loses any defined extra attributes.
-	imageLoaded = pyqtSignal(object)
+	imageLoaded = pyqtSignal(object, unicode)
 	"""
 	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded. ( pyqtSignal )
 	
@@ -119,20 +119,21 @@ class GraphicsItem_worker(QThread):
 	#***	Class methods.
 	#******************************************************************************************************************
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
-	def addRequest(self, path):
+	def addRequest(self, request):
 		"""
-		This method adds given image path to the requests queue.
+		This method adds given request to the requests queue.
 
-		:param path: Image path. ( String )
+		:param request: Request. ( Tuple / List )
 		:return: Method success. ( Boolean )
 		"""
 
+		path, size = request
 		if not foundations.common.pathExists(path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while adding request: '{1}' file doesn't exists!".format(
 			self.__class__.__name__, path))
 
-		self.__requests.put(path)
+		self.__requests.put(request)
 		return True
 
 	def run(self):
@@ -141,14 +142,15 @@ class GraphicsItem_worker(QThread):
 		"""
 
 		while True:
-			path = self.__requests.get()
+			request = self.__requests.get()
 
 			if self.__interrupt:
 				return
 
-			image = sibl_gui.ui.common.loadGraphicsItem(path, QImage)
+			path, size = request
+			image = sibl_gui.ui.common.loadGraphicsItem(path, QImage, size)
 			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
-			self.imageLoaded.emit(image)
+			self.imageLoaded.emit(image, size)
 
 	def quit(self):
 		"""

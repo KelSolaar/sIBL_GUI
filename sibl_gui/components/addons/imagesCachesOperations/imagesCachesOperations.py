@@ -316,8 +316,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | \tCached graphics items count: '{1}'".format(self.__class__.__name__, len(cacheMetrics)))
 			for path, data in sorted(cache.getMetrics().content.iteritems()):
 				LOGGER.info("{0} | \t\t'{1}':".format(self.__class__.__name__, path))
-				LOGGER.info("{0} | \t\t\tSize: {1}x{2} px".format(self.__class__.__name__, data.width, data.height))
-				LOGGER.info("{0} | \t\t\tBpp: {1} bit".format(self.__class__.__name__, data.bpp / 4))
+# 				LOGGER.info("{0} | \t\t\tSize: {1}x{2} px".format(self.__class__.__name__, data.width, data.height))
+# 				LOGGER.info("{0} | \t\t\tBpp: {1} bit".format(self.__class__.__name__, data.bpp / 4))
 			LOGGER.info(separator)
 		return True
 

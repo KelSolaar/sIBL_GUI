@@ -150,18 +150,26 @@ class UiConstants():
 	"""Application online donation file:
 	'**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html**' ( String )"""
 
-	nativeImageFormats = { "Bmp" : "\.bmp$",
-							"Jpeg" : "\.jpeg$",
-							"Jpg" : "\.jpg$",
-							"Png" : "\.png$" }
+	nativeImageFormats = {"Bmp" : "\.bmp$",
+						"Jpeg" : "\.jpeg$",
+						"Jpg" : "\.jpg$",
+						"Png" : "\.png$" }
 	"""Application native image file formats. ( Dictionary )"""
 
-	thirdPartyImageFormats = { "Exr" : ("\.exr$"),
-								"Hdr" : ("\.hdr$"),
-								"Tif" : ("\.tif$"),
-								"Tiff" : ("\.tiff$"),
-								"Tga" : ("\.tga$")}
+	thirdPartyImageFormats = {"Exr" : ("\.exr$"),
+							"Hdr" : ("\.hdr$"),
+							"Tif" : ("\.tif$"),
+							"Tiff" : ("\.tiff$"),
+							"Tga" : ("\.tga$")}
 	"""Application third party image file formats. ( Dictionary )"""
+
+	thumbnailsSizes = { "Default" : None,
+					"XLarge" : 512,
+					"Large" : 256,
+					"Medium" : 128,
+					"Small" : 64,
+					"XSmall" : 32}
+	"""Application thumbnails sizes. ( Dictionary )"""
 
 	crittercismId = "5075c158d5f9b9796b000002"
 	"""Crittercism Id: '**51290b3589ea7429250004fe**' ( String )"""

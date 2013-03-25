@@ -23,6 +23,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+from PyQt4.QtCore import QVariant
 from PyQt4.QtCore import Qt
 
 #**********************************************************************************************************************
@@ -106,3 +107,34 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]],
 										reverseOrder=order)
 		self.endResetModel()
+
+	def data(self, index, role=Qt.DisplayRole):
+		"""
+		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
+		
+		:param index: Index. ( QModelIndex )
+		:param role: Role. ( Integer )
+		:return: Data. ( QVariant )
+		"""
+
+		if not index.isValid():
+			return QVariant()
+
+		node = self.getNode(index)
+		if index.column() == 0:
+			if hasattr(node, "roles"):
+				value = node.roles.get(role)
+				if role == Qt.DecorationRole:
+					return sibl_gui.ui.common.getIcon(value, size="Small") if value is not None else QVariant()
+				else:
+					return value if value is not None else QVariant()
+		else:
+			attribute = self.getAttribute(node, index.column())
+			if attribute:
+				if hasattr(attribute, "roles"):
+					value = attribute.roles.get(role)
+					if role == Qt.DecorationRole:
+						return sibl_gui.ui.common.getIcon(value) if value is not None else QVariant()
+					else:
+						return value if value is not None else QVariant()
+		return QVariant()
