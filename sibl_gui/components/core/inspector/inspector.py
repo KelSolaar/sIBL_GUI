@@ -1356,7 +1356,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								nodeFlags=nodeFlags,
 								attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = ""
-			plateNode.roles[Qt.DecorationRole] = plate.icon
+			plateNode.roles[Qt.DecorationRole] = foundations.common.filterPath(plate.icon)
 
 		self.__model.initializeModel(rootNode)
 		return True

@@ -27,6 +27,7 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
@@ -314,8 +315,12 @@ class IblSetNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
+		path = foundations.common.getFirstItem(filter(foundations.common.pathExists, [self.databaseItem.backgroundImage,
+																					self.databaseItem.previewImage,
+																					self.databaseItem.icon]))
+
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
-							Qt.DecorationRole : self.databaseItem.backgroundImage,
+							Qt.DecorationRole : foundations.common.filterPath(path),
 							Qt.EditRole : self.databaseItem.title})
 		self.updateToolTip()
 

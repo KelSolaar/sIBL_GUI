@@ -29,7 +29,6 @@ if sys.version_info[:2] <= (2, 6):
 	from ordereddict import OrderedDict
 else:
 	from collections import OrderedDict
-from PyQt4.QtCore import QVariant
 from PyQt4.QtCore import Qt
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QFileDialog
@@ -57,7 +56,6 @@ from sibl_gui.components.core.collectionsOutliner.models import CollectionsModel
 from sibl_gui.components.core.collectionsOutliner.nodes import OverallCollectionNode
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
 from sibl_gui.components.core.database.nodes import CollectionNode
-from sibl_gui.components.core.database.types import IblSet
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
@@ -1123,7 +1121,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 												parent=overallCollectionNode,
 												nodeFlags=nodeFlags,
 												attributesFlags=attributesFlags)
-			collectionNode.roles[Qt.DecorationRole] = decorationRole
+			collectionNode.roles[Qt.DecorationRole] = foundations.common.filterPath(decorationRole)
 		overallCollectionNode.updateNodeAttributes()
 		rootNode.sortChildren()
 

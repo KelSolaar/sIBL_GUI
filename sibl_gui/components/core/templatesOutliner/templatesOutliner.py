@@ -1677,7 +1677,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				iconPath = os.path.join(self.__uiResourcesDirectory, "{0}{1}".format(software, self.__uiSoftwareAffixe))
-				softwareNode.roles[Qt.DecorationRole] = foundations.common.pathExists(iconPath) and iconPath or \
+				softwareNode.roles[Qt.DecorationRole] = iconPath if foundations.common.pathExists(iconPath) else \
 												os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
 
 				for template in templates:

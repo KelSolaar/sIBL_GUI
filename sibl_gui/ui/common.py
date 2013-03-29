@@ -22,6 +22,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import hashlib
 import itertools
 import os
 import re
@@ -37,6 +38,7 @@ from PyQt4.QtGui import QPen
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
+import foundations.environment
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.exceptions
@@ -58,25 +60,27 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"convertImage",
-			"loadGraphicsItem",
-			"getGraphicsItem",
-			"getIcon",
-			"getPixmap",
-			"getImage",
-			"createPixmap",
-			"getImageInformationsHeader",
-			"filterImagePath",
-			"getFormatedShotDate"]
+		"THUMBNAILS_DIRECTORY",
+		"convertImage",
+		"loadGraphicsItem",
+		"getGraphicsItem",
+		"getIcon",
+		"getPixmap",
+		"getImage",
+		"createPixmap",
+		"getImageInformationsHeader",
+		"filterImagePath",
+		"getFormatedShotDate"]
 
 LOGGER = foundations.verbose.installLogger()
+THUMBNAILS_DIRECTORY = os.path.join(foundations.environment.getUserApplicationDataDirectory(), Constants.ioDirectory, "thumbnails")
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
 def convertImage(image, type):
 	"""
-	This method converts given image to given type.
+	This definition converts given image to given type.
 
 	:param image: Image to convert. ( QImage )
 	:return: Converted image. ( QImage / QPixmap / QIcon )
@@ -90,12 +94,28 @@ def convertImage(image, type):
 
 	return graphicsItem
 
-def extractThumbnail(path, size=None, format="PNG", quality= -1):
-	# TODO: Handle 3rdparty thumbnails stuff here.
-	thumbnail = "/Users/kelsolaar/Downloads/Temp/{0}_{1}.png".format(os.path.basename(path), "Small")
+def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirectory=THUMBNAILS_DIRECTORY):
+	"""
+	This definition extract given image thumbnail at given size.
+
+	:param path: Image path. ( String )
+	:param size: Thumbnail size. ( String )
+	:param format: Thumbnail format. ( String )
+	:param quality: Thumbnail quality, -1 to 100. ( Integer )
+	:param cacheDirectory: Thumbnails cache directory. ( String )
+	:return: Thumbnail image. ( QImage )
+	"""
+
+	if not foundations.common.pathExists(cacheDirectory):
+		foundations.io.setDirectory(cacheDirectory)
+
+	thumbnail = os.path.join(cacheDirectory, hashlib.md5("{0}_{1}.png".format(path, size)).hexdigest())
 	if not os.path.exists(thumbnail):
 		image = QImage(path)
-		image = image.scaled(256, 128, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+		image = image.scaled(UiConstants.thumbnailsSizes.get(size),
+							UiConstants.thumbnailsSizes.get(size),
+							Qt.KeepAspectRatio,
+							Qt.SmoothTransformation)
 		image.save(thumbnail, format, quality)
 		return image
 	else:
@@ -103,7 +123,7 @@ def extractThumbnail(path, size=None, format="PNG", quality= -1):
 
 def loadGraphicsItem(path, type, size="Default"):
 	"""
-	This method loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	This definition loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
 	:param path: Image path. ( String )
@@ -140,7 +160,7 @@ def loadGraphicsItem(path, type, size="Default"):
 
 def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
-	This method returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	This definition returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Image path. ( String )
@@ -170,7 +190,7 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None, size
 
 def getIcon(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
-	This method returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
+	This definition returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -183,7 +203,7 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 
 def getPixmap(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
-	This method returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	This definition returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -196,7 +216,7 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 
 def getImage(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
-	This method returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
+	This definition returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
@@ -209,7 +229,7 @@ def getImage(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 
 def createPixmap(width=128, height=128, text=None):
 	"""
-	This method create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	This definition create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param width: Pixmap width. ( Integer )
 	:param height: Pixmap height. ( Integer )
@@ -230,7 +250,7 @@ def createPixmap(width=128, height=128, text=None):
 @foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 def getImageInformationsHeader(path, graphicsItem):
 	"""
-	This method returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
+	This definition returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
 	from given path and graphics item.
 
 	:param path: Image path. ( String )
@@ -252,7 +272,7 @@ def getImageInformationsHeader(path, graphicsItem):
 
 def filterImagePath(path):
 	"""
-	This method filters the image path.
+	This definition filters the image path.
 
 	:param path: Image path. ( String )
 	:return: Path. ( String )
@@ -270,7 +290,7 @@ def filterImagePath(path):
 
 def getFormatedShotDate(date, time):
 	"""
-	This method returns a formated shot date.
+	This definition returns a formated shot date.
 
 	:param date: Ibl Set date key value. ( String )
 	:param time: Ibl Set time key value. ( String )

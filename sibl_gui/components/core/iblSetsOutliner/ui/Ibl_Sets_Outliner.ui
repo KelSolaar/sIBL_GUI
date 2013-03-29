@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Ibl_Sets_Outliner_Widget</class>
  <widget class="QWidget" name="Ibl_Sets_Outliner_Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>413</width>
+    <height>42</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Ibl Sets Outliner</string>
   </property>
@@ -64,14 +72,8 @@
          </item>
          <item row="0" column="2">
           <widget class="QSlider" name="Thumbnails_Size_horizontalSlider">
-           <property name="minimum">
-            <number>24</number>
-           </property>
-           <property name="maximum">
-            <number>128</number>
-           </property>
-           <property name="sliderPosition">
-            <number>128</number>
+           <property name="value">
+            <number>99</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>

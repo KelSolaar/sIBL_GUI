@@ -55,7 +55,7 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	:class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner` Component Interface class. 
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
+	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, thumbnailsSize=None):
 		"""
 		This method initializes the class.
 
@@ -63,11 +63,17 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		:param rootNode: Root node. ( AbstractCompositeNode )
 		:param horizontalHeaders: Headers. ( OrderedDict )
 		:param verticalHeaders: Headers. ( OrderedDict )
+		:param thumbnailsSize: Thumbnails size. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		sibl_gui.ui.models.GraphModel.__init__(self,
+											parent,
+											rootNode,
+											horizontalHeaders,
+											verticalHeaders,
+											thumbnailsSize=thumbnailsSize)
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -108,33 +114,3 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 										reverseOrder=order)
 		self.endResetModel()
 
-	def data(self, index, role=Qt.DisplayRole):
-		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
-		
-		:param index: Index. ( QModelIndex )
-		:param role: Role. ( Integer )
-		:return: Data. ( QVariant )
-		"""
-
-		if not index.isValid():
-			return QVariant()
-
-		node = self.getNode(index)
-		if index.column() == 0:
-			if hasattr(node, "roles"):
-				value = node.roles.get(role)
-				if role == Qt.DecorationRole:
-					return sibl_gui.ui.common.getIcon(value, size="Small") if value is not None else QVariant()
-				else:
-					return value if value is not None else QVariant()
-		else:
-			attribute = self.getAttribute(node, index.column())
-			if attribute:
-				if hasattr(attribute, "roles"):
-					value = attribute.roles.get(role)
-					if role == Qt.DecorationRole:
-						return sibl_gui.ui.common.getIcon(value) if value is not None else QVariant()
-					else:
-						return value if value is not None else QVariant()
-		return QVariant()

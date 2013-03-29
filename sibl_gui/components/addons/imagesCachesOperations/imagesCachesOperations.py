@@ -34,7 +34,6 @@ import sibl_gui.exceptions
 import umbra.exceptions
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
-from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.

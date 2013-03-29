@@ -34,6 +34,7 @@ from PyQt4.QtGui import QListView
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.views
+from sibl_gui.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -57,7 +58,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Database Ibl Sets as thumbnails.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False, message=None):
+	def __init__(self, parent, model=None, readOnly=False, message=None, thumbnailsSize=None):
 		"""
 		This method initializes the class.
 
@@ -72,15 +73,50 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
-		self.__listViewSpacing = 24
+		self.__thumbnailsSize = None
+		self.thumbnailsSize = thumbnailsSize if thumbnailsSize is not None else "Large"
+
+		self.__listViewSpacing = 20
 		self.__listViewMargin = 32
-		self.__listViewIconSize = 128
 
 		Thumbnails_QListView.__initializeUi(self)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
+	@property
+	def thumbnailsSize(self):
+		"""
+		This method is the property for **self.__thumbnailsSize** attribute.
+
+		:return: self.__thumbnailsSize. ( Dictionary )
+		"""
+
+		return self.__thumbnailsSize
+
+	@thumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsSize** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+		self.__thumbnailsSize = value
+
+	@thumbnailsSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+
 	@property
 	def listViewSpacing(self):
 		"""
@@ -149,40 +185,6 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
 
-	@property
-	def listViewIconSize(self):
-		"""
-		This method is the property for **self.__listViewIconSize** attribute.
-
-		:return: self.__listViewIconSize. ( Integer )
-		"""
-
-		return self.__listViewIconSize
-
-	@listViewIconSize.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def listViewIconSize(self, value):
-		"""
-		This method is the setter method for **self.__listViewIconSize** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value is not None:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
-		self.__listViewIconSize = value
-
-	@listViewIconSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewIconSize(self):
-		"""
-		This method is the deleter method for **self.__listViewIconSize** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
-
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -203,16 +205,18 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	def __setDefaultUiState(self):
+	def __setDefaultUiState(self, thumbnailsSize=None):
 		"""
 		This method sets the Widget default ui state.
+
+		:param thumbnailsSize: Thumbnails size. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting default View state!")
 
-		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing,
-								self.__listViewIconSize + self.__listViewMargin))
+		length = thumbnailsSize if thumbnailsSize is not None else self.iconSize().width()
+		self.setIconSize(QSize(length, length / 2))
+		self.setGridSize(QSize(length + self.__listViewSpacing, length / 2 + self.__listViewMargin))
 
 class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""

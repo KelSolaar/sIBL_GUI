@@ -49,7 +49,7 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 	Component Interface class. 
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
+	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, thumbnailsSize=None):
 		"""
 		This method initializes the class.
 
@@ -57,11 +57,17 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 		:param rootNode: Root node. ( AbstractCompositeNode )
 		:param horizontalHeaders: Headers. ( OrderedDict )
 		:param verticalHeaders: Headers. ( OrderedDict )
+		:param thumbnailsSize: Thumbnails size. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		sibl_gui.ui.models.GraphModel.__init__(self,
+											parent,
+											rootNode,
+											horizontalHeaders,
+											verticalHeaders,
+											thumbnailsSize=thumbnailsSize)
 
 	#******************************************************************************************************************
 	#***	Class methods.

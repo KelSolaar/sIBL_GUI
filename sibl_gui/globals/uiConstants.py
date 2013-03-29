@@ -169,6 +169,7 @@ class UiConstants():
 					"Medium" : 128,
 					"Small" : 64,
 					"XSmall" : 32}
+
 	"""Application thumbnails sizes. ( Dictionary )"""
 
 	crittercismId = "5075c158d5f9b9796b000002"

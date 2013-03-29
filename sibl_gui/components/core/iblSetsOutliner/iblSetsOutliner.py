@@ -65,6 +65,7 @@ from sibl_gui.components.core.iblSetsOutliner.models import IblSetsModel
 from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
 from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
 from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
+from sibl_gui.globals.uiConstants import UiConstants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
@@ -158,6 +159,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Shot Date", "date"),
 										("Shot Time", "time"),
 										("Comment", "comment")])
+		self.__thumbnailsSize = "Large"
+		self.__thumbnailsMinimumSize = "XSmall"
 
 		self.__searchContexts = OrderedDict([("Search In Names", "title"),
 								("Search In Authors", "author"),
@@ -875,6 +878,72 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
+	def thumbnailsSize(self):
+		"""
+		This method is the property for **self.__thumbnailsSize** attribute.
+
+		:return: self.__thumbnailsSize. ( Dictionary )
+		"""
+
+		return self.__thumbnailsSize
+
+	@thumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsSize** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+		self.__thumbnailsSize = value
+
+	@thumbnailsSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+
+	@property
+	def thumbnailsMinimumSize(self):
+		"""
+		This method is the property for **self.__thumbnailsMinimumSize** attribute.
+
+		:return: self.__thumbnailsMinimumSize. ( Dictionary )
+		"""
+
+		return self.__thumbnailsMinimumSize
+
+	@thumbnailsMinimumSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsMinimumSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsMinimumSize** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsMinimumSize", value)
+		self.__thumbnailsMinimumSize = value
+
+	@thumbnailsMinimumSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsMinimumSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsMinimumSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsMinimumSize"))
+
+	@property
 	def searchContexts(self):
 		"""
 		This method is the property for **self.__searchContexts** attribute.
@@ -1015,7 +1084,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.parameters.databaseReadOnly and \
 		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
 																									"databaseReadOnly"))
-		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
+		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders, thumbnailsSize=self.__thumbnailsSize)
 
 		self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
 		self.Ibl_Sets_Outliner_gridLayout.addWidget(self.Ibl_Sets_Outliner_stackedWidget)
@@ -1023,12 +1092,13 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__thumbnailsView = Thumbnails_QListView(self,
 													self.__model,
 													self.__engine.parameters.databaseReadOnly,
-													"No Ibl Set to view!")
+													"No Ibl Set to view!",
+													self.__thumbnailsSize)
 		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
+		thumbnailsSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
 		if state:
-			self.__thumbnailsView.listViewIconSize = listViewIconSize
+			self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(thumbnailsSize)
 		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__thumbnailsView)
 
 		self.__columnsView = Columns_QListView(self,
@@ -1070,7 +1140,9 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.searchActiveLabel.setMenu(self.__searchContextsMenu)
 		self.setActiveSearchContext(self.__activeSearchContext)
 
-		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
+		self.Thumbnails_Size_horizontalSlider.setMinimum(UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize))
+		self.Thumbnails_Size_horizontalSlider.setMaximum(UiConstants.thumbnailsSizes.get(self.__thumbnailsSize))
+		self.Thumbnails_Size_horizontalSlider.setValue(thumbnailsSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
@@ -1347,9 +1419,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param value: Thumbnails size. ( Integer )
 		"""
 
-		self.__thumbnailsView.listViewIconSize = value
-
-		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState()
+		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(value)
 
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
