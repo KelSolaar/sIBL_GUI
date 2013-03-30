@@ -1,0 +1,13 @@
+[Component]
+Name = addons.cachesOperations
+Title = Caches Operations
+Module = cachesOperations
+Object = CachesOperations
+Require = factory.preferencesManager
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Caches Operations addon Component.

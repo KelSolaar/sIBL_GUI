@@ -44,5 +44,9 @@ class RuntimeGlobals():
 	templatesUserDirectory = None
 	"""Templates user directory."""
 
+	thumbnailsCacheDirectory = None
+	"""Thumbnails cache directory."""
+
 	imagesCaches = None
 	"""Images cache."""
+

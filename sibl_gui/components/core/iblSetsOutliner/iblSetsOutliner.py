@@ -65,7 +65,7 @@ from sibl_gui.components.core.iblSetsOutliner.models import IblSetsModel
 from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
 from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
 from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
-from sibl_gui.globals.uiConstants import UiConstants
+from umbra.globals.uiConstants import UiConstants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 

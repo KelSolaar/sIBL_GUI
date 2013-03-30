@@ -106,6 +106,7 @@ class UiConstantsTestCase(unittest.TestCase):
 							"nativeImageFormats",
 							"thirdPartyImageFormats",
 							"thumbnailsSizes",
+							"thumbnailsCacheDirectory",
 							"crittercismId")
 
 		for attribute in requiredAttributes:
@@ -463,6 +464,13 @@ class UiConstantsTestCase(unittest.TestCase):
 		for key, value in UiConstants.thumbnailsSizes.iteritems():
 			self.assertIsInstance(key, unicode)
 			self.assertIn(type(value), (type(None), int))
+
+	def testThumbnailsCacheDirectoryAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.thumbnailsCacheDirectory` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.thumbnailsCacheDirectory, "\w+")
 
 	def testCrittercismIdAttribute(self):
 		"""

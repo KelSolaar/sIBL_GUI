@@ -45,7 +45,7 @@ import sibl_gui.exceptions
 import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
 from sibl_gui.libraries.freeImage.freeImage import ImageInformationsHeader
-from sibl_gui.globals.uiConstants import UiConstants
+from umbra.globals.uiConstants import UiConstants
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -60,8 +60,9 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"THUMBNAILS_DIRECTORY",
 		"convertImage",
+		"getThumbnailPath",
+		"extractThumbnail",
 		"loadGraphicsItem",
 		"getGraphicsItem",
 		"getIcon",
@@ -73,7 +74,6 @@ __all__ = ["LOGGER",
 		"getFormatedShotDate"]
 
 LOGGER = foundations.verbose.installLogger()
-THUMBNAILS_DIRECTORY = os.path.join(foundations.environment.getUserApplicationDataDirectory(), Constants.ioDirectory, "thumbnails")
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -94,7 +94,19 @@ def convertImage(image, type):
 
 	return graphicsItem
 
-def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirectory=THUMBNAILS_DIRECTORY):
+def getThumbnailPath(path, size, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
+	"""
+	This definition returns given image thumbnail cached path at given size.
+
+	:param path: Image path. ( String )
+	:param size: Thumbnail size. ( String )
+	:param cacheDirectory: Thumbnails cache directory. ( String )
+	:return: Cached thumbnail path. ( String )
+	"""
+
+	return os.path.join(cacheDirectory, hashlib.md5("{0}_{1}.png".format(path, size)).hexdigest())
+
+def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
 	"""
 	This definition extract given image thumbnail at given size.
 
@@ -109,7 +121,7 @@ def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirect
 	if not foundations.common.pathExists(cacheDirectory):
 		foundations.io.setDirectory(cacheDirectory)
 
-	thumbnail = os.path.join(cacheDirectory, hashlib.md5("{0}_{1}.png".format(path, size)).hexdigest())
+	thumbnail = getThumbnailPath(path, size, cacheDirectory)
 	if not os.path.exists(thumbnail):
 		image = QImage(path)
 		image = image.scaled(UiConstants.thumbnailsSizes.get(size),

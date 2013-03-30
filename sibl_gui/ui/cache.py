@@ -23,7 +23,6 @@ from __future__ import unicode_literals
 #***	External imports.
 #**********************************************************************************************************************
 import os
-import itertools
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 
@@ -34,7 +33,7 @@ import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
 import sibl_gui.ui.workers
-from sibl_gui.globals.uiConstants import UiConstants
+from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -47,9 +46,9 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"CacheMetrics",
-			"AbstractResourcesCache",
-			"AsynchronousGraphicsItemsCache"]
+		"CacheMetrics",
+		"AbstractResourcesCache",
+		"AsynchronousGraphicsItemsCache"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -563,5 +562,12 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		cacheMetrics = AbstractResourcesCache.getMetrics(self)
 		cacheMetrics.type = self.__type
-		cacheMetrics.content = dict.fromkeys(self.mapping.keys())
+		content = {}
+		for path, data in self.mapping.iteritems():
+			thumbnails = {}
+			for size, thumbnail in data.iteritems():
+				thumbnails[size] = None if thumbnail is None else (sibl_gui.ui.common.getThumbnailPath(path, size),
+																	thumbnail.data)
+			content[path] = thumbnails
+		cacheMetrics.content = content
 		return cacheMetrics

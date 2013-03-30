@@ -34,7 +34,7 @@ from PyQt4.QtGui import QListView
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.views
-from sibl_gui.globals.uiConstants import UiConstants
+from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.

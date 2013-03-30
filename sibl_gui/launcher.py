@@ -116,8 +116,6 @@ _overrideApplicationToolbar()
 #**********************************************************************************************************************
 import foundations.common
 import foundations.verbose
-import sibl_gui.ui.cache
-import sibl_gui.ui.models
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.models
@@ -139,6 +137,28 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+
+#**********************************************************************************************************************
+#***	Thumbnails cache settings.
+#**********************************************************************************************************************
+def _setThumbnailsCache():
+	"""
+	This definition sets the Application thumbnails cache.
+	"""
+
+	umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = os.path.join(
+														foundations.environment.getUserApplicationDataDirectory(),
+														umbra.globals.constants.Constants.ioDirectory,
+														umbra.globals.uiConstants.UiConstants.thumbnailsCacheDirectory)
+
+_setThumbnailsCache()
+
+#**********************************************************************************************************************
+#***	Images caches settings.
+#**********************************************************************************************************************
+import sibl_gui.ui.cache
+import sibl_gui.ui.models
+
 def _setImagesCaches():
 	"""
 	This definition sets the Application images caches.
