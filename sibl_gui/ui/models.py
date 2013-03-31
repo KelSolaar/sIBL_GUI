@@ -61,8 +61,7 @@ class GraphModel(umbra.ui.models.GraphModel):
 				rootNode=None,
 				horizontalHeaders=None,
 				verticalHeaders=None,
-				defaultNode=None,
-				thumbnailsSize=None):
+				defaultNode=None):
 		"""
 		This method initializes the class.
 
@@ -71,52 +70,11 @@ class GraphModel(umbra.ui.models.GraphModel):
 		:param horizontalHeaders: Headers. ( OrderedDict )
 		:param verticalHeaders: Headers. ( OrderedDict )
 		:param defaultNode: Default node. ( GraphModelNode )
-		:param thumbnailsSize: Thumbnails size. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders, defaultNode)
-
-		# --- Setting class attributes. ---
-		self.__thumbnailsSize = None
-		self.thumbnailsSize = thumbnailsSize if thumbnailsSize is not None else "Default"
-
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
-	@property
-	def thumbnailsSize(self):
-		"""
-		This method is the property for **self.__thumbnailsSize** attribute.
-
-		:return: self.__thumbnailsSize. ( Dictionary )
-		"""
-
-		return self.__thumbnailsSize
-
-	@thumbnailsSize.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def thumbnailsSize(self, value):
-		"""
-		This method is the setter method for **self.__thumbnailsSize** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
-		self.__thumbnailsSize = value
-
-	@thumbnailsSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsSize(self):
-		"""
-		This method is the deleter method for **self.__thumbnailsSize** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -138,7 +96,10 @@ class GraphModel(umbra.ui.models.GraphModel):
 			if hasattr(node, "roles"):
 				value = node.roles.get(role)
 				if role == Qt.DecorationRole:
-					return sibl_gui.ui.common.getIcon(value, size=self.__thumbnailsSize) if value is not None else QVariant()
+					return sibl_gui.ui.common.getIcon(value,
+													size=node.get("iconSize", "Default"),
+													placeholder=node.get("iconPlaceholder")) \
+													if value is not None else QVariant()
 				else:
 					return value if value is not None else QVariant()
 		else:
@@ -147,7 +108,10 @@ class GraphModel(umbra.ui.models.GraphModel):
 				if hasattr(attribute, "roles"):
 					value = attribute.roles.get(role)
 					if role == Qt.DecorationRole:
-						return sibl_gui.ui.common.getIcon(value) if value is not None else QVariant()
+						return sibl_gui.ui.common.getIcon(value,
+													size=attribute.get("iconSize", "Default"),
+													placeholder=attribute.get("iconPlaceholder")) \
+													if value is not None else QVariant()
 					else:
 						return value if value is not None else QVariant()
 		return QVariant()

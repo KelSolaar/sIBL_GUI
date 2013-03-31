@@ -58,7 +58,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	This class is used to display Database Ibl Sets as thumbnails.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False, message=None, thumbnailsSize=None):
+	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
 		This method initializes the class.
 
@@ -73,8 +73,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
 
 		# --- Setting class attributes. ---
-		self.__thumbnailsSize = None
-		self.thumbnailsSize = thumbnailsSize if thumbnailsSize is not None else "Large"
+		self.__listViewSpacing = 24
+		self.__listViewMargin = 32
 
 		Thumbnails_QListView.__initializeUi(self)
 
@@ -82,37 +82,72 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def thumbnailsSize(self):
+	def listViewSpacing(self):
 		"""
-		This method is the property for **self.__thumbnailsSize** attribute.
+		This method is the property for **self.__listViewSpacing** attribute.
 
-		:return: self.__thumbnailsSize. ( Dictionary )
+		:return: self.__listViewSpacing. ( Integer )
 		"""
 
-		return self.__thumbnailsSize
+		return self.__listViewSpacing
 
-	@thumbnailsSize.setter
+	@listViewSpacing.setter
 	@foundations.exceptions.handleExceptions(AssertionError)
-	def thumbnailsSize(self, value):
+	def listViewSpacing(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsSize** attribute.
+		This method is the setter method for **self.__listViewSpacing** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
-		self.__thumbnailsSize = value
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
+		self.__listViewSpacing = value
 
-	@thumbnailsSize.deleter
+	@listViewSpacing.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsSize(self):
+	def listViewSpacing(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		This method is the deleter method for **self.__listViewSpacing** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
+
+	@property
+	def listViewMargin(self):
+		"""
+		This method is the property for **self.__listViewMargin** attribute.
+
+		:return: self.__listViewMargin. ( Integer )
+		"""
+
+		return self.__listViewMargin
+
+	@listViewMargin.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def listViewMargin(self, value):
+		"""
+		This method is the setter method for **self.__listViewMargin** attribute.
+
+		:param value: Attribute value. ( Integer )
+		"""
+
+		if value is not None:
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
+		self.__listViewMargin = value
+
+	@listViewMargin.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def listViewMargin(self):
+		"""
+		This method is the deleter method for **self.__listViewMargin** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -134,17 +169,20 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	def __setDefaultUiState(self, thumbnailsSize=None):
+	def __setDefaultUiState(self, iconsSize=None):
 		"""
 		This method sets the Widget default ui state.
 
-		:param thumbnailsSize: Thumbnails size. ( Integer )
+		:param iconsSize: Icons size. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting default View state!")
 
-		length = thumbnailsSize if thumbnailsSize is not None else self.iconSize().width()
-		self.setIconSize(QSize(length, length / 2))
+		if not iconsSize:
+			return
+
+		self.setIconSize(QSize(iconsSize, iconsSize / 2))
+		self.setGridSize(QSize(iconsSize + self.__listViewSpacing, iconsSize / 2 + self.__listViewMargin))
 
 class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""

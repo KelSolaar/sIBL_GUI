@@ -54,6 +54,7 @@ import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.operations
+import sibl_gui.ui.common
 import umbra.engine
 import umbra.exceptions
 import umbra.ui.common
@@ -131,6 +132,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiDetailsViewImage = "Details_View.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
+		self.__uiLoadingImage = "Loading.png"
 		self.__dockArea = 8
 
 		self.__engine = None
@@ -364,6 +366,37 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSmallestSizeImage"))
+	@property
+	def uiLoadingImage(self):
+		"""
+		This method is the property for **self.__uiLoadingImage** attribute.
+
+		:return: self.__uiLoadingImage. ( String )
+		"""
+
+		return self.__uiLoadingImage
+
+	@uiLoadingImage.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self, value):
+		"""
+		This method is the setter method for **self.__uiLoadingImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+
+	@uiLoadingImage.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self):
+		"""
+		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@property
 	def dockArea(self):
@@ -1084,7 +1117,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.parameters.databaseReadOnly and \
 		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
 																									"databaseReadOnly"))
-		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders, thumbnailsSize=self.__thumbnailsSize)
+		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
 		self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
 		self.Ibl_Sets_Outliner_gridLayout.addWidget(self.Ibl_Sets_Outliner_stackedWidget)
@@ -1092,8 +1125,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__thumbnailsView = Thumbnails_QListView(self,
 													self.__model,
 													self.__engine.parameters.databaseReadOnly,
-													"No Ibl Set to view!",
-													self.__thumbnailsSize)
+													"No Ibl Set to view!")
 		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		thumbnailsSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
@@ -1896,12 +1928,18 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = iblSets or self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
+
+		iconPlaceHolder = \
+		sibl_gui.ui.common.loadGraphicsItem(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage), QIcon)
+
 		for iblSet in iblSets:
 			iblSetNode = IblSetNode(iblSet,
 									name=iblSet.title,
 									parent=rootNode,
 									nodeFlags=nodeFlags,
-									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+									iconSize=self.__thumbnailsSize,
+									iconPlaceholder=iconPlaceHolder)
 
 			path = foundations.strings.toString(iblSet.path)
 			if not foundations.common.pathExists(path):

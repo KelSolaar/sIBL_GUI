@@ -136,6 +136,17 @@ class GraphicsItem_worker(QThread):
 		self.__requests.put(request)
 		return True
 
+	def flushRequests(self):
+		"""
+		This method flushes the requests queue.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		with self.__requests.mutex:
+			self.__requests.queue.clear()
+		return True
+
 	def run(self):
 		"""
 		This method reimplements the :meth:`QThread.run` method.

@@ -38,7 +38,6 @@ from PyQt4.QtGui import QPen
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
-import foundations.environment
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.exceptions
@@ -155,24 +154,24 @@ def loadGraphicsItem(path, type, size="Default"):
 			errorImage = umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 			for extension in UiConstants.thirdPartyImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
- 					try:
+					try:
 						image = Image(path)
 						image = image.convertToQImage()
 						graphicsItem = \
 						convertImage(extractThumbnail(path, size, image), type) if size != "Default" else \
 						convertImage(image, type)
 						break
- 					except Exception as error:
- 						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
- 																										path,
- 																										error))
- 						graphicsItem = type(errorImage)
- 						break
+					except Exception as error:
+						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
+																									path,
+																									error))
+						graphicsItem = type(errorImage)
+						break
 			else:
 				graphicsItem = type(errorImage)
 	return graphicsItem
 
-def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None, size="Default"):
+def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
 	This definition returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
@@ -193,16 +192,15 @@ def getGraphicsItem(path, type, asynchronousLoading=True, imagesCache=None, size
 		raise sibl_gui.exceptions.CacheExistsError("{0} | '{1}' cache doesn't exists!".format(__name__, type.__name__))
 
 	graphicsItem = cache.getContent(path, size)
-	if graphicsItem is not None:
-		return graphicsItem
-	else:
+	if graphicsItem is None:
 		if asynchronousLoading:
-			cache.loadAsynchronousContent(**{path : (type, size)})
+			cache.loadAsynchronousContent(**{path : (type, size, placeholder)})
 		else:
 			cache.loadContent(**{path : (type, size)})
 		return cache.getContent(path, size)
+	return graphicsItem
 
-def getIcon(path, asynchronousLoading=True, imagesCache=None, size="Default"):
+def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
 	This definition returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
@@ -213,9 +211,9 @@ def getIcon(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
-	return getGraphicsItem(path, QIcon, asynchronousLoading, cache, size)
+	return getGraphicsItem(path, QIcon, size, asynchronousLoading, placeholder, cache)
 
-def getPixmap(path, asynchronousLoading=True, imagesCache=None, size="Default"):
+def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
 	This definition returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
@@ -226,9 +224,9 @@ def getPixmap(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
-	return getGraphicsItem(path, QPixmap, asynchronousLoading, cache, size)
+	return getGraphicsItem(path, QPixmap, size, asynchronousLoading, placeholder, cache)
 
-def getImage(path, asynchronousLoading=True, imagesCache=None, size="Default"):
+def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
 	This definition returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
@@ -239,7 +237,7 @@ def getImage(path, asynchronousLoading=True, imagesCache=None, size="Default"):
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
-	return getGraphicsItem(path, QImage, asynchronousLoading, cache, size)
+	return getGraphicsItem(path, QImage, size, asynchronousLoading, placeholder, cache)
 
 def createPixmap(width=128, height=128, text=None):
 	"""

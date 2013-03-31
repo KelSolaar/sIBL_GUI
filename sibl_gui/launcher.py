@@ -156,7 +156,7 @@ _setThumbnailsCache()
 #**********************************************************************************************************************
 #***	Images caches settings.
 #**********************************************************************************************************************
-import sibl_gui.ui.cache
+import sibl_gui.ui.caches
 import sibl_gui.ui.models
 
 def _setImagesCaches():
@@ -166,9 +166,9 @@ def _setImagesCaches():
 
 	loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
 	umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = foundations.dataStructures.Structure(**{
-								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QImage, default=loadingImage),
-								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QPixmap, default=loadingImage),
-								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QIcon, default=loadingImage)})
+								"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loadingImage),
+								"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loadingImage),
+								"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loadingImage)})
 
 	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
 	# with asynchronous images loading.
