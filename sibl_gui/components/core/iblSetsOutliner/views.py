@@ -76,9 +76,6 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.__thumbnailsSize = None
 		self.thumbnailsSize = thumbnailsSize if thumbnailsSize is not None else "Large"
 
-		self.__listViewSpacing = 20
-		self.__listViewMargin = 32
-
 		Thumbnails_QListView.__initializeUi(self)
 
 	#******************************************************************************************************************
@@ -117,74 +114,6 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
 
-	@property
-	def listViewSpacing(self):
-		"""
-		This method is the property for **self.__listViewSpacing** attribute.
-
-		:return: self.__listViewSpacing. ( Integer )
-		"""
-
-		return self.__listViewSpacing
-
-	@listViewSpacing.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def listViewSpacing(self, value):
-		"""
-		This method is the setter method for **self.__listViewSpacing** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value is not None:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
-		self.__listViewSpacing = value
-
-	@listViewSpacing.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewSpacing(self):
-		"""
-		This method is the deleter method for **self.__listViewSpacing** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
-
-	@property
-	def listViewMargin(self):
-		"""
-		This method is the property for **self.__listViewMargin** attribute.
-
-		:return: self.__listViewMargin. ( Integer )
-		"""
-
-		return self.__listViewMargin
-
-	@listViewMargin.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def listViewMargin(self, value):
-		"""
-		This method is the setter method for **self.__listViewMargin** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value is not None:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
-		self.__listViewMargin = value
-
-	@listViewMargin.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewMargin(self):
-		"""
-		This method is the deleter method for **self.__listViewMargin** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
-
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -216,7 +145,6 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 		length = thumbnailsSize if thumbnailsSize is not None else self.iconSize().width()
 		self.setIconSize(QSize(length, length / 2))
-		self.setGridSize(QSize(length + self.__listViewSpacing, length / 2 + self.__listViewMargin))
 
 class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
