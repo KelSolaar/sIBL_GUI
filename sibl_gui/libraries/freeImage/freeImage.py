@@ -2219,11 +2219,10 @@ class Image(object):
 		return fileFormat
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
-	def load(self, imagePath=None):
+	def load(self):
 		"""
 		This method loads the file.
 
-		:param imagePath: Image path. ( String )
 		:return: Method success. ( Boolean )
 		"""
 
