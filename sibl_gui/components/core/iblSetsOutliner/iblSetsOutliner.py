@@ -159,7 +159,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Shot Date", "date"),
 										("Shot Time", "time"),
 										("Comment", "comment")])
-		self.__thumbnailsSize = "Large"
+		self.__thumbnailsSize = "XLarge"
 		self.__thumbnailsMinimumSize = "XSmall"
 
 		self.__searchContexts = OrderedDict([("Search In Names", "title"),

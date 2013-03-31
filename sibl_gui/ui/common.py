@@ -106,12 +106,13 @@ def getThumbnailPath(path, size, cacheDirectory=RuntimeGlobals.thumbnailsCacheDi
 
 	return os.path.join(cacheDirectory, hashlib.md5("{0}_{1}.png".format(path, size)).hexdigest())
 
-def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
+def extractThumbnail(path, size="Default", image=None, format="PNG", quality= -1, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
 	"""
 	This definition extract given image thumbnail at given size.
 
 	:param path: Image path. ( String )
 	:param size: Thumbnail size. ( String )
+	:param image: Optional image to use in place of given path one. ( QImage )
 	:param format: Thumbnail format. ( String )
 	:param quality: Thumbnail quality, -1 to 100. ( Integer )
 	:param cacheDirectory: Thumbnails cache directory. ( String )
@@ -121,17 +122,17 @@ def extractThumbnail(path, size="Medium", format="PNG", quality= -1, cacheDirect
 	if not foundations.common.pathExists(cacheDirectory):
 		foundations.io.setDirectory(cacheDirectory)
 
-	thumbnail = getThumbnailPath(path, size, cacheDirectory)
-	if not os.path.exists(thumbnail):
-		image = QImage(path)
-		image = image.scaled(UiConstants.thumbnailsSizes.get(size),
+	thumbnailPath = getThumbnailPath(path, size, cacheDirectory)
+	if not os.path.exists(thumbnailPath):
+		thumbnail = QImage(path) if image is None else image
+		thumbnail = thumbnail.scaled(UiConstants.thumbnailsSizes.get(size),
 							UiConstants.thumbnailsSizes.get(size),
 							Qt.KeepAspectRatio,
 							Qt.SmoothTransformation)
-		image.save(thumbnail, format, quality)
-		return image
+		thumbnail.save(thumbnailPath, format, quality)
+		return thumbnail
 	else:
-		return QImage(thumbnail)
+		return QImage(thumbnailPath)
 
 def loadGraphicsItem(path, type, size="Default"):
 	"""
@@ -154,18 +155,19 @@ def loadGraphicsItem(path, type, size="Default"):
 			errorImage = umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 			for extension in UiConstants.thirdPartyImageFormats.itervalues():
 				if re.search(extension, path, flags=re.IGNORECASE):
-					try:
-						# TODO: Handle 3rdparty thumbnails stuff here.
+ 					try:
 						image = Image(path)
 						image = image.convertToQImage()
-						graphicsItem = convertImage(image, type)
+						graphicsItem = \
+						convertImage(extractThumbnail(path, size, image), type) if size != "Default" else \
+						convertImage(image, type)
 						break
-					except Exception as error:
-						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
-																										path,
-																										error))
-						graphicsItem = type(errorImage)
-						break
+ 					except Exception as error:
+ 						LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
+ 																										path,
+ 																										error))
+ 						graphicsItem = type(errorImage)
+ 						break
 			else:
 				graphicsItem = type(errorImage)
 	return graphicsItem
