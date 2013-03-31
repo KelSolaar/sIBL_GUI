@@ -103,9 +103,15 @@ def getThumbnailPath(path, size, cacheDirectory=RuntimeGlobals.thumbnailsCacheDi
 	:return: Cached thumbnail path. ( String )
 	"""
 
-	return os.path.join(cacheDirectory, hashlib.md5("{0}_{1}.png".format(path, size)).hexdigest())
+	return os.path.join(cacheDirectory,
+					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.encodingCodec)).hexdigest())
 
-def extractThumbnail(path, size="Default", image=None, format="PNG", quality= -1, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
+def extractThumbnail(path,
+					size="Default",
+					image=None,
+					format="PNG",
+					quality= -1,
+					cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
 	"""
 	This definition extract given image thumbnail at given size.
 

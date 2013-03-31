@@ -37,8 +37,8 @@ def _setEncoding():
 	This definition sets the Application encoding.
 	"""
 
-	reload(sys)
-	sys.setdefaultencoding("utf-8")
+# 	reload(sys)
+# 	sys.setdefaultencoding("utf-8")
 
 _setEncoding()
 
@@ -323,7 +323,8 @@ def main():
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	return umbra.engine.run(sIBL_GUI,
-						commandLineParametersParser.parse_args(map(unicode, sys.argv)),
+						commandLineParametersParser.parse_args(
+						[unicode(argument, umbra.globals.constants.Constants.encodingCodec) for argument in sys.argv]),
 						componentsPaths,
 						("factory.scriptEditor",
 						"factory.preferencesManager",
