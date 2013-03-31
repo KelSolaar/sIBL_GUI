@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**cache.py**
+**caches.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application cache classes.
+	This module defines the Application caches classes.
 
 **Others:**
 
@@ -23,7 +23,6 @@ from __future__ import unicode_literals
 #***	External imports.
 #**********************************************************************************************************************
 import os
-import itertools
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 
@@ -34,6 +33,7 @@ import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
 import sibl_gui.ui.workers
+from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -46,9 +46,9 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"CacheMetrics",
-			"AbstractResourcesCache",
-			"AsynchronousGraphicsItemsCache"]
+		"CacheMetrics",
+		"AbstractResourcesCache",
+		"AsynchronousGraphicsItemsCache"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -273,7 +273,7 @@ class AbstractResourcesCache(QObject):
 
 		cacheMetrics = CacheMetrics()
 		cacheMetrics.type = None
-		cacheMetrics.content = dict(zip(self.__mapping.keys(), itertools.repeat(None, len(self.__mapping))))
+		cacheMetrics.content = dict.fromkeys(self.__mapping.keys())
 		return cacheMetrics
 
 class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
@@ -281,13 +281,13 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	This class provides an asynchronous graphics items cache.
 	"""
 
-	def __init__(self, parent=None, type=None, default=None):
+	def __init__(self, parent=None, type=None, placeholder=None):
 		"""
 		This method initializes the class.
 		
 		:param parent: Object parent. ( QObject )
 		:param type: Cache type. ( QImage / QPixmap / QIcon )
-		:param default: Default image. ( String )
+		:param placeholder: Placeholder image. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -296,14 +296,14 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		# --- Setting class attributes. ---
 		self.__type = type
-		self.__default = default
+		self.__placeholder = placeholder
 
-		self.__defaultGraphicsItem = None
+		self.__placeholderGraphicsItem = None
 		self.__worker = sibl_gui.ui.workers.GraphicsItem_worker()
 		self.__worker.start()
 		self.__worker.imageLoaded.connect(self.__worker__imageLoaded)
 
-		self.__setDefaultGraphicsItem(default)
+		self.__setPlaceholderGraphicsItem(placeholder)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -341,68 +341,68 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "type"))
 
 	@property
-	def default(self):
+	def placeholder(self):
 		"""
-		This method is the property for **self.__default** attribute.
+		This method is the property for **self.__placeholder** attribute.
 
-		:return: self.__default. ( String )
+		:return: self.__placeholder. ( String )
 		"""
 
-		return self.__default
+		return self.__placeholder
 
-	@default.setter
+	@placeholder.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def default(self, value):
+	def placeholder(self, value):
 		"""
-		This method is the setter method for **self.__default** attribute.
+		This method is the setter method for **self.__placeholder** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholder"))
 
-	@default.deleter
+	@placeholder.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def default(self):
+	def placeholder(self):
 		"""
-		This method is the deleter method for **self.__default** attribute.
+		This method is the deleter method for **self.__placeholder** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholder"))
 
 	@property
-	def defaultGraphicsItem(self):
+	def placeholderGraphicsItem(self):
 		"""
-		This method is the property for **self.__defaultGraphicsItem** attribute.
+		This method is the property for **self.__placeholderGraphicsItem** attribute.
 
-		:return: self.__defaultGraphicsItem. ( QObject )
+		:return: self.__placeholderGraphicsItem. ( QObject )
 		"""
 
-		return self.__defaultGraphicsItem
+		return self.__placeholderGraphicsItem
 
-	@defaultGraphicsItem.setter
+	@placeholderGraphicsItem.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def defaultGraphicsItem(self, value):
+	def placeholderGraphicsItem(self, value):
 		"""
-		This method is the setter method for **self.__defaultGraphicsItem** attribute.
+		This method is the setter method for **self.__placeholderGraphicsItem** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultGraphicsItem"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholderGraphicsItem"))
 
-	@defaultGraphicsItem.deleter
+	@placeholderGraphicsItem.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def defaultGraphicsItem(self):
+	def placeholderGraphicsItem(self):
 		"""
-		This method is the deleter method for **self.__defaultGraphicsItem** attribute.
+		This method is the deleter method for **self.__placeholderGraphicsItem** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "defaultGraphicsItem"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholderGraphicsItem"))
 
 	@property
 	def worker(self):
@@ -442,7 +442,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __worker__imageLoaded(self, image):
+	def __worker__imageLoaded(self, image, size):
 		"""
 		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
@@ -452,28 +452,61 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
 		graphicsItem.data = image.data
 		path = graphicsItem.data.path
-		self[path] = graphicsItem
+		if not self.isCached(path):
+			return
+
+		self[path][foundations.strings.toString(size)] = graphicsItem
 		self.contentAdded.emit([path])
 
-	def __setDefaultGraphicsItem(self, path):
+	def __setPlaceholderGraphicsItem(self, path):
 		"""
-		This method sets the defaultGraphicsItem graphics item.
+		This method sets the placeholderGraphicsItem graphics item.
 		
-		:param path: Default image path. ( String )
+		:param path: Placeholder image path. ( String )
 		"""
 
 		if not foundations.common.pathExists(path):
 			LOGGER.warning(
-			"!> {0} | '{1}' default graphics item file doesn't exists, unexpected behavior may occur!".format(
+			"!> {0} | '{1}' placeholder graphics item file doesn't exists, unexpected behavior may occur!".format(
 			self.__class__.__name__, self))
 			return
 
-		self.__defaultGraphicsItem = self.__type(path)
-		self.__defaultGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__defaultGraphicsItem)
+		self.__placeholderGraphicsItem = self.__type(path)
+		self.__placeholderGraphicsItem.data = sibl_gui.ui.common.getImageInformationsHeader(path, self.__placeholderGraphicsItem)
 
-	def addContent(self, **content):
+	def getContent(self, key, size="Default"):
 		"""
-		This method reimplements the :meth:`AbstractResourcesCache.addContent` method.
+		This method reimplements the :meth:`AbstractResourcesCache.getContent` method.
+
+		:param key: Content to retrieve. ( Object )
+		:return: Content. ( Object )
+		"""
+
+		LOGGER.debug("> Retrieving '{0}' content from the cache.".format(self.__class__.__name__, key))
+
+		content = self.mapping.get(key)
+		if content is not None:
+			return content.get(size)
+
+	def flushContent(self):
+		"""
+		This method reimplements the :meth:`AbstractResourcesCache.flushContent` method.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Flushing cache content.".format(self.__class__.__name__))
+
+		if self.__worker.flushRequests():
+			content = self.mapping.keys()
+			self.mapping.clear()
+			self.contentRemoved.emit(content)
+			return True
+		return False
+
+	def loadContent(self, **content):
+		"""
+		This method loads given content into the cache.
 		
 		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
@@ -481,42 +514,47 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
-		for path, item in content.items():
+		for path, data in content.iteritems():
+			type, size = data
+
 			if not foundations.common.pathExists(path):
 				LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
 				self.__class__.__name__, path))
-				del(content[path])
 				continue
 
-			if type(item) is not self.__type:
-				LOGGER.warning("!> {0} | '{1}' item type is not '{2}' type and has been skipped!".format(
-				self.__class__.__name__, item, self.__type))
-				del(content[path])
+			if not self.isCached(path):
+				self[path] = dict.fromkeys(UiConstants.thumbnailsSizes.keys())
 
-		for key, value in content.iteritems():
-			value.data = sibl_gui.ui.common.getImageInformationsHeader(key, value)
-			self[key] = value
-			self.contentAdded.emit([key])
+			image = sibl_gui.ui.common.loadGraphicsItem(path, type, size)
+			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
+			self[path][size] = image
+
+			self.contentAdded.emit([path])
 		return True
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
-	def addDeferredContent(self, *content):
+	def loadAsynchronousContent(self, **content):
 		"""
-		This method adds given content to the cache.
+		This method loads given content asynchronously into the cache.
 
-		:param \*content: Paths to add. ( \* )
+		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
 
-		for path in content:
+		for path, data in content.iteritems():
+			type, size, placeholder = data
+
 			if not foundations.common.pathExists(path):
 				raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
 				self.__class__.__name__, path))
 
-			if path in self:
-				image = self.getContent(path)
+			if not self.isCached(path):
+				self[path] = dict.fromkeys(UiConstants.thumbnailsSizes.keys())
+
+			image = self.getContent(path, size)
+			if image is not None:
 				if not hasattr(image, "data"):
 					LOGGER.debug("> {0} | '{1}' object has not 'data' attribute and has been skipped!".format(
 					self.__class__.__name__, image))
@@ -531,9 +569,9 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 					LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
 					self.__class__.__name__, path))
 
-			self[path] = self.__defaultGraphicsItem
+			self[path][size] = placeholder if placeholder is not None else self.__placeholderGraphicsItem
 			self.contentAdded.emit([path])
-			self.__worker.addRequest(path)
+			self.__worker.addRequest((path, size))
 		return True
 
 	def getMetrics(self):
@@ -543,5 +581,12 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		cacheMetrics = AbstractResourcesCache.getMetrics(self)
 		cacheMetrics.type = self.__type
-		cacheMetrics.content = dict(zip(self.mapping.keys(), (value.data for value in self.mapping.itervalues())))
+		content = {}
+		for path, data in self.mapping.iteritems():
+			thumbnails = {}
+			for size, thumbnail in data.iteritems():
+				thumbnails[size] = None if thumbnail is None else (sibl_gui.ui.common.getThumbnailPath(path, size),
+																	thumbnail.data)
+			content[path] = thumbnails
+		cacheMetrics.content = content
 		return cacheMetrics

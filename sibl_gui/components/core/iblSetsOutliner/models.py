@@ -23,6 +23,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+from PyQt4.QtCore import QVariant
 from PyQt4.QtCore import Qt
 
 #**********************************************************************************************************************
@@ -66,7 +67,11 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		sibl_gui.ui.models.GraphModel.__init__(self,
+											parent,
+											rootNode,
+											horizontalHeaders,
+											verticalHeaders)
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -106,3 +111,4 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]],
 										reverseOrder=order)
 		self.endResetModel()
+

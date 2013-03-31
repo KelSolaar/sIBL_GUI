@@ -60,6 +60,7 @@ class RuntimeGlobalsTestCase(unittest.TestCase):
 
 		requiredAttributes = ("templatesFactoryDirectory",
 								"templatesUserDirectory",
+								"thumbnailsCacheDirectory",
 								"imagesCaches")
 
 		for attribute in requiredAttributes:

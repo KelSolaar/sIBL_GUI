@@ -29,7 +29,7 @@ from PyQt4.QtCore import Qt
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.verbose
-import umbra.ui.nodes
+import sibl_gui.ui.nodes
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -48,7 +48,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class SoftwareNode(umbra.ui.nodes.GraphModelNode):
+class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
 		Component Interface class Model software node.
@@ -64,6 +64,8 @@ class SoftwareNode(umbra.ui.nodes.GraphModelNode):
 				roles=None,
 				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -74,12 +76,22 @@ class SoftwareNode(umbra.ui.nodes.GraphModelNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.nodes.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
+		sibl_gui.ui.nodes.GraphModelNode.__init__(self,
+												name,
+												parent,
+												children,
+												roles,
+												nodeFlags,
+												iconSize,
+												iconPlaceholder,
+												**kwargs)
 
 		SoftwareNode.__initializeNode(self, attributesFlags)
 
@@ -93,7 +105,7 @@ class SoftwareNode(umbra.ui.nodes.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		self["release"] = umbra.ui.nodes.GraphModelAttribute(name="release",
+		self["release"] = sibl_gui.ui.nodes.GraphModelAttribute(name="release",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self["version"] = umbra.ui.nodes.GraphModelAttribute(name="version",
+		self["version"] = sibl_gui.ui.nodes.GraphModelAttribute(name="version",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))

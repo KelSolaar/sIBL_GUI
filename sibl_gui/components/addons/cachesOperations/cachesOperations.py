@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**imagesCachesOperations.py**
+**cachesOperations.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`ImagesCachesOperations` Component Interface class.
+	This module defines the :class:`CachesOperations` Component Interface class.
 
 **Others:**
 
@@ -29,11 +29,14 @@ from PyQt4.QtGui import QGridLayout
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.exceptions
+import foundations.io
 import foundations.verbose
+import foundations.walkers
 import sibl_gui.exceptions
 import umbra.exceptions
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
@@ -46,18 +49,18 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "ImagesCachesOperations"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "CachesOperations"]
 
 LOGGER = foundations.verbose.installLogger()
 
-COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Caches_Operations.ui")
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Caches_Operations.ui")
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
+class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations` Component Interface class.
+	| This class is the :mod:`sibl_gui.components.addons.cachesOperations.cachesOperations` Component Interface class.
 	| It provides various methods to operate on the images caches.
 	"""
 
@@ -73,7 +76,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		super(ImagesCachesOperations, self).__init__(parent, name, *args, **kwargs)
+		super(CachesOperations, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -230,8 +233,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Output_Images_Caches_Metrics_pushButton.clicked.connect(
-		self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Output_Caches_Metrics_pushButton.clicked.connect(self.__Output_Caches_Metrics_pushButton__clicked)
+		self.Clear_Thumbnails_Cache_pushButton.clicked.connect(self.__Clear_Thumbnails_Cache_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.connect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		self.initializedUi = True
@@ -247,8 +250,8 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.Output_Images_Caches_Metrics_pushButton.clicked.disconnect(
-		self.__Output_Images_Caches_Metrics_pushButton__clicked)
+		self.Output_Caches_Metrics_pushButton.clicked.disconnect(self.__Output_Caches_Metrics_pushButton__clicked)
+		self.Clear_Thumbnails_Cache_pushButton.clicked.disconnect(self.__Clear_Thumbnails_Cache_pushButton__clicked)
 		self.Clear_Images_Caches_pushButton.clicked.disconnect(self.__Clear_Images_Caches_pushButton__clicked)
 
 		self.initializedUi = False
@@ -263,7 +266,7 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Images_Caches_Operations_groupBox)
+		self.__preferencesManager.Others_Preferences_gridLayout.addWidget(self.Caches_Operations_groupBox)
 
 		return True
 
@@ -277,9 +280,18 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__preferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
-		self.Images_Caches_Operations_groupBox.setParent(None)
+		self.Caches_Operations_groupBox.setParent(None)
 
 		return True
+
+	def __Clear_Thumbnails_Cache_pushButton__clicked(self, checked):
+		"""
+		This method is triggered when **Thumbnails_Cache_pushButton** Widget is clicked.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		self.clearThumbnailsCache()
 
 	def __Clear_Images_Caches_pushButton__clicked(self, checked):
 		"""
@@ -290,36 +302,79 @@ class ImagesCachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.clearImagesCaches()
 
-	def __Output_Images_Caches_Metrics_pushButton__clicked(self, checked):
+	def __Output_Caches_Metrics_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Output_Images_Caches_Metrics_pushButton** Widget is clicked.
+		This method is triggered when **Output_Caches_Metrics_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.outputImagesCachesMetrics()
+		self.outputCachesMetrics()
 		self.__scriptEditor.restoreDevelopmentLayout()
 
-	def outputImagesCachesMetrics(self):
+	def outputCachesMetrics(self):
 		"""
-		This method logs images caches metrics.
+		This method outputs caches metrics.
 
 		:return: Method success. ( Boolean )
 		"""
 
 		separator = "{0}".format(Constants.loggingSeparators.replace("*", "-"))
+		metrics = dict.fromkeys(UiConstants.thumbnailsSizes, 0)
 		for type, cache in self.__engine.imagesCaches.iteritems():
 			LOGGER.info(separator)
-			LOGGER.info("{0} | Metrics for '{1}' '{2}' images cache:".format(self.__class__.__name__,
+			LOGGER.info("{0} | Metrics for '{1}' '{2}' images memory cache:".format(self.__class__.__name__,
 																			Constants.applicationName, type))
 			cacheMetrics = cache.getMetrics().content
 			LOGGER.info("{0} | \tCached graphics items count: '{1}'".format(self.__class__.__name__, len(cacheMetrics)))
 			for path, data in sorted(cache.getMetrics().content.iteritems()):
 				LOGGER.info("{0} | \t\t'{1}':".format(self.__class__.__name__, path))
-				LOGGER.info("{0} | \t\t\tSize: {1}x{2} px".format(self.__class__.__name__, data.width, data.height))
-				LOGGER.info("{0} | \t\t\tBpp: {1} bit".format(self.__class__.__name__, data.bpp / 4))
+				for size, data in sorted(data.iteritems()):
+					if data is not None:
+						metrics[size] += 1
+						path, imageInformationsHeader = data
+						LOGGER.info("{0} | \t\t\t'{1}': '{2}':".format(self.__class__.__name__, size, path))
+						LOGGER.info("{0} | \t\t\t\tSize: {1}x{2} px".format(self.__class__.__name__,
+																		imageInformationsHeader.width,
+																		imageInformationsHeader.height))
+						LOGGER.info("{0} | \t\t\t\tBpp: {1} bit".format(self.__class__.__name__,
+																	imageInformationsHeader.bpp / 4))
+					else:
+						LOGGER.info("{0} | \t\t\t'{1}': '{2}'.".format(self.__class__.__name__, size, Constants.nullObject))
 			LOGGER.info(separator)
+
+		LOGGER.info(separator)
+		LOGGER.info("{0} | Metrics for 'Application' thumbnails disk cache:".format(self.__class__.__name__))
+		for size, count in sorted(metrics.iteritems()):
+			LOGGER.info("{0} | \t\t{1} '{2}' registered thumbnails.".format(self.__class__.__name__, count, size))
+		thumbnails = list(foundations.walkers.filesWalker(RuntimeGlobals.thumbnailsCacheDirectory))
+		LOGGER.info("{0} | \t\t{1} files in disk cache directory.".format(self.__class__.__name__, len(thumbnails)))
+		LOGGER.info(separator)
 		return True
+
+	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
+											sibl_gui.exceptions.CacheOperationError)
+	def clearThumbnailsCache(self):
+		"""
+		This method clears the thumbnails cache.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		thumbnails = list(foundations.walkers.filesWalker(RuntimeGlobals.thumbnailsCacheDirectory))
+
+		success = True
+		for thumbnail in thumbnails:
+			success *= foundations.io.remove(thumbnail)
+
+		if success:
+			self.__engine.notificationsManager.notify(
+			"{0} | Thumbnails cache has been successfully cleared!".format(self.__class__.__name__))
+			return True
+		else:
+			raise sibl_gui.exceptions.CacheOperationError(
+				"{0} | Exception raised while attempting to clear thumbnails cache!".format(
+				self.__class__.__name__))
 
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											sibl_gui.exceptions.CacheOperationError)

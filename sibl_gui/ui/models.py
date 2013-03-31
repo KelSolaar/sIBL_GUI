@@ -56,7 +56,12 @@ class GraphModel(umbra.ui.models.GraphModel):
 	to support various images formats as **Qt.DecorationRole**.
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
+	def __init__(self,
+				parent=None,
+				rootNode=None,
+				horizontalHeaders=None,
+				verticalHeaders=None,
+				defaultNode=None):
 		"""
 		This method initializes the class.
 
@@ -91,7 +96,10 @@ class GraphModel(umbra.ui.models.GraphModel):
 			if hasattr(node, "roles"):
 				value = node.roles.get(role)
 				if role == Qt.DecorationRole:
-					return sibl_gui.ui.common.getIcon(value) if value is not None else QVariant()
+					return sibl_gui.ui.common.getIcon(value,
+													size=node.get("iconSize", "Default"),
+													placeholder=node.get("iconPlaceholder")) \
+													if value is not None else QVariant()
 				else:
 					return value if value is not None else QVariant()
 		else:
@@ -100,7 +108,10 @@ class GraphModel(umbra.ui.models.GraphModel):
 				if hasattr(attribute, "roles"):
 					value = attribute.roles.get(role)
 					if role == Qt.DecorationRole:
-						return sibl_gui.ui.common.getIcon(value) if value is not None else QVariant()
+						return sibl_gui.ui.common.getIcon(value,
+													size=attribute.get("iconSize", "Default"),
+													placeholder=attribute.get("iconPlaceholder")) \
+													if value is not None else QVariant()
 					else:
 						return value if value is not None else QVariant()
 		return QVariant()

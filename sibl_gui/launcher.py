@@ -116,8 +116,6 @@ _overrideApplicationToolbar()
 #**********************************************************************************************************************
 import foundations.common
 import foundations.verbose
-import sibl_gui.ui.cache
-import sibl_gui.ui.models
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.models
@@ -139,6 +137,28 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
+
+#**********************************************************************************************************************
+#***	Thumbnails cache settings.
+#**********************************************************************************************************************
+def _setThumbnailsCache():
+	"""
+	This definition sets the Application thumbnails cache.
+	"""
+
+	umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = os.path.join(
+														foundations.environment.getUserApplicationDataDirectory(),
+														umbra.globals.constants.Constants.ioDirectory,
+														umbra.globals.uiConstants.UiConstants.thumbnailsCacheDirectory)
+
+_setThumbnailsCache()
+
+#**********************************************************************************************************************
+#***	Images caches settings.
+#**********************************************************************************************************************
+import sibl_gui.ui.caches
+import sibl_gui.ui.models
+
 def _setImagesCaches():
 	"""
 	This definition sets the Application images caches.
@@ -146,9 +166,9 @@ def _setImagesCaches():
 
 	loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
 	umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = foundations.dataStructures.Structure(**{
-								"QImage":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QImage, default=loadingImage),
-								"QPixmap":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QPixmap, default=loadingImage),
-								"QIcon":sibl_gui.ui.cache.AsynchronousGraphicsItemsCache(type=QIcon, default=loadingImage)})
+								"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loadingImage),
+								"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loadingImage),
+								"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loadingImage)})
 
 	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
 	# with asynchronous images loading.

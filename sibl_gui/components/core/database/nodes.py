@@ -27,12 +27,13 @@ from PyQt4.QtCore import Qt
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.common
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
-import umbra.ui.nodes
 import sibl_gui.components.core.database.operations
 import sibl_gui.ui.common
+import sibl_gui.ui.nodes
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -68,7 +69,7 @@ def getTemplateUserName(title, software):
 
 	return foundations.strings.removeStrip(title, software)
 
-class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
+class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 	This class defines Application Database abstract base class used by concrete Database Node classes.
 	"""
@@ -84,6 +85,8 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 				roles=None,
 				nodeFlags=None,
 				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled),
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -95,12 +98,22 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.nodes.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
+		sibl_gui.ui.nodes.GraphModelNode.__init__(self,
+												name,
+												parent,
+												children,
+												roles,
+												nodeFlags,
+												iconSize,
+												iconPlaceholder,
+												**kwargs)
 
 		# --- Setting class attributes. ---
 		self.__databaseItem = databaseItem
@@ -195,7 +208,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 			value = getattr(self.__databaseItem, attribute)
 			roles = {Qt.DisplayRole : value,
 					Qt.EditRole : value}
-			self[attribute] = umbra.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
+			self[attribute] = sibl_gui.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
 
 	def updateNode(self):
 		"""
@@ -219,7 +232,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 			if not attribute in self:
 				continue
 
-			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
+			if issubclass(self[attribute].__class__, sibl_gui.ui.nodes.GraphModelAttribute):
 				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
 				getattr(self.__databaseItem, attribute)
 		return True
@@ -246,7 +259,7 @@ class AbstractDatabaseNode(umbra.ui.nodes.GraphModelNode):
 			if not attribute in self:
 				continue
 
-			if issubclass(self[attribute].__class__, umbra.ui.nodes.GraphModelAttribute):
+			if issubclass(self[attribute].__class__, sibl_gui.ui.nodes.GraphModelAttribute):
 				setattr(self.__databaseItem, attribute, self[attribute].value)
 		return True
 
@@ -277,6 +290,8 @@ class IblSetNode(AbstractDatabaseNode):
 				roles=None,
 				nodeFlags=None,
 				attributesFlags=None,
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -288,12 +303,24 @@ class IblSetNode(AbstractDatabaseNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self,
+									databaseItem,
+									name,
+									parent,
+									children,
+									roles,
+									nodeFlags,
+									attributesFlags,
+									iconSize,
+									iconPlaceholder,
+									**kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -314,8 +341,12 @@ class IblSetNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
+		path = foundations.common.getFirstItem(filter(foundations.common.pathExists, [self.databaseItem.backgroundImage,
+																					self.databaseItem.previewImage,
+																					self.databaseItem.icon]))
+
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
-							Qt.DecorationRole : self.databaseItem.icon,
+							Qt.DecorationRole : foundations.common.filterPath(path),
 							Qt.EditRole : self.databaseItem.title})
 		self.updateToolTip()
 
@@ -379,6 +410,8 @@ class TemplateNode(AbstractDatabaseNode):
 				roles=None,
 				nodeFlags=None,
 				attributesFlags=None,
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -390,12 +423,24 @@ class TemplateNode(AbstractDatabaseNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self,
+									databaseItem,
+									name,
+									parent,
+									children,
+									roles,
+									nodeFlags,
+									attributesFlags,
+									iconSize,
+									iconPlaceholder,
+									**kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -481,6 +526,8 @@ class CollectionNode(AbstractDatabaseNode):
 				roles=None,
 				nodeFlags=None,
 				attributesFlags=None,
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -492,12 +539,24 @@ class CollectionNode(AbstractDatabaseNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		AbstractDatabaseNode.__init__(self, databaseItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+		AbstractDatabaseNode.__init__(self,
+									databaseItem,
+									name,
+									parent,
+									children,
+									roles,
+									nodeFlags,
+									attributesFlags,
+									iconSize,
+									iconPlaceholder,
+									**kwargs)
 
 		# --- Setting class attributes. ---
 		self.toolTipText = """
@@ -515,7 +574,7 @@ class CollectionNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self["count"] = umbra.ui.nodes.GraphModelAttribute(
+		self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(
 						name="count",
 						value=sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem),
 						flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))

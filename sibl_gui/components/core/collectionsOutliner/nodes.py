@@ -29,7 +29,7 @@ from PyQt4.QtCore import Qt
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.verbose
-import umbra.ui.nodes
+import sibl_gui.ui.nodes
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -48,7 +48,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
+class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 	This class factory defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
 		Component Interface class Model **Overall** collection node.
@@ -63,6 +63,8 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 				roles=None,
 				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				iconSize=None,
+				iconPlaceholder=None,
 				**kwargs):
 		"""
 		This method initializes the class.
@@ -73,12 +75,22 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconSize: Icon size.  ( String )
+		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.nodes.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
+		sibl_gui.ui.nodes.GraphModelNode.__init__(self,
+												name,
+												parent,
+												children,
+												roles,
+												nodeFlags,
+												iconSize,
+												iconPlaceholder,
+												**kwargs)
 
 		OverallCollectionNode.__initializeNode(self, attributesFlags)
 
@@ -92,10 +104,10 @@ class OverallCollectionNode(umbra.ui.nodes.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		self["count"] = umbra.ui.nodes.GraphModelAttribute(name="count",
+		self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(name="count",
 															value=sum(node["count"].value for node in self.children),
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self["comment"] = umbra.ui.nodes.GraphModelAttribute(name="comment",
+		self["comment"] = sibl_gui.ui.nodes.GraphModelAttribute(name="comment",
 															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 	def updateNode(self):

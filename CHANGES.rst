@@ -23,6 +23,8 @@ Changes
 | **Umbra** 1.0.8 - Stable - Milestone:
 | **Foundations** 2.0.8 - Stable - Milestone:
 
+
+-  Implement large thumbnails support.
 -  Implement unicode support.
 -  Drop **sqlalchemy-migrate** support.
 

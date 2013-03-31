@@ -54,6 +54,7 @@ import foundations.verbose
 import foundations.walkers
 import sibl_gui.components.core.database.exceptions
 import sibl_gui.components.core.database.operations
+import sibl_gui.ui.common
 import umbra.engine
 import umbra.exceptions
 import umbra.ui.common
@@ -65,6 +66,7 @@ from sibl_gui.components.core.iblSetsOutliner.models import IblSetsModel
 from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
 from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
 from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
+from umbra.globals.uiConstants import UiConstants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
@@ -130,6 +132,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiDetailsViewImage = "Details_View.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
+		self.__uiLoadingImage = "Loading.png"
 		self.__dockArea = 8
 
 		self.__engine = None
@@ -158,6 +161,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Shot Date", "date"),
 										("Shot Time", "time"),
 										("Comment", "comment")])
+		self.__thumbnailsSize = "XLarge"
+		self.__thumbnailsMinimumSize = "XSmall"
 
 		self.__searchContexts = OrderedDict([("Search In Names", "title"),
 								("Search In Authors", "author"),
@@ -361,6 +366,37 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSmallestSizeImage"))
+	@property
+	def uiLoadingImage(self):
+		"""
+		This method is the property for **self.__uiLoadingImage** attribute.
+
+		:return: self.__uiLoadingImage. ( String )
+		"""
+
+		return self.__uiLoadingImage
+
+	@uiLoadingImage.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self, value):
+		"""
+		This method is the setter method for **self.__uiLoadingImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+
+	@uiLoadingImage.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self):
+		"""
+		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@property
 	def dockArea(self):
@@ -875,6 +911,72 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
+	def thumbnailsSize(self):
+		"""
+		This method is the property for **self.__thumbnailsSize** attribute.
+
+		:return: self.__thumbnailsSize. ( Dictionary )
+		"""
+
+		return self.__thumbnailsSize
+
+	@thumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsSize** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+		self.__thumbnailsSize = value
+
+	@thumbnailsSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+
+	@property
+	def thumbnailsMinimumSize(self):
+		"""
+		This method is the property for **self.__thumbnailsMinimumSize** attribute.
+
+		:return: self.__thumbnailsMinimumSize. ( Dictionary )
+		"""
+
+		return self.__thumbnailsMinimumSize
+
+	@thumbnailsMinimumSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsMinimumSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsMinimumSize** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsMinimumSize", value)
+		self.__thumbnailsMinimumSize = value
+
+	@thumbnailsMinimumSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsMinimumSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsMinimumSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsMinimumSize"))
+
+	@property
 	def searchContexts(self):
 		"""
 		This method is the property for **self.__searchContexts** attribute.
@@ -1026,9 +1128,9 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													"No Ibl Set to view!")
 		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
+		thumbnailsSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
 		if state:
-			self.__thumbnailsView.listViewIconSize = listViewIconSize
+			self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(thumbnailsSize)
 		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__thumbnailsView)
 
 		self.__columnsView = Columns_QListView(self,
@@ -1070,7 +1172,9 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.searchActiveLabel.setMenu(self.__searchContextsMenu)
 		self.setActiveSearchContext(self.__activeSearchContext)
 
-		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
+		self.Thumbnails_Size_horizontalSlider.setMinimum(UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize))
+		self.Thumbnails_Size_horizontalSlider.setMaximum(UiConstants.thumbnailsSizes.get(self.__thumbnailsSize))
+		self.Thumbnails_Size_horizontalSlider.setValue(thumbnailsSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
@@ -1347,9 +1451,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param value: Thumbnails size. ( Integer )
 		"""
 
-		self.__thumbnailsView.listViewIconSize = value
-
-		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState()
+		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(value)
 
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
@@ -1826,12 +1928,18 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		iblSets = iblSets or self.__collectionsOutliner.getCollectionsIblSets(
 		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
+
+		iconPlaceHolder = \
+		sibl_gui.ui.common.loadGraphicsItem(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage), QIcon)
+
 		for iblSet in iblSets:
 			iblSetNode = IblSetNode(iblSet,
 									name=iblSet.title,
 									parent=rootNode,
 									nodeFlags=nodeFlags,
-									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+									iconSize=self.__thumbnailsSize,
+									iconPlaceholder=iconPlaceHolder)
 
 			path = foundations.strings.toString(iblSet.path)
 			if not foundations.common.pathExists(path):

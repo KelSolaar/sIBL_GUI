@@ -62,7 +62,11 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		sibl_gui.ui.models.GraphModel.__init__(self,
+											parent,
+											rootNode,
+											horizontalHeaders,
+											verticalHeaders)
 
 	#******************************************************************************************************************
 	#***	Class methods.
