@@ -56,12 +56,7 @@ class GraphModel(umbra.ui.models.GraphModel):
 	to support various images formats as **Qt.DecorationRole**.
 	"""
 
-	def __init__(self,
-				parent=None,
-				rootNode=None,
-				horizontalHeaders=None,
-				verticalHeaders=None,
-				defaultNode=None):
+	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
 		This method initializes the class.
 

@@ -76,7 +76,7 @@ class Mixin_GraphModelObject(object):
 		"""
 		This method is the property for **self.__iconSize** attribute.
 
-		:return: self.__iconSize. ( Object )
+		:return: self.__iconSize. ( String )
 		"""
 
 		return self.__iconSize
@@ -87,7 +87,7 @@ class Mixin_GraphModelObject(object):
 		"""
 		This method is the setter method for **self.__iconSize** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value is not None:

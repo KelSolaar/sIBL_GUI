@@ -82,6 +82,7 @@ def convertImage(image, type):
 	This definition converts given image to given type.
 
 	:param image: Image to convert. ( QImage )
+	:param type: Type to convert to. ( QImage / QPixmap / QIcon )
 	:return: Converted image. ( QImage / QPixmap / QIcon )
 	"""
 
@@ -117,7 +118,7 @@ def extractThumbnail(path,
 
 	:param path: Image path. ( String )
 	:param size: Thumbnail size. ( String )
-	:param image: Optional image to use in place of given path one. ( QImage )
+	:param image: Image to use instead of given path one. ( QImage )
 	:param format: Thumbnail format. ( String )
 	:param quality: Thumbnail quality, -1 to 100. ( Integer )
 	:param cacheDirectory: Thumbnails cache directory. ( String )
@@ -146,7 +147,8 @@ def loadGraphicsItem(path, type, size="Default"):
 
 	:param path: Image path. ( String )
 	:param type: QIcon, QImage, QPixmap. ( QObject )
-	:return: Graphics item. ( QIcon, QImage, QPixmap )
+	:param size: Image size. ( String )
+	:return: Image. ( QIcon, QImage, QPixmap )
 	"""
 
 	if not foundations.common.pathExists(path):
@@ -184,9 +186,11 @@ def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeh
 
 	:param path: Image path. ( String )
 	:param type: QIcon, QImage, QPixmap. ( QObject )
+	:param size: Image size. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+	:param placeholder: Placeholder to use while loading asynchronously. ( QIcon, QImage, QPixmap )
 	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
-	:return: Graphic display. ( QIcon, QImage, QPixmap )
+	:return: Image. ( QIcon, QImage, QPixmap )
 	"""
 
 	if not foundations.common.pathExists(path):
@@ -211,7 +215,9 @@ def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, im
 	This definition returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
 	:param path: Icon image path. ( String )
+	:param size: Image size. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+	:param placeholder: Placeholder to use while loading asynchronously. ( QIcon )
 	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 	:return: QIcon. ( QIcon )
 	"""
@@ -224,7 +230,9 @@ def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, 
 	This definition returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Icon image path. ( String )
+	:param size: Image size. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+	:param placeholder: Placeholder to use while loading asynchronously. ( QPixmap )
 	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 	:return: QPixmap. ( QPixmap )
 	"""
@@ -237,7 +245,9 @@ def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, i
 	This definition returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
 	:param path: Icon image path. ( String )
+	:param size: Image size. ( String )
 	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+	:param placeholder: Placeholder to use while loading asynchronously. ( QImage )
 	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
 	:return: QImage. ( QImage )
 	"""

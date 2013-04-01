@@ -269,6 +269,8 @@ class AbstractResourcesCache(QObject):
 	def getMetrics(self):
 		"""
 		This method returns the cache metrics.
+
+		:return: Cache metrics. ( Dictionary )
 		"""
 
 		cacheMetrics = CacheMetrics()
@@ -480,6 +482,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		This method reimplements the :meth:`AbstractResourcesCache.getContent` method.
 
 		:param key: Content to retrieve. ( Object )
+		:param size: Size to retrieve. ( String )
 		:return: Content. ( Object )
 		"""
 
@@ -578,6 +581,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	def getMetrics(self):
 		"""
 		This method reimplements the :meth:`AbstractResourcesCache.getMetrics` method.
+
+		:return: Cache metrics. ( Dictionary )
 		"""
 
 		cacheMetrics = AbstractResourcesCache.getMetrics(self)
