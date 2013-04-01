@@ -447,6 +447,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
 		:param image: Loaded image. ( QImage )
+		:param size: Image size. ( String )
 		"""
 
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)

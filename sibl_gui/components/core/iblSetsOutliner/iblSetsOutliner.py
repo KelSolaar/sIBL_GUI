@@ -172,6 +172,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__activeSearchContext = "Search In Names"
 		self.__searchContextsMenu = None
 
+		self.__iconPlaceHolder = None
+
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
@@ -366,6 +368,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSmallestSizeImage"))
+
 	@property
 	def uiLoadingImage(self):
 		"""
@@ -915,7 +918,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__thumbnailsSize** attribute.
 
-		:return: self.__thumbnailsSize. ( Dictionary )
+		:return: self.__thumbnailsSize. ( String )
 		"""
 
 		return self.__thumbnailsSize
@@ -926,7 +929,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__thumbnailsSize** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value is not None:
@@ -1117,6 +1120,10 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.parameters.databaseReadOnly and \
 		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
 																									"databaseReadOnly"))
+		self.__iconPlaceHolder = \
+		sibl_gui.ui.common.getIcon(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
+								asynchronousLoading=False)
+
 		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
 		self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
@@ -1929,9 +1936,6 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.__collectionsOutliner.getSelectedCollections() or self.__collectionsOutliner.getCollections())
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
-		iconPlaceHolder = \
-		sibl_gui.ui.common.loadGraphicsItem(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage), QIcon)
-
 		for iblSet in iblSets:
 			iblSetNode = IblSetNode(iblSet,
 									name=iblSet.title,
@@ -1939,7 +1943,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 									nodeFlags=nodeFlags,
 									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
 									iconSize=self.__thumbnailsSize,
-									iconPlaceholder=iconPlaceHolder)
+									iconPlaceholder=self.__iconPlaceHolder)
 
 			path = foundations.strings.toString(iblSet.path)
 			if not foundations.common.pathExists(path):

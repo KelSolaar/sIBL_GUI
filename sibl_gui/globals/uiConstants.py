@@ -168,7 +168,8 @@ class UiConstants():
 					"Large" : 256,
 					"Medium" : 128,
 					"Small" : 64,
-					"XSmall" : 32}
+					"XSmall" : 32,
+					"Special1" : 600}
 	"""Application thumbnails sizes. ( Dictionary )"""
 
 	thumbnailsCacheDirectory = "thumbnails"

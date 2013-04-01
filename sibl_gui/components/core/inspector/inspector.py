@@ -61,6 +61,7 @@ from sibl_gui.components.core.inspector.models import PlatesModel
 from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
+from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -157,6 +158,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiResourcesDirectory = "resources"
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"
+		self.__uiLoadingImage = "Loading.png"
 		self.__dockArea = 2
 		self.__listViewIconSize = 30
 
@@ -171,6 +173,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__model = None
 		self.__view = None
+
+		self.__thumbnailsSize = "Special1"
 
 		self.__activeIblSet = None
 		self.__inspectorPlates = None
@@ -232,6 +236,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__lightLabelTextHeight = 14
 		self.__lightLabelTextFont = "Helvetica"
 		self.__unnamedLightName = "Unnamed_Light"
+
+		self.__pixmapPlaceholder = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -331,6 +337,38 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
+
+	@property
+	def uiLoadingImage(self):
+		"""
+		This method is the property for **self.__uiLoadingImage** attribute.
+
+		:return: self.__uiLoadingImage. ( String )
+		"""
+
+		return self.__uiLoadingImage
+
+	@uiLoadingImage.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self, value):
+		"""
+		This method is the setter method for **self.__uiLoadingImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+
+	@uiLoadingImage.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiLoadingImage(self):
+		"""
+		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@property
 	def dockArea(self):
@@ -557,6 +595,39 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
+	def thumbnailsSize(self):
+		"""
+		This method is the property for **self.__thumbnailsSize** attribute.
+
+		:return: self.__thumbnailsSize. ( String )
+		"""
+
+		return self.__thumbnailsSize
+
+	@thumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def thumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsSize** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+		self.__thumbnailsSize = value
+
+	@thumbnailsSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsSize(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
 
 	@property
 	def activeIblSet(self):
@@ -954,6 +1025,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.__pixmapPlaceholder = \
+		sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
+									asynchronousLoading=False)
+
 		self.__sectionsFileParsersCache = foundations.cache.Cache()
 
 		self.__model = PlatesModel()
@@ -980,6 +1055,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
+		self.__engine.imagesCaches.QPixmap.contentAdded.connect(self.__engine_imagesCaches_QPixmap__contentAdded)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
 		self.__iblSetsOutliner.model.modelReset.connect(self.__iblSetsOutliner__modelReset)
 		self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
@@ -1037,14 +1113,25 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__activeIblSet.title,
 																				self.__activeIblSet.location))
 
+			previewAvailable = False
 			if foundations.common.pathExists(self.__activeIblSet.previewImage):
-				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__activeIblSet.previewImage,
-																		asynchronousLoading=False))
+				pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.previewImage)
+				previewAvailable = True
+			else:
+				if foundations.common.pathExists(self.__activeIblSet.backgroundImage):
+					pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.backgroundImage,
+														size=self.__thumbnailsSize,
+														placeholder=self.__pixmapPlaceholder)
+					previewAvailable = True
+
+			if previewAvailable:
+				self.Image_label.setPixmap(pixmap)
 				self.__drawActiveIblSetOverlay()
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(
-				sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
-				self.__activeIblSet.author, self.__activeIblSet.link))
+																sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
+																self.__activeIblSet.author,
+																self.__activeIblSet.link))
 
 			self.Image_label.setToolTip(self.__activeIblSetToolTipText.format(
 													self.__activeIblSet.title,
@@ -1129,6 +1216,20 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if self.__activeIblSet.path == file:
 				self.__setActiveIblSet()
 				self.uiRefresh.emit()
+
+	def __engine_imagesCaches_QPixmap__contentAdded(self, paths):
+		"""
+		This method is triggered by the **QPixmap** images cache when contend is added.
+		
+		:param paths: Added content. ( List )
+		"""
+
+		if not self.__activeIblSet:
+				return
+
+		if foundations.common.getFirstItem(paths) in (self.__activeIblSet.previewImage,
+													self.__activeIblSet.backgroundImage):
+			self.__Inspector_DockWidget_setUi()
 
 	def __iblSetsOutliner__modelReset(self):
 		"""
