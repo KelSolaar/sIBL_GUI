@@ -56,10 +56,10 @@ Table Of Content
    -  `Addons`_
 
       -  `About sIBL_GUI`_
+      -  `Caches Operations`_
       -  `Database Operations`_
       -  `Gps Map`_
       -  `Ibl Sets Scanner`_
-      -  `Images Caches Operations`_
       -  `Loader Script`_
       -  `Loader Script Options`_
       -  `Locations Browser`_
@@ -1095,6 +1095,27 @@ The *About* Component displays the *About* window.
 
    <br/>
 
+.. _addons.cachesOperations:
+
+_`Caches Operations` (addons.cachesOperations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++------------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_CachesOperations.jpg     |
++------------------------------------------------------------------------+
+
+The *Caches Operations* Component allows the user to manipulate **sIBL_GUI** caches.
+
+Interactions:
+
+-  **Output Caches Metrics Push Button**: Outputs various caches metrics: Counts, paths, sizes.
+-  **Clear Thumbnails Cache Push Button**: Clears the on-disk thumbnails cache, deleting all existing files inside it.
+-  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
+
+.. raw:: html
+
+   <br/>
+
 .. _addons.databaseOperations:
 
 _`Database Operations` (addons.databaseOperations)
@@ -1146,26 +1167,6 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Ibl Sets Scanner* Component is a file scanning Component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the Component.
-
-.. raw:: html
-
-   <br/>
-
-.. _addons.imagesCachesOperations:
-
-_`Images Caches Operations` (addons.imagesCachesOperations)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg     |
-+------------------------------------------------------------------------+
-
-The *Images Caches Operations* Component allows the user to manipulate **sIBL_GUI** images caches.
-
-Interactions:
-
--  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
--  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
 .. raw:: html
 
