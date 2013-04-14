@@ -903,12 +903,6 @@ The *Ibl Sets Outliner* Component is the central Component where IBL Sets are vi
 
 IBL Sets can be viewed using different views depending the user needs:
 
-Columns View:
-
-+----------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg     |
-+----------------------------------------------------------------------------+
-
 Details View:
 
 +----------------------------------------------------------------------------+

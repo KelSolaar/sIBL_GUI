@@ -575,7 +575,7 @@ QTreeView::branch:hover, QTreeView::item:hover {
 }
 
 /* Core Component "IblSetsOutliner". */
-#Thumbnails_View_pushButton, #Columns_View_pushButton, #Details_View_pushButton  {
+#Thumbnails_View_pushButton, #Details_View_pushButton, #Switch_Thumbnails_Type_pushButton  {
 	min-width: 32px;
 }
 

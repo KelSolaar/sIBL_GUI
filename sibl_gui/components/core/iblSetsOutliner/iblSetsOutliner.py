@@ -63,7 +63,6 @@ import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.database.nodes import IblSetNode
 from sibl_gui.components.core.iblSetsOutliner.models import IblSetsModel
-from sibl_gui.components.core.iblSetsOutliner.views import Columns_QListView
 from sibl_gui.components.core.iblSetsOutliner.views import Details_QTreeView
 from sibl_gui.components.core.iblSetsOutliner.views import Thumbnails_QListView
 from umbra.globals.uiConstants import UiConstants
@@ -132,7 +131,9 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiDetailsViewImage = "Details_View.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
-		self.__uiLoadingImage = "Loading.png"
+		self.__uiPanoramicLoadingImage = "Panoramic_Loading.png"
+		self.__uiSquareLoadingImage = "Square_Loading.png"
+		self.__uiSwitchThumbnailsTypeImage = "Switch_Thumbnails_Type.png"
 		self.__dockArea = 8
 
 		self.__engine = None
@@ -151,7 +152,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__views = None
 		self.__viewsPushButtons = None
 		self.__thumbnailsView = None
-		self.__columnsView = None
 		self.__detailsView = None
 		self.__detailsHeaders = OrderedDict([("Ibl Set", "title"),
 										("Author", "author"),
@@ -161,7 +161,10 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Shot Date", "date"),
 										("Shot Time", "time"),
 										("Comment", "comment")])
-		self.__thumbnailsSize = "XLarge"
+
+		self.__panoramicThumbnails = "True"
+		self.__panoramicThumbnailsSize = "XLarge"
+		self.__squareThumbnailsSize = "Medium"
 		self.__thumbnailsMinimumSize = "XSmall"
 
 		self.__searchContexts = OrderedDict([("Search In Names", "title"),
@@ -370,36 +373,99 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSmallestSizeImage"))
 
 	@property
-	def uiLoadingImage(self):
+	def uiPanoramicLoadingImage(self):
 		"""
-		This method is the property for **self.__uiLoadingImage** attribute.
+		This method is the property for **self.__uiPanoramicLoadingImage** attribute.
 
-		:return: self.__uiLoadingImage. ( String )
+		:return: self.__uiPanoramicLoadingImage. ( String )
 		"""
 
-		return self.__uiLoadingImage
+		return self.__uiPanoramicLoadingImage
 
-	@uiLoadingImage.setter
+	@uiPanoramicLoadingImage.setter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLoadingImage(self, value):
+	def uiPanoramicLoadingImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLoadingImage** attribute.
+		This method is the setter method for **self.__uiPanoramicLoadingImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPanoramicLoadingImage"))
 
-	@uiLoadingImage.deleter
+	@uiPanoramicLoadingImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLoadingImage(self):
+	def uiPanoramicLoadingImage(self):
 		"""
-		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		This method is the deleter method for **self.__uiPanoramicLoadingImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPanoramicLoadingImage"))
+
+	@property
+	def uiSquareLoadingImage(self):
+		"""
+		This method is the property for **self.__uiSquareLoadingImage** attribute.
+
+		:return: self.__uiSquareLoadingImage. ( String )
+		"""
+
+		return self.__uiSquareLoadingImage
+
+	@uiSquareLoadingImage.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiSquareLoadingImage(self, value):
+		"""
+		This method is the setter method for **self.__uiSquareLoadingImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSquareLoadingImage"))
+
+	@uiSquareLoadingImage.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiSquareLoadingImage(self):
+		"""
+		This method is the deleter method for **self.__uiSquareLoadingImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSquareLoadingImage"))
+	@property
+	def uiSwitchThumbnailsTypeImage(self):
+		"""
+		This method is the property for **self.__uiSwitchThumbnailsTypeImage** attribute.
+
+		:return: self.__uiSwitchThumbnailsTypeImage. ( String )
+		"""
+
+		return self.__uiSwitchThumbnailsTypeImage
+
+	@uiSwitchThumbnailsTypeImage.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiSwitchThumbnailsTypeImage(self, value):
+		"""
+		This method is the setter method for **self.__uiSwitchThumbnailsTypeImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSwitchThumbnailsTypeImage"))
+
+	@uiSwitchThumbnailsTypeImage.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def uiSwitchThumbnailsTypeImage(self):
+		"""
+		This method is the deleter method for **self.__uiSwitchThumbnailsTypeImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSwitchThumbnailsTypeImage"))
 
 	@property
 	def dockArea(self):
@@ -818,38 +884,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
-	def columnsView(self):
-		"""
-		This method is the property for **self.__columnsView** attribute.
-
-		:return: self.__columnsView. ( QListView )
-		"""
-
-		return self.__columnsView
-
-	@columnsView.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def columnsView(self, value):
-		"""
-		This method is the setter method for **self.__columnsView** attribute.
-
-		:param value: Attribute value. ( QListView )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "columnsView"))
-
-	@columnsView.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def columnsView(self):
-		"""
-		This method is the deleter method for **self.__columnsView** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
-
-	@property
 	def detailsView(self):
 		"""
 		This method is the property for **self.__detailsView** attribute.
@@ -914,37 +948,103 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
-	def thumbnailsSize(self):
+	def panoramicThumbnails(self):
 		"""
-		This method is the property for **self.__thumbnailsSize** attribute.
+		This method is the property for **self.__panoramicThumbnails** attribute.
 
-		:return: self.__thumbnailsSize. ( String )
+		:return: self.__panoramicThumbnails. ( Boolean )
 		"""
 
-		return self.__thumbnailsSize
+		return self.__panoramicThumbnails
 
-	@thumbnailsSize.setter
+	@panoramicThumbnails.setter
 	@foundations.exceptions.handleExceptions(AssertionError)
-	def thumbnailsSize(self, value):
+	def panoramicThumbnails(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsSize** attribute.
+		This method is the setter method for **self.__panoramicThumbnails** attribute.
+
+		:param value: Attribute value. ( Boolean )
+		"""
+
+		if value is not None:
+			assert type(value) is bool, "'{0}' attribute: '{1}' type is not 'bool'!".format("panoramicThumbnails", value)
+		self.__panoramicThumbnails = value
+
+	@panoramicThumbnails.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def panoramicThumbnails(self):
+		"""
+		This method is the deleter method for **self.__panoramicThumbnails** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramicThumbnails"))
+
+	@property
+	def panoramicThumbnailsSize(self):
+		"""
+		This method is the property for **self.__panoramicThumbnailsSize** attribute.
+
+		:return: self.__panoramicThumbnailsSize. ( String )
+		"""
+
+		return self.__panoramicThumbnailsSize
+
+	@panoramicThumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def panoramicThumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__panoramicThumbnailsSize** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
 		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
-		self.__thumbnailsSize = value
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("panoramicThumbnailsSize", value)
+		self.__panoramicThumbnailsSize = value
 
-	@thumbnailsSize.deleter
+	@panoramicThumbnailsSize.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsSize(self):
+	def panoramicThumbnailsSize(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		This method is the deleter method for **self.__panoramicThumbnailsSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramicThumbnailsSize"))
+
+	@property
+	def squareThumbnailsSize(self):
+		"""
+		This method is the property for **self.__squareThumbnailsSize** attribute.
+
+		:return: self.__squareThumbnailsSize. ( String )
+		"""
+
+		return self.__squareThumbnailsSize
+
+	@squareThumbnailsSize.setter
+	@foundations.exceptions.handleExceptions(AssertionError)
+	def squareThumbnailsSize(self, value):
+		"""
+		This method is the setter method for **self.__squareThumbnailsSize** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		if value is not None:
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("squareThumbnailsSize", value)
+		self.__squareThumbnailsSize = value
+
+	@squareThumbnailsSize.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def squareThumbnailsSize(self):
+		"""
+		This method is the deleter method for **self.__squareThumbnailsSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "squareThumbnailsSize"))
 
 	@property
 	def thumbnailsMinimumSize(self):
@@ -1120,10 +1220,6 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__engine.parameters.databaseReadOnly and \
 		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
 																									"databaseReadOnly"))
-		self.__iconPlaceHolder = \
-		sibl_gui.ui.common.getIcon(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
-								asynchronousLoading=False)
-
 		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
 		self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
@@ -1135,18 +1231,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													"No Ibl Set to view!")
 		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		thumbnailsSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
-		if state:
-			self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(thumbnailsSize)
 		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__thumbnailsView)
-
-		self.__columnsView = Columns_QListView(self,
-											self.__model,
-											self.__engine.parameters.databaseReadOnly,
-											"No Ibl Set to view!")
-		self.__columnsView.setObjectName("Columns_listView")
-		self.__columnsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__columnsView)
 
 		self.__detailsView = Details_QTreeView(self,
 											self.__model,
@@ -1156,15 +1241,16 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__detailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__detailsView)
 
-		self.__views = (self.__thumbnailsView, self.__columnsView, self.__detailsView)
+		self.__views = (self.__thumbnailsView, self.__detailsView)
 		self.__views_addActions()
 		self.__viewsPushButtons = {0 : (self.Thumbnails_View_pushButton, self.__uiThumbnailsViewImage),
-									1 : (self.Columns_View_pushButton, self.__uiColumnsViewImage),
-									2 : (self.Details_View_pushButton, self.__uiDetailsViewImage)}
+									1 : (self.Details_View_pushButton, self.__uiDetailsViewImage)}
 
 		for index, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
 			viewPushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, image)))
+
+		self.Switch_Thumbnails_Type_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiSwitchThumbnailsTypeImage)))
 
 		self.Search_Database_lineEdit = Search_QLineEdit(self)
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
@@ -1179,11 +1265,11 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.searchActiveLabel.setMenu(self.__searchContextsMenu)
 		self.setActiveSearchContext(self.__activeSearchContext)
 
-		self.Thumbnails_Size_horizontalSlider.setMinimum(UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize))
-		self.Thumbnails_Size_horizontalSlider.setMaximum(UiConstants.thumbnailsSizes.get(self.__thumbnailsSize))
-		self.Thumbnails_Size_horizontalSlider.setValue(thumbnailsSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
+
+		self.__views_setUi(
+		foundations.common.getFirstItem(self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()))
 
 		# Signals / Slots.
 		for view in self.__views:
@@ -1194,6 +1280,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			viewPushButton, image = data
 			viewPushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, index))
 
+		self.Switch_Thumbnails_Type_pushButton.clicked.connect(self.__Switch_Thumbnails_Type_pushButton__clicked)
 		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
 
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
@@ -1328,6 +1415,39 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		return True
 
+	def __views_setUi(self, thumbnailsSize=None):
+		"""
+		This method sets the Views ui.
+
+		:param thumbnailsSize: Thumbnails size. ( Integer )
+		"""
+
+		if not thumbnailsSize:
+			thumbnailsSize = UiConstants.thumbnailsSizes.get(self.__panoramicThumbnailsSize \
+														if self.__panoramicThumbnails else self.__squareThumbnailsSize)
+		self.__iconPlaceHolder = \
+		sibl_gui.ui.common.getIcon(os.path.join(self.__uiResourcesDirectory,
+											self.__uiPanoramicLoadingImage if self.__panoramicThumbnails else \
+											self.__uiSquareLoadingImage),
+									asynchronousLoading=False)
+
+		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(thumbnailsSize,
+																		2 if self.__panoramicThumbnails else 1)
+
+		self.Thumbnails_Size_horizontalSlider.setMinimum(UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize))
+		self.Thumbnails_Size_horizontalSlider.setMaximum(UiConstants.thumbnailsSizes.get(self.__panoramicThumbnailsSize \
+														if self.__panoramicThumbnails else self.__squareThumbnailsSize))
+		self.Thumbnails_Size_horizontalSlider.setValue(thumbnailsSize)
+
+	def __views_refreshUi(self, thumbnailsSize=None):
+		"""
+		This method refreshes the Views ui.
+
+		:param thumbnailsSize: Thumbnails size. ( Integer )
+		"""
+
+		self.__views_setUi(thumbnailsSize)
+
 	def __model__refreshNodes(self):
 		"""
 		This method is triggered when the Model Nodes need refresh.
@@ -1438,7 +1558,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		self.Ibl_Sets_Outliner_Thumbnails_Slider_frame.setVisible(not index)
 		for viewIndex, data in self.__viewsPushButtons.iteritems():
 			viewPushButton, image = data
-			viewPushButton.setChecked(viewIndex == index and True or False)
+			viewPushButton.setChecked(True if viewIndex == index else False)
+
+	def __Switch_Thumbnails_Type_pushButton__clicked(self, checked):
+		"""
+		This method is triggered when **Switch_Thumbnails_Type_pushButton** Widget is clicked.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		self.setPanoramicThumbnails(not self.__panoramicThumbnails)
 
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
@@ -1458,7 +1587,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:param value: Thumbnails size. ( Integer )
 		"""
 
-		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(value)
+		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(value, 2 if self.__panoramicThumbnails else 1)
 
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
@@ -1628,6 +1757,24 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 		self.__activeSearchContext = context
 		self.Search_Database_lineEdit.setPlaceholderText(text)
+		return True
+
+	def setPanoramicThumbnails(self, state):
+		"""
+		This method sets the panoramic thumbnails.
+
+		:param state: Panoramic thumbnails. ( Boolean )
+		:return: Method succes. ( Boolean )
+		"""
+
+		percentage = 100 * self.Thumbnails_Size_horizontalSlider.value() / UiConstants.thumbnailsSizes.get(
+					self.__panoramicThumbnailsSize if self.__panoramicThumbnails else self.__squareThumbnailsSize)
+		thumbnailsSize = UiConstants.thumbnailsSizes.get(
+					self.__panoramicThumbnailsSize if state else self.__squareThumbnailsSize) * percentage / 100
+
+		self.__panoramicThumbnails = state
+		self.__views_refreshUi(thumbnailsSize)
+		self.setIblSets()
 		return True
 
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
@@ -1937,12 +2084,21 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
 		for iblSet in iblSets:
+			if self.__panoramicThumbnails:
+				iconPath = foundations.common.getFirstItem(filter(foundations.common.pathExists, [iblSet.backgroundImage,
+																							iblSet.previewImage]))
+				iconSize = self.__panoramicThumbnailsSize
+			else:
+				iconPath = iblSet.icon
+				iconSize = self.__squareThumbnailsSize
+
 			iblSetNode = IblSetNode(iblSet,
 									name=iblSet.title,
 									parent=rootNode,
 									nodeFlags=nodeFlags,
 									attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-									iconSize=self.__thumbnailsSize,
+									iconPath=iconPath,
+									iconSize=iconSize,
 									iconPlaceholder=self.__iconPlaceHolder)
 
 			path = foundations.strings.toString(iblSet.path)
