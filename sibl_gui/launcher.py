@@ -21,26 +21,27 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
-import os
-import sys
-from PyQt4.QtGui import QIcon
-from PyQt4.QtGui import QImage
-from PyQt4.QtGui import QPixmap
-
-#**********************************************************************************************************************
 #***	Encoding manipulations.
 #**********************************************************************************************************************
+import sys
+
 def _setEncoding():
 	"""
 	This definition sets the Application encoding.
 	"""
 
-# 	reload(sys)
-# 	sys.setdefaultencoding("utf-8")
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
 
 _setEncoding()
+
+#**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
+import os
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QImage
+from PyQt4.QtGui import QPixmap
 
 #**********************************************************************************************************************
 #***	Path manipulations.
