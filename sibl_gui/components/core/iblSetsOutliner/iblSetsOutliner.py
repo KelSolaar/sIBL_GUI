@@ -1268,6 +1268,9 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
+		if self.__settings.keyExists(self.__settingsSection, "panoramicThumbnails"):
+			self.__panoramicThumbnails = self.__settings.getKey(self.__settingsSection, "panoramicThumbnails").toBool()
+
 		self.__views_setUi(
 		foundations.common.getFirstItem(self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()))
 
@@ -1777,6 +1780,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 						/ (oldOut - oldIn)) + newIn
 
 		self.__panoramicThumbnails = state
+		self.__settings.setKey(self.__settingsSection, "panoramicThumbnails", self.__panoramicThumbnails)
 		self.__views_refreshUi(thumbnailsSize)
 		self.setIblSets()
 		return True
