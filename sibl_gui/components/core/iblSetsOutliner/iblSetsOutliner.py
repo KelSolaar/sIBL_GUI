@@ -968,7 +968,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if value is not None:
 			assert type(value) is bool, "'{0}' attribute: '{1}' type is not 'bool'!".format("panoramicThumbnails", value)
-		self.__panoramicThumbnails = value
+		self.setPanoramicThumbnails(value)
 
 	@panoramicThumbnails.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -1767,10 +1767,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method succes. ( Boolean )
 		"""
 
-		percentage = 100 * self.Thumbnails_Size_horizontalSlider.value() / UiConstants.thumbnailsSizes.get(
+		oldIn, oldOut = UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize), UiConstants.thumbnailsSizes.get(
 					self.__panoramicThumbnailsSize if self.__panoramicThumbnails else self.__squareThumbnailsSize)
-		thumbnailsSize = UiConstants.thumbnailsSizes.get(
-					self.__panoramicThumbnailsSize if state else self.__squareThumbnailsSize) * percentage / 100
+
+		newIn, newOut = UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize), UiConstants.thumbnailsSizes.get(
+					self.__panoramicThumbnailsSize if state else self.__squareThumbnailsSize)
+
+		thumbnailsSize = (((self.Thumbnails_Size_horizontalSlider.value() - oldIn) * (newOut - newIn)) \
+						/ (oldOut - oldIn)) + newIn
 
 		self.__panoramicThumbnails = state
 		self.__views_refreshUi(thumbnailsSize)
