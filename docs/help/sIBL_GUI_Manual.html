@@ -207,6 +207,9 @@
 										<a class="reference internal" href="#about-sibl-gui">About sIBL_GUI</a>
 									</li>
 									<li>
+										<a class="reference internal" href="#caches-operations">Caches Operations</a>
+									</li>
+									<li>
 										<a class="reference internal" href="#database-operations">Database Operations</a>
 									</li>
 									<li>
@@ -214,9 +217,6 @@
 									</li>
 									<li>
 										<a class="reference internal" href="#ibl-sets-scanner">Ibl Sets Scanner</a>
-									</li>
-									<li>
-										<a class="reference internal" href="#images-caches-operations">Images Caches Operations</a>
 									</li>
 									<li>
 										<a class="reference internal" href="#loader-script">Loader Script</a>
@@ -622,7 +622,7 @@ sIBL_GUI
 							<strong>-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER</strong>: Application Logging Formatter: 'Default, Extended, Standard’.
 						</li>
 						<li>
-							<strong>-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY</strong>: User application data directory (Preferences directory).
+							<strong>-u USERAPPLICATIONDATADIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATADIRECTORY</strong>: User application data directory (Preferences directory).
 						</li>
 						<li>
 							<strong>-s, —hideSplashScreen</strong>: The SplashScreen is not displayed during application startup.
@@ -1809,21 +1809,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							IBL Sets can be viewed using different views depending the user needs:
 						</p>
 						<p>
-							Columns View:
-						</p>
-						<table border="1" class="docutils">
-							<colgroup>
-								<col width="100%" />
-							</colgroup>
-							<tbody valign="top">
-								<tr>
-									<td>
-										<img alt="resources/pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg" class="first last" src="resources/pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg" />
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<p>
 							Details View:
 						</p>
 						<table border="1" class="docutils">
@@ -1893,10 +1878,10 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 								<strong>Thumbnails View Push Button</strong>: Switch the current view to <em>Thumbnails View</em>.
 							</li>
 							<li>
-								<strong>Columns View Push Button</strong>: Switch the current view to <em>Columns View</em>.
+								<strong>Details View Push Button</strong>: Switch the current view to <em>Details View</em>.
 							</li>
 							<li>
-								<strong>Details View Push Button</strong>: Switch the current view to <em>Details View</em>.
+								<strong>Switch Thumbnails Type Push Button</strong>: Switch thumbnails type from <em>square</em> to <em>panoramic</em> and vice versa.
 							</li>
 							<li>
 								<strong>Case Sensitive Matching Push Button</strong>: Search will be performed case sensitively if the button is checked.
@@ -2214,6 +2199,41 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 							The <em>About</em> Component displays the <em>About</em> window.
 						</p><br />
 					</div>
+					<div class="section" id="caches-operations-addons-cachesoperations">
+						<span id="addons-cachesoperations"></span>
+						<h3>
+							<span class="target" id="caches-operations">Caches Operations</span> (addons.cachesOperations)
+						</h3>
+						<table border="1" class="docutils">
+							<colgroup>
+								<col width="100%" />
+							</colgroup>
+							<tbody valign="top">
+								<tr>
+									<td>
+										<img alt="resources/pictures/sIBL_GUI_CachesOperations.jpg" class="first last" src="resources/pictures/sIBL_GUI_CachesOperations.jpg" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The <em>Caches Operations</em> Component allows the user to manipulate <strong>sIBL_GUI</strong> caches.
+						</p>
+						<p>
+							Interactions:
+						</p>
+						<ul class="simple">
+							<li>
+								<strong>Output Caches Metrics Push Button</strong>: Outputs various caches metrics: Counts, paths, sizes.
+							</li>
+							<li>
+								<strong>Clear Thumbnails Cache Push Button</strong>: Clears the on-disk thumbnails cache, deleting all existing files inside it.
+							</li>
+							<li>
+								<strong>Clear Images Caches Push Button</strong>: Clears the various images caches, the Python interpreter may not release the memory immediately.
+							</li>
+						</ul><br />
+					</div>
 					<div class="section" id="database-operations-addons-databaseoperations">
 						<span id="addons-databaseoperations"></span>
 						<h3>
@@ -2297,38 +2317,6 @@ C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d “Z:/sIBL_Database/” -r
 						<p>
 							The <em>Ibl Sets Scanner</em> Component is a file scanning Component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the Component.
 						</p><br />
-					</div>
-					<div class="section" id="images-caches-operations-addons-imagescachesoperations">
-						<span id="addons-imagescachesoperations"></span>
-						<h3>
-							<span class="target" id="images-caches-operations">Images Caches Operations</span> (addons.imagesCachesOperations)
-						</h3>
-						<table border="1" class="docutils">
-							<colgroup>
-								<col width="100%" />
-							</colgroup>
-							<tbody valign="top">
-								<tr>
-									<td>
-										<img alt="resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg" class="first last" src="resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg" />
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<p>
-							The <em>Images Caches Operations</em> Component allows the user to manipulate <strong>sIBL_GUI</strong> images caches.
-						</p>
-						<p>
-							Interactions:
-						</p>
-						<ul class="simple">
-							<li>
-								<strong>Output Images Caches Metrics Push Button</strong>: Outputs various images caches metrics: Images count, paths, sizes.
-							</li>
-							<li>
-								<strong>Clear Images Caches Push Button</strong>: Clears the various images caches, the Python interpreter may not release the memory immediately.
-							</li>
-						</ul><br />
 					</div>
 					<div class="section" id="loader-script-addons-loaderscript">
 						<span id="addons-loaderscript"></span>

@@ -20,12 +20,26 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
+#***	Encoding manipulations.
+#**********************************************************************************************************************
+import sys
+
+def _setEncoding():
+	"""
+	This definition sets the Application encoding.
+	"""
+
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
+
+_setEncoding()
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
 import re
 import shutil
-import sys
 if sys.version_info[:2] <= (2, 6):
 	from ordereddict import OrderedDict
 else:
@@ -83,6 +97,7 @@ EXCLUDED_PYTHON_MODULES = ("tests",
 						"001_migrate_3-x-x_to_4-0-0\.py",
 						"002_migrate_4-x-x_to_4-0-2\.py",
 						"003_migrate_4-x-x_to_4-0-3\.py",
+						"004_migrate_4-x-x_to_4-0-7\.py",
 						"001_dummy\.py")
 
 STATEMENTS_UPDATE_MESSAGGE = "#**********************************************************************************************************************\n" \
@@ -252,4 +267,5 @@ def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile
 	apiFile.write()
 
 if __name__ == "__main__":
-	getSphinxDocumentationApi(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+	arguments = map(unicode, sys.argv)
+	getSphinxDocumentationApi(arguments[1], arguments[2], arguments[3], arguments[4])

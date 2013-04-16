@@ -931,8 +931,8 @@ Interactions:
 
 -  **Hovering**: Hovering an Ibl Set raises a popup with informations about the focused Ibl Set.
 -  **Thumbnails View Push Button**: Switch the current view to *Thumbnails View*. 
--  **Columns View Push Button**: Switch the current view to *Columns View*.
 -  **Details View Push Button**: Switch the current view to *Details View*.
+-  **Switch Thumbnails Type Push Button**: Switch thumbnails type from *square* to *panoramic* and vice versa.
 -  **Case Sensitive Matching Push Button**: Search will be performed case sensitively if the button is checked.
 -  **Search Database Line Edit**: It allows IBL Sets filtering. The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will be raised once characters starts being typed. Clicking the magnifier glass raises a context menu pictured below allowing to choose the current database field.
 -  **Thumbnails Size Horizontal Slider**: Adjusts IBL Sets icons size.
@@ -1094,9 +1094,9 @@ The *About* Component displays the *About* window.
 _`Caches Operations` (addons.cachesOperations)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+------------------------------------------------------------------------+
++------------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_CachesOperations.jpg     |
-+------------------------------------------------------------------------+
++------------------------------------------------------------------+
 
 The *Caches Operations* Component allows the user to manipulate **sIBL_GUI** caches.
 

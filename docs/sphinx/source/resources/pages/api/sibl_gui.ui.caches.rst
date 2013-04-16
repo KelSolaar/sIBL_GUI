@@ -1,12 +1,12 @@
-_`sibl_gui.ui.cache`
-====================
+_`sibl_gui.ui.caches`
+=====================
 
-.. automodule:: sibl_gui.ui.cache
+.. automodule:: sibl_gui.ui.caches
 
 Module Attributes
 -----------------
 
-.. attribute:: sibl_gui.ui.cache.LOGGER
+.. attribute:: sibl_gui.ui.caches.LOGGER
 
 Classes
 -------

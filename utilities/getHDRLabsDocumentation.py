@@ -20,9 +20,23 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
-#***	External imports.
+#***	Encoding manipulations.
 #**********************************************************************************************************************
 import sys
+
+def _setEncoding():
+	"""
+	This definition sets the Application encoding.
+	"""
+
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
+
+_setEncoding()
+
+#**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
 import re
 
 #**********************************************************************************************************************
@@ -79,4 +93,5 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	file.write()
 
 if __name__ == "__main__":
-	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
+	arguments = map(unicode, sys.argv)
+	getHDRLabsDocumentation(arguments[1], arguments[2])

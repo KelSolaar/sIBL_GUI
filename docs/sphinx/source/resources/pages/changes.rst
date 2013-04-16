@@ -11,10 +11,22 @@ Changes
         </ul>
     </div>
 
+4.0.7 - Stable
+--------------
+
+| **sIBL_GUI** 4.0.7 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=9&page=1&state=closed
+| **Umbra** 1.0.8 - Stable - Milestone:
+| **Foundations** 2.0.8 - Stable - Milestone:
+
+
+-  Implement large thumbnails support.
+-  Implement unicode support.
+-  Drop **sqlalchemy-migrate** support.
+
 4.0.6 - Stable
 --------------
 
-| **sIBL_GUI** 4.0.6 - Stable - https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
+| **sIBL_GUI** 4.0.6 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=8&page=1&state=closed
 | **Umbra** 1.0.7 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=8&state=closed
 | **Foundations** 2.0.7 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=5&state=closed
 
@@ -597,5 +609,5 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 0.9.0 - Alpha
 -------------
 
--  Initial release of **sIBL_GUI** For Windows.
+-  Initial release of **sIBL_GUI** for Windows.
 

@@ -93,12 +93,12 @@ Modules Summary:
    umbra.ui.widgets.search_QLineEdit <api/umbra.ui.widgets.search_QLineEdit>
    umbra.ui.widgets.variable_QPushButton <api/umbra.ui.widgets.variable_QPushButton>
    sibl_gui.components.addons.about.about <api/sibl_gui.components.addons.about.about>
+   sibl_gui.components.addons.cachesOperations.cachesOperations <api/sibl_gui.components.addons.cachesOperations.cachesOperations>
    sibl_gui.components.addons.databaseOperations.databaseOperations <api/sibl_gui.components.addons.databaseOperations.databaseOperations>
    sibl_gui.components.addons.gpsMap.gpsMap <api/sibl_gui.components.addons.gpsMap.gpsMap>
    sibl_gui.components.addons.gpsMap.views <api/sibl_gui.components.addons.gpsMap.views>
    sibl_gui.components.addons.iblSetsScanner.iblSetsScanner <api/sibl_gui.components.addons.iblSetsScanner.iblSetsScanner>
    sibl_gui.components.addons.iblSetsScanner.workers <api/sibl_gui.components.addons.iblSetsScanner.workers>
-   sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations <api/sibl_gui.components.addons.imagesCachesOperations.imagesCachesOperations>
    sibl_gui.components.addons.loaderScript.loaderScript <api/sibl_gui.components.addons.loaderScript.loaderScript>
    sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions <api/sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions>
    sibl_gui.components.addons.loaderScriptOptions.views <api/sibl_gui.components.addons.loaderScriptOptions.views>
@@ -121,8 +121,6 @@ Modules Summary:
    sibl_gui.components.core.collectionsOutliner.views <api/sibl_gui.components.core.collectionsOutliner.views>
    sibl_gui.components.core.database.database <api/sibl_gui.components.core.database.database>
    sibl_gui.components.core.database.exceptions <api/sibl_gui.components.core.database.exceptions>
-   sibl_gui.components.core.database.migrations.versions.001_rename_table_Sets <api/sibl_gui.components.core.database.migrations.versions.001_rename_table_Sets>
-   sibl_gui.components.core.database.migrations.versions.002_add_table_Sets_Column_previewImage <api/sibl_gui.components.core.database.migrations.versions.002_add_table_Sets_Column_previewImage>
    sibl_gui.components.core.database.nodes <api/sibl_gui.components.core.database.nodes>
    sibl_gui.components.core.database.operations <api/sibl_gui.components.core.database.operations>
    sibl_gui.components.core.database.types <api/sibl_gui.components.core.database.types>
@@ -143,9 +141,10 @@ Modules Summary:
    sibl_gui.globals.uiConstants <api/sibl_gui.globals.uiConstants>
    sibl_gui.launcher <api/sibl_gui.launcher>
    sibl_gui.libraries.freeImage.freeImage <api/sibl_gui.libraries.freeImage.freeImage>
-   sibl_gui.ui.cache <api/sibl_gui.ui.cache>
+   sibl_gui.ui.caches <api/sibl_gui.ui.caches>
    sibl_gui.ui.common <api/sibl_gui.ui.common>
    sibl_gui.ui.models <api/sibl_gui.ui.models>
+   sibl_gui.ui.nodes <api/sibl_gui.ui.nodes>
    sibl_gui.ui.views <api/sibl_gui.ui.views>
    sibl_gui.ui.widgets.application_QToolBar <api/sibl_gui.ui.widgets.application_QToolBar>
    sibl_gui.ui.workers <api/sibl_gui.ui.workers>

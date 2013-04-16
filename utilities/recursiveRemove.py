@@ -20,10 +20,24 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
+#***	Encoding manipulations.
+#**********************************************************************************************************************
+import sys
+
+def _setEncoding():
+	"""
+	This definition sets the Application encoding.
+	"""
+
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
+
+_setEncoding()
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
-import sys
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -70,4 +84,5 @@ def remove(item):
 		print("{0} | '{1}' file removing failed!".format(remove.__name__, item))
 
 if __name__ == "__main__":
-	recursiveRemove(sys.argv[1], sys.argv[2])
+	arguments = map(unicode, sys.argv)
+	recursiveRemove(arguments[1], arguments[2])
