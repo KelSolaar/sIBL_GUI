@@ -94,7 +94,7 @@ def convertImage(image, type):
 
 	return graphicsItem
 
-def getThumbnailPath(path, size, cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
+def getThumbnailPath(path, size, cacheDirectory=None):
 	"""
 	This definition returns given image thumbnail cached path at given size.
 
@@ -104,6 +104,7 @@ def getThumbnailPath(path, size, cacheDirectory=RuntimeGlobals.thumbnailsCacheDi
 	:return: Cached thumbnail path. ( String )
 	"""
 
+	cacheDirectory = cacheDirectory if cacheDirectory is not None else RuntimeGlobals.thumbnailsCacheDirectory
 	return os.path.join(cacheDirectory,
 					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.encodingCodec)).hexdigest())
 
@@ -112,7 +113,7 @@ def extractThumbnail(path,
 					image=None,
 					format="PNG",
 					quality= -1,
-					cacheDirectory=RuntimeGlobals.thumbnailsCacheDirectory):
+					cacheDirectory=None):
 	"""
 	This definition extract given image thumbnail at given size.
 
@@ -124,6 +125,8 @@ def extractThumbnail(path,
 	:param cacheDirectory: Thumbnails cache directory. ( String )
 	:return: Thumbnail image. ( QImage )
 	"""
+
+	cacheDirectory = cacheDirectory if cacheDirectory is not None else RuntimeGlobals.thumbnailsCacheDirectory
 
 	if not foundations.common.pathExists(cacheDirectory):
 		foundations.io.setDirectory(cacheDirectory)
