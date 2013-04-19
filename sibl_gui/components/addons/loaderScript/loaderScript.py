@@ -947,7 +947,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method builds a Loader Script.
 
 		:param template: Template path. ( String )
-		:param iblSet: iblSet path. ( String )
+		:param iblSet: Ibl Set path. ( String )
 		:param overrideKeys: Override keys. ( Dictionary )
 		:return: Loader Script. ( List )
 		"""
