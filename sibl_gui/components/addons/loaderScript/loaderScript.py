@@ -1016,10 +1016,11 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			if bindingParameters:
 				for parameter in bindingParameters:
 					for attribute in bindedAttributes.itervalues():
-						if parameter == attribute.link:
-							LOGGER.debug(
-							"> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter,
-																								attribute.value))
-							line = line.replace(parameter, attribute.value and attribute.value or "-1")
+						if not parameter == attribute.link:
+							continue
+
+						LOGGER.debug("> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter,
+																										attribute.value))
+						line = line.replace(parameter, attribute.value if attribute.value else "-1")
 			boundLoaderScript.append(line)
 		return boundLoaderScript
