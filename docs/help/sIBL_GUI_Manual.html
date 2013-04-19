@@ -3042,7 +3042,10 @@ Where are sIBL_GUI preferences stored?
 I installed sIBL_GUI and its not starting, what can I do?
 </pre>
 						<p>
-							You need to launch <strong>sIBL_GUI</strong> into Debug verbose mode using the <em>-v 4</em> command line parameter and send me back the logging <em>sIBL_GUI_Logging.log</em> and <em>sIBL_GUI_Database.sqlite</em> database files. Some antivirus software like Avast have been reported to prevent <strong>sIBL_GUI</strong> starting, try adding an exception for <strong>sIBL_GUI</strong> in your antivirus software and see if the application is starting.
+							On Mac Os X, you will need to open the <strong>Console.app</strong> application and check if <strong>sIBL_GUI</strong> reports any exceptions into it. On Windows, you will find a <strong>sIBL_GUI - Console.exe</strong> executable in <strong>sIBL_GUI</strong> installation directory, you will need to launch it from a command prompt and see if any exceptions are printed.
+						</p>
+						<p>
+							Some antivirus software like Avast have been reported to prevent <strong>sIBL_GUI</strong> starting, try adding an exception for <strong>sIBL_GUI</strong> in your antivirus software and see if the application is starting.
 						</p><br />
 						<pre class="literal-block">
 I'm having too many problems with sIBL_GUI x.x.x, are older versions still available?
@@ -3169,56 +3172,18 @@ I'm getting that error: &quot;LoaderScript | Socket connection error: '[Errno 10
 								You need to make Autodesk Maya listen to the port <strong>sIBL_GUI</strong> is using. You can do that using the <strong>Autodesk Maya - Helper Script</strong>: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1">http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1</a> or executing the following lines into the script editor:
 							</div>
 						</div>
-						<ul>
-							<li>
-								<p class="first">
-									Autodesk Maya 2008 - 2013:
-								</p>
-								<blockquote>
-									<p>
-										<tt class="docutils literal">commandPort <span class="pre">-n</span> &quot;127.0.0.1:2048&quot;;</tt>
-									</p>
-								</blockquote>
-							</li>
-							<li>
-								<p class="first">
-									Autodesk Maya 2010 - Windows Vista / 7 :
-								</p>
-								<blockquote>
-									<p>
-										<tt class="docutils literal">commandPort <span class="pre">-n</span> &quot;127.0.0.1:2048&quot;; commandPort <span class="pre">-n</span> &quot;:2048&quot;;</tt>
-									</p>
-								</blockquote>
-							</li>
-						</ul><br />
+						<blockquote>
+							<tt class="docutils literal">commandPort <span class="pre">-n</span> &quot;:2048&quot;;</tt>
+						</blockquote><br />
 						<pre class="literal-block">
 How do I open automatically the command port in Autodesk Maya?
 </pre>
 						<p>
 							Open your <em>userSetup.mel</em> in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
 						</p>
-						<ul>
-							<li>
-								<p class="first">
-									Autodesk Maya 2008 - 2013:
-								</p>
-								<blockquote>
-									<p>
-										<tt class="docutils literal">commandPort <span class="pre">-n</span> (&quot;127.0.0.1:&quot;&nbsp; + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span></tt>
-									</p>
-								</blockquote>
-							</li>
-							<li>
-								<p class="first">
-									Autodesk Maya 2010 - Windows Vista / 7 :
-								</p>
-								<blockquote>
-									<p>
-										<tt class="docutils literal">commandPort <span class="pre">-n</span> (&quot;127.0.0.1:&quot;&nbsp; + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span> commandPort <span class="pre">-n</span> <span class="pre">(&quot;:&quot;</span> + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span></tt>
-									</p>
-								</blockquote>
-							</li>
-						</ul><br />
+						<blockquote>
+							<tt class="docutils literal">commandPort <span class="pre">-n</span> (&quot;127.0.0.1:&quot;&nbsp; + `optionVar <span class="pre">-q</span> <span class="pre">&quot;sIBL_GUI_commandPort&quot;`);</span></tt>
+						</blockquote><br />
 						<pre class="literal-block">
 I have installed Autodesk Maya - Helper Script, what do I put in sIBL_GUI Executable Path field?
 </pre>
