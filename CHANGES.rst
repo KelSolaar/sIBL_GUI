@@ -20,13 +20,16 @@ Changes
 --------------
 
 | **sIBL_GUI** 4.0.7 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=9&page=1&state=closed
-| **Umbra** 1.0.8 - Stable - Milestone:
-| **Foundations** 2.0.8 - Stable - Milestone:
+| **Umbra** 1.0.8 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=9&page=1&state=closed
+| **Manager** 2.0.4 - Stable - Milestone: https://github.com/KelSolaar/Manager/issues?milestone=3&state=closed
+| **Foundations** 2.0.8 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=6&page=1&state=closed
 
-
--  Implement large thumbnails support.
--  Implement unicode support.
--  Drop **sqlalchemy-migrate** support.
+-  Implemented large thumbnails support.
+-  Implemented better unicode support.
+-  Implemented precise per channel color control over the IBL setup in **Softimage** Templates.
+-  Fixed **Softimage_Arnold_Standard** and **Softimage_Arnold_Dome_Light** Templates color profiles issues.
+-  Fixed exception in **Softimage_VRay_Standard** Template.
+-  Dropped **sqlalchemy-migrate** support.
 
 4.0.6 - Stable
 --------------
@@ -35,7 +38,7 @@ Changes
 | **Umbra** 1.0.7 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=8&state=closed
 | **Foundations** 2.0.7 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=5&state=closed
 
--  Add console support to Windows and Darwin Oses builds.
+-  Added console support to Windows and Darwin Oses builds.
 -  Replaced **Py2App** with **Pyinstaller** on Darwin Os.
 -  Improved symbols expanding behavior in **Script Editor** Component.
 -  Improved various dialog button sizes.
