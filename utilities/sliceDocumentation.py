@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**sliceDocumentation.py
+**sliceDocumentation.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

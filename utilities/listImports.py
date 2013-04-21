@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**listImports.py
+**listImports.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

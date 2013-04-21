@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**getSphinxDocumentationApi.py
+**getSphinxDocumentationApi.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

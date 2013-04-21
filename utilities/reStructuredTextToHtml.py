@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**reStructuredTextToHtml.py
+**reStructuredTextToHtml.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**getDependenciesInformations.py
+**getDependenciesInformations.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

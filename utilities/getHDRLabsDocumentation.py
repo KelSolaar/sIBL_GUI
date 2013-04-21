@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**getHDRLabsDocumentation.py
+**getHDRLabsDocumentation.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

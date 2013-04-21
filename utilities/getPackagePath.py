@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**getPackagePath.py
+**getPackagePath.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

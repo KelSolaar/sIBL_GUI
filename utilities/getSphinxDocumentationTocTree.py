@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**getSphinxDocumentationTocTree.py
+**getSphinxDocumentationTocTree.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
