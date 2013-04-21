@@ -290,6 +290,7 @@ class IblSetNode(AbstractDatabaseNode):
 				roles=None,
 				nodeFlags=None,
 				attributesFlags=None,
+				iconPath=None,
 				iconSize=None,
 				iconPlaceholder=None,
 				**kwargs):
@@ -303,6 +304,7 @@ class IblSetNode(AbstractDatabaseNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
+		:param iconPath: Icon path.  ( String )
 		:param iconSize: Icon size.  ( String )
 		:param iconPlaceholder: Icon placeholder.  ( QIcon )
 		:param \*\*kwargs: Keywords arguments. ( \*\* )
@@ -323,6 +325,7 @@ class IblSetNode(AbstractDatabaseNode):
 									**kwargs)
 
 		# --- Setting class attributes. ---
+		self.__iconPath = iconPath
 		self.toolTipText = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
@@ -334,6 +337,41 @@ class IblSetNode(AbstractDatabaseNode):
 		IblSetNode.__initializeNode(self)
 
 	#******************************************************************************************************************
+	#***	Attributes properties.
+	#******************************************************************************************************************
+	@property
+	def iconPath(self):
+		"""
+		This method is the property for **self.__iconPath** attribute.
+
+		:return: self.__iconPath. ( String )
+		"""
+
+		return self.__iconPath
+
+	@iconPath.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def iconPath(self, value):
+		"""
+		This method is the setter method for **self.__iconPath** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iconPath"))
+
+	@iconPath.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def iconPath(self):
+		"""
+		This method is the deleter method for **self.__iconPath** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iconPath"))
+
+	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
 	def __initializeNode(self):
@@ -341,12 +379,8 @@ class IblSetNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		path = foundations.common.getFirstItem(filter(foundations.common.pathExists, [self.databaseItem.backgroundImage,
-																					self.databaseItem.previewImage,
-																					self.databaseItem.icon]))
-
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
-							Qt.DecorationRole : foundations.common.filterPath(path),
+							Qt.DecorationRole : foundations.common.filterPath(self.__iconPath),
 							Qt.EditRole : self.databaseItem.title})
 		self.updateToolTip()
 

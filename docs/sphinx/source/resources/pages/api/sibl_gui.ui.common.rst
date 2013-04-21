@@ -13,6 +13,10 @@ Functions
 
 .. autofunction:: convertImage
 
+.. autofunction:: getThumbnailPath
+
+.. autofunction:: extractThumbnail
+
 .. autofunction:: loadGraphicsItem
 
 .. autofunction:: getGraphicsItem

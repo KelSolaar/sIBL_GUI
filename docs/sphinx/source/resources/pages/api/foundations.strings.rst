@@ -13,7 +13,7 @@ Module Attributes
 Functions
 ---------
 
-.. autofunction:: encode
+.. autofunction:: toString
 
 .. autofunction:: getNiceName
 

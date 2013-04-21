@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**recursiveRemove.py
+**004_migrate_4-x-x_to_4-0-7.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Recursion delete.
+	This module migrates sIBL_GUI from 4.x.x to 4.0.7.
 
 **Others:**
 
@@ -20,24 +20,23 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
-#***	Encoding manipulations.
-#**********************************************************************************************************************
-import sys
-
-def _setEncoding():
-	"""
-	This definition sets the Application encoding.
-	"""
-
-	reload(sys)
-	sys.setdefaultencoding("utf-8")
-
-_setEncoding()
-
-#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import os
+from sqlalchemy import create_engine
+from sqlalchemy.engine import reflection
+from sqlalchemy.schema import DropTable
+from sqlalchemy.schema import MetaData
+from sqlalchemy.schema import Table
+
+#**********************************************************************************************************************
+#***	Internal imports.
+#**********************************************************************************************************************
+import foundations.common
+import foundations.verbose
+import sibl_gui.components.core.database.operations
+from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -49,40 +48,37 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["recursiveRemove", "remove"]
+__all__ = ["LOGGER", "UID", "apply"]
+
+LOGGER = foundations.verbose.installLogger()
+
+UID = "ddfd9d292ea73aa3450989af7d7ee945"
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def recursiveRemove(rootDirectory, pattern):
+def apply():
 	"""
-	This definition recursively deletes the matching items.
+	This definition is called by the Application and triggers the patch execution.
 
-	:param rootDirectory: Directory to recurse. ( String )
-	:param pattern: Pattern to match. ( String )
-	"""
-
-	if not os.path.exists(rootDirectory):
-		return
-
-	for root, dirs, files in os.walk(rootDirectory, followlinks=True):
-		for item in files:
-			itemPath = os.path.join(root, item).replace("\\", "/")
-			if pattern in item:
-				remove(itemPath)
-
-def remove(item):
-	"""
-	This definition deletes given item.
-	:param item: Item to delete. ( String )
+	:return: Definition success. ( Boolean )
 	"""
 
-	print("{0} | Removing file: '{1}'".format(remove.__name__, item))
-	try:
-		os.remove(item)
-	except:
-		print("{0} | '{1}' file removing failed!".format(remove.__name__, item))
+	databaseDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory, Constants.databaseDirectory)
 
-if __name__ == "__main__":
-	arguments = map(unicode, sys.argv)
-	recursiveRemove(arguments[1], arguments[2])
+	migrationsDirectory = os.path.join(databaseDirectory, "migrations")
+	if foundations.common.pathExists(migrationsDirectory):
+		foundations.io.remove(migrationsDirectory)
+
+	databaseFile = os.path.join(databaseDirectory, Constants.databaseFile)
+	engine = create_engine("sqlite:///{0}".format(databaseFile))
+	connection = engine.connect()
+	transaction = connection.begin()
+	inspector = reflection.Inspector.from_engine(engine)
+	metadata = MetaData()
+	for name in inspector.get_table_names():
+		if name in ("Migrate", "{{ locals().pop('version_table') }}"):
+			connection.execute(DropTable(Table(name, metadata)))
+	transaction.commit()
+
+	return True

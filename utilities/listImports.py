@@ -20,10 +20,24 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
+#***	Encoding manipulations.
+#**********************************************************************************************************************
+import sys
+
+def _setEncoding():
+	"""
+	This definition sets the Application encoding.
+	"""
+
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
+
+_setEncoding()
+
+#**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
 import re
-import sys
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -82,5 +96,6 @@ def listImports(packages, filtersIn, filtersOut):
 	return imports
 
 if __name__ == "__main__":
-	imports = listImports(sys.argv[1].split(","), filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
+	arguments = map(unicode, sys.argv)
+	imports = listImports(arguments[1].split(","), filtersIn=FILTERS_IN, filtersOut=FILTERS_OUT)
 	LOGGER.info("{0} | Imports: \"{1}\"".format(listImports.__name__, ",".join(sorted(imports))))

@@ -56,10 +56,10 @@ Table Of Content
    -  `Addons`_
 
       -  `About sIBL_GUI`_
+      -  `Caches Operations`_
       -  `Database Operations`_
       -  `Gps Map`_
       -  `Ibl Sets Scanner`_
-      -  `Images Caches Operations`_
       -  `Loader Script`_
       -  `Loader Script Options`_
       -  `Locations Browser`_
@@ -903,12 +903,6 @@ The *Ibl Sets Outliner* Component is the central Component where IBL Sets are vi
 
 IBL Sets can be viewed using different views depending the user needs:
 
-Columns View:
-
-+----------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg     |
-+----------------------------------------------------------------------------+
-
 Details View:
 
 +----------------------------------------------------------------------------+
@@ -937,8 +931,8 @@ Interactions:
 
 -  **Hovering**: Hovering an Ibl Set raises a popup with informations about the focused Ibl Set.
 -  **Thumbnails View Push Button**: Switch the current view to *Thumbnails View*. 
--  **Columns View Push Button**: Switch the current view to *Columns View*.
 -  **Details View Push Button**: Switch the current view to *Details View*.
+-  **Switch Thumbnails Type Push Button**: Switch thumbnails type from *square* to *panoramic* and vice versa.
 -  **Case Sensitive Matching Push Button**: Search will be performed case sensitively if the button is checked.
 -  **Search Database Line Edit**: It allows IBL Sets filtering. The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will be raised once characters starts being typed. Clicking the magnifier glass raises a context menu pictured below allowing to choose the current database field.
 -  **Thumbnails Size Horizontal Slider**: Adjusts IBL Sets icons size.
@@ -1095,6 +1089,27 @@ The *About* Component displays the *About* window.
 
    <br/>
 
+.. _addons.cachesOperations:
+
+_`Caches Operations` (addons.cachesOperations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++------------------------------------------------------------------+
+| ..  image:: resources/pictures/sIBL_GUI_CachesOperations.jpg     |
++------------------------------------------------------------------+
+
+The *Caches Operations* Component allows the user to manipulate **sIBL_GUI** caches.
+
+Interactions:
+
+-  **Output Caches Metrics Push Button**: Outputs various caches metrics: Counts, paths, sizes.
+-  **Clear Thumbnails Cache Push Button**: Clears the on-disk thumbnails cache, deleting all existing files inside it.
+-  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
+
+.. raw:: html
+
+   <br/>
+
 .. _addons.databaseOperations:
 
 _`Database Operations` (addons.databaseOperations)
@@ -1146,26 +1161,6 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Ibl Sets Scanner* Component is a file scanning Component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the Component.
-
-.. raw:: html
-
-   <br/>
-
-.. _addons.imagesCachesOperations:
-
-_`Images Caches Operations` (addons.imagesCachesOperations)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+------------------------------------------------------------------------+
-| ..  image:: resources/pictures/sIBL_GUI_ImagesCachesOperations.jpg     |
-+------------------------------------------------------------------------+
-
-The *Images Caches Operations* Component allows the user to manipulate **sIBL_GUI** images caches.
-
-Interactions:
-
--  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
--  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
 .. raw:: html
 
@@ -1624,7 +1619,8 @@ No, same as above, however if you need a custom template, we can discuss of what
 
       I installed sIBL_GUI and its not starting, what can I do?
 
-You need to launch **sIBL_GUI** into Debug verbose mode using the *-v 4* command line parameter and send me back the logging *sIBL_GUI_Logging.log* and *sIBL_GUI_Database.sqlite* database files.
+On Mac Os X, you will need to open the **Console.app** application and check if **sIBL_GUI** reports any exceptions into it. On Windows, you will find a **sIBL_GUI - Console.exe** executable in **sIBL_GUI** installation directory, you will need to launch it from a command prompt and see if any exceptions are printed.
+
 Some antivirus software like Avast have been reported to prevent **sIBL_GUI** starting, try adding an exception for **sIBL_GUI** in your antivirus software and see if the application is starting.
 
 .. raw:: html
@@ -1766,14 +1762,8 @@ _`Autodesk Maya`
 
 | **sIBL_GUI** is relying on Socket Connection to communicate with Autodesk Maya.
 | You need to make Autodesk Maya listen to the port **sIBL_GUI** is using. You can do that using the **Autodesk Maya - Helper Script**: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371/1#1 or executing the following lines into the script editor:
-
--  Autodesk Maya 2008 - 2013:
    
-      ``commandPort -n "127.0.0.1:2048";``
-
--  Autodesk Maya 2010 - Windows Vista / 7 :
-   
-      ``commandPort -n "127.0.0.1:2048"; commandPort -n ":2048";``
+   ``commandPort -n ":2048";``
 
 .. raw:: html
 
@@ -1785,13 +1775,7 @@ _`Autodesk Maya`
 
 Open your *userSetup.mel* in Autodesk Maya script folder (Or create the file if it doesn't exists) and append the following lines:
 
--  Autodesk Maya 2008 - 2013:
-   
-      ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`);``
-
--  Autodesk Maya 2010 - Windows Vista / 7 :
-   
-      ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`); commandPort -n (":" + `optionVar -q "sIBL_GUI_commandPort"`);``
+   ``commandPort -n ("127.0.0.1:"  + `optionVar -q "sIBL_GUI_commandPort"`);``
 
 .. raw:: html
 

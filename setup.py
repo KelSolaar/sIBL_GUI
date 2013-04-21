@@ -1,9 +1,66 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+**setup.py**
+
+**Platform:**
+	Windows, Linux, Mac Os X.
+
+**Description:**
+	`https://pypi.python.org/pypi/sIBL_GUI <https://pypi.python.org/pypi/sIBL_GUI>`_ package setup file.
+
+**Others:**
+
+"""
+
+#**********************************************************************************************************************
+#***	Future imports.
+#**********************************************************************************************************************
+from __future__ import unicode_literals
+
+#**********************************************************************************************************************
+#***	Encoding manipulations.
+#**********************************************************************************************************************
+import sys
+
+def _setEncoding():
+	"""
+	This definition sets the Application encoding.
+	"""
+
+	reload(sys)
+	sys.setdefaultencoding("utf-8")
+
+_setEncoding()
+
+#**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
 import re
 from setuptools import setup
 from setuptools import find_packages
 
+#**********************************************************************************************************************
+#***	Internal imports.
+#**********************************************************************************************************************
 import sibl_gui.globals.constants
 
+#**********************************************************************************************************************
+#***	Module attributes.
+#**********************************************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
+
+__all__ = ["getLongDescription"]
+
+#**********************************************************************************************************************
+#***	Module classes and definitions.
+#**********************************************************************************************************************
 def getLongDescription():
 	"""
 	This definition returns the Package long description.
@@ -34,7 +91,7 @@ setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	license="GPLv3",
 	description="sIBL_GUI is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of \"Smart Ibl\" files.",
 	long_description=getLongDescription(),
-	install_requires=["SQLAlchemy>=0.7.8", "Umbra>=1.0.7", "Counter>=1.0.0"],
+	install_requires=["SQLAlchemy==0.7.8", "Umbra>=1.0.8", "Counter>=1.0.0"],
 	classifiers=["Development Status :: 5 - Production/Stable",
 				"Environment :: Console",
 				"Environment :: MacOS X",

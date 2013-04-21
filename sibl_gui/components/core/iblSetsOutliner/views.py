@@ -34,7 +34,6 @@ from PyQt4.QtGui import QListView
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.views
-from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -46,7 +45,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Thumbnails_QListView", "Columns_QListView", "Details_QTreeView"]
+__all__ = ["LOGGER", "Thumbnails_QListView", "Details_QTreeView"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -169,11 +168,12 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
-	def __setDefaultUiState(self, iconsSize=None):
+	def __setDefaultUiState(self, iconsSize=None, iconsRatio=2):
 		"""
 		This method sets the Widget default ui state.
 
 		:param iconsSize: Icons size. ( Integer )
+		:param iconRatio: Icons ratio. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -181,54 +181,9 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		if not iconsSize:
 			return
 
-		self.setIconSize(QSize(iconsSize, iconsSize / 2))
-		self.setGridSize(QSize(iconsSize + self.__listViewSpacing, iconsSize / 2 + self.__listViewMargin))
-
-class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
-	"""
-	This class is used to display Database Ibl Sets in columns.
-	"""
-
-	def __init__(self, parent, model=None, readOnly=False, message=None):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
-
-		Columns_QListView.__initializeUi(self)
-
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
-	def __initializeUi(self):
-		"""
-		This method initializes the Widget ui.
-		"""
-
-		self.setAutoScroll(True)
-		self.setResizeMode(QListView.Adjust)
-		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.setDragDropMode(QAbstractItemView.DragOnly)
-
-		self.__setDefaultUiState()
-
-		# Signals / Slots.
-		self.model().modelReset.connect(self.__setDefaultUiState)
-
-	def __setDefaultUiState(self):
-		"""
-		This method sets the Widget default ui state.
-		"""
-
-		LOGGER.debug("> Setting default View state!")
+		self.setIconSize(QSize(iconsSize, iconsSize / iconsRatio))
+		self.setGridSize(QSize(iconsSize + self.__listViewSpacing, iconsSize / iconsRatio + self.__listViewMargin))
+		self.viewport().update()
 
 class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""

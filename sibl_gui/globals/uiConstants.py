@@ -168,12 +168,13 @@ class UiConstants():
 					"Large" : 256,
 					"Medium" : 128,
 					"Small" : 64,
-					"XSmall" : 32}
+					"XSmall" : 32,
+					"Special1" : 600}
 	"""Application thumbnails sizes. ( Dictionary )"""
 
 	thumbnailsCacheDirectory = "thumbnails"
 	"""Thumbnails cache directory."""
 
-	crittercismId = "5075c158d5f9b9796b000002"
+	crittercismId = "51290b3589ea7429250004fe"
 	"""Crittercism Id: '**51290b3589ea7429250004fe**' ( String )"""
 

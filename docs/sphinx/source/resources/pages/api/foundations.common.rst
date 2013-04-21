@@ -23,6 +23,8 @@ Functions
 
 .. autofunction:: pathExists
 
+.. autofunction:: filterPath
+
 .. autofunction:: getFirstItem
 
 .. autofunction:: getLastItem

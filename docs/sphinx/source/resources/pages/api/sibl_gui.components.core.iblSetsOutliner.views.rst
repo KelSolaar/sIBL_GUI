@@ -15,10 +15,6 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: Columns_QListView
-	:show-inheritance:
-	:members:
-
 .. autoclass:: Details_QTreeView
 	:show-inheritance:
 	:members:

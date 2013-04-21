@@ -21,17 +21,10 @@
 from __future__ import unicode_literals
 
 #**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
-import os
-import sys
-from PyQt4.QtGui import QIcon
-from PyQt4.QtGui import QImage
-from PyQt4.QtGui import QPixmap
-
-#**********************************************************************************************************************
 #***	Encoding manipulations.
 #**********************************************************************************************************************
+import sys
+
 def _setEncoding():
 	"""
 	This definition sets the Application encoding.
@@ -41,6 +34,14 @@ def _setEncoding():
 	sys.setdefaultencoding("utf-8")
 
 _setEncoding()
+
+#**********************************************************************************************************************
+#***	External imports.
+#**********************************************************************************************************************
+import os
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QImage
+from PyQt4.QtGui import QPixmap
 
 #**********************************************************************************************************************
 #***	Path manipulations.
@@ -323,7 +324,8 @@ def main():
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	return umbra.engine.run(sIBL_GUI,
-						commandLineParametersParser.parse_args(map(unicode, sys.argv)),
+						commandLineParametersParser.parse_args(
+						[unicode(argument, umbra.globals.constants.Constants.encodingCodec) for argument in sys.argv]),
 						componentsPaths,
 						("factory.scriptEditor",
 						"factory.preferencesManager",

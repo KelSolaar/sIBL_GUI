@@ -59,9 +59,9 @@ ABOUT_MESSAGE = """
 s I B L _ G U I - {1}
 </p>
 *
-<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
+<br/><br/>Thanks to all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
 <br/>
-Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler,
+Special thanks to: Bob, Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler,
 Lee and Brett.
 <br/>
 Another big thanks to Emanuele Santos for helping me out on the Mac Os X bundle.
@@ -74,10 +74,10 @@ Thanks to all cool guys from CGFeedback, XSIBase and CGTalk.
 Very special thanks to Christian for providing me some space on his server!
 </p>
 <p>
-This software uses Python, Qt, PyQt, FreeImage, SQLAlchemy, SQLAlchemy-migrate, py2app, pyinstaller, Sphinx, Tidy, \
+This software uses Python, Qt, PyQt, FreeImage, SQLAlchemy, pyinstaller, Sphinx, Tidy and
 Actual Installer.
 <br/>
-Coded with Aptana - Pydev - Textmate - Sublime Text 2, Git and Github for Mac.
+Coded with Aptana - Umbra - Sublime Text 2, Git and Github for Mac.
 </p>
 <p>
 If you are a HDRI resources vendor and are interested in making your sets Smart Ibl compliant:

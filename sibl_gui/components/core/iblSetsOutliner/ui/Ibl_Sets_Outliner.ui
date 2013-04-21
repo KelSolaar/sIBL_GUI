@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Ibl_Sets_Outliner_Widget</class>
  <widget class="QWidget" name="Ibl_Sets_Outliner_Widget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>413</width>
-    <height>42</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Ibl Sets Outliner</string>
   </property>
@@ -26,7 +18,7 @@
       <property name="margin">
        <number>4</number>
       </property>
-      <item row="1" column="2">
+      <item row="1" column="3">
        <widget class="QFrame" name="Ibl_Sets_Outliner_Thumbnails_Slider_frame">
         <layout class="QGridLayout" name="Ibl_Sets_Outliner_Thumbnails_Slider_frame_gridLayout">
          <property name="margin">
@@ -102,19 +94,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="Columns_View_pushButton">
-          <property name="toolTip">
-           <string>Columns View Push Button: Displays Ibl Sets as a list.</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="Details_View_pushButton">
           <property name="toolTip">
            <string>Details View Push Button: Displays Ibl Sets with details.</string>
@@ -129,7 +108,7 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="1">
+      <item row="1" column="2">
        <layout class="QHBoxLayout" name="Search_Database_Overall_horizontalLayout">
         <property name="spacing">
          <number>4</number>
@@ -160,6 +139,16 @@
          <layout class="QHBoxLayout" name="Search_Database_horizontalLayout"/>
         </item>
        </layout>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="Switch_Thumbnails_Type_pushButton">
+        <property name="toolTip">
+         <string>Switch Thumbnails Type Push Button: Switch thumbnails type from 'square' to 'panoramic' and vice versa.</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

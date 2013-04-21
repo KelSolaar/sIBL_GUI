@@ -367,12 +367,6 @@ The *Ibl Sets Outliner* Component is the central Component where IBL Sets are vi
 
 IBL Sets can be viewed using different views depending the user needs:
 
-Columns View:
-
-+----------------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_IblSetsOutlinerColumnsView.jpg            |
-+----------------------------------------------------------------------------+
-
 Details View:
 
 +----------------------------------------------------------------------------+
@@ -401,8 +395,8 @@ Interactions:
 
 -  **Hovering**: Hovering an Ibl Set raises a popup with informations about the focused Ibl Set.
 -  **Thumbnails View Push Button**: Switch the current view to *Thumbnails View*. 
--  **Columns View Push Button**: Switch the current view to *Columns View*.
 -  **Details View Push Button**: Switch the current view to *Details View*.
+-  **Switch Thumbnails Type Push Button**: Switch thumbnails type from *square* to *panoramic* and vice versa.
 -  **Case Sensitive Matching Push Button**: Search will be performed case sensitively if the button is checked.
 -  **Search Database Line Edit**: It allows IBL Sets filtering. The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will be raised once characters starts being typed. Clicking the magnifier glass raises a context menu pictured below allowing to choose the current database field.
 -  **Thumbnails Size Horizontal Slider**: Adjusts IBL Sets icons size.
@@ -559,6 +553,27 @@ The *About* Component displays the *About* window.
 
    <br/>
 
+.. _addons.cachesOperations:
+
+_`Caches Operations` (addons.cachesOperations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_CachesOperations.jpg            |
++------------------------------------------------------------------+
+
+The *Caches Operations* Component allows the user to manipulate **sIBL_GUI** caches.
+
+Interactions:
+
+-  **Output Caches Metrics Push Button**: Outputs various caches metrics: Counts, paths, sizes.
+-  **Clear Thumbnails Cache Push Button**: Clears the on-disk thumbnails cache, deleting all existing files inside it.
+-  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
+
+.. raw:: html
+
+   <br/>
+
 .. _addons.databaseOperations:
 
 _`Database Operations` (addons.databaseOperations)
@@ -610,26 +625,6 @@ _`Ibl Sets Scanner` (addons.iblSetsScanner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *Ibl Sets Scanner* Component is a file scanning Component that will automatically register any new Ibl Sets to the Default Collection whenever it founds one in an already existing IBL Sets parent directory. This behavior can be stopped by deactivating the Component.
-
-.. raw:: html
-
-   <br/>
-
-.. _addons.imagesCachesOperations:
-
-_`Images Caches Operations` (addons.imagesCachesOperations)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-+------------------------------------------------------------------------+
-| ..  image:: ../pictures/sIBL_GUI_ImagesCachesOperations.jpg            |
-+------------------------------------------------------------------------+
-
-The *Images Caches Operations* Component allows the user to manipulate **sIBL_GUI** images caches.
-
-Interactions:
-
--  **Output Images Caches Metrics Push Button**: Outputs various images caches metrics: Images count, paths, sizes.
--  **Clear Images Caches Push Button**: Clears the various images caches, the Python interpreter may not release the memory immediately.
 
 .. raw:: html
 
