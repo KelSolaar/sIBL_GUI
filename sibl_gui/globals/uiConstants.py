@@ -175,6 +175,6 @@ class UiConstants():
 	thumbnailsCacheDirectory = "thumbnails"
 	"""Thumbnails cache directory."""
 
-	crittercismId = "51290b3589ea7429250004fe"
+	crittercismId = "5075c158d5f9b9796b000002"
 	"""Crittercism Id: '**51290b3589ea7429250004fe**' ( String )"""
 
