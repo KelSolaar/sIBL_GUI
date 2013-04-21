@@ -26,6 +26,11 @@ import os
 import platform
 
 #**********************************************************************************************************************
+#***	Internal imports.
+#**********************************************************************************************************************
+import sibl_gui
+
+#**********************************************************************************************************************
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
@@ -59,7 +64,7 @@ class Constants():
 	logger = "sIBL_GUI_Logger"
 	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
 
-	defaultCodec = "utf-8"
+	defaultCodec = sibl_gui.DEFAULT_CODEC
 	"""Default codec: '**utf-8**' ( String )"""
 	codecError = "ignore"
 	"""Default codec error behavior: '**ignore**' ( String )"""

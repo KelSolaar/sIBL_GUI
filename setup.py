@@ -22,14 +22,14 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	Encoding manipulations.
 #**********************************************************************************************************************
-import sys
-
 def _setEncoding():
 	"""
 	This definition sets the Application encoding.
 	"""
 
+	import sys
 	reload(sys)
+
 	sys.setdefaultencoding("utf-8")
 
 _setEncoding()
