@@ -106,7 +106,7 @@ def getThumbnailPath(path, size, cacheDirectory=None):
 
 	cacheDirectory = cacheDirectory if cacheDirectory is not None else RuntimeGlobals.thumbnailsCacheDirectory
 	return os.path.join(cacheDirectory,
-					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.encodingCodec)).hexdigest())
+					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.defaultCodec)).hexdigest())
 
 def extractThumbnail(path,
 					size="Default",

@@ -59,6 +59,11 @@ class Constants():
 	logger = "sIBL_GUI_Logger"
 	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
 
+	defaultCodec = "utf-8"
+	"""Default codec: '**utf-8**' ( String )"""
+	codecError = "ignore"
+	"""Default codec error behavior: '**ignore**' ( String )"""
+
 	applicationDirectory = os.sep.join(("sIBL_GUI", ".".join((majorVersion, minorVersion))))
 	"""Package Application directory: '**sIBL_GUI**' ( String )"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":

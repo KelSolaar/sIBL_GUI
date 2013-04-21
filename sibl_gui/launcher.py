@@ -324,8 +324,10 @@ def main():
 		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	return umbra.engine.run(sIBL_GUI,
-						commandLineParametersParser.parse_args(
-						[unicode(argument, umbra.globals.constants.Constants.encodingCodec) for argument in sys.argv]),
+						commandLineParametersParser.parse_args([unicode(argument,
+															umbra.globals.constants.Constants.defaultCodec,
+															umbra.globals.constants.Constants.codecError) \
+															for argument in sys.argv]),
 						componentsPaths,
 						("factory.scriptEditor",
 						"factory.preferencesManager",

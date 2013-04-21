@@ -64,6 +64,8 @@ class ConstantsTestCase(unittest.TestCase):
 								"changeVersion",
 								"releaseVersion",
 								"logger",
+								"defaultCodec",
+								"codecError",
 								"applicationDirectory",
 								"providerDirectory",
 								"databaseDirectory",
@@ -129,6 +131,28 @@ class ConstantsTestCase(unittest.TestCase):
 		"""
 
 		self.assertRegexpMatches(Constants.logger, "\w+")
+
+	def testDefaultCodecAttribute(self):
+		"""
+		This method tests :attr:`umbra.globals.constants.Constants.defaultCodec` attribute.
+		"""
+
+		validEncodings = ("utf-8",
+						"cp1252")
+
+		self.assertIn(Constants.defaultCodec, validEncodings)
+
+	def testEncodingErrorAttribute(self):
+		"""
+		This method tests :attr:`umbra.globals.constants.Constants.codecError` attribute.
+		"""
+
+		validEncodingsErrors = ("strict",
+						"ignore",
+						"replace",
+						"xmlcharrefreplace")
+
+		self.assertIn(Constants.codecError, validEncodingsErrors)
 
 	def testApplicationDirectoryAttribute(self):
 		"""
