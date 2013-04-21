@@ -24,7 +24,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 def _setEncoding():
 	"""
-	This definition sets the Application encoding.
+	This definition sets the Package encoding.
 	"""
 
 	import sys
