@@ -85,27 +85,18 @@ def _overrideDependenciesGlobals():
 
 _overrideDependenciesGlobals()
 
-import umbra.ui.widgets.application_QToolBar
-import sibl_gui.ui.widgets.application_QToolBar
-
-def _overrideApplicationToolbar():
-	"""
-	This definition overrides Application toolbar.
-	"""
-
-	umbra.ui.widgets.application_QToolBar.Application_QToolBar = \
-	sibl_gui.ui.widgets.application_QToolBar.Application_QToolBar
-
-_overrideApplicationToolbar()
-
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.common
 import foundations.verbose
+import sibl_gui.ui.models
+import sibl_gui.ui.caches
+import sibl_gui.ui.widgets.application_QToolBar
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.models
+import umbra.ui.widgets.application_QToolBar
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -124,45 +115,6 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-
-#**********************************************************************************************************************
-#***	Thumbnails cache settings.
-#**********************************************************************************************************************
-def _setThumbnailsCache():
-	"""
-	This definition sets the Application thumbnails cache.
-	"""
-
-	umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = os.path.join(
-														foundations.environment.getUserApplicationDataDirectory(),
-														umbra.globals.constants.Constants.ioDirectory,
-														umbra.globals.uiConstants.UiConstants.thumbnailsCacheDirectory)
-
-_setThumbnailsCache()
-
-#**********************************************************************************************************************
-#***	Images caches settings.
-#**********************************************************************************************************************
-import sibl_gui.ui.caches
-import sibl_gui.ui.models
-
-def _setImagesCaches():
-	"""
-	This definition sets the Application images caches.
-	"""
-
-	loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
-	umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = foundations.dataStructures.Structure(**{
-								"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loadingImage),
-								"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loadingImage),
-								"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loadingImage)})
-
-	# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
-	# with asynchronous images loading.
-	setattr(umbra.ui.models.GraphModel, "data", umbra.ui.models.GraphModel.data)
-
-_setImagesCaches()
-
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
 	This class is the main class of the **sIBL_GUI** package.
@@ -187,6 +139,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
+		# --- Setting class attributes. ---
+		self.__thumbnailsCacheDirectory = None
 		self.__imagesCaches = None
 
 		umbra.engine.Umbra.__init__(self,
@@ -201,11 +155,43 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
+	def thumbnailsCacheDirectory(self):
+		"""
+		This method is the property for **self.__thumbnailsCacheDirectory** attribute.
+
+		:return: self.__thumbnailsCacheDirectory. ( String )
+		"""
+
+		return self.__thumbnailsCacheDirectory
+
+	@thumbnailsCacheDirectory.setter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsCacheDirectory(self, value):
+		"""
+		This method is the setter method for **self.__thumbnailsCacheDirectory** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnailsCacheDirectory"))
+
+	@thumbnailsCacheDirectory.deleter
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	def thumbnailsCacheDirectory(self):
+		"""
+		This method is the deleter method for **self.__thumbnailsCacheDirectory** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsCacheDirectory"))
+
+	@property
 	def imagesCaches(self):
 		"""
 		This method is the property for **self.__imagesCaches** attribute.
 
-		:return: self.__imagesCaches. ( Cache )
+		:return: self.__imagesCaches. ( Structure )
 		"""
 
 		return self.__imagesCaches
@@ -216,7 +202,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		This method is the setter method for **self.__imagesCaches** attribute.
 
-		:param value: Attribute value. ( Cache )
+		:param value: Attribute value. ( Structure )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -235,13 +221,48 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
+	def __overrideApplicationToolbar(self):
+		"""
+		This method overrides the Application toolbar.
+		"""
+
+		umbra.ui.widgets.application_QToolBar.Application_QToolBar = \
+		sibl_gui.ui.widgets.application_QToolBar.Application_QToolBar
+
+	def __setThumbnailsCacheDirectory(self):
+		"""
+		This method sets the Application thumbnails cache directory.
+		"""
+
+		self.__thumbnailsCacheDirectory = umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = \
+								os.path.join(umbra.globals.runtimeGlobals.RuntimeGlobals.userApplicationDataDirectory,
+											umbra.globals.constants.Constants.ioDirectory,
+											umbra.globals.uiConstants.UiConstants.thumbnailsCacheDirectory)
+
+	def __setImagesCaches(self):
+		"""
+		This method sets the Application images caches.
+		"""
+
+		loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
+		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = \
+					foundations.dataStructures.Structure(**{
+					"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loadingImage),
+					"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loadingImage),
+					"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loadingImage)})
+
+		# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
+		# with asynchronous images loading.
+		setattr(umbra.ui.models.GraphModel, "data", umbra.ui.models.GraphModel.data)
+
 	def onPreInitialisation(self):
 		"""
 		This method is called by the :class:`umbra.engine.Umbra` class before Application main class initialisation.
 		"""
 
-		# Binding Application images caches.
-		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches
+		self.__overrideApplicationToolbar()
+		self.__setThumbnailsCacheDirectory()
+		self.__setImagesCaches()
 
 	def onPostInitialisation(self):
 		"""
