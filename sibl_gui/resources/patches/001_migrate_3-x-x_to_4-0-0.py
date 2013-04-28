@@ -96,7 +96,7 @@ If you are using an already migrated shared database, you can ignore this messag
 		message = "A previous sIBL_GUI database file has been found: '{0}'!\n\n\
 Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 				legacyDatabaseFile)
-		if umbra.ui.widgets.messageBox.messageBox("Question", "sIBL_GUI | Question",
+		if umbra.ui.widgets.messageBox.messageBox("Question", "Question",
 														message,
 														buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			try:
@@ -107,14 +107,14 @@ Would you like to migrate it toward sIBL_GUI 4.0.0?".format(
 			except:
 				message = "{0} | Critical exception raised while copying '{1}' database file to '{2}' destination!\n\n\
 sIBL_GUI will now exit!".format(__name__, legacyDatabaseFile, databaseFile)
-				umbra.ui.widgets.messageBox.messageBox("Critical", "sIBL_GUI | Critical", message)
+				umbra.ui.widgets.messageBox.messageBox("Critical", "Critical", message)
 				foundations.core.exit(1)
 
 			if RuntimeGlobals.parameters.databaseDirectory:
 				deprecatedDatabaseDirectory = os.path.join(databaseDirectory, "backup", "deprecated")
 				message = "The previous sIBL_GUI database file will be backuped into the following directory: '{0}'.".format(
 				deprecatedDatabaseDirectory)
-				umbra.ui.widgets.messageBox.messageBox("Information", "sIBL_GUI | Information", message)
+				umbra.ui.widgets.messageBox.messageBox("Information", "Information", message)
 				os.makedirs(deprecatedDatabaseDirectory)
 				shutil.move(legacyDatabaseFile,
 							os.path.join(deprecatedDatabaseDirectory, os.path.basename(legacyDatabaseFile)))

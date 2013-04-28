@@ -61,7 +61,7 @@ def apply():
 	"""
 
 	umbra.ui.widgets.messageBox.messageBox("Information",
-	"sIBL_GUI | Message",
+	"Message",
 	"Hello!\n\nUpon startup and from now on, sIBL_GUI will attempt to connect to \
 https://www.crittercism.com/ to report unhandled exceptions whenever they occur!\n\nThis message will only display once!")
 
