@@ -139,10 +139,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		# --- Setting class attributes. ---
-		self.__thumbnailsCacheDirectory = None
-		self.__imagesCaches = None
-
 		umbra.engine.Umbra.__init__(self,
 									parent,
 									componentsPaths,
@@ -150,6 +146,10 @@ class sIBL_GUI(umbra.engine.Umbra):
 									visibleComponents,
 									*args,
 									**kwargs)
+
+		# --- Setting class attributes. ---
+		self.__thumbnailsCacheDirectory = self.__thumbnailsCacheDirectory
+		self.__imagesCaches = self.__imagesCaches
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -263,6 +263,13 @@ class sIBL_GUI(umbra.engine.Umbra):
 		self.__overrideApplicationToolbar()
 		self.__setThumbnailsCacheDirectory()
 		self.__setImagesCaches()
+
+	def onInitialisation(self):
+		"""
+		This method is called by the :class:`umbra.engine.Umbra` class on Application main class initialisation.
+		"""
+
+		pass
 
 	def onPostInitialisation(self):
 		"""
