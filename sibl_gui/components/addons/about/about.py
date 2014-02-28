@@ -37,7 +37,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -91,7 +91,7 @@ Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com">
 <span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
 </p>
 <p>
-sIBL_GUI by Thomas Mansencal - 2008 - 2013
+sIBL_GUI by Thomas Mansencal - 2008 - 2014
 <br/>
 This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/">
 <span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
