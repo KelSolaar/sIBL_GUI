@@ -41,7 +41,7 @@ __all__ = ["getPackagePath"]
 #**********************************************************************************************************************
 def getPackagePath(package):
 	"""
-	This writes given package path to stdout.
+	Writes given package path to stdout.
 	"""
 
 	package = __import__(package)
