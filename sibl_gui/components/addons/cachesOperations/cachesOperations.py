@@ -66,7 +66,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -92,7 +92,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -103,7 +103,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -115,7 +115,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -124,7 +124,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def scriptEditor(self):
 		"""
-		This method is the property for **self.__scriptEditor** attribute.
+		Property for **self.__scriptEditor** attribute.
 
 		:return: self.__scriptEditor. ( QWidget )
 		"""
@@ -135,7 +135,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__scriptEditor** attribute.
+		Setter for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -147,7 +147,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__scriptEditor** attribute.
+		Deleter for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -156,7 +156,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def preferencesManager(self):
 		"""
-		This method is the property for **self.__preferencesManager** attribute.
+		Property for **self.__preferencesManager** attribute.
 
 		:return: self.__preferencesManager. ( QWidget )
 		"""
@@ -167,7 +167,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__preferencesManager** attribute.
+		Setter for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -179,7 +179,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__preferencesManager** attribute.
+		Deleter for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -190,7 +190,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -208,7 +208,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -225,7 +225,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -242,7 +242,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -259,7 +259,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -272,7 +272,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -286,7 +286,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Clear_Thumbnails_Cache_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Thumbnails_Cache_pushButton** Widget is clicked.
+		Defines the slot triggered by **Thumbnails_Cache_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -295,7 +295,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Clear_Images_Caches_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Clear_Images_Caches_pushButton** Widget is clicked.
+		Defines the slot triggered by **Clear_Images_Caches_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -304,7 +304,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Output_Caches_Metrics_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Output_Caches_Metrics_pushButton** Widget is clicked.
+		Defines the slot triggered by **Output_Caches_Metrics_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -314,7 +314,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def outputCachesMetrics(self):
 		"""
-		This method outputs caches metrics.
+		Outputs caches metrics.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -356,7 +356,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											sibl_gui.exceptions.CacheOperationError)
 	def clearThumbnailsCache(self):
 		"""
-		This method clears the thumbnails cache.
+		Clears the thumbnails cache.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -380,7 +380,7 @@ class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											sibl_gui.exceptions.CacheOperationError)
 	def clearImagesCaches(self):
 		"""
-		This method clears the images caches.
+		Clears the images caches.
 
 		:return: Method success. ( Boolean )
 		"""

@@ -71,7 +71,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 	def __init__(self, parent=None, image=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param image: Image. ( QImage )
@@ -93,7 +93,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def image(self):
 		"""
-		This method is the property for **self.__image** attribute.
+		Property for **self.__image** attribute.
 
 		:return: self.__image. ( QImage )
 		"""
@@ -104,7 +104,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def image(self, value):
 		"""
-		This method is the setter method for **self.__image** attribute.
+		Setter for **self.__image** attribute.
 
 		:param value: Attribute value. ( QImage )
 		"""
@@ -117,7 +117,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def image(self):
 		"""
-		This method is the deleter method for **self.__image** attribute.
+		Deleter for **self.__image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -126,7 +126,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def width(self):
 		"""
-		This method is the property for **self.__width** attribute.
+		Property for **self.__width** attribute.
 
 		:return: self.__width. ( Integer )
 		"""
@@ -137,7 +137,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def width(self, value):
 		"""
-		This method is the setter method for **self.__width** attribute.
+		Setter for **self.__width** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -150,7 +150,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def width(self):
 		"""
-		This method is the deleter method for **self.__width** attribute.
+		Deleter for **self.__width** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -159,7 +159,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def height(self):
 		"""
-		This method is the property for **self.__height** attribute.
+		Property for **self.__height** attribute.
 
 		:return: self.__height. ( Integer )
 		"""
@@ -170,7 +170,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def height(self, value):
 		"""
-		This method is the setter method for **self.__height** attribute.
+		Setter for **self.__height** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -183,7 +183,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def height(self):
 		"""
-		This method is the deleter method for **self.__height** attribute.
+		Deleter for **self.__height** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -194,7 +194,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	#******************************************************************************************************************
 	def boundingRect(self):
 		"""
-		This method reimplements the :meth:`QGraphicsItem.boundingRect` method.
+		Reimplements the :meth:`QGraphicsItem.boundingRect` method.
 		"""
 
 		return QRectF(-(self.__image.width()) / 2,
@@ -204,7 +204,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 	def paint(self, painter, options, widget):
 		"""
-		This method reimplements the :meth:`QGraphicsItem.paint` method.
+		Reimplements the :meth:`QGraphicsItem.paint` method.
 
 		:param painter: QPainter ( QPainter )
 		:param options: QStyleOptionGraphicsItem ( QStyleOptionGraphicsItem )
@@ -222,7 +222,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __init__(self, parent, paths=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param paths: Images paths. ( Tuple / List )
@@ -274,7 +274,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def container(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		Property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -285,7 +285,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		Setter for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -297,7 +297,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		Deleter for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -306,7 +306,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def paths(self):
 		"""
-		This method is the property for **self.__paths** attribute.
+		Property for **self.__paths** attribute.
 
 		:return: self.__paths. ( Tuple / List )
 		"""
@@ -317,7 +317,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def paths(self, value):
 		"""
-		This method is the setter method for **self.__paths** attribute.
+		Setter for **self.__paths** attribute.
 
 		:param value: Attribute value. ( Tuple / List )
 		"""
@@ -333,7 +333,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def paths(self):
 		"""
-		This method is the deleter method for **self.__paths** attribute.
+		Deleter for **self.__paths** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -342,7 +342,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -353,7 +353,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -365,7 +365,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -374,7 +374,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiPreviousImage(self):
 		"""
-		This method is the property for **self.__uiPreviousImage** attribute.
+		Property for **self.__uiPreviousImage** attribute.
 
 		:return: self.__uiPreviousImage. ( String )
 		"""
@@ -385,7 +385,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This method is the setter method for **self.__uiPreviousImage** attribute.
+		Setter for **self.__uiPreviousImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -397,7 +397,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This method is the deleter method for **self.__uiPreviousImage** attribute.
+		Deleter for **self.__uiPreviousImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -406,7 +406,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiNextImage(self):
 		"""
-		This method is the property for **self.__uiNextImage** attribute.
+		Property for **self.__uiNextImage** attribute.
 
 		:return: self.__uiNextImage. ( String )
 		"""
@@ -417,7 +417,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This method is the setter method for **self.__uiNextImage** attribute.
+		Setter for **self.__uiNextImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -429,7 +429,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This method is the deleter method for **self.__uiNextImage** attribute.
+		Deleter for **self.__uiNextImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -438,7 +438,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiZoomOutImage(self):
 		"""
-		This method is the property for **self.__uiZoomOutImage** attribute.
+		Property for **self.__uiZoomOutImage** attribute.
 
 		:return: self.__uiZoomOutImage. ( String )
 		"""
@@ -449,7 +449,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self, value):
 		"""
-		This method is the setter method for **self.__uiZoomOutImage** attribute.
+		Setter for **self.__uiZoomOutImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -461,7 +461,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self):
 		"""
-		This method is the deleter method for **self.__uiZoomOutImage** attribute.
+		Deleter for **self.__uiZoomOutImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -470,7 +470,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiZoomInImage(self):
 		"""
-		This method is the property for **self.__uiZoomInImage** attribute.
+		Property for **self.__uiZoomInImage** attribute.
 
 		:return: self.__uiZoomInImage. ( String )
 		"""
@@ -481,7 +481,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self, value):
 		"""
-		This method is the setter method for **self.__uiZoomInImage** attribute.
+		Setter for **self.__uiZoomInImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -493,7 +493,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self):
 		"""
-		This method is the deleter method for **self.__uiZoomInImage** attribute.
+		Deleter for **self.__uiZoomInImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -502,7 +502,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def graphicsSceneBackgroundColor(self):
 		"""
-		This method is the property for **self.__graphicsSceneBackgroundColor** attribute.
+		Property for **self.__graphicsSceneBackgroundColor** attribute.
 
 		:return: self.__graphicsSceneBackgroundColor. ( QColors )
 		"""
@@ -513,7 +513,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self, value):
 		"""
-		This method is the setter method for **self.__graphicsSceneBackgroundColor** attribute.
+		Setter for **self.__graphicsSceneBackgroundColor** attribute.
 
 		:param value: Attribute value. ( QColors )
 		"""
@@ -525,7 +525,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self):
 		"""
-		This method is the deleter method for **self.__graphicsSceneBackgroundColor** attribute.
+		Deleter for **self.__graphicsSceneBackgroundColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -534,7 +534,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def graphicsSceneWidth(self):
 		"""
-		This method is the property for **self.__graphicsSceneWidth** attribute.
+		Property for **self.__graphicsSceneWidth** attribute.
 
 		:return: self.__graphicsSceneWidth. ( Integer )
 		"""
@@ -545,7 +545,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self, value):
 		"""
-		This method is the setter method for **self.__graphicsSceneWidth** attribute.
+		Setter for **self.__graphicsSceneWidth** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -557,7 +557,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self):
 		"""
-		This method is the deleter method for **self.__graphicsSceneWidth** attribute.
+		Deleter for **self.__graphicsSceneWidth** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -566,7 +566,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def graphicsSceneHeight(self):
 		"""
-		This method is the property for **self.__graphicsSceneHeight** attribute.
+		Property for **self.__graphicsSceneHeight** attribute.
 
 		:return: self.__graphicsSceneHeight. ( Object )
 		"""
@@ -577,7 +577,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self, value):
 		"""
-		This method is the setter method for **self.__graphicsSceneHeight** attribute.
+		Setter for **self.__graphicsSceneHeight** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -589,7 +589,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self):
 		"""
-		This method is the deleter method for **self.__graphicsSceneHeight** attribute.
+		Deleter for **self.__graphicsSceneHeight** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -598,7 +598,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def minimumZoomFactor(self):
 		"""
-		This method is the property for **self.__minimumZoomFactor** attribute.
+		Property for **self.__minimumZoomFactor** attribute.
 
 		:return: self.__minimumZoomFactor. ( Float )
 		"""
@@ -609,7 +609,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self, value):
 		"""
-		This method is the setter method for **self.__minimumZoomFactor** attribute.
+		Setter for **self.__minimumZoomFactor** attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -621,7 +621,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self):
 		"""
-		This method is the deleter method for **self.__minimumZoomFactor** attribute.
+		Deleter for **self.__minimumZoomFactor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -630,7 +630,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def maximumZoomFactor(self):
 		"""
-		This method is the property for **self.__maximumZoomFactor** attribute.
+		Property for **self.__maximumZoomFactor** attribute.
 
 		:return: self.__maximumZoomFactor. ( Float )
 		"""
@@ -641,7 +641,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self, value):
 		"""
-		This method is the setter method for **self.__maximumZoomFactor** attribute.
+		Setter for **self.__maximumZoomFactor** attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -653,7 +653,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self):
 		"""
-		This method is the deleter method for **self.__maximumZoomFactor** attribute.
+		Deleter for **self.__maximumZoomFactor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -662,7 +662,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def wheelZoomFactor(self):
 		"""
-		This method is the property for **self.__wheelZoomFactor** attribute.
+		Property for **self.__wheelZoomFactor** attribute.
 
 		:return: self.__wheelZoomFactor. ( Float )
 		"""
@@ -673,7 +673,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self, value):
 		"""
-		This method is the setter method for **self.__wheelZoomFactor** attribute.
+		Setter for **self.__wheelZoomFactor** attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -685,7 +685,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self):
 		"""
-		This method is the deleter method for **self.__wheelZoomFactor** attribute.
+		Deleter for **self.__wheelZoomFactor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -694,7 +694,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def keyZoomFactor(self):
 		"""
-		This method is the property for **self.__keyZoomFactor** attribute.
+		Property for **self.__keyZoomFactor** attribute.
 
 		:return: self.__keyZoomFactor. ( Float )
 		"""
@@ -705,7 +705,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self, value):
 		"""
-		This method is the setter method for **self.__keyZoomFactor** attribute.
+		Setter for **self.__keyZoomFactor** attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -717,7 +717,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self):
 		"""
-		This method is the deleter method for **self.__keyZoomFactor** attribute.
+		Deleter for **self.__keyZoomFactor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -726,7 +726,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def graphicsView(self):
 		"""
-		This method is the property for **self.__graphicsView** attribute.
+		Property for **self.__graphicsView** attribute.
 
 		:return: self.__graphicsView. ( QGraphicsView )
 		"""
@@ -737,7 +737,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsView(self, value):
 		"""
-		This method is the setter method for **self.__graphicsView** attribute.
+		Setter for **self.__graphicsView** attribute.
 
 		:param value: Attribute value. ( QGraphicsView )
 		"""
@@ -749,7 +749,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsView(self):
 		"""
-		This method is the deleter method for **self.__graphicsView** attribute.
+		Deleter for **self.__graphicsView** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -758,7 +758,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def graphicsScene(self):
 		"""
-		This method is the property for **self.__graphicsScene** attribute.
+		Property for **self.__graphicsScene** attribute.
 
 		:return: self.__graphicsScene. ( QGraphicsScene )
 		"""
@@ -769,7 +769,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsScene(self, value):
 		"""
-		This method is the setter method for **self.__graphicsScene** attribute.
+		Setter for **self.__graphicsScene** attribute.
 
 		:param value: Attribute value. ( QGraphicsScene )
 		"""
@@ -781,7 +781,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def graphicsScene(self):
 		"""
-		This method is the deleter method for **self.__graphicsScene** attribute.
+		Deleter for **self.__graphicsScene** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -790,7 +790,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def displayGraphicsItem(self):
 		"""
-		This method is the property for **self.__displayGraphicsItem** attribute.
+		Property for **self.__displayGraphicsItem** attribute.
 
 		:return: self.__displayGraphicsItem. ( QGraphicsItem )
 		"""
@@ -801,7 +801,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self, value):
 		"""
-		This method is the setter method for **self.__displayGraphicsItem** attribute.
+		Setter for **self.__displayGraphicsItem** attribute.
 
 		:param value: Attribute value. ( QGraphicsItem )
 		"""
@@ -813,7 +813,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self):
 		"""
-		This method is the deleter method for **self.__displayGraphicsItem** attribute.
+		Deleter for **self.__displayGraphicsItem** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -824,7 +824,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	def show(self):
 		"""
-		This method reimplements the :meth:`QWidget.show` method.
+		Reimplements the :meth:`QWidget.show` method.
 		"""
 
 		super(ImagesPreviewer, self).show()
@@ -833,7 +833,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def closeEvent(self, event):
 		"""
-		This method reimplements the :meth:`QWidget.closeEvent` method.
+		Reimplements the :meth:`QWidget.closeEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
@@ -845,7 +845,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def wheelEvent(self, event):
 		"""
-		This method reimplements the :meth:`QWidget.wheelEvent` method.
+		Reimplements the :meth:`QWidget.wheelEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
@@ -854,7 +854,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def keyPressEvent(self, event):
 		"""
-		This method reimplements the :meth:`QWidget.keyPressEvent` method.
+		Reimplements the :meth:`QWidget.keyPressEvent` method.
 
 		:param event: QEvent ( QEvent )
 		"""
@@ -869,7 +869,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
@@ -912,7 +912,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Images_Informations_label_setUi(self):
 		"""
-		This method sets the **Images_Informations_label** Widget ui.
+		Sets the **Images_Informations_label** Widget ui.
 		"""
 
 		if not self.__displayGraphicsItem:
@@ -926,7 +926,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __engine_imagesCaches_QImage__contentAdded(self, content):
 		"""
-		This method is triggered by the Application **QImage** images cache when content has been added.
+		Defines the slot triggered by Application **QImage** images cache when content has been added.
 
 		:param content: Cache added content. ( List )
 		"""
@@ -943,7 +943,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Previous_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Image_pushButton** Widget is clicked.
+		Defines the slot triggered by **Previous_Image_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -952,7 +952,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Next_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Image_pushButton** Widget is clicked.
+		Defines the slot triggered by **Next_Image_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -961,7 +961,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_In_pushButton** Widget is clicked.
+		Defines the slot triggered by **Zoom_In_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -970,7 +970,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_Out_pushButton** Widget is clicked.
+		Defines the slot triggered by **Zoom_Out_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -979,7 +979,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Zoom_Fit_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_Fit_pushButton** Widget is clicked.
+		Defines the slot triggered by **Zoom_Fit_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -988,7 +988,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __clearGraphicsScene(self):
 		"""
-		This method clears the View.
+		Clears the View.
 		"""
 
 		for graphicsItem in self.__graphicsScene.items():
@@ -996,7 +996,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __setDisplayGraphicsItem(self, image):
 		"""
-		This method sets the View using given image.
+		Sets the View using given image.
 
 		:param image: Image to display. ( Qimage )
 		"""
@@ -1011,7 +1011,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def loadImage(self, index=0):
 		"""
-		This method loads the display image in the View.
+		Loads the display image in the View.
 
 		:param index: Index to load. ( Integer )
 		:return: Method success. ( Boolean )
@@ -1027,7 +1027,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def scaleView(self, scaleFactor):
 		"""
-		This method scales the Previewer view.
+		Scales the Previewer view.
 
 		:param scaleFactor: Float ( Float )
 		:return: Method success. ( Boolean )
@@ -1043,7 +1043,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def fitWindow(self):
 		"""
-		This method fits the View window.
+		Fits the View window.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -1063,7 +1063,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def fitImage(self):
 		"""
-		This method fits the image to the View.
+		Fits the image to the View.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -1081,7 +1081,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def loopThroughImages(self, backward=False):
 		"""
-		This method loops through View images.
+		Loops through View images.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )

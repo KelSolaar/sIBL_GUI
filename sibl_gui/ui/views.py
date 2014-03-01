@@ -54,7 +54,7 @@ class Mixin_AbstractView(object):
 
 	def __init__(self, model=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param model: Model. ( QObject )
 		"""
@@ -72,7 +72,7 @@ class Mixin_AbstractView(object):
 	@property
 	def modelSelection(self):
 		"""
-		This method is the property for **self.__modelSelection** attribute.
+		Property for **self.__modelSelection** attribute.
 
 		:return: self.__modelSelection. ( Dictionary )
 		"""
@@ -83,7 +83,7 @@ class Mixin_AbstractView(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def modelSelection(self, value):
 		"""
-		This method is the setter method for **self.__modelSelection** attribute.
+		Setter for **self.__modelSelection** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -101,7 +101,7 @@ class Mixin_AbstractView(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
+		Deleter for **self.__modelSelection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -112,7 +112,7 @@ class Mixin_AbstractView(object):
 	#******************************************************************************************************************
 	def setModel(self, model):
 		"""
-		This method reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
+		Reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
 		
 		:param model: Model to set. ( QObject )
 		"""
@@ -130,21 +130,21 @@ class Mixin_AbstractView(object):
 
 	def __model__modelAboutToBeReset(self):
 		"""
-		This method is triggered when the Model is about to be reset.
+		Defines the slot triggered by the Model when about to be reset.
 		"""
 
 		self.storeModelSelection()
 
 	def __model__modelReset(self):
 		"""
-		This method is triggered when the Model is changed.
+		Defines the slot triggered by the Model when reset.
 		"""
 
 		self.restoreModelSelection()
 
 	def storeModelSelection(self):
 		"""
-		This method stores the Model selection.
+		Stores the Model selection.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -158,7 +158,7 @@ class Mixin_AbstractView(object):
 
 	def restoreModelSelection(self):
 		"""
-		This method restores the Model selection.
+		Restores the Model selection.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -185,7 +185,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
@@ -205,7 +205,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )

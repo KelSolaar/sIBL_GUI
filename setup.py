@@ -24,7 +24,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 def _setEncoding():
 	"""
-	This definition sets the Package encoding.
+	Sets the Package encoding.
 	"""
 
 	import sys
@@ -63,7 +63,7 @@ __all__ = ["getLongDescription"]
 #**********************************************************************************************************************
 def getLongDescription():
 	"""
-	This definition returns the Package long description.
+	Returns the Package long description.
 
 	:return: Package long description. ( String )
 	"""

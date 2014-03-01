@@ -32,7 +32,7 @@ DEFAULT_CODEC = "utf-8"
 #**********************************************************************************************************************
 def _setEncoding():
 	"""
-	This definition sets the Package encoding.
+	Sets the Package encoding.
 	"""
 
 	import sys

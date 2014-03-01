@@ -54,7 +54,7 @@ UID = "00fd997f2a2c395b59aa31f1997f831b"
 #**********************************************************************************************************************
 def apply():
 	"""
-	This definition is called by the Application and triggers the patch execution.
+	Triggers the patch execution.
 
 	:return: Definition success. ( Boolean )
 	"""

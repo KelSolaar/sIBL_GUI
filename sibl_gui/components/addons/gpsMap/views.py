@@ -57,7 +57,7 @@ class Map_QWebView(QWebView):
 
 	def __init__(self, parent=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		"""
@@ -66,7 +66,7 @@ class Map_QWebView(QWebView):
 
 	def __evaluateJavascript(self, javascript):
 		"""
-		This method evaluates given javascript content in the View.
+		Evaluates given javascript content in the View.
 
 		:param javascript: Javascript. ( String )
 		"""
@@ -75,7 +75,7 @@ class Map_QWebView(QWebView):
 
 	def addMarker(self, coordinates, title, icon, content):
 		"""
-		This method adds a marker to the GPS map.
+		Adds a marker to the GPS map.
 
 		:param coordinates: Marker coordinates. ( Tuple )
 		:param title: Marker title. ( String )
@@ -97,7 +97,7 @@ class Map_QWebView(QWebView):
 
 	def removeMarkers(self):
 		"""
-		This method removes the GPS map markers.
+		Removes the GPS map markers.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -109,7 +109,7 @@ class Map_QWebView(QWebView):
 
 	def setCenter(self):
 		"""
-		This method centers the GPS map.
+		Centers the GPS map.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -121,7 +121,7 @@ class Map_QWebView(QWebView):
 
 	def setMapType(self, mapTypeId):
 		"""
-		This method sets the GPS map type.
+		Sets the GPS map type.
 		
 		Available map types:
 			
@@ -140,7 +140,7 @@ class Map_QWebView(QWebView):
 
 	def setZoom(self, type):
 		"""
-		This method sets the GPS map zoom.
+		Sets the GPS map zoom.
 
 		:param type: Zoom type. ( String )
 		:return: Method success. ( Boolean )

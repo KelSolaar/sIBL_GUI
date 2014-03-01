@@ -64,7 +64,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def reStructuredTextToHtml(fileIn, fileOut):
 	"""
-	This definition outputs a reStructuredText file to html.
+	Outputs a reStructuredText file to html.
 
 	:param fileIn: File to convert. ( String )
 	:param fileOut: Output file. ( String )

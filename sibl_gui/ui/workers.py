@@ -67,7 +67,7 @@ class GraphicsItem_worker(QThread):
 
 	def __init__(self, parent=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		"""
@@ -86,7 +86,7 @@ class GraphicsItem_worker(QThread):
 	@property
 	def requests(self):
 		"""
-		This method is the property for **self.__requests** attribute.
+		Property for **self.__requests** attribute.
 
 		:return: self.__requests. ( Queue )
 		"""
@@ -97,7 +97,7 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self, value):
 		"""
-		This method is the setter method for **self.__requests** attribute.
+		Setter for **self.__requests** attribute.
 
 		:param value: Attribute value. ( Queue )
 		"""
@@ -109,7 +109,7 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
-		This method is the deleter method for **self.__requests** attribute.
+		Deleter for **self.__requests** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -121,7 +121,7 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def addRequest(self, request):
 		"""
-		This method adds given request to the requests queue.
+		Adds given request to the requests queue.
 
 		:param request: Request. ( Tuple / List )
 		:return: Method success. ( Boolean )
@@ -138,7 +138,7 @@ class GraphicsItem_worker(QThread):
 
 	def flushRequests(self):
 		"""
-		This method flushes the requests queue.
+		Flushes the requests queue.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -149,7 +149,7 @@ class GraphicsItem_worker(QThread):
 
 	def run(self):
 		"""
-		This method reimplements the :meth:`QThread.run` method.
+		Reimplements the :meth:`QThread.run` method.
 		"""
 
 		while True:
@@ -165,7 +165,7 @@ class GraphicsItem_worker(QThread):
 
 	def quit(self):
 		"""
-		This method reimplements the :meth:`QThread.quit` method.
+		Reimplements the :meth:`QThread.quit` method.
 		"""
 
 		self.__interrupt = True

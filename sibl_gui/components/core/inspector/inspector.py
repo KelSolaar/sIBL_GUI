@@ -89,7 +89,7 @@ class Plate(foundations.dataStructures.Structure):
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param kwargs: name, icon, previewImage, image ( Key / Value pairs )
 		"""
@@ -105,7 +105,7 @@ class Light(foundations.dataStructures.Structure):
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
 		"""
@@ -140,7 +140,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -245,7 +245,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -256,7 +256,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -268,7 +268,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -277,7 +277,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiPreviousImage(self):
 		"""
-		This method is the property for **self.__uiPreviousImage** attribute.
+		Property for **self.__uiPreviousImage** attribute.
 
 		:return: self.__uiPreviousImage. ( String )
 		"""
@@ -288,7 +288,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This method is the setter method for **self.__uiPreviousImage** attribute.
+		Setter for **self.__uiPreviousImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -300,7 +300,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This method is the deleter method for **self.__uiPreviousImage** attribute.
+		Deleter for **self.__uiPreviousImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -309,7 +309,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiNextImage(self):
 		"""
-		This method is the property for **self.__uiNextImage** attribute.
+		Property for **self.__uiNextImage** attribute.
 
 		:return: self.__uiNextImage. ( String )
 		"""
@@ -320,7 +320,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This method is the setter method for **self.__uiNextImage** attribute.
+		Setter for **self.__uiNextImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -332,7 +332,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This method is the deleter method for **self.__uiNextImage** attribute.
+		Deleter for **self.__uiNextImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -341,7 +341,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiLoadingImage(self):
 		"""
-		This method is the property for **self.__uiLoadingImage** attribute.
+		Property for **self.__uiLoadingImage** attribute.
 
 		:return: self.__uiLoadingImage. ( String )
 		"""
@@ -352,7 +352,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLoadingImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLoadingImage** attribute.
+		Setter for **self.__uiLoadingImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -364,7 +364,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLoadingImage(self):
 		"""
-		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		Deleter for **self.__uiLoadingImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -373,7 +373,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -384,7 +384,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -396,7 +396,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -405,7 +405,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def listViewIconSize(self):
 		"""
-		This method is the property for **self.__listViewIconSize** attribute.
+		Property for **self.__listViewIconSize** attribute.
 
 		:return: self.__listViewIconSize. ( Integer )
 		"""
@@ -416,7 +416,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This method is the setter method for **self.__listViewIconSize** attribute.
+		Setter for **self.__listViewIconSize** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -430,7 +430,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This method is the deleter method for **self.__listViewIconSize** attribute.
+		Deleter for **self.__listViewIconSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -439,7 +439,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -450,7 +450,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -462,7 +462,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -471,7 +471,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
 		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
@@ -482,7 +482,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -494,7 +494,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -503,7 +503,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def sectionsFileParsersCache(self):
 		"""
-		This method is the property for **self.__sectionsFileParsersCache** attribute.
+		Property for **self.__sectionsFileParsersCache** attribute.
 
 		:return: self.__sectionsFileParsersCache. ( Cache )
 		"""
@@ -514,7 +514,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def sectionsFileParsersCache(self, value):
 		"""
-		This method is the setter method for **self.__sectionsFileParsersCache** attribute.
+		Setter for **self.__sectionsFileParsersCache** attribute.
 
 		:param value: Attribute value. ( Cache )
 		"""
@@ -526,7 +526,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def sectionsFileParsersCache(self):
 		"""
-		This method is the deleter method for **self.__sectionsFileParsersCache** attribute.
+		Deleter for **self.__sectionsFileParsersCache** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -535,7 +535,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
 		:return: self.__model. ( PlatesModel )
 		"""
@@ -546,7 +546,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
 		:param value: Attribute value. ( PlatesModel )
 		"""
@@ -558,7 +558,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -567,7 +567,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
 		:return: self.__view. ( QWidget )
 		"""
@@ -578,7 +578,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -590,7 +590,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -599,7 +599,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def thumbnailsSize(self):
 		"""
-		This method is the property for **self.__thumbnailsSize** attribute.
+		Property for **self.__thumbnailsSize** attribute.
 
 		:return: self.__thumbnailsSize. ( String )
 		"""
@@ -610,7 +610,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def thumbnailsSize(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsSize** attribute.
+		Setter for **self.__thumbnailsSize** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -623,7 +623,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsSize(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		Deleter for **self.__thumbnailsSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -632,7 +632,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def activeIblSet(self):
 		"""
-		This method is the property for **self.__activeIblSet** attribute.
+		Property for **self.__activeIblSet** attribute.
 
 		:return: self.__activeIblSet. ( IblSet )
 		"""
@@ -643,7 +643,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSet(self, value):
 		"""
-		This method is the setter method for **self.__activeIblSet** attribute.
+		Setter for **self.__activeIblSet** attribute.
 
 		:param value: Attribute value. ( IblSet )
 		"""
@@ -655,7 +655,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSet(self):
 		"""
-		This method is the deleter method for **self.__activeIblSet** attribute.
+		Deleter for **self.__activeIblSet** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -664,7 +664,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def inspectorPlates(self):
 		"""
-		This method is the property for **self.__inspectorPlates** attribute.
+		Property for **self.__inspectorPlates** attribute.
 
 		:return: self.__inspectorPlates. ( Dictionary )
 		"""
@@ -675,7 +675,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self, value):
 		"""
-		This method is the setter method for **self.__inspectorPlates** attribute.
+		Setter for **self.__inspectorPlates** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -687,7 +687,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self):
 		"""
-		This method is the deleter method for **self.__inspectorPlates** attribute.
+		Deleter for **self.__inspectorPlates** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -696,7 +696,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def noPreviewImageText(self):
 		"""
-		This method is the property for **self.__noPreviewImageText** attribute.
+		Property for **self.__noPreviewImageText** attribute.
 
 		:return: self.__noPreviewImageText. ( String )
 		"""
@@ -707,7 +707,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self, value):
 		"""
-		This method is the setter method for **self.__noPreviewImageText** attribute.
+		Setter for **self.__noPreviewImageText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -719,7 +719,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self):
 		"""
-		This method is the deleter method for **self.__noPreviewImageText** attribute.
+		Deleter for **self.__noPreviewImageText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -728,7 +728,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def noActiveIblSetText(self):
 		"""
-		This method is the property for **self.__noActiveIblSetText** attribute.
+		Property for **self.__noActiveIblSetText** attribute.
 
 		:return: self.__noActiveIblSetText. ( String )
 		"""
@@ -739,7 +739,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noActiveIblSetText(self, value):
 		"""
-		This method is the setter method for **self.__noActiveIblSetText** attribute.
+		Setter for **self.__noActiveIblSetText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -751,7 +751,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noActiveIblSetText(self):
 		"""
-		This method is the deleter method for **self.__noActiveIblSetText** attribute.
+		Deleter for **self.__noActiveIblSetText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -760,7 +760,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def activeIblSetToolTipText(self):
 		"""
-		This method is the property for **self.__activeIblSetToolTipText** attribute.
+		Property for **self.__activeIblSetToolTipText** attribute.
 
 		:return: self.__activeIblSetToolTipText. ( String )
 		"""
@@ -771,7 +771,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSetToolTipText(self, value):
 		"""
-		This method is the setter method for **self.__activeIblSetToolTipText** attribute.
+		Setter for **self.__activeIblSetToolTipText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -783,7 +783,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSetToolTipText(self):
 		"""
-		This method is the deleter method for **self.__activeIblSetToolTipText** attribute.
+		Deleter for **self.__activeIblSetToolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -792,7 +792,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def lightLabelRadius(self):
 		"""
-		This method is the property for **self.__lightLabelRadius** attribute.
+		Property for **self.__lightLabelRadius** attribute.
 
 		:return: self.__lightLabelRadius. ( Integer )
 		"""
@@ -803,7 +803,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelRadius** attribute.
+		Setter for **self.__lightLabelRadius** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -815,7 +815,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self):
 		"""
-		This method is the deleter method for **self.__lightLabelRadius** attribute.
+		Deleter for **self.__lightLabelRadius** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -824,7 +824,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def lightLabelTextOffset(self):
 		"""
-		This method is the property for **self.__lightLabelTextOffset** attribute.
+		Property for **self.__lightLabelTextOffset** attribute.
 
 		:return: self.__lightLabelTextOffset. ( Integer )
 		"""
@@ -835,7 +835,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextOffset** attribute.
+		Setter for **self.__lightLabelTextOffset** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -847,7 +847,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextOffset** attribute.
+		Deleter for **self.__lightLabelTextOffset** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -856,7 +856,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def lightLabelTextMargin(self):
 		"""
-		This method is the property for **self.__lightLabelTextMargin** attribute.
+		Property for **self.__lightLabelTextMargin** attribute.
 
 		:return: self.__lightLabelTextMargin. ( Integer )
 		"""
@@ -867,7 +867,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextMargin** attribute.
+		Setter for **self.__lightLabelTextMargin** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -879,7 +879,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextMargin** attribute.
+		Deleter for **self.__lightLabelTextMargin** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -888,7 +888,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def lightLabelTextHeight(self):
 		"""
-		This method is the property for **self.__lightLabelTextHeight** attribute.
+		Property for **self.__lightLabelTextHeight** attribute.
 
 		:return: self.__lightLabelTextHeight. ( Integer )
 		"""
@@ -899,7 +899,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextHeight** attribute.
+		Setter for **self.__lightLabelTextHeight** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -911,7 +911,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextHeight** attribute.
+		Deleter for **self.__lightLabelTextHeight** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -920,7 +920,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def lightLabelTextFont(self):
 		"""
-		This method is the property for **self.__lightLabelTextFont** attribute.
+		Property for **self.__lightLabelTextFont** attribute.
 
 		:return: self.__lightLabelTextFont. ( String )
 		"""
@@ -931,7 +931,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextFont** attribute.
+		Setter for **self.__lightLabelTextFont** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -943,7 +943,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextFont** attribute.
+		Deleter for **self.__lightLabelTextFont** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -952,7 +952,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def unnamedLightName(self):
 		"""
-		This method is the property for **self.__unnamedLightName** attribute.
+		Property for **self.__unnamedLightName** attribute.
 
 		:return: self.__unnamedLightName. ( String )
 		"""
@@ -963,7 +963,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def unnamedLightName(self, value):
 		"""
-		This method is the setter method for **self.__unnamedLightName** attribute.
+		Setter for **self.__unnamedLightName** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -977,7 +977,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def unnamedLightName(self):
 		"""
-		This method is the deleter method for **self.__unnamedLightName** attribute.
+		Deleter for **self.__unnamedLightName** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

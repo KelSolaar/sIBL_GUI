@@ -62,7 +62,7 @@ class IblSetsScanner(QObjectComponent):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -90,7 +90,7 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -101,7 +101,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -113,7 +113,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -122,7 +122,7 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__collectionsOutliner** attribute.
+		Property for **self.__collectionsOutliner** attribute.
 
 		:return: self.__collectionsOutliner. ( QWidget )
 		"""
@@ -133,7 +133,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__collectionsOutliner** attribute.
+		Setter for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -145,7 +145,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__collectionsOutliner** attribute.
+		Deleter for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -154,7 +154,7 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
 		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
@@ -165,7 +165,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -177,7 +177,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -186,7 +186,7 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the property for **self.__iblSetsScannerWorkerThread** attribute.
+		Property for **self.__iblSetsScannerWorkerThread** attribute.
 
 		:return: self.__iblSetsScannerWorkerThread. ( QThread )
 		"""
@@ -197,7 +197,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsScannerWorkerThread** attribute.
+		Setter for **self.__iblSetsScannerWorkerThread** attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
@@ -209,7 +209,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the deleter method for **self.__iblSetsScannerWorkerThread** attribute.
+		Deleter for **self.__iblSetsScannerWorkerThread** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -220,7 +220,7 @@ class IblSetsScanner(QObjectComponent):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -238,7 +238,7 @@ class IblSetsScanner(QObjectComponent):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -255,7 +255,7 @@ class IblSetsScanner(QObjectComponent):
 
 	def initialize(self):
 		"""
-		This method initializes the Component.
+		Initializes the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -281,7 +281,7 @@ class IblSetsScanner(QObjectComponent):
 
 	def uninitialize(self):
 		"""
-		This method uninitializes the Component.
+		Uninitializes the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -303,7 +303,7 @@ class IblSetsScanner(QObjectComponent):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered on Framework startup.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -317,7 +317,7 @@ class IblSetsScanner(QObjectComponent):
 	@umbra.engine.encapsulateProcessing
 	def __iblSetsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
-		This method is triggered by the **IblSetsScanner_worker** when the Database has changed.
+		Defines the slot triggered by **IblSetsScanner_worker** when the Database has changed.
 
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""

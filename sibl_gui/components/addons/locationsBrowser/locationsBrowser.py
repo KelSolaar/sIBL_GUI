@@ -88,7 +88,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -124,7 +124,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -135,7 +135,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -147,7 +147,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -156,7 +156,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -167,7 +167,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -179,7 +179,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -188,7 +188,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -199,7 +199,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -211,7 +211,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -220,7 +220,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def componentsManagerUi(self):
 		"""
-		This method is the property for **self.__componentsManagerUi** attribute.
+		Property for **self.__componentsManagerUi** attribute.
 
 		:return: self.__componentsManagerUi. ( QWidget )
 		"""
@@ -231,7 +231,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self, value):
 		"""
-		This method is the setter method for **self.__componentsManagerUi** attribute.
+		Setter for **self.__componentsManagerUi** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -243,7 +243,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self):
 		"""
-		This method is the deleter method for **self.__componentsManagerUi** attribute.
+		Deleter for **self.__componentsManagerUi** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -252,7 +252,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def preferencesManager(self):
 		"""
-		This method is the property for **self.__preferencesManager** attribute.
+		Property for **self.__preferencesManager** attribute.
 
 		:return: self.__preferencesManager. ( QWidget )
 		"""
@@ -263,7 +263,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__preferencesManager** attribute.
+		Setter for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -275,7 +275,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__preferencesManager** attribute.
+		Deleter for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -284,7 +284,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
 		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
@@ -295,7 +295,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -307,7 +307,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -316,7 +316,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__templatesOutliner** attribute.
+		Property for **self.__templatesOutliner** attribute.
 
 		:return: self.__templatesOutliner. ( QWidget )
 		"""
@@ -327,7 +327,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__templatesOutliner** attribute.
+		Setter for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -339,7 +339,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__templatesOutliner** attribute.
+		Deleter for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -348,7 +348,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def loaderScript(self):
 		"""
-		This method is the property for **self.__loaderScript** attribute.
+		Property for **self.__loaderScript** attribute.
 
 		:return: self.__loaderScript. ( QWidget )
 		"""
@@ -359,7 +359,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self, value):
 		"""
-		This method is the setter method for **self.__loaderScript** attribute.
+		Setter for **self.__loaderScript** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -371,7 +371,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self):
 		"""
-		This method is the deleter method for **self.__loaderScript** attribute.
+		Deleter for **self.__loaderScript** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -380,7 +380,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This method is the property for **self.__Open_Output_Directory_pushButton** attribute.
+		Property for **self.__Open_Output_Directory_pushButton** attribute.
 
 		:return: self.__Open_Output_Directory_pushButton. ( QPushButton )
 		"""
@@ -391,7 +391,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self, value):
 		"""
-		This method is the setter method for **self.__Open_Output_Directory_pushButton** attribute.
+		Setter for **self.__Open_Output_Directory_pushButton** attribute.
 
 		:param value: Attribute value. ( QPushButton )
 		"""
@@ -403,7 +403,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This method is the deleter method for **self.__Open_Output_Directory_pushButton** attribute.
+		Deleter for **self.__Open_Output_Directory_pushButton** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -412,7 +412,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def linuxBrowsers(self):
 		"""
-		This method is the property for **self.__linuxBrowsers** attribute.
+		Property for **self.__linuxBrowsers** attribute.
 
 		:return: self.__linuxBrowsers. ( QObject )
 		"""
@@ -423,7 +423,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self, value):
 		"""
-		This method is the setter method for **self.__linuxBrowsers** attribute.
+		Setter for **self.__linuxBrowsers** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -435,7 +435,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self):
 		"""
-		This method is the deleter method for **self.__linuxBrowsers** attribute.
+		Deleter for **self.__linuxBrowsers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -446,7 +446,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method Engine the Component.
+		Activates the Component.
 
 		:param engine: Container to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -470,7 +470,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -493,7 +493,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -522,7 +522,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -549,7 +549,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -562,7 +562,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -575,7 +575,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addActions(self):
 		"""
-		This method sets Component actions.
+		Sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -601,7 +601,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeActions(self):
 		"""
-		This method removes actions.
+		Removes actions.
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
@@ -627,7 +627,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_openIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|core.iblSetsOutliner|Open Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
@@ -638,7 +638,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __inspector_openActiveIblSetLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -648,7 +648,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __componentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
@@ -659,7 +659,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __templatesOutliner_view_openTemplatesLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
@@ -670,7 +670,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
 		"""
-		This method fills **Custom_File_Browser_Path_lineEdit** Widget.
+		Fills **Custom_File_Browser_Path_lineEdit** Widget.
 		"""
 
 		customFileBrowser = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
@@ -680,7 +680,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Custom_File_Browser_Path_toolButton** Widget is clicked.
+		Defines the slot triggered by **Custom_File_Browser_Path_toolButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -698,8 +698,8 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
-		This method is triggered when **Custom_File_Browser_Path_lineEdit** Widget
-		is edited and check that entered path is valid.
+		Defines the slot triggered by **Custom_File_Browser_Path_lineEdit** Widget
+		when edited and check that entered path is valid.
 		"""
 
 		value = foundations.strings.toString(self.Custom_File_Browser_Path_lineEdit.text())
@@ -716,7 +716,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Open_Output_Directory_pushButton** Widget is clicked.
+		Defines the slot triggered by **Open_Output_Directory_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -726,7 +726,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openIblSetsLocationsUi(self):
 		"""
-		This method open selected Ibl Sets directories.
+		Open selected Ibl Sets directories.
 
 		:return: Method success. ( Boolean )
 
@@ -755,7 +755,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.FileExistsError)
 	def openActiveIblSetLocationsUi(self):
 		"""
-		This method opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
+		Opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
 
 		:return: Method success. ( Boolean )
 
@@ -777,7 +777,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openComponentsLocationsUi(self):
 		"""
-		This method opens selected Components directories.
+		Opens selected Components directories.
 
 		:return: Method success. ( Boolean )
 
@@ -805,7 +805,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def openTemplatesLocationsUi(self):
 		"""
-		This method opens selected Templates directories.
+		Opens selected Templates directories.
 
 		:return: Method success. ( Boolean )
 
@@ -835,7 +835,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											Exception)
 	def openOutputDirectoryUi(self):
 		"""
-		This method opens output directory.
+		Opens output directory.
 
 		:return: Method success. ( Boolean )
 
@@ -858,7 +858,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def getProcessCommand(self, directory, customBrowser=None):
 		"""
-		This method gets process command.
+		Gets process command.
 
 		:param directory: Directory to explore. ( String )
 		:param customBrowser: Custom browser. ( String )
@@ -905,7 +905,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def exploreDirectory(self, directory, customBrowser=None):
 		"""
-		This method provides directory exploring capability.
+		Provides directory exploring capability.
 
 		:param directory: Directory to explore. ( String )
 		:param customBrowser: Custom browser. ( String )

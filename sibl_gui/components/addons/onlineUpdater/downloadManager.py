@@ -75,7 +75,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __init__(self, parent, networkAccessManager, downloadDirectory, requests=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param networkAccessManager: Network access manager. ( QNetworkAccessManager )
@@ -116,7 +116,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def container(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		Property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -127,7 +127,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		Setter for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -139,7 +139,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		Deleter for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -148,7 +148,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for **self.__networkAccessManager** attribute.
+		Property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -159,7 +159,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for **self.__networkAccessManager** attribute.
+		Setter for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -171,7 +171,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for **self.__networkAccessManager** attribute.
+		Deleter for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -180,7 +180,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def downloadDirectory(self):
 		"""
-		This method is the property for **self.__downloadDirectory** attribute.
+		Property for **self.__downloadDirectory** attribute.
 
 		:return: self.__downloadDirectory. ( String )
 		"""
@@ -191,7 +191,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self, value):
 		"""
-		This method is the setter method for **self.__downloadDirectory** attribute.
+		Setter for **self.__downloadDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -203,7 +203,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self):
 		"""
-		This method is the deleter method for **self.__downloadDirectory** attribute.
+		Deleter for **self.__downloadDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -212,7 +212,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -223,7 +223,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -235,7 +235,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -244,7 +244,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for **self.__uiLogoImage** attribute.
+		Property for **self.__uiLogoImage** attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -255,7 +255,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
+		Setter for **self.__uiLogoImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -267,7 +267,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
+		Deleter for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -276,7 +276,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def requests(self):
 		"""
-		This method is the property for **self.__requests** attribute.
+		Property for **self.__requests** attribute.
 
 		:return: self.__requests. ( List )
 		"""
@@ -287,7 +287,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def requests(self, value):
 		"""
-		This method is the setter method for **self.__requests** attribute.
+		Setter for **self.__requests** attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -303,7 +303,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
-		This method is the deleter method for **self.__requests** attribute.
+		Deleter for **self.__requests** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -312,7 +312,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def downloads(self):
 		"""
-		This method is the property for **self.__downloads** attribute.
+		Property for **self.__downloads** attribute.
 
 		:return: self.__downloads. ( Dictionary )
 		"""
@@ -323,7 +323,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloads(self, value):
 		"""
-		This method is the setter method for **self.__downloads** attribute.
+		Setter for **self.__downloads** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -335,7 +335,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloads(self):
 		"""
-		This method is the deleter method for **self.__downloads** attribute.
+		Deleter for **self.__downloads** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -344,7 +344,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def currentRequest(self):
 		"""
-		This method is the property for **self.__currentRequest** attribute.
+		Property for **self.__currentRequest** attribute.
 
 		:return: self.__currentRequest. ( QNetworkReply )
 		"""
@@ -355,7 +355,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentRequest(self, value):
 		"""
-		This method is the setter method for **self.__currentRequest** attribute.
+		Setter for **self.__currentRequest** attribute.
 
 		:param value: Attribute value. ( QNetworkReply )
 		"""
@@ -367,7 +367,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentRequest(self):
 		"""
-		This method is the deleter method for **self.__currentRequest** attribute.
+		Deleter for **self.__currentRequest** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -376,7 +376,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def currentFile(self):
 		"""
-		This method is the property for **self.__currentFile** attribute.
+		Property for **self.__currentFile** attribute.
 
 		:return: self.__currentFile. ( QFile )
 		"""
@@ -387,7 +387,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFile(self, value):
 		"""
-		This method is the setter method for **self.__currentFile** attribute.
+		Setter for **self.__currentFile** attribute.
 
 		:param value: Attribute value. ( QFile )
 		"""
@@ -399,7 +399,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFile(self):
 		"""
-		This method is the deleter method for **self.__currentFile** attribute.
+		Deleter for **self.__currentFile** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -408,7 +408,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def currentFilePath(self):
 		"""
-		This method is the property for **self.__currentFilePath** attribute.
+		Property for **self.__currentFilePath** attribute.
 
 		:return: self.__currentFilePath. ( String )
 		"""
@@ -419,7 +419,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFilePath(self, value):
 		"""
-		This method is the setter method for **self.__currentFilePath** attribute.
+		Setter for **self.__currentFilePath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -431,7 +431,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def currentFilePath(self):
 		"""
-		This method is the deleter method for **self.__currentFilePath** attribute.
+		Deleter for **self.__currentFilePath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -440,7 +440,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def downloadStatus(self):
 		"""
-		This method is the property for **self.__downloadStatus** attribute.
+		Property for **self.__downloadStatus** attribute.
 
 		:return: self.__downloadStatus. ( QObject )
 		"""
@@ -451,7 +451,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadStatus(self, value):
 		"""
-		This method is the setter method for **self.__downloadStatus** attribute.
+		Setter for **self.__downloadStatus** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -463,7 +463,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadStatus(self):
 		"""
-		This method is the deleter method for **self.__downloadStatus** attribute.
+		Deleter for **self.__downloadStatus** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -474,7 +474,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	def closeEvent(self, event):
 		"""
-		This method reimplements the :meth:`QWidget.closeEvent` method.
+		Reimplements the :meth:`QWidget.closeEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -485,7 +485,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self)
@@ -500,7 +500,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Cancel_Close_pushButton** Widget is clicked.
+		Defines the slot triggered by **Cancel_Close_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -509,7 +509,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __downloadNext(self):
 		"""
-		This method downloads the next request.
+		Downloads the next request.
 		"""
 
 		if not self.__requests:
@@ -542,7 +542,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __downloadProgress(self, bytesReceived, bytesTotal):
 		"""
-		This method updates the download progress.
+		Updates the download progress.
 
 		:param bytesReceived: Bytes received. ( Integer )
 		:param bytesTotal: Bytes total. ( Integer )
@@ -558,7 +558,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __requestReady(self):
 		"""
-		This method is triggered when the request is ready to write.
+		Defines the slot triggered by the request when ready.
 		"""
 
 		LOGGER.debug("> Updating '{0}' file content.".format(self.__currentFile))
@@ -567,7 +567,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __downloadComplete(self):
 		"""
-		This method is triggered when the request download is complete.
+		Defines the slot triggered by the request when download complete.
 		"""
 
 		LOGGER.debug("> '{0}' download complete.".format(self.__currentFile))
@@ -589,7 +589,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def startDownload(self):
 		"""
-		This method triggers the download.
+		Triggers the download.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -600,7 +600,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def abortDownload(self):
 		"""
-		This method aborts the current download.
+		Aborts the current download.
 
 		:return: Method success. ( Boolean )
 		"""

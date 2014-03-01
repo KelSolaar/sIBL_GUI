@@ -417,7 +417,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 def pointer(data):
 	"""
-	This definition converts None to a real NULL pointer to work around bugs
+	Converts None to a real NULL pointer to work around bugs
 	in how ctypes handles None on 64-bit platforms.
 	
 	:param data: Data . ( Object )
@@ -437,7 +437,7 @@ def pointer(data):
 
 def unchecked(type):
 	"""
-	This definition ensures that all callbacks return primitive datatypes.
+	Ensures that all callbacks return primitive datatypes.
 	
 	As of ctypes 1.0, ctypes does not support custom error-checking functions on callbacks,
 	nor does it support custom datatypes on callbacks, so we must ensure that all callbacks return primitive datatypes.
@@ -2000,7 +2000,7 @@ FREEIMAGE_FUNCTIONS = (
 #**********************************************************************************************************************
 def getFreeImageLibraryPath():
 	"""
-	This definition returns the FreeImage library path.
+	Returns the FreeImage library path.
 
 	:return: FreeImage library path. ( String )
 	"""
@@ -2021,7 +2021,7 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param kwargs: path, width, height, bpp, osStats. ( Key / Value pairs )
 		"""
@@ -2037,7 +2037,7 @@ class Image(object):
 
 	def __init__(self, imagePath=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param imagePath: Image path. ( String )
 		"""
@@ -2064,7 +2064,7 @@ class Image(object):
 	@property
 	def library(self):
 		"""
-		This method is the property for **self.__library** attribute.
+		Property for **self.__library** attribute.
 
 		:return: self.__library. ( Library )
 		"""
@@ -2075,7 +2075,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self, value):
 		"""
-		This method is the setter method for **self.__library** attribute.
+		Setter for **self.__library** attribute.
 
 		:param value: Attribute value. ( Library )
 		"""
@@ -2087,7 +2087,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self):
 		"""
-		This method is the deleter method for **self.__library** attribute.
+		Deleter for **self.__library** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2096,7 +2096,7 @@ class Image(object):
 	@property
 	def errorsCallback(self):
 		"""
-		This method is the property for **self.__errorsCallback** attribute.
+		Property for **self.__errorsCallback** attribute.
 
 		:return: self.__errorsCallback. ( Object )
 		"""
@@ -2107,7 +2107,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self, value):
 		"""
-		This method is the setter method for **self.__errorsCallback** attribute.
+		Setter for **self.__errorsCallback** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -2119,7 +2119,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
 		"""
-		This method is the deleter method for **self.__errorsCallback** attribute.
+		Deleter for **self.__errorsCallback** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2128,7 +2128,7 @@ class Image(object):
 	@property
 	def imagePath(self):
 		"""
-		This method is the property for **self.__imagePath** attribute.
+		Property for **self.__imagePath** attribute.
 
 		:return: self.__imagePath. ( String )
 		"""
@@ -2139,7 +2139,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def imagePath(self, value):
 		"""
-		This method is the setter method for **self.__imagePath** attribute.
+		Setter for **self.__imagePath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -2152,7 +2152,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagePath(self):
 		"""
-		This method is the deleter method for **self.__imagePath** attribute.
+		Deleter for **self.__imagePath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2161,7 +2161,7 @@ class Image(object):
 	@property
 	def bitmap(self):
 		"""
-		This method is the property for **self.__bitmap** attribute.
+		Property for **self.__bitmap** attribute.
 
 		:return: self.__bitmap. ( Object )
 		"""
@@ -2172,7 +2172,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def bitmap(self, value):
 		"""
-		This method is the setter method for **self.__bitmap** attribute.
+		Setter for **self.__bitmap** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -2183,7 +2183,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def bitmap(self):
 		"""
-		This method is the deleter method for **self.__bitmap** attribute.
+		Deleter for **self.__bitmap** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2195,7 +2195,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):
 		"""
-		This method logs the Library errors.
+		Logs the Library errors.
 		"""
 
 		raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(
@@ -2203,7 +2203,7 @@ class Image(object):
 
 	def getImageFormat(self, imagePath=None):
 		"""
-		This method gets the file format.
+		Gets the file format.
 
 		:param imagePath: Image path. ( String )
 		:return: File format. ( FREE_IMAGE_FORMAT )
@@ -2221,7 +2221,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def load(self):
 		"""
-		This method loads the file.
+		Loads the file.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -2241,7 +2241,7 @@ class Image(object):
 
 	def save(self):
 		"""
-		This method saves the file.
+		Saves the file.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -2251,7 +2251,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
-		This method saves the image to the given file.
+		Saves the image to the given file.
 
 		:param imageFormat: Image format. ( Integer )
 		:param imagePath: Image path. ( String )
@@ -2271,7 +2271,7 @@ class Image(object):
 
 	def convertToType(self, targetType, linearScale=True):
 		"""
-		This method converts the bitmap to given type.
+		Converts the bitmap to given type.
 
 		:param targetType: Target type. ( Integer )
 		:param linearScale: Linear scale. ( Boolean )
@@ -2286,7 +2286,7 @@ class Image(object):
 
 	def convertToLdr(self, gamma=2.2):
 		"""
-		This method converts the HDR bitmap to LDR.
+		Converts the HDR bitmap to LDR.
 
 		:param gamma: Image conversion gamma. ( Float )
 		:return: Method success. ( Boolean )
@@ -2301,7 +2301,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
-		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
+		Converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 
 		:return: Converted image. ( QImage )
 		"""

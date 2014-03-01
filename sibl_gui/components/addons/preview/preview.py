@@ -77,7 +77,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -128,7 +128,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -139,7 +139,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -151,7 +151,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -160,7 +160,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -171,7 +171,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -183,7 +183,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -192,7 +192,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -203,7 +203,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -215,7 +215,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -224,7 +224,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -235,7 +235,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -247,7 +247,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -256,7 +256,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def preferencesManager(self):
 		"""
-		This method is the property for **self.__preferencesManager** attribute.
+		Property for **self.__preferencesManager** attribute.
 
 		:return: self.__preferencesManager. ( QWidget )
 		"""
@@ -267,7 +267,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__preferencesManager** attribute.
+		Setter for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -279,7 +279,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__preferencesManager** attribute.
+		Deleter for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -288,7 +288,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
 		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
@@ -299,7 +299,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -311,7 +311,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -320,7 +320,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def inspector(self):
 		"""
-		This method is the property for **self.__inspector** attribute.
+		Property for **self.__inspector** attribute.
 
 		:return: self.__inspector. ( QWidget )
 		"""
@@ -331,7 +331,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self, value):
 		"""
-		This method is the setter method for **self.__inspector** attribute.
+		Setter for **self.__inspector** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -343,7 +343,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self):
 		"""
-		This method is the deleter method for **self.__inspector** attribute.
+		Deleter for **self.__inspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -352,7 +352,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def imagesPreviewers(self):
 		"""
-		This method is the property for **self.__imagesPreviewers** attribute.
+		Property for **self.__imagesPreviewers** attribute.
 
 		:return: self.__imagesPreviewers. ( List )
 		"""
@@ -363,7 +363,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagesPreviewers(self, value):
 		"""
-		This method is the setter method for **self.__imagesPreviewers** attribute.
+		Setter for **self.__imagesPreviewers** attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -375,7 +375,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagesPreviewers(self):
 		"""
-		This method is the deleter method for **self.__imagesPreviewers** attribute.
+		Deleter for **self.__imagesPreviewers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -384,7 +384,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def maximumImagesPreviewersInstances(self):
 		"""
-		This method is the property for **self.__maximumImagesPreviewersInstances** attribute.
+		Property for **self.__maximumImagesPreviewersInstances** attribute.
 
 		:return: self.__maximumImagesPreviewersInstances. ( Integer )
 		"""
@@ -395,7 +395,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumImagesPreviewersInstances(self, value):
 		"""
-		This method is the setter method for **self.__maximumImagesPreviewersInstances** attribute.
+		Setter for **self.__maximumImagesPreviewersInstances** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -407,7 +407,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def maximumImagesPreviewersInstances(self):
 		"""
-		This method is the deleter method for **self.__maximumImagesPreviewersInstances** attribute.
+		Deleter for **self.__maximumImagesPreviewersInstances** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -416,7 +416,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def inspectorButtons(self):
 		"""
-		This method is the property for **self.__inspectorButtons** attribute.
+		Property for **self.__inspectorButtons** attribute.
 
 		:return: self.__inspectorButtons. ( Dictionary )
 		"""
@@ -427,7 +427,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorButtons(self, value):
 		"""
-		This method is the setter method for **self.__inspectorButtons** attribute.
+		Setter for **self.__inspectorButtons** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -439,7 +439,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorButtons(self):
 		"""
-		This method is the deleter method for **self.__inspectorButtons** attribute.
+		Deleter for **self.__inspectorButtons** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -450,7 +450,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -474,7 +474,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -498,7 +498,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -519,7 +519,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -538,7 +538,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -551,7 +551,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -565,7 +565,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addActions(self):
 		"""
-		This method sets Component actions.
+		Sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -612,7 +612,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeActions(self):
 		"""
-		This method removes actions.
+		Removes actions.
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
@@ -645,7 +645,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addInspectorButtons(self):
 		"""
-		This method adds buttons to the :mod:`sibl_gui.components.core.inspector.inspector` Component.
+		Adds buttons to the :mod:`sibl_gui.components.core.inspector.inspector` Component.
 		"""
 
 		self.__inspector.Inspector_Options_groupBox.show()
@@ -658,7 +658,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeInspectorButtons(self):
 		"""
-		This method removes buttons from the :mod:`sibl_gui.components.core.inspector.inspector` Component.
+		Removes buttons from the :mod:`sibl_gui.components.core.inspector.inspector` Component.
 		"""
 
 		for value in self.__inspectorButtons.itervalues():
@@ -666,7 +666,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -676,7 +676,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -686,7 +686,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -696,7 +696,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -706,7 +706,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_viewActiveIblSetBackgroundImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -716,7 +716,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_viewActiveIblSetLightingImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -726,7 +726,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_viewActiveIblSetReflectionImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
+		Defines the slot triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -736,7 +736,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_viewActiveIblSetPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -746,7 +746,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
 		"""
-		This method fills **Custom_Previewer_Path_lineEdit** Widget.
+		Fills **Custom_Previewer_Path_lineEdit** Widget.
 		"""
 
 		customPreviewer = self.__settings.getKey(self.__settingsSection, "customPreviewer")
@@ -756,7 +756,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Custom_Previewer_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Custom_Previewer_Path_toolButton** Widget is clicked.
+		Defines the slot triggered by **Custom_Previewer_Path_toolButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -774,7 +774,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
 		"""
-		This method is triggered when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
+		Defines the slot triggered by **Custom_Previewer_Path_lineEdit** Widget when edited and check that entered path is valid.
 		"""
 
 		value = foundations.strings.toString(self.Custom_Previewer_Path_lineEdit.text())
@@ -789,7 +789,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __hasMaximumImagesPreviewersInstances(self):
 		"""
-		This method returns if the maximum Previewers instances allowed is reached.
+		Returns if the maximum Previewers instances allowed is reached.
 
 		:return: Maximum instances reached. ( Boolean )
 		"""
@@ -805,7 +805,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def viewIblSetsImagesUi(self, imageType, *args):
 		"""
-		This method launches selected Ibl Sets Images Previewer.
+		Launches selected Ibl Sets Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
@@ -840,7 +840,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											Exception)
 	def viewActiveIblSetImagesUi(self, imageType, *args):
 		"""
-		This method launches :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Images Previewer.
+		Launches :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
@@ -878,7 +878,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def viewImages(self, paths, customPreviewer=None):
 		"""
-		This method launches an Ibl Set Images Previewer.
+		Launches an Ibl Set Images Previewer.
 
 		:param paths: Image paths. ( List )
 		:param customPreviewer: Custom previewer. ( String )
@@ -905,7 +905,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addImagesPreviewer(self, imagesPreviewer):
 		"""
-		This method adds an Images Previewer.
+		Adds an Images Previewer.
 
 		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		:return: Method success. ( Boolean )
@@ -918,7 +918,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
-		This method removes an Images Previewer.
+		Removes an Images Previewer.
 
 		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		"""
@@ -932,7 +932,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.showProcessing("Reading Images...")
 	def getImagesPreviewer(self, paths):
 		"""
-		This method launches an Images Previewer.
+		Launches an Images Previewer.
 
 		:param paths: Images paths. ( List )
 		:return: Method success. ( Boolean )
@@ -946,7 +946,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getProcessCommand(self, paths, customPreviewer):
 		"""
-		This method gets process command.
+		Gets process command.
 
 		:param paths: Paths to preview. ( String )
 		:param customPreviewer: Custom browser. ( String )
@@ -965,7 +965,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getIblSetImagesPaths(self, iblSet, imageType):
 		"""
-		This method gets Ibl Set images paths.
+		Gets Ibl Set images paths.
 
 		:param iblSet: Ibl Set. ( IblSet )
 		:param imageType: Image type. ( String )

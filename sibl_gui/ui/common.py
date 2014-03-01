@@ -79,7 +79,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 def convertImage(image, type):
 	"""
-	This definition converts given image to given type.
+	Converts given image to given type.
 
 	:param image: Image to convert. ( QImage )
 	:param type: Type to convert to. ( QImage / QPixmap / QIcon )
@@ -96,7 +96,7 @@ def convertImage(image, type):
 
 def getThumbnailPath(path, size, cacheDirectory=None):
 	"""
-	This definition returns given image thumbnail cached path at given size.
+	Returns given image thumbnail cached path at given size.
 
 	:param path: Image path. ( String )
 	:param size: Thumbnail size. ( String )
@@ -115,7 +115,7 @@ def extractThumbnail(path,
 					quality= -1,
 					cacheDirectory=None):
 	"""
-	This definition extract given image thumbnail at given size.
+	Extract given image thumbnail at given size.
 
 	:param path: Image path. ( String )
 	:param size: Thumbnail size. ( String )
@@ -145,7 +145,7 @@ def extractThumbnail(path,
 
 def loadGraphicsItem(path, type, size="Default"):
 	"""
-	This definition loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	Loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
 	:param path: Image path. ( String )
@@ -184,7 +184,7 @@ def loadGraphicsItem(path, type, size="Default"):
 
 def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	Returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Image path. ( String )
@@ -215,7 +215,7 @@ def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeh
 
 def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
+	Returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param size: Image size. ( String )
@@ -230,7 +230,7 @@ def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, im
 
 def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	Returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param size: Image size. ( String )
@@ -245,7 +245,7 @@ def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, 
 
 def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
+	Returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
 	:param path: Icon image path. ( String )
 	:param size: Image size. ( String )
@@ -260,7 +260,7 @@ def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, i
 
 def createPixmap(width=128, height=128, text=None):
 	"""
-	This definition create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	Create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
 	:param width: Pixmap width. ( Integer )
 	:param height: Pixmap height. ( Integer )
@@ -281,7 +281,7 @@ def createPixmap(width=128, height=128, text=None):
 @foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 def getImageInformationsHeader(path, graphicsItem):
 	"""
-	This definition returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
+	Returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
 	from given path and graphics item.
 
 	:param path: Image path. ( String )
@@ -303,7 +303,7 @@ def getImageInformationsHeader(path, graphicsItem):
 
 def filterImagePath(path):
 	"""
-	This definition filters the image path.
+	Filters the image path.
 
 	:param path: Image path. ( String )
 	:return: Path. ( String )
@@ -321,7 +321,7 @@ def filterImagePath(path):
 
 def getFormatedShotDate(date, time):
 	"""
-	This definition returns a formated shot date.
+	Returns a formated shot date.
 
 	:param date: Ibl Set date key value. ( String )
 	:param time: Ibl Set time key value. ( String )

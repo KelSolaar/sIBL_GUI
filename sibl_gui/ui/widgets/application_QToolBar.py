@@ -68,7 +68,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 	#******************************************************************************************************************
 	def __centralWidgetButton__clicked(self):
 		"""
-		This method sets the **Central** Widget visibility.
+		Sets the **Central** Widget visibility.
 		"""
 
 		LOGGER.debug("> Central Widget button clicked!")
@@ -80,7 +80,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def setToolBarChildrenWidgets(self):
 		"""
-		This method sets the toolBar children widgets.
+		Sets the toolBar children widgets.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -117,7 +117,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def getLayoutsActiveLabels(self):
 		"""
-		This method returns the layouts **Active_QLabel** widgets.
+		Returns the layouts **Active_QLabel** widgets.
 
 		:return: Layouts active labels. ( List )
 		"""
@@ -166,7 +166,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		return self.__layoutsActiveLabelsCollection.activeLabels
 	def getCentralWidgetActiveLabel(self):
 		"""
-		This method provides the default **Central_Widget_activeLabel** widget.
+		Provides the default **Central_Widget_activeLabel** widget.
 
 		:return: Central Widget active label. ( Active_QLabel )
 		"""
@@ -183,7 +183,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def extendMiscellaneousActiveLabel(self):
 		"""
-		This method extends the default **Miscellaneous_activeLabel** widget.
+		Extends the default **Miscellaneous_activeLabel** widget.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -196,7 +196,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def __makeDonationDisplayMiscAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
 
 		:param checked: Checked state. ( Boolean )
 		:return: Method success. ( Boolean )

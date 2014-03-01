@@ -110,7 +110,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def getSphinxDocumentationApi(packages, cloneDirectory, outputDirectory, apiFile):
 	"""
-	This definition gets Sphinx documentation API.
+	Gets Sphinx documentation API.
 
 	:param packages: Packages. ( String )
 	:param cloneDirectory: Source clone directory. ( String )

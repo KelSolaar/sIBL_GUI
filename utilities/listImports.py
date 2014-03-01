@@ -59,7 +59,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def listImports(packages, filtersIn, filtersOut):
 	"""
-	This definition lists Application imports.
+	Lists Application imports.
 
 	:param packages: Packages. ( List )
 	:param filtersIn: Filters in. ( Tuple / List )

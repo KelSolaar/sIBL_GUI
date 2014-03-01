@@ -79,7 +79,7 @@ class ReleaseObject(foundations.dataStructures.Structure):
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
 		"""
@@ -97,7 +97,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __init__(self, parent, releases=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param releases: Releases. ( Dictionary )
@@ -144,7 +144,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def container(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		Property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -155,7 +155,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		Setter for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -167,7 +167,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		Deleter for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -176,7 +176,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def releases(self):
 		"""
-		This method is the property for **self.__releases** attribute.
+		Property for **self.__releases** attribute.
 
 		:return: self.__releases. ( Dictionary )
 		"""
@@ -187,7 +187,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def releases(self, value):
 		"""
-		This method is the setter method for **self.__releases** attribute.
+		Setter for **self.__releases** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -205,7 +205,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releases(self):
 		"""
-		This method is the deleter method for **self.__releases** attribute.
+		Deleter for **self.__releases** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -214,7 +214,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -225,7 +225,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -237,7 +237,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -246,7 +246,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for **self.__uiLogoImage** attribute.
+		Property for **self.__uiLogoImage** attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -257,7 +257,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
+		Setter for **self.__uiLogoImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -269,7 +269,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
+		Deleter for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -278,7 +278,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiTemplatesImage(self):
 		"""
-		This method is the property for **self.__uiTemplatesImage** attribute.
+		Property for **self.__uiTemplatesImage** attribute.
 
 		:return: self.__uiTemplatesImage. ( String )
 		"""
@@ -289,7 +289,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self, value):
 		"""
-		This method is the setter method for **self.__uiTemplatesImage** attribute.
+		Setter for **self.__uiTemplatesImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -301,7 +301,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self):
 		"""
-		This method is the deleter method for **self.__uiTemplatesImage** attribute.
+		Deleter for **self.__uiTemplatesImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -310,7 +310,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiLightGrayColor(self):
 		"""
-		This method is the property for **self.__uiLightGrayColor** attribute.
+		Property for **self.__uiLightGrayColor** attribute.
 
 		:return: self.__uiLightGrayColor. ( QColor )
 		"""
@@ -321,7 +321,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
-		This method is the setter method for **self.__uiLightGrayColor** attribute.
+		Setter for **self.__uiLightGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -333,7 +333,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
-		This method is the deleter method for **self.__uiLightGrayColor** attribute.
+		Deleter for **self.__uiLightGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -342,7 +342,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def uiDarkGrayColor(self):
 		"""
-		This method is the property for **self.__uiDarkGrayColor** attribute.
+		Property for **self.__uiDarkGrayColor** attribute.
 
 		:return: self.__uiDarkGrayColor. ( QColor )
 		"""
@@ -353,7 +353,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
-		This method is the setter method for **self.__uiDarkGrayColor** attribute.
+		Setter for **self.__uiDarkGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -365,7 +365,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
-		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
+		Deleter for **self.__uiDarkGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -374,7 +374,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
 		:return: self.__view. ( QWidget )
 		"""
@@ -385,7 +385,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -397,7 +397,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -406,7 +406,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def splitter(self):
 		"""
-		This method is the property for **self.__splitter** attribute.
+		Property for **self.__splitter** attribute.
 
 		:return: self.__splitter. ( String )
 		"""
@@ -417,7 +417,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def splitter(self, value):
 		"""
-		This method is the setter method for **self.__splitter** attribute.
+		Setter for **self.__splitter** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -429,7 +429,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def splitter(self):
 		"""
-		This method is the deleter method for **self.__splitter** attribute.
+		Deleter for **self.__splitter** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -438,7 +438,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def headers(self):
 		"""
-		This method is the property for **self.__headers** attribute.
+		Property for **self.__headers** attribute.
 
 		:return: self.__headers. ( String )
 		"""
@@ -449,7 +449,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self, value):
 		"""
-		This method is the setter method for **self.__headers** attribute.
+		Setter for **self.__headers** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -461,7 +461,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self):
 		"""
-		This method is the deleter method for **self.__headers** attribute.
+		Deleter for **self.__headers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -470,7 +470,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def applicationChangesUrl(self):
 		"""
-		This method is the property for **self.__applicationChangesUrl** attribute.
+		Property for **self.__applicationChangesUrl** attribute.
 
 		:return: self.__applicationChangesUrl. ( String )
 		"""
@@ -481,7 +481,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def applicationChangesUrl(self, value):
 		"""
-		This method is the setter method for **self.__applicationChangesUrl** attribute.
+		Setter for **self.__applicationChangesUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -493,7 +493,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def applicationChangesUrl(self):
 		"""
-		This method is the deleter method for **self.__applicationChangesUrl** attribute.
+		Deleter for **self.__applicationChangesUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -502,7 +502,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def repositoryUrl(self):
 		"""
-		This method is the property for **self.__repositoryUrl** attribute.
+		Property for **self.__repositoryUrl** attribute.
 
 		:return: self.__repositoryUrl. ( String )
 		"""
@@ -513,7 +513,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This method is the setter method for **self.__repositoryUrl** attribute.
+		Setter for **self.__repositoryUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -525,7 +525,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This method is the deleter method for **self.__repositoryUrl** attribute.
+		Deleter for **self.__repositoryUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -534,7 +534,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def downloadManager(self):
 		"""
-		This method is the property for **self.__downloadManager** attribute.
+		Property for **self.__downloadManager** attribute.
 
 		:return: self.__downloadManager. ( Object )
 		"""
@@ -545,7 +545,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadManager(self, value):
 		"""
-		This method is the setter method for **self.__downloadManager** attribute.
+		Setter for **self.__downloadManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -557,7 +557,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def downloadManager(self):
 		"""
-		This method is the deleter method for **self.__downloadManager** attribute.
+		Deleter for **self.__downloadManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -566,7 +566,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for **self.__networkAccessManager** attribute.
+		Property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -577,7 +577,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for **self.__networkAccessManager** attribute.
+		Setter for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -589,7 +589,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for **self.__networkAccessManager** attribute.
+		Deleter for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -600,7 +600,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self)
@@ -683,7 +683,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Get_sIBL_GUI_pushButton** Widget is clicked.
+		Defines the slot triggered by **Get_sIBL_GUI_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -708,7 +708,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Get_Latest_Templates_pushButton** Widget is clicked.
+		Defines the slot triggered by **Get_Latest_Templates_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -737,7 +737,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Open_Repository_pushButton** Widget is clicked.
+		Defines the slot triggered by **Open_Repository_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -747,7 +747,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __Close_pushButton__clicked(self, checked):
 		"""
-		This method closes the RemoteUpdater.
+		Closes the RemoteUpdater.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -757,7 +757,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __downloadManager__finished(self):
 		"""
-		This method is triggered when the download Manager finishes.
+		Defines the slot triggered by the download Manager when finished.
 		"""
 
 		for download, data in self.__downloadManager.downloads.iteritems():
@@ -785,7 +785,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def __getTemplatesDownloadDirectory(self):
 		"""
-		This method gets the Templates directory.
+		Gets the Templates directory.
 		"""
 
 		LOGGER.debug("> Retrieving Templates download directory.")
@@ -808,7 +808,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 	def extractZipFile(self, file):
 		"""
-		This method uncompress the given zip file.
+		Uncompress the given zip file.
 
 		:param file: File to extract. ( String )
 		:return: Extraction success. ( Boolean )

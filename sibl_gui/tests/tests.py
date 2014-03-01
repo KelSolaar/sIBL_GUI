@@ -46,7 +46,7 @@ __all__ = ["testsSuite"]
 #**********************************************************************************************************************
 def _setPackageDirectory():
 	"""
-	This definition sets the package directory in the path.
+	Sets the package directory in the path.
 
 	:return: Definition success. ( Boolean )
 	"""
@@ -59,7 +59,7 @@ _setPackageDirectory()
 
 def testsSuite():
 	"""
-	This definitions runs the tests suite.
+	Runs the tests suite.
 	
 	:return: Tests suite. ( TestSuite )
 	"""

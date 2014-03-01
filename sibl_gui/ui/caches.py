@@ -62,7 +62,7 @@ class CacheMetrics(foundations.dataStructures.Structure):
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param kwargs: type, content. ( Key / Value pairs )
 		"""
@@ -94,7 +94,7 @@ class AbstractResourcesCache(QObject):
 
 	def __init__(self, parent=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		"""
@@ -109,7 +109,7 @@ class AbstractResourcesCache(QObject):
 	@property
 	def mapping(self):
 		"""
-		This method is the property for **self.__mapping** attribute.
+		Property for **self.__mapping** attribute.
 
 		:return: self.__mapping. ( Dictionary )
 		"""
@@ -120,7 +120,7 @@ class AbstractResourcesCache(QObject):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def mapping(self, value):
 		"""
-		This method is the setter method for **self.__mapping** attribute.
+		Setter for **self.__mapping** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -132,7 +132,7 @@ class AbstractResourcesCache(QObject):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def mapping(self):
 		"""
-		This method is the deleter method for **self.__mapping** attribute.
+		Deleter for **self.__mapping** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -143,7 +143,7 @@ class AbstractResourcesCache(QObject):
 	#******************************************************************************************************************
 	def __getitem__(self, item):
 		"""
-		This method reimplements the :meth:`object.__getitem__` method.
+		Reimplements the :meth:`object.__getitem__` method.
 
 		:param item: Item name. ( String )
 		:return: Item. ( Object )
@@ -153,7 +153,7 @@ class AbstractResourcesCache(QObject):
 
 	def __setitem__(self, key, value):
 		"""
-		This method reimplements the :meth:`object.__setitem__` method.
+		Reimplements the :meth:`object.__setitem__` method.
 
 		:param key: Key. ( String )
 		:param value: Item. ( Object )
@@ -163,7 +163,7 @@ class AbstractResourcesCache(QObject):
 
 	def __iter__(self):
 		"""
-		This method reimplements the :meth:`object.__iter__` method.
+		Reimplements the :meth:`object.__iter__` method.
 
 		:return: Paths iterator. ( Object )
 		"""
@@ -172,7 +172,7 @@ class AbstractResourcesCache(QObject):
 
 	def __contains__(self, item):
 		"""
-		This method reimplements the :meth:`object.__contains__` method.
+		Reimplements the :meth:`object.__contains__` method.
 
 		:param item: Item name. ( String )
 		:return: Item existence. ( Boolean )
@@ -182,7 +182,7 @@ class AbstractResourcesCache(QObject):
 
 	def __len__(self):
 		"""
-		This method reimplements the :meth:`object.__len__` method.
+		Reimplements the :meth:`object.__len__` method.
 
 		:return: Paths count. ( Integer )
 		"""
@@ -191,7 +191,7 @@ class AbstractResourcesCache(QObject):
 
 	def isCached(self, key):
 		"""
-		This method returns if given content is cached.
+		Returns if given content is cached.
 
 		:param key: Content to retrieve. ( Object )
 		:return: Is content cached. ( Boolean )
@@ -201,7 +201,7 @@ class AbstractResourcesCache(QObject):
 
 	def listContent(self):
 		"""
-		This method lists the cache content.
+		Lists the cache content.
 
 		:return: Cache content. ( List )
 		"""
@@ -210,7 +210,7 @@ class AbstractResourcesCache(QObject):
 
 	def addContent(self, **content):
 		"""
-		This method adds given content to the cache.
+		Adds given content to the cache.
 
 		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
@@ -224,7 +224,7 @@ class AbstractResourcesCache(QObject):
 
 	def removeContent(self, *keys):
 		"""
-		This method removes given content from the cache.
+		Removes given content from the cache.
 
 		:param \*keys: Content to remove. ( \* )
 		:return: Method success. ( Boolean )
@@ -242,7 +242,7 @@ class AbstractResourcesCache(QObject):
 
 	def getContent(self, key):
 		"""
-		This method gets given content from the cache.
+		Gets given content from the cache.
 
 		:param key: Content to retrieve. ( Object )
 		:return: Content. ( Object )
@@ -254,7 +254,7 @@ class AbstractResourcesCache(QObject):
 
 	def flushContent(self):
 		"""
-		This method flushes the cache content.
+		Flushes the cache content.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -268,7 +268,7 @@ class AbstractResourcesCache(QObject):
 
 	def getMetrics(self):
 		"""
-		This method returns the cache metrics.
+		Returns the cache metrics.
 
 		:return: Cache metrics. ( Dictionary )
 		"""
@@ -285,7 +285,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def __init__(self, parent=None, type=None, placeholder=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 		
 		:param parent: Object parent. ( QObject )
 		:param type: Cache type. ( QImage / QPixmap / QIcon )
@@ -313,7 +313,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@property
 	def type(self):
 		"""
-		This method is the property for **self.__type** attribute.
+		Property for **self.__type** attribute.
 
 		:return: self.__type. ( QObject )
 		"""
@@ -324,7 +324,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def type(self, value):
 		"""
-		This method is the setter method for **self.__type** attribute.
+		Setter for **self.__type** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -336,7 +336,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def type(self):
 		"""
-		This method is the deleter method for **self.__type** attribute.
+		Deleter for **self.__type** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -345,7 +345,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@property
 	def placeholder(self):
 		"""
-		This method is the property for **self.__placeholder** attribute.
+		Property for **self.__placeholder** attribute.
 
 		:return: self.__placeholder. ( String )
 		"""
@@ -356,7 +356,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def placeholder(self, value):
 		"""
-		This method is the setter method for **self.__placeholder** attribute.
+		Setter for **self.__placeholder** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -368,7 +368,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def placeholder(self):
 		"""
-		This method is the deleter method for **self.__placeholder** attribute.
+		Deleter for **self.__placeholder** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -377,7 +377,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@property
 	def placeholderGraphicsItem(self):
 		"""
-		This method is the property for **self.__placeholderGraphicsItem** attribute.
+		Property for **self.__placeholderGraphicsItem** attribute.
 
 		:return: self.__placeholderGraphicsItem. ( QObject )
 		"""
@@ -388,7 +388,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def placeholderGraphicsItem(self, value):
 		"""
-		This method is the setter method for **self.__placeholderGraphicsItem** attribute.
+		Setter for **self.__placeholderGraphicsItem** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -400,7 +400,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def placeholderGraphicsItem(self):
 		"""
-		This method is the deleter method for **self.__placeholderGraphicsItem** attribute.
+		Deleter for **self.__placeholderGraphicsItem** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -409,7 +409,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@property
 	def worker(self):
 		"""
-		This method is the property for **self.__worker** attribute.
+		Property for **self.__worker** attribute.
 
 		:return: self.__worker. ( QThread )
 		"""
@@ -420,7 +420,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def worker(self, value):
 		"""
-		This method is the setter method for **self.__worker** attribute.
+		Setter for **self.__worker** attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
@@ -435,7 +435,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def worker(self):
 		"""
-		This method is the deleter method for **self.__worker** attribute.
+		Deleter for **self.__worker** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -446,7 +446,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	#******************************************************************************************************************
 	def __worker__imageLoaded(self, image, size):
 		"""
-		This method is triggered by the :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
+		Defines the slot triggered by :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
 		:param image: Loaded image. ( QImage )
 		:param size: Image size. ( String )
@@ -463,7 +463,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def __setPlaceholderGraphicsItem(self, path):
 		"""
-		This method sets the placeholderGraphicsItem graphics item.
+		Sets the placeholderGraphicsItem graphics item.
 		
 		:param path: Placeholder image path. ( String )
 		"""
@@ -479,7 +479,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def getContent(self, key, size="Default"):
 		"""
-		This method reimplements the :meth:`AbstractResourcesCache.getContent` method.
+		Reimplements the :meth:`AbstractResourcesCache.getContent` method.
 
 		:param key: Content to retrieve. ( Object )
 		:param size: Size to retrieve. ( String )
@@ -494,7 +494,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def flushContent(self):
 		"""
-		This method reimplements the :meth:`AbstractResourcesCache.flushContent` method.
+		Reimplements the :meth:`AbstractResourcesCache.flushContent` method.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -510,7 +510,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def loadContent(self, **content):
 		"""
-		This method loads given content into the cache.
+		Loads given content into the cache.
 		
 		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
@@ -539,7 +539,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def loadAsynchronousContent(self, **content):
 		"""
-		This method loads given content asynchronously into the cache.
+		Loads given content asynchronously into the cache.
 
 		:param \*\*content: Content to add. ( \*\* )
 		:return: Method success. ( Boolean )
@@ -580,7 +580,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 	def getMetrics(self):
 		"""
-		This method reimplements the :meth:`AbstractResourcesCache.getMetrics` method.
+		Reimplements the :meth:`AbstractResourcesCache.getMetrics` method.
 
 		:return: Cache metrics. ( Dictionary )
 		"""

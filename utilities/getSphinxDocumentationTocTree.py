@@ -81,7 +81,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def getSphinxDocumentationTocTree(title, fileIn, fileOut, contentDirectory):
 	"""
-	This definition gets Sphinx documentation index file.
+	Gets Sphinx documentation index file.
 
 	:param title: Package title. ( String )
 	:param fileIn: File to convert. ( String )

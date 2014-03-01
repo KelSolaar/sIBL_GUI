@@ -107,7 +107,7 @@ DEFAULT_SESSION = None
 #**********************************************************************************************************************
 def createSession():
 	"""
-	This definition creates a default session.
+	Creates a default session.
 
 	:return: Database session. ( Session )
 	"""
@@ -116,7 +116,7 @@ def createSession():
 
 def getSession(session=None):
 	"""
-	This definition returns either given session or the default one.
+	Returns either given session or the default one.
 
 	:param session: Database session. ( Session )
 	:return: Database session. ( Session )
@@ -132,7 +132,7 @@ def getSession(session=None):
 
 def query(*args, **kwargs):
 	"""
-	This definition queries given session or the default one.
+	Queries given session or the default one.
 
 	:param \*args: Arguments. ( \* )
 	:param \*\*kwargs: Keywords arguments. ( \*\* )
@@ -144,7 +144,7 @@ def query(*args, **kwargs):
 @foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 def commit(session=None):
 	"""
-	This definition commits changes to the Database.
+	Commits changes to the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database commit success. ( Boolean )
@@ -162,7 +162,7 @@ def commit(session=None):
 
 def addItem(item, session=None):
 	"""
-	This definition adds an item to the Database.
+	Adds an item to the Database.
 
 	:param item: Item to add. ( Database object )
 	:param session: Database session. ( Session )
@@ -177,7 +177,7 @@ def addItem(item, session=None):
 
 def addStandardItem(type, name, path, collection, session=None):
 	"""
-	This definition adds a new standard item to the Database.
+	Adds a new standard item to the Database.
 
 	:param type: Item type. ( Object )
 	:param name: Item name. ( String )
@@ -202,7 +202,7 @@ def addStandardItem(type, name, path, collection, session=None):
 
 def removeItem(item, session=None):
 	"""
-	This definition removes an item from the Database.
+	Removes an item from the Database.
 
 	:param item: Item to remove. ( Database object )
 	:param session: Database session. ( Session )
@@ -217,7 +217,7 @@ def removeItem(item, session=None):
 
 def removeStandardItem(type, identity, session=None):
 	"""
-	This definition removes a standard item from the Database.
+	Removes a standard item from the Database.
 
 	:param type: Item type. ( Object )
 	:param identity: Item id. ( String )
@@ -232,7 +232,7 @@ def removeStandardItem(type, identity, session=None):
 
 def updateItemContent(item, session=None):
 	"""
-	This definition update an item content.
+	Update an item content.
 
 	:param item: Item to set content. ( IblSet )
 	:param session: Database session. ( Session )
@@ -252,7 +252,7 @@ def updateItemContent(item, session=None):
 
 def updateItemLocation(item, path, session=None):
 	"""
-	This definition updates an item location.
+	Updates an item location.
 
 	:param item: Item to update. ( Object )
 	:param path: Item path. ( Path )
@@ -275,7 +275,7 @@ def updateItemLocation(item, path, session=None):
 
 def filterItems(items, pattern, field, flags=0):
 	"""
-	This definition filters items from the Database.
+	Filters items from the Database.
 
 	:param items: Database items. ( List )
 	:param pattern: Filtering pattern. ( String )
@@ -288,7 +288,7 @@ def filterItems(items, pattern, field, flags=0):
 
 def itemExists(items, pattern, field, flags=0):
 	"""
-	This definition returns if given item exists in the Database.
+	Returns if given item exists in the Database.
 
 	:param items: Database items. ( List )
 	:param pattern: Filtering pattern. ( String )
@@ -301,7 +301,7 @@ def itemExists(items, pattern, field, flags=0):
 
 def getIblSets(session=None):
 	"""
-	This definition returns the Ibl Sets from the Database.
+	Returns the Ibl Sets from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Ibl Sets. ( List )
@@ -311,7 +311,7 @@ def getIblSets(session=None):
 
 def filterIblSets(pattern, field, flags=0, session=None):
 	"""
-	This definition filters the sets from the Database.
+	Filters the sets from the Database.
 
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -324,7 +324,7 @@ def filterIblSets(pattern, field, flags=0, session=None):
 
 def iblSetExists(path, session=None):
 	"""
-	This method returns if given Ibl Set exists in the Database.
+	Returns if given Ibl Set exists in the Database.
 
 	:param name: Ibl Set path. ( String )
 	:param session: Database session. ( Session )
@@ -335,7 +335,7 @@ def iblSetExists(path, session=None):
 
 def addIblSet(name, path, collection, session=None):
 	"""
-	This definition adds a new Ibl Set to the Database.
+	Adds a new Ibl Set to the Database.
 
 	:param name: Ibl Set name. ( String )
 	:param path: Ibl Set path. ( String )
@@ -348,7 +348,7 @@ def addIblSet(name, path, collection, session=None):
 
 def removeIblSet(identity, session=None):
 	"""
-	This definition removes an Ibl Set from the Database.
+	Removes an Ibl Set from the Database.
 
 	:param identity: Ibl Set id. ( String )
 	:param session: Database session. ( Session )
@@ -359,7 +359,7 @@ def removeIblSet(identity, session=None):
 
 def updateIblSetContent(iblSet, session=None):
 	"""
-	This definition update an Ibl Set content.
+	Update an Ibl Set content.
 
 	:param iblSet: Ibl Set to set content. ( IblSet )
 	:param session: Database session. ( Session )
@@ -370,7 +370,7 @@ def updateIblSetContent(iblSet, session=None):
 
 def updateIblSetLocation(iblSet, path, session=None):
 	"""
-	This definition updates an Ibl Set location.
+	Updates an Ibl Set location.
 
 	:param iblSet: Ibl Set to update. ( IblSet )
 	:param path: Ibl Set path. ( Path )
@@ -382,7 +382,7 @@ def updateIblSetLocation(iblSet, path, session=None):
 
 def checkIblSetsTableIntegrity(session=None):
 	"""
-	This definition checks sets table integrity.
+	Checks sets table integrity.
 
 	:param session: Database session. ( Session )
 	:return: Ibl Sets table erroneous items. ( Dictionary )
@@ -422,7 +422,7 @@ def checkIblSetsTableIntegrity(session=None):
 
 def getCollections(session=None):
 	"""
-	This definition returns the Collections from the Database.
+	Returns the Collections from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Collections. ( List )
@@ -432,7 +432,7 @@ def getCollections(session=None):
 
 def filterCollections(pattern, field, flags=0, session=None):
 	"""
-	This definition filters the Collections from the Database.
+	Filters the Collections from the Database.
 
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -445,7 +445,7 @@ def filterCollections(pattern, field, flags=0, session=None):
 
 def getCollectionsByType(type, session=None):
 	"""
-	This method returns Collections of given type.
+	Returns Collections of given type.
 
 	:param type: Type name. ( String )
 	:param session: Database session. ( Session )
@@ -456,7 +456,7 @@ def getCollectionsByType(type, session=None):
 
 def filterCollectionsByType(type, pattern, field, flags=0, session=None):
 	"""
-	This definition filters the Ibl Sets Collections from the Database.
+	Filters the Ibl Sets Collections from the Database.
 
 	:param type: Type name. ( String )
 	:param pattern: Filtering pattern. ( String )
@@ -471,7 +471,7 @@ def filterCollectionsByType(type, pattern, field, flags=0, session=None):
 
 def filterIblSetsCollections(pattern, field, flags=0, session=None):
 	"""
-	This definition filters the Ibl Sets Collections from the Database.
+	Filters the Ibl Sets Collections from the Database.
 
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -484,7 +484,7 @@ def filterIblSetsCollections(pattern, field, flags=0, session=None):
 
 def filterTemplatesCollections(pattern, field, flags=0, session=None):
 	"""
-	This definition filters the Templates Collections from the Database.
+	Filters the Templates Collections from the Database.
 
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -497,7 +497,7 @@ def filterTemplatesCollections(pattern, field, flags=0, session=None):
 
 def collectionExists(name, session=None):
 	"""
-	This method returns if the Collection exists in the Database.
+	Returns if the Collection exists in the Database.
 
 	:param name: Collection name. ( String )
 	:param session: Database session. ( Session )
@@ -508,7 +508,7 @@ def collectionExists(name, session=None):
 
 def addCollection(collection, type, comment, session=None):
 	"""
-	This definition adds a Collection to the Database.
+	Adds a Collection to the Database.
 
 	:param collection: Collection name. ( String )
 	:param type: Collection type. ( String )
@@ -530,7 +530,7 @@ def addCollection(collection, type, comment, session=None):
 
 def removeCollection(identity, session=None):
 	"""
-	This definition removes a Collection from the Database.
+	Removes a Collection from the Database.
 
 	:param identity: Collection id. ( String )
 	:param session: Database session. ( Session )
@@ -541,7 +541,7 @@ def removeCollection(identity, session=None):
 
 def getCollectionsIblSets(identities, session=None):
 	"""
-	This definition returns Ibl Sets from Collections ids
+	Returns Ibl Sets from Collections ids
 
 	:param identities: Collections ids. ( List )
 	:param session: Database session. ( Session )
@@ -558,7 +558,7 @@ def getCollectionsIblSets(identities, session=None):
 
 def getCollectionIblSetsCount(collection, session=None):
 	"""
-	This method returns given Collection Ibl Sets count.
+	Returns given Collection Ibl Sets count.
 
 	:param collection: Collection. ( Collection )
 	:param session: Database session. ( Session )
@@ -569,7 +569,7 @@ def getCollectionIblSetsCount(collection, session=None):
 
 def getCollectionTemplatesCount(collection, session=None):
 	"""
-	This method returns given Collection Tempates count.
+	Returns given Collection Tempates count.
 
 	:param collection: Collection. ( Collection )
 	:param session: Database session. ( Session )
@@ -580,7 +580,7 @@ def getCollectionTemplatesCount(collection, session=None):
 
 def getTemplates(session=None):
 	"""
-	This definition returns the Templates from the Database.
+	Returns the Templates from the Database.
 
 	:param session: Database session. ( Session )
 	:return: Database Templates. ( List )
@@ -590,7 +590,7 @@ def getTemplates(session=None):
 
 def filterTemplates(pattern, field, flags=0, session=None):
 	"""
-	This definition filters the Templates from the Database.
+	Filters the Templates from the Database.
 
 	:param pattern: Filtering pattern. ( String )
 	:param field: Database field to search into. ( String )
@@ -603,7 +603,7 @@ def filterTemplates(pattern, field, flags=0, session=None):
 
 def templateExists(path, session=None):
 	"""
-	This method returns if given Template exists in the Database.
+	Returns if given Template exists in the Database.
 
 	:param name: Template path. ( String )
 	:param session: Database session. ( Session )
@@ -614,7 +614,7 @@ def templateExists(path, session=None):
 
 def addTemplate(name, path, collection, session=None):
 	"""
-	This definition adds a new Template to the Database.
+	Adds a new Template to the Database.
 
 	:param name: Template name. ( String )
 	:param path: Template path. ( String )
@@ -627,7 +627,7 @@ def addTemplate(name, path, collection, session=None):
 
 def removeTemplate(identity, session=None):
 	"""
-	This definition removes a Template from the Database.
+	Removes a Template from the Database.
 
 	:param identity: Template id. ( String )
 	:param session: Database session. ( Session )
@@ -638,7 +638,7 @@ def removeTemplate(identity, session=None):
 
 def updateTemplateContent(template, session=None):
 	"""
-	This definition update a Template content.
+	Update a Template content.
 
 	:param template: Template to Template content. ( Template )
 	:param session: Database session. ( Session )
@@ -649,7 +649,7 @@ def updateTemplateContent(template, session=None):
 
 def updateTemplateLocation(template, path, session=None):
 	"""
-	This definition updates a Template location.
+	Updates a Template location.
 
 	:param template: Template to update. ( Template )
 	:param path: Template path. ( Path )
@@ -661,7 +661,7 @@ def updateTemplateLocation(template, path, session=None):
 
 def checkTemplatesTableIntegrity(session=None):
 	"""
-	This definition checks Templates table integrity.
+	Checks Templates table integrity.
 
 	:param session: Database session. ( Session )
 	:return: Templates table erroneous items. ( Dictionary )

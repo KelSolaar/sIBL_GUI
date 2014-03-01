@@ -58,7 +58,7 @@ class Mixin_GraphModelObject(object):
 
 	def __init__(self):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		"""
 
@@ -74,7 +74,7 @@ class Mixin_GraphModelObject(object):
 	@property
 	def iconSize(self):
 		"""
-		This method is the property for **self.__iconSize** attribute.
+		Property for **self.__iconSize** attribute.
 
 		:return: self.__iconSize. ( String )
 		"""
@@ -85,7 +85,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def iconSize(self, value):
 		"""
-		This method is the setter method for **self.__iconSize** attribute.
+		Setter for **self.__iconSize** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -99,7 +99,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconSize(self):
 		"""
-		This method is the deleter method for **self.__iconSize** attribute.
+		Deleter for **self.__iconSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -108,7 +108,7 @@ class Mixin_GraphModelObject(object):
 	@property
 	def iconPlaceholder(self):
 		"""
-		This method is the property for **self.__iconPlaceholder** attribute.
+		Property for **self.__iconPlaceholder** attribute.
 
 		:return: self.__iconPlaceholder. ( QIcon )
 		"""
@@ -119,7 +119,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def iconPlaceholder(self, value):
 		"""
-		This method is the setter method for **self.__iconPlaceholder** attribute.
+		Setter for **self.__iconPlaceholder** attribute.
 
 		:param value: Attribute value. ( QIcon )
 		"""
@@ -133,7 +133,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconPlaceholder(self):
 		"""
-		This method is the deleter method for **self.__iconPlaceholder** attribute.
+		Deleter for **self.__iconPlaceholder** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -153,7 +153,7 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Attribute name. ( String )
 		:param value: Attribute value. ( Object )
@@ -191,7 +191,7 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )

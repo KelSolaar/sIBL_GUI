@@ -59,7 +59,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
@@ -82,7 +82,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@property
 	def listViewIconSize(self):
 		"""
-		This method is the property for **self.__listViewIconSize** attribute.
+		Property for **self.__listViewIconSize** attribute.
 
 		:return: self.__listViewIconSize. ( Integer )
 		"""
@@ -93,7 +93,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self, value):
 		"""
-		This method is the setter method for **self.__listViewIconSize** attribute.
+		Setter for **self.__listViewIconSize** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -105,7 +105,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This method is the deleter method for **self.__listViewIconSize** attribute.
+		Deleter for **self.__listViewIconSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -116,7 +116,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAcceptDrops(False)
@@ -136,7 +136,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")

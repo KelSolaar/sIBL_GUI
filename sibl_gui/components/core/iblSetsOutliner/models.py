@@ -57,7 +57,7 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param rootNode: Root node. ( AbstractCompositeNode )
@@ -78,7 +78,7 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	#******************************************************************************************************************
 	def initializeModel(self, rootNode):
 		"""
-		This method initializes the Model using given root node.
+		Initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
 		:return: Method success ( Boolean )
@@ -94,7 +94,7 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 
 	def sort(self, column, order=Qt.AscendingOrder):
 		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.sort` method.
+		Reimplements the :meth:`umbra.ui.models.GraphModel.sort` method.
 		
 		:param column: Column. ( Integer )
 		:param order: Order. ( Qt.SortOrder )

@@ -60,7 +60,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
@@ -85,7 +85,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@property
 	def container(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		Property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -96,7 +96,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		Setter for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -108,7 +108,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		Deleter for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -117,7 +117,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@property
 	def treeViewIndentation(self):
 		"""
-		This method is the property for **self.__treeViewIndentation** attribute.
+		Property for **self.__treeViewIndentation** attribute.
 
 		:return: self.__treeViewIndentation. ( Integer )
 		"""
@@ -128,7 +128,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for **self.__treeViewIndentation** attribute.
+		Setter for **self.__treeViewIndentation** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -140,7 +140,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for **self.__treeViewIndentation** attribute.
+		Deleter for **self.__treeViewIndentation** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -151,7 +151,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	def dragEnterEvent(self, event):
 		"""
-		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.
+		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -164,7 +164,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def dragMoveEvent(self, event):
 		"""
-		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragMoveEvent` method.
+		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragMoveEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -176,7 +176,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 											foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
-		This method reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dropEvent` method.
+		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dropEvent` method.
 
 		:param event: QEvent. ( QEvent )
 		"""
@@ -214,7 +214,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAutoScroll(True)
@@ -232,7 +232,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -247,7 +247,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def storeModelSelection(self):
 		"""
-		This method stores the Model selection.
+		Stores the Model selection.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -264,7 +264,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def restoreModelSelection(self):
 		"""
-		This method restores the Model selection.
+		Restores the Model selection.
 
 		:return: Method success. ( Boolean )
 		"""

@@ -59,7 +59,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
@@ -83,7 +83,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@property
 	def listViewSpacing(self):
 		"""
-		This method is the property for **self.__listViewSpacing** attribute.
+		Property for **self.__listViewSpacing** attribute.
 
 		:return: self.__listViewSpacing. ( Integer )
 		"""
@@ -94,7 +94,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewSpacing(self, value):
 		"""
-		This method is the setter method for **self.__listViewSpacing** attribute.
+		Setter for **self.__listViewSpacing** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -108,7 +108,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewSpacing(self):
 		"""
-		This method is the deleter method for **self.__listViewSpacing** attribute.
+		Deleter for **self.__listViewSpacing** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -117,7 +117,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@property
 	def listViewMargin(self):
 		"""
-		This method is the property for **self.__listViewMargin** attribute.
+		Property for **self.__listViewMargin** attribute.
 
 		:return: self.__listViewMargin. ( Integer )
 		"""
@@ -128,7 +128,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewMargin(self, value):
 		"""
-		This method is the setter method for **self.__listViewMargin** attribute.
+		Setter for **self.__listViewMargin** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -142,7 +142,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewMargin(self):
 		"""
-		This method is the deleter method for **self.__listViewMargin** attribute.
+		Deleter for **self.__listViewMargin** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -153,7 +153,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAutoScroll(True)
@@ -170,7 +170,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 	def __setDefaultUiState(self, iconsSize=None, iconsRatio=2):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 
 		:param iconsSize: Icons size. ( Integer )
 		:param iconRatio: Icons ratio. ( Integer )
@@ -192,7 +192,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
@@ -215,7 +215,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@property
 	def treeViewIndentation(self):
 		"""
-		This method is the property for **self.__treeViewIndentation** attribute.
+		Property for **self.__treeViewIndentation** attribute.
 
 		:return: self.__treeViewIndentation. ( Integer )
 		"""
@@ -226,7 +226,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for **self.__treeViewIndentation** attribute.
+		Setter for **self.__treeViewIndentation** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -238,7 +238,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for **self.__treeViewIndentation** attribute.
+		Deleter for **self.__treeViewIndentation** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -249,7 +249,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAutoScroll(True)
@@ -268,7 +268,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")

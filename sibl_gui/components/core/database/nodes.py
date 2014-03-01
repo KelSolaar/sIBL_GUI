@@ -60,7 +60,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 def getTemplateUserName(title, software):
 	"""
-	This method returns the Template user name.
+	Returns the Template user name.
 
 	:param title: Template title.  ( String )
 	:param software: Template software.  ( String )
@@ -89,7 +89,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
@@ -127,7 +127,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def databaseItem(self):
 		"""
-		This method is the property for **self.__databaseItem** attribute.
+		Property for **self.__databaseItem** attribute.
 
 		:return: self.__databaseItem. ( Object )
 		"""
@@ -138,7 +138,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseItem(self, value):
 		"""
-		This method is the setter method for **self.__databaseItem** attribute.
+		Setter for **self.__databaseItem** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -150,7 +150,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseItem(self):
 		"""
-		This method is the deleter method for **self.__databaseItem** attribute.
+		Deleter for **self.__databaseItem** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -159,7 +159,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def toolTipText(self):
 		"""
-		This method is the property for **self.__toolTipText** attribute.
+		Property for **self.__toolTipText** attribute.
 
 		:return: self.__toolTipText. ( String )
 		"""
@@ -170,7 +170,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def toolTipText(self, value):
 		"""
-		This method is the setter method for **self.__toolTipText** attribute.
+		Setter for **self.__toolTipText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -184,7 +184,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
+		Deleter for **self.__toolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -195,7 +195,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
@@ -212,7 +212,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateNode(self):
 		"""
-		This method updates the Node from the database item.
+		Updates the Node from the database item.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -222,7 +222,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the Node attributes from the database item attributes.
+		Updates the Node attributes from the database item attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -239,7 +239,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateDatabaseItem(self):
 		"""
-		This method updates the database item from the node.
+		Updates the database item from the node.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -249,7 +249,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateDatabaseItemAttributes(self):
 		"""
-		This method updates the database item attributes from the Node attributes.
+		Updates the database item attributes from the Node attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -266,7 +266,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(NotImplementedError)
 	def updateToolTip(self):
 		"""
-		This method updates the Node tooltip.
+		Updates the Node tooltip.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -295,7 +295,7 @@ class IblSetNode(AbstractDatabaseNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
@@ -342,7 +342,7 @@ class IblSetNode(AbstractDatabaseNode):
 	@property
 	def iconPath(self):
 		"""
-		This method is the property for **self.__iconPath** attribute.
+		Property for **self.__iconPath** attribute.
 
 		:return: self.__iconPath. ( String )
 		"""
@@ -353,7 +353,7 @@ class IblSetNode(AbstractDatabaseNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconPath(self, value):
 		"""
-		This method is the setter method for **self.__iconPath** attribute.
+		Setter for **self.__iconPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -365,7 +365,7 @@ class IblSetNode(AbstractDatabaseNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconPath(self):
 		"""
-		This method is the deleter method for **self.__iconPath** attribute.
+		Deleter for **self.__iconPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -448,7 +448,7 @@ class TemplateNode(AbstractDatabaseNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )
@@ -564,7 +564,7 @@ class CollectionNode(AbstractDatabaseNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param databaseItem: Database object.  ( Object )
 		:param name: Node name.  ( String )

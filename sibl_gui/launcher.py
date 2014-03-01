@@ -34,7 +34,7 @@ from PyQt4.QtGui import QPixmap
 #**********************************************************************************************************************
 def _setPackageDirectory():
 	"""
-	This definition sets the Application package directory in the path.
+	Sets the Application package directory in the path.
 	"""
 
 	if hasattr(sys, "frozen"):
@@ -74,7 +74,7 @@ import manager.globals.constants
 
 def _overrideDependenciesGlobals():
 	"""
-	This definition overrides dependencies globals.
+	Overrides dependencies globals.
 	"""
 
 	foundations.globals.constants.Constants.logger = \
@@ -128,7 +128,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 				*args,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param componentsPaths: Components componentsPaths. ( Tuple / List )
 		:param requisiteComponents: Requisite components names. ( Tuple / List )
@@ -157,7 +157,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@property
 	def thumbnailsCacheDirectory(self):
 		"""
-		This method is the property for **self.__thumbnailsCacheDirectory** attribute.
+		Property for **self.__thumbnailsCacheDirectory** attribute.
 
 		:return: self.__thumbnailsCacheDirectory. ( String )
 		"""
@@ -168,7 +168,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsCacheDirectory(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsCacheDirectory** attribute.
+		Setter for **self.__thumbnailsCacheDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -180,7 +180,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsCacheDirectory(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsCacheDirectory** attribute.
+		Deleter for **self.__thumbnailsCacheDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -189,7 +189,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@property
 	def imagesCaches(self):
 		"""
-		This method is the property for **self.__imagesCaches** attribute.
+		Property for **self.__imagesCaches** attribute.
 
 		:return: self.__imagesCaches. ( Structure )
 		"""
@@ -200,7 +200,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagesCaches(self, value):
 		"""
-		This method is the setter method for **self.__imagesCaches** attribute.
+		Setter for **self.__imagesCaches** attribute.
 
 		:param value: Attribute value. ( Structure )
 		"""
@@ -212,7 +212,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagesCaches(self):
 		"""
-		This method is the deleter method for **self.__imagesCaches** attribute.
+		Deleter for **self.__imagesCaches** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -223,7 +223,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#******************************************************************************************************************
 	def __overrideApplicationToolbar(self):
 		"""
-		This method overrides the Application toolbar.
+		Overrides the Application toolbar.
 		"""
 
 		umbra.ui.widgets.application_QToolBar.Application_QToolBar = \
@@ -231,7 +231,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 	def __setThumbnailsCacheDirectory(self):
 		"""
-		This method sets the Application thumbnails cache directory.
+		Sets the Application thumbnails cache directory.
 		"""
 
 		self.__thumbnailsCacheDirectory = umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = \
@@ -241,7 +241,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 	def __setImagesCaches(self):
 		"""
-		This method sets the Application images caches.
+		Sets the Application images caches.
 		"""
 
 		loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
@@ -257,7 +257,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 	def onPreInitialisation(self):
 		"""
-		This method is called by the :class:`umbra.engine.Umbra` class before Application main class initialisation.
+		Called by :class:`umbra.engine.Umbra` class before Application main class initialisation.
 		"""
 
 		self.__overrideApplicationToolbar()
@@ -266,14 +266,14 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 	def onInitialisation(self):
 		"""
-		This method is called by the :class:`umbra.engine.Umbra` class on Application main class initialisation.
+		Called by :class:`umbra.engine.Umbra` class on Application main class initialisation.
 		"""
 
 		pass
 
 	def onPostInitialisation(self):
 		"""
-		This method is called by the :class:`umbra.engine.Umbra` class after Application main class initialisation.
+		Called by :class:`umbra.engine.Umbra` class after Application main class initialisation.
 		"""
 
 		for cache in self.__imagesCaches.itervalues():
@@ -287,7 +287,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 def extendCommandLineParametersParser(parser):
 	"""
-	This definition returns the command line parameters parser.
+	Returns the command line parameters parser.
 
 	:param parser: Command line parameters parser. ( Parser )
 	:return: Definition success. ( Boolean )
@@ -319,7 +319,7 @@ def extendCommandLineParametersParser(parser):
 #**********************************************************************************************************************
 def main():
 	"""
-	This definition starts the Application.
+	Starts the Application.
 
 	:return: Definition success. ( Boolean )
 	"""

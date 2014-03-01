@@ -72,7 +72,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -105,7 +105,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -116,7 +116,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -128,7 +128,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -137,7 +137,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def viewSpacing(self):
 		"""
-		This method is the property for **self.__viewSpacing** attribute.
+		Property for **self.__viewSpacing** attribute.
 
 		:return: self.__viewSpacing. ( Integer )
 		"""
@@ -148,7 +148,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def viewSpacing(self, value):
 		"""
-		This method is the setter method for **self.__viewSpacing** attribute.
+		Setter for **self.__viewSpacing** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -160,7 +160,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def viewSpacing(self):
 		"""
-		This method is the deleter method for **self.__viewSpacing** attribute.
+		Deleter for **self.__viewSpacing** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -169,7 +169,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -180,7 +180,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -192,7 +192,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -202,7 +202,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
 		:return: self.__iblSetsOutliner. ( QWidget )
 		"""
@@ -213,7 +213,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -225,7 +225,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -234,7 +234,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__collectionsOutliner** attribute.
+		Property for **self.__collectionsOutliner** attribute.
 
 		:return: self.__collectionsOutliner. ( QWidget )
 		"""
@@ -245,7 +245,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__collectionsOutliner** attribute.
+		Setter for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -257,7 +257,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__collectionsOutliner** attribute.
+		Deleter for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -266,7 +266,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
 		:return: self.__view. ( QWidget )
 		"""
@@ -277,7 +277,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -289,7 +289,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -298,7 +298,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def cloudExcludedTags(self):
 		"""
-		This method is the property for **self.__cloudExcludedTags** attribute.
+		Property for **self.__cloudExcludedTags** attribute.
 
 		:return: self.__cloudExcludedTags. ( List )
 		"""
@@ -309,7 +309,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def cloudExcludedTags(self, value):
 		"""
-		This method is the setter method for **self.__cloudExcludedTags** attribute.
+		Setter for **self.__cloudExcludedTags** attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -321,7 +321,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def cloudExcludedTags(self):
 		"""
-		This method is the deleter method for **self.__cloudExcludedTags** attribute.
+		Deleter for **self.__cloudExcludedTags** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -332,7 +332,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -350,7 +350,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -367,7 +367,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -413,7 +413,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -437,7 +437,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -450,7 +450,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -464,7 +464,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
-		This method is triggered when **Search_Database_lineEdit** text changes.
+		Defines the slot triggered by **Search_Database_lineEdit** Widget when text changed.
 
 		:param text: Current text value. ( QString )
 		"""
@@ -473,7 +473,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Case_Sensitive_Matching_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Case_Sensitive_Matching_pushButton** Widget is clicked.
+		Defines the slot triggered by **Case_Sensitive_Matching_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -482,7 +482,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Time_Low_timeEdit__timeChanged(self, time):
 		"""
-		This method is triggered when **Time_Low_timeEdit** time changes.
+		Defines the slot triggered by **Time_Low_timeEdit** Widget when time changed.
 
 		:param time: Current time. ( QTime )
 		"""
@@ -493,7 +493,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Time_High_timeEdit__timeChanged(self, time):
 		"""
-		This method is triggered when **Time_Low_timeEdit** time changes.
+		Defines the slot triggered by **Time_Low_timeEdit** Widget when time changed.
 
 		:param time: Current time. ( QTime )
 		"""
@@ -504,7 +504,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view__doubleClicked(self, listWidgetItem):
 		"""
-		This method is triggered when the View is double clicked.
+		Defines the slot triggered by the View when double clicked.
 
 		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
 		"""
@@ -513,7 +513,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __collectionsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **collectionsOutliner.view** Model selection has changed.
+		Defines the slot triggered by **collectionsOutliner.view** Model when selection changed
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -523,7 +523,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setTagsCloudMatchingIblsSetsUi(self):
 		"""
-		This method sets the user defined pattern matching Ibl Sets and 
+		Sets the user defined pattern matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:return: Method success. ( Boolean )
@@ -536,7 +536,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setTimeMatchingIblSetsUi(self):
 		"""
-		This method sets the user defined time matching Ibl Sets and 
+		Sets the user defined time matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:return: Method success. ( Boolean )
@@ -548,7 +548,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setTagsCloudMatchingIblsSets(self, pattern, flags=re.IGNORECASE):
 		"""
-		This method sets the pattern matching Ibl Sets and 
+		Sets the pattern matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 
 		:param pattern: Filtering pattern. ( String )
@@ -603,7 +603,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setTimeMatchingIblSets(self, timeLow, timeHigh):
 		"""
-		This method sets the time matching Ibl Sets and 
+		Sets the time matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
 		:param timeLow: Time low. ( QTime )

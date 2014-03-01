@@ -102,7 +102,7 @@ class IblSet(Base):
 			time=None,
 			comment=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Ibl Set name. ( String )
 		:param path: Ibl Set file path. ( String )
@@ -149,7 +149,7 @@ class IblSet(Base):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
-		This method initializes the class attributes.
+		Initializes the class attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -232,7 +232,7 @@ class Template(Base):
 			outputScript=None,
 			comment=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Template name. ( String )
 		:param path: Template file path. ( String )
@@ -275,7 +275,7 @@ class Template(Base):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
-		This method initializes the class attributes.
+		Initializes the class attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -333,7 +333,7 @@ class Collection(Base):
 
 	def __init__(self, name=None, type=None, comment=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Collection name. ( String )
 		:param type: Collection type. ( String )

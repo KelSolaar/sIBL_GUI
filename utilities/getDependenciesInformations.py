@@ -77,7 +77,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def getDependenciesInformations():
 	"""
-	This definition gets sIBL_GUI dependencies informations file.
+	Gets sIBL_GUI dependencies informations file.
 	"""
 
 	content = ["[Dependencies]\n"]

@@ -56,7 +56,7 @@ USER_APPLICATION_DIRECTORY_PREFIX = "标准"
 #**********************************************************************************************************************
 def testsInternational():
 	"""
-	This definitions runs the international tests suite.
+	Runs the international tests suite.
 	
 	:return: Definition success. ( Boolean )
 	"""

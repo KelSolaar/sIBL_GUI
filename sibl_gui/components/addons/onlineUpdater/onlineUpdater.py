@@ -74,7 +74,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -114,7 +114,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -125,7 +125,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -137,7 +137,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -146,7 +146,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -157,7 +157,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -169,7 +169,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -178,7 +178,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -189,7 +189,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -201,7 +201,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -210,7 +210,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def preferencesManager(self):
 		"""
-		This method is the property for **self.__preferencesManager** attribute.
+		Property for **self.__preferencesManager** attribute.
 
 		:return: self.__preferencesManager. ( QWidget )
 		"""
@@ -221,7 +221,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__preferencesManager** attribute.
+		Setter for **self.__preferencesManager** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -233,7 +233,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__preferencesManager** attribute.
+		Deleter for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -242,7 +242,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__templatesOutliner** attribute.
+		Property for **self.__templatesOutliner** attribute.
 
 		:return: self.__templatesOutliner. ( QWidget )
 		"""
@@ -253,7 +253,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__templatesOutliner** attribute.
+		Setter for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -265,7 +265,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__templatesOutliner** attribute.
+		Deleter for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -274,7 +274,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def locationsBrowser(self):
 		"""
-		This method is the property for **self.__locationsBrowser** attribute.
+		Property for **self.__locationsBrowser** attribute.
 
 		:return: self.__locationsBrowser. ( QWidget )
 		"""
@@ -285,7 +285,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def locationsBrowser(self, value):
 		"""
-		This method is the setter method for **self.__locationsBrowser** attribute.
+		Setter for **self.__locationsBrowser** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -297,7 +297,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def locationsBrowser(self):
 		"""
-		This method is the deleter method for **self.__locationsBrowser** attribute.
+		Deleter for **self.__locationsBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -306,7 +306,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def ioDirectory(self):
 		"""
-		This method is the property for **self.__ioDirectory** attribute.
+		Property for **self.__ioDirectory** attribute.
 
 		:return: self.__ioDirectory. ( String )
 		"""
@@ -317,7 +317,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def ioDirectory(self, value):
 		"""
-		This method is the setter method for **self.__ioDirectory** attribute.
+		Setter for **self.__ioDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -329,7 +329,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def ioDirectory(self):
 		"""
-		This method is the deleter method for **self.__ioDirectory** attribute.
+		Deleter for **self.__ioDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -338,7 +338,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def repositoryUrl(self):
 		"""
-		This method is the property for **self.__repositoryUrl** attribute.
+		Property for **self.__repositoryUrl** attribute.
 
 		:return: self.__repositoryUrl. ( String )
 		"""
@@ -349,7 +349,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This method is the setter method for **self.__repositoryUrl** attribute.
+		Setter for **self.__repositoryUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -361,7 +361,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This method is the deleter method for **self.__repositoryUrl** attribute.
+		Deleter for **self.__repositoryUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -370,7 +370,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def releasesFileUrl(self):
 		"""
-		This method is the property for **self.__releasesFileUrl** attribute.
+		Property for **self.__releasesFileUrl** attribute.
 
 		:return: self.__releasesFileUrl. ( String )
 		"""
@@ -381,7 +381,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self, value):
 		"""
-		This method is the setter method for **self.__releasesFileUrl** attribute.
+		Setter for **self.__releasesFileUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -393,7 +393,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self):
 		"""
-		This method is the deleter method for **self.__releasesFileUrl** attribute.
+		Deleter for **self.__releasesFileUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -402,7 +402,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for **self.__networkAccessManager** attribute.
+		Property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -413,7 +413,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for **self.__networkAccessManager** attribute.
+		Setter for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -425,7 +425,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for **self.__networkAccessManager** attribute.
+		Deleter for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -434,7 +434,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def releaseReply(self):
 		"""
-		This method is the property for **self.__releasesFileReply** attribute.
+		Property for **self.__releasesFileReply** attribute.
 
 		:return: self.__releasesFileReply. ( QNetworkReply )
 		"""
@@ -445,7 +445,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releaseReply(self, value):
 		"""
-		This method is the setter method for **self.__releasesFileReply** attribute.
+		Setter for **self.__releasesFileReply** attribute.
 
 		:param value: Attribute value. ( QNetworkReply )
 		"""
@@ -457,7 +457,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def releaseReply(self):
 		"""
-		This method is the deleter method for **self.__releasesFileReply** attribute.
+		Deleter for **self.__releasesFileReply** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -466,7 +466,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def remoteUpdater(self):
 		"""
-		This method is the property for **self.__remoteUpdater** attribute.
+		Property for **self.__remoteUpdater** attribute.
 
 		:return: self.__remoteUpdater. ( Object )
 		"""
@@ -477,7 +477,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self, value):
 		"""
-		This method is the setter method for **self.__remoteUpdater** attribute.
+		Setter for **self.__remoteUpdater** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -489,7 +489,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self):
 		"""
-		This method is the deleter method for **self.__remoteUpdater** attribute.
+		Deleter for **self.__remoteUpdater** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -498,7 +498,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def reportUpdateStatus(self):
 		"""
-		This method is the property for **self.__reportUpdateStatus** attribute.
+		Property for **self.__reportUpdateStatus** attribute.
 
 		:return: self.__reportUpdateStatus. ( Boolean )
 		"""
@@ -509,7 +509,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self, value):
 		"""
-		This method is the setter method for **self.__reportUpdateStatus** attribute.
+		Setter for **self.__reportUpdateStatus** attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -521,7 +521,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self):
 		"""
-		This method is the deleter method for **self.__reportUpdateStatus** attribute.
+		Deleter for **self.__reportUpdateStatus** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -532,7 +532,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -561,7 +561,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -587,7 +587,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -614,7 +614,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -633,7 +633,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered on Framework startup.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -648,7 +648,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -659,7 +659,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -670,7 +670,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		"""
-		This method sets the **Check_For_New_Releases_On_Startup_checkBox** Widget.
+		Sets the **Check_For_New_Releases_On_Startup_checkBox** Widget.
 		"""
 
 		# Adding settings key if it doesn't exists.
@@ -685,7 +685,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
-		This method is triggered when **Check_For_New_Releases_On_Startup_checkBox** Widget state changes.
+		Defines the slot triggered by **Check_For_New_Releases_On_Startup_checkBox** Widget when state changed.
 
 		:param state: Checkbox state. ( Integer )
 		"""
@@ -695,7 +695,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		"""
-		This method sets the **Ignore_Non_Existing_Templates_checkBox** Widget.
+		Sets the **Ignore_Non_Existing_Templates_checkBox** Widget.
 		"""
 
 		# Adding settings key if it doesn't exists.
@@ -710,7 +710,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
-		This method is triggered when **Ignore_Non_Existing_Templates_checkBox** Widget state changes.
+		Defines the slot triggered by **Ignore_Non_Existing_Templates_checkBox** Widget when state changed.
 
 		:param state: Checkbox state. ( Integer )
 		"""
@@ -720,7 +720,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Check_For_New_Releases_pushButton** Widget is clicked.
+		Defines the slot triggered by **Check_For_New_Releases_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -730,7 +730,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(sibl_gui.exceptions.NetworkError)
 	def __releasesFileReply__finished(self):
 		"""
-		This method is triggered when the releases file reply finishes.
+		Defines the slot triggered by the releases file reply when finished.
 		"""
 
 		self.__engine.stopProcessing()
@@ -805,7 +805,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __getReleasesFile(self, url):
 		"""
-		This method gets the releases file.
+		Gets the releases file.
 		"""
 
 		LOGGER.debug("> Downloading '{0}' releases file.".format(url.path()))
@@ -819,7 +819,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											Exception)
 	def checkForNewReleasesUi(self):
 		"""
-		This method checks for new releases.
+		Checks for new releases.
 
 		:return: Method success. ( Boolean )
 
@@ -838,7 +838,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(sibl_gui.exceptions.NetworkError, Exception)
 	def checkForNewReleases(self):
 		"""
-		This method checks for new releases.
+		Checks for new releases.
 
 		:return: Method success. ( Boolean )
 		"""

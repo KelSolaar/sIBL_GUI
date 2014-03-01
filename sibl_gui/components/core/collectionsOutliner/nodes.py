@@ -67,7 +67,7 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Node name.  ( String )
 		:param parent: Node parent. ( GraphModelNode )
@@ -99,7 +99,7 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
@@ -112,7 +112,7 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateNode(self):
 		"""
-		This method updates the node.
+		Updates the node.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -121,7 +121,7 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the Node attributes.
+		Updates the Node attributes.
 		
 		:return: Method success. ( Boolean )
 		"""

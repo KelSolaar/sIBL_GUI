@@ -70,7 +70,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param plate: Plate object.  ( Plate )
 		:param name: Node name.  ( String )
@@ -111,7 +111,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def plate(self):
 		"""
-		This method is the property for **self.__plate** attribute.
+		Property for **self.__plate** attribute.
 
 		:return: self.__plate. ( Plate )
 		"""
@@ -122,7 +122,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self, value):
 		"""
-		This method is the setter method for **self.__plate** attribute.
+		Setter for **self.__plate** attribute.
 
 		:param value: Attribute value. ( Plate )
 		"""
@@ -134,7 +134,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self):
 		"""
-		This method is the deleter method for **self.__plate** attribute.
+		Deleter for **self.__plate** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -143,7 +143,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def toolTipText(self):
 		"""
-		This method is the property for **self.__toolTipText** attribute.
+		Property for **self.__toolTipText** attribute.
 
 		:return: self.__toolTipText. ( String )
 		"""
@@ -154,7 +154,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self, value):
 		"""
-		This method is the setter method for **self.__toolTipText** attribute.
+		Setter for **self.__toolTipText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -166,7 +166,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
+		Deleter for **self.__toolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

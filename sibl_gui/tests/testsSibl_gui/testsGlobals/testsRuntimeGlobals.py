@@ -55,7 +55,7 @@ class RuntimeGlobalsTestCase(unittest.TestCase):
 
 	def testRequiredAttributes(self):
 		"""
-		This method tests presence of required attributes.
+		Tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("templatesFactoryDirectory",

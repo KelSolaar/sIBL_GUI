@@ -100,7 +100,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -175,7 +175,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -186,7 +186,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -198,7 +198,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -207,7 +207,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the property for **self.__uiSoftwareAffixe** attribute.
+		Property for **self.__uiSoftwareAffixe** attribute.
 
 		:return: self.__uiSoftwareAffixe. ( String )
 		"""
@@ -218,7 +218,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self, value):
 		"""
-		This method is the setter method for **self.__uiSoftwareAffixe** attribute.
+		Setter for **self.__uiSoftwareAffixe** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -230,7 +230,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the deleter method for **self.__uiSoftwareAffixe** attribute.
+		Deleter for **self.__uiSoftwareAffixe** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -239,7 +239,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the property for **self.__uiUnknownSoftwareImage** attribute.
+		Property for **self.__uiUnknownSoftwareImage** attribute.
 
 		:return: self.__uiUnknownSoftwareImage. ( String )
 		"""
@@ -250,7 +250,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self, value):
 		"""
-		This method is the setter method for **self.__uiUnknownSoftwareImage** attribute.
+		Setter for **self.__uiUnknownSoftwareImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -262,7 +262,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the deleter method for **self.__uiUnknownSoftwareImage** attribute.
+		Deleter for **self.__uiUnknownSoftwareImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -271,7 +271,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -282,7 +282,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -294,7 +294,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -303,7 +303,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -314,7 +314,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -326,7 +326,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -335,7 +335,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -346,7 +346,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -358,7 +358,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -367,7 +367,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -378,7 +378,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -390,7 +390,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -399,7 +399,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for **self.__settingsSeparator** attribute.
+		Property for **self.__settingsSeparator** attribute.
 
 		:return: self.__settingsSeparator. ( String )
 		"""
@@ -410,7 +410,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for **self.__settingsSeparator** attribute.
+		Setter for **self.__settingsSeparator** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -422,7 +422,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for **self.__settingsSeparator** attribute.
+		Deleter for **self.__settingsSeparator** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -431,7 +431,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def scriptEditor(self):
 		"""
-		This method is the property for **self.__scriptEditor** attribute.
+		Property for **self.__scriptEditor** attribute.
 
 		:return: self.__scriptEditor. ( QWidget )
 		"""
@@ -442,7 +442,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__scriptEditor** attribute.
+		Setter for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -454,7 +454,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__scriptEditor** attribute.
+		Deleter for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -463,7 +463,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def database(self):
 		"""
-		This method is the property for **self.__database** attribute.
+		Property for **self.__database** attribute.
 
 		:return: self.__database. ( Object )
 		"""
@@ -474,7 +474,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def database(self, value):
 		"""
-		This method is the setter method for **self.__database** attribute.
+		Setter for **self.__database** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -486,7 +486,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def database(self):
 		"""
-		This method is the deleter method for **self.__database** attribute.
+		Deleter for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -495,7 +495,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
 		:return: self.__model. ( TemplatesModel )
 		"""
@@ -506,7 +506,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
 		:param value: Attribute value. ( TemplatesModel )
 		"""
@@ -518,7 +518,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -527,7 +527,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
 		:return: self.__view. ( QWidget )
 		"""
@@ -538,7 +538,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -550,7 +550,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -559,7 +559,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def headers(self):
 		"""
-		This method is the property for **self.__headers** attribute.
+		Property for **self.__headers** attribute.
 
 		:return: self.__headers. ( OrderedDict )
 		"""
@@ -570,7 +570,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self, value):
 		"""
-		This method is the setter method for **self.__headers** attribute.
+		Setter for **self.__headers** attribute.
 
 		:param value: Attribute value. ( OrderedDict )
 		"""
@@ -582,7 +582,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self):
 		"""
-		This method is the deleter method for **self.__headers** attribute.
+		Deleter for **self.__headers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -591,7 +591,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def extension(self):
 		"""
-		This method is the property for **self.__extension** attribute.
+		Property for **self.__extension** attribute.
 
 		:return: self.__extension. ( String )
 		"""
@@ -602,7 +602,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for **self.__extension** attribute.
+		Setter for **self.__extension** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -614,7 +614,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for **self.__extension** attribute.
+		Deleter for **self.__extension** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -623,7 +623,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def defaultCollections(self):
 		"""
-		This method is the property for **self.__defaultCollections** attribute.
+		Property for **self.__defaultCollections** attribute.
 
 		:return: self.__defaultCollections. ( Dictionary )
 		"""
@@ -634,7 +634,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self, value):
 		"""
-		This method is the setter method for **self.__defaultCollections** attribute.
+		Setter for **self.__defaultCollections** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -646,7 +646,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self):
 		"""
-		This method is the deleter method for **self.__defaultCollections** attribute.
+		Deleter for **self.__defaultCollections** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -655,7 +655,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def factoryCollection(self):
 		"""
-		This method is the property for **self.__factoryCollection** attribute.
+		Property for **self.__factoryCollection** attribute.
 
 		:return: self.__factoryCollection. ( String )
 		"""
@@ -666,7 +666,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self, value):
 		"""
-		This method is the setter method for **self.__factoryCollection** attribute.
+		Setter for **self.__factoryCollection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -678,7 +678,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self):
 		"""
-		This method is the deleter method for **self.__factoryCollection** attribute.
+		Deleter for **self.__factoryCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -687,7 +687,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def userCollection(self):
 		"""
-		This method is the property for **self.__userCollection** attribute.
+		Property for **self.__userCollection** attribute.
 
 		:return: self.__userCollection. ( String )
 		"""
@@ -698,7 +698,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self, value):
 		"""
-		This method is the setter method for **self.__userCollection** attribute.
+		Setter for **self.__userCollection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -710,7 +710,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self):
 		"""
-		This method is the deleter method for **self.__userCollection** attribute.
+		Deleter for **self.__userCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -719,7 +719,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the property for **self.__templatesInformationsDefaultText** attribute.
+		Property for **self.__templatesInformationsDefaultText** attribute.
 
 		:return: self.__templatesInformationsDefaultText. ( String )
 		"""
@@ -730,7 +730,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self, value):
 		"""
-		This method is the setter method for **self.__templatesInformationsDefaultText** attribute.
+		Setter for **self.__templatesInformationsDefaultText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -742,7 +742,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the deleter method for **self.__templatesInformationsDefaultText** attribute.
+		Deleter for **self.__templatesInformationsDefaultText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -751,7 +751,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def treeViewInnerMargins(self):
 		"""
-		This method is the property for **self.__treeViewInnerMargins** attribute.
+		Property for **self.__treeViewInnerMargins** attribute.
 
 		:return: self.__treeViewInnerMargins. ( Integer )
 		"""
@@ -762,7 +762,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
-		This method is the setter method for **self.__treeViewInnerMargins** attribute.
+		Setter for **self.__treeViewInnerMargins** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -774,7 +774,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
-		This method is the deleter method for **self.__treeViewInnerMargins** attribute.
+		Deleter for **self.__treeViewInnerMargins** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -783,7 +783,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesInformationsText(self):
 		"""
-		This method is the property for **self.__templatesInformationsText** attribute.
+		Property for **self.__templatesInformationsText** attribute.
 
 		:return: self.__templatesInformationsText. ( String )
 		"""
@@ -794,7 +794,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self, value):
 		"""
-		This method is the setter method for **self.__templatesInformationsText** attribute.
+		Setter for **self.__templatesInformationsText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -806,7 +806,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self):
 		"""
-		This method is the deleter method for **self.__templatesInformationsText** attribute.
+		Deleter for **self.__templatesInformationsText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

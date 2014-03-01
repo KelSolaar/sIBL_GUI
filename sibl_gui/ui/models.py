@@ -58,7 +58,7 @@ class GraphModel(umbra.ui.models.GraphModel):
 
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param rootNode: Root node. ( AbstractCompositeNode )
@@ -76,7 +76,7 @@ class GraphModel(umbra.ui.models.GraphModel):
 	#******************************************************************************************************************
 	def data(self, index, role=Qt.DisplayRole):
 		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
+		Reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
 		
 		:param index: Index. ( QModelIndex )
 		:param role: Role. ( Integer )

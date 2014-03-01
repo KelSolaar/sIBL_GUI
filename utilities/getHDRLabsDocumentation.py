@@ -53,7 +53,7 @@ foundations.verbose.setVerbosityLevel(3)
 #**********************************************************************************************************************
 def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
-	This definition extracts sIBL_GUI Documentation body for HDRLabs.com.
+	Extracts sIBL_GUI Documentation body for HDRLabs.com.
 
 	:param fileIn: File to convert. ( String )
 	:param fileOut: Output file. ( String )

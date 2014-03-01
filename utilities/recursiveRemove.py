@@ -42,7 +42,7 @@ __all__ = ["recursiveRemove", "remove"]
 #**********************************************************************************************************************
 def recursiveRemove(rootDirectory, pattern):
 	"""
-	This definition recursively deletes the matching items.
+	Recursively deletes the matching items.
 
 	:param rootDirectory: Directory to recurse. ( String )
 	:param pattern: Pattern to match. ( String )
@@ -59,7 +59,7 @@ def recursiveRemove(rootDirectory, pattern):
 
 def remove(item):
 	"""
-	This definition deletes given item.
+	Deletes given item.
 	:param item: Item to delete. ( String )
 	"""
 

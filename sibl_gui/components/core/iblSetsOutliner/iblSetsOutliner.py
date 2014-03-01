@@ -110,7 +110,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -183,7 +183,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -194,7 +194,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -206,7 +206,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -215,7 +215,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiThumbnailsViewImage(self):
 		"""
-		This method is the property for **self.__uiThumbnailsViewImage** attribute.
+		Property for **self.__uiThumbnailsViewImage** attribute.
 
 		:return: self.__uiThumbnailsViewImage. ( String )
 		"""
@@ -226,7 +226,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiThumbnailsViewImage(self, value):
 		"""
-		This method is the setter method for **self.__uiThumbnailsViewImage** attribute.
+		Setter for **self.__uiThumbnailsViewImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -238,7 +238,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiThumbnailsViewImage(self):
 		"""
-		This method is the deleter method for **self.__uiThumbnailsViewImage** attribute.
+		Deleter for **self.__uiThumbnailsViewImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -247,7 +247,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiColumnsViewImage(self):
 		"""
-		This method is the property for **self.__uiColumnsViewImage** attribute.
+		Property for **self.__uiColumnsViewImage** attribute.
 
 		:return: self.__uiColumnsViewImage. ( String )
 		"""
@@ -258,7 +258,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiColumnsViewImage(self, value):
 		"""
-		This method is the setter method for **self.__uiColumnsViewImage** attribute.
+		Setter for **self.__uiColumnsViewImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -270,7 +270,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiColumnsViewImage(self):
 		"""
-		This method is the deleter method for **self.__uiColumnsViewImage** attribute.
+		Deleter for **self.__uiColumnsViewImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -279,7 +279,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiDetailsViewImage(self):
 		"""
-		This method is the property for **self.__uiDetailsViewImage** attribute.
+		Property for **self.__uiDetailsViewImage** attribute.
 
 		:return: self.__uiDetailsViewImage. ( String )
 		"""
@@ -290,7 +290,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDetailsViewImage(self, value):
 		"""
-		This method is the setter method for **self.__uiDetailsViewImage** attribute.
+		Setter for **self.__uiDetailsViewImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -302,7 +302,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDetailsViewImage(self):
 		"""
-		This method is the deleter method for **self.__uiDetailsViewImage** attribute.
+		Deleter for **self.__uiDetailsViewImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -311,7 +311,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiLargestSizeImage(self):
 		"""
-		This method is the property for **self.__uiLargestSizeImage** attribute.
+		Property for **self.__uiLargestSizeImage** attribute.
 
 		:return: self.__uiLargestSizeImage. ( String )
 		"""
@@ -322,7 +322,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLargestSizeImage** attribute.
+		Setter for **self.__uiLargestSizeImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -334,7 +334,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self):
 		"""
-		This method is the deleter method for **self.__uiLargestSizeImage** attribute.
+		Deleter for **self.__uiLargestSizeImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -343,7 +343,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiSmallestSizeImage(self):
 		"""
-		This method is the property for **self.__uiSmallestSizeImage** attribute.
+		Property for **self.__uiSmallestSizeImage** attribute.
 
 		:return: self.__uiSmallestSizeImage. ( String )
 		"""
@@ -354,7 +354,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self, value):
 		"""
-		This method is the setter method for **self.__uiSmallestSizeImage** attribute.
+		Setter for **self.__uiSmallestSizeImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -366,7 +366,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self):
 		"""
-		This method is the deleter method for **self.__uiSmallestSizeImage** attribute.
+		Deleter for **self.__uiSmallestSizeImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -375,7 +375,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiPanoramicLoadingImage(self):
 		"""
-		This method is the property for **self.__uiPanoramicLoadingImage** attribute.
+		Property for **self.__uiPanoramicLoadingImage** attribute.
 
 		:return: self.__uiPanoramicLoadingImage. ( String )
 		"""
@@ -386,7 +386,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPanoramicLoadingImage(self, value):
 		"""
-		This method is the setter method for **self.__uiPanoramicLoadingImage** attribute.
+		Setter for **self.__uiPanoramicLoadingImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -398,7 +398,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPanoramicLoadingImage(self):
 		"""
-		This method is the deleter method for **self.__uiPanoramicLoadingImage** attribute.
+		Deleter for **self.__uiPanoramicLoadingImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -407,7 +407,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiSquareLoadingImage(self):
 		"""
-		This method is the property for **self.__uiSquareLoadingImage** attribute.
+		Property for **self.__uiSquareLoadingImage** attribute.
 
 		:return: self.__uiSquareLoadingImage. ( String )
 		"""
@@ -418,7 +418,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSquareLoadingImage(self, value):
 		"""
-		This method is the setter method for **self.__uiSquareLoadingImage** attribute.
+		Setter for **self.__uiSquareLoadingImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -430,7 +430,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSquareLoadingImage(self):
 		"""
-		This method is the deleter method for **self.__uiSquareLoadingImage** attribute.
+		Deleter for **self.__uiSquareLoadingImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -438,7 +438,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiSwitchThumbnailsTypeImage(self):
 		"""
-		This method is the property for **self.__uiSwitchThumbnailsTypeImage** attribute.
+		Property for **self.__uiSwitchThumbnailsTypeImage** attribute.
 
 		:return: self.__uiSwitchThumbnailsTypeImage. ( String )
 		"""
@@ -449,7 +449,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSwitchThumbnailsTypeImage(self, value):
 		"""
-		This method is the setter method for **self.__uiSwitchThumbnailsTypeImage** attribute.
+		Setter for **self.__uiSwitchThumbnailsTypeImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -461,7 +461,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSwitchThumbnailsTypeImage(self):
 		"""
-		This method is the deleter method for **self.__uiSwitchThumbnailsTypeImage** attribute.
+		Deleter for **self.__uiSwitchThumbnailsTypeImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -470,7 +470,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -481,7 +481,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -493,7 +493,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -502,7 +502,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -513,7 +513,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -525,7 +525,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -534,7 +534,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -545,7 +545,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -557,7 +557,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -566,7 +566,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -577,7 +577,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -589,7 +589,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -598,7 +598,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for **self.__settingsSeparator** attribute.
+		Property for **self.__settingsSeparator** attribute.
 
 		:return: self.__settingsSeparator. ( String )
 		"""
@@ -609,7 +609,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for **self.__settingsSeparator** attribute.
+		Setter for **self.__settingsSeparator** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -621,7 +621,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for **self.__settingsSeparator** attribute.
+		Deleter for **self.__settingsSeparator** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -630,7 +630,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def extension(self):
 		"""
-		This method is the property for **self.__extension** attribute.
+		Property for **self.__extension** attribute.
 
 		:return: self.__extension. ( String )
 		"""
@@ -641,7 +641,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for **self.__extension** attribute.
+		Setter for **self.__extension** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -653,7 +653,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for **self.__extension** attribute.
+		Deleter for **self.__extension** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -662,7 +662,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def inspectLayout(self):
 		"""
-		This method is the property for **self.__inspectLayout** attribute.
+		Property for **self.__inspectLayout** attribute.
 
 		:return: self.__inspectLayout. ( String )
 		"""
@@ -673,7 +673,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self, value):
 		"""
-		This method is the setter method for **self.__inspectLayout** attribute.
+		Setter for **self.__inspectLayout** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -685,7 +685,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectLayout(self):
 		"""
-		This method is the deleter method for **self.__inspectLayout** attribute.
+		Deleter for **self.__inspectLayout** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -694,7 +694,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def scriptEditor(self):
 		"""
-		This method is the property for **self.__scriptEditor** attribute.
+		Property for **self.__scriptEditor** attribute.
 
 		:return: self.__scriptEditor. ( QWidget )
 		"""
@@ -705,7 +705,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__scriptEditor** attribute.
+		Setter for **self.__scriptEditor** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -717,7 +717,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__scriptEditor** attribute.
+		Deleter for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -726,7 +726,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__collectionsOutliner** attribute.
+		Property for **self.__collectionsOutliner** attribute.
 
 		:return: self.__collectionsOutliner. ( QWidget )
 		"""
@@ -737,7 +737,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__collectionsOutliner** attribute.
+		Setter for **self.__collectionsOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -749,7 +749,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__collectionsOutliner** attribute.
+		Deleter for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -758,7 +758,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
 		:return: self.__model. ( IblSetsModel )
 		"""
@@ -769,7 +769,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
 		:param value: Attribute value. ( IblSetsModel )
 		"""
@@ -781,7 +781,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -790,7 +790,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def views(self):
 		"""
-		This method is the property for **self.__views** attribute.
+		Property for **self.__views** attribute.
 
 		:return: self.__views. ( Tuple )
 		"""
@@ -801,7 +801,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def views(self, value):
 		"""
-		This method is the setter method for **self.__views** attribute.
+		Setter for **self.__views** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -813,7 +813,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def views(self):
 		"""
-		This method is the deleter method for **self.__views** attribute.
+		Deleter for **self.__views** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -822,7 +822,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def viewsPushButtons(self):
 		"""
-		This method is the property for **self.__viewsPushButtons** attribute.
+		Property for **self.__viewsPushButtons** attribute.
 
 		:return: self.__viewsPushButtons. ( Dictionary )
 		"""
@@ -833,7 +833,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def viewsPushButtons(self, value):
 		"""
-		This method is the setter method for **self.__viewsPushButtons** attribute.
+		Setter for **self.__viewsPushButtons** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -845,7 +845,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def viewsPushButtons(self):
 		"""
-		This method is the deleter method for **self.__viewsPushButtons** attribute.
+		Deleter for **self.__viewsPushButtons** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -854,7 +854,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def thumbnailsView(self):
 		"""
-		This method is the property for **self.__thumbnailsView** attribute.
+		Property for **self.__thumbnailsView** attribute.
 
 		:return: self.__thumbnailsView. ( QListView )
 		"""
@@ -865,7 +865,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsView(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsView** attribute.
+		Setter for **self.__thumbnailsView** attribute.
 
 		:param value: Attribute value. ( QListView )
 		"""
@@ -877,7 +877,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsView(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsView** attribute.
+		Deleter for **self.__thumbnailsView** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -886,7 +886,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def detailsView(self):
 		"""
-		This method is the property for **self.__detailsView** attribute.
+		Property for **self.__detailsView** attribute.
 
 		:return: self.__detailsView. ( QTreeView )
 		"""
@@ -897,7 +897,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def detailsView(self, value):
 		"""
-		This method is the setter method for **self.__detailsView** attribute.
+		Setter for **self.__detailsView** attribute.
 
 		:param value: Attribute value. ( QTreeView )
 		"""
@@ -909,7 +909,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def detailsView(self):
 		"""
-		This method is the deleter method for **self.__detailsView** attribute.
+		Deleter for **self.__detailsView** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -918,7 +918,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def detailsViewHeaders(self):
 		"""
-		This method is the property for **self.__detailsViewHeaders** attribute.
+		Property for **self.__detailsViewHeaders** attribute.
 
 		:return: self.__detailsViewHeaders. ( OrderedDict )
 		"""
@@ -929,7 +929,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def detailsViewHeaders(self, value):
 		"""
-		This method is the setter method for **self.__detailsViewHeaders** attribute.
+		Setter for **self.__detailsViewHeaders** attribute.
 
 		:param value: Attribute value. ( OrderedDict )
 		"""
@@ -941,7 +941,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def detailsViewHeaders(self):
 		"""
-		This method is the deleter method for **self.__detailsViewHeaders** attribute.
+		Deleter for **self.__detailsViewHeaders** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -950,7 +950,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def panoramicThumbnails(self):
 		"""
-		This method is the property for **self.__panoramicThumbnails** attribute.
+		Property for **self.__panoramicThumbnails** attribute.
 
 		:return: self.__panoramicThumbnails. ( Boolean )
 		"""
@@ -961,7 +961,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def panoramicThumbnails(self, value):
 		"""
-		This method is the setter method for **self.__panoramicThumbnails** attribute.
+		Setter for **self.__panoramicThumbnails** attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -974,7 +974,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def panoramicThumbnails(self):
 		"""
-		This method is the deleter method for **self.__panoramicThumbnails** attribute.
+		Deleter for **self.__panoramicThumbnails** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -983,7 +983,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def panoramicThumbnailsSize(self):
 		"""
-		This method is the property for **self.__panoramicThumbnailsSize** attribute.
+		Property for **self.__panoramicThumbnailsSize** attribute.
 
 		:return: self.__panoramicThumbnailsSize. ( String )
 		"""
@@ -994,7 +994,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def panoramicThumbnailsSize(self, value):
 		"""
-		This method is the setter method for **self.__panoramicThumbnailsSize** attribute.
+		Setter for **self.__panoramicThumbnailsSize** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1007,7 +1007,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def panoramicThumbnailsSize(self):
 		"""
-		This method is the deleter method for **self.__panoramicThumbnailsSize** attribute.
+		Deleter for **self.__panoramicThumbnailsSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1016,7 +1016,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def squareThumbnailsSize(self):
 		"""
-		This method is the property for **self.__squareThumbnailsSize** attribute.
+		Property for **self.__squareThumbnailsSize** attribute.
 
 		:return: self.__squareThumbnailsSize. ( String )
 		"""
@@ -1027,7 +1027,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def squareThumbnailsSize(self, value):
 		"""
-		This method is the setter method for **self.__squareThumbnailsSize** attribute.
+		Setter for **self.__squareThumbnailsSize** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1040,7 +1040,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def squareThumbnailsSize(self):
 		"""
-		This method is the deleter method for **self.__squareThumbnailsSize** attribute.
+		Deleter for **self.__squareThumbnailsSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1049,7 +1049,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def thumbnailsMinimumSize(self):
 		"""
-		This method is the property for **self.__thumbnailsMinimumSize** attribute.
+		Property for **self.__thumbnailsMinimumSize** attribute.
 
 		:return: self.__thumbnailsMinimumSize. ( Dictionary )
 		"""
@@ -1060,7 +1060,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def thumbnailsMinimumSize(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsMinimumSize** attribute.
+		Setter for **self.__thumbnailsMinimumSize** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -1073,7 +1073,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsMinimumSize(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsMinimumSize** attribute.
+		Deleter for **self.__thumbnailsMinimumSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1082,7 +1082,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def searchContexts(self):
 		"""
-		This method is the property for **self.__searchContexts** attribute.
+		Property for **self.__searchContexts** attribute.
 
 		:return: self.__searchContexts. ( OrderedDict )
 		"""
@@ -1093,7 +1093,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def searchContexts(self, value):
 		"""
-		This method is the setter method for **self.__searchContexts** attribute.
+		Setter for **self.__searchContexts** attribute.
 
 		:param value: Attribute value. ( OrderedDict )
 		"""
@@ -1105,7 +1105,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def searchContexts(self):
 		"""
-		This method is the deleter method for **self.__searchContexts** attribute.
+		Deleter for **self.__searchContexts** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1114,7 +1114,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def activeSearchContext(self):
 		"""
-		This method is the property for **self.__activeSearchContext** attribute.
+		Property for **self.__activeSearchContext** attribute.
 
 		:return: self.__activeSearchContext. ( OrderedDict )
 		"""
@@ -1125,7 +1125,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeSearchContext(self, value):
 		"""
-		This method is the setter method for **self.__activeSearchContext** attribute.
+		Setter for **self.__activeSearchContext** attribute.
 
 		:param value: Attribute value. ( OrderedDict )
 		"""
@@ -1137,7 +1137,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeSearchContext(self):
 		"""
-		This method is the deleter method for **self.__activeSearchContext** attribute.
+		Deleter for **self.__activeSearchContext** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1146,7 +1146,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def searchContextMenu(self):
 		"""
-		This method is the property for **self.__searchContextMenu** attribute.
+		Property for **self.__searchContextMenu** attribute.
 
 		:return: self.__searchContextMenu. ( QMenu )
 		"""
@@ -1157,7 +1157,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def searchContextMenu(self, value):
 		"""
-		This method is the setter method for **self.__searchContextMenu** attribute.
+		Setter for **self.__searchContextMenu** attribute.
 
 		:param value: Attribute value. ( self.__searchContextsMenu )
 		"""
@@ -1169,7 +1169,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def searchContextMenu(self):
 		"""
-		This method is the deleter method for **self.__searchContextMenu** attribute.
+		Deleter for **self.__searchContextMenu** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1180,7 +1180,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -1202,7 +1202,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1210,7 +1210,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -1304,7 +1304,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1312,7 +1312,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -1326,7 +1326,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1335,7 +1335,7 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered on Framework startup.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -1400,7 +1400,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def onClose(self):
 		"""
-		This method is triggered on Framework close.
+		Defines the slot triggered on Framework close.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -1420,7 +1420,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_setUi(self, thumbnailsSize=None):
 		"""
-		This method sets the Views ui.
+		Sets the Views ui.
 
 		:param thumbnailsSize: Thumbnails size. ( Integer )
 		"""
@@ -1444,7 +1444,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_refreshUi(self, thumbnailsSize=None):
 		"""
-		This method refreshes the Views ui.
+		Refreshes the Views ui.
 
 		:param thumbnailsSize: Thumbnails size. ( Integer )
 		"""
@@ -1453,14 +1453,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model Nodes need refresh.
+		Defines the slot triggered by the Model when Nodes need refresh.
 		"""
 
 		self.setIblSets()
 
 	def __views_addActions(self):
 		"""
-		This method sets the Views actions.
+		Sets the Views actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1493,7 +1493,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Content ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1503,7 +1503,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_addIblSetAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Ibl Set ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Ibl Set ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1513,7 +1513,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_removeIblSetsAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Remove Ibl Set(s) ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Remove Ibl Set(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -1523,7 +1523,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by 
+		Defines the slot triggered by 
 		**'Actions|Umbra|Components|core.iblSetsOutliner|Update Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
@@ -1534,7 +1534,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views_pushButtons__clicked(self, index, checked):
 		"""
-		This method is triggered when **\*_View_pushButton** Widget is clicked.
+		Defines the slot triggered by **\*_View_pushButton** Widget when clicked.
 
 		:param index: Button index. ( Integer )
 		:param checked: Checked state. ( Boolean )
@@ -1544,7 +1544,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views__doubleClicked(self, index):
 		"""
-		This method is triggered when a **\*_View** Widget is double clicked.
+		Defines the slot triggered by a **\*_View** Widget when double clicked.
 
 		:param index: Clicked item index. ( QModelIndex )
 		"""
@@ -1553,7 +1553,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __views__activeViewChanged(self, index):
 		"""
-		This method is triggered when the active View has changed.
+		Defines the slot triggered by the active View changed.
 
 		:param index: Current active View. ( integer )
 		"""
@@ -1565,7 +1565,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __Switch_Thumbnails_Type_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Switch_Thumbnails_Type_pushButton** Widget is clicked.
+		Defines the slot triggered by **Switch_Thumbnails_Type_pushButton** Widget when clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1574,7 +1574,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
-		This method is triggered when **Search_Database_lineEdit** text changes.
+		Defines the slot triggered by **Search_Database_lineEdit** Widget when text changed.
 
 		:param text: Current text value. ( QString )
 		"""
@@ -1585,7 +1585,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
-		This method scales the View icons.
+		Scales the View icons.
 
 		:param value: Thumbnails size. ( Integer )
 		"""
@@ -1601,7 +1601,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Retrieving Ibl Sets ...")
 	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped into the engine.
+		Defines the slot triggered by content when dropped into the engine.
 		
 		:param event: Event. ( QEvent )
 		"""
@@ -1646,7 +1646,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by **fileSystemEventsManager** when a file is changed.
 		
 		:param file: File changed. ( String )
 		"""
@@ -1663,7 +1663,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __getCandidateCollectionId(self):
 		"""
-		This method returns a Collection id.
+		Returns a Collection id.
 		
 		:return: Collection id. ( Integer )
 		"""
@@ -1676,7 +1676,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __searchIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the current Collection Ibl Sets.
+		Filters the current Collection Ibl Sets.
 		
 		:param pattern: Ibl Sets filter pattern. ( String )
 		:param attribute: Attribute to filter Ibl Sets on. ( String )
@@ -1703,7 +1703,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getActiveView(self):
 		"""
-		This method returns the current active View.
+		Returns the current active View.
 
 		:return: Current active View. ( QWidget )
 		"""
@@ -1712,7 +1712,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getActiveViewIndex(self):
 		"""
-		This method returns the current active View index.
+		Returns the current active View index.
 
 		:return: Current active View index. ( Integer )
 		"""
@@ -1721,7 +1721,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setActiveView(self, view):
 		"""
-		This method sets the active View to given View.
+		Sets the active View to given View.
 
 		:param view: View. ( QWidget )
 		:return: Method success. ( Boolean )
@@ -1734,7 +1734,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setActiveViewIndex(self, index):
 		"""
-		This method sets the active View to given index.
+		Sets the active View to given index.
 
 		:param index: Index. ( Integer )
 		:return: Method success. ( Boolean )
@@ -1746,7 +1746,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setActiveSearchContext(self, context, *args):
 		"""
-		This method sets the active search context.
+		Sets the active search context.
 
 		:param context: Search context. ( String )
 		:param \*args: Arguments. ( \* )
@@ -1764,7 +1764,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setPanoramicThumbnails(self, state):
 		"""
-		This method sets the panoramic thumbnails.
+		Sets the panoramic thumbnails.
 
 		:param state: Panoramic thumbnails. ( Boolean )
 		:return: Method succes. ( Boolean )
@@ -1789,7 +1789,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
 		"""
-		This method adds user defined content to the Database.
+		Adds user defined content to the Database.
 
 		:return: Method success. ( Boolean )
 
@@ -1813,7 +1813,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSetUi(self):
 		"""
-		This method adds an user defined Ibl Set to the Database.
+		Adds an user defined Ibl Set to the Database.
 
 		:return: Method success. ( Boolean )
 
@@ -1842,7 +1842,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def removeIblSetsUi(self):
 		"""
-		This method removes user selected Ibl Sets from the Database.
+		Removes user selected Ibl Sets from the Database.
 
 		:return: Method success. ( Boolean )
 
@@ -1875,7 +1875,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def updateIblSetLocationUi(self, iblSet):
 		"""
-		This method updates given Ibl Set location.
+		Updates given Ibl Set location.
 
 		:param iblSet: Ibl Set to update. ( IblSet )
 		:return: Method success. ( Boolean )
@@ -1903,7 +1903,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def updateSelectedIblSetsLocationUi(self):
 		"""
-		This method updates user selected Ibl Sets locations.
+		Updates user selected Ibl Sets locations.
 
 		:return: Method success. ( Boolean )
 
@@ -1933,7 +1933,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None):
 		"""
-		This method adds an Ibl Set to the Database.
+		Adds an Ibl Set to the Database.
 
 		:param name: Ibl Set name. ( String )
 		:param path: Ibl Set path. ( String )
@@ -1958,7 +1958,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This method adds directory Ibl Sets to the Database.
+		Adds directory Ibl Sets to the Database.
 
 		:param directory: Directory to add. ( String )
 		:param collectionId: Target Collection id. ( Integer )
@@ -1992,7 +1992,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet):
 		"""
-		This method removes given Ibl Set from the Database.
+		Removes given Ibl Set from the Database.
 
 		:param iblSet: Ibl Set to remove. ( IblSet )
 		:return: Method success. ( Boolean )
@@ -2010,7 +2010,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file):
 		"""
-		This method updates given Ibl Set location.
+		Updates given Ibl Set location.
 
 		:param iblSet: Ibl Set to update. ( IblSet )
 		:param iblSet: New Ibl Set file. ( String )
@@ -2029,7 +2029,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getIblSets(self):
 		"""
-		This method returns Database Ibl Sets.
+		Returns Database Ibl Sets.
 
 		:return: Database Ibl Sets. ( List )
 		"""
@@ -2038,7 +2038,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def filterIblSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Ibl Sets on given attribute using given pattern.
+		Filters the Database Ibl Sets on given attribute using given pattern.
 		
 		:param pattern: Filter pattern. ( String )
 		:param attribute: Attribute to filter on. ( String )
@@ -2058,7 +2058,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def iblSetExists(self, path):
 		"""
-		This method returns if given Ibl Set path exists in the Database.
+		Returns if given Ibl Set path exists in the Database.
 
 		:param path: Collection path. ( String )
 		:return: Collection exists. ( Boolean )
@@ -2068,7 +2068,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def listIblSets(self):
 		"""
-		This method lists Database Ibl Sets names.
+		Lists Database Ibl Sets names.
 
 		:return: Database Ibl Sets names. ( List )
 		
@@ -2079,7 +2079,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setIblSets(self, iblSets=None):
 		"""
-		This method sets the Ibl Sets Model nodes.
+		Sets the Ibl Sets Model nodes.
 	
 		:param iblSets: Ibl Sets to set. ( List )
 		:return: Method success. ( Boolean )
@@ -2123,7 +2123,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getIblSetByName(self, name):
 		"""
-		This method returns Database Ibl Set with given name.
+		Returns Database Ibl Set with given name.
 
 		:param name: Ibl Set name. ( String )
 		:return: Database Ibl Set. ( IblSet )
@@ -2136,7 +2136,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedNodes(self):
 		"""
-		This method returns the current active View selected nodes.
+		Returns the current active View selected nodes.
 
 		:return: View selected nodes. ( Dictionary )
 		"""
@@ -2145,7 +2145,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedIblSetsNodes(self):
 		"""
-		This method returns the current active View selected Ibl Sets nodes.
+		Returns the current active View selected Ibl Sets nodes.
 
 		:return: View selected Ibl Sets nodes. ( List )
 		"""
@@ -2154,7 +2154,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedIblSets(self):
 		"""
-		This method returns the current active View selected Ibl Sets.
+		Returns the current active View selected Ibl Sets.
 
 		:return: View selected Ibl Sets. ( List )
 		"""

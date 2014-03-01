@@ -53,7 +53,7 @@ class LoggingNotifier(Component):
 
 	def __init__(self, name=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param name: Component name. ( String )
 		"""
@@ -75,7 +75,7 @@ class LoggingNotifier(Component):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -86,7 +86,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -98,7 +98,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -107,7 +107,7 @@ class LoggingNotifier(Component):
 	@property
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the property for **self.__memoryHandlerStackDepth** attribute.
+		Property for **self.__memoryHandlerStackDepth** attribute.
 
 		:return: self.__memoryHandlerStackDepth. ( Integer )
 		"""
@@ -118,7 +118,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
-		This method is the setter method for **self.__memoryHandlerStackDepth** attribute.
+		Setter for **self.__memoryHandlerStackDepth** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -130,7 +130,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the deleter method for **self.__memoryHandlerStackDepth** attribute.
+		Deleter for **self.__memoryHandlerStackDepth** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -141,7 +141,7 @@ class LoggingNotifier(Component):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -156,7 +156,7 @@ class LoggingNotifier(Component):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -170,7 +170,7 @@ class LoggingNotifier(Component):
 
 	def initialize(self):
 		"""
-		This method initializes the Component.
+		Initializes the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -185,7 +185,7 @@ class LoggingNotifier(Component):
 
 	def uninitialize(self):
 		"""
-		This method uninitializes the Component.
+		Uninitializes the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -200,7 +200,7 @@ class LoggingNotifier(Component):
 
 	def __statusBar_showLoggingMessages(self):
 		"""
-		This method updates the engine status bar with logging messages.
+		Updates the engine status bar with logging messages.
 		"""
 
 		memoryHandlerStackDepth = len(self.__engine.loggingSessionHandlerStream.stream)

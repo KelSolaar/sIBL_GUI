@@ -155,7 +155,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
 		:return: self.__uiResourcesDirectory. ( String )
 		"""
@@ -166,7 +166,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -178,7 +178,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -187,7 +187,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for **self.__uiLogoImage** attribute.
+		Property for **self.__uiLogoImage** attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -198,7 +198,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
+		Setter for **self.__uiLogoImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -210,7 +210,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
+		Deleter for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -219,7 +219,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiGpl3Image(self):
 		"""
-		This method is the property for **self.__uiGpl3Image** attribute.
+		Property for **self.__uiGpl3Image** attribute.
 
 		:return: self.__uiGpl3Image. ( String )
 		"""
@@ -230,7 +230,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self, value):
 		"""
-		This method is the setter method for **self.__uiGpl3Image** attribute.
+		Setter for **self.__uiGpl3Image** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -242,7 +242,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self):
 		"""
-		This method is the deleter method for **self.__uiGpl3Image** attribute.
+		Deleter for **self.__uiGpl3Image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -251,7 +251,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -262,7 +262,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -274,7 +274,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -283,7 +283,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def miscellaneousMenu(self):
 		"""
-		This method is the property for **self.__miscellaneousMenu** attribute.
+		Property for **self.__miscellaneousMenu** attribute.
 
 		:return: self.__miscellaneousMenu. ( QMenu )
 		"""
@@ -294,7 +294,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self, value):
 		"""
-		This method is the setter method for **self.__miscellaneousMenu** attribute.
+		Setter for **self.__miscellaneousMenu** attribute.
 
 		:param value: Attribute value. ( QMenu )
 		"""
@@ -306,7 +306,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self):
 		"""
-		This method is the deleter method for **self.__miscellaneousMenu** attribute.
+		Deleter for **self.__miscellaneousMenu** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

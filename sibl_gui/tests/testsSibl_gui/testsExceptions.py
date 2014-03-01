@@ -50,7 +50,7 @@ EXCEPTIONS = []
 
 def _gatherExceptions():
 	"""
-	This definition gathers the exceptions.
+	Gathers the exceptions.
 	"""
 
 	for attribute in dir(sibl_gui.exceptions):
@@ -72,7 +72,7 @@ class ExceptionsTestCase(unittest.TestCase):
 
 	def testRequiredAttributes(self):
 		"""
-		This method tests presence of required attributes.
+		Tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("value",)
@@ -83,7 +83,7 @@ class ExceptionsTestCase(unittest.TestCase):
 
 	def test__str__(self):
 		"""
-		This method tests exceptions classes **__str__** method.
+		Tests exceptions classes **__str__** method.
 		"""
 
 		for exception in EXCEPTIONS:

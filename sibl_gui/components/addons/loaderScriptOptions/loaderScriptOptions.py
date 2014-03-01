@@ -84,7 +84,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
@@ -130,7 +130,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -141,7 +141,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -153,7 +153,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -162,7 +162,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
 		:return: self.__engine. ( QObject )
 		"""
@@ -173,7 +173,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -185,7 +185,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -194,7 +194,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__templatesOutliner** attribute.
+		Property for **self.__templatesOutliner** attribute.
 
 		:return: self.__templatesOutliner. ( QWidget )
 		"""
@@ -205,7 +205,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__templatesOutliner** attribute.
+		Setter for **self.__templatesOutliner** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -217,7 +217,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__templatesOutliner** attribute.
+		Deleter for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -226,7 +226,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def loaderScript(self):
 		"""
-		This method is the property for **self.__loaderScript** attribute.
+		Property for **self.__loaderScript** attribute.
 
 		:return: self.__loaderScript. ( QWidget )
 		"""
@@ -237,7 +237,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self, value):
 		"""
-		This method is the setter method for **self.__loaderScript** attribute.
+		Setter for **self.__loaderScript** attribute.
 
 		:param value: Attribute value. ( QWidget )
 		"""
@@ -249,7 +249,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def loaderScript(self):
 		"""
-		This method is the deleter method for **self.__loaderScript** attribute.
+		Deleter for **self.__loaderScript** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -258,7 +258,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def views(self):
 		"""
-		This method is the property for **self.__views** attribute.
+		Property for **self.__views** attribute.
 
 		:return: self.__views. ( Tuple )
 		"""
@@ -269,7 +269,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def views(self, value):
 		"""
-		This method is the setter method for **self.__views** attribute.
+		Setter for **self.__views** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -281,7 +281,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def views(self):
 		"""
-		This method is the deleter method for **self.__views** attribute.
+		Deleter for **self.__views** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -290,7 +290,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def commonView(self):
 		"""
-		This method is the property for **self.__commonView** attribute.
+		Property for **self.__commonView** attribute.
 
 		:return: self.__commonView. ( QListView )
 		"""
@@ -301,7 +301,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def commonView(self, value):
 		"""
-		This method is the setter method for **self.__commonView** attribute.
+		Setter for **self.__commonView** attribute.
 
 		:param value: Attribute value. ( QListView )
 		"""
@@ -313,7 +313,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def commonView(self):
 		"""
-		This method is the deleter method for **self.__commonView** attribute.
+		Deleter for **self.__commonView** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -322,7 +322,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def additionalView(self):
 		"""
-		This method is the property for **self.__additionalView** attribute.
+		Property for **self.__additionalView** attribute.
 
 		:return: self.__additionalView. ( QListView )
 		"""
@@ -333,7 +333,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def additionalView(self, value):
 		"""
-		This method is the setter method for **self.__additionalView** attribute.
+		Setter for **self.__additionalView** attribute.
 
 		:param value: Attribute value. ( QListView )
 		"""
@@ -345,7 +345,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def additionalView(self):
 		"""
-		This method is the deleter method for **self.__additionalView** attribute.
+		Deleter for **self.__additionalView** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -354,7 +354,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def namespaceSplitter(self):
 		"""
-		This method is the property for **self.__namespaceSplitter** attribute.
+		Property for **self.__namespaceSplitter** attribute.
 
 		:return: self.__namespaceSplitter. ( String )
 		"""
@@ -365,7 +365,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def namespaceSplitter(self, value):
 		"""
-		This method is the setter method for **self.__namespaceSplitter** attribute.
+		Setter for **self.__namespaceSplitter** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -383,7 +383,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def namespaceSplitter(self):
 		"""
-		This method is the deleter method for **self.__namespaceSplitter** attribute.
+		Deleter for **self.__namespaceSplitter** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -392,7 +392,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesSettingsDirectory(self):
 		"""
-		This method is the property for **self.__templatesSettingsDirectory** attribute.
+		Property for **self.__templatesSettingsDirectory** attribute.
 
 		:return: self.__templatesSettingsDirectory. ( String )
 		"""
@@ -403,7 +403,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesSettingsDirectory(self, value):
 		"""
-		This method is the setter method for **self.__templatesSettingsDirectory** attribute.
+		Setter for **self.__templatesSettingsDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -415,7 +415,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesSettingsDirectory(self):
 		"""
-		This method is the deleter method for **self.__templatesSettingsDirectory** attribute.
+		Deleter for **self.__templatesSettingsDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -424,7 +424,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templateSettingsFile(self):
 		"""
-		This method is the property for **self.__templateSettingsFile** attribute.
+		Property for **self.__templateSettingsFile** attribute.
 
 		:return: self.__templateSettingsFile. ( String )
 		"""
@@ -435,7 +435,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateSettingsFile(self, value):
 		"""
-		This method is the setter method for **self.__templateSettingsFile** attribute.
+		Setter for **self.__templateSettingsFile** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -447,7 +447,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateSettingsFile(self):
 		"""
-		This method is the deleter method for **self.__templateSettingsFile** attribute.
+		Deleter for **self.__templateSettingsFile** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -456,7 +456,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templateCommonAttributesSection(self):
 		"""
-		This method is the property for **self.__templateCommonAttributesSection** attribute.
+		Property for **self.__templateCommonAttributesSection** attribute.
 
 		:return: self.__templateCommonAttributesSection. ( String )
 		"""
@@ -467,7 +467,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self, value):
 		"""
-		This method is the setter method for **self.__templateCommonAttributesSection** attribute.
+		Setter for **self.__templateCommonAttributesSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -479,7 +479,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self):
 		"""
-		This method is the deleter method for **self.__templateCommonAttributesSection** attribute.
+		Deleter for **self.__templateCommonAttributesSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -488,7 +488,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templateAdditionalAttributesSection(self):
 		"""
-		This method is the property for **self.__templateAdditionalAttributesSection** attribute.
+		Property for **self.__templateAdditionalAttributesSection** attribute.
 
 		:return: self.__templateAdditionalAttributesSection. ( String )
 		"""
@@ -499,7 +499,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self, value):
 		"""
-		This method is the setter method for **self.__templateAdditionalAttributesSection** attribute.
+		Setter for **self.__templateAdditionalAttributesSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -511,7 +511,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self):
 		"""
-		This method is the deleter method for **self.__templateAdditionalAttributesSection** attribute.
+		Deleter for **self.__templateAdditionalAttributesSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -521,7 +521,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templateScriptSection(self):
 		"""
-		This method is the property for **self.__templateScriptSection** attribute.
+		Property for **self.__templateScriptSection** attribute.
 
 		:return: self.__templateScriptSection. ( String )
 		"""
@@ -532,7 +532,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self, value):
 		"""
-		This method is the setter method for **self.__templateScriptSection** attribute.
+		Setter for **self.__templateScriptSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -544,7 +544,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self):
 		"""
-		This method is the deleter method for **self.__templateScriptSection** attribute.
+		Deleter for **self.__templateScriptSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -553,7 +553,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def optionsToolboxesHeaders(self):
 		"""
-		This method is the property for **self.__optionsToolboxesHeaders** attribute.
+		Property for **self.__optionsToolboxesHeaders** attribute.
 
 		:return: self.__optionsToolboxesHeaders. ( List )
 		"""
@@ -564,7 +564,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self, value):
 		"""
-		This method is the setter method for **self.__optionsToolboxesHeaders** attribute.
+		Setter for **self.__optionsToolboxesHeaders** attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -576,7 +576,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self):
 		"""
-		This method is the deleter method for **self.__optionsToolboxesHeaders** attribute.
+		Deleter for **self.__optionsToolboxesHeaders** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -585,7 +585,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiLightGrayColor(self):
 		"""
-		This method is the property for **self.__uiLightGrayColor** attribute.
+		Property for **self.__uiLightGrayColor** attribute.
 
 		:return: self.__uiLightGrayColor. ( QColor )
 		"""
@@ -596,7 +596,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
-		This method is the setter method for **self.__uiLightGrayColor** attribute.
+		Setter for **self.__uiLightGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -608,7 +608,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
-		This method is the deleter method for **self.__uiLightGrayColor** attribute.
+		Deleter for **self.__uiLightGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -617,7 +617,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiDarkGrayColor(self):
 		"""
-		This method is the property for **self.__uiDarkGrayColor** attribute.
+		Property for **self.__uiDarkGrayColor** attribute.
 
 		:return: self.__uiDarkGrayColor. ( QColor )
 		"""
@@ -628,7 +628,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
-		This method is the setter method for **self.__uiDarkGrayColor** attribute.
+		Setter for **self.__uiDarkGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -640,7 +640,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
-		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
+		Deleter for **self.__uiDarkGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -649,7 +649,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def enumSplitter(self):
 		"""
-		This method is the property for **self.__enumSplitter** attribute.
+		Property for **self.__enumSplitter** attribute.
 
 		:return: self.__enumSplitter. ( String )
 		"""
@@ -660,7 +660,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def enumSplitter(self, value):
 		"""
-		This method is the setter method for **self.__enumSplitter** attribute.
+		Setter for **self.__enumSplitter** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -677,7 +677,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def enumSplitter(self):
 		"""
-		This method is the deleter method for **self.__enumSplitter** attribute.
+		Deleter for **self.__enumSplitter** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -688,7 +688,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
@@ -713,7 +713,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -733,7 +733,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -765,7 +765,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success. ( Boolean )		
 		"""
@@ -785,7 +785,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -798,7 +798,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -812,7 +812,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view_setUi(self, section, view, overrides):
 		"""
-		This method defines and sets the given View.
+		Defines and sets the given View.
 
 		:param section: Section attributes. ( Dictionary )
 		:param view: Table Widget. ( QTableWidget )
@@ -896,7 +896,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view_clearUi(self, view):
 		"""
-		This method defines and sets the given View.
+		Defines and sets the given View.
 
 		:param view: Table Widget. ( QTableWidget )
 		"""
@@ -909,7 +909,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __views_setUi(self):
 		"""
-		This method sets the Views.
+		Sets the Views.
 		"""
 
 		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
@@ -967,7 +967,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view__valueChanged(self, *args):
 		"""
-		This method is triggered when a View Widget value has changed.
+		Defines the slot triggered by a View when value changed.
 
 		:param \*args: Arguments. ( \* )
 		"""
@@ -996,7 +996,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __templatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **templatesOutliner.view** Model selection has changed.
+		Defines the slot triggered by **templatesOutliner.view** Model when selection changed
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1006,7 +1006,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __updateOverrideKeys(self, view):
 		"""
-		This method updates the Loader Script Component override keys.
+		Updates the Loader Script Component override keys.
 
 		:param view: Table Widget. ( QTableWidget )
 		:return: Method success. ( Boolean )
@@ -1033,7 +1033,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def getOverrideKeys(self):
 		"""
-		This method gets override keys.
+		Gets override keys.
 
 		:return: Method success. ( Boolean )
 		"""
