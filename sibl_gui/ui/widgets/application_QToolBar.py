@@ -58,7 +58,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QToolBar):
 	"""
-	This class is defines the Application toolbar.
+	Defines defines the Application toolbar.
 	"""
 
 	__metaclass__ = umbra.guerilla.baseWarfare

@@ -54,7 +54,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
-	This class is used to display Database Ibl Sets as thumbnails.
+	Defines the view for Database Ibl Sets as thumbnails.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
@@ -187,7 +187,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
-	This class is used to display Database Ibl Sets columns.
+	Defines the view for Database Ibl Sets columns.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):

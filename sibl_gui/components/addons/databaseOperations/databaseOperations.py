@@ -60,7 +60,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Oper
 #**********************************************************************************************************************
 class DatabaseType(foundations.dataStructures.Structure):
 	"""
-	| This class represents a storage object for manipulation methods associated to a given Database type.
+	| Defines a storage object for manipulation methods associated to a given Database type.
 	| See :mod:`sibl_gui.components.core.database.types` module for more informations
 		about the available Database types.
 	"""
@@ -78,7 +78,7 @@ class DatabaseType(foundations.dataStructures.Structure):
 
 class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.databaseOperations.databaseOperations` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.databaseOperations.databaseOperations` Component Interface class.
 	| It provides various methods to operate on the Database.
 	"""
 

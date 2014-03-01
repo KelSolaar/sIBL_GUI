@@ -50,7 +50,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+	Defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
 		Component Interface class Model **Overall** collection node.
 	"""
 

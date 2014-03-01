@@ -55,7 +55,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
-	This class is used to display Database Collections.
+	Defines the view for Database Collections.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):

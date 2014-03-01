@@ -71,7 +71,7 @@ def getTemplateUserName(title, software):
 
 class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
-	This class defines Application Database abstract base class used by concrete Database Node classes.
+	Defines Application Database abstract base class used by concrete Database Node classes.
 	"""
 
 	__family = "AbstractDatabaseNode"
@@ -276,7 +276,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 class IblSetNode(AbstractDatabaseNode):
 	"""
-	This class defines Ibl Sets nodes.
+	Defines Ibl Sets nodes.
 	"""
 
 	__family = "IblSet"

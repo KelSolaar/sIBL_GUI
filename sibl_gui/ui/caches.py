@@ -57,7 +57,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class CacheMetrics(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for cache metrics.
+	Defines a storage object for cache metrics.
 	"""
 
 	def __init__(self, **kwargs):
@@ -73,7 +73,7 @@ class CacheMetrics(foundations.dataStructures.Structure):
 
 class AbstractResourcesCache(QObject):
 	"""
-	This class is a `QObject <http://doc.qt.nokia.com/qobject.html>`_ subclass used as an abstract resources cache.
+	Defines a `QObject <http://doc.qt.nokia.com/qobject.html>`_ subclass used as an abstract resources cache.
 	"""
 
 	contentAdded = pyqtSignal(list)
@@ -280,7 +280,7 @@ class AbstractResourcesCache(QObject):
 
 class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 	"""
-	This class provides an asynchronous graphics items cache.
+	Defines an asynchronous graphics items cache.
 	"""
 
 	def __init__(self, parent=None, type=None, placeholder=None):

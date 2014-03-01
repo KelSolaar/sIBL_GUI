@@ -58,7 +58,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsScanner_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
+	Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
 	new Ibl Sets from Database registered directories parents.
 	"""
 

@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
 	| It displays Application logging messages in the Application status bar.
 	| The full Application logging history is available through
 		the :mod:`sibl_gui.components.addons.loggingWindow.loggingWindow` Component.

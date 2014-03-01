@@ -47,7 +47,7 @@ __all__ = ["Constants"]
 #**********************************************************************************************************************
 class Constants():
 	"""
-	This class provides **sIBL_GUI** package default constants.
+	Defines **sIBL_GUI** package default constants.
 	"""
 
 	applicationName = "sIBL_GUI"

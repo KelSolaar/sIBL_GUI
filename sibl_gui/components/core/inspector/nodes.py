@@ -51,7 +51,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 		Component Interface class Model Plates node.
 	"""
 

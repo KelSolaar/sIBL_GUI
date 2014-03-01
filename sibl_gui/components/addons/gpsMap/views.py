@@ -50,7 +50,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Map_QWebView(QWebView):
 	"""
-	| This class is a `QWebView <http://doc.qt.nokia.com/qwebview.html>`_ subclass used for the GPS map.
+	| Defines a `QWebView <http://doc.qt.nokia.com/qwebview.html>`_ subclass used for the GPS map.
 	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined
 		in the Component resources html file through Javascript evaluation.
 	"""

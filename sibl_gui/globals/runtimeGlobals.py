@@ -36,7 +36,7 @@ __all__ = ["RuntimeGlobals"]
 #**********************************************************************************************************************
 class RuntimeGlobals():
 	"""
-	This class provides **sIBL_GUI** package runtime constants.
+	Defines **sIBL_GUI** package runtime constants.
 	"""
 
 	templatesFactoryDirectory = None

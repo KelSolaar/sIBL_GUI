@@ -36,7 +36,7 @@ __all__ = ["UiConstants"]
 #**********************************************************************************************************************
 class UiConstants():
 	"""
-	This class provides **sIBL_GUI** package ui constants.
+	Defines **sIBL_GUI** package ui constants.
 	"""
 
 	uiFile = "sIBL_GUI.ui"

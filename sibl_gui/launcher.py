@@ -117,7 +117,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
-	This class is the main class of the **sIBL_GUI** package.
+	Defines the main class of the **sIBL_GUI** package.
 	"""
 
 	def __init__(self,

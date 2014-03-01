@@ -60,7 +60,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Caches_Operat
 #**********************************************************************************************************************
 class CachesOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.cachesOperations.cachesOperations` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.cachesOperations.cachesOperations` Component Interface class.
 	| It provides various methods to operate on the images caches.
 	"""
 

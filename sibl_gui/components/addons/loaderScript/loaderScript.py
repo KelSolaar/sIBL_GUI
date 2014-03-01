@@ -64,7 +64,7 @@ COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script.ui
 #**********************************************************************************************************************
 class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component Interface class.
 	| It provides the glue between the Ibl Sets, the Templates and the 3d package.
 	
 	A typical operation is the following:

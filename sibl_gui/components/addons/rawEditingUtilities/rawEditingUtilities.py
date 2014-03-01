@@ -65,7 +65,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Raw_Editing_U
 #**********************************************************************************************************************
 class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
 	| By default the Component will use the **factory.scriptEditor** Component	but the user can define a custom file editor
 		through options exposed in the :mod:`sibl_gui.components.core.preferencesManager.preferencesManager` Component ui.

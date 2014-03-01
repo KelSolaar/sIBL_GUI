@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class TagsCloud_QListView(umbra.ui.views.Abstract_QListWidget):
 	"""
-	This class is used to display Database Ibl Sets tags cloud.
+	Defines the view for Database Ibl Sets tags cloud.
 	"""
 
 	pass

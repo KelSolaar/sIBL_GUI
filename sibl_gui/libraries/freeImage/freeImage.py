@@ -499,7 +499,7 @@ else:
 
 class FIBITMAP(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -507,7 +507,7 @@ class FIBITMAP(ctypes.Structure):
 
 class FIMULTIBITMAP(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMULTIBITMAP** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMULTIBITMAP** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -515,7 +515,7 @@ class FIMULTIBITMAP(ctypes.Structure):
 
 class tagRGBQUAD(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBQUAD** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBQUAD** C / C++ object.
 	"""
 
 	__slots__ = ["rgbBlue", "rgbGreen", "rgbRed", "rgbReserved"]
@@ -535,7 +535,7 @@ RGBQUAD = tagRGBQUAD
 
 class tagRGBTRIPLE(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBTRIPLE** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBTRIPLE** C / C++ object.
 	"""
 
 	__slots__ = ["rgbBlue", "rgbGreen", "rgbRed"]
@@ -554,7 +554,7 @@ RGBTRIPLE = tagRGBTRIPLE
 
 class tagBITMAPINFOHEADER(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFOHEADER** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFOHEADER** C / C++ object.
 	"""
 	__slots__ = ["biSize",
 				"biWidth",
@@ -584,7 +584,7 @@ BITMAPINFOHEADER = tagBITMAPINFOHEADER
 
 class tagBITMAPINFO(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFO** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFO** C / C++ object.
 	"""
 	__slots__ = ["bmiHeader", "bmiColors"]
 	_fields_ = [("bmiHeader", BITMAPINFOHEADER),
@@ -596,7 +596,7 @@ PBITMAPINFO = pointer(tagBITMAPINFO)
 
 class tagFIRGB16(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGB16** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGB16** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue"]
@@ -608,7 +608,7 @@ FIRGB16 = tagFIRGB16
 
 class tagFIRGBA16(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBA16** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBA16** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue", "alpha"]
@@ -621,7 +621,7 @@ FIRGBA16 = tagFIRGBA16
 
 class tagFIRGBF(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBF** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBF** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue"]
@@ -633,7 +633,7 @@ FIRGBF = tagFIRGBF
 
 class tagFIRGBAF(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBAF** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBAF** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue", "alpha"]
@@ -646,7 +646,7 @@ FIRGBAF = tagFIRGBAF
 
 class tagFICOMPLEX(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFICOMPLEX** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFICOMPLEX** C / C++ object.
 	"""
 
 	__slots__ = ["r", "i"]
@@ -746,7 +746,7 @@ FIICC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, va
 
 class FIICCPROFILE(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
 	"""
 
 	__slots__ = ["flags", "size", "data"]
@@ -920,7 +920,7 @@ FIMD_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, val
 
 class FIMETADATA(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -928,7 +928,7 @@ class FIMETADATA(ctypes.Structure):
 
 class FITAG(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -947,7 +947,7 @@ FI_TellProc = DLL_CALLCONV(unchecked(ctypes.c_long), fi_handle)
 
 class FreeImageIO(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
 	"""
 
 	__slots__ = ["read_proc", "write_proc", "seek_proc", "tell_proc"]
@@ -958,7 +958,7 @@ class FreeImageIO(ctypes.Structure):
 
 class FIMEMORY(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -997,7 +997,7 @@ FI_SupportsNoPixelsProc = ctypes.CFUNCTYPE(unchecked(BOOL),)
 
 class Plugin(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **Plugin** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **Plugin** C / C++ object.
 	"""
 
 	__slots__ = ["format_proc",
@@ -2016,7 +2016,7 @@ def getFreeImageLibraryPath():
 
 class ImageInformationsHeader(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for image informations header.
+	Defines a storage object for image informations header.
 	"""
 
 	def __init__(self, **kwargs):
@@ -2032,7 +2032,7 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 
 class Image(object):
 	"""
-	This class provides various methods to manipulate images files.
+	Defines various methods to manipulate images files.
 	"""
 
 	def __init__(self, imagePath=None):

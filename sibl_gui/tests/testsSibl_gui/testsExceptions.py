@@ -67,7 +67,7 @@ _gatherExceptions()
 #**********************************************************************************************************************
 class ExceptionsTestCase(unittest.TestCase):
 	"""
-	This class defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
+	Defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
 	"""
 
 	def testRequiredAttributes(self):

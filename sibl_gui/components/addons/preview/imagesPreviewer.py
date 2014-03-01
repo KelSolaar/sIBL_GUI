@@ -65,7 +65,7 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Previewer.ui")
 #**********************************************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
-	This class is a `QGraphicsItem <http://doc.qt.nokia.com/qgraphicsitem.html>`_ subclass used
+	Defines a `QGraphicsItem <http://doc.qt.nokia.com/qgraphicsitem.html>`_ subclass used
 		to display given `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 	"""
 
@@ -215,7 +215,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
-	| This class provides the Application images previewer.
+	| Defines the Application images previewer.
 	| It defines methods to navigate through the list of given images ( List of images paths ),
 		zoom in / out and fit the displayed image, etc...
 	"""

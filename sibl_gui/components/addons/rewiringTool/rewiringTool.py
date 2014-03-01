@@ -60,7 +60,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool
 #**********************************************************************************************************************
 class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component Interface class.
 	| It provides override keys on request for the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component.
 	"""
 

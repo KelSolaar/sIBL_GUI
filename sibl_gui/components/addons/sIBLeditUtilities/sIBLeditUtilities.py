@@ -60,7 +60,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "sIBLedit_Util
 #**********************************************************************************************************************
 class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
 	| It provides methods to link the Application to sIBLedit.
 	"""
 

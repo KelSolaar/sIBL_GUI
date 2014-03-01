@@ -79,7 +79,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_O
 #**********************************************************************************************************************
 class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
 	| It defines methods for Database Collections management.
 	"""
 

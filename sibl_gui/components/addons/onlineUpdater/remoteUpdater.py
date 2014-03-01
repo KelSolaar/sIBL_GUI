@@ -74,7 +74,7 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Remote_Updater.ui")
 #**********************************************************************************************************************
 class ReleaseObject(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for a :class:`RemoteUpdater` class release.
+	Defines a storage object for a :class:`RemoteUpdater` class release.
 	"""
 
 	def __init__(self, **kwargs):
@@ -90,7 +90,7 @@ class ReleaseObject(foundations.dataStructures.Structure):
 
 class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
-	| This class defines the Application remote updater.
+	| Defines the Application remote updater.
 	| The remote updater is initialized with a list of available online releases
 		( List of :class:`ReleaseObject` class instances ).
 	"""

@@ -51,7 +51,7 @@ __all__ = ["UiConstantsTestCase"]
 #**********************************************************************************************************************
 class UiConstantsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`sibl_gui.globals.uiConstants.UiConstants` class units tests methods.
+	Defines :class:`sibl_gui.globals.uiConstants.UiConstants` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):

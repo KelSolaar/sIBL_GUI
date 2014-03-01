@@ -40,7 +40,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class TemplatesAttributes_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
 	"""
-	This class is used to display Templates attributes.
+	Defines the view for Templates attributes.
 	"""
 
 	pass

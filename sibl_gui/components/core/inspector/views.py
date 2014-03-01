@@ -54,7 +54,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
-	This class is used to display Ibl Sets Plates as thumbnails.
+	Defines the view for Ibl Sets Plates as thumbnails.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):

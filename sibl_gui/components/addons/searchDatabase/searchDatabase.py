@@ -66,7 +66,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Search_Databa
 #**********************************************************************************************************************
 class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.searchDatabase.searchDatabase` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.searchDatabase.searchDatabase` Component Interface class.
 	| It provides methods for the user to search into the Database using various filters.
 	"""
 

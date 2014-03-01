@@ -56,7 +56,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Database(Component):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.database.database` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.database.database` Component Interface class.
 	| It provides Application Database creation and session, proceeds to its backup using
 		the :mod:`foundations.rotatingBackup`.
 	"""

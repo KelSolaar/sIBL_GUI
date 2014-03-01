@@ -87,7 +87,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Out
 #**********************************************************************************************************************
 class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.templatesOutliner.templatesOutliner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.templatesOutliner.templatesOutliner` Component Interface class.
 	| It defines methods for Database Templates management.
 	"""
 

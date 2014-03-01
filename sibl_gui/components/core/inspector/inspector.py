@@ -84,7 +84,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui"
 #**********************************************************************************************************************
 class Plate(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for an Ibl Set Plate.
+	Defines a storage object for an Ibl Set Plate.
 	"""
 
 	def __init__(self, **kwargs):
@@ -100,7 +100,7 @@ class Plate(foundations.dataStructures.Structure):
 
 class Light(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for an Ibl Set light.
+	Defines a storage object for an Ibl Set light.
 	"""
 
 	def __init__(self, **kwargs):
@@ -116,7 +116,7 @@ class Light(foundations.dataStructures.Structure):
 
 class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate
 		into the current selected Database Collection.
 	"""

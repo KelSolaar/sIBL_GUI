@@ -56,7 +56,7 @@ Base = sqlalchemy.ext.declarative.declarative_base()
 
 class IblSet(Base):
 	"""
-	This class defines the Database IblSets type.
+	Defines the Database IblSets type.
 	"""
 
 	__tablename__ = "IblSets"
@@ -190,7 +190,7 @@ class IblSet(Base):
 
 class Template(Base):
 	"""
-	This class defines the Database Template type.
+	Defines the Database Template type.
 	"""
 
 	__tablename__ = "Templates"
@@ -320,7 +320,7 @@ class Template(Base):
 
 class Collection(Base):
 	"""
-	This class defines the Database Collection type.
+	Defines the Database Collection type.
 	"""
 
 	__tablename__ = "Collections"

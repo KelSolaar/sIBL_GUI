@@ -53,7 +53,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Mixin_GraphModelObject(object):
 	"""
-	This class is a mixin used to bring common capabilities in Application Nodes classes.
+	Defines a mixin used to bring common capabilities in Application Nodes classes.
 	"""
 
 	def __init__(self):
@@ -141,7 +141,7 @@ class Mixin_GraphModelObject(object):
 
 class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelObject):
 	"""
-	This class represents a storage object for the :class:`GraphModelNode` class attributes.
+	Defines a storage object for the :class:`GraphModelNode` class attributes.
 	"""
 
 	def __init__(self,
@@ -175,7 +175,7 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 
 class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 	"""
-	This class defines :class:`GraphModel` class base Node object.
+	Defines :class:`GraphModel` class base Node object.
 	"""
 
 	__family = "GraphModel"

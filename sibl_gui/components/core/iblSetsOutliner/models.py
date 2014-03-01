@@ -51,7 +51,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by 
+	Defines the Model used the by 
 	:class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner` Component Interface class. 
 	"""
 

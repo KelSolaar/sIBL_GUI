@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class TemplatesReleases_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
 	"""
-	This class is used to display Templates releases.
+	Defines the view for Templates releases.
 	"""
 
 	pass

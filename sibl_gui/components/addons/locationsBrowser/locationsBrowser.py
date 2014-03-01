@@ -62,7 +62,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Locations_Bro
 #**********************************************************************************************************************
 class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
 	| By default the Component will use current operating system file browsers but 
 		the user can define a custom file browser through options exposed

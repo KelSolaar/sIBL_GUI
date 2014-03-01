@@ -45,49 +45,49 @@ __all__ = ["LOGGER",
 #**********************************************************************************************************************
 class AbstractNetworkError(foundations.exceptions.AbstractError):
 	"""
-	This class is the abstract base class for network related exceptions.
+	Defines the abstract base class for network related exceptions.
 	"""
 
 	pass
 
 class NetworkError(AbstractNetworkError):
 	"""
-	This class is used for network exceptions.
+	Defines network exceptions.
 	"""
 
 	pass
 
 class SocketConnectionError(AbstractNetworkError):
 	"""
-	This class is used for socket connection exceptions.
+	Defines socket connection exceptions.
 	"""
 
 	pass
 
 class Win32OLEServerConnectionError(AbstractNetworkError):
 	"""
-	This class is used for Win32OLE Server connection exceptions.
+	Defines Win32OLE Server connection exceptions.
 	"""
 
 	pass
 
 class AbstractCacheError(foundations.exceptions.AbstractError):
 	"""
-	This class is the abstract base class for caching related exceptions.
+	Defines the abstract base class for caching related exceptions.
 	"""
 
 	pass
 
 class CacheExistsError(foundations.exceptions.AbstractError):
 	"""
-	This class is used for non existing cache exceptions.
+	Defines non existing cache exceptions.
 	"""
 
 	pass
 
 class CacheOperationError(foundations.exceptions.AbstractError):
 	"""
-	This class is used for cache operations exceptions.
+	Defines cache operations exceptions.
 	"""
 
 	pass

@@ -55,7 +55,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsScanner(QObjectComponent):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
 	| It instantiates the :class:`IblSetsScanner` class on Application startup which will gather new Ibl Sets
 		from Database registered directories parents.
 	"""

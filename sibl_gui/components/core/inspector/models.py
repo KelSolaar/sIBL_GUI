@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class PlatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 	Component Interface class. 
 	"""
 

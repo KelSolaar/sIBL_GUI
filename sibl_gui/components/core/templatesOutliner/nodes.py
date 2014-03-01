@@ -50,7 +50,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
+	Defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
 		Component Interface class Model software node.
 	"""
 
