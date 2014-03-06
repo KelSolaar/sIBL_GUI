@@ -83,10 +83,14 @@ def getSphinxDocumentationTocTree(title, fileIn, fileOut, contentDirectory):
 	"""
 	Gets Sphinx documentation index file.
 
-	:param title: Package title. ( String )
-	:param fileIn: File to convert. ( String )
-	:param fileOut: Output file. ( String )
-	:param contentDirectory: Content directory. ( String )
+	:param title: Package title.
+	:type title: unicode
+	:param fileIn: File to convert.
+	:type fileIn: unicode
+	:param fileOut: Output file.
+	:type fileOut: unicode
+	:param contentDirectory: Content directory.
+	:type contentDirectory: unicode
 	"""
 
 	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__,

@@ -60,11 +60,16 @@ class GraphModel(umbra.ui.models.GraphModel):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param rootNode: Root node. ( AbstractCompositeNode )
-		:param horizontalHeaders: Headers. ( OrderedDict )
-		:param verticalHeaders: Headers. ( OrderedDict )
-		:param defaultNode: Default node. ( GraphModelNode )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param rootNode: Root node.
+		:type rootNode: AbunicodeactCompositeNode
+		:param horizontalHeaders: Headers.
+		:type horizontalHeaders: OrderedDict
+		:param verticalHeaders: Headers.
+		:type verticalHeaders: OrderedDict
+		:param defaultNode: Default node.
+		:type defaultNode: GraphModelNode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -78,9 +83,12 @@ class GraphModel(umbra.ui.models.GraphModel):
 		"""
 		Reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
 		
-		:param index: Index. ( QModelIndex )
-		:param role: Role. ( Integer )
-		:return: Data. ( QVariant )
+		:param index: Index.
+		:type index: QModelIndex
+		:param role: Role.
+		:type role: int
+		:return: Data.
+		:rtype: QVariant
 		"""
 
 		if not index.isValid():

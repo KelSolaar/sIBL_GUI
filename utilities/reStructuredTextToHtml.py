@@ -66,8 +66,10 @@ def reStructuredTextToHtml(fileIn, fileOut):
 	"""
 	Outputs a reStructuredText file to html.
 
-	:param fileIn: File to convert. ( String )
-	:param fileOut: Output file. ( String )
+	:param fileIn: File to convert.
+	:type fileIn: unicode
+	:param fileOut: Output file.
+	:type fileOut: unicode
 	"""
 
 	LOGGER.info("{0} | Converting '{1}' reStructuredText file to html!".format(reStructuredTextToHtml.__name__, fileIn))

@@ -86,10 +86,14 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -132,7 +136,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -143,7 +148,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -164,7 +170,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -175,7 +182,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -196,7 +204,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templatesOutliner** attribute.
 
-		:return: self.__templatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__templatesOutliner
@@ -207,7 +216,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templatesOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -228,7 +238,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__loaderScript** attribute.
 
-		:return: self.__loaderScript. ( QWidget )
+		:return: self.__loaderScript.
+		:rtype: QWidget
 		"""
 
 		return self.__loaderScript
@@ -239,7 +250,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__loaderScript** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -260,7 +272,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__views** attribute.
 
-		:return: self.__views. ( Tuple )
+		:return: self.__views.
+		:rtype: tuple
 		"""
 
 		return self.__views
@@ -271,7 +284,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__views** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -292,7 +306,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__commonView** attribute.
 
-		:return: self.__commonView. ( QListView )
+		:return: self.__commonView.
+		:rtype: QListView
 		"""
 
 		return self.__commonView
@@ -303,7 +318,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__commonView** attribute.
 
-		:param value: Attribute value. ( QListView )
+		:param value: Attribute value.
+		:type value: QListView
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -324,7 +340,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__additionalView** attribute.
 
-		:return: self.__additionalView. ( QListView )
+		:return: self.__additionalView.
+		:rtype: QListView
 		"""
 
 		return self.__additionalView
@@ -335,7 +352,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__additionalView** attribute.
 
-		:param value: Attribute value. ( QListView )
+		:param value: Attribute value.
+		:type value: QListView
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -356,7 +374,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__namespaceSplitter** attribute.
 
-		:return: self.__namespaceSplitter. ( String )
+		:return: self.__namespaceSplitter.
+		:rtype: unicode
 		"""
 
 		return self.__namespaceSplitter
@@ -367,7 +386,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__namespaceSplitter** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -394,7 +414,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templatesSettingsDirectory** attribute.
 
-		:return: self.__templatesSettingsDirectory. ( String )
+		:return: self.__templatesSettingsDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__templatesSettingsDirectory
@@ -405,7 +426,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templatesSettingsDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -426,7 +448,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templateSettingsFile** attribute.
 
-		:return: self.__templateSettingsFile. ( String )
+		:return: self.__templateSettingsFile.
+		:rtype: unicode
 		"""
 
 		return self.__templateSettingsFile
@@ -437,7 +460,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templateSettingsFile** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -458,7 +482,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templateCommonAttributesSection** attribute.
 
-		:return: self.__templateCommonAttributesSection. ( String )
+		:return: self.__templateCommonAttributesSection.
+		:rtype: unicode
 		"""
 
 		return self.__templateCommonAttributesSection
@@ -469,7 +494,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templateCommonAttributesSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -490,7 +516,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templateAdditionalAttributesSection** attribute.
 
-		:return: self.__templateAdditionalAttributesSection. ( String )
+		:return: self.__templateAdditionalAttributesSection.
+		:rtype: unicode
 		"""
 
 		return self.__templateAdditionalAttributesSection
@@ -501,7 +528,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templateAdditionalAttributesSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -523,7 +551,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__templateScriptSection** attribute.
 
-		:return: self.__templateScriptSection. ( String )
+		:return: self.__templateScriptSection.
+		:rtype: unicode
 		"""
 
 		return self.__templateScriptSection
@@ -534,7 +563,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__templateScriptSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -555,7 +585,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__optionsToolboxesHeaders** attribute.
 
-		:return: self.__optionsToolboxesHeaders. ( List )
+		:return: self.__optionsToolboxesHeaders.
+		:rtype: list
 		"""
 
 		return self.__optionsToolboxesHeaders
@@ -566,7 +597,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__optionsToolboxesHeaders** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -587,7 +619,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiLightGrayColor** attribute.
 
-		:return: self.__uiLightGrayColor. ( QColor )
+		:return: self.__uiLightGrayColor.
+		:rtype: QColor
 		"""
 
 		return self.__uiLightGrayColor
@@ -598,7 +631,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiLightGrayColor** attribute.
 
-		:param value: Attribute value. ( QColor )
+		:param value: Attribute value.
+		:type value: QColor
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -619,7 +653,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiDarkGrayColor** attribute.
 
-		:return: self.__uiDarkGrayColor. ( QColor )
+		:return: self.__uiDarkGrayColor.
+		:rtype: QColor
 		"""
 
 		return self.__uiDarkGrayColor
@@ -630,7 +665,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiDarkGrayColor** attribute.
 
-		:param value: Attribute value. ( QColor )
+		:param value: Attribute value.
+		:type value: QColor
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -651,7 +687,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__enumSplitter** attribute.
 
-		:return: self.__enumSplitter. ( String )
+		:return: self.__enumSplitter.
+		:rtype: unicode
 		"""
 
 		return self.__enumSplitter
@@ -662,7 +699,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__enumSplitter** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -690,8 +728,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -715,7 +755,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -735,7 +776,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -767,7 +809,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -787,7 +830,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -800,7 +844,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -814,9 +859,12 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines and sets the given View.
 
-		:param section: Section attributes. ( Dictionary )
-		:param view: Table Widget. ( QTableWidget )
-		:param overrides: Attributes overrides. ( Dictionary )
+		:param section: Section attributes.
+		:type section: dict
+		:param view: Table Widget.
+		:type view: QTableWidget
+		:param overrides: Attributes overrides.
+		:type overrides: dict
 		"""
 
 		LOGGER.debug("> Updating '{0}'.".format(view.objectName()))
@@ -898,7 +946,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines and sets the given View.
 
-		:param view: Table Widget. ( QTableWidget )
+		:param view: Table Widget.
+		:type view: QTableWidget
 		"""
 
 		LOGGER.debug("> Clearing '{0}'.".format(view.objectName()))
@@ -969,7 +1018,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by a View when value changed.
 
-		:param \*args: Arguments. ( \* )
+		:param \*args: Arguments.
+		:type \*args: \*
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Template settings file content.".format(self.__templateSettingsFile))
@@ -998,8 +1048,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **templatesOutliner.view** Model when selection changed
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.__views_setUi()
@@ -1008,8 +1060,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Updates the Loader Script Component override keys.
 
-		:param view: Table Widget. ( QTableWidget )
-		:return: Method success. ( Boolean )
+		:param view: Table Widget.
+		:type view: QTableWidget
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Updating override keys with '{0}' attributes.".format(view.objectName()))
@@ -1035,7 +1089,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Gets override keys.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))

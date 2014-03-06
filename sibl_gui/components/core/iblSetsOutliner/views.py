@@ -61,10 +61,14 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -85,7 +89,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Property for **self.__listViewSpacing** attribute.
 
-		:return: self.__listViewSpacing. ( Integer )
+		:return: self.__listViewSpacing.
+		:rtype: int
 		"""
 
 		return self.__listViewSpacing
@@ -96,7 +101,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Setter for **self.__listViewSpacing** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -119,7 +125,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Property for **self.__listViewMargin** attribute.
 
-		:return: self.__listViewMargin. ( Integer )
+		:return: self.__listViewMargin.
+		:rtype: int
 		"""
 
 		return self.__listViewMargin
@@ -130,7 +137,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Setter for **self.__listViewMargin** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -172,8 +180,10 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Sets the Widget default ui state.
 
-		:param iconsSize: Icons size. ( Integer )
-		:param iconRatio: Icons ratio. ( Integer )
+		:param iconsSize: Icons size.
+		:type iconsSize: int
+		:param iconRatio: Icons ratio.
+		:type iconRatio: int
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -194,10 +204,14 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -217,7 +231,8 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Property for **self.__treeViewIndentation** attribute.
 
-		:return: self.__treeViewIndentation. ( Integer )
+		:return: self.__treeViewIndentation.
+		:rtype: int
 		"""
 
 		return self.__treeViewIndentation
@@ -228,7 +243,8 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Setter for **self.__treeViewIndentation** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

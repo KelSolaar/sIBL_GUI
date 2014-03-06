@@ -67,14 +67,16 @@ class IblSetsScanner_worker(QThread):
 	"""
 	This signal is emited by the :class:`IblSetsScanner_worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
 	
-	:return: New Ibl Sets. ( List )
+	:return: New Ibl Sets.
+	:rtype: list
 	"""
 
 	def __init__(self, parent):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -98,7 +100,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Property for **self.__container** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__container.
+		:rtype: QObject
 		"""
 
 		return self.__container
@@ -109,7 +112,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Setter for **self.__container** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -130,7 +134,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Property for **self.__databaseSession** attribute.
 
-		:return: self.__databaseSession. ( Object )
+		:return: self.__databaseSession.
+		:rtype: object
 		"""
 
 		return self.__databaseSession
@@ -141,7 +146,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Setter for **self.__databaseSession** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -162,7 +168,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Property for **self.__extension** attribute.
 
-		:return: self.__extension. ( String )
+		:return: self.__extension.
+		:rtype: unicode
 		"""
 
 		return self.__extension
@@ -173,7 +180,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Setter for **self.__extension** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -194,7 +202,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Property for **self.__newIblSets** attribute.
 
-		:return: self.__newIblSets. ( List )
+		:return: self.__newIblSets.
+		:rtype: list
 		"""
 
 		return self.__newIblSets
@@ -205,7 +214,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Setter for **self.__newIblSets** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -235,7 +245,8 @@ class IblSetsScanner_worker(QThread):
 		"""
 		Scans Ibl Sets directories.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))

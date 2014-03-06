@@ -129,10 +129,14 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -157,7 +161,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -168,7 +173,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -189,7 +195,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiLogoImage** attribute.
 
-		:return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLogoImage
@@ -200,7 +207,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiLogoImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -221,7 +229,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiGpl3Image** attribute.
 
-		:return: self.__uiGpl3Image. ( String )
+		:return: self.__uiGpl3Image.
+		:rtype: unicode
 		"""
 
 		return self.__uiGpl3Image
@@ -232,7 +241,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiGpl3Image** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -253,7 +263,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -264,7 +275,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -285,7 +297,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__miscellaneousMenu** attribute.
 
-		:return: self.__miscellaneousMenu. ( QMenu )
+		:return: self.__miscellaneousMenu.
+		:rtype: QMenu
 		"""
 
 		return self.__miscellaneousMenu
@@ -296,7 +309,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__miscellaneousMenu** attribute.
 
-		:param value: Attribute value. ( QMenu )
+		:param value: Attribute value.
+		:type value: QMenu
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -319,8 +333,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -338,7 +354,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -356,7 +373,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -368,7 +386,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -380,7 +399,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -391,7 +411,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -424,8 +445,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' window.".format("About"))

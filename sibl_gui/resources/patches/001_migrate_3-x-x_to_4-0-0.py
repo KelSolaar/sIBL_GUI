@@ -61,7 +61,8 @@ def apply():
 	"""
 	Triggers the patch execution.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	deprecated = """

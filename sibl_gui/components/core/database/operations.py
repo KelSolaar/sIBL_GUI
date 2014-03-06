@@ -109,7 +109,8 @@ def createSession():
 	"""
 	Creates a default session.
 
-	:return: Database session. ( Session )
+	:return: Database session.
+	:rtype: Session
 	"""
 
 	return DEFAULT_SESSION_MAKER()
@@ -118,8 +119,10 @@ def getSession(session=None):
 	"""
 	Returns either given session or the default one.
 
-	:param session: Database session. ( Session )
-	:return: Database session. ( Session )
+	:param session: Database session.
+	:type session: Session
+	:return: Database session.
+	:rtype: Session
 	"""
 
 	if session is not None:
@@ -134,9 +137,12 @@ def query(*args, **kwargs):
 	"""
 	Queries given session or the default one.
 
-	:param \*args: Arguments. ( \* )
-	:param \*\*kwargs: Keywords arguments. ( \*\* )
-	:return: Query result. ( Object )
+	:param \*args: Arguments.
+	:type \*args: \*
+	:param \*\*kwargs: Keywords arguments.
+	:type \*\*kwargs: \*\*
+	:return: Query result.
+	:rtype: object
 	"""
 
 	return getSession(kwargs.get("session")).query(*args, **kwargs)
@@ -146,8 +152,10 @@ def commit(session=None):
 	"""
 	Commits changes to the Database.
 
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	session = getSession(session)
@@ -164,9 +172,12 @@ def addItem(item, session=None):
 	"""
 	Adds an item to the Database.
 
-	:param item: Item to add. ( Database object )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param item: Item to add.
+	:type item: Object
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Adding: '{0}' item to the Database.".format(item))
@@ -179,12 +190,18 @@ def addStandardItem(type, name, path, collection, session=None):
 	"""
 	Adds a new standard item to the Database.
 
-	:param type: Item type. ( Object )
-	:param name: Item name. ( String )
-	:param path: Item path. ( String )
-	:param collection: Collection id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param type: Item type.
+	:type type: object
+	:param name: Item name.
+	:type name: unicode
+	:param path: Item path.
+	:type path: unicode
+	:param collection: Collection id.
+	:type collection: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Adding: '{0}' '{1}' to the Database.".format(name, type.__name__))
@@ -204,9 +221,12 @@ def removeItem(item, session=None):
 	"""
 	Removes an item from the Database.
 
-	:param item: Item to remove. ( Database object )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param item: Item to remove.
+	:type item: Object
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Removing: '{0}' item from the Database.".format(item))
@@ -219,10 +239,14 @@ def removeStandardItem(type, identity, session=None):
 	"""
 	Removes a standard item from the Database.
 
-	:param type: Item type. ( Object )
-	:param identity: Item id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param type: Item type.
+	:type type: object
+	:param identity: Item id.
+	:type identity: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Removing item type '{0}' with id '{1}' from the Database.".format(type.__name__, identity))
@@ -234,9 +258,12 @@ def updateItemContent(item, session=None):
 	"""
 	Update an item content.
 
-	:param item: Item to set content. ( IblSet )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param item: Item to set content.
+	:type item: IblSet
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
@@ -254,10 +281,14 @@ def updateItemLocation(item, path, session=None):
 	"""
 	Updates an item location.
 
-	:param item: Item to update. ( Object )
-	:param path: Item path. ( Path )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param item: Item to update.
+	:type item: object
+	:param path: Item path.
+	:type path: Path
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' location.".format(item, item.__class__.__name__))
@@ -277,11 +308,16 @@ def filterItems(items, pattern, field, flags=0):
 	"""
 	Filters items from the Database.
 
-	:param items: Database items. ( List )
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:return: Filtered items. ( List )
+	:param items: Database items.
+	:type items: list
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:return: Filtered items.
+	:rtype: list
 	"""
 
 	return [item for item in items if re.search(pattern, foundations.strings.toString(item.__dict__[field]), flags)]
@@ -290,11 +326,16 @@ def itemExists(items, pattern, field, flags=0):
 	"""
 	Returns if given item exists in the Database.
 
-	:param items: Database items. ( List )
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:return: Filtered items. ( List )
+	:param items: Database items.
+	:type items: list
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:return: Filtered items.
+	:rtype: list
 	"""
 
 	return filterItems(items, pattern, field, flags) and True or False
@@ -303,8 +344,10 @@ def getIblSets(session=None):
 	"""
 	Returns the Ibl Sets from the Database.
 
-	:param session: Database session. ( Session )
-	:return: Database Ibl Sets. ( List )
+	:param session: Database session.
+	:type session: Session
+	:return: Database Ibl Sets.
+	:rtype: list
 	"""
 
 	return getSession(session).query(IblSet)
@@ -313,11 +356,16 @@ def filterIblSets(pattern, field, flags=0, session=None):
 	"""
 	Filters the sets from the Database.
 
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Ibl Sets. ( List )
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Ibl Sets.
+	:rtype: list
 	"""
 
 	return filterItems(getIblSets(getSession(session)), pattern, field, flags)
@@ -326,9 +374,12 @@ def iblSetExists(path, session=None):
 	"""
 	Returns if given Ibl Set exists in the Database.
 
-	:param name: Ibl Set path. ( String )
-	:param session: Database session. ( Session )
-	:return: Ibl Set exists. ( Boolean )
+	:param name: Ibl Set path.
+	:type name: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Ibl Set exists.
+	:rtype: bool
 	"""
 
 	return filterIblSets("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
@@ -337,11 +388,16 @@ def addIblSet(name, path, collection, session=None):
 	"""
 	Adds a new Ibl Set to the Database.
 
-	:param name: Ibl Set name. ( String )
-	:param path: Ibl Set path. ( String )
-	:param collection: Collection id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param name: Ibl Set name.
+	:type name: unicode
+	:param path: Ibl Set path.
+	:type path: unicode
+	:param collection: Collection id.
+	:type collection: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return addStandardItem(IblSet, name, path, collection, getSession(session))
@@ -350,9 +406,12 @@ def removeIblSet(identity, session=None):
 	"""
 	Removes an Ibl Set from the Database.
 
-	:param identity: Ibl Set id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param identity: Ibl Set id.
+	:type identity: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return removeStandardItem(IblSet, identity, getSession(session))
@@ -361,9 +420,12 @@ def updateIblSetContent(iblSet, session=None):
 	"""
 	Update an Ibl Set content.
 
-	:param iblSet: Ibl Set to set content. ( IblSet )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param iblSet: Ibl Set to set content.
+	:type iblSet: IblSet
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return updateItemContent(iblSet, getSession(session))
@@ -372,10 +434,14 @@ def updateIblSetLocation(iblSet, path, session=None):
 	"""
 	Updates an Ibl Set location.
 
-	:param iblSet: Ibl Set to update. ( IblSet )
-	:param path: Ibl Set path. ( Path )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param iblSet: Ibl Set to update.
+	:type iblSet: IblSet
+	:param path: Ibl Set path.
+	:type path: Path
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return updateItemLocation(iblSet, path, getSession(session))
@@ -384,8 +450,10 @@ def checkIblSetsTableIntegrity(session=None):
 	"""
 	Checks sets table integrity.
 
-	:param session: Database session. ( Session )
-	:return: Ibl Sets table erroneous items. ( Dictionary )
+	:param session: Database session.
+	:type session: Session
+	:return: Ibl Sets table erroneous items.
+	:rtype: dict
 	"""
 
 	LOGGER.debug("> Checking 'Sets' Database table integrity.")
@@ -424,8 +492,10 @@ def getCollections(session=None):
 	"""
 	Returns the Collections from the Database.
 
-	:param session: Database session. ( Session )
-	:return: Database Collections. ( List )
+	:param session: Database session.
+	:type session: Session
+	:return: Database Collections.
+	:rtype: list
 	"""
 
 	return getSession(session).query(Collection)
@@ -434,11 +504,16 @@ def filterCollections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Collections from the Database.
 
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Collections. ( List )
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Collections.
+	:rtype: list
 	"""
 
 	return filterItems(getCollections(getSession(session)), pattern, field, flags)
@@ -447,9 +522,12 @@ def getCollectionsByType(type, session=None):
 	"""
 	Returns Collections of given type.
 
-	:param type: Type name. ( String )
-	:param session: Database session. ( Session )
-	:return: Ibl Sets Collections. ( List )
+	:param type: Type name.
+	:type type: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Ibl Sets Collections.
+	:rtype: list
 	"""
 
 	return [collection for collection in filterCollections(type, "type", session=getSession(session))]
@@ -458,12 +536,18 @@ def filterCollectionsByType(type, pattern, field, flags=0, session=None):
 	"""
 	Filters the Ibl Sets Collections from the Database.
 
-	:param type: Type name. ( String )
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Collections. ( List )
+	:param type: Type name.
+	:type type: unicode
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Collections.
+	:rtype: list
 	"""
 
 	return list(set(getCollectionsByType(type, session)).intersection(
@@ -473,11 +557,16 @@ def filterIblSetsCollections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Ibl Sets Collections from the Database.
 
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Collections. ( List )
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Collections.
+	:rtype: list
 	"""
 
 	return filterCollectionsByType("IblSets", pattern, field, flags, getSession(session))
@@ -486,11 +575,16 @@ def filterTemplatesCollections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Templates Collections from the Database.
 
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Collections. ( List )
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Collections.
+	:rtype: list
 	"""
 
 	return filterCollectionsByType("Templates", pattern, field, flags, getSession(session))
@@ -499,9 +593,12 @@ def collectionExists(name, session=None):
 	"""
 	Returns if the Collection exists in the Database.
 
-	:param name: Collection name. ( String )
-	:param session: Database session. ( Session )
-	:return: Collection exists. ( Boolean )
+	:param name: Collection name.
+	:type name: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Collection exists.
+	:rtype: bool
 	"""
 
 	return filterCollections("^{0}$".format(name), "name", session=getSession(session)) and True or False
@@ -510,11 +607,16 @@ def addCollection(collection, type, comment, session=None):
 	"""
 	Adds a Collection to the Database.
 
-	:param collection: Collection name. ( String )
-	:param type: Collection type. ( String )
-	:param comment: Collection comment. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param collection: Collection name.
+	:type collection: unicode
+	:param type: Collection type.
+	:type type: unicode
+	:param comment: Collection comment.
+	:type comment: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
@@ -532,9 +634,12 @@ def removeCollection(identity, session=None):
 	"""
 	Removes a Collection from the Database.
 
-	:param identity: Collection id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param identity: Collection id.
+	:type identity: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return removeStandardItem(Collection, identity, getSession(session))
@@ -543,9 +648,12 @@ def getCollectionsIblSets(identities, session=None):
 	"""
 	Returns Ibl Sets from Collections ids
 
-	:param identities: Collections ids. ( List )
-	:param session: Database session. ( Session )
-	:return: Ibl Sets list. ( List )
+	:param identities: Collections ids.
+	:type identities: list
+	:param session: Database session.
+	:type session: Session
+	:return: Ibl Sets list.
+	:rtype: list
 	"""
 
 	iblSets = []
@@ -560,9 +668,12 @@ def getCollectionIblSetsCount(collection, session=None):
 	"""
 	Returns given Collection Ibl Sets count.
 
-	:param collection: Collection. ( Collection )
-	:param session: Database session. ( Session )
-	:return: Collection Ibl Sets count. ( Integer )
+	:param collection: Collection.
+	:type collection: Collection
+	:param session: Database session.
+	:type session: Session
+	:return: Collection Ibl Sets count.
+	:rtype: int
 	"""
 
 	return getSession(session).query(IblSet).filter_by(collection=collection.id).count()
@@ -571,9 +682,12 @@ def getCollectionTemplatesCount(collection, session=None):
 	"""
 	Returns given Collection Tempates count.
 
-	:param collection: Collection. ( Collection )
-	:param session: Database session. ( Session )
-	:return: Collection Templates count. ( Integer )
+	:param collection: Collection.
+	:type collection: Collection
+	:param session: Database session.
+	:type session: Session
+	:return: Collection Templates count.
+	:rtype: int
 	"""
 
 	return getSession(session).query(Template).filter_by(collection=collection.id).count()
@@ -582,8 +696,10 @@ def getTemplates(session=None):
 	"""
 	Returns the Templates from the Database.
 
-	:param session: Database session. ( Session )
-	:return: Database Templates. ( List )
+	:param session: Database session.
+	:type session: Session
+	:return: Database Templates.
+	:rtype: list
 	"""
 
 	return getSession(session).query(Template)
@@ -592,11 +708,16 @@ def filterTemplates(pattern, field, flags=0, session=None):
 	"""
 	Filters the Templates from the Database.
 
-	:param pattern: Filtering pattern. ( String )
-	:param field: Database field to search into. ( String )
-	:param flags: Flags passed to the regex engine. ( Integer )
-	:param session: Database session. ( Session )
-	:return: Filtered Templates. ( List )
+	:param pattern: Filtering pattern.
+	:type pattern: unicode
+	:param field: Database field to search into.
+	:type field: unicode
+	:param flags: Flags passed to the regex engine.
+	:type flags: int
+	:param session: Database session.
+	:type session: Session
+	:return: Filtered Templates.
+	:rtype: list
 	"""
 
 	return filterItems(getTemplates(getSession(session)), pattern, field, flags)
@@ -605,9 +726,12 @@ def templateExists(path, session=None):
 	"""
 	Returns if given Template exists in the Database.
 
-	:param name: Template path. ( String )
-	:param session: Database session. ( Session )
-	:return: Template exists. ( Boolean )
+	:param name: Template path.
+	:type name: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Template exists.
+	:rtype: bool
 	"""
 
 	return filterTemplates("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
@@ -616,11 +740,16 @@ def addTemplate(name, path, collection, session=None):
 	"""
 	Adds a new Template to the Database.
 
-	:param name: Template name. ( String )
-	:param path: Template path. ( String )
-	:param collection: Collection id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param name: Template name.
+	:type name: unicode
+	:param path: Template path.
+	:type path: unicode
+	:param collection: Collection id.
+	:type collection: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return addStandardItem(Template, name, path, collection, getSession(session))
@@ -629,9 +758,12 @@ def removeTemplate(identity, session=None):
 	"""
 	Removes a Template from the Database.
 
-	:param identity: Template id. ( String )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param identity: Template id.
+	:type identity: unicode
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return removeStandardItem(Template, identity, getSession(session))
@@ -640,9 +772,12 @@ def updateTemplateContent(template, session=None):
 	"""
 	Update a Template content.
 
-	:param template: Template to Template content. ( Template )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param template: Template to Template content.
+	:type template: Template
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return updateItemContent(template, getSession(session))
@@ -651,10 +786,14 @@ def updateTemplateLocation(template, path, session=None):
 	"""
 	Updates a Template location.
 
-	:param template: Template to update. ( Template )
-	:param path: Template path. ( Path )
-	:param session: Database session. ( Session )
-	:return: Database commit success. ( Boolean )
+	:param template: Template to update.
+	:type template: Template
+	:param path: Template path.
+	:type path: Path
+	:param session: Database session.
+	:type session: Session
+	:return: Database commit success.
+	:rtype: bool
 	"""
 
 	return updateItemLocation(template, path, getSession(session))
@@ -663,8 +802,10 @@ def checkTemplatesTableIntegrity(session=None):
 	"""
 	Checks Templates table integrity.
 
-	:param session: Database session. ( Session )
-	:return: Templates table erroneous items. ( Dictionary )
+	:param session: Database session.
+	:type session: Session
+	:return: Templates table erroneous items.
+	:rtype: dict
 	"""
 
 	LOGGER.debug("> Checking 'Templates' Database table integrity.")

@@ -64,7 +64,8 @@ class CacheMetrics(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: type, content. ( Key / Value pairs )
+		:param kwargs: type, content.
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -81,7 +82,8 @@ class AbstractResourcesCache(QObject):
 	This signal is emited by the :class:`AsynchronousGraphicsItemsCache` class
 	whenever content has been added. ( pyqtSignal )
 	
-	:return: Content added to the cache. ( List )	
+	:return: Content added to the cache.
+	:rtype: list
 	"""
 
 	contentRemoved = pyqtSignal(list)
@@ -89,14 +91,16 @@ class AbstractResourcesCache(QObject):
 	This signal is emited by the :class:`AsynchronousGraphicsItemsCache` class
 	whenever content has been removed. ( pyqtSignal )
 	
-	:return: Content removed from the cache. ( List )	
+	:return: Content removed from the cache.
+	:rtype: list
 	"""
 
 	def __init__(self, parent=None):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		QObject.__init__(self, parent)
@@ -111,7 +115,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Property for **self.__mapping** attribute.
 
-		:return: self.__mapping. ( Dictionary )
+		:return: self.__mapping.
+		:rtype: dict
 		"""
 
 		return self.__mapping
@@ -122,7 +127,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Setter for **self.__mapping** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -145,8 +151,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Reimplements the :meth:`object.__getitem__` method.
 
-		:param item: Item name. ( String )
-		:return: Item. ( Object )
+		:param item: Item name.
+		:type item: unicode
+		:return: Item.
+		:rtype: object
 		"""
 
 		return self.__mapping.__getitem__(item)
@@ -155,8 +163,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Reimplements the :meth:`object.__setitem__` method.
 
-		:param key: Key. ( String )
-		:param value: Item. ( Object )
+		:param key: Key.
+		:type key: unicode
+		:param value: Item.
+		:type value: object
 		"""
 
 		self.__mapping.__setitem__(key, value)
@@ -165,7 +175,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Reimplements the :meth:`object.__iter__` method.
 
-		:return: Paths iterator. ( Object )
+		:return: Paths iterator.
+		:rtype: object
 		"""
 
 		return self.__mapping.iteritems()
@@ -174,8 +185,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Reimplements the :meth:`object.__contains__` method.
 
-		:param item: Item name. ( String )
-		:return: Item existence. ( Boolean )
+		:param item: Item name.
+		:type item: unicode
+		:return: Item existence.
+		:rtype: bool
 		"""
 
 		return item in self.__mapping.keys()
@@ -184,7 +197,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Reimplements the :meth:`object.__len__` method.
 
-		:return: Paths count. ( Integer )
+		:return: Paths count.
+		:rtype: int
 		"""
 
 		return len(self.__mapping.keys())
@@ -193,8 +207,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Returns if given content is cached.
 
-		:param key: Content to retrieve. ( Object )
-		:return: Is content cached. ( Boolean )
+		:param key: Content to retrieve.
+		:type key: object
+		:return: Is content cached.
+		:rtype: bool
 		"""
 
 		return key in self
@@ -203,7 +219,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Lists the cache content.
 
-		:return: Cache content. ( List )
+		:return: Cache content.
+		:rtype: list
 		"""
 
 		return self.__mapping.keys()
@@ -212,8 +229,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Adds given content to the cache.
 
-		:param \*\*content: Content to add. ( \*\* )
-		:return: Method success. ( Boolean )
+		:param \*\*content: Content to add.
+		:type \*\*content: \*\*
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
@@ -226,8 +245,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Removes given content from the cache.
 
-		:param \*keys: Content to remove. ( \* )
-		:return: Method success. ( Boolean )
+		:param \*keys: Content to remove.
+		:type \*keys: \*
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' content from the cache.".format(self.__class__.__name__, keys))
@@ -244,8 +265,10 @@ class AbstractResourcesCache(QObject):
 		"""
 		Gets given content from the cache.
 
-		:param key: Content to retrieve. ( Object )
-		:return: Content. ( Object )
+		:param key: Content to retrieve.
+		:type key: object
+		:return: Content.
+		:rtype: object
 		"""
 
 		LOGGER.debug("> Retrieving '{0}' content from the cache.".format(self.__class__.__name__, key))
@@ -256,7 +279,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Flushes the cache content.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Flushing cache content.".format(self.__class__.__name__))
@@ -270,7 +294,8 @@ class AbstractResourcesCache(QObject):
 		"""
 		Returns the cache metrics.
 
-		:return: Cache metrics. ( Dictionary )
+		:return: Cache metrics.
+		:rtype: dict
 		"""
 
 		cacheMetrics = CacheMetrics()
@@ -287,9 +312,12 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Initializes the class.
 		
-		:param parent: Object parent. ( QObject )
-		:param type: Cache type. ( QImage / QPixmap / QIcon )
-		:param placeholder: Placeholder image. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param type: Cache type.
+		:type type: QImage or QPixmap or QIcon
+		:param placeholder: Placeholder image.
+		:type placeholder: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -315,7 +343,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Property for **self.__type** attribute.
 
-		:return: self.__type. ( QObject )
+		:return: self.__type.
+		:rtype: QObject
 		"""
 
 		return self.__type
@@ -326,7 +355,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Setter for **self.__type** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -347,7 +377,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Property for **self.__placeholder** attribute.
 
-		:return: self.__placeholder. ( String )
+		:return: self.__placeholder.
+		:rtype: unicode
 		"""
 
 		return self.__placeholder
@@ -358,7 +389,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Setter for **self.__placeholder** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -379,7 +411,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Property for **self.__placeholderGraphicsItem** attribute.
 
-		:return: self.__placeholderGraphicsItem. ( QObject )
+		:return: self.__placeholderGraphicsItem.
+		:rtype: QObject
 		"""
 
 		return self.__placeholderGraphicsItem
@@ -390,7 +423,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Setter for **self.__placeholderGraphicsItem** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -411,7 +445,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Property for **self.__worker** attribute.
 
-		:return: self.__worker. ( QThread )
+		:return: self.__worker.
+		:rtype: QThread
 		"""
 
 		return self.__worker
@@ -422,7 +457,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Setter for **self.__worker** attribute.
 
-		:param value: Attribute value. ( QThread )
+		:param value: Attribute value.
+		:type value: QThread
 		"""
 
 		if value is not None:
@@ -448,8 +484,10 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Defines the slot triggered by :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.
 		
-		:param image: Loaded image. ( QImage )
-		:param size: Image size. ( String )
+		:param image: Loaded image.
+		:type image: QImage
+		:param size: Image size.
+		:type size: unicode
 		"""
 
 		graphicsItem = sibl_gui.ui.common.convertImage(image, self.__type)
@@ -465,7 +503,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Sets the placeholderGraphicsItem graphics item.
 		
-		:param path: Placeholder image path. ( String )
+		:param path: Placeholder image path.
+		:type path: unicode
 		"""
 
 		if not foundations.common.pathExists(path):
@@ -481,9 +520,12 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Reimplements the :meth:`AbstractResourcesCache.getContent` method.
 
-		:param key: Content to retrieve. ( Object )
-		:param size: Size to retrieve. ( String )
-		:return: Content. ( Object )
+		:param key: Content to retrieve.
+		:type key: object
+		:param size: Size to retrieve.
+		:type size: unicode
+		:return: Content.
+		:rtype: object
 		"""
 
 		LOGGER.debug("> Retrieving '{0}' content from the cache.".format(self.__class__.__name__, key))
@@ -496,7 +538,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Reimplements the :meth:`AbstractResourcesCache.flushContent` method.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Flushing cache content.".format(self.__class__.__name__))
@@ -512,8 +555,10 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Loads given content into the cache.
 		
-		:param \*\*content: Content to add. ( \*\* )
-		:return: Method success. ( Boolean )
+		:param \*\*content: Content to add.
+		:type \*\*content: \*\*
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
@@ -541,8 +586,10 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Loads given content asynchronously into the cache.
 
-		:param \*\*content: Content to add. ( \*\* )
-		:return: Method success. ( Boolean )
+		:param \*\*content: Content to add.
+		:type \*\*content: \*\*
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' content to the cache.".format(self.__class__.__name__, content))
@@ -582,7 +629,8 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		"""
 		Reimplements the :meth:`AbstractResourcesCache.getMetrics` method.
 
-		:return: Cache metrics. ( Dictionary )
+		:return: Cache metrics.
+		:rtype: dict
 		"""
 
 		cacheMetrics = AbstractResourcesCache.getMetrics(self)

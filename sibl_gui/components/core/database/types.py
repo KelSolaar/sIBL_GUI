@@ -104,24 +104,42 @@ class IblSet(Base):
 		"""
 		Initializes the class.
 
-		:param name: Ibl Set name. ( String )
-		:param path: Ibl Set file path. ( String )
-		:param osStats: Ibl Set file statistics. ( String )
-		:param collection: Ibl Set collection. ( String )
-		:param title: Ibl Set title. ( String )
-		:param author: Ibl Set author. ( String )
-		:param link: Ibl Set online link. ( String )
-		:param icon: Ibl Set icon path. ( String )
-		:param previewImage: Ibl Set preview image path. ( String )
-		:param backgroundImage: Ibl Set background image path. ( String )
-		:param lightingImage: Ibl Set lighting image path. ( String )
-		:param reflectionImage: Ibl Set reflection image path. ( String )
-		:param location: Ibl Set location. ( String )
-		:param latitude: Ibl Set latitude. ( String ),
-		:param longitude: Ibl Set longitude. ( String )
-		:param date: Ibl Set shot date. ( String )
-		:param time: Ibl Set shot time. ( String )
-		:param comment: Ibl Set comment. ( String )	
+		:param name: Ibl Set name.
+		:type name: unicode
+		:param path: Ibl Set file path.
+		:type path: unicode
+		:param osStats: Ibl Set file statistics.
+		:type osStats: unicode
+		:param collection: Ibl Set collection.
+		:type collection: unicode
+		:param title: Ibl Set title.
+		:type title: unicode
+		:param author: Ibl Set author.
+		:type author: unicode
+		:param link: Ibl Set online link.
+		:type link: unicode
+		:param icon: Ibl Set icon path.
+		:type icon: unicode
+		:param previewImage: Ibl Set preview image path.
+		:type previewImage: unicode
+		:param backgroundImage: Ibl Set background image path.
+		:type backgroundImage: unicode
+		:param lightingImage: Ibl Set lighting image path.
+		:type lightingImage: unicode
+		:param reflectionImage: Ibl Set reflection image path.
+		:type reflectionImage: unicode
+		:param location: Ibl Set location.
+		:type location: unicode
+		:param latitude: Ibl Set latitude.
+		:type latitude: unicode
+		:param longitude: Ibl Set longitude.
+		:type longitude: unicode
+		:param date: Ibl Set shot date.
+		:type date: unicode
+		:param time: Ibl Set shot time.
+		:type time: unicode
+		:param comment: Ibl Set comment.
+		:type comment: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -151,7 +169,8 @@ class IblSet(Base):
 		"""
 		Initializes the class attributes.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		sectionsFileParser = SectionsFileParser(self.path)
@@ -234,22 +253,38 @@ class Template(Base):
 		"""
 		Initializes the class.
 
-		:param name: Template name. ( String )
-		:param path: Template file path. ( String )
-		:param osStats: Template file statistics. ( String )
-		:param collection: Template collection. ( String )
-		:param helpFile: Template help file path. ( String )
-		:param title: Template title. ( String )
-		:param author: Template author. ( String )
-		:param email: Template author email. ( String )
-		:param url: Template online link. ( String )
-		:param release: Template release version. ( String )
-		:param date: Template release date. ( String )
-		:param software: Template target software. ( String )
-		:param version: Template target software version. ( String )
-		:param renderer: Template target renderer. ( String )
-		:param outputScript: Template loader script name. ( String )
-		:param comment: Template comment. ( String )
+		:param name: Template name.
+		:type name: unicode
+		:param path: Template file path.
+		:type path: unicode
+		:param osStats: Template file statistics.
+		:type osStats: unicode
+		:param collection: Template collection.
+		:type collection: unicode
+		:param helpFile: Template help file path.
+		:type helpFile: unicode
+		:param title: Template title.
+		:type title: unicode
+		:param author: Template author.
+		:type author: unicode
+		:param email: Template author email.
+		:type email: unicode
+		:param url: Template online link.
+		:type url: unicode
+		:param release: Template release version.
+		:type release: unicode
+		:param date: Template release date.
+		:type date: unicode
+		:param software: Template target software.
+		:type software: unicode
+		:param version: Template target software version.
+		:type version: unicode
+		:param renderer: Template target renderer.
+		:type renderer: unicode
+		:param outputScript: Template loader script name.
+		:type outputScript: unicode
+		:param comment: Template comment.
+		:type comment: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -277,7 +312,8 @@ class Template(Base):
 		"""
 		Initializes the class attributes.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		sectionsFileParser = SectionsFileParser(self.path)
@@ -335,9 +371,12 @@ class Collection(Base):
 		"""
 		Initializes the class.
 
-		:param name: Collection name. ( String )
-		:param type: Collection type. ( String )
-		:param comment: Collection comment. ( String )
+		:param name: Collection name.
+		:type name: unicode
+		:param type: Collection type.
+		:type type: unicode
+		:param comment: Collection comment.
+		:type comment: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

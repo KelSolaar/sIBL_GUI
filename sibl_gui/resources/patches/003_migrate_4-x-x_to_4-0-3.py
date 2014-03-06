@@ -57,7 +57,8 @@ def apply():
 	"""
 	Triggers the patch execution.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	umbra.ui.widgets.messageBox.messageBox("Information",

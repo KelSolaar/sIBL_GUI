@@ -48,7 +48,8 @@ def _setPackageDirectory():
 	"""
 	Sets the package directory in the path.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
@@ -61,7 +62,8 @@ def testsSuite():
 	"""
 	Runs the tests suite.
 	
-	:return: Tests suite. ( TestSuite )
+	:return: Tests suite.
+	:rtype: TestSuite
 	"""
 
 	testsLoader = unittest.TestLoader()

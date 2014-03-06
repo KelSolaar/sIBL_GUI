@@ -54,10 +54,14 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param rootNode: Root node. ( AbstractCompositeNode )
-		:param horizontalHeaders: Headers. ( OrderedDict )
-		:param verticalHeaders: Headers. ( OrderedDict )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param rootNode: Root node.
+		:type rootNode: AbunicodeactCompositeNode
+		:param horizontalHeaders: Headers.
+		:type horizontalHeaders: OrderedDict
+		:param verticalHeaders: Headers.
+		:type verticalHeaders: OrderedDict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -75,8 +79,10 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 		"""
 		Initializes the Model using given root node.
 		
-		:param rootNode: Graph root node. ( DefaultNode )
-		:return: Method success ( Boolean )
+		:param rootNode: Graph root node.
+		:type rootNode: DefaultNode
+		:return: Method success
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))

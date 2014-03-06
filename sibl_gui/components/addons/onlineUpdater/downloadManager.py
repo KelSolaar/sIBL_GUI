@@ -77,12 +77,18 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param networkAccessManager: Network access manager. ( QNetworkAccessManager )
-		:param downloadDirectory: Download directory. ( String )
-		:param requests: Download requests. ( List )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param networkAccessManager: Network access manager.
+		:type networkAccessManager: QNetworkAccessManager
+		:param downloadDirectory: Download directory.
+		:type downloadDirectory: unicode
+		:param requests: Download requests.
+		:type requests: list
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -118,7 +124,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__container** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__container.
+		:rtype: QObject
 		"""
 
 		return self.__container
@@ -129,7 +136,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__container** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -150,7 +158,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__networkAccessManager** attribute.
 
-		:return: self.__networkAccessManager. ( QNetworkAccessManager )
+		:return: self.__networkAccessManager.
+		:rtype: QNetworkAccessManager
 		"""
 
 		return self.__networkAccessManager
@@ -161,7 +170,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__networkAccessManager** attribute.
 
-		:param value: Attribute value. ( QNetworkAccessManager )
+		:param value: Attribute value.
+		:type value: QNetworkAccessManager
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -182,7 +192,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__downloadDirectory** attribute.
 
-		:return: self.__downloadDirectory. ( String )
+		:return: self.__downloadDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__downloadDirectory
@@ -193,7 +204,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__downloadDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -214,7 +226,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -225,7 +238,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -246,7 +260,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiLogoImage** attribute.
 
-		:return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLogoImage
@@ -257,7 +272,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiLogoImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -278,7 +294,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__requests** attribute.
 
-		:return: self.__requests. ( List )
+		:return: self.__requests.
+		:rtype: list
 		"""
 
 		return self.__requests
@@ -289,7 +306,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__requests** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		if value is not None:
@@ -314,7 +332,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__downloads** attribute.
 
-		:return: self.__downloads. ( Dictionary )
+		:return: self.__downloads.
+		:rtype: dict
 		"""
 
 		return self.__downloads
@@ -325,7 +344,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__downloads** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -346,7 +366,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__currentRequest** attribute.
 
-		:return: self.__currentRequest. ( QNetworkReply )
+		:return: self.__currentRequest.
+		:rtype: QNetworkReply
 		"""
 
 		return self.__currentRequest
@@ -357,7 +378,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__currentRequest** attribute.
 
-		:param value: Attribute value. ( QNetworkReply )
+		:param value: Attribute value.
+		:type value: QNetworkReply
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -378,7 +400,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__currentFile** attribute.
 
-		:return: self.__currentFile. ( QFile )
+		:return: self.__currentFile.
+		:rtype: QFile
 		"""
 
 		return self.__currentFile
@@ -389,7 +412,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__currentFile** attribute.
 
-		:param value: Attribute value. ( QFile )
+		:param value: Attribute value.
+		:type value: QFile
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -410,7 +434,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__currentFilePath** attribute.
 
-		:return: self.__currentFilePath. ( String )
+		:return: self.__currentFilePath.
+		:rtype: unicode
 		"""
 
 		return self.__currentFilePath
@@ -421,7 +446,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__currentFilePath** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -442,7 +468,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__downloadStatus** attribute.
 
-		:return: self.__downloadStatus. ( QObject )
+		:return: self.__downloadStatus.
+		:rtype: QObject
 		"""
 
 		return self.__downloadStatus
@@ -453,7 +480,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__downloadStatus** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -476,7 +504,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Reimplements the :meth:`QWidget.closeEvent` method.
 
-		:param event: QEvent. ( QEvent )
+		:param event: QEvent.
+		:type event: QEvent
 		"""
 
 		self.__downloadStatus or self.abortDownload()
@@ -502,7 +531,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Defines the slot triggered by **Cancel_Close_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.close()
@@ -544,8 +574,10 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Updates the download progress.
 
-		:param bytesReceived: Bytes received. ( Integer )
-		:param bytesTotal: Bytes total. ( Integer )
+		:param bytesReceived: Bytes received.
+		:type bytesReceived: int
+		:param bytesTotal: Bytes total.
+		:type bytesTotal: int
 		"""
 
 		LOGGER.debug("> Updating download progress: '{0}' bytes received, '{1}' bytes total.".format(bytesReceived,
@@ -591,7 +623,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Triggers the download.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.__downloadStatus = False
@@ -602,7 +635,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Aborts the current download.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.__currentRequest.abort()

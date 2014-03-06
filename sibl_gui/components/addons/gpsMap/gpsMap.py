@@ -70,10 +70,14 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -105,7 +109,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -116,7 +121,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -137,7 +143,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__uiZoomInImage** attribute.
 
-		:return: self.__uiZoomInImage. ( String )
+		:return: self.__uiZoomInImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiZoomInImage
@@ -148,7 +155,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__uiZoomInImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -169,7 +177,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__uiZoomOutImage** attribute.
 
-		:return: self.__uiZoomOutImage. ( String )
+		:return: self.__uiZoomOutImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiZoomOutImage
@@ -180,7 +189,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__uiZoomOutImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -201,7 +211,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__gpsMapHtmlFile** attribute.
 
-		:return: self.__gpsMapHtmlFile. ( String )
+		:return: self.__gpsMapHtmlFile.
+		:rtype: unicode
 		"""
 
 		return self.__gpsMapHtmlFile
@@ -212,7 +223,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__gpsMapHtmlFile** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -265,7 +277,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -276,7 +289,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -297,7 +311,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -308,7 +323,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -329,7 +345,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -340,7 +357,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -361,7 +379,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__map** attribute.
 
-		:return: self.__map. ( QObject )
+		:return: self.__map.
+		:rtype: QObject
 		"""
 
 		return self.__map
@@ -372,7 +391,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__map** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -393,7 +413,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Property for **self.__mapTypeIds** attribute.
 
-		:return: self.__mapTypeIds. ( Tuple )
+		:return: self.__mapTypeIds.
+		:rtype: tuple
 		"""
 
 		return self.__mapTypeIds
@@ -404,7 +425,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Setter for **self.__mapTypeIds** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -427,8 +449,10 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -446,7 +470,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -464,7 +489,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -498,7 +524,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		# Signals / Slots.
@@ -520,7 +547,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -533,7 +561,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -547,7 +576,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered on Framework close.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
@@ -559,8 +589,10 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered by **Data** Model when selection changed
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.setMarkersUi()
@@ -569,7 +601,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered by **Map_Type_comboBox** when activated.
 
-		:param index: ComboBox activated item index. ( Integer )
+		:param index: ComboBox activated item index.
+		:type index: int
 		"""
 
 		self.__map.setMapType(self.__mapTypeIds[index][1])
@@ -578,7 +611,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered by **Zoom_In_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__map.setZoom("In")
@@ -587,7 +621,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered by **Zoom_Out_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__map.setZoom("Out")
@@ -596,7 +631,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Defines the slot triggered by the GPS map when load finished.
 
-		:param state: Loading state. ( Boolean )
+		:param state: Loading state.
+		:type state: bool
 		"""
 
 		self.setMarkersUi()
@@ -606,7 +642,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Sets selected Ibl Sets markers.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		
 		:note: This method may require user interaction.
 		"""
@@ -628,8 +665,10 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Sets given Ibl Set marker.
 
-		:param iblSet: Ibl Set to display marker. ( IblSet )
-		:return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to display marker.
+		:type iblSet: IblSet
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not iblSet.latitude and not iblSet.longitude:
@@ -650,7 +689,8 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 		Removes the GPS map markers.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.__map.removeMarkers()

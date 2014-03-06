@@ -81,7 +81,8 @@ class ReleaseObject(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
+		:param kwargs: name, repositoryVersion, localVersion, type, url, comment.
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -99,10 +100,14 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param releases: Releases. ( Dictionary )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param releases: Releases.
+		:type releases: dict
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -146,7 +151,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__container** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__container.
+		:rtype: QObject
 		"""
 
 		return self.__container
@@ -157,7 +163,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__container** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -178,7 +185,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__releases** attribute.
 
-		:return: self.__releases. ( Dictionary )
+		:return: self.__releases.
+		:rtype: dict
 		"""
 
 		return self.__releases
@@ -189,7 +197,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__releases** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		if value is not None:
@@ -216,7 +225,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -227,7 +237,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -248,7 +259,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiLogoImage** attribute.
 
-		:return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLogoImage
@@ -259,7 +271,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiLogoImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -280,7 +293,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiTemplatesImage** attribute.
 
-		:return: self.__uiTemplatesImage. ( String )
+		:return: self.__uiTemplatesImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiTemplatesImage
@@ -291,7 +305,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiTemplatesImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -312,7 +327,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiLightGrayColor** attribute.
 
-		:return: self.__uiLightGrayColor. ( QColor )
+		:return: self.__uiLightGrayColor.
+		:rtype: QColor
 		"""
 
 		return self.__uiLightGrayColor
@@ -323,7 +339,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiLightGrayColor** attribute.
 
-		:param value: Attribute value. ( QColor )
+		:param value: Attribute value.
+		:type value: QColor
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -344,7 +361,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__uiDarkGrayColor** attribute.
 
-		:return: self.__uiDarkGrayColor. ( QColor )
+		:return: self.__uiDarkGrayColor.
+		:rtype: QColor
 		"""
 
 		return self.__uiDarkGrayColor
@@ -355,7 +373,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__uiDarkGrayColor** attribute.
 
-		:param value: Attribute value. ( QColor )
+		:param value: Attribute value.
+		:type value: QColor
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -376,7 +395,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -387,7 +407,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -408,7 +429,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__splitter** attribute.
 
-		:return: self.__splitter. ( String )
+		:return: self.__splitter.
+		:rtype: unicode
 		"""
 
 		return self.__splitter
@@ -419,7 +441,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__splitter** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -440,7 +463,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__headers** attribute.
 
-		:return: self.__headers. ( String )
+		:return: self.__headers.
+		:rtype: unicode
 		"""
 
 		return self.__headers
@@ -451,7 +475,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__headers** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -472,7 +497,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__applicationChangesUrl** attribute.
 
-		:return: self.__applicationChangesUrl. ( String )
+		:return: self.__applicationChangesUrl.
+		:rtype: unicode
 		"""
 
 		return self.__applicationChangesUrl
@@ -483,7 +509,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__applicationChangesUrl** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -504,7 +531,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__repositoryUrl** attribute.
 
-		:return: self.__repositoryUrl. ( String )
+		:return: self.__repositoryUrl.
+		:rtype: unicode
 		"""
 
 		return self.__repositoryUrl
@@ -515,7 +543,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__repositoryUrl** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -536,7 +565,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__downloadManager** attribute.
 
-		:return: self.__downloadManager. ( Object )
+		:return: self.__downloadManager.
+		:rtype: object
 		"""
 
 		return self.__downloadManager
@@ -547,7 +577,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__downloadManager** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -568,7 +599,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Property for **self.__networkAccessManager** attribute.
 
-		:return: self.__networkAccessManager. ( QNetworkAccessManager )
+		:return: self.__networkAccessManager.
+		:rtype: QNetworkAccessManager
 		"""
 
 		return self.__networkAccessManager
@@ -579,7 +611,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Setter for **self.__networkAccessManager** attribute.
 
-		:param value: Attribute value. ( QNetworkAccessManager )
+		:param value: Attribute value.
+		:type value: QNetworkAccessManager
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -685,7 +718,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Defines the slot triggered by **Get_sIBL_GUI_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
 		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
@@ -710,7 +744,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Defines the slot triggered by **Get_Latest_Templates_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		requests = []
@@ -739,7 +774,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Defines the slot triggered by **Open_Repository_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(self.__repositoryUrl))
@@ -749,7 +785,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Closes the RemoteUpdater.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		LOGGER.info("{0} | Closing '{1}' updater!".format(self.__class__.__name__, Constants.applicationName))
@@ -810,8 +847,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		Uncompress the given zip file.
 
-		:param file: File to extract. ( String )
-		:return: Extraction success. ( Boolean )
+		:param file: File to extract.
+		:type file: unicode
+		:return: Extraction success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' file uncompress.".format(file))

@@ -69,15 +69,24 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 		Initializes the class.
 
-		:param name: Node name.  ( String )
-		:param parent: Node parent. ( GraphModelNode )
-		:param children: Children. ( List )
-		:param roles: Roles. ( Dictionary )
-		:param nodeFlags: Node flags. ( Integer )
-		:param attributesFlags: Attributes flags. ( Integer )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param name: Node name.
+		:type name: unicode
+		:param parent: Node parent.
+		:type parent: GraphModelNode
+		:param children: Children.
+		:type children: list
+		:param roles: Roles.
+		:type roles: dict
+		:param nodeFlags: Node flags.
+		:type nodeFlags: int
+		:param attributesFlags: Attributes flags.
+		:type attributesFlags: int
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -101,7 +110,8 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 		Initializes the node.
 		
-		:param attributesFlags: Attributes flags. ( Integer )
+		:param attributesFlags: Attributes flags.
+		:type attributesFlags: int
 		"""
 
 		self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(name="count",
@@ -114,7 +124,8 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 		Updates the node.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.updateNodeAttributes()
@@ -123,7 +134,8 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 		Updates the Node attributes.
 		
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.count.value = self.count.roles[Qt.DisplayRole] = sum(node.count.value for node in self.children)

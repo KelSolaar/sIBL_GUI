@@ -62,10 +62,14 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -87,7 +91,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Property for **self.__container** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__container.
+		:rtype: QObject
 		"""
 
 		return self.__container
@@ -98,7 +103,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Setter for **self.__container** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -119,7 +125,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Property for **self.__treeViewIndentation** attribute.
 
-		:return: self.__treeViewIndentation. ( Integer )
+		:return: self.__treeViewIndentation.
+		:rtype: int
 		"""
 
 		return self.__treeViewIndentation
@@ -130,7 +137,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Setter for **self.__treeViewIndentation** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -153,7 +161,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.
 
-		:param event: QEvent. ( QEvent )
+		:param event: QEvent.
+		:type event: QEvent
 		"""
 
 		if event.mimeData().hasFormat("application/x-umbragraphmodeldatalist"):
@@ -166,7 +175,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragMoveEvent` method.
 
-		:param event: QEvent. ( QEvent )
+		:param event: QEvent.
+		:type event: QEvent
 		"""
 
 		pass
@@ -178,7 +188,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dropEvent` method.
 
-		:param event: QEvent. ( QEvent )
+		:param event: QEvent.
+		:type event: QEvent
 		"""
 
 		if not self.readOnly:
@@ -249,7 +260,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Stores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Storing Model selection!")
@@ -266,7 +278,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 		Restores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Restoring Model selection!")

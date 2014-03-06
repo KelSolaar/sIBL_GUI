@@ -55,7 +55,8 @@ class LoggingNotifier(Component):
 		"""
 		Initializes the class.
 
-		:param name: Component name. ( String )
+		:param name: Component name.
+		:type name: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -77,7 +78,8 @@ class LoggingNotifier(Component):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -88,7 +90,8 @@ class LoggingNotifier(Component):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -109,7 +112,8 @@ class LoggingNotifier(Component):
 		"""
 		Property for **self.__memoryHandlerStackDepth** attribute.
 
-		:return: self.__memoryHandlerStackDepth. ( Integer )
+		:return: self.__memoryHandlerStackDepth.
+		:rtype: int
 		"""
 
 		return self.__memoryHandlerStackDepth
@@ -120,7 +124,8 @@ class LoggingNotifier(Component):
 		"""
 		Setter for **self.__memoryHandlerStackDepth** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -143,8 +148,10 @@ class LoggingNotifier(Component):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -158,7 +165,8 @@ class LoggingNotifier(Component):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -172,7 +180,8 @@ class LoggingNotifier(Component):
 		"""
 		Initializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -187,7 +196,8 @@ class LoggingNotifier(Component):
 		"""
 		Uninitializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))

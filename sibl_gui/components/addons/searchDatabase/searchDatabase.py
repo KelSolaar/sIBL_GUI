@@ -74,10 +74,14 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -107,7 +111,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -118,7 +123,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -139,7 +145,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__viewSpacing** attribute.
 
-		:return: self.__viewSpacing. ( Integer )
+		:return: self.__viewSpacing.
+		:rtype: int
 		"""
 
 		return self.__viewSpacing
@@ -150,7 +157,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__viewSpacing** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -171,7 +179,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -182,7 +191,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -204,7 +214,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -215,7 +226,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -236,7 +248,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__collectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__collectionsOutliner
@@ -247,7 +260,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__collectionsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -268,7 +282,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -279,7 +294,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -300,7 +316,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__cloudExcludedTags** attribute.
 
-		:return: self.__cloudExcludedTags. ( List )
+		:return: self.__cloudExcludedTags.
+		:rtype: list
 		"""
 
 		return self.__cloudExcludedTags
@@ -311,7 +328,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__cloudExcludedTags** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -334,8 +352,10 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -352,7 +372,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -369,7 +390,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -415,7 +437,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -439,7 +462,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -452,7 +476,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -466,7 +491,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Search_Database_lineEdit** Widget when text changed.
 
-		:param text: Current text value. ( QString )
+		:param text: Current text value.
+		:type text: QString
 		"""
 
 		self.setTagsCloudMatchingIblsSetsUi()
@@ -475,7 +501,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Case_Sensitive_Matching_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.setTagsCloudMatchingIblsSetsUi()
@@ -484,7 +511,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Time_Low_timeEdit** Widget when time changed.
 
-		:param time: Current time. ( QTime )
+		:param time: Current time.
+		:type time: QTime
 		"""
 
 		self.Time_Low_timeEdit.time() >= self.Time_High_timeEdit.time() and \
@@ -495,7 +523,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Time_Low_timeEdit** Widget when time changed.
 
-		:param time: Current time. ( QTime )
+		:param time: Current time.
+		:type time: QTime
 		"""
 
 		self.Time_High_timeEdit.time() <= self.Time_Low_timeEdit.time() and \
@@ -506,7 +535,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by the View when double clicked.
 
-		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
+		:param listWidgetItem: List Widget item.
+		:type listWidgetItem: QlistWidgetItem
 		"""
 
 		self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), listWidgetItem.text()))
@@ -515,8 +545,10 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **collectionsOutliner.view** Model when selection changed
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.setTagsCloudMatchingIblsSetsUi()
@@ -526,7 +558,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Sets the user defined pattern matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		
 		:note: This method may require user interaction.
 		"""
@@ -539,7 +572,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Sets the user defined time matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		
 		:note: This method may require user interaction.
 		"""
@@ -551,9 +585,12 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Sets the pattern matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 
-		:param pattern: Filtering pattern. ( String )
-		:param flags: Regex filtering flags. ( Integer )
-		:return: Method success. ( Boolean )
+		:param pattern: Filtering pattern.
+		:type pattern: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Filtering Ibl Sets by Tags.")
@@ -606,9 +643,12 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Sets the time matching Ibl Sets and 
 		updates :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Model content.
 		
-		:param timeLow: Time low. ( QTime )
-		:param timeHigh: Time high. ( QTime )
-		:return: Method success. ( Boolean )
+		:param timeLow: Time low.
+		:type timeLow: QTime
+		:param timeHigh: Time high.
+		:type timeHigh: QTime
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))

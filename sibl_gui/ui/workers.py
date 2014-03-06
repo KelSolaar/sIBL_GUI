@@ -62,14 +62,16 @@ class GraphicsItem_worker(QThread):
 	"""
 	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded. ( pyqtSignal )
 	
-	:return: Loaded image. ( QImage )		
+	:return: Loaded image.
+	:rtype: QImage
 	"""
 
 	def __init__(self, parent=None):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -88,7 +90,8 @@ class GraphicsItem_worker(QThread):
 		"""
 		Property for **self.__requests** attribute.
 
-		:return: self.__requests. ( Queue )
+		:return: self.__requests.
+		:rtype: Queue
 		"""
 
 		return self.__requests
@@ -99,7 +102,8 @@ class GraphicsItem_worker(QThread):
 		"""
 		Setter for **self.__requests** attribute.
 
-		:param value: Attribute value. ( Queue )
+		:param value: Attribute value.
+		:type value: Queue
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -123,8 +127,10 @@ class GraphicsItem_worker(QThread):
 		"""
 		Adds given request to the requests queue.
 
-		:param request: Request. ( Tuple / List )
-		:return: Method success. ( Boolean )
+		:param request: Request.
+		:type request: tuple or list
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		path, size = request
@@ -140,7 +146,8 @@ class GraphicsItem_worker(QThread):
 		"""
 		Flushes the requests queue.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		with self.__requests.mutex:

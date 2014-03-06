@@ -56,7 +56,8 @@ def apply():
 	"""
 	Triggers the patch execution.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	defaultScriptEditorDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory,

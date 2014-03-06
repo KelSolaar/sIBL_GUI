@@ -55,8 +55,10 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
 	Extracts sIBL_GUI Documentation body for HDRLabs.com.
 
-	:param fileIn: File to convert. ( String )
-	:param fileOut: Output file. ( String )
+	:param fileIn: File to convert.
+	:type fileIn: unicode
+	:param fileOut: Output file.
+	:type fileOut: unicode
 	"""
 
 	LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))

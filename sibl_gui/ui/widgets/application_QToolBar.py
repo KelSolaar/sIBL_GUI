@@ -82,7 +82,8 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		"""
 		Sets the toolBar children widgets.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
@@ -119,7 +120,8 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		"""
 		Returns the layouts **Active_QLabel** widgets.
 
-		:return: Layouts active labels. ( List )
+		:return: Layouts active labels.
+		:rtype: list
 		"""
 
 		self.__layoutsActiveLabelsCollection = Active_QLabelsCollection(self)
@@ -168,7 +170,8 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		"""
 		Provides the default **Central_Widget_activeLabel** widget.
 
-		:return: Central Widget active label. ( Active_QLabel )
+		:return: Central Widget active label.
+		:rtype: Active_QLabel
 		"""
 
 		centralWidgetButton = Active_QLabel(self,
@@ -185,7 +188,8 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		"""
 		Extends the default **Miscellaneous_activeLabel** widget.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.miscellaneousMenu.addAction(self.__container.actionsManager.registerAction(
@@ -198,8 +202,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		"""
 		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
 
-		:param checked: Checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.makeDonationFile))

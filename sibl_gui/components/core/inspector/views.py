@@ -61,10 +61,14 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -84,7 +88,8 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Property for **self.__listViewIconSize** attribute.
 
-		:return: self.__listViewIconSize. ( Integer )
+		:return: self.__listViewIconSize.
+		:rtype: int
 		"""
 
 		return self.__listViewIconSize
@@ -95,7 +100,8 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		"""
 		Setter for **self.__listViewIconSize** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(

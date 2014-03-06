@@ -65,7 +65,8 @@ class Database(Component):
 		"""
 		Initializes the class.
 
-		:param name: Component name. ( String )
+		:param name: Component name.
+		:type name: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -96,7 +97,8 @@ class Database(Component):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -107,7 +109,8 @@ class Database(Component):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -128,7 +131,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseName** attribute.
 
-		:return: self.__databaseName. ( String )
+		:return: self.__databaseName.
+		:rtype: unicode
 		"""
 
 		return self.__databaseName
@@ -139,7 +143,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseName** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -160,7 +165,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseEngine** attribute.
 
-		:return: self.__databaseEngine. ( Object )
+		:return: self.__databaseEngine.
+		:rtype: object
 		"""
 
 		return self.__databaseEngine
@@ -171,7 +177,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseEngine** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -192,7 +199,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseCatalog** attribute.
 
-		:return: self.__databaseCatalog. ( Object )
+		:return: self.__databaseCatalog.
+		:rtype: object
 		"""
 
 		return self.__databaseCatalog
@@ -203,7 +211,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseCatalog** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -224,7 +233,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseSession** attribute.
 
-		:return: self.__databaseSession. ( Object )
+		:return: self.__databaseSession.
+		:rtype: object
 		"""
 
 		return self.__databaseSession
@@ -235,7 +245,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseSession** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -256,7 +267,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseSessionMaker** attribute.
 
-		:return: self.__databaseSessionMaker. ( Object )
+		:return: self.__databaseSessionMaker.
+		:rtype: object
 		"""
 
 		return self.__databaseSessionMaker
@@ -267,7 +279,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseSessionMaker** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -288,7 +301,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseConnectionString** attribute.
 
-		:return: self.__databaseConnectionString. ( String )
+		:return: self.__databaseConnectionString.
+		:rtype: unicode
 		"""
 
 		return self.__databaseConnectionString
@@ -299,7 +313,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseConnectionString** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -320,7 +335,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseBackupDirectory** attribute.
 
-		:return: self.__databaseBackupDirectory. ( String )
+		:return: self.__databaseBackupDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__databaseBackupDirectory
@@ -331,7 +347,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseBackupDirectory** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -352,7 +369,8 @@ class Database(Component):
 		"""
 		Property for **self.__databaseBackupCount** attribute.
 
-		:return: self.__databaseBackupCount. ( String )
+		:return: self.__databaseBackupCount.
+		:rtype: unicode
 		"""
 
 		return self.__databaseBackupCount
@@ -363,7 +381,8 @@ class Database(Component):
 		"""
 		Setter for **self.__databaseBackupCount** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -386,8 +405,10 @@ class Database(Component):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -410,7 +431,8 @@ class Database(Component):
 		"""
 		Initializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -474,7 +496,8 @@ class Database(Component):
 		"""
 		Commits pending changes in the Database.
 	
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return sibl_gui.components.core.database.operations.commit(self.__databaseSession)

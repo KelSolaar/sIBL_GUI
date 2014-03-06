@@ -56,7 +56,8 @@ class Mixin_AbstractView(object):
 		"""
 		Initializes the class.
 
-		:param model: Model. ( QObject )
+		:param model: Model.
+		:type model: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -74,7 +75,8 @@ class Mixin_AbstractView(object):
 		"""
 		Property for **self.__modelSelection** attribute.
 
-		:return: self.__modelSelection. ( Dictionary )
+		:return: self.__modelSelection.
+		:rtype: dict
 		"""
 
 		return self.__modelSelection
@@ -85,7 +87,8 @@ class Mixin_AbstractView(object):
 		"""
 		Setter for **self.__modelSelection** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		if value is not None:
@@ -114,7 +117,8 @@ class Mixin_AbstractView(object):
 		"""
 		Reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
 		
-		:param model: Model to set. ( QObject )
+		:param model: Model to set.
+		:type model: QObject
 		"""
 
 		if not model:
@@ -146,7 +150,8 @@ class Mixin_AbstractView(object):
 		"""
 		Stores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Storing Model selection!")
@@ -160,7 +165,8 @@ class Mixin_AbstractView(object):
 		"""
 		Restores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Restoring Model selection!")
@@ -187,10 +193,14 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -207,10 +217,14 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

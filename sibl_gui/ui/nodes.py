@@ -76,7 +76,8 @@ class Mixin_GraphModelObject(object):
 		"""
 		Property for **self.__iconSize** attribute.
 
-		:return: self.__iconSize. ( String )
+		:return: self.__iconSize.
+		:rtype: unicode
 		"""
 
 		return self.__iconSize
@@ -87,7 +88,8 @@ class Mixin_GraphModelObject(object):
 		"""
 		Setter for **self.__iconSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -110,7 +112,8 @@ class Mixin_GraphModelObject(object):
 		"""
 		Property for **self.__iconPlaceholder** attribute.
 
-		:return: self.__iconPlaceholder. ( QIcon )
+		:return: self.__iconPlaceholder.
+		:rtype: QIcon
 		"""
 
 		return self.__iconPlaceholder
@@ -121,7 +124,8 @@ class Mixin_GraphModelObject(object):
 		"""
 		Setter for **self.__iconPlaceholder** attribute.
 
-		:param value: Attribute value. ( QIcon )
+		:param value: Attribute value.
+		:type value: QIcon
 		"""
 
 		if value is not None:
@@ -155,13 +159,20 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 		"""
 		Initializes the class.
 
-		:param name: Attribute name. ( String )
-		:param value: Attribute value. ( Object )
-		:param roles: Roles. ( Dictionary )
-		:param flags: Flags. ( Integer )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param name: Attribute name.
+		:type name: unicode
+		:param value: Attribute value.
+		:type value: object
+		:param roles: Roles.
+		:type roles: dict
+		:param flags: Flags.
+		:type flags: int
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -193,14 +204,21 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 		"""
 		Initializes the class.
 
-		:param name: Node name.  ( String )
-		:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
-		:param children: Children. ( List )
-		:param roles: Roles. ( Dictionary )
+		:param name: Node name.
+		:type name: unicode
+		:param parent: Node parent.
+		:type parent: AbunicodeactNode or AbunicodeactCompositeNode
+		:param children: Children.
+		:type children: list
+		:param roles: Roles.
+		:type roles: dict
 		:param flags: Flags. ( Qt.ItemFlag )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

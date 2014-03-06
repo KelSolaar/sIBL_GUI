@@ -420,8 +420,10 @@ def pointer(data):
 	Converts None to a real NULL pointer to work around bugs
 	in how ctypes handles None on 64-bit platforms.
 	
-	:param data: Data . ( Object )
-	:return: Pointer. ( POINTER )
+	:param data: Data .
+	:type data: object
+	:return: Pointer.
+	:rtype: POINTER
 	"""
 
 	pointer = ctypes.POINTER(data)
@@ -443,8 +445,10 @@ def unchecked(type):
 	nor does it support custom datatypes on callbacks, so we must ensure that all callbacks return primitive datatypes.
 	Non-primitive return values wrapped with unchecked won't be typechecked, and will be converted to c_void_p.
 
-	:param type: Type . ( Object )
-	:return: Type. ( Object )
+	:param type: Type .
+	:type type: object
+	:return: Type.
+	:rtype: object
 	"""
 
 	if (hasattr(type, "_type_") and isinstance(type._type_, str) and type._type_ != "P"):
@@ -2002,7 +2006,8 @@ def getFreeImageLibraryPath():
 	"""
 	Returns the FreeImage library path.
 
-	:return: FreeImage library path. ( String )
+	:return: FreeImage library path.
+	:rtype: unicode
 	"""
 
 	global FREEIMAGE_LIBRARY_PATH
@@ -2023,7 +2028,8 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: path, width, height, bpp, osStats. ( Key / Value pairs )
+		:param kwargs: path, width, height, bpp, osStats.
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -2039,7 +2045,8 @@ class Image(object):
 		"""
 		Initializes the class.
 
-		:param imagePath: Image path. ( String )
+		:param imagePath: Image path.
+		:type imagePath: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -2066,7 +2073,8 @@ class Image(object):
 		"""
 		Property for **self.__library** attribute.
 
-		:return: self.__library. ( Library )
+		:return: self.__library.
+		:rtype: Library
 		"""
 
 		return self.__library
@@ -2077,7 +2085,8 @@ class Image(object):
 		"""
 		Setter for **self.__library** attribute.
 
-		:param value: Attribute value. ( Library )
+		:param value: Attribute value.
+		:type value: Library
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2098,7 +2107,8 @@ class Image(object):
 		"""
 		Property for **self.__errorsCallback** attribute.
 
-		:return: self.__errorsCallback. ( Object )
+		:return: self.__errorsCallback.
+		:rtype: object
 		"""
 
 		return self.__errorsCallback
@@ -2109,7 +2119,8 @@ class Image(object):
 		"""
 		Setter for **self.__errorsCallback** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2130,7 +2141,8 @@ class Image(object):
 		"""
 		Property for **self.__imagePath** attribute.
 
-		:return: self.__imagePath. ( String )
+		:return: self.__imagePath.
+		:rtype: unicode
 		"""
 
 		return self.__imagePath
@@ -2141,7 +2153,8 @@ class Image(object):
 		"""
 		Setter for **self.__imagePath** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -2163,7 +2176,8 @@ class Image(object):
 		"""
 		Property for **self.__bitmap** attribute.
 
-		:return: self.__bitmap. ( Object )
+		:return: self.__bitmap.
+		:rtype: object
 		"""
 
 		return self.__bitmap
@@ -2174,7 +2188,8 @@ class Image(object):
 		"""
 		Setter for **self.__bitmap** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		self.__bitmap = value
@@ -2205,8 +2220,10 @@ class Image(object):
 		"""
 		Gets the file format.
 
-		:param imagePath: Image path. ( String )
-		:return: File format. ( FREE_IMAGE_FORMAT )
+		:param imagePath: Image path.
+		:type imagePath: unicode
+		:return: File format.
+		:rtype: FREE_IMAGE_FORMAT
 		"""
 
 		imagePath = imagePath or self.__imagePath
@@ -2223,7 +2240,8 @@ class Image(object):
 		"""
 		Loads the file.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not self.__imagePath:
@@ -2243,7 +2261,8 @@ class Image(object):
 		"""
 		Saves the file.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
@@ -2253,10 +2272,14 @@ class Image(object):
 		"""
 		Saves the image to the given file.
 
-		:param imageFormat: Image format. ( Integer )
-		:param imagePath: Image path. ( String )
-		:param flags: Save flags. ( Integer )
-		:return: Method success. ( Boolean )
+		:param imageFormat: Image format.
+		:type imageFormat: int
+		:param imagePath: Image path.
+		:type imagePath: unicode
+		:param flags: Save flags.
+		:type flags: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
@@ -2273,9 +2296,12 @@ class Image(object):
 		"""
 		Converts the bitmap to given type.
 
-		:param targetType: Target type. ( Integer )
-		:param linearScale: Linear scale. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param targetType: Target type.
+		:type targetType: int
+		:param linearScale: Linear scale.
+		:type linearScale: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Converting '{0}' image bitmap to type '{1}'!".format(self.__imagePath, targetType))
@@ -2288,8 +2314,10 @@ class Image(object):
 		"""
 		Converts the HDR bitmap to LDR.
 
-		:param gamma: Image conversion gamma. ( Float )
-		:return: Method success. ( Boolean )
+		:param gamma: Image conversion gamma.
+		:type gamma: float
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Converting '{0}' HDR image bitmap to LDR!".format(self.__imagePath))
@@ -2303,7 +2331,8 @@ class Image(object):
 		"""
 		Converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 
-		:return: Converted image. ( QImage )
+		:return: Converted image.
+		:rtype: QImage
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)

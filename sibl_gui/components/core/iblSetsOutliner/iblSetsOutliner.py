@@ -105,17 +105,22 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	This signal is emited by the :class:`IblSetsOutliner` class when the current active View is changed. ( pyqtSignal )
 	
-	:return: Current active view index. ( Integer )	
+	:return: Current active view index.
+	:rtype: int
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -185,7 +190,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -196,7 +202,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -217,7 +224,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiThumbnailsViewImage** attribute.
 
-		:return: self.__uiThumbnailsViewImage. ( String )
+		:return: self.__uiThumbnailsViewImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiThumbnailsViewImage
@@ -228,7 +236,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiThumbnailsViewImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -249,7 +258,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiColumnsViewImage** attribute.
 
-		:return: self.__uiColumnsViewImage. ( String )
+		:return: self.__uiColumnsViewImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiColumnsViewImage
@@ -260,7 +270,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiColumnsViewImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -281,7 +292,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiDetailsViewImage** attribute.
 
-		:return: self.__uiDetailsViewImage. ( String )
+		:return: self.__uiDetailsViewImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiDetailsViewImage
@@ -292,7 +304,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiDetailsViewImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -313,7 +326,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiLargestSizeImage** attribute.
 
-		:return: self.__uiLargestSizeImage. ( String )
+		:return: self.__uiLargestSizeImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLargestSizeImage
@@ -324,7 +338,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiLargestSizeImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -345,7 +360,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiSmallestSizeImage** attribute.
 
-		:return: self.__uiSmallestSizeImage. ( String )
+		:return: self.__uiSmallestSizeImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiSmallestSizeImage
@@ -356,7 +372,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiSmallestSizeImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -377,7 +394,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiPanoramicLoadingImage** attribute.
 
-		:return: self.__uiPanoramicLoadingImage. ( String )
+		:return: self.__uiPanoramicLoadingImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiPanoramicLoadingImage
@@ -388,7 +406,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiPanoramicLoadingImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -409,7 +428,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiSquareLoadingImage** attribute.
 
-		:return: self.__uiSquareLoadingImage. ( String )
+		:return: self.__uiSquareLoadingImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiSquareLoadingImage
@@ -420,7 +440,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiSquareLoadingImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -440,7 +461,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiSwitchThumbnailsTypeImage** attribute.
 
-		:return: self.__uiSwitchThumbnailsTypeImage. ( String )
+		:return: self.__uiSwitchThumbnailsTypeImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiSwitchThumbnailsTypeImage
@@ -451,7 +473,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiSwitchThumbnailsTypeImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -472,7 +495,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -483,7 +507,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -504,7 +529,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -515,7 +541,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -536,7 +563,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__settings** attribute.
 
-		:return: self.__settings. ( QSettings )
+		:return: self.__settings.
+		:rtype: QSettings
 		"""
 
 		return self.__settings
@@ -547,7 +575,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__settings** attribute.
 
-		:param value: Attribute value. ( QSettings )
+		:param value: Attribute value.
+		:type value: QSettings
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -568,7 +597,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__settingsSection** attribute.
 
-		:return: self.__settingsSection. ( String )
+		:return: self.__settingsSection.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSection
@@ -579,7 +609,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__settingsSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -600,7 +631,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__settingsSeparator** attribute.
 
-		:return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSeparator
@@ -611,7 +643,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__settingsSeparator** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -632,7 +665,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__extension** attribute.
 
-		:return: self.__extension. ( String )
+		:return: self.__extension.
+		:rtype: unicode
 		"""
 
 		return self.__extension
@@ -643,7 +677,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__extension** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -664,7 +699,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__inspectLayout** attribute.
 
-		:return: self.__inspectLayout. ( String )
+		:return: self.__inspectLayout.
+		:rtype: unicode
 		"""
 
 		return self.__inspectLayout
@@ -675,7 +711,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__inspectLayout** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -696,7 +733,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__scriptEditor** attribute.
 
-		:return: self.__scriptEditor. ( QWidget )
+		:return: self.__scriptEditor.
+		:rtype: QWidget
 		"""
 
 		return self.__scriptEditor
@@ -707,7 +745,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__scriptEditor** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -728,7 +767,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__collectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__collectionsOutliner
@@ -739,7 +779,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__collectionsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -760,7 +801,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__model** attribute.
 
-		:return: self.__model. ( IblSetsModel )
+		:return: self.__model.
+		:rtype: IblSetsModel
 		"""
 
 		return self.__model
@@ -771,7 +813,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__model** attribute.
 
-		:param value: Attribute value. ( IblSetsModel )
+		:param value: Attribute value.
+		:type value: IblSetsModel
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -792,7 +835,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__views** attribute.
 
-		:return: self.__views. ( Tuple )
+		:return: self.__views.
+		:rtype: tuple
 		"""
 
 		return self.__views
@@ -803,7 +847,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__views** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -824,7 +869,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__viewsPushButtons** attribute.
 
-		:return: self.__viewsPushButtons. ( Dictionary )
+		:return: self.__viewsPushButtons.
+		:rtype: dict
 		"""
 
 		return self.__viewsPushButtons
@@ -835,7 +881,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__viewsPushButtons** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -856,7 +903,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__thumbnailsView** attribute.
 
-		:return: self.__thumbnailsView. ( QListView )
+		:return: self.__thumbnailsView.
+		:rtype: QListView
 		"""
 
 		return self.__thumbnailsView
@@ -867,7 +915,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__thumbnailsView** attribute.
 
-		:param value: Attribute value. ( QListView )
+		:param value: Attribute value.
+		:type value: QListView
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -888,7 +937,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__detailsView** attribute.
 
-		:return: self.__detailsView. ( QTreeView )
+		:return: self.__detailsView.
+		:rtype: QTreeView
 		"""
 
 		return self.__detailsView
@@ -899,7 +949,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__detailsView** attribute.
 
-		:param value: Attribute value. ( QTreeView )
+		:param value: Attribute value.
+		:type value: QTreeView
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -920,7 +971,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__detailsViewHeaders** attribute.
 
-		:return: self.__detailsViewHeaders. ( OrderedDict )
+		:return: self.__detailsViewHeaders.
+		:rtype: OrderedDict
 		"""
 
 		return self.__detailsViewHeaders
@@ -931,7 +983,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__detailsViewHeaders** attribute.
 
-		:param value: Attribute value. ( OrderedDict )
+		:param value: Attribute value.
+		:type value: OrderedDict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -952,7 +1005,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__panoramicThumbnails** attribute.
 
-		:return: self.__panoramicThumbnails. ( Boolean )
+		:return: self.__panoramicThumbnails.
+		:rtype: bool
 		"""
 
 		return self.__panoramicThumbnails
@@ -963,7 +1017,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__panoramicThumbnails** attribute.
 
-		:param value: Attribute value. ( Boolean )
+		:param value: Attribute value.
+		:type value: bool
 		"""
 
 		if value is not None:
@@ -985,7 +1040,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__panoramicThumbnailsSize** attribute.
 
-		:return: self.__panoramicThumbnailsSize. ( String )
+		:return: self.__panoramicThumbnailsSize.
+		:rtype: unicode
 		"""
 
 		return self.__panoramicThumbnailsSize
@@ -996,7 +1052,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__panoramicThumbnailsSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -1018,7 +1075,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__squareThumbnailsSize** attribute.
 
-		:return: self.__squareThumbnailsSize. ( String )
+		:return: self.__squareThumbnailsSize.
+		:rtype: unicode
 		"""
 
 		return self.__squareThumbnailsSize
@@ -1029,7 +1087,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__squareThumbnailsSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -1051,7 +1110,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__thumbnailsMinimumSize** attribute.
 
-		:return: self.__thumbnailsMinimumSize. ( Dictionary )
+		:return: self.__thumbnailsMinimumSize.
+		:rtype: dict
 		"""
 
 		return self.__thumbnailsMinimumSize
@@ -1062,7 +1122,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__thumbnailsMinimumSize** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		if value is not None:
@@ -1084,7 +1145,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__searchContexts** attribute.
 
-		:return: self.__searchContexts. ( OrderedDict )
+		:return: self.__searchContexts.
+		:rtype: OrderedDict
 		"""
 
 		return self.__searchContexts
@@ -1095,7 +1157,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__searchContexts** attribute.
 
-		:param value: Attribute value. ( OrderedDict )
+		:param value: Attribute value.
+		:type value: OrderedDict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1116,7 +1179,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__activeSearchContext** attribute.
 
-		:return: self.__activeSearchContext. ( OrderedDict )
+		:return: self.__activeSearchContext.
+		:rtype: OrderedDict
 		"""
 
 		return self.__activeSearchContext
@@ -1127,7 +1191,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__activeSearchContext** attribute.
 
-		:param value: Attribute value. ( OrderedDict )
+		:param value: Attribute value.
+		:type value: OrderedDict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1148,7 +1213,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__searchContextMenu** attribute.
 
-		:return: self.__searchContextMenu. ( QMenu )
+		:return: self.__searchContextMenu.
+		:rtype: QMenu
 		"""
 
 		return self.__searchContextMenu
@@ -1182,8 +1248,10 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1212,7 +1280,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -1314,7 +1383,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -1337,7 +1407,8 @@ class IblSetsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered on Framework startup.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
@@ -1402,7 +1473,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered on Framework close.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
@@ -1422,7 +1494,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the Views ui.
 
-		:param thumbnailsSize: Thumbnails size. ( Integer )
+		:param thumbnailsSize: Thumbnails size.
+		:type thumbnailsSize: int
 		"""
 
 		if not thumbnailsSize:
@@ -1446,7 +1519,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Refreshes the Views ui.
 
-		:param thumbnailsSize: Thumbnails size. ( Integer )
+		:param thumbnailsSize: Thumbnails size.
+		:type thumbnailsSize: int
 		"""
 
 		self.__views_setUi(thumbnailsSize)
@@ -1495,8 +1569,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Content ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.addContentUi()
@@ -1505,8 +1581,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Add Ibl Set ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.addIblSetUi()
@@ -1515,8 +1593,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|Remove Ibl Set(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.removeIblSetsUi()
@@ -1526,8 +1606,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		Defines the slot triggered by 
 		**'Actions|Umbra|Components|core.iblSetsOutliner|Update Ibl Set(s) Location(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.updateSelectedIblSetsLocationUi()
@@ -1536,8 +1618,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **\*_View_pushButton** Widget when clicked.
 
-		:param index: Button index. ( Integer )
-		:param checked: Checked state. ( Boolean )
+		:param index: Button index.
+		:type index: int
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.setActiveViewIndex(index)
@@ -1546,7 +1630,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by a **\*_View** Widget when double clicked.
 
-		:param index: Clicked item index. ( QModelIndex )
+		:param index: Clicked item index.
+		:type index: QModelIndex
 		"""
 
 		self.__engine.layoutsManager.restoreLayout(self.__inspectLayout)
@@ -1555,7 +1640,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by the active View changed.
 
-		:param index: Current active View. ( integer )
+		:param index: Current active View.
+		:type index: int
 		"""
 
 		self.Ibl_Sets_Outliner_Thumbnails_Slider_frame.setVisible(not index)
@@ -1567,7 +1653,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **Switch_Thumbnails_Type_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.setPanoramicThumbnails(not self.__panoramicThumbnails)
@@ -1576,7 +1663,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **Search_Database_lineEdit** Widget when text changed.
 
-		:param text: Current text value. ( QString )
+		:param text: Current text value.
+		:type text: QString
 		"""
 
 		self.setIblSets(self.__searchIblSets(foundations.strings.toString(self.Search_Database_lineEdit.text()),
@@ -1587,7 +1675,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Scales the View icons.
 
-		:param value: Thumbnails size. ( Integer )
+		:param value: Thumbnails size.
+		:type value: int
 		"""
 
 		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState(value, 2 if self.__panoramicThumbnails else 1)
@@ -1603,7 +1692,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by content when dropped into the engine.
 		
-		:param event: Event. ( QEvent )
+		:param event: Event.
+		:type event: QEvent
 		"""
 
 		if not event.mimeData().hasUrls():
@@ -1648,7 +1738,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Defines the slot triggered by **fileSystemEventsManager** when a file is changed.
 		
-		:param file: File changed. ( String )
+		:param file: File changed.
+		:type file: unicode
 		"""
 
 		iblSet = foundations.common.getFirstItem(filter(lambda x: x.path == file, self.getIblSets()))
@@ -1665,7 +1756,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns a Collection id.
 		
-		:return: Collection id. ( Integer )
+		:return: Collection id.
+		:rtype: int
 		"""
 
 		collections = self.__collectionsOutliner.getSelectedCollections()
@@ -1678,11 +1770,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Filters the current Collection Ibl Sets.
 		
-		:param pattern: Ibl Sets filter pattern. ( String )
-		:param attribute: Attribute to filter Ibl Sets on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
+		:param pattern: Ibl Sets filter pattern.
+		:type pattern: unicode
+		:param attribute: Attribute to filter Ibl Sets on.
+		:type attribute: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
 
-		:return: Filtered Ibl Sets. ( List )
+		:return: Filtered Ibl Sets.
+		:rtype: list
 		"""
 
 		try:
@@ -1705,7 +1801,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns the current active View.
 
-		:return: Current active View. ( QWidget )
+		:return: Current active View.
+		:rtype: QWidget
 		"""
 
 		return self.Ibl_Sets_Outliner_stackedWidget.currentWidget()
@@ -1714,7 +1811,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns the current active View index.
 
-		:return: Current active View index. ( Integer )
+		:return: Current active View index.
+		:rtype: int
 		"""
 
 		return self.Ibl_Sets_Outliner_stackedWidget.currentIndex()
@@ -1723,8 +1821,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the active View to given View.
 
-		:param view: View. ( QWidget )
-		:return: Method success. ( Boolean )
+		:param view: View.
+		:type view: QWidget
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		index = self.Ibl_Sets_Outliner_stackedWidget.indexOf(view)
@@ -1736,8 +1836,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the active View to given index.
 
-		:param index: Index. ( Integer )
-		:return: Method success. ( Boolean )
+		:param index: Index.
+		:type index: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.Ibl_Sets_Outliner_stackedWidget.setCurrentIndex(index)
@@ -1748,9 +1850,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the active search context.
 
-		:param context: Search context. ( String )
-		:param \*args: Arguments. ( \* )
-		:return: Method succes. ( Boolean )
+		:param context: Search context.
+		:type context: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:return: Method succes.
+		:rtype: bool
 		"""
 
 		text = "{0} ...".format(context)
@@ -1766,8 +1871,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the panoramic thumbnails.
 
-		:param state: Panoramic thumbnails. ( Boolean )
-		:return: Method succes. ( Boolean )
+		:param state: Panoramic thumbnails.
+		:type state: bool
+		:return: Method succes.
+		:rtype: bool
 		"""
 
 		oldIn, oldOut = UiConstants.thumbnailsSizes.get(self.__thumbnailsMinimumSize), UiConstants.thumbnailsSizes.get(
@@ -1791,7 +1898,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Adds user defined content to the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
 		:note: This method may require user interaction.
 		"""
@@ -1815,7 +1923,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Adds an user defined Ibl Set to the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
 		:note: This method may require user interaction.
 		"""
@@ -1844,7 +1953,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Removes user selected Ibl Sets from the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
 		:note: This method may require user interaction.
 		"""
@@ -1877,8 +1987,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Updates given Ibl Set location.
 
-		:param iblSet: Ibl Set to update. ( IblSet )
-		:return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to update.
+		:type iblSet: IblSet
+		:return: Method success.
+		:rtype: bool
 
 		:note: This method may require user interaction.
 		"""
@@ -1905,7 +2017,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Updates user selected Ibl Sets locations.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
 		:note: This method may require user interaction.
 		"""
@@ -1935,10 +2048,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Adds an Ibl Set to the Database.
 
-		:param name: Ibl Set name. ( String )
-		:param path: Ibl Set path. ( String )
-		:param collectionId: Target Collection id. ( Integer )
-		:return: Method success. ( Boolean )
+		:param name: Ibl Set name.
+		:type name: unicode
+		:param path: Ibl Set path.
+		:type path: unicode
+		:param collectionId: Target Collection id.
+		:type collectionId: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not self.iblSetExists(path):
@@ -1960,9 +2077,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Adds directory Ibl Sets to the Database.
 
-		:param directory: Directory to add. ( String )
-		:param collectionId: Target Collection id. ( Integer )
-		:return: Method success. ( Boolean )
+		:param directory: Directory to add.
+		:type directory: unicode
+		:param collectionId: Target Collection id.
+		:type collectionId: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing directory '{0}' filesWalker.".format(directory))
@@ -1994,8 +2114,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Removes given Ibl Set from the Database.
 
-		:param iblSet: Ibl Set to remove. ( IblSet )
-		:return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to remove.
+		:type iblSet: IblSet
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
@@ -2012,9 +2134,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Updates given Ibl Set location.
 
-		:param iblSet: Ibl Set to update. ( IblSet )
-		:param iblSet: New Ibl Set file. ( String )
-		:return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to update.
+		:type iblSet: IblSet
+		:param iblSet: New Ibl Set file.
+		:type iblSet: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__,
@@ -2031,7 +2156,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns Database Ibl Sets.
 
-		:return: Database Ibl Sets. ( List )
+		:return: Database Ibl Sets.
+		:rtype: list
 		"""
 
 		return [iblSet for iblSet in sibl_gui.components.core.database.operations.getIblSets()]
@@ -2040,11 +2166,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Filters the Database Ibl Sets on given attribute using given pattern.
 		
-		:param pattern: Filter pattern. ( String )
-		:param attribute: Attribute to filter on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
+		:param pattern: Filter pattern.
+		:type pattern: unicode
+		:param attribute: Attribute to filter on.
+		:type attribute: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
 
-		:return: Filtered Database Ibl Sets. ( List )
+		:return: Filtered Database Ibl Sets.
+		:rtype: list
 		"""
 
 		try:
@@ -2060,8 +2190,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns if given Ibl Set path exists in the Database.
 
-		:param path: Collection path. ( String )
-		:return: Collection exists. ( Boolean )
+		:param path: Collection path.
+		:type path: unicode
+		:return: Collection exists.
+		:rtype: bool
 		"""
 
 		return sibl_gui.components.core.database.operations.iblSetExists(path)
@@ -2070,7 +2202,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Lists Database Ibl Sets names.
 
-		:return: Database Ibl Sets names. ( List )
+		:return: Database Ibl Sets names.
+		:rtype: list
 		
 		:note: The list is actually returned using 'title' attributes instead of 'name' attributes
 		"""
@@ -2081,8 +2214,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Sets the Ibl Sets Model nodes.
 	
-		:param iblSets: Ibl Sets to set. ( List )
-		:return: Method success. ( Boolean )
+		:param iblSets: Ibl Sets to set.
+		:type iblSets: list
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		nodeFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or \
@@ -2125,8 +2260,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns Database Ibl Set with given name.
 
-		:param name: Ibl Set name. ( String )
-		:return: Database Ibl Set. ( IblSet )
+		:param name: Ibl Set name.
+		:type name: unicode
+		:return: Database Ibl Set.
+		:rtype: IblSet
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
@@ -2138,7 +2275,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns the current active View selected nodes.
 
-		:return: View selected nodes. ( Dictionary )
+		:return: View selected nodes.
+		:rtype: dict
 		"""
 
 		return self.getActiveView().getSelectedNodes()
@@ -2147,7 +2285,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns the current active View selected Ibl Sets nodes.
 
-		:return: View selected Ibl Sets nodes. ( List )
+		:return: View selected Ibl Sets nodes.
+		:rtype: list
 		"""
 
 		return [node for node in self.getSelectedNodes() if node.family == "IblSet"]
@@ -2156,7 +2295,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		"""
 		Returns the current active View selected Ibl Sets.
 
-		:return: View selected Ibl Sets. ( List )
+		:return: View selected Ibl Sets.
+		:rtype: list
 		"""
 
 		return [node.databaseItem for node in self.getSelectedIblSetsNodes()]

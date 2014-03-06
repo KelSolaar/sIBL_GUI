@@ -44,8 +44,10 @@ def recursiveRemove(rootDirectory, pattern):
 	"""
 	Recursively deletes the matching items.
 
-	:param rootDirectory: Directory to recurse. ( String )
-	:param pattern: Pattern to match. ( String )
+	:param rootDirectory: Directory to recurse.
+	:type rootDirectory: unicode
+	:param pattern: Pattern to match.
+	:type pattern: unicode
 	"""
 
 	if not os.path.exists(rootDirectory):
@@ -60,7 +62,8 @@ def recursiveRemove(rootDirectory, pattern):
 def remove(item):
 	"""
 	Deletes given item.
-	:param item: Item to delete. ( String )
+	:param item: Item to delete.
+	:type item: unicode
 	"""
 
 	print("{0} | Removing file: '{1}'".format(remove.__name__, item))

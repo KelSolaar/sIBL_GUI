@@ -61,10 +61,14 @@ def listImports(packages, filtersIn, filtersOut):
 	"""
 	Lists Application imports.
 
-	:param packages: Packages. ( List )
-	:param filtersIn: Filters in. ( Tuple / List )
-	:param filtersOut: Filters out. ( Tuple / List )
-	:return: Imports. ( List )
+	:param packages: Packages.
+	:type packages: list
+	:param filtersIn: Filters in.
+	:type filtersIn: tuple or list
+	:param filtersOut: Filters out.
+	:type filtersOut: tuple or list
+	:return: Imports.
+	:rtype: list
 	"""
 
 	imports = set(IMPORTS)

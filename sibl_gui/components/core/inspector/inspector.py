@@ -91,7 +91,8 @@ class Plate(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: name, icon, previewImage, image ( Key / Value pairs )
+		:param kwargs: name, icon, previewImage, image
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -107,7 +108,8 @@ class Light(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
+		:param kwargs: name, color, uCoordinate, vCoordinate
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -142,10 +144,14 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -247,7 +253,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -258,7 +265,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -279,7 +287,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiPreviousImage** attribute.
 
-		:return: self.__uiPreviousImage. ( String )
+		:return: self.__uiPreviousImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiPreviousImage
@@ -290,7 +299,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiPreviousImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -311,7 +321,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiNextImage** attribute.
 
-		:return: self.__uiNextImage. ( String )
+		:return: self.__uiNextImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiNextImage
@@ -322,7 +333,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiNextImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -343,7 +355,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiLoadingImage** attribute.
 
-		:return: self.__uiLoadingImage. ( String )
+		:return: self.__uiLoadingImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLoadingImage
@@ -354,7 +367,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiLoadingImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -375,7 +389,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -386,7 +401,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -407,7 +423,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__listViewIconSize** attribute.
 
-		:return: self.__listViewIconSize. ( Integer )
+		:return: self.__listViewIconSize.
+		:rtype: int
 		"""
 
 		return self.__listViewIconSize
@@ -418,7 +435,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__listViewIconSize** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -441,7 +459,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -452,7 +471,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -473,7 +493,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -484,7 +505,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -505,7 +527,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__sectionsFileParsersCache** attribute.
 
-		:return: self.__sectionsFileParsersCache. ( Cache )
+		:return: self.__sectionsFileParsersCache.
+		:rtype: Cache
 		"""
 
 		return self.__sectionsFileParsersCache
@@ -516,7 +539,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__sectionsFileParsersCache** attribute.
 
-		:param value: Attribute value. ( Cache )
+		:param value: Attribute value.
+		:type value: Cache
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -537,7 +561,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__model** attribute.
 
-		:return: self.__model. ( PlatesModel )
+		:return: self.__model.
+		:rtype: PlatesModel
 		"""
 
 		return self.__model
@@ -548,7 +573,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__model** attribute.
 
-		:param value: Attribute value. ( PlatesModel )
+		:param value: Attribute value.
+		:type value: PlatesModel
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -569,7 +595,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -580,7 +607,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -601,7 +629,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__thumbnailsSize** attribute.
 
-		:return: self.__thumbnailsSize. ( String )
+		:return: self.__thumbnailsSize.
+		:rtype: unicode
 		"""
 
 		return self.__thumbnailsSize
@@ -612,7 +641,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__thumbnailsSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -634,7 +664,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__activeIblSet** attribute.
 
-		:return: self.__activeIblSet. ( IblSet )
+		:return: self.__activeIblSet.
+		:rtype: IblSet
 		"""
 
 		return self.__activeIblSet
@@ -645,7 +676,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__activeIblSet** attribute.
 
-		:param value: Attribute value. ( IblSet )
+		:param value: Attribute value.
+		:type value: IblSet
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -666,7 +698,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__inspectorPlates** attribute.
 
-		:return: self.__inspectorPlates. ( Dictionary )
+		:return: self.__inspectorPlates.
+		:rtype: dict
 		"""
 
 		return self.__inspectorPlates
@@ -677,7 +710,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__inspectorPlates** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -698,7 +732,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__noPreviewImageText** attribute.
 
-		:return: self.__noPreviewImageText. ( String )
+		:return: self.__noPreviewImageText.
+		:rtype: unicode
 		"""
 
 		return self.__noPreviewImageText
@@ -709,7 +744,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__noPreviewImageText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -730,7 +766,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__noActiveIblSetText** attribute.
 
-		:return: self.__noActiveIblSetText. ( String )
+		:return: self.__noActiveIblSetText.
+		:rtype: unicode
 		"""
 
 		return self.__noActiveIblSetText
@@ -741,7 +778,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__noActiveIblSetText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -762,7 +800,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__activeIblSetToolTipText** attribute.
 
-		:return: self.__activeIblSetToolTipText. ( String )
+		:return: self.__activeIblSetToolTipText.
+		:rtype: unicode
 		"""
 
 		return self.__activeIblSetToolTipText
@@ -773,7 +812,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__activeIblSetToolTipText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -794,7 +834,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__lightLabelRadius** attribute.
 
-		:return: self.__lightLabelRadius. ( Integer )
+		:return: self.__lightLabelRadius.
+		:rtype: int
 		"""
 
 		return self.__lightLabelRadius
@@ -805,7 +846,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__lightLabelRadius** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -826,7 +868,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__lightLabelTextOffset** attribute.
 
-		:return: self.__lightLabelTextOffset. ( Integer )
+		:return: self.__lightLabelTextOffset.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextOffset
@@ -837,7 +880,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__lightLabelTextOffset** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -858,7 +902,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__lightLabelTextMargin** attribute.
 
-		:return: self.__lightLabelTextMargin. ( Integer )
+		:return: self.__lightLabelTextMargin.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextMargin
@@ -869,7 +914,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__lightLabelTextMargin** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -890,7 +936,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__lightLabelTextHeight** attribute.
 
-		:return: self.__lightLabelTextHeight. ( Integer )
+		:return: self.__lightLabelTextHeight.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextHeight
@@ -901,7 +948,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__lightLabelTextHeight** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -922,7 +970,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__lightLabelTextFont** attribute.
 
-		:return: self.__lightLabelTextFont. ( String )
+		:return: self.__lightLabelTextFont.
+		:rtype: unicode
 		"""
 
 		return self.__lightLabelTextFont
@@ -933,7 +982,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__lightLabelTextFont** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -954,7 +1004,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__unnamedLightName** attribute.
 
-		:return: self.__unnamedLightName. ( String )
+		:return: self.__unnamedLightName.
+		:rtype: unicode
 		"""
 
 		return self.__unnamedLightName
@@ -965,7 +1016,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__unnamedLightName** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -990,8 +1042,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1020,7 +1074,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -1086,7 +1141,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -1184,8 +1240,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Plates_listView** Model selection has changed.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		index = foundations.common.getFirstItem(selectedItems.indexes())
@@ -1202,7 +1260,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered by the **fileSystemEventsManager** when a file is changed.
 		
-		:param file: File changed. ( String )
+		:param file: File changed.
+		:type file: unicode
 		"""
 
 		file = foundations.strings.toString(file)
@@ -1221,7 +1280,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered by the **QPixmap** images cache when contend is added.
 		
-		:param paths: Added content. ( List )
+		:param paths: Added content.
+		:type paths: list
 		"""
 
 		if not self.__activeIblSet:
@@ -1244,8 +1304,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
 		Component Model selection has changed.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.__setActiveIblSet()
@@ -1262,7 +1324,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Previous_Ibl_Set_pushButton** Widget is clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughIblSets(True)
@@ -1271,7 +1334,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Next_Ibl_Set_pushButton** Widget is clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughIblSets()
@@ -1280,7 +1344,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Previous_Plate_pushButton** Widget is clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughPlates(True)
@@ -1289,7 +1354,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when **Next_Plate_pushButton** Widget is clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughPlates()
@@ -1298,7 +1364,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is triggered when a link is clicked in the **Image_label** Widget.
 
-		:param url: Url to explore. ( QString )
+		:param url: Url to explore.
+		:type url: QString
 		"""
 
 		QDesktopServices.openUrl(QUrl(url))
@@ -1388,8 +1455,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method draws a light label on given QPainter.
 
-		:param painter: QPainter. ( QPainter )
-		:param light: Light. ( Light )
+		:param painter: QPainter.
+		:type painter: QPainter
+		:param light: Light.
+		:type light: Light
 		"""
 
 		width = painter.window().width()
@@ -1433,7 +1502,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method sets the Plates Model nodes.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
@@ -1466,8 +1536,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
 
-		:param backward: Looping backward. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param backward: Looping backward.
+		:type backward: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if self.__activeIblSet:
@@ -1498,8 +1570,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
 
-		:param backward: Looping backward. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param backward: Looping backward.
+		:type backward: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		index = foundations.common.getFirstItem(self.Plates_listView.selectedIndexes())

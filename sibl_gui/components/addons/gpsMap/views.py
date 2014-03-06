@@ -59,7 +59,8 @@ class Map_QWebView(QWebView):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		QWebView.__init__(self, parent)
@@ -68,7 +69,8 @@ class Map_QWebView(QWebView):
 		"""
 		Evaluates given javascript content in the View.
 
-		:param javascript: Javascript. ( String )
+		:param javascript: Javascript.
+		:type javascript: unicode
 		"""
 
 		self.page().mainFrame().evaluateJavaScript(javascript)
@@ -77,11 +79,16 @@ class Map_QWebView(QWebView):
 		"""
 		Adds a marker to the GPS map.
 
-		:param coordinates: Marker coordinates. ( Tuple )
-		:param title: Marker title. ( String )
-		:param icon: Marker icon. ( String )
-		:param content: Marker popup window content. ( String )
-		:return: Method success. ( Boolean )
+		:param coordinates: Marker coordinates.
+		:type coordinates: tuple
+		:param title: Marker title.
+		:type title: unicode
+		:param icon: Marker icon.
+		:type icon: unicode
+		:param content: Marker popup window content.
+		:type content: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
@@ -99,7 +106,8 @@ class Map_QWebView(QWebView):
 		"""
 		Removes the GPS map markers.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing GPS map markers.")
@@ -111,7 +119,8 @@ class Map_QWebView(QWebView):
 		"""
 		Centers the GPS map.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Centering GPS map.")
@@ -129,8 +138,10 @@ class Map_QWebView(QWebView):
 			- MapTypeId.aerial
 			- MapTypeId.road
 			
-		:param mapTypeId: GPS map type. ( String )
-		:return: Method success. ( Boolean )
+		:param mapTypeId: GPS map type.
+		:type mapTypeId: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
@@ -142,8 +153,10 @@ class Map_QWebView(QWebView):
 		"""
 		Sets the GPS map zoom.
 
-		:param type: Zoom type. ( String )
-		:return: Method success. ( Boolean )
+		:param type: Zoom type.
+		:type type: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))

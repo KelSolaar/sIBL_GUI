@@ -58,7 +58,8 @@ def testsInternational():
 	"""
 	Runs the international tests suite.
 	
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	userApplicationDirectory = tempfile.mkdtemp(prefix=USER_APPLICATION_DIRECTORY_PREFIX)

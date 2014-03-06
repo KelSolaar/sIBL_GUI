@@ -130,11 +130,16 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		Initializes the class.
 
-		:param componentsPaths: Components componentsPaths. ( Tuple / List )
-		:param requisiteComponents: Requisite components names. ( Tuple / List )
-		:param visibleComponents: Visible components names. ( Tuple / List )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param componentsPaths: Components componentsPaths.
+		:type componentsPaths: tuple or list
+		:param requisiteComponents: Requisite components names.
+		:type requisiteComponents: tuple or list
+		:param visibleComponents: Visible components names.
+		:type visibleComponents: tuple or list
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -159,7 +164,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		Property for **self.__thumbnailsCacheDirectory** attribute.
 
-		:return: self.__thumbnailsCacheDirectory. ( String )
+		:return: self.__thumbnailsCacheDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__thumbnailsCacheDirectory
@@ -170,7 +176,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		Setter for **self.__thumbnailsCacheDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -191,7 +198,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		Property for **self.__imagesCaches** attribute.
 
-		:return: self.__imagesCaches. ( Structure )
+		:return: self.__imagesCaches.
+		:rtype: Structure
 		"""
 
 		return self.__imagesCaches
@@ -202,7 +210,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 		Setter for **self.__imagesCaches** attribute.
 
-		:param value: Attribute value. ( Structure )
+		:param value: Attribute value.
+		:type value: Structure
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -289,8 +298,10 @@ def extendCommandLineParametersParser(parser):
 	"""
 	Returns the command line parameters parser.
 
-	:param parser: Command line parameters parser. ( Parser )
-	:return: Definition success. ( Boolean )
+	:param parser: Command line parameters parser.
+	:type parser: Parser
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	parser.add_option("-d",
@@ -321,7 +332,8 @@ def main():
 	"""
 	Starts the Application.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	commandLineParametersParser = umbra.engine.getCommandLineParametersParser()

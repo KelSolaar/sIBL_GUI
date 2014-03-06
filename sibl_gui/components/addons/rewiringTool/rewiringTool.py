@@ -68,10 +68,14 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -106,7 +110,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -117,7 +122,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -138,7 +144,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -149,7 +156,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -170,7 +178,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -181,7 +190,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -202,7 +212,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__reWireFramesWidgets** attribute.
 
-		:return: self.__reWireFramesWidgets. ( Tuple )
+		:return: self.__reWireFramesWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireFramesWidgets
@@ -213,7 +224,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__reWireFramesWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -234,7 +246,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__reWireComboBoxesWidgets** attribute.
 
-		:return: self.__reWireComboBoxesWidgets. ( Tuple )
+		:return: self.__reWireComboBoxesWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireComboBoxesWidgets
@@ -245,7 +258,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__reWireComboBoxesWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -266,7 +280,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__reWireLineEditWidgets** attribute.
 
-		:return: self.__reWireLineEditWidgets. ( Tuple )
+		:return: self.__reWireLineEditWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireLineEditWidgets
@@ -277,7 +292,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__reWireLineEditWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -298,7 +314,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__rewiringParameters** attribute.
 
-		:return: self.__rewiringParameters. ( Tuple )
+		:return: self.__rewiringParameters.
+		:rtype: tuple
 		"""
 
 		return self.__rewiringParameters
@@ -309,7 +326,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__rewiringParameters** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -332,8 +350,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -350,7 +370,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -367,7 +388,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -403,7 +425,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -427,7 +450,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -440,7 +464,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -454,7 +479,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Background_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Background")
@@ -463,7 +489,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Lighting_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Lighting")
@@ -472,7 +499,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Reflection_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Reflection")
@@ -481,7 +509,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Shows / hides rewire Widget frames.
 
-		:param index: ComboBox index. ( Tuple )
+		:param index: ComboBox index.
+		:type index: tuple
 		"""
 
 		for index in range(len(self.__reWireComboBoxesWidgets)):
@@ -497,7 +526,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		Sets the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component
 		custom image QLineEdit Widgets.
 
-		:param component: Target Component. ( String )
+		:param component: Target Component.
+		:type component: unicode
 		"""
 
 		customFile = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self,
@@ -516,7 +546,8 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Gets override keys.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))

@@ -79,10 +79,14 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -130,7 +134,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -141,7 +146,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -162,7 +168,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -173,7 +180,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -194,7 +202,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__settings** attribute.
 
-		:return: self.__settings. ( QSettings )
+		:return: self.__settings.
+		:rtype: QSettings
 		"""
 
 		return self.__settings
@@ -205,7 +214,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__settings** attribute.
 
-		:param value: Attribute value. ( QSettings )
+		:param value: Attribute value.
+		:type value: QSettings
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -226,7 +236,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__settingsSection** attribute.
 
-		:return: self.__settingsSection. ( String )
+		:return: self.__settingsSection.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSection
@@ -237,7 +248,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__settingsSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -258,7 +270,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__preferencesManager** attribute.
 
-		:return: self.__preferencesManager. ( QWidget )
+		:return: self.__preferencesManager.
+		:rtype: QWidget
 		"""
 
 		return self.__preferencesManager
@@ -269,7 +282,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__preferencesManager** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -290,7 +304,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -301,7 +316,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -322,7 +338,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__inspector** attribute.
 
-		:return: self.__inspector. ( QWidget )
+		:return: self.__inspector.
+		:rtype: QWidget
 		"""
 
 		return self.__inspector
@@ -333,7 +350,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__inspector** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -354,7 +372,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__imagesPreviewers** attribute.
 
-		:return: self.__imagesPreviewers. ( List )
+		:return: self.__imagesPreviewers.
+		:rtype: list
 		"""
 
 		return self.__imagesPreviewers
@@ -365,7 +384,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__imagesPreviewers** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -386,7 +406,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__maximumImagesPreviewersInstances** attribute.
 
-		:return: self.__maximumImagesPreviewersInstances. ( Integer )
+		:return: self.__maximumImagesPreviewersInstances.
+		:rtype: int
 		"""
 
 		return self.__maximumImagesPreviewersInstances
@@ -397,7 +418,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__maximumImagesPreviewersInstances** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -418,7 +440,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Property for **self.__inspectorButtons** attribute.
 
-		:return: self.__inspectorButtons. ( Dictionary )
+		:return: self.__inspectorButtons.
+		:rtype: dict
 		"""
 
 		return self.__inspectorButtons
@@ -429,7 +452,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Setter for **self.__inspectorButtons** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -452,8 +476,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -476,7 +502,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -500,7 +527,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -521,7 +549,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -540,7 +569,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -553,7 +583,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -668,8 +699,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Background Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewIblSetsImagesUi("Background")
@@ -678,8 +711,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Lighting Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewIblSetsImagesUi("Lighting")
@@ -688,8 +723,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Reflection Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewIblSetsImagesUi("Reflection")
@@ -698,8 +735,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.iblSetsOutliner|View Plate(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewIblSetsImagesUi("Plate")
@@ -708,8 +747,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewActiveIblSetImagesUi("Background")
@@ -718,8 +759,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewActiveIblSetImagesUi("Lighting")
@@ -728,8 +771,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewActiveIblSetImagesUi("Reflection")
@@ -738,8 +783,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.viewActiveIblSetImagesUi("Plate")
@@ -758,7 +805,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Defines the slot triggered by **Custom_Previewer_Path_toolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		customPreviewerExecutable = umbra.ui.common.storeLastBrowsedPath(
@@ -791,7 +839,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Returns if the maximum Previewers instances allowed is reached.
 
-		:return: Maximum instances reached. ( Boolean )
+		:return: Maximum instances reached.
+		:rtype: bool
 		"""
 
 		if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
@@ -807,9 +856,12 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Launches selected Ibl Sets Images Previewer.
 
-		:param imageType: Image type. ( String )
-		:param \*args: Arguments. ( \* )
-		:return: Method success. ( Boolean )
+		:param imageType: Image type.
+		:type imageType: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:return: Method success.
+		:rtype: bool
 		
 		:note: This method may require user interaction.
 		"""
@@ -842,9 +894,12 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Launches :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
-		:param imageType: Image type. ( String )
-		:param \*args: Arguments. ( \* )
-		:return: Method success. ( Boolean )
+		:param imageType: Image type.
+		:type imageType: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:return: Method success.
+		:rtype: bool
 		
 		:note: This method may require user interaction.
 		"""
@@ -880,8 +935,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Launches an Ibl Set Images Previewer.
 
-		:param paths: Image paths. ( List )
-		:param customPreviewer: Custom previewer. ( String )
+		:param paths: Image paths.
+		:type paths: list
+		:param customPreviewer: Custom previewer.
+		:type customPreviewer: unicode
 		"""
 
 		if customPreviewer:
@@ -907,8 +964,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Adds an Images Previewer.
 
-		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
-		:return: Method success. ( Boolean )
+		:param imagesPreviewer: Images Previewer.
+		:type imagesPreviewer: ImagesPreviewer
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Images Previewer.".format(imagesPreviewer))
@@ -920,7 +979,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Removes an Images Previewer.
 
-		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
+		:param imagesPreviewer: Images Previewer.
+		:type imagesPreviewer: ImagesPreviewer
 		"""
 
 		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
@@ -934,8 +994,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Launches an Images Previewer.
 
-		:param paths: Images paths. ( List )
-		:return: Method success. ( Boolean )
+		:param paths: Images paths.
+		:type paths: list
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Launching Images Previewer for '{0}' images.".format(", ".join(paths)))
@@ -948,9 +1010,12 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Gets process command.
 
-		:param paths: Paths to preview. ( String )
-		:param customPreviewer: Custom browser. ( String )
-		:return: Process command. ( String )
+		:param paths: Paths to preview.
+		:type paths: unicode
+		:param customPreviewer: Custom browser.
+		:type customPreviewer: unicode
+		:return: Process command.
+		:rtype: unicode
 		"""
 
 		processCommand = None
@@ -967,9 +1032,12 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		Gets Ibl Set images paths.
 
-		:param iblSet: Ibl Set. ( IblSet )
-		:param imageType: Image type. ( String )
-		:return: Images paths. ( List )
+		:param iblSet: Ibl Set.
+		:type iblSet: IblSet
+		:param imageType: Image type.
+		:type imageType: unicode
+		:return: Images paths.
+		:rtype: list
 		"""
 
 		imagePaths = []
