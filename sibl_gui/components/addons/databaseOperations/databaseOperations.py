@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseOperations` Component Interface class and others helper objects.
+	Defines the :class:`DatabaseOperations` Component Interface class and others helper objects.
 
 **Others:**
 

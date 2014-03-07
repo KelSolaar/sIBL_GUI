@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package default constants through the :class:`Constants` class.
+	Defines **sIBL_GUI** package default constants through the :class:`Constants` class.
 
 **Others:**
 

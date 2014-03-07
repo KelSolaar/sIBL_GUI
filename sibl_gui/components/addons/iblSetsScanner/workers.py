@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner.IblSetsScanner` 
+	Defines the :class:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner.IblSetsScanner` 
 	Component Interface class Workers.
 
 **Others:**

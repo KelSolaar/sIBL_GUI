@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package ui constants through the :class:`UiConstants` class.
+	Defines **sIBL_GUI** package ui constants through the :class:`UiConstants` class.
 
 **Others:**
 

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module runs the international tests suite.
+	Runs the international tests suite.
 
 **Others:**
 

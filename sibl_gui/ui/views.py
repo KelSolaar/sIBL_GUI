@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application views classes.
+	Defines the Application views classes.
 
 **Others:**
 

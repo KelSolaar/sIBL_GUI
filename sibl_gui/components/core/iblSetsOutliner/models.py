@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner`
+	Defines the :class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner`
 	Component Interface class Models.
 
 **Others:**

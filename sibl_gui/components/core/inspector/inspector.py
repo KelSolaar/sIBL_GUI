@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Inspector` Component Interface class and others helpers objects.
+	Defines the :class:`Inspector` Component Interface class and others helpers objects.
 
 **Others:**
 

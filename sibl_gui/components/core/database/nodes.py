@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines Application nodes classes related to Database objects.
+	Defines Application nodes classes related to Database objects.
 
 **Others:**
 

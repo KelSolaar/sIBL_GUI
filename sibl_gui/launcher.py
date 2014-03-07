@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	| This module defines various classes, methods and definitions to run, maintain and exit the Application.
+	| Defines various classes, methods and definitions to run, maintain and exit the Application.
 	| The main Application object is the :class:`sIBL_GUI` class.
 
 **Others:**

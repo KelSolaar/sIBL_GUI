@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DownloadManager` class.
+	Defines the :class:`DownloadManager` class.
 
 **Others:**
 

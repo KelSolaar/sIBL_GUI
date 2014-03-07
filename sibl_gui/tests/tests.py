@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module runs the tests suite.
+	Runs the tests suite.
 
 **Others:**
 

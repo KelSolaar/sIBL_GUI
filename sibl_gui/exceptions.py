@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package exceptions. 
+	Defines **sIBL_GUI** package exceptions. 
 
 **Others:**
 

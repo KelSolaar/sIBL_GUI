@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`LocationsBrowser` Component Interface class.
+	Defines the :class:`LocationsBrowser` Component Interface class.
 
 **Others:**
 

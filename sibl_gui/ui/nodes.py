@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application nodes classes.
+	Defines the Application nodes classes.
 
 **Others:**
 

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application workers classes.
+	Defines the Application workers classes.
 
 **Others:**
 

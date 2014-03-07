@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.searchDatabase.searchDatabase.SearchDatabase`
+	Defines the :class:`sibl_gui.components.addons.searchDatabase.searchDatabase.SearchDatabase`
 	Component Interface class Views.
 
 **Others:**

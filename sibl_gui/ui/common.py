@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines common ui manipulation related objects.
+	Defines common ui manipulation related objects.
 
 **Others:**
 

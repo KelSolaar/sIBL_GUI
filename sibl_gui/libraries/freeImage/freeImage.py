@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module provides FreeImage library ( http://freeimage.sourceforge.net/ ) bindings.
+	Provides FreeImage library ( http://freeimage.sourceforge.net/ ) bindings.
 
 **Others:**
 	Portions of the code from FreeImagePy by

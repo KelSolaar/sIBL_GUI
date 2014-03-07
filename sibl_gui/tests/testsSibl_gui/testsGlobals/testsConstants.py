@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`sibl_gui.globals.constants` module.
+	Defines units tests for :mod:`sibl_gui.globals.constants` module.
 
 **Others:**
 

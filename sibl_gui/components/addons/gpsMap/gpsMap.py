@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`GpsMap` Component Interface class and the :class:`Map` class.
+	Defines the :class:`GpsMap` Component Interface class and the :class:`Map` class.
 
 **Others:**
 

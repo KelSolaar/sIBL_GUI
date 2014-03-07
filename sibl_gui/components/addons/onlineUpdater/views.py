@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.onlineUpdater.onlineUpdater.OnlineUpdater`
+	Defines the :class:`sibl_gui.components.addons.onlineUpdater.onlineUpdater.OnlineUpdater`
 	Component Interface class Views.
 
 **Others:**

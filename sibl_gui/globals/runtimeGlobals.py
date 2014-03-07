@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
+	Defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
 
 **Others:**
 

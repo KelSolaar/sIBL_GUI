@@ -8,7 +8,7 @@
 	Windows.
 
 **Description:**
-	This module defines the pyinstaller configuration file.
+	Defines the pyinstaller configuration file.
 
 **Others:**
 

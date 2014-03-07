@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Application_QToolBar` class.
+	Defines the :class:`Application_QToolBar` class.
 
 **Others:**
 

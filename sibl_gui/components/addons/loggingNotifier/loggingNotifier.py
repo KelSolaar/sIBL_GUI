@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`LoggingNotifier` Component Interface class.
+	Defines the :class:`LoggingNotifier` Component Interface class.
 
 **Others:**
 

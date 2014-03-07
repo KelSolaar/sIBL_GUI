@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines Application Database types: :class:`IblSet`, :class:`Template`
+	Defines Application Database types: :class:`IblSet`, :class:`Template`
 	and :class:`Collection` classes.
 
 **Others:**

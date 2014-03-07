@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module migrates sIBL_GUI from 4.x.x to 4.0.7.
+	Migrates sIBL_GUI from 4.x.x to 4.0.7.
 
 **Others:**
 

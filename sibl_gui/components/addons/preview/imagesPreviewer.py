@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class
+	Defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class
 	and others images preview related objects.
 
 **Others:**

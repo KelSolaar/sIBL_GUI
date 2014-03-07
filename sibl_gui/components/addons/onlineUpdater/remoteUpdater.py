@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`RemoteUpdater` class and others online update related objects.
+	Defines the :class:`RemoteUpdater` class and others online update related objects.
 
 **Others:**
 

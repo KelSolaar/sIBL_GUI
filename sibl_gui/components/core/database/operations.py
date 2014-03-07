@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines Application Database operations objects.
+	Defines Application Database operations objects.
 
 **Others:**
 

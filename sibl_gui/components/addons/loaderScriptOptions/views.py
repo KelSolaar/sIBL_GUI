@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions.LoaderScriptOptions`
+	Defines the :class:`sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions.LoaderScriptOptions`
 	Component Interface class Views.
 
 **Others:**

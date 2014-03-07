@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 	Component Interface class Models.
 
 **Others:**

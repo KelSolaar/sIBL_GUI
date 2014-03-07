@@ -8,7 +8,7 @@
 	Mac Os X.
 
 **Description:**
-	This module defines the py2app configuration file.
+	Defines the py2app configuration file.
 
 **Others:**
 
