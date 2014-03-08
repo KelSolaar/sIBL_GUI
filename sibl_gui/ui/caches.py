@@ -165,7 +165,7 @@ class AbstractResourcesCache(QObject):
 
 		:param key: Key.
 		:type key: unicode
-		:param value: Item.
+		:param value: Value.
 		:type value: object
 		"""
 
