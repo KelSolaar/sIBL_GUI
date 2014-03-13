@@ -1040,7 +1040,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to.
 		:type engine: QObject
@@ -1064,7 +1064,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1072,7 +1072,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success.
 		:rtype: bool
@@ -1131,7 +1131,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1139,7 +1139,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success.
 		:rtype: bool
@@ -1154,7 +1154,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -1162,7 +1162,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		if self.__activeIblSet:
@@ -1205,14 +1205,14 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
 
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This method clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.Title_label.setText(QString())
@@ -1224,21 +1224,21 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_addActions(self):
 		"""
-		This method sets the **Inspector_Overall_frame** actions.
+		Sets the **Inspector_Overall_frame** actions.
 		"""
 
 		pass
 
 	def __model__refreshNodes(self):
 		"""
-		This method refreshes the **Plates_listView** Model nodes.
+		Refreshes the **Plates_listView** Model nodes.
 		"""
 
 		self.setPlates()
 
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **Plates_listView** Model selection has changed.
+		Defines the slot triggered by **Plates_listView** when Model selection has changed.
 
 		:param selectedItems: Selected items.
 		:type selectedItems: QItemSelection
@@ -1258,7 +1258,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
 		
 		:param file: File changed.
 		:type file: unicode
@@ -1278,7 +1278,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __engine_imagesCaches_QPixmap__contentAdded(self, paths):
 		"""
-		This method is triggered by the **QPixmap** images cache when contend is added.
+		Defines the slot triggered by the **QPixmap** images cache when content is added.
 		
 		:param paths: Added content.
 		:type paths: list
@@ -1293,16 +1293,16 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner__modelReset(self):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
-		Component Model has changed.
+		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Component Model when changed.
 		"""
 
 		self.__setActiveIblSet()
 
 	def __iblSetsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
-		Component Model selection has changed.
+		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Component Model selection when changed.
 
 		:param selectedItems: Selected items.
 		:type selectedItems: QItemSelection
@@ -1322,7 +1322,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Ibl_Set_pushButton** Widget is clicked.
+		Defines the slot triggered by **Previous_Ibl_Set_pushButton** Widget when clicked.
 
 		:param checked: Checked state.
 		:type checked: bool
@@ -1332,7 +1332,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Ibl_Set_pushButton** Widget is clicked.
+		Defines the slot triggered by **Next_Ibl_Set_pushButton** Widget when clicked.
 
 		:param checked: Checked state.
 		:type checked: bool
@@ -1342,7 +1342,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Plate_pushButton** Widget is clicked.
+		Defines the slot triggered by **Previous_Plate_pushButton** Widget when clicked.
 
 		:param checked: Checked state.
 		:type checked: bool
@@ -1352,7 +1352,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Plate_pushButton** Widget is clicked.
+		Defines the slot triggered by **Next_Plate_pushButton** Widget when clicked.
 
 		:param checked: Checked state.
 		:type checked: bool
@@ -1362,7 +1362,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Image_label__linkActivated(self, url):
 		"""
-		This method is triggered when a link is clicked in the **Image_label** Widget.
+		Defines the slot triggered by **Image_label** Widget when a link is clicked.
 
 		:param url: Url to explore.
 		:type url: QString
@@ -1372,7 +1372,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __setActiveIblSet(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
@@ -1384,7 +1384,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __setActiveIblSetParser(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
 		if foundations.common.pathExists(self.__activeIblSet.path):
@@ -1398,7 +1398,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
 		"""
-		This method sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
+		Sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		path = self.__activeIblSet.path
@@ -1423,7 +1423,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
 	def __drawActiveIblSetOverlay(self):
 		"""
-		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
+		Draws an overlay on :obj:`Inspector.Image_Label` Widget.
 		"""
 
 		painter = QPainter(self.Image_label.pixmap())
@@ -1453,7 +1453,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __drawLightLabel(self, painter, light):
 		"""
-		This method draws a light label on given QPainter.
+		Draws a light label on given QPainter.
 
 		:param painter: QPainter.
 		:type painter: QPainter
@@ -1500,7 +1500,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setPlates(self):
 		"""
-		This method sets the Plates Model nodes.
+		Sets the Plates Model nodes.
 
 		:return: Method success.
 		:rtype: bool
@@ -1534,7 +1534,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This method loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
+		Loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
 
 		:param backward: Looping backward.
 		:type backward: bool
@@ -1568,7 +1568,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def loopThroughPlates(self, backward=False):
 		"""
-		This method loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
+		Loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
 
 		:param backward: Looping backward.
 		:type backward: bool

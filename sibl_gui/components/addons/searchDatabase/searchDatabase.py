@@ -561,7 +561,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 		
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		return self.setTagsCloudMatchingIblsSets(foundations.strings.toString(self.Search_Database_lineEdit.text()),
@@ -575,7 +575,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 		
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		return self.setTimeMatchingIblSets(self.Time_Low_timeEdit.time(), self.Time_High_timeEdit.time())

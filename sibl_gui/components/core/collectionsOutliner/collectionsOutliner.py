@@ -936,7 +936,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		collection = self.addCollectionUi()
@@ -967,7 +967,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection name.
 		:rtype: unicode
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name:")
@@ -1010,7 +1010,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedNodes = self.getSelectedNodes().keys()

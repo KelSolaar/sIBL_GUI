@@ -119,7 +119,7 @@ This software is released under terms of GNU GPL v3 license: <a href="http://www
 #**********************************************************************************************************************
 class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
 	| The message displayed by the **sIBL_GUI - About** window is defined by the
 		:attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.  
@@ -127,7 +127,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		:param parent: Object parent.
 		:type parent: QObject
@@ -331,7 +331,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to.
 		:type engine: QObject
@@ -352,7 +352,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
 		:return: Method success.
 		:rtype: bool
@@ -371,7 +371,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success.
 		:rtype: bool
@@ -384,7 +384,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
 		:return: Method success.
 		:rtype: bool
@@ -397,7 +397,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success.
 		:rtype: bool
@@ -409,7 +409,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
 		:return: Method success.
 		:rtype: bool
@@ -421,7 +421,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addActions(self):
 		"""
-		This method sets Component actions.
+		Sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -432,7 +432,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeActions(self):
 		"""
-		This method removes actions.
+		Removes actions.
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
@@ -443,7 +443,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __miscellaneousMenu_aboutAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool

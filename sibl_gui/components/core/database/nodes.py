@@ -412,7 +412,7 @@ class IblSetNode(AbstractDatabaseNode):
 	#******************************************************************************************************************
 	def __initializeNode(self):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		"""
 
 		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
@@ -422,7 +422,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 	def updateNode(self):
 		"""
-		This method updates the node from the database item.
+		Updates the node from the database item.
 
 		:return: Method success.
 		:rtype: bool
@@ -433,7 +433,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the node attributes from the database item attributes.
+		Updates the node attributes from the database item attributes.
 		
 		:return: Method success.
 		:rtype: bool
@@ -443,7 +443,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 	def updateDatabaseItem(self):
 		"""
-		This method updates the database item from the node.
+		Updates the database item from the node.
 
 		:return: Method success.
 		:rtype: bool
@@ -454,7 +454,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 	def updateToolTip(self):
 		"""
-		This method updates the node tooltip.
+		Updates the node tooltip.
 
 		:return: Method success.
 		:rtype: bool
@@ -470,7 +470,7 @@ class IblSetNode(AbstractDatabaseNode):
 
 class TemplateNode(AbstractDatabaseNode):
 	"""
-	This class defines Templates nodes.
+	Defines Templates nodes.
 	"""
 
 	__family = "Template"
@@ -541,7 +541,7 @@ class TemplateNode(AbstractDatabaseNode):
 	#******************************************************************************************************************
 	def __initializeNode(self):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		"""
 
 		templateUserName = getTemplateUserName(self.databaseItem.title, self.databaseItem.software)
@@ -551,7 +551,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 	def updateNode(self):
 		"""
-		This method updates the node from the database item.
+		Updates the node from the database item.
 
 		:return: Method success.
 		:rtype: bool
@@ -564,7 +564,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the node attributes from the database item attributes.
+		Updates the node attributes from the database item attributes.
 		
 		:return: Method success.
 		:rtype: bool
@@ -574,7 +574,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 	def updateDatabaseItem(self):
 		"""
-		This method updates the database item from the node.
+		Updates the database item from the node.
 
 		:return: Method success.
 		:rtype: bool
@@ -585,7 +585,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 	def updateToolTip(self):
 		"""
-		This method updates the node tooltip.
+		Updates the node tooltip.
 
 		:return: Method success.
 		:rtype: bool
@@ -600,7 +600,7 @@ class TemplateNode(AbstractDatabaseNode):
 
 class CollectionNode(AbstractDatabaseNode):
 	"""
-	This class defines Collections nodes.
+	Defines Collections nodes.
 	"""
 
 	__family = "Collection"
@@ -669,7 +669,7 @@ class CollectionNode(AbstractDatabaseNode):
 	#******************************************************************************************************************
 	def __initializeNode(self):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		"""
 
 		self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(
@@ -682,7 +682,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def updateNode(self):
 		"""
-		This method updates the node from the database item.
+		Updates the node from the database item.
 
 		:return: Method success.
 		:rtype: bool
@@ -693,7 +693,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def updateNodeAttributes(self):
 		"""
-		This method updates the node attributes from the database item attributes.
+		Updates the node attributes from the database item attributes.
 		
 		:return: Method success.
 		:rtype: bool
@@ -706,7 +706,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def updateDatabaseItem(self):
 		"""
-		This method updates the database item from the node.
+		Updates the database item from the node.
 
 		:return: Method success.
 		:rtype: bool
@@ -717,7 +717,7 @@ class CollectionNode(AbstractDatabaseNode):
 
 	def updateToolTip(self):
 		"""
-		This method updates the node tooltip.
+		Updates the node tooltip.
 
 		:return: Method success.
 		:rtype: bool

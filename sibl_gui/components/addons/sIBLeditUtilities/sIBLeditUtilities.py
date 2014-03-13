@@ -527,7 +527,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		sIBLedit = foundations.strings.toString(self.sIBLedit_Path_lineEdit.text())
@@ -556,7 +556,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		sIBLedit = foundations.strings.toString(self.sIBLedit_Path_lineEdit.text())

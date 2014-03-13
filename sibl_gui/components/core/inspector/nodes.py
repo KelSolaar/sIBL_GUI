@@ -191,7 +191,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		
 		:param attributesFlags: Attributes flags.
 		:type attributesFlags: int

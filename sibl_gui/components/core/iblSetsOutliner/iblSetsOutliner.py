@@ -1736,7 +1736,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		Defines the slot triggered by **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
 		
 		:param file: File changed.
 		:type file: unicode
@@ -1901,7 +1901,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self,
@@ -1926,7 +1926,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -1956,7 +1956,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1992,7 +1992,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -2020,7 +2020,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()

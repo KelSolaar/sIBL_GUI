@@ -861,7 +861,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
 		:param engine: Engine to attach the Component to.
 		:type engine: QObject
@@ -892,7 +892,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -900,7 +900,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
 		:return: Method success.
 		:rtype: bool
@@ -949,7 +949,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -957,7 +957,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
 		:return: Method success.
 		:rtype: bool
@@ -972,7 +972,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -980,7 +980,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered by Framework startup.
 
 		:return: Method success.
 		:rtype: bool
@@ -1059,7 +1059,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def onClose(self):
 		"""
-		This method is triggered on Framework close.
+		Defines the slot triggered by Framework close.
 
 		:return: Method success.
 		:rtype: bool
@@ -1084,14 +1084,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model nodes need refresh.
+		Defines the slot triggered by the Model when nodes need refresh.
 		"""
 
 		self.setTemplates()
 
 	def __view_addActions(self):
 		"""
-		This method sets the View actions.
+		Sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1130,7 +1130,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_addTemplateAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool
@@ -1142,7 +1142,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_removeTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool
@@ -1154,7 +1154,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_importDefaultTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool
@@ -1166,7 +1166,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_displayHelpFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool
@@ -1178,7 +1178,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
 
 		:param checked: Action checked state.
 		:type checked: bool
@@ -1190,7 +1190,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets the **Template_Informations_textEdit** Widget.
+		Sets the **Template_Informations_textEdit** Widget.
 
 		:param selectedItems: Selected items.
 		:type selectedItems: QItemSelection
@@ -1226,7 +1226,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped into the engine.
+		Defines the slot triggered when content is dropped into the engine.
 		
 		:param event: Event.
 		:type event: QEvent
@@ -1272,7 +1272,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
 		
 		:param file: File changed.
 		:type file: unicode
@@ -1290,7 +1290,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
 		"""
-		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
+		Defines the slot triggered by **Template_Informations_textBrowser** Widget when a link is clicked.
 
 		:param url: Url to explore.
 		:type url: QUrl
@@ -1300,7 +1300,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __getCandidateCollectionId(self, path=None):
 		"""
-		This method returns a Collection id.
+		Returns a Collection id.
 
 		:param path: Template path.
 		:type path: unicode
@@ -1322,12 +1322,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplateUi(self):
 		"""
-		This method adds an user defined Template to the Database.
+		Adds an user defined Template to the Database.
 
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -1352,12 +1352,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def removeTemplatesUi(self):
 		"""
-		This method removes user selected Templates from the Database.
+		Removes user selected Templates from the Database.
 
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedNodes = self.getSelectedNodes()
@@ -1401,14 +1401,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def updateTemplateLocationUi(self, template):
 		"""
-		This method updates given Template location.
+		Updates given Template location.
 
 		:param template: Template to update.
 		:type template: Template
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -1431,12 +1431,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplatesUi(self):
 		"""
-		This method imports default Templates into the Database.
+		Imports default Templates into the Database.
 
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1449,7 +1449,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFilesUi(self):
 		"""
-		This method displays user selected Templates help files.
+		Displays user selected Templates help files.
 
 		:return: Method success.
 		:rtype: bool
@@ -1475,12 +1475,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersionsUi(self):
 		"""
-		This method filters Templates by versions.
+		Filters Templates by versions.
 
 		:return: Method success.
 		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		templates = sibl_gui.components.core.database.operations.getTemplates()
@@ -1508,7 +1508,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None):
 		"""
-		This method adds a Template to the Database.
+		Adds a Template to the Database.
 
 		:param name: Template set name.
 		:type name: unicode
@@ -1537,7 +1537,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This method adds given directory Templates to the Database.
+		Adds given directory Templates to the Database.
 
 		:param directory: Templates directory.
 		:type directory: unicode
@@ -1574,7 +1574,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
-		This method adds default Templates Collections / Templates to the Database.
+		Adds default Templates Collections / Templates to the Database.
 
 		:param forceImport: Force Templates import.
 		:type forceImport: bool
@@ -1609,7 +1609,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def removeTemplate(self, template):
 		"""
-		This method removes given Template from the Database.
+		Removes given Template from the Database.
 
 		:param templates: Template to remove.
 		:type templates: list
@@ -1628,7 +1628,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def templateExists(self, path):
 		"""
-		This method returns if given Template path exists in the Database.
+		Returns if given Template path exists in the Database.
 
 		:param name: Template path.
 		:type name: unicode
@@ -1641,7 +1641,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
-		This method displays given Templates help file.
+		Displays given Templates help file.
 
 		:param template: Template to display help file.
 		:type template: Template
@@ -1663,7 +1663,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollections(self):
 		"""
-		This method returns Database Templates Collections.
+		Returns Database Templates Collections.
 
 		:return: Database Templates Collections.
 		:rtype: list
@@ -1673,7 +1673,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Templates Collections on given attribute using given pattern.
+		Filters the Database Templates Collections on given attribute using given pattern.
 		
 		:param pattern: Filter pattern.
 		:type pattern: unicode
@@ -1696,7 +1696,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getTemplates(self):
 		"""
-		This method returns Database Templates.
+		Returns Database Templates.
 
 		:return: Database Templates.
 		:rtype: list
@@ -1706,7 +1706,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Templates on given attribute using given pattern.
+		Filters the Database Templates on given attribute using given pattern.
 		
 		:param pattern: Filter pattern.
 		:type pattern: unicode
@@ -1730,7 +1730,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def listTemplates(self):
 		"""
-		This method lists Database Templates names.
+		Lists Database Templates names.
 
 		:return: Database Templates names.
 		:rtype: list
@@ -1740,7 +1740,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def setTemplates(self):
 		"""
-		This method sets the Templates Model nodes.
+		Sets the Templates Model nodes.
 		"""
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
@@ -1801,7 +1801,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getTemplateByName(self, name):
 		"""
-		This method returns Database Template with given name.
+		Returns Database Template with given name.
 
 		:param name: Template name.
 		:type name: unicode
@@ -1816,7 +1816,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollectionByName(self, name):
 		"""
-		This method gets Templates Collection from given Collection name.
+		Returns Templates Collection from given Collection name.
 
 		:param collection: Collection name.
 		:type collection: unicode
@@ -1829,7 +1829,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollectionId(self, collection):
 		"""
-		This method returns given Collection id.
+		Returns given Collection id.
 
 		:param collection: Collection to get the id from.
 		:type collection: unicode
@@ -1843,7 +1843,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedNodes(self):
 		"""
-		This method returns the View selected nodes.
+		Returns the View selected nodes.
 
 		:return: View selected nodes.
 		:rtype: dict
@@ -1853,7 +1853,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedTemplatesNodes(self):
 		"""
-		This method returns the View selected Templates nodes.
+		Returns the View selected Templates nodes.
 
 		:return: View selected Templates nodes.
 		:rtype: list
@@ -1863,7 +1863,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedTemplates(self):
 		"""
-		This method gets the View selected Templates.
+		Returns the View selected Templates.
 
 		:return: View selected Templates.
 		:rtype: list
