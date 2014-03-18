@@ -1054,7 +1054,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if foundations.common.pathExists(iblSet.path):
 				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
 				sectionsFileParser = SectionsFileParser(iblSet.path)
-				sectionsFileParser.read() and sectionsFileParser.parse()
+				sectionsFileParser.parse()
 				for section in sectionsFileParser.sections:
 					if re.search(r"Plate\d+", section):
 						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path),

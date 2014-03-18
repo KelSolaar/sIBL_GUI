@@ -738,8 +738,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name,
 																	self.__templateRemoteConnectionSection))
 		templateSectionsFileParser = foundations.parsers.SectionsFileParser(template.path)
-		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
-		rawSections=(self.__templateScriptSection))
+		templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 
 		if not self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 			return
@@ -895,8 +894,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.info("{0} | Starting remote connection!".format(self.__class__.__name__))
 		templateSectionsFileParser = foundations.parsers.SectionsFileParser(template.path)
-		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
-		rawSections=(self.__templateScriptSection))
+		templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 		connectionType = foundations.parsers.getAttributeCompound("ConnectionType",
 		templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 
@@ -1007,8 +1005,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Parsing Template file: '{0}'.".format(template))
 		templateSectionsFileParser = foundations.parsers.SectionsFileParser(template)
-		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
-											rawSections=(self.__templateScriptSection))
+		templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 		templateSections = dict.copy(templateSectionsFileParser.sections)
 
 		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).iteritems():
@@ -1023,7 +1020,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
 		iblSetSectionsFileParser = foundations.parsers.SectionsFileParser(iblSet)
-		iblSetSectionsFileParser.read() and iblSetSectionsFileParser.parse()
+		iblSetSectionsFileParser.parse()
 		iblSetSections = dict.copy(iblSetSectionsFileParser.sections)
 
 		LOGGER.debug("> Flattening Ibl Set file attributes.")

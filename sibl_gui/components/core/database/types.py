@@ -174,7 +174,7 @@ class IblSet(Base):
 		"""
 
 		sectionsFileParser = SectionsFileParser(self.path)
-		sectionsFileParser.read() and sectionsFileParser.parse()
+		sectionsFileParser.parse()
 
 		if sectionsFileParser.sections:
 			self.title = sectionsFileParser.getValue("Name", "Header")
@@ -317,7 +317,7 @@ class Template(Base):
 		"""
 
 		sectionsFileParser = SectionsFileParser(self.path)
-		sectionsFileParser.read() and sectionsFileParser.parse(rawSections=("Script"))
+		sectionsFileParser.parse(rawSections=("Script"))
 
 		if sectionsFileParser.sections:
 			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile",

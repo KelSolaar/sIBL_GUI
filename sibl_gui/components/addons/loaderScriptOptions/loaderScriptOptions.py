@@ -995,7 +995,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if templateSettingsFile:
 			LOGGER.debug("> Accessing '{0}' Template settings file: '{1}'.".format(template.name, templateSettingsFile))
 			templateSettingsSectionsFileParser = SectionsFileParser(templateSettingsFile)
-			templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
+			templateSettingsSectionsFileParser.parse()
 			commonAttributesOverrides.update(
 			templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
 			additionalAttributesOverrides.update(
@@ -1006,8 +1006,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(
 		template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateSectionsFileParser = SectionsFileParser(template.path)
-		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
-		rawSections=(self.__templateScriptSection))
+		templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 
 		self.__view_setUi(templateSectionsFileParser.sections.get(self.__templateCommonAttributesSection, {}),
 								self.__commonView, commonAttributesOverrides)
