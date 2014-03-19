@@ -66,7 +66,7 @@ class Constants():
 
 	defaultCodec = sibl_gui.DEFAULT_CODEC
 	"""Default codec: '**utf-8**' ( String )"""
-	codecError = "ignore"
+	codecError = sibl_gui.CODEC_ERROR
 	"""Default codec error behavior: '**ignore**' ( String )"""
 
 	applicationDirectory = os.sep.join(("sIBL_GUI", ".".join((majorVersion, minorVersion))))
