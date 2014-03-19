@@ -32,8 +32,8 @@ from PyQt4.QtGui import QPixmap
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.exceptions
+import foundations.guerilla
 import foundations.verbose
-import umbra.guerilla
 import umbra.ui.widgets.application_QToolBar
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.active_QLabel import Active_QLabel
@@ -61,7 +61,7 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 	Defines defines the Application toolbar.
 	"""
 
-	__metaclass__ = umbra.guerilla.baseWarfare
+	__metaclass__ = foundations.guerilla.baseWarfare
 
 	#******************************************************************************************************************
 	#***	Class methods.
