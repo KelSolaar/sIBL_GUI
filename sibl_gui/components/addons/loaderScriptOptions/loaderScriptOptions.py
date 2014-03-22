@@ -855,6 +855,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return True
 
+	@foundations.exceptions.handleExceptions(ValueError)
 	def __view_setUi(self, section, view, overrides):
 		"""
 		Defines and sets the given View.

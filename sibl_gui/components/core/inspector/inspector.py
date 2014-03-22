@@ -1425,7 +1425,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
 															sectionsFileParser.getValue("PLATEfile", section))))
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError, ValueError)
 	def __drawActiveIblSetOverlay(self):
 		"""
 		Draws an overlay on :obj:`Inspector.Image_Label` Widget.
@@ -1442,31 +1442,22 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
-				try:
-					self.__drawLightLabel(painter,
-										  Light(name="Sun",
-												color=[int(value) for value in sectionsFileParser.getValue(
-													"SUNcolor", section).split(",")],
-												uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
-												vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
-				except ValueError as Error:
-					raise foundations.exceptions.ExecutionError(
-						"'{0}' Ibl Set file 'Sun' section 'SUNcolor' attribute is invalid!".format(iblSetPath))
+				self.__drawLightLabel(painter,
+									  Light(name="Sun",
+											color=[int(value) for value in sectionsFileParser.getValue(
+												"SUNcolor", section).split(",")],
+											uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
+											vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
 
 			elif re.search(r"Light\d+", section):
-				try:
-					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
-						"LIGHTname", section) or self.__unnamedLightName,
-														 color=[int(value) for value in sectionsFileParser.getValue(
-															 "LIGHTcolor", section).split(",")],
-														 uCoordinate=float(
-															 sectionsFileParser.getValue("LIGHTu", section)),
-														 vCoordinate=float(
-															 sectionsFileParser.getValue("LIGHTv", section))))
-				except ValueError as Error:
-					raise foundations.exceptions.ExecutionError(
-						"'{0}' Ibl Set file '{1}' section 'LIGHTcolor' attribute is invalid!".format(iblSetPath,
-																									 section))
+				self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
+					"LIGHTname", section) or self.__unnamedLightName,
+													 color=[int(value) for value in sectionsFileParser.getValue(
+														 "LIGHTcolor", section).split(",")],
+													 uCoordinate=float(
+														 sectionsFileParser.getValue("LIGHTu", section)),
+													 vCoordinate=float(
+														 sectionsFileParser.getValue("LIGHTv", section))))
 
 		painter.end()
 

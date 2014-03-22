@@ -64,7 +64,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
-	| By default the Component will use current operating system file browsers but 
+	| By default the Component will use current operating system file browsers but
 		the user can define a custom file browser through options exposed
 		in the :mod:`sibl_gui.components.core.preferencesManager.preferencesManager` Component ui.
 
@@ -521,7 +521,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def initializeUi(self):
 		"""
 		Initializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -551,7 +551,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def uninitializeUi(self):
 		"""
 		Uninitializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -620,7 +620,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspector.Inspector_Overall_frame.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
-		slot=self.__inspector_openActiveIblSetLocationsAction__triggered))
+		slot=self.__inspector_openActiveIblSetLocationAction__triggered))
 		self.__componentsManagerUi.view.addAction(
 		self.__engine.actionsManager.registerAction(
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
@@ -641,10 +641,10 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for view in self.__iblSetsOutliner.views:
 			view.removeAction(self.__engine.actionsManager.getAction(openIblSetsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openIblSetsLocationsAction)
-		openActiveIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
+		openActiveIblSetLocationAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
 		self.__inspector.Inspector_Overall_frame.removeAction(
-		self.__engine.actionsManager.getAction(openActiveIblSetLocationsAction))
-		self.__engine.actionsManager.unregisterAction(openActiveIblSetLocationsAction)
+		self.__engine.actionsManager.getAction(openActiveIblSetLocationAction))
+		self.__engine.actionsManager.unregisterAction(openActiveIblSetLocationAction)
 		openComponentsLocationsAction = \
 		"Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
 		self.__componentsManagerUi.view.removeAction(
@@ -669,7 +669,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		return self.openIblSetsLocationsUi()
 
-	def __inspector_openActiveIblSetLocationsAction__triggered(self, checked):
+	def __inspector_openActiveIblSetLocationAction__triggered(self, checked):
 		"""
 		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
@@ -679,7 +679,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:rtype: bool
 		"""
 
-		return self.openActiveIblSetLocationsUi()
+		return self.openActiveIblSetLocationUi()
 
 	def __componentsManagerUi_view_openComponentsLocationsAction__triggered(self, checked):
 		"""
@@ -795,7 +795,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler,
 											foundations.exceptions.FileExistsError)
-	def openActiveIblSetLocationsUi(self):
+	def openActiveIblSetLocationUi(self):
 		"""
 		Opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
 
