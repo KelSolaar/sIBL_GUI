@@ -1073,7 +1073,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def initializeUi(self):
 		"""
 		Initializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -1259,7 +1259,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
 		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
-		
+
 		:param file: File changed.
 		:type file: unicode
 		"""
@@ -1279,7 +1279,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def __engine_imagesCaches_QPixmap__contentAdded(self, paths):
 		"""
 		Defines the slot triggered by the **QPixmap** images cache when content is added.
-		
+
 		:param paths: Added content.
 		:type paths: list
 		"""
@@ -1433,7 +1433,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
 		if sectionsFileParser is None:
 			raise foundations.exceptions.ExecutionError(
-			"'{1}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+			"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
 
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
