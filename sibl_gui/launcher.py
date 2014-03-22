@@ -122,20 +122,11 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 	def __init__(self,
 				parent=None,
-				componentsPaths=None,
-				requisiteComponents=None,
-				visibleComponents=None,
 				*args,
 				**kwargs):
 		"""
 		Initializes the class.
 
-		:param componentsPaths: Components componentsPaths.
-		:type componentsPaths: tuple or list
-		:param requisiteComponents: Requisite components names.
-		:type requisiteComponents: tuple or list
-		:param visibleComponents: Visible components names.
-		:type visibleComponents: tuple or list
 		:param \*args: Arguments.
 		:type \*args: \*
 		:param \*\*kwargs: Keywords arguments.
@@ -146,9 +137,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		umbra.engine.Umbra.__init__(self,
 									parent,
-									componentsPaths,
-									requisiteComponents,
-									visibleComponents,
 									*args,
 									**kwargs)
 
