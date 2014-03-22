@@ -42,6 +42,7 @@ from PyQt4.QtGui import QTableWidgetItem
 #**********************************************************************************************************************
 import foundations.dataStructures
 import foundations.exceptions
+import foundations.io
 import foundations.ui.common
 import foundations.verbose
 import umbra.ui.common
@@ -758,6 +759,12 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		downloadDirectory = self.__getTemplatesDownloadDirectory()
 		if not downloadDirectory:
+			return
+
+		if not foundations.io.isWritable(downloadDirectory):
+			self.__container.engine.notificationsManager.exceptify(
+					"{0} | '{1}' directory is not writable".format(
+					self.__class__.__name__, downloadDirectory))
 			return
 
 		LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
