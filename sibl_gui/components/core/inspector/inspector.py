@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 import os
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
 	from ordereddict import OrderedDict
 else:
@@ -270,7 +271,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -280,7 +281,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiPreviousImage(self):
@@ -304,7 +305,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@uiPreviousImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -314,7 +315,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@property
 	def uiNextImage(self):
@@ -338,7 +339,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
 
 	@uiNextImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -348,7 +349,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
 
 	@property
 	def uiLoadingImage(self):
@@ -372,7 +373,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@uiLoadingImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -382,7 +383,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@property
 	def dockArea(self):
@@ -406,7 +407,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -416,7 +417,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
 	def listViewIconSize(self):
@@ -452,7 +453,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
 	@property
 	def engine(self):
@@ -476,7 +477,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -486,7 +487,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def iblSetsOutliner(self):
@@ -510,7 +511,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -520,7 +521,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def sectionsFileParsersCache(self):
@@ -544,7 +545,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
 	@sectionsFileParsersCache.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -554,7 +555,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
 	@property
 	def model(self):
@@ -578,7 +579,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -588,7 +589,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
 	def view(self):
@@ -612,7 +613,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
 	@view.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -622,7 +623,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
 	def thumbnailsSize(self):
@@ -646,7 +647,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize",
+																								  value)
 		self.__thumbnailsSize = value
 
 	@thumbnailsSize.deleter
@@ -657,7 +659,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
 
 	@property
 	def activeIblSet(self):
@@ -681,7 +683,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
 
 	@activeIblSet.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -691,7 +693,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
 
 	@property
 	def inspectorPlates(self):
@@ -715,7 +717,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorPlates"))
 
 	@inspectorPlates.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -725,7 +727,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorPlates"))
 
 	@property
 	def noPreviewImageText(self):
@@ -749,7 +751,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noPreviewImageText"))
 
 	@noPreviewImageText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -759,7 +761,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
 
 	@property
 	def noActiveIblSetText(self):
@@ -783,7 +785,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
 
 	@noActiveIblSetText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -793,7 +795,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
 
 	@property
 	def activeIblSetToolTipText(self):
@@ -817,7 +819,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
 	@activeIblSetToolTipText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -827,7 +829,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
 	@property
 	def lightLabelRadius(self):
@@ -851,7 +853,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelRadius"))
 
 	@lightLabelRadius.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -861,7 +863,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelRadius"))
 
 	@property
 	def lightLabelTextOffset(self):
@@ -885,7 +887,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextOffset"))
 
 	@lightLabelTextOffset.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -895,7 +897,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextOffset"))
 
 	@property
 	def lightLabelTextMargin(self):
@@ -919,7 +921,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextMargin"))
 
 	@lightLabelTextMargin.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -929,7 +931,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextMargin"))
 
 	@property
 	def lightLabelTextHeight(self):
@@ -953,7 +955,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextHeight"))
 
 	@lightLabelTextHeight.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -963,7 +965,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextHeight"))
 
 	@property
 	def lightLabelTextFont(self):
@@ -987,7 +989,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextFont"))
 
 	@lightLabelTextFont.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
@@ -997,7 +999,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
 
 	@property
 	def unnamedLightName(self):
@@ -1022,7 +1024,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if value is not None:
 			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-			"unnamedLightName", value)
+				"unnamedLightName", value)
 		self.__unnamedLightName = value
 
 	@unnamedLightName.deleter
@@ -1033,7 +1035,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -1068,7 +1070,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+			"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	def initializeUi(self):
 		"""
@@ -1081,8 +1083,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__pixmapPlaceholder = \
-		sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
-									asynchronousLoading=False)
+			sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
+										 asynchronousLoading=False)
 
 		self.__sectionsFileParsersCache = foundations.cache.Cache()
 
@@ -1093,9 +1095,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Plates_listView.setObjectName("Plates_listView")
 		self.Plates_frame_gridLayout.addWidget(self.Plates_listView, 0, 1)
 		self.__view = self.Plates_listView
-		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda:True
+		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda: True
 
-		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+		self.Previous_Ibl_Set_pushButton.setIcon(
+			QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
 		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
 		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
 		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
@@ -1135,7 +1138,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+			"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
 	def addWidget(self):
 		"""
@@ -1158,7 +1161,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+			"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
 	def __Inspector_DockWidget_setUi(self):
 		"""
@@ -1176,8 +1179,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				if foundations.common.pathExists(self.__activeIblSet.backgroundImage):
 					pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.backgroundImage,
-														size=self.__thumbnailsSize,
-														placeholder=self.__pixmapPlaceholder)
+														  size=self.__thumbnailsSize,
+														  placeholder=self.__pixmapPlaceholder)
 					previewAvailable = True
 
 			if previewAvailable:
@@ -1185,17 +1188,17 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__drawActiveIblSetOverlay()
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(
-																sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
-																self.__activeIblSet.author,
-																self.__activeIblSet.link))
+					sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
+					self.__activeIblSet.author,
+					self.__activeIblSet.link))
 
 			self.Image_label.setToolTip(self.__activeIblSetToolTipText.format(
-													self.__activeIblSet.title,
-													self.__activeIblSet.author or Constants.nullObject,
-													self.__activeIblSet.location or Constants.nullObject,
-													sibl_gui.ui.common.getFormatedShotDate(self.__activeIblSet.date,
-																self.__activeIblSet.time) or Constants.nullObject,
-																self.__activeIblSet.comment or Constants.nullObject))
+				self.__activeIblSet.title,
+				self.__activeIblSet.author or Constants.nullObject,
+				self.__activeIblSet.location or Constants.nullObject,
+				sibl_gui.ui.common.getFormatedShotDate(self.__activeIblSet.date,
+													   self.__activeIblSet.time) or Constants.nullObject,
+				self.__activeIblSet.comment or Constants.nullObject))
 
 			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__activeIblSet.comment))
 
@@ -1285,10 +1288,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if not self.__activeIblSet:
-				return
+			return
 
 		if foundations.common.getFirstItem(paths) in (self.__activeIblSet.previewImage,
-													self.__activeIblSet.backgroundImage):
+													  self.__activeIblSet.backgroundImage):
 			self.__Inspector_DockWidget_setUi()
 
 	def __iblSetsOutliner__modelReset(self):
@@ -1393,7 +1396,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
 				sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
+				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path: sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
@@ -1404,21 +1407,23 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		path = self.__activeIblSet.path
 		if not foundations.common.pathExists(path):
 			raise foundations.exceptions.FileExistsError(
-			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, self.__activeIblSet.title))
+				"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
+					self.__class__.__name__, self.__activeIblSet.title))
 
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(path)
 		self.__inspectorPlates = OrderedDict()
 		for section in sectionsFileParser.sections:
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
-				Plate(name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
-					icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-														sectionsFileParser.getValue("PLATEthumb", section))),
-					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-															sectionsFileParser.getValue("PLATEpreview", section))),
-					image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-														sectionsFileParser.getValue("PLATEfile", section))))
+					Plate(
+						name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
+						icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+														   sectionsFileParser.getValue("PLATEthumb", section))),
+						previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+																   sectionsFileParser.getValue("PLATEpreview",
+																							   section))),
+						image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+															sectionsFileParser.getValue("PLATEfile", section))))
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
 	def __drawActiveIblSetOverlay(self):
@@ -1433,22 +1438,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
 		if sectionsFileParser is None:
 			raise foundations.exceptions.ExecutionError(
-			"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+				"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
 
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
-				self.__drawLightLabel(painter, Light(name="Sun",
+				try:
+					self.__drawLightLabel(painter,
+										  Light(name="Sun",
 												color=[int(value) for value in sectionsFileParser.getValue(
-												"SUNcolor", section).split(",")],
+													"SUNcolor", section).split(",")],
 												uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
 												vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
+				except ValueError as Error:
+					raise foundations.exceptions.ExecutionError(
+						"'{0}' Ibl Set file 'Sun' section 'SUNcolor' attribute is invalid!".format(iblSetPath))
+
 			elif re.search(r"Light\d+", section):
-				self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
-												"LIGHTname", section) or self.__unnamedLightName,
-												color=[int(value) for value in sectionsFileParser.getValue(
-												"LIGHTcolor", section).split(",")],
-												uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
-												vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
+				try:
+					self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
+						"LIGHTname", section) or self.__unnamedLightName,
+														 color=[int(value) for value in sectionsFileParser.getValue(
+															 "LIGHTcolor", section).split(",")],
+														 uCoordinate=float(
+															 sectionsFileParser.getValue("LIGHTu", section)),
+														 vCoordinate=float(
+															 sectionsFileParser.getValue("LIGHTv", section))))
+				except ValueError as Error:
+					raise foundations.exceptions.ExecutionError(
+						"'{0}' Ibl Set file '{1}' section 'LIGHTcolor' attribute is invalid!".format(iblSetPath,
+																									 section))
+
 		painter.end()
 
 	def __drawLightLabel(self, painter, light):
@@ -1477,18 +1496,18 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		textWidth = painter.fontMetrics().width(light.name.title())
 		xLabelTextOffset = -(self.__lightLabelTextOffset + textWidth) if \
-						pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
-						self.__lightLabelTextOffset
+			pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
+			self.__lightLabelTextOffset
 		yLabelTextOffset = -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) if \
-						pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
-						self.__lightLabelTextOffset
+			pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
+			self.__lightLabelTextOffset
 		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
 		painter.drawLine(pointX,
-						pointY,
-						pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
-						pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
-								if yLabelTextOffset < 0 else yLabelTextOffset))
+						 pointY,
+						 pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
+						 pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
+									   if yLabelTextOffset < 0 else yLabelTextOffset))
 
 		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
 
@@ -1522,10 +1541,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for name, plate in self.__inspectorPlates.iteritems():
 			plateNode = PlatesNode(plate,
-								name=name,
-								parent=rootNode,
-								nodeFlags=nodeFlags,
-								attributesFlags=attributesFlags)
+								   name=name,
+								   parent=rootNode,
+								   nodeFlags=nodeFlags,
+								   attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = ""
 			plateNode.roles[Qt.DecorationRole] = foundations.common.filterPath(plate.icon)
 
@@ -1545,7 +1564,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if self.__activeIblSet:
 			model = self.__iblSetsOutliner.model
 
-			activeIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__activeIblSet.path]
+			activeIblSetNode = [node for node in model.rootNode.children if
+								node.databaseItem.path == self.__activeIblSet.path]
 			activeIblSetNode = foundations.common.getFirstItem(activeIblSetNode)
 			if not activeIblSetNode:
 				return True
