@@ -775,7 +775,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def initializeUi(self):
 		"""
 		Initializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -808,7 +808,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	def uninitializeUi(self):
 		"""
 		Uninitializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -887,7 +887,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for row, attribute in enumerate(section):
 			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
 
-			overridesValue = attribute in overrides and overrides[attribute] or None
+			overridesValue = overrides[attribute] if attribute in overrides else None
 			LOGGER.debug("> Settings value: '{0}'.".format(overridesValue or Constants.nullObject))
 
 			attributeCompound = foundations.parsers.getAttributeCompound(attribute, section[attribute])
@@ -898,7 +898,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
-				state = int(overridesValue or attributeCompound.value) and True or False
+				state = True if int(overridesValue if overridesValue is not None else attributeCompound.value) else False
 				item = Variable_QPushButton(self,
 						state,
 						(self.__uiLightGrayColor, self.__uiDarkGrayColor),
@@ -912,7 +912,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
-				item.setValue(float(overridesValue or attributeCompound.value))
+				item.setValue(float(overridesValue if overridesValue is not None else attributeCompound.value))
 
 				# Signals / Slots.
 				item.valueChanged.connect(self.__view__valueChanged)
@@ -926,7 +926,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				# Signals / Slots.
 				item.currentIndexChanged.connect(self.__view__valueChanged)
 			elif attributeCompound.type == "String":
-				item = QLineEdit(QString(overridesValue or attributeCompound.value))
+				item = QLineEdit(QString(overridesValue if overridesValue is not None else attributeCompound.value))
 				item.setAlignment(Qt.AlignCenter)
 
 				# Signals / Slots.
