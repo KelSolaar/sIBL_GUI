@@ -1382,7 +1382,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__activeIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__activeIblSet:
 			rootNode = self.__iblSetsOutliner.model.rootNode
-			self.__activeIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
+			childNode = foundations.common.getFirstItem(rootNode.children)
+			self.__activeIblSet = childNode.databaseItem if childNode is not None else None
 		self.__activeIblSet and self.__setActiveIblSetParser()
 
 	def __setActiveIblSetParser(self):
