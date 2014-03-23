@@ -62,7 +62,6 @@ from sibl_gui.components.core.inspector.models import PlatesModel
 from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
-from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
