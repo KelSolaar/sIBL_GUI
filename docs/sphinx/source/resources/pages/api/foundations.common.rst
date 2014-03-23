@@ -29,8 +29,6 @@ Functions
 
 .. autofunction:: getLastItem
 
-.. autofunction:: isBinaryFile
-
 .. autofunction:: repeat
 
 .. autofunction:: dependencyResolver

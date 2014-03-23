@@ -62,6 +62,38 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractIOError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: FileReadError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: FileWriteError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: UrlReadError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: UrlWriteError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: DirectoryCreationError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PathCopyError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PathRemoveError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: AbstractOsError
 	:show-inheritance:
 	:members:
