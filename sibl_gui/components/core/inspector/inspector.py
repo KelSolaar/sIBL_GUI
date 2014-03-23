@@ -1195,7 +1195,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__activeIblSet.title,
 				self.__activeIblSet.author or Constants.nullObject,
 				self.__activeIblSet.location or Constants.nullObject,
-				sibl_gui.ui.common.getFormatedShotDate(self.__activeIblSet.date,
+				sibl_gui.ui.common.getFormattedShotDate(self.__activeIblSet.date,
 													   self.__activeIblSet.time) or Constants.nullObject,
 				self.__activeIblSet.comment or Constants.nullObject))
 

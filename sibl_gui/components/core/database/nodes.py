@@ -213,7 +213,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
 		Initializes the node.
-		
+
 		:param attributesFlags: Attributes flags.
 		:type attributesFlags: int
 		"""
@@ -242,7 +242,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	def updateNodeAttributes(self):
 		"""
 		Updates the Node attributes from the database item attributes.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -434,7 +434,7 @@ class IblSetNode(AbstractDatabaseNode):
 	def updateNodeAttributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -463,7 +463,7 @@ class IblSetNode(AbstractDatabaseNode):
 		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.databaseItem.title,
 															self.databaseItem.author or Constants.nullObject,
 															self.databaseItem.location or Constants.nullObject,
-															sibl_gui.ui.common.getFormatedShotDate(self.databaseItem.date,
+															sibl_gui.ui.common.getFormattedShotDate(self.databaseItem.date,
 																			self.databaseItem.time) or Constants.nullObject,
 															self.databaseItem.comment or Constants.nullObject)
 		return True
@@ -565,7 +565,7 @@ class TemplateNode(AbstractDatabaseNode):
 	def updateNodeAttributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -694,7 +694,7 @@ class CollectionNode(AbstractDatabaseNode):
 	def updateNodeAttributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""

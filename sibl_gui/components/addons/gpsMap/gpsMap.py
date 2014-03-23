@@ -488,7 +488,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	def initializeUi(self):
 		"""
 		Initializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -523,7 +523,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	def uninitializeUi(self):
 		"""
 		Uninitializes the Component ui.
-		
+
 		:return: Method success.
 		:rtype: bool
 		"""
@@ -644,7 +644,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		:return: Method success.
 		:rtype: bool
-		
+
 		:note: May require user interaction.
 		"""
 
@@ -676,7 +676,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Ibl Set '{0}' provides GEO coordinates.".format(iblSet.name))
 		shotDateString = "<b>Shot Date: </b>{0}".format(
-		sibl_gui.ui.common.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
+		sibl_gui.ui.common.getFormattedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
 		content = "<p><h3><b>{0}</b></h3></p><p><b>\
 		Author: </b>{1}<br><b>\
 		Location: </b>{2}<br>{3}<br><b>\

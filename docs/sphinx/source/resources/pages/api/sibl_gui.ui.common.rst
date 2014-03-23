@@ -33,5 +33,5 @@ Functions
 
 .. autofunction:: filterImagePath
 
-.. autofunction:: getFormatedShotDate
+.. autofunction:: getFormattedShotDate
 

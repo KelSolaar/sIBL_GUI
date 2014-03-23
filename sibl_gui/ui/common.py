@@ -70,7 +70,7 @@ __all__ = ["LOGGER",
 		"createPixmap",
 		"getImageInformationsHeader",
 		"filterImagePath",
-		"getFormatedShotDate"]
+		"getFormattedShotDate"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -367,9 +367,9 @@ def filterImagePath(path):
 	else:
 		return umbra.ui.common.getResourcePath(UiConstants.missingImage)
 
-def getFormatedShotDate(date, time):
+def getFormattedShotDate(date, time):
 	"""
-	Returns a formated shot date.
+	Returns a formatted shot date.
 
 	:param date: Ibl Set date key value.
 	:type date: unicode
@@ -379,13 +379,13 @@ def getFormatedShotDate(date, time):
 	:rtype: unicode
 	"""
 
-	LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
+	LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))
 
-	if date and time and date != Constants.nullObject and time != Constants.nullObject:
-		shotTime = "{0}H{1}".format(*time.split(":"))
+	if not Constants.nullObject in (time, date):
+		shotTime = "{0}H{1}".format(*foundations.common.unpackDefault(time.split(":"), 2, Constants.nullObject))
 		shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
-		LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
+		LOGGER.debug("> Formatted shot date: '{0}'.".format(shotDate))
 		return shotDate
 	else:
 		return Constants.nullObject
