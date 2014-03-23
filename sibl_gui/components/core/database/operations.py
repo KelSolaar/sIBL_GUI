@@ -209,6 +209,10 @@ def addStandardItem(type, name, path, collection, session=None):
 	session = getSession(session)
 
 	if not filterItems(query(type), "^{0}$".format(re.escape(path)), "path"):
+		if not foundations.common.pathExists(path):
+			LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(__name__, path))
+			return False
+
 		osStats = ",".join((foundations.strings.toString(stat) for stat in os.stat(path)))
 		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if databaseItem.setContent():
@@ -267,6 +271,10 @@ def updateItemContent(item, session=None):
 	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
+
+	if not foundations.common.pathExists(item.path):
+		LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(__name__, item.path))
+		return False
 
 	item.osStats = ",".join(map(foundations.strings.toString, os.stat(item.path)))
 	if item.setContent():
