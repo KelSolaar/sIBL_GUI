@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines **sIBL_GUI** package exceptions. 
+	Defines **sIBL_GUI** package exceptions.
 
 **Others:**
 
@@ -59,35 +59,35 @@ class NetworkError(AbstractNetworkError):
 
 class SocketConnectionError(AbstractNetworkError):
 	"""
-	Defines socket connection exceptions.
+	Defines socket connection exception.
 	"""
 
 	pass
 
 class Win32OLEServerConnectionError(AbstractNetworkError):
 	"""
-	Defines Win32OLE Server connection exceptions.
+	Defines Win32OLE Server connection exception.
 	"""
 
 	pass
 
 class AbstractCacheError(foundations.exceptions.AbstractError):
 	"""
-	Defines the abstract base class for caching related exceptions.
+	Defines the abstract base class for caching related exception.
 	"""
 
 	pass
 
 class CacheExistsError(foundations.exceptions.AbstractError):
 	"""
-	Defines non existing cache exceptions.
+	Defines non existing cache exception.
 	"""
 
 	pass
 
 class CacheOperationError(foundations.exceptions.AbstractError):
 	"""
-	Defines cache operations exceptions.
+	Defines cache operations exception.
 	"""
 
 	pass
