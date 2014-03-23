@@ -382,7 +382,7 @@ def getFormattedShotDate(date, time):
 	LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))
 
 	if not Constants.nullObject in (time, date):
-		shotTime = "{0}H{1}".format(*foundations.common.unpackDefault(time.split(":"), 2, Constants.nullObject))
+		shotTime = "{0}H{1}".format(*foundations.common.unpackDefault(time.split(":"), 2, "?"))
 		shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
 		LOGGER.debug("> Formatted shot date: '{0}'.".format(shotDate))
