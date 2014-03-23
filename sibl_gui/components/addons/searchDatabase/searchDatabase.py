@@ -616,10 +616,14 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if patternTokens != patternsDefault:
 				for pattern in patternTokens:
 					patternMatched = False
-					for tag in tagsCloud:
-						if re.search(pattern, tag, flags=flags):
-							patternMatched = True
-							break
+					try:
+						pattern = re.compile(pattern, flags)
+						for tag in tagsCloud:
+							if re.search(pattern, tag, flags=flags):
+								patternMatched = True
+								break
+					except re.error:
+						LOGGER.warning("!> {0} | '{1}' regex pattern is invalid!".format(self.__class__.__name__, pattern))
 					patternsMatched *= patternMatched
 
 			if patternsMatched:
