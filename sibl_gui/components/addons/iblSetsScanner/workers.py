@@ -262,7 +262,7 @@ class IblSetsScanner_worker(QThread):
 																					session=self.__databaseSession):
 						self.__newIblSets.append(path)
 			else:
-				LOGGER.warning("!> '{0}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(directory))
+				LOGGER.warning("!> {0} | '{1}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(self.__class__.__name__, directory))
 
 		self.__databaseSession.close()
 
