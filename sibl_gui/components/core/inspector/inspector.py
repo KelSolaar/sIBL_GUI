@@ -1524,7 +1524,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								name=self.__activeIblSet.title,
 								parent=rootNode,
 								nodeFlags=nodeFlags,
-								attributesFlags=attributesFlags)
+								attributesFlags=attributesFlags,
+								iconPath = self.__activeIblSet.icon)
 		iblSetNode.roles[Qt.DisplayRole] = ""
 
 		if not self.__inspectorPlates:
