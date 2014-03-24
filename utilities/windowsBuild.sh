@@ -26,11 +26,12 @@ echo Cleanup - Begin
 echo -------------------------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION $DEPENDENCIES $BUNDLE
 packages="foundations,manager,umbra,sibl_gui"
+types=".pyc,.pyo,.DS_Store,Thumbs.db"
 for package in $packages
 do
-	for type in ".pyc,.pyo,.DS_Store,Thumbs.db"
+	for type in $types
 	do
-		python $UTILITIES/recursiveRemove.py $( $UTILITIES/getPackagePath.py $package ) $type
+		python $UTILITIES/recursiveRemove.py --input $( $UTILITIES/getPackagePath.py --package $package ) --pattern $type
 	done
 done
 echo -------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ echo ---------------------------------------------------------------------------
 cp -r $DISTRIBUTION/sIBL_GUI $BUNDLE
 for package in $packages
 do
-	cp -rL $( cygpath --unix $( $UTILITIES/getPackagePath.py $package ) ) $DEPENDENCIES/$package
+	cp -rL $( cygpath --unix $( $UTILITIES/getPackagePath.py --package $package ) ) $DEPENDENCIES/$package
 done
 packages="umbra,sibl_gui"
 extensions="bmp,icns,ico"
@@ -78,7 +79,7 @@ echo ---------------------------------------------------------------------------
 echo -------------------------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo -------------------------------------------------------------------------------
-python $UTILITIES/recursiveRemove.py $DEPENDENCIES/sibl_gui/resources/templates/ .rst
+python $UTILITIES/recursiveRemove.py --input $DEPENDENCIES/sibl_gui/resources/templates/ --pattern .rst
 echo -------------------------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo -------------------------------------------------------------------------------

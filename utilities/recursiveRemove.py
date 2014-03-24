@@ -22,6 +22,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	External imports.
 #**********************************************************************************************************************
+import argparse
 import os
 import sys
 
@@ -35,7 +36,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["recursiveRemove", "remove"]
+__all__ = ["recursiveRemove", "remove", "getCommandLineArguments" , "main"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -72,6 +73,50 @@ def remove(item):
 	except:
 		print("{0} | '{1}' file removing failed!".format(remove.__name__, item))
 
+def getCommandLineArguments():
+	"""
+	Retrieves command line arguments.
+
+	:return: Namespace.
+	:rtype: Namespace
+	"""
+
+	parser = argparse.ArgumentParser(add_help=False)
+
+	parser.add_argument("-h",
+						"--help",
+						action="help",
+						help="'Displays this help message and exit.'")
+
+	parser.add_argument("-i",
+						"--input",
+						type=unicode,
+						dest="input",
+						help="'Input directory to recurse.'")
+
+	parser.add_argument("-p",
+						"--pattern",
+						type=unicode,
+						dest="pattern",
+						help="'Pattern to match.'")
+
+	if len(sys.argv) == 1:
+		parser.print_help()
+		sys.exit(1)
+
+	return parser.parse_args()
+
+def main():
+	"""
+	Starts the Application.
+
+	:return: Definition success.
+	:rtype: bool
+	"""
+
+	args = getCommandLineArguments()
+	return 0 if recursiveRemove(args.input, args.pattern) else 1
+
 if __name__ == "__main__":
-	arguments = map(unicode, sys.argv)
-	recursiveRemove(arguments[1], arguments[2])
+	main()
+

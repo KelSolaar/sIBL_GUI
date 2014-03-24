@@ -24,6 +24,7 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 import subprocess
 import sys
+
 if sys.version_info[:2] <= (2, 6):
 	from ordereddict import OrderedDict
 else:
@@ -32,6 +33,7 @@ else:
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
+import foundations.decorators
 import foundations.verbose
 from foundations.io import File
 
@@ -46,29 +48,32 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"GIT_EXECUTABLE",
-		"FOUNDATIONS_DIRECTORY",
-		"MANAGER_DIRECTORY",
-		"UMBRA_DIRECTORY"
-		"TEMPLATES_DIRECTORY",
-		"DEPENDENCIES",
-		"DEPENDENCIES_FILE",
-		"getDependenciesInformations"]
+		   "GIT_EXECUTABLE",
+		   "ONCILLA_DIRECTORY",
+		   "FOUNDATIONS_DIRECTORY",
+		   "MANAGER_DIRECTORY",
+		   "UMBRA_DIRECTORY"
+		   "TEMPLATES_DIRECTORY",
+		   "DEPENDENCIES",
+		   "DEPENDENCIES_FILE",
+		   "getDependenciesInformations",
+		   "main"]
 
 LOGGER = foundations.verbose.installLogger()
 
 GIT_EXECUTABLE = "/usr/local/git/bin/git"
+ONCILLA_DIRECTORY = "../../Oncilla"
 FOUNDATIONS_DIRECTORY = "../../Foundations"
 MANAGER_DIRECTORY = "../../Manager"
 UMBRA_DIRECTORY = "../../Umbra"
 TEMPLATES_DIRECTORY = "../../sIBL_GUI_Templates"
-DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
+DEPENDENCIES = OrderedDict((("Oncilla", ONCILLA_DIRECTORY),
+							("Foundations", FOUNDATIONS_DIRECTORY),
 							("Manager", MANAGER_DIRECTORY),
 							("Umbra", UMBRA_DIRECTORY),
 							("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 
-LOGGER = foundations.verbose.installLogger()
 foundations.verbose.getLoggingConsoleHandler()
 foundations.verbose.setVerbosityLevel(3)
 
@@ -78,19 +83,35 @@ foundations.verbose.setVerbosityLevel(3)
 def getDependenciesInformations():
 	"""
 	Gets sIBL_GUI dependencies informations file.
+
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	content = ["[Dependencies]\n"]
 	for dependency, path in DEPENDENCIES.iteritems():
 		release = subprocess.Popen("cd {0} && {1} describe".format(path, GIT_EXECUTABLE),
-									shell=True,
-									stdout=subprocess.PIPE,
-									stderr=subprocess.PIPE).communicate()[0]
+								   shell=True,
+								   stdout=subprocess.PIPE,
+								   stderr=subprocess.PIPE).communicate()[0]
 		LOGGER.info("{0} | '{1}': '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
 		content.append("{0}={1}".format(dependency, release))
 	file = File(DEPENDENCIES_FILE)
 	file.content = content
 	file.write()
 
+	return True
+
+@foundations.decorators.systemExit
+def main():
+	"""
+	Starts the Application.
+
+	:return: Definition success.
+	:rtype: bool
+	"""
+
+	return getDependenciesInformations()
+
 if __name__ == "__main__":
-	getDependenciesInformations()
+	main()
