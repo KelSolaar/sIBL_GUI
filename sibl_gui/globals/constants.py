@@ -70,10 +70,10 @@ class Constants():
 	:param changeVersion: Package change version.
 	:type changeVersion: unicode
 	"""
-	releaseVersion = ".".join((majorVersion, minorVersion, changeVersion))
+	version = ".".join((majorVersion, minorVersion, changeVersion))
 	"""
-	:param releaseVersion: Package release version.
-	:type releaseVersion: unicode
+	:param version: Package version.
+	:type version: unicode
 	"""
 
 	logger = "sIBL_GUI_Logger"

@@ -456,7 +456,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		umbra.ui.common.setWindowDefaultIcon(self)
 
 		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage),
-						Constants.releaseVersion.replace(".", " . "),
+						Constants.version.replace(".", " . "),
 						os.path.join(self.__uiResourcesDirectory, self.__uiGpl3Image))
 
 		self.About_label.setText(aboutMessage)

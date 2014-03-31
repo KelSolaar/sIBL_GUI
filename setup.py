@@ -82,7 +82,7 @@ def getLongDescription():
 	return "".join(description)
 
 setup(name=sibl_gui.globals.constants.Constants.applicationName,
-	version=sibl_gui.globals.constants.Constants.releaseVersion,
+	version=sibl_gui.globals.constants.Constants.version,
 	author=sibl_gui.globals.constants.__author__,
 	author_email=sibl_gui.globals.constants.__email__,
 	include_package_data=True,
