@@ -11,6 +11,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: getTemporaryDirectory
+
 .. autofunction:: getSystemApplicationDataDirectory
 
 .. autofunction:: getUserApplicationDataDirectory
