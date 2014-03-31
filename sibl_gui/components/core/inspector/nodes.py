@@ -56,7 +56,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 
 	__family = "Plate"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				plate,

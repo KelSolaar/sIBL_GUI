@@ -190,7 +190,10 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 	"""
 
 	__family = "GraphModel"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				name=None,

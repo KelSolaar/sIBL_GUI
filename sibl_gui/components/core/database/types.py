@@ -60,7 +60,10 @@ class IblSet(Base):
 	"""
 
 	__tablename__ = "IblSets"
-	"""Table name. ( String )"""
+	"""
+	:param __tablename__: Table name.
+	:type __tablename__: unicode
+	"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
@@ -213,7 +216,10 @@ class Template(Base):
 	"""
 
 	__tablename__ = "Templates"
-	"""Table name. ( String )"""
+	"""
+	:param __tablename__: Table name.
+	:type __tablename__: unicode
+	"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
@@ -360,7 +366,10 @@ class Collection(Base):
 	"""
 
 	__tablename__ = "Collections"
-	"""Table name. ( String )"""
+	"""
+	:param __tablename__: Table name.
+	:type __tablename__: unicode
+	"""
 
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)

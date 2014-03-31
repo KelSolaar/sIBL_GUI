@@ -78,7 +78,10 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 
 	__family = "AbstractDatabaseNode"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				databaseItem,
@@ -303,7 +306,10 @@ class IblSetNode(AbstractDatabaseNode):
 	"""
 
 	__family = "IblSet"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				databaseItem,
@@ -474,7 +480,10 @@ class TemplateNode(AbstractDatabaseNode):
 	"""
 
 	__family = "Template"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				databaseItem,
@@ -604,7 +613,10 @@ class CollectionNode(AbstractDatabaseNode):
 	"""
 
 	__family = "Collection"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				databaseItem,

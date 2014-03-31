@@ -55,7 +55,10 @@ class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 
 	__family = "Software"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				name=None,
