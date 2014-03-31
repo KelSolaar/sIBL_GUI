@@ -40,7 +40,7 @@ a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
 			os.path.join(HOMEPATH, "support\\useUnicode.py"),
 			"z:/Documents/Development/sIBL_GUI/sibl_gui/launcher.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
-             excludes=["foundations", "manager", "umbra", "sibl_gui"])
+             excludes=["oncilla", "foundations", "manager", "umbra", "sibl_gui"])
 
 pyz = PYZ(a.pure)
 

@@ -80,7 +80,7 @@ def listImports(packages, filtersIn, filtersOut):
 			source = File(file)
 			source.cache()
 			for line in source.content:
-				if not re.search("foundations|manager|umbra|sibl_gui", line):
+				if not re.search("oncilla|foundations|manager|umbra|sibl_gui", line):
 					search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import",
 									   line)
 					if search:
