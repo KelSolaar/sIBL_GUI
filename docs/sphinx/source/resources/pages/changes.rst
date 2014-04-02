@@ -1,16 +1,6 @@
 Changes
 =======
 
-.. raw:: html
-
-    <div style="color: rgb(160, 96, 64);">
-        <h2>Notes:</h2>
-        <ul>
-            <li>The following changes reflects the changes of <b>sIBL_GUI</b> package and also its dependencies.
-            </li>
-        </ul>
-    </div>
-
 4.0.8 - Stable
 --------------
 
@@ -32,6 +22,7 @@ Changes
 -  Fixed long startup delay when no Internet connection is available.
 -  Fixed **notificationsManager** notifiers insertion order.
 -  Fixed caching issue in **foundations.parsers.SectionsFileParser.write** method.
+-  Fixed various issues in **Softimage_Arnold_Standard**, **Softimage_Arnold_Dome_Light** and **Softimage_Arnold_Lightsmith** templates to support latest **SItoA** build.
 -  Handled **BadZipfile** exception in **foundations.pkzip.Pkzip.extractZipFile** method.
 -  Ensured **fileSystemEventsManager** manager doesn't compares integer paths modification times to float ones.
 -  Ensured **Softimage_Arnold_Lightsmith** Template compatibility with **SItoA 2.8.0** by removing deprecated legacy light filter code.
@@ -42,10 +33,12 @@ Changes
 -  Ensured **notificationsManager** has a maximum number of displayed notifiers at same time.
 -  Ensured **foundations.parsers.SectionsFileParser.parse** method reads current file content if no content has been previously set.
 -  Ensured that loggers and their formatters receive unicode data. 
--  Removed **miCreateOtherOptionsNodesForURG" mel procedure call in "Maya_MR_Standard" Template.
+-  Ensured directional light position is correct in **Maya_Arnold_Standard** and **Maya_Arnold_Dome_Light** templates.  
+-  Removed **miCreateOtherOptionsNodesForURG** mel procedure call in **Maya_MR_Standard** Template.
 -  Removed dependency on **ordereddict** for Python versions that already include it.
 -  Moved **foundations.common.isBinaryFile** definition into **foundations.io** module.
 -  Added **foundations.shell.** module.
+-  Added Jed Frechette **Blender_Cycles_Standard** template.
 -  Extracted documentation utilities to their own repository.
 -  Pass various globals variables through arguments in **umbra.engine.Umbra** class.
 -  Refactored magic methods implementation in various managers.

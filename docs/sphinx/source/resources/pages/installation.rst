@@ -50,7 +50,7 @@ If you want to support third party images formats through FreeImage, you will ne
 
 - **FreeImage_For_sIBL_GUI**: https://github.com/KelSolaar/FreeImage_For_sIBL_GUI
 
-Alternatively, if you want to directly install from `Github <http://github.com/KelSolaar/sIBL_GUI>`_ source repository::
+You can also directly install from `Github <http://github.com/KelSolaar/sIBL_GUI>`_ source repository::
 
       git clone git://github.com/KelSolaar/sIBL_GUI.git
       cd sIBL_GUI
