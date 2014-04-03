@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`TemplatesOutliner` Component Interface class.
+	Defines the :class:`TemplatesOutliner` Component Interface class.
 
 **Others:**
 
@@ -70,7 +70,7 @@ from umbra.globals.uiConstants import UiConstants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -87,7 +87,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Out
 #**********************************************************************************************************************
 class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.templatesOutliner.templatesOutliner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.templatesOutliner.templatesOutliner` Component Interface class.
 	| It defines methods for Database Templates management.
 	"""
 
@@ -100,12 +100,16 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -175,9 +179,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -186,9 +191,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -198,7 +204,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -207,9 +213,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the property for **self.__uiSoftwareAffixe** attribute.
+		Property for **self.__uiSoftwareAffixe** attribute.
 
-		:return: self.__uiSoftwareAffixe. ( String )
+		:return: self.__uiSoftwareAffixe.
+		:rtype: unicode
 		"""
 
 		return self.__uiSoftwareAffixe
@@ -218,9 +225,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self, value):
 		"""
-		This method is the setter method for **self.__uiSoftwareAffixe** attribute.
+		Setter for **self.__uiSoftwareAffixe** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -230,7 +238,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the deleter method for **self.__uiSoftwareAffixe** attribute.
+		Deleter for **self.__uiSoftwareAffixe** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -239,9 +247,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the property for **self.__uiUnknownSoftwareImage** attribute.
+		Property for **self.__uiUnknownSoftwareImage** attribute.
 
-		:return: self.__uiUnknownSoftwareImage. ( String )
+		:return: self.__uiUnknownSoftwareImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiUnknownSoftwareImage
@@ -250,9 +259,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self, value):
 		"""
-		This method is the setter method for **self.__uiUnknownSoftwareImage** attribute.
+		Setter for **self.__uiUnknownSoftwareImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -262,7 +272,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the deleter method for **self.__uiUnknownSoftwareImage** attribute.
+		Deleter for **self.__uiUnknownSoftwareImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -271,9 +281,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -282,9 +293,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -294,7 +306,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -303,9 +315,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -314,9 +327,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -326,7 +340,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -335,9 +349,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
-		:return: self.__settings. ( QSettings )
+		:return: self.__settings.
+		:rtype: QSettings
 		"""
 
 		return self.__settings
@@ -346,9 +361,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
-		:param value: Attribute value. ( QSettings )
+		:param value: Attribute value.
+		:type value: QSettings
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -358,7 +374,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -367,9 +383,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
-		:return: self.__settingsSection. ( String )
+		:return: self.__settingsSection.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSection
@@ -378,9 +395,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -390,7 +408,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -399,9 +417,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for **self.__settingsSeparator** attribute.
+		Property for **self.__settingsSeparator** attribute.
 
-		:return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSeparator
@@ -410,9 +429,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for **self.__settingsSeparator** attribute.
+		Setter for **self.__settingsSeparator** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -422,7 +442,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for **self.__settingsSeparator** attribute.
+		Deleter for **self.__settingsSeparator** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -431,9 +451,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def scriptEditor(self):
 		"""
-		This method is the property for **self.__scriptEditor** attribute.
+		Property for **self.__scriptEditor** attribute.
 
-		:return: self.__scriptEditor. ( QWidget )
+		:return: self.__scriptEditor.
+		:rtype: QWidget
 		"""
 
 		return self.__scriptEditor
@@ -442,9 +463,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__scriptEditor** attribute.
+		Setter for **self.__scriptEditor** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -454,7 +476,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__scriptEditor** attribute.
+		Deleter for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -463,9 +485,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def database(self):
 		"""
-		This method is the property for **self.__database** attribute.
+		Property for **self.__database** attribute.
 
-		:return: self.__database. ( Object )
+		:return: self.__database.
+		:rtype: object
 		"""
 
 		return self.__database
@@ -474,9 +497,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def database(self, value):
 		"""
-		This method is the setter method for **self.__database** attribute.
+		Setter for **self.__database** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -486,7 +510,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def database(self):
 		"""
-		This method is the deleter method for **self.__database** attribute.
+		Deleter for **self.__database** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -495,9 +519,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
-		:return: self.__model. ( TemplatesModel )
+		:return: self.__model.
+		:rtype: TemplatesModel
 		"""
 
 		return self.__model
@@ -506,9 +531,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
-		:param value: Attribute value. ( TemplatesModel )
+		:param value: Attribute value.
+		:type value: TemplatesModel
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -518,7 +544,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -527,9 +553,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -538,9 +565,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -550,7 +578,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -559,9 +587,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def headers(self):
 		"""
-		This method is the property for **self.__headers** attribute.
+		Property for **self.__headers** attribute.
 
-		:return: self.__headers. ( OrderedDict )
+		:return: self.__headers.
+		:rtype: OrderedDict
 		"""
 
 		return self.__headers
@@ -570,9 +599,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self, value):
 		"""
-		This method is the setter method for **self.__headers** attribute.
+		Setter for **self.__headers** attribute.
 
-		:param value: Attribute value. ( OrderedDict )
+		:param value: Attribute value.
+		:type value: OrderedDict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -582,7 +612,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self):
 		"""
-		This method is the deleter method for **self.__headers** attribute.
+		Deleter for **self.__headers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -591,9 +621,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def extension(self):
 		"""
-		This method is the property for **self.__extension** attribute.
+		Property for **self.__extension** attribute.
 
-		:return: self.__extension. ( String )
+		:return: self.__extension.
+		:rtype: unicode
 		"""
 
 		return self.__extension
@@ -602,9 +633,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for **self.__extension** attribute.
+		Setter for **self.__extension** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -614,7 +646,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for **self.__extension** attribute.
+		Deleter for **self.__extension** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -623,9 +655,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def defaultCollections(self):
 		"""
-		This method is the property for **self.__defaultCollections** attribute.
+		Property for **self.__defaultCollections** attribute.
 
-		:return: self.__defaultCollections. ( Dictionary )
+		:return: self.__defaultCollections.
+		:rtype: dict
 		"""
 
 		return self.__defaultCollections
@@ -634,9 +667,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self, value):
 		"""
-		This method is the setter method for **self.__defaultCollections** attribute.
+		Setter for **self.__defaultCollections** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -646,7 +680,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollections(self):
 		"""
-		This method is the deleter method for **self.__defaultCollections** attribute.
+		Deleter for **self.__defaultCollections** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -655,9 +689,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def factoryCollection(self):
 		"""
-		This method is the property for **self.__factoryCollection** attribute.
+		Property for **self.__factoryCollection** attribute.
 
-		:return: self.__factoryCollection. ( String )
+		:return: self.__factoryCollection.
+		:rtype: unicode
 		"""
 
 		return self.__factoryCollection
@@ -666,9 +701,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self, value):
 		"""
-		This method is the setter method for **self.__factoryCollection** attribute.
+		Setter for **self.__factoryCollection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -678,7 +714,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def factoryCollection(self):
 		"""
-		This method is the deleter method for **self.__factoryCollection** attribute.
+		Deleter for **self.__factoryCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -687,9 +723,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def userCollection(self):
 		"""
-		This method is the property for **self.__userCollection** attribute.
+		Property for **self.__userCollection** attribute.
 
-		:return: self.__userCollection. ( String )
+		:return: self.__userCollection.
+		:rtype: unicode
 		"""
 
 		return self.__userCollection
@@ -698,9 +735,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self, value):
 		"""
-		This method is the setter method for **self.__userCollection** attribute.
+		Setter for **self.__userCollection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -710,7 +748,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def userCollection(self):
 		"""
-		This method is the deleter method for **self.__userCollection** attribute.
+		Deleter for **self.__userCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -719,9 +757,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the property for **self.__templatesInformationsDefaultText** attribute.
+		Property for **self.__templatesInformationsDefaultText** attribute.
 
-		:return: self.__templatesInformationsDefaultText. ( String )
+		:return: self.__templatesInformationsDefaultText.
+		:rtype: unicode
 		"""
 
 		return self.__templatesInformationsDefaultText
@@ -730,9 +769,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self, value):
 		"""
-		This method is the setter method for **self.__templatesInformationsDefaultText** attribute.
+		Setter for **self.__templatesInformationsDefaultText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -742,7 +782,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the deleter method for **self.__templatesInformationsDefaultText** attribute.
+		Deleter for **self.__templatesInformationsDefaultText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -751,9 +791,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def treeViewInnerMargins(self):
 		"""
-		This method is the property for **self.__treeViewInnerMargins** attribute.
+		Property for **self.__treeViewInnerMargins** attribute.
 
-		:return: self.__treeViewInnerMargins. ( Integer )
+		:return: self.__treeViewInnerMargins.
+		:rtype: int
 		"""
 
 		return self.__treeViewInnerMargins
@@ -762,9 +803,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
-		This method is the setter method for **self.__treeViewInnerMargins** attribute.
+		Setter for **self.__treeViewInnerMargins** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -774,7 +816,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
-		This method is the deleter method for **self.__treeViewInnerMargins** attribute.
+		Deleter for **self.__treeViewInnerMargins** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -783,9 +825,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesInformationsText(self):
 		"""
-		This method is the property for **self.__templatesInformationsText** attribute.
+		Property for **self.__templatesInformationsText** attribute.
 
-		:return: self.__templatesInformationsText. ( String )
+		:return: self.__templatesInformationsText.
+		:rtype: unicode
 		"""
 
 		return self.__templatesInformationsText
@@ -794,9 +837,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self, value):
 		"""
-		This method is the setter method for **self.__templatesInformationsText** attribute.
+		Setter for **self.__templatesInformationsText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -806,7 +850,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self):
 		"""
-		This method is the deleter method for **self.__templatesInformationsText** attribute.
+		Deleter for **self.__templatesInformationsText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -817,10 +861,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -846,7 +892,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -854,9 +900,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -902,7 +949,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -910,9 +957,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -924,7 +972,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -932,9 +980,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered by Framework startup.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
@@ -1010,9 +1059,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def onClose(self):
 		"""
-		This method is triggered on Framework close.
+		Defines the slot triggered by Framework close.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
@@ -1034,14 +1084,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model nodes need refresh.
+		Defines the slot triggered by the Model when nodes need refresh.
 		"""
 
 		self.setTemplates()
 
 	def __view_addActions(self):
 		"""
-		This method sets the View actions.
+		Sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1080,60 +1130,72 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __view_addTemplateAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.addTemplateUi()
 
 	def __view_removeTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.removeTemplatesUi()
 
 	def __view_importDefaultTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.importDefaultTemplatesUi()
 
 	def __view_displayHelpFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.displayHelpFilesUi()
 
 	def __view_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
+		Defines the slot triggered by \*\*'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.filterTemplatesVersionsUi()
 
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets the **Template_Informations_textEdit** Widget.
+		Sets the **Template_Informations_textEdit** Widget.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
@@ -1164,9 +1226,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped into the engine.
+		Defines the slot triggered when content is dropped into the engine.
 		
-		:param event: Event. ( QEvent )
+		:param event: Event.
+		:type event: QEvent
 		"""
 
 		if not event.mimeData().hasUrls():
@@ -1209,9 +1272,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
 		
-		:param file: File changed. ( String )
+		:param file: File changed.
+		:type file: unicode
 		"""
 
 		template = foundations.common.getFirstItem(filter(lambda x: x.path == file, self.getTemplates()))
@@ -1226,19 +1290,22 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
 		"""
-		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
+		Defines the slot triggered by **Template_Informations_textBrowser** Widget when a link is clicked.
 
-		:param url: Url to explore. ( QUrl )
+		:param url: Url to explore.
+		:type url: QUrl
 		"""
 
 		QDesktopServices.openUrl(url)
 
 	def __getCandidateCollectionId(self, path=None):
 		"""
-		This method returns a Collection id.
+		Returns a Collection id.
 
-		:param path: Template path. ( String )
-		:return: Collection id. ( Integer )
+		:param path: Template path.
+		:type path: unicode
+		:return: Collection id.
+		:rtype: int
 		"""
 
 		collection = self.getCollectionByName(self.__userCollection)
@@ -1255,11 +1322,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplateUi(self):
 		"""
-		This method adds an user defined Template to the Database.
+		Adds an user defined Template to the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -1284,11 +1352,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def removeTemplatesUi(self):
 		"""
-		This method removes user selected Templates from the Database.
+		Removes user selected Templates from the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedNodes = self.getSelectedNodes()
@@ -1332,12 +1401,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def updateTemplateLocationUi(self, template):
 		"""
-		This method updates given Template location.
+		Updates given Template location.
 
-		:param template: Template to update. ( Template )
-		:return: Method success. ( Boolean )
+		:param template: Template to update.
+		:type template: Template
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
@@ -1360,11 +1431,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplatesUi(self):
 		"""
-		This method imports default Templates into the Database.
+		Imports default Templates into the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1377,9 +1449,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def displayHelpFilesUi(self):
 		"""
-		This method displays user selected Templates help files.
+		Displays user selected Templates help files.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
@@ -1402,11 +1475,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersionsUi(self):
 		"""
-		This method filters Templates by versions.
+		Filters Templates by versions.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		templates = sibl_gui.components.core.database.operations.getTemplates()
@@ -1434,12 +1508,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None):
 		"""
-		This method adds a Template to the Database.
+		Adds a Template to the Database.
 
-		:param name: Template set name. ( String )
-		:param path: Template set path. ( String )
-		:param collectionId: Target Collection id. ( Integer )
-		:return: Method success. ( Boolean )
+		:param name: Template set name.
+		:type name: unicode
+		:param path: Template set path.
+		:type path: unicode
+		:param collectionId: Target Collection id.
+		:type collectionId: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not sibl_gui.components.core.database.operations.filterTemplates("^{0}$".format(re.escape(path)), "path"):
@@ -1459,11 +1537,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This method adds given directory Templates to the Database.
+		Adds given directory Templates to the Database.
 
-		:param directory: Templates directory. ( String )
-		:param collectionId: Collection id. ( Integer )
-		:return: Method success. ( Boolean )
+		:param directory: Templates directory.
+		:type directory: unicode
+		:param collectionId: Collection id.
+		:type collectionId: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing directory '{0}' filesWalker.".format(directory))
@@ -1493,10 +1574,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
-		This method adds default Templates Collections / Templates to the Database.
+		Adds default Templates Collections / Templates to the Database.
 
-		:param forceImport: Force Templates import. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param forceImport: Force Templates import.
+		:type forceImport: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not forceImport and self.getTemplates():
@@ -1526,10 +1609,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def removeTemplate(self, template):
 		"""
-		This method removes given Template from the Database.
+		Removes given Template from the Database.
 
-		:param templates: Template to remove. ( List )
-		:return: Method success. ( Boolean )
+		:param templates: Template to remove.
+		:type templates: list
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
@@ -1543,10 +1628,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def templateExists(self, path):
 		"""
-		This method returns if given Template path exists in the Database.
+		Returns if given Template path exists in the Database.
 
-		:param name: Template path. ( String )
-		:return: Template exists. ( Boolean )
+		:param name: Template path.
+		:type name: unicode
+		:return: Template exists.
+		:rtype: bool
 		"""
 
 		return sibl_gui.components.core.database.operations.templateExists(path)
@@ -1554,10 +1641,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
-		This method displays given Templates help file.
+		Displays given Templates help file.
 
-		:param template: Template to display help file. ( Template )
-		:return: Method success. ( Boolean )
+		:param template: Template to display help file.
+		:type template: Template
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		helpFile = template.helpFile or umbra.ui.common.getResourcePath(UiConstants.invalidLinkHtmlFile)
@@ -1574,22 +1663,27 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollections(self):
 		"""
-		This method returns Database Templates Collections.
+		Returns Database Templates Collections.
 
-		:return: Database Templates Collections. ( List )
+		:return: Database Templates Collections.
+		:rtype: list
 		"""
 
 		return sibl_gui.components.core.database.operations.getCollectionsByType("Templates")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Templates Collections on given attribute using given pattern.
+		Filters the Database Templates Collections on given attribute using given pattern.
 		
-		:param pattern: Filter pattern. ( String )
-		:param attribute: Attribute to filter on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
+		:param pattern: Filter pattern.
+		:type pattern: unicode
+		:param attribute: Attribute to filter on.
+		:type attribute: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
 
-		:return: Filtered Database Templates Collections. ( List )
+		:return: Filtered Database Templates Collections.
+		:rtype: list
 		"""
 
 		try:
@@ -1602,22 +1696,27 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getTemplates(self):
 		"""
-		This method returns Database Templates.
+		Returns Database Templates.
 
-		:return: Database Templates. ( List )
+		:return: Database Templates.
+		:rtype: list
 		"""
 
 		return [template for template in sibl_gui.components.core.database.operations.getTemplates()]
 
 	def filterTemplates(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Templates on given attribute using given pattern.
+		Filters the Database Templates on given attribute using given pattern.
 		
-		:param pattern: Filter pattern. ( String )
-		:param attribute: Attribute to filter on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
+		:param pattern: Filter pattern.
+		:type pattern: unicode
+		:param attribute: Attribute to filter on.
+		:type attribute: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
 
-		:return: Filtered Database Templates. ( List )
+		:return: Filtered Database Templates.
+		:rtype: list
 		"""
 
 		try:
@@ -1631,16 +1730,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def listTemplates(self):
 		"""
-		This method lists Database Templates names.
+		Lists Database Templates names.
 
-		:return: Database Templates names. ( List )
+		:return: Database Templates names.
+		:rtype: list
 		"""
 
 		return [template.title for template in self.getTemplates()]
 
 	def setTemplates(self):
 		"""
-		This method sets the Templates Model nodes.
+		Sets the Templates Model nodes.
 		"""
 
 		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
@@ -1701,10 +1801,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getTemplateByName(self, name):
 		"""
-		This method returns Database Template with given name.
+		Returns Database Template with given name.
 
-		:param name: Template name. ( String )
-		:return: Database Template. ( Template )
+		:param name: Template name.
+		:type name: unicode
+		:return: Database Template.
+		:rtype: Template
 		
 		:note: The filtering is actually performed on 'title' attributes instead of 'name' attributes.
 		"""
@@ -1714,10 +1816,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollectionByName(self, name):
 		"""
-		This method gets Templates Collection from given Collection name.
+		Returns Templates Collection from given Collection name.
 
-		:param collection: Collection name. ( String )
-		:return: Collection. ( Collection )
+		:param collection: Collection name.
+		:type collection: unicode
+		:return: Collection.
+		:rtype: Collection
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
@@ -1725,10 +1829,12 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getCollectionId(self, collection):
 		"""
-		This method returns given Collection id.
+		Returns given Collection id.
 
-		:param collection: Collection to get the id from. ( String )
-		:return: Provided Collection id. ( Integer )
+		:param collection: Collection to get the id from.
+		:type collection: unicode
+		:return: Provided Collection id.
+		:rtype: int
 		"""
 
 		children = self.__model.findChildren(r"^{0}$".format(collection))
@@ -1737,27 +1843,30 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
 	def getSelectedNodes(self):
 		"""
-		This method returns the View selected nodes.
+		Returns the View selected nodes.
 
-		:return: View selected nodes. ( Dictionary )
+		:return: View selected nodes.
+		:rtype: dict
 		"""
 
 		return self.__view.getSelectedNodes()
 
 	def getSelectedTemplatesNodes(self):
 		"""
-		This method returns the View selected Templates nodes.
+		Returns the View selected Templates nodes.
 
-		:return: View selected Templates nodes. ( List )
+		:return: View selected Templates nodes.
+		:rtype: list
 		"""
 
 		return [node for node in self.getSelectedNodes() if node.family == "Template"]
 
 	def getSelectedTemplates(self):
 		"""
-		This method gets the View selected Templates.
+		Returns the View selected Templates.
 
-		:return: View selected Templates. ( List )
+		:return: View selected Templates.
+		:rtype: list
 		"""
 
 		return [node.databaseItem for node in self.getSelectedTemplatesNodes()]

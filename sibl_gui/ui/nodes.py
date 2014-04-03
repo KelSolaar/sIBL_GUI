@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application nodes classes.
+	Defines the Application nodes classes.
 
 **Others:**
 
@@ -35,7 +35,7 @@ import umbra.ui.nodes
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -53,12 +53,12 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Mixin_GraphModelObject(object):
 	"""
-	This class is a mixin used to bring common capabilities in Application Nodes classes.
+	Defines a mixin used to bring common capabilities in Application Nodes classes.
 	"""
 
 	def __init__(self):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
 		"""
 
@@ -74,9 +74,10 @@ class Mixin_GraphModelObject(object):
 	@property
 	def iconSize(self):
 		"""
-		This method is the property for **self.__iconSize** attribute.
+		Property for **self.__iconSize** attribute.
 
-		:return: self.__iconSize. ( String )
+		:return: self.__iconSize.
+		:rtype: unicode
 		"""
 
 		return self.__iconSize
@@ -85,9 +86,10 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def iconSize(self, value):
 		"""
-		This method is the setter method for **self.__iconSize** attribute.
+		Setter for **self.__iconSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -99,7 +101,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconSize(self):
 		"""
-		This method is the deleter method for **self.__iconSize** attribute.
+		Deleter for **self.__iconSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -108,9 +110,10 @@ class Mixin_GraphModelObject(object):
 	@property
 	def iconPlaceholder(self):
 		"""
-		This method is the property for **self.__iconPlaceholder** attribute.
+		Property for **self.__iconPlaceholder** attribute.
 
-		:return: self.__iconPlaceholder. ( QIcon )
+		:return: self.__iconPlaceholder.
+		:rtype: QIcon
 		"""
 
 		return self.__iconPlaceholder
@@ -119,9 +122,10 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def iconPlaceholder(self, value):
 		"""
-		This method is the setter method for **self.__iconPlaceholder** attribute.
+		Setter for **self.__iconPlaceholder** attribute.
 
-		:param value: Attribute value. ( QIcon )
+		:param value: Attribute value.
+		:type value: QIcon
 		"""
 
 		if value is not None:
@@ -133,7 +137,7 @@ class Mixin_GraphModelObject(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iconPlaceholder(self):
 		"""
-		This method is the deleter method for **self.__iconPlaceholder** attribute.
+		Deleter for **self.__iconPlaceholder** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -141,7 +145,7 @@ class Mixin_GraphModelObject(object):
 
 class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelObject):
 	"""
-	This class represents a storage object for the :class:`GraphModelNode` class attributes.
+	Defines a storage object for the :class:`GraphModelNode` class attributes.
 	"""
 
 	def __init__(self,
@@ -153,15 +157,22 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param name: Attribute name. ( String )
-		:param value: Attribute value. ( Object )
-		:param roles: Roles. ( Dictionary )
-		:param flags: Flags. ( Integer )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param name: Attribute name.
+		:type name: unicode
+		:param value: Attribute value.
+		:type value: object
+		:param roles: Roles.
+		:type roles: dict
+		:param flags: Flags.
+		:type flags: int
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -175,11 +186,14 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 
 class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 	"""
-	This class defines :class:`GraphModel` class base Node object.
+	Defines :class:`GraphModel` class base Node object.
 	"""
 
 	__family = "GraphModel"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				name=None,
@@ -191,16 +205,23 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param name: Node name.  ( String )
-		:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
-		:param children: Children. ( List )
-		:param roles: Roles. ( Dictionary )
+		:param name: Node name.
+		:type name: unicode
+		:param parent: Node parent.
+		:type parent: AbstractNode or AbstractCompositeNode
+		:param children: Children.
+		:type children: list
+		:param roles: Roles.
+		:type roles: dict
 		:param flags: Flags. ( Qt.ItemFlag )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

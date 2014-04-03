@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`IblSetsScanner` Component Interface class.
+	Defines the :class:`IblSetsScanner` Component Interface class.
 
 **Others:**
 
@@ -40,7 +40,7 @@ from sibl_gui.components.addons.iblSetsScanner.workers import IblSetsScanner_wor
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -55,19 +55,23 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsScanner(QObjectComponent):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner` Component Interface class.
 	| It instantiates the :class:`IblSetsScanner` class on Application startup which will gather new Ibl Sets
 		from Database registered directories parents.
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -90,9 +94,10 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -101,9 +106,10 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -113,7 +119,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -122,9 +128,10 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def collectionsOutliner(self):
 		"""
-		This method is the property for **self.__collectionsOutliner** attribute.
+		Property for **self.__collectionsOutliner** attribute.
 
-		:return: self.__collectionsOutliner. ( QWidget )
+		:return: self.__collectionsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__collectionsOutliner
@@ -133,9 +140,10 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__collectionsOutliner** attribute.
+		Setter for **self.__collectionsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -145,7 +153,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def collectionsOutliner(self):
 		"""
-		This method is the deleter method for **self.__collectionsOutliner** attribute.
+		Deleter for **self.__collectionsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -154,9 +162,10 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -165,9 +174,10 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -177,7 +187,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -186,9 +196,10 @@ class IblSetsScanner(QObjectComponent):
 	@property
 	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the property for **self.__iblSetsScannerWorkerThread** attribute.
+		Property for **self.__iblSetsScannerWorkerThread** attribute.
 
-		:return: self.__iblSetsScannerWorkerThread. ( QThread )
+		:return: self.__iblSetsScannerWorkerThread.
+		:rtype: QThread
 		"""
 
 		return self.__iblSetsScannerWorkerThread
@@ -197,9 +208,10 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsScannerWorkerThread** attribute.
+		Setter for **self.__iblSetsScannerWorkerThread** attribute.
 
-		:param value: Attribute value. ( QThread )
+		:param value: Attribute value.
+		:type value: QThread
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -209,7 +221,7 @@ class IblSetsScanner(QObjectComponent):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsScannerWorkerThread(self):
 		"""
-		This method is the deleter method for **self.__iblSetsScannerWorkerThread** attribute.
+		Deleter for **self.__iblSetsScannerWorkerThread** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -220,10 +232,12 @@ class IblSetsScanner(QObjectComponent):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -238,9 +252,10 @@ class IblSetsScanner(QObjectComponent):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -255,9 +270,10 @@ class IblSetsScanner(QObjectComponent):
 
 	def initialize(self):
 		"""
-		This method initializes the Component.
+		Initializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -281,9 +297,10 @@ class IblSetsScanner(QObjectComponent):
 
 	def uninitialize(self):
 		"""
-		This method uninitializes the Component.
+		Uninitializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
@@ -303,9 +320,10 @@ class IblSetsScanner(QObjectComponent):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered on Framework startup.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
@@ -317,9 +335,10 @@ class IblSetsScanner(QObjectComponent):
 	@umbra.engine.encapsulateProcessing
 	def __iblSetsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
-		This method is triggered by the **IblSetsScanner_worker** when the Database has changed.
+		Defines the slot triggered by **IblSetsScanner_worker** when the Database has changed.
 
-		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
+		:param iblSets: Retrieve Ibl Sets.
+		:type iblSets: dict
 		"""
 
 		if messageBox.messageBox("Question", "Question",

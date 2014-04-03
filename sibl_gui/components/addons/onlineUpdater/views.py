@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.onlineUpdater.onlineUpdater.OnlineUpdater`
+	Defines the :class:`sibl_gui.components.addons.onlineUpdater.onlineUpdater.OnlineUpdater`
 	Component Interface class Views.
 
 **Others:**
@@ -30,7 +30,7 @@ import umbra.ui.views
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class TemplatesReleases_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
 	"""
-	This class is used to display Templates releases.
+	Defines the view for Templates releases.
 	"""
 
 	pass

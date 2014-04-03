@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`sibl_gui.exceptions` module.
+	Defines units tests for :mod:`sibl_gui.exceptions` module.
 
 **Others:**
 
@@ -38,7 +38,7 @@ import sibl_gui.exceptions
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -50,7 +50,7 @@ EXCEPTIONS = []
 
 def _gatherExceptions():
 	"""
-	This definition gathers the exceptions.
+	Gathers the exceptions.
 	"""
 
 	for attribute in dir(sibl_gui.exceptions):
@@ -67,12 +67,12 @@ _gatherExceptions()
 #**********************************************************************************************************************
 class ExceptionsTestCase(unittest.TestCase):
 	"""
-	This class defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
+	Defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
 		"""
-		This method tests presence of required attributes.
+		Tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("value",)
@@ -83,7 +83,7 @@ class ExceptionsTestCase(unittest.TestCase):
 
 	def test__str__(self):
 		"""
-		This method tests exceptions classes **__str__** method.
+		Tests exceptions classes **__str__** method.
 		"""
 
 		for exception in EXCEPTIONS:

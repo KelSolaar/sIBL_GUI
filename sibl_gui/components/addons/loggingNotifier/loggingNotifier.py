@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`LoggingNotifier` Component Interface class.
+	Defines the :class:`LoggingNotifier` Component Interface class.
 
 **Others:**
 
@@ -30,7 +30,7 @@ from manager.component import Component
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
 	| It displays Application logging messages in the Application status bar.
 	| The full Application logging history is available through
 		the :mod:`sibl_gui.components.addons.loggingWindow.loggingWindow` Component.
@@ -53,9 +53,10 @@ class LoggingNotifier(Component):
 
 	def __init__(self, name=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param name: Component name. ( String )
+		:param name: Component name.
+		:type name: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -75,9 +76,10 @@ class LoggingNotifier(Component):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -86,9 +88,10 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -98,7 +101,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -107,9 +110,10 @@ class LoggingNotifier(Component):
 	@property
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the property for **self.__memoryHandlerStackDepth** attribute.
+		Property for **self.__memoryHandlerStackDepth** attribute.
 
-		:return: self.__memoryHandlerStackDepth. ( Integer )
+		:return: self.__memoryHandlerStackDepth.
+		:rtype: int
 		"""
 
 		return self.__memoryHandlerStackDepth
@@ -118,9 +122,10 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
-		This method is the setter method for **self.__memoryHandlerStackDepth** attribute.
+		Setter for **self.__memoryHandlerStackDepth** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -130,7 +135,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the deleter method for **self.__memoryHandlerStackDepth** attribute.
+		Deleter for **self.__memoryHandlerStackDepth** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -141,10 +146,12 @@ class LoggingNotifier(Component):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -156,9 +163,10 @@ class LoggingNotifier(Component):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -170,9 +178,10 @@ class LoggingNotifier(Component):
 
 	def initialize(self):
 		"""
-		This method initializes the Component.
+		Initializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -185,9 +194,10 @@ class LoggingNotifier(Component):
 
 	def uninitialize(self):
 		"""
-		This method uninitializes the Component.
+		Uninitializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
@@ -200,7 +210,7 @@ class LoggingNotifier(Component):
 
 	def __statusBar_showLoggingMessages(self):
 		"""
-		This method updates the engine status bar with logging messages.
+		Updates the engine status bar with logging messages.
 		"""
 
 		memoryHandlerStackDepth = len(self.__engine.loggingSessionHandlerStream.stream)

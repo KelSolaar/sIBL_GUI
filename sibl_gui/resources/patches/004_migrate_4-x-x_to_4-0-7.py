@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module migrates sIBL_GUI from 4.x.x to 4.0.7.
+	Migrates sIBL_GUI from 4.x.x to 4.0.7.
 
 **Others:**
 
@@ -42,7 +42,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -59,9 +59,10 @@ UID = "ddfd9d292ea73aa3450989af7d7ee945"
 #**********************************************************************************************************************
 def apply():
 	"""
-	This definition is called by the Application and triggers the patch execution.
+	Triggers the patch execution.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	databaseDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory, Constants.databaseDirectory)

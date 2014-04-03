@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application models classes.
+	Defines the Application models classes.
 
 **Others:**
 
@@ -36,7 +36,7 @@ import umbra.ui.models
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -51,20 +51,25 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class GraphModel(umbra.ui.models.GraphModel):
 	"""
-	This class provideds a graph Model based on :class:`umbra.ui.models.GraphModel`
+	Defines a graph Model based on :class:`umbra.ui.models.GraphModel`
 	but reimplementing the :meth:`umbra.ui.models.GraphModel.data` method
 	to support various images formats as **Qt.DecorationRole**.
 	"""
 
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param rootNode: Root node. ( AbstractCompositeNode )
-		:param horizontalHeaders: Headers. ( OrderedDict )
-		:param verticalHeaders: Headers. ( OrderedDict )
-		:param defaultNode: Default node. ( GraphModelNode )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param rootNode: Root node.
+		:type rootNode: AbstractCompositeNode
+		:param horizontalHeaders: Headers.
+		:type horizontalHeaders: OrderedDict
+		:param verticalHeaders: Headers.
+		:type verticalHeaders: OrderedDict
+		:param defaultNode: Default node.
+		:type defaultNode: GraphModelNode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -76,11 +81,14 @@ class GraphModel(umbra.ui.models.GraphModel):
 	#******************************************************************************************************************
 	def data(self, index, role=Qt.DisplayRole):
 		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
+		Reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
 		
-		:param index: Index. ( QModelIndex )
-		:param role: Role. ( Integer )
-		:return: Data. ( QVariant )
+		:param index: Index.
+		:type index: QModelIndex
+		:param role: Role.
+		:type role: int
+		:return: Data.
+		:rtype: QVariant
 		"""
 
 		if not index.isValid():

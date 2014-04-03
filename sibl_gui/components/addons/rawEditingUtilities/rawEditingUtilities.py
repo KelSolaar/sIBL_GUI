@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`RawEditingUtilities` Component Interface class.
+	Defines the :class:`RawEditingUtilities` Component Interface class.
 
 **Others:**
 
@@ -48,7 +48,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -65,7 +65,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Raw_Editing_U
 #**********************************************************************************************************************
 class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
 	| By default the Component will use the **factory.scriptEditor** Component	but the user can define a custom file editor
 		through options exposed in the :mod:`sibl_gui.components.core.preferencesManager.preferencesManager` Component ui.
@@ -73,12 +73,16 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -105,9 +109,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -116,9 +121,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -128,7 +134,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -137,9 +143,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
-		:return: self.__settings. ( QSettings )
+		:return: self.__settings.
+		:rtype: QSettings
 		"""
 
 		return self.__settings
@@ -148,9 +155,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
-		:param value: Attribute value. ( QSettings )
+		:param value: Attribute value.
+		:type value: QSettings
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -160,7 +168,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -169,9 +177,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
-		:return: self.__settingsSection. ( String )
+		:return: self.__settingsSection.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSection
@@ -180,9 +189,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -192,7 +202,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -201,9 +211,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def scriptEditor(self):
 		"""
-		This method is the property for **self.__scriptEditor** attribute.
+		Property for **self.__scriptEditor** attribute.
 
-		:return: self.__scriptEditor. ( QWidget )
+		:return: self.__scriptEditor.
+		:rtype: QWidget
 		"""
 
 		return self.__scriptEditor
@@ -212,9 +223,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self, value):
 		"""
-		This method is the setter method for **self.__scriptEditor** attribute.
+		Setter for **self.__scriptEditor** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -224,7 +236,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def scriptEditor(self):
 		"""
-		This method is the deleter method for **self.__scriptEditor** attribute.
+		Deleter for **self.__scriptEditor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -233,9 +245,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def preferencesManager(self):
 		"""
-		This method is the property for **self.__preferencesManager** attribute.
+		Property for **self.__preferencesManager** attribute.
 
-		:return: self.__preferencesManager. ( QWidget )
+		:return: self.__preferencesManager.
+		:rtype: QWidget
 		"""
 
 		return self.__preferencesManager
@@ -244,9 +257,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__preferencesManager** attribute.
+		Setter for **self.__preferencesManager** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -256,7 +270,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def preferencesManager(self):
 		"""
-		This method is the deleter method for **self.__preferencesManager** attribute.
+		Deleter for **self.__preferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -265,9 +279,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def componentsManagerUi(self):
 		"""
-		This method is the property for **self.__componentsManagerUi** attribute.
+		Property for **self.__componentsManagerUi** attribute.
 
-		:return: self.__componentsManagerUi. ( QWidget )
+		:return: self.__componentsManagerUi.
+		:rtype: QWidget
 		"""
 
 		return self.__componentsManagerUi
@@ -276,9 +291,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self, value):
 		"""
-		This method is the setter method for **self.__componentsManagerUi** attribute.
+		Setter for **self.__componentsManagerUi** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -288,7 +304,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def componentsManagerUi(self):
 		"""
-		This method is the deleter method for **self.__componentsManagerUi** attribute.
+		Deleter for **self.__componentsManagerUi** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -297,9 +313,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -308,9 +325,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -320,7 +338,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -329,9 +347,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def inspector(self):
 		"""
-		This method is the property for **self.__inspector** attribute.
+		Property for **self.__inspector** attribute.
 
-		:return: self.__inspector. ( QWidget )
+		:return: self.__inspector.
+		:rtype: QWidget
 		"""
 
 		return self.__inspector
@@ -340,9 +359,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self, value):
 		"""
-		This method is the setter method for **self.__inspector** attribute.
+		Setter for **self.__inspector** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -352,7 +372,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspector(self):
 		"""
-		This method is the deleter method for **self.__inspector** attribute.
+		Deleter for **self.__inspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -361,9 +381,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def templatesOutliner(self):
 		"""
-		This method is the property for **self.__templatesOutliner** attribute.
+		Property for **self.__templatesOutliner** attribute.
 
-		:return: self.__templatesOutliner. ( QWidget )
+		:return: self.__templatesOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__templatesOutliner
@@ -372,9 +393,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self, value):
 		"""
-		This method is the setter method for **self.__templatesOutliner** attribute.
+		Setter for **self.__templatesOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -384,7 +406,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def templatesOutliner(self):
 		"""
-		This method is the deleter method for **self.__templatesOutliner** attribute.
+		Deleter for **self.__templatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -395,10 +417,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -419,9 +443,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -442,9 +467,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -465,9 +491,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -487,9 +514,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -500,9 +528,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -514,7 +543,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addActions(self):
 		"""
-		This method sets Component actions.
+		Sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -546,7 +575,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeActions(self):
 		"""
-		This method removes actions.
+		Removes actions.
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
@@ -571,50 +600,58 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __iblSetsOutliner_views_editIblSetsFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|core.iblSetsOutliner|Edit Ibl Set(s) File(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.editIblSetsFilesUi()
 
 	def __inspector_editActiveIblSetFileAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.editActiveIblSetFileUi()
 
 	def __templatesOutliner_view_editTemplatesFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.editTemplatesFilesUi()
 
 	def __componentsManagerUi_view_editComponentsAction__triggered(self, checked):
 		"""
-		This method is triggered by
+		Defines the slot triggered by
 		**'Actions|Umbra|Components|factory.componentsManagerUi|Edit Component(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.editComponentsUi()
 
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
 		"""
-		This method fills **Custom_Text_Editor_Path_lineEdit** Widget.
+		Fills **Custom_Text_Editor_Path_lineEdit** Widget.
 		"""
 
 		customTextEditor = self.__settings.getKey(self.__settingsSection, "customTextEditor")
@@ -624,9 +661,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Custom_Text_Editor_Path_toolButton** Widget is clicked.
+		Defines the slot triggered by **Custom_Text_Editor_Path_toolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		customTextEditorExecutable = umbra.ui.common.storeLastBrowsedPath(
@@ -642,8 +680,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
-		This method is triggered when **Custom_Text_Editor_Path_lineEdit** Widget
-		is edited and check that entered path is valid.
+		Defines the slot triggered by **Custom_Text_Editor_Path_lineEdit** Widget
+		when edited and check that entered path is valid.
 		"""
 
 		value = foundations.strings.toString(self.Custom_Text_Editor_Path_lineEdit.text())
@@ -661,9 +699,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.encapsulateProcessing
 	def __engine__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped into the engine.
+		Defines the slot triggered by content when dropped into the engine.
 		
-		:param event: Event. ( QEvent )
+		:param event: Event.
+		:type event: QEvent
 		"""
 
 		if not event.mimeData().hasUrls():
@@ -687,9 +726,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __scriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped in the **scriptEditor.Script_Editor_tabWidget** Widget.
+		Defines the slot triggered by content when dropped into the **scriptEditor.Script_Editor_tabWidget** Widget.
 		
-		:param event: Event. ( QEvent )
+		:param event: Event.
+		:type event: QEvent
 		"""
 
 		if event.source() in self.__iblSetsOutliner.views:
@@ -700,11 +740,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editIblSetsFilesUi(self):
 		"""
-		This method edits selected Ibl Sets files.
+		Edits selected Ibl Sets files.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
@@ -728,11 +769,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.FileExistsError)
 	def editActiveIblSetFileUi(self):
 		"""
-		This method edits :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set file.
+		Edits :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set file.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		activeIblSet = self.__inspector.activeIblSet
@@ -749,11 +791,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editTemplatesFilesUi(self):
 		"""
-		This method edits selected Templates files.
+		Edits selected Templates files.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedTemplates = self.__templatesOutliner.getSelectedTemplates()
@@ -776,11 +819,12 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editComponentsUi(self):
 		"""
-		This method edits selected Components packages.
+		Edits selected Components packages.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedComponents = self.__componentsManagerUi.getSelectedComponents()
@@ -802,11 +846,14 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getProcessCommand(self, path, customTextEditor):
 		"""
-		This method gets process command.
+		Gets process command.
 
-		:param path: Path to edit. ( String )
-		:param customTextEditor: Custom text editor. ( String )
-		:return: Process command. ( String )
+		:param path: Path to edit.
+		:type path: unicode
+		:param customTextEditor: Custom text editor.
+		:type customTextEditor: unicode
+		:return: Process command.
+		:rtype: unicode
 		"""
 
 		processCommand = None
@@ -822,11 +869,14 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(umbra.exceptions.notifyExceptionHandler, Exception)
 	def editPath(self, path, customTextEditor=None):
 		"""
-		This method provides editing capability.
+		Provides editing capability.
 
-		:param path: Path to edit. ( String )
-		:param customTextEditor: Custom text editor. ( String )
-		:return: Method success. ( Boolean )
+		:param path: Path to edit.
+		:type path: unicode
+		:param customTextEditor: Custom text editor.
+		:type customTextEditor: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if customTextEditor:

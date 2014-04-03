@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner.IblSetsScanner` 
+	Defines the :class:`sibl_gui.components.addons.iblSetsScanner.iblSetsScanner.IblSetsScanner` 
 	Component Interface class Workers.
 
 **Others:**
@@ -43,7 +43,7 @@ from sibl_gui.components.core.database.types import IblSet
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -58,7 +58,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class IblSetsScanner_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
+	Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
 	new Ibl Sets from Database registered directories parents.
 	"""
 
@@ -67,14 +67,16 @@ class IblSetsScanner_worker(QThread):
 	"""
 	This signal is emited by the :class:`IblSetsScanner_worker` class when new Ibl Sets are retrieved. ( pyqtSignal )
 	
-	:return: New Ibl Sets. ( List )
+	:return: New Ibl Sets.
+	:rtype: list
 	"""
 
 	def __init__(self, parent):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -96,9 +98,10 @@ class IblSetsScanner_worker(QThread):
 	@property
 	def container(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		Property for **self.__container** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__container.
+		:rtype: QObject
 		"""
 
 		return self.__container
@@ -107,9 +110,10 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		Setter for **self.__container** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -119,7 +123,7 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		Deleter for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -128,9 +132,10 @@ class IblSetsScanner_worker(QThread):
 	@property
 	def databaseSession(self):
 		"""
-		This method is the property for **self.__databaseSession** attribute.
+		Property for **self.__databaseSession** attribute.
 
-		:return: self.__databaseSession. ( Object )
+		:return: self.__databaseSession.
+		:rtype: object
 		"""
 
 		return self.__databaseSession
@@ -139,9 +144,10 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSession(self, value):
 		"""
-		This method is the setter method for **self.__databaseSession** attribute.
+		Setter for **self.__databaseSession** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -151,7 +157,7 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSession(self):
 		"""
-		This method is the deleter method for **self.__databaseSession** attribute.
+		Deleter for **self.__databaseSession** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -160,9 +166,10 @@ class IblSetsScanner_worker(QThread):
 	@property
 	def extension(self):
 		"""
-		This method is the property for **self.__extension** attribute.
+		Property for **self.__extension** attribute.
 
-		:return: self.__extension. ( String )
+		:return: self.__extension.
+		:rtype: unicode
 		"""
 
 		return self.__extension
@@ -171,9 +178,10 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for **self.__extension** attribute.
+		Setter for **self.__extension** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -183,7 +191,7 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for **self.__extension** attribute.
+		Deleter for **self.__extension** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -192,9 +200,10 @@ class IblSetsScanner_worker(QThread):
 	@property
 	def newIblSets(self):
 		"""
-		This method is the property for **self.__newIblSets** attribute.
+		Property for **self.__newIblSets** attribute.
 
-		:return: self.__newIblSets. ( List )
+		:return: self.__newIblSets.
+		:rtype: list
 		"""
 
 		return self.__newIblSets
@@ -203,9 +212,10 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def newIblSets(self, value):
 		"""
-		This method is the setter method for **self.__newIblSets** attribute.
+		Setter for **self.__newIblSets** attribute.
 
-		:param value: Attribute value. ( List )
+		:param value: Attribute value.
+		:type value: list
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -215,7 +225,7 @@ class IblSetsScanner_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def newIblSets(self):
 		"""
-		This method is the deleter method for **self.__newIblSets** attribute.
+		Deleter for **self.__newIblSets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -226,16 +236,17 @@ class IblSetsScanner_worker(QThread):
 	#******************************************************************************************************************
 	def run(self):
 		"""
-		This method reimplements the :meth:`QThread.run` method.
+		Reimplements the :meth:`QThread.run` method.
 		"""
 
 		self.scanIblSetsDirectories()
 
 	def scanIblSetsDirectories(self):
 		"""
-		This method scans Ibl Sets directories.
+		Scans Ibl Sets directories.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
@@ -251,7 +262,7 @@ class IblSetsScanner_worker(QThread):
 																					session=self.__databaseSession):
 						self.__newIblSets.append(path)
 			else:
-				LOGGER.warning("!> '{0}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(directory))
+				LOGGER.warning("!> {0} | '{1}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(self.__class__.__name__, directory))
 
 		self.__databaseSession.close()
 

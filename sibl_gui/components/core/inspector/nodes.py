@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 	Component Interface class nodes.
 
 **Others:**
@@ -36,7 +36,7 @@ import sibl_gui.ui.nodes
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -51,12 +51,15 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 		Component Interface class Model Plates node.
 	"""
 
 	__family = "Plate"
-	"""Node family. ( String )"""
+	"""
+	:param __family: Node family.
+	:type __family: unicode
+	"""
 
 	def __init__(self,
 				plate,
@@ -70,18 +73,28 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 				iconPlaceholder=None,
 				**kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param plate: Plate object.  ( Plate )
-		:param name: Node name.  ( String )
-		:param parent: Node parent. ( GraphModelNode )
-		:param children: Children. ( List )
-		:param roles: Roles. ( Dictionary )
-		:param nodeFlags: Node flags. ( Integer )
-		:param attributesFlags: Attributes flags. ( Integer )
-		:param iconSize: Icon size.  ( String )
-		:param iconPlaceholder: Icon placeholder.  ( QIcon )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param plate: Plate object.
+		:type plate: Plate
+		:param name: Node name.
+		:type name: unicode
+		:param parent: Node parent.
+		:type parent: GraphModelNode
+		:param children: Children.
+		:type children: list
+		:param roles: Roles.
+		:type roles: dict
+		:param nodeFlags: Node flags.
+		:type nodeFlags: int
+		:param attributesFlags: Attributes flags.
+		:type attributesFlags: int
+		:param iconSize: Icon size.
+		:type iconSize: unicode
+		:param iconPlaceholder: Icon placeholder.
+		:type iconPlaceholder: QIcon
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -111,9 +124,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def plate(self):
 		"""
-		This method is the property for **self.__plate** attribute.
+		Property for **self.__plate** attribute.
 
-		:return: self.__plate. ( Plate )
+		:return: self.__plate.
+		:rtype: Plate
 		"""
 
 		return self.__plate
@@ -122,9 +136,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self, value):
 		"""
-		This method is the setter method for **self.__plate** attribute.
+		Setter for **self.__plate** attribute.
 
-		:param value: Attribute value. ( Plate )
+		:param value: Attribute value.
+		:type value: Plate
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -134,7 +149,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def plate(self):
 		"""
-		This method is the deleter method for **self.__plate** attribute.
+		Deleter for **self.__plate** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -143,9 +158,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@property
 	def toolTipText(self):
 		"""
-		This method is the property for **self.__toolTipText** attribute.
+		Property for **self.__toolTipText** attribute.
 
-		:return: self.__toolTipText. ( String )
+		:return: self.__toolTipText.
+		:rtype: unicode
 		"""
 
 		return self.__toolTipText
@@ -154,9 +170,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self, value):
 		"""
-		This method is the setter method for **self.__toolTipText** attribute.
+		Setter for **self.__toolTipText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -166,7 +183,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
+		Deleter for **self.__toolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -177,9 +194,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
-		This method initializes the node.
+		Initializes the node.
 		
-		:param attributesFlags: Attributes flags. ( Integer )
+		:param attributesFlags: Attributes flags.
+		:type attributesFlags: int
 		"""
 
 		self.roles.update({Qt.ToolTipRole : self.__toolTipText.format(self.name)})

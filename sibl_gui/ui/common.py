@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines common ui manipulation related objects.
+	Defines common ui manipulation related objects.
 
 **Others:**
 
@@ -52,7 +52,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -70,7 +70,7 @@ __all__ = ["LOGGER",
 		"createPixmap",
 		"getImageInformationsHeader",
 		"filterImagePath",
-		"getFormatedShotDate"]
+		"getFormattedShotDate"]
 
 LOGGER = foundations.verbose.installLogger()
 
@@ -79,11 +79,14 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 def convertImage(image, type):
 	"""
-	This definition converts given image to given type.
+	Converts given image to given type.
 
-	:param image: Image to convert. ( QImage )
-	:param type: Type to convert to. ( QImage / QPixmap / QIcon )
-	:return: Converted image. ( QImage / QPixmap / QIcon )
+	:param image: Image to convert.
+	:type image: QImage
+	:param type: Type to convert to.
+	:type type: QImage or QPixmap or QIcon
+	:return: Converted image.
+	:rtype: QImage or QPixmap or QIcon
 	"""
 
 	graphicsItem = image
@@ -96,17 +99,21 @@ def convertImage(image, type):
 
 def getThumbnailPath(path, size, cacheDirectory=None):
 	"""
-	This definition returns given image thumbnail cached path at given size.
+	Returns given image thumbnail cached path at given size.
 
-	:param path: Image path. ( String )
-	:param size: Thumbnail size. ( String )
-	:param cacheDirectory: Thumbnails cache directory. ( String )
-	:return: Cached thumbnail path. ( String )
+	:param path: Image path.
+	:type path: unicode
+	:param size: Thumbnail size.
+	:type size: unicode
+	:param cacheDirectory: Thumbnails cache directory.
+	:type cacheDirectory: unicode
+	:return: Cached thumbnail path.
+	:rtype: unicode
 	"""
 
 	cacheDirectory = cacheDirectory if cacheDirectory is not None else RuntimeGlobals.thumbnailsCacheDirectory
 	return os.path.join(cacheDirectory,
-					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.encodingCodec)).hexdigest())
+					hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.defaultCodec)).hexdigest())
 
 def extractThumbnail(path,
 					size="Default",
@@ -115,15 +122,22 @@ def extractThumbnail(path,
 					quality= -1,
 					cacheDirectory=None):
 	"""
-	This definition extract given image thumbnail at given size.
+	Extract given image thumbnail at given size.
 
-	:param path: Image path. ( String )
-	:param size: Thumbnail size. ( String )
-	:param image: Image to use instead of given path one. ( QImage )
-	:param format: Thumbnail format. ( String )
-	:param quality: Thumbnail quality, -1 to 100. ( Integer )
-	:param cacheDirectory: Thumbnails cache directory. ( String )
-	:return: Thumbnail image. ( QImage )
+	:param path: Image path.
+	:type path: unicode
+	:param size: Thumbnail size.
+	:type size: unicode
+	:param image: Image to use instead of given path one.
+	:type image: QImage
+	:param format: Thumbnail format.
+	:type format: unicode
+	:param quality: Thumbnail quality, -1 to 100.
+	:type quality: int
+	:param cacheDirectory: Thumbnails cache directory.
+	:type cacheDirectory: unicode
+	:return: Thumbnail image.
+	:rtype: QImage
 	"""
 
 	cacheDirectory = cacheDirectory if cacheDirectory is not None else RuntimeGlobals.thumbnailsCacheDirectory
@@ -145,12 +159,15 @@ def extractThumbnail(path,
 
 def loadGraphicsItem(path, type, size="Default"):
 	"""
-	This definition loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	Loads a graphic item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_.
 
-	:param path: Image path. ( String )
-	:param type: QIcon, QImage, QPixmap. ( QObject )
-	:param size: Image size. ( String )
+	:param path: Image path.
+	:type path: unicode
+	:param type: QIcon, QImage, QPixmap.
+	:type type: QObject
+	:param size: Image size.
+	:type size: unicode
 	:return: Image. ( QIcon, QImage, QPixmap )
 	"""
 
@@ -184,15 +201,20 @@ def loadGraphicsItem(path, type, size="Default"):
 
 def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
+	Returns a display item: `QIcon <http://doc.qt.nokia.com/qicon.html>`_,
 	`QImage <http://doc.qt.nokia.com/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
-	:param path: Image path. ( String )
-	:param type: QIcon, QImage, QPixmap. ( QObject )
-	:param size: Image size. ( String )
-	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
+	:param path: Image path.
+	:type path: unicode
+	:param type: QIcon, QImage, QPixmap.
+	:type type: QObject
+	:param size: Image size.
+	:type size: unicode
+	:param asynchronousLoading: Images are loaded asynchronously.
+	:type asynchronousLoading: bool
 	:param placeholder: Placeholder to use while loading asynchronously. ( QIcon, QImage, QPixmap )
-	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
+	:param imagesCache: Image cache.
+	:type imagesCache: Dictionary or AsynchronousGraphicsItemsCache
 	:return: Image. ( QIcon, QImage, QPixmap )
 	"""
 
@@ -215,14 +237,20 @@ def getGraphicsItem(path, type, size="Default", asynchronousLoading=True, placeh
 
 def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
+	Returns a `QIcon <http://doc.qt.nokia.com/qicon.html>`_ instance.
 
-	:param path: Icon image path. ( String )
-	:param size: Image size. ( String )
-	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-	:param placeholder: Placeholder to use while loading asynchronously. ( QIcon )
-	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
-	:return: QIcon. ( QIcon )
+	:param path: Icon image path.
+	:type path: unicode
+	:param size: Image size.
+	:type size: unicode
+	:param asynchronousLoading: Images are loaded asynchronously.
+	:type asynchronousLoading: bool
+	:param placeholder: Placeholder to use while loading asynchronously.
+	:type placeholder: QIcon
+	:param imagesCache: Image cache.
+	:type imagesCache: Dictionary or AsynchronousGraphicsItemsCache
+	:return: QIcon.
+	:rtype: QIcon
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QIcon")
@@ -230,14 +258,20 @@ def getIcon(path, size="Default", asynchronousLoading=True, placeholder=None, im
 
 def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	Returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
-	:param path: Icon image path. ( String )
-	:param size: Image size. ( String )
-	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-	:param placeholder: Placeholder to use while loading asynchronously. ( QPixmap )
-	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
-	:return: QPixmap. ( QPixmap )
+	:param path: Icon image path.
+	:type path: unicode
+	:param size: Image size.
+	:type size: unicode
+	:param asynchronousLoading: Images are loaded asynchronously.
+	:type asynchronousLoading: bool
+	:param placeholder: Placeholder to use while loading asynchronously.
+	:type placeholder: QPixmap
+	:param imagesCache: Image cache.
+	:type imagesCache: Dictionary or AsynchronousGraphicsItemsCache
+	:return: QPixmap.
+	:rtype: QPixmap
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QPixmap")
@@ -245,14 +279,20 @@ def getPixmap(path, size="Default", asynchronousLoading=True, placeholder=None, 
 
 def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, imagesCache=None):
 	"""
-	This definition returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
+	Returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
 
-	:param path: Icon image path. ( String )
-	:param size: Image size. ( String )
-	:param asynchronousLoading: Images are loaded asynchronously. ( Boolean )
-	:param placeholder: Placeholder to use while loading asynchronously. ( QImage )
-	:param imagesCache: Image cache. ( Dictionary / AsynchronousGraphicsItemsCache )
-	:return: QImage. ( QImage )
+	:param path: Icon image path.
+	:type path: unicode
+	:param size: Image size.
+	:type size: unicode
+	:param asynchronousLoading: Images are loaded asynchronously.
+	:type asynchronousLoading: bool
+	:param placeholder: Placeholder to use while loading asynchronously.
+	:type placeholder: QImage
+	:param imagesCache: Image cache.
+	:type imagesCache: Dictionary or AsynchronousGraphicsItemsCache
+	:return: QImage.
+	:rtype: QImage
 	"""
 
 	cache = imagesCache and imagesCache or RuntimeGlobals.imagesCaches.get("QImage")
@@ -260,12 +300,16 @@ def getImage(path, size="Default", asynchronousLoading=True, placeholder=None, i
 
 def createPixmap(width=128, height=128, text=None):
 	"""
-	This definition create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
+	Create a default `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
 
-	:param width: Pixmap width. ( Integer )
-	:param height: Pixmap height. ( Integer )
-	:param text: Pximap text. ( String )
-	:return: QPixmap. ( QPixmap )
+	:param width: Pixmap width.
+	:type width: int
+	:param height: Pixmap height.
+	:type height: int
+	:param text: Pximap text.
+	:type text: unicode
+	:return: QPixmap.
+	:rtype: QPixmap
 	"""
 
 	loadingPixmap = QPixmap(width, height)
@@ -281,12 +325,14 @@ def createPixmap(width=128, height=128, text=None):
 @foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 def getImageInformationsHeader(path, graphicsItem):
 	"""
-	This definition returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
+	Returns a :class:`sibl_gui.libraries.freeImage.freeImage.ImageInformationsHeader` class
 	from given path and graphics item.
 
-	:param path: Image path. ( String )
+	:param path: Image path.
+	:type path: unicode
 	:param graphicsItem: Image graphics item. ( QImage, QPixmap, QIcon )
-	:return: Image informations header. ( ImageInformationsHeader )
+	:return: Image informations header.
+	:rtype: ImageInformationsHeader
 	"""
 
 	if not foundations.common.pathExists(path):
@@ -303,10 +349,12 @@ def getImageInformationsHeader(path, graphicsItem):
 
 def filterImagePath(path):
 	"""
-	This definition filters the image path.
+	Filters the image path.
 
-	:param path: Image path. ( String )
-	:return: Path. ( String )
+	:param path: Image path.
+	:type path: unicode
+	:return: Path.
+	:rtype: unicode
 	"""
 
 	if foundations.common.pathExists(path):
@@ -319,22 +367,25 @@ def filterImagePath(path):
 	else:
 		return umbra.ui.common.getResourcePath(UiConstants.missingImage)
 
-def getFormatedShotDate(date, time):
+def getFormattedShotDate(date, time):
 	"""
-	This definition returns a formated shot date.
+	Returns a formatted shot date.
 
-	:param date: Ibl Set date key value. ( String )
-	:param time: Ibl Set time key value. ( String )
-	:return: Current shot date. ( String )
+	:param date: Ibl Set date key value.
+	:type date: unicode
+	:param time: Ibl Set time key value.
+	:type time: unicode
+	:return: Current shot date.
+	:rtype: unicode
 	"""
 
-	LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
+	LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))
 
-	if date and time and date != Constants.nullObject and time != Constants.nullObject:
-		shotTime = "{0}H{1}".format(*time.split(":"))
+	if not Constants.nullObject in (time, date):
+		shotTime = "{0}H{1}".format(*foundations.common.unpackDefault(time.split(":"), 2, "?"))
 		shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
-		LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
+		LOGGER.debug("> Formatted shot date: '{0}'.".format(shotDate))
 		return shotDate
 	else:
 		return Constants.nullObject

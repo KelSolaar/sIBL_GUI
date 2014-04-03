@@ -17,6 +17,12 @@ Functions
 
 .. autofunction:: remove
 
+.. autofunction:: isReadable
+
+.. autofunction:: isWritable
+
+.. autofunction:: isBinaryFile
+
 Classes
 -------
 

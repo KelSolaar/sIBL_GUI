@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 	Component Interface class Models.
 
 **Others:**
@@ -30,7 +30,7 @@ import sibl_gui.ui.models
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -45,18 +45,22 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class PlatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector`
 	Component Interface class. 
 	"""
 
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param rootNode: Root node. ( AbstractCompositeNode )
-		:param horizontalHeaders: Headers. ( OrderedDict )
-		:param verticalHeaders: Headers. ( OrderedDict )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param rootNode: Root node.
+		:type rootNode: AbstractCompositeNode
+		:param horizontalHeaders: Headers.
+		:type horizontalHeaders: OrderedDict
+		:param verticalHeaders: Headers.
+		:type verticalHeaders: OrderedDict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -72,10 +76,12 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 	#******************************************************************************************************************
 	def initializeModel(self, rootNode):
 		"""
-		This method initializes the Model using given root node.
+		Initializes the Model using given root node.
 		
-		:param rootNode: Graph root node. ( DefaultNode )
-		:return: Method success ( Boolean )
+		:param rootNode: Graph root node.
+		:type rootNode: DefaultNode
+		:return: Method success
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))

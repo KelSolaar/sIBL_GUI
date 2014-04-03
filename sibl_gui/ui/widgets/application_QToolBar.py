@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Application_QToolBar` class.
+	Defines the :class:`Application_QToolBar` class.
 
 **Others:**
 
@@ -32,8 +32,8 @@ from PyQt4.QtGui import QPixmap
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.exceptions
+import foundations.guerilla
 import foundations.verbose
-import umbra.guerilla
 import umbra.ui.widgets.application_QToolBar
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.widgets.active_QLabel import Active_QLabel
@@ -43,7 +43,7 @@ from umbra.ui.widgets.active_QLabelsCollection import Active_QLabelsCollection
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -58,17 +58,17 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QToolBar):
 	"""
-	This class is defines the Application toolbar.
+	Defines defines the Application toolbar.
 	"""
 
-	__metaclass__ = umbra.guerilla.baseWarfare
+	__metaclass__ = foundations.guerilla.baseWarfare
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
 	def __centralWidgetButton__clicked(self):
 		"""
-		This method sets the **Central** Widget visibility.
+		Sets the **Central** Widget visibility.
 		"""
 
 		LOGGER.debug("> Central Widget button clicked!")
@@ -80,9 +80,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def setToolBarChildrenWidgets(self):
 		"""
-		This method sets the toolBar children widgets.
+		Sets the toolBar children widgets.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
@@ -117,9 +118,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def getLayoutsActiveLabels(self):
 		"""
-		This method returns the layouts **Active_QLabel** widgets.
+		Returns the layouts **Active_QLabel** widgets.
 
-		:return: Layouts active labels. ( List )
+		:return: Layouts active labels.
+		:rtype: list
 		"""
 
 		self.__layoutsActiveLabelsCollection = Active_QLabelsCollection(self)
@@ -166,9 +168,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 		return self.__layoutsActiveLabelsCollection.activeLabels
 	def getCentralWidgetActiveLabel(self):
 		"""
-		This method provides the default **Central_Widget_activeLabel** widget.
+		Provides the default **Central_Widget_activeLabel** widget.
 
-		:return: Central Widget active label. ( Active_QLabel )
+		:return: Central Widget active label.
+		:rtype: Active_QLabel
 		"""
 
 		centralWidgetButton = Active_QLabel(self,
@@ -183,9 +186,10 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def extendMiscellaneousActiveLabel(self):
 		"""
-		This method extends the default **Miscellaneous_activeLabel** widget.
+		Extends the default **Miscellaneous_activeLabel** widget.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		self.miscellaneousMenu.addAction(self.__container.actionsManager.registerAction(
@@ -196,10 +200,12 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	def __makeDonationDisplayMiscAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
 
-		:param checked: Checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.makeDonationFile))

@@ -22,14 +22,14 @@ from __future__ import unicode_literals
 #**********************************************************************************************************************
 #***	Encoding manipulations.
 #**********************************************************************************************************************
-import sys
-
 def _setEncoding():
 	"""
-	This definition sets the Application encoding.
+	Sets the Package encoding.
 	"""
 
+	import sys
 	reload(sys)
+
 	sys.setdefaultencoding("utf-8")
 
 _setEncoding()
@@ -50,7 +50,7 @@ import sibl_gui.globals.constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -63,9 +63,10 @@ __all__ = ["getLongDescription"]
 #**********************************************************************************************************************
 def getLongDescription():
 	"""
-	This definition returns the Package long description.
+	Returns the Package long description.
 
-	:return: Package long description. ( String )
+	:return: Package long description.
+	:rtype: unicode
 	"""
 
 	description = []
@@ -81,7 +82,7 @@ def getLongDescription():
 	return "".join(description)
 
 setup(name=sibl_gui.globals.constants.Constants.applicationName,
-	version=sibl_gui.globals.constants.Constants.releaseVersion,
+	version=sibl_gui.globals.constants.Constants.version,
 	author=sibl_gui.globals.constants.__author__,
 	author_email=sibl_gui.globals.constants.__email__,
 	include_package_data=True,
@@ -91,7 +92,7 @@ setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	license="GPLv3",
 	description="sIBL_GUI is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of \"Smart Ibl\" files.",
 	long_description=getLongDescription(),
-	install_requires=["SQLAlchemy==0.7.8", "Umbra>=1.0.8", "Counter>=1.0.0"],
+	install_requires=["Counter>=1.0.0", "SQLAlchemy==0.7.8", "Umbra>=1.0.9"],
 	classifiers=["Development Status :: 5 - Production/Stable",
 				"Environment :: Console",
 				"Environment :: MacOS X",

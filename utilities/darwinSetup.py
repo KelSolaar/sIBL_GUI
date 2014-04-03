@@ -8,7 +8,7 @@
 	Mac Os X.
 
 **Description:**
-	This module defines the py2app configuration file.
+	Defines the py2app configuration file.
 
 **Others:**
 
@@ -28,7 +28,7 @@ from setuptools import setup
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"

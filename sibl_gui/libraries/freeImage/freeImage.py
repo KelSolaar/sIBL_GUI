@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module provides FreeImage library ( http://freeimage.sourceforge.net/ ) bindings.
+	Provides FreeImage library ( http://freeimage.sourceforge.net/ ) bindings.
 
 **Others:**
 	Portions of the code from FreeImagePy by
@@ -45,7 +45,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -417,11 +417,13 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 def pointer(data):
 	"""
-	This definition converts None to a real NULL pointer to work around bugs
+	Converts None to a real NULL pointer to work around bugs
 	in how ctypes handles None on 64-bit platforms.
 	
-	:param data: Data . ( Object )
-	:return: Pointer. ( POINTER )
+	:param data: Data .
+	:type data: object
+	:return: Pointer.
+	:rtype: POINTER
 	"""
 
 	pointer = ctypes.POINTER(data)
@@ -437,14 +439,16 @@ def pointer(data):
 
 def unchecked(type):
 	"""
-	This definition ensures that all callbacks return primitive datatypes.
+	Ensures that all callbacks return primitive datatypes.
 	
 	As of ctypes 1.0, ctypes does not support custom error-checking functions on callbacks,
 	nor does it support custom datatypes on callbacks, so we must ensure that all callbacks return primitive datatypes.
 	Non-primitive return values wrapped with unchecked won't be typechecked, and will be converted to c_void_p.
 
-	:param type: Type . ( Object )
-	:return: Type. ( Object )
+	:param type: Type .
+	:type type: object
+	:return: Type.
+	:rtype: object
 	"""
 
 	if (hasattr(type, "_type_") and isinstance(type._type_, str) and type._type_ != "P"):
@@ -499,7 +503,7 @@ else:
 
 class FIBITMAP(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -507,7 +511,7 @@ class FIBITMAP(ctypes.Structure):
 
 class FIMULTIBITMAP(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMULTIBITMAP** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMULTIBITMAP** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -515,7 +519,7 @@ class FIMULTIBITMAP(ctypes.Structure):
 
 class tagRGBQUAD(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBQUAD** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBQUAD** C / C++ object.
 	"""
 
 	__slots__ = ["rgbBlue", "rgbGreen", "rgbRed", "rgbReserved"]
@@ -535,7 +539,7 @@ RGBQUAD = tagRGBQUAD
 
 class tagRGBTRIPLE(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBTRIPLE** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagRGBTRIPLE** C / C++ object.
 	"""
 
 	__slots__ = ["rgbBlue", "rgbGreen", "rgbRed"]
@@ -554,7 +558,7 @@ RGBTRIPLE = tagRGBTRIPLE
 
 class tagBITMAPINFOHEADER(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFOHEADER** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFOHEADER** C / C++ object.
 	"""
 	__slots__ = ["biSize",
 				"biWidth",
@@ -584,7 +588,7 @@ BITMAPINFOHEADER = tagBITMAPINFOHEADER
 
 class tagBITMAPINFO(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFO** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFO** C / C++ object.
 	"""
 	__slots__ = ["bmiHeader", "bmiColors"]
 	_fields_ = [("bmiHeader", BITMAPINFOHEADER),
@@ -596,7 +600,7 @@ PBITMAPINFO = pointer(tagBITMAPINFO)
 
 class tagFIRGB16(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGB16** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGB16** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue"]
@@ -608,7 +612,7 @@ FIRGB16 = tagFIRGB16
 
 class tagFIRGBA16(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBA16** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBA16** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue", "alpha"]
@@ -621,7 +625,7 @@ FIRGBA16 = tagFIRGBA16
 
 class tagFIRGBF(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBF** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBF** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue"]
@@ -633,7 +637,7 @@ FIRGBF = tagFIRGBF
 
 class tagFIRGBAF(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBAF** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFIRGBAF** C / C++ object.
 	"""
 
 	__slots__ = ["red", "green", "blue", "alpha"]
@@ -646,7 +650,7 @@ FIRGBAF = tagFIRGBAF
 
 class tagFICOMPLEX(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **tagFICOMPLEX** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagFICOMPLEX** C / C++ object.
 	"""
 
 	__slots__ = ["r", "i"]
@@ -746,7 +750,7 @@ FIICC_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, va
 
 class FIICCPROFILE(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
 	"""
 
 	__slots__ = ["flags", "size", "data"]
@@ -920,7 +924,7 @@ FIMD_LOOKUP = foundations.dataStructures.Lookup(**dict((key, value) for key, val
 
 class FIMETADATA(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -928,7 +932,7 @@ class FIMETADATA(ctypes.Structure):
 
 class FITAG(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -947,7 +951,7 @@ FI_TellProc = DLL_CALLCONV(unchecked(ctypes.c_long), fi_handle)
 
 class FreeImageIO(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
 	"""
 
 	__slots__ = ["read_proc", "write_proc", "seek_proc", "tell_proc"]
@@ -958,7 +962,7 @@ class FreeImageIO(ctypes.Structure):
 
 class FIMEMORY(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
 	"""
 
 	__slots__ = ["data"]
@@ -997,7 +1001,7 @@ FI_SupportsNoPixelsProc = ctypes.CFUNCTYPE(unchecked(BOOL),)
 
 class Plugin(ctypes.Structure):
 	"""
-	This class is a :class:`ctypes.Structure` subclass representing FreeImage **Plugin** C / C++ object.
+	Defines a :class:`ctypes.Structure` subclass representing FreeImage **Plugin** C / C++ object.
 	"""
 
 	__slots__ = ["format_proc",
@@ -2000,9 +2004,10 @@ FREEIMAGE_FUNCTIONS = (
 #**********************************************************************************************************************
 def getFreeImageLibraryPath():
 	"""
-	This definition returns the FreeImage library path.
+	Returns the FreeImage library path.
 
-	:return: FreeImage library path. ( String )
+	:return: FreeImage library path.
+	:rtype: unicode
 	"""
 
 	global FREEIMAGE_LIBRARY_PATH
@@ -2016,14 +2021,15 @@ def getFreeImageLibraryPath():
 
 class ImageInformationsHeader(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for image informations header.
+	Defines a storage object for image informations header.
 	"""
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param kwargs: path, width, height, bpp, osStats. ( Key / Value pairs )
+		:param kwargs: path, width, height, bpp, osStats.
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -2032,14 +2038,15 @@ class ImageInformationsHeader(foundations.dataStructures.Structure):
 
 class Image(object):
 	"""
-	This class provides various methods to manipulate images files.
+	Defines various methods to manipulate images files.
 	"""
 
 	def __init__(self, imagePath=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param imagePath: Image path. ( String )
+		:param imagePath: Image path.
+		:type imagePath: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -2064,9 +2071,10 @@ class Image(object):
 	@property
 	def library(self):
 		"""
-		This method is the property for **self.__library** attribute.
+		Property for **self.__library** attribute.
 
-		:return: self.__library. ( Library )
+		:return: self.__library.
+		:rtype: Library
 		"""
 
 		return self.__library
@@ -2075,9 +2083,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self, value):
 		"""
-		This method is the setter method for **self.__library** attribute.
+		Setter for **self.__library** attribute.
 
-		:param value: Attribute value. ( Library )
+		:param value: Attribute value.
+		:type value: Library
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2087,7 +2096,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def library(self):
 		"""
-		This method is the deleter method for **self.__library** attribute.
+		Deleter for **self.__library** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2096,9 +2105,10 @@ class Image(object):
 	@property
 	def errorsCallback(self):
 		"""
-		This method is the property for **self.__errorsCallback** attribute.
+		Property for **self.__errorsCallback** attribute.
 
-		:return: self.__errorsCallback. ( Object )
+		:return: self.__errorsCallback.
+		:rtype: object
 		"""
 
 		return self.__errorsCallback
@@ -2107,9 +2117,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self, value):
 		"""
-		This method is the setter method for **self.__errorsCallback** attribute.
+		Setter for **self.__errorsCallback** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2119,7 +2130,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
 		"""
-		This method is the deleter method for **self.__errorsCallback** attribute.
+		Deleter for **self.__errorsCallback** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2128,9 +2139,10 @@ class Image(object):
 	@property
 	def imagePath(self):
 		"""
-		This method is the property for **self.__imagePath** attribute.
+		Property for **self.__imagePath** attribute.
 
-		:return: self.__imagePath. ( String )
+		:return: self.__imagePath.
+		:rtype: unicode
 		"""
 
 		return self.__imagePath
@@ -2139,9 +2151,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def imagePath(self, value):
 		"""
-		This method is the setter method for **self.__imagePath** attribute.
+		Setter for **self.__imagePath** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
@@ -2152,7 +2165,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def imagePath(self):
 		"""
-		This method is the deleter method for **self.__imagePath** attribute.
+		Deleter for **self.__imagePath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2161,9 +2174,10 @@ class Image(object):
 	@property
 	def bitmap(self):
 		"""
-		This method is the property for **self.__bitmap** attribute.
+		Property for **self.__bitmap** attribute.
 
-		:return: self.__bitmap. ( Object )
+		:return: self.__bitmap.
+		:rtype: object
 		"""
 
 		return self.__bitmap
@@ -2172,9 +2186,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def bitmap(self, value):
 		"""
-		This method is the setter method for **self.__bitmap** attribute.
+		Setter for **self.__bitmap** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		self.__bitmap = value
@@ -2183,7 +2198,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def bitmap(self):
 		"""
-		This method is the deleter method for **self.__bitmap** attribute.
+		Deleter for **self.__bitmap** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -2195,7 +2210,7 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):
 		"""
-		This method logs the Library errors.
+		Logs the Library errors.
 		"""
 
 		raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(
@@ -2203,10 +2218,12 @@ class Image(object):
 
 	def getImageFormat(self, imagePath=None):
 		"""
-		This method gets the file format.
+		Gets the file format.
 
-		:param imagePath: Image path. ( String )
-		:return: File format. ( FREE_IMAGE_FORMAT )
+		:param imagePath: Image path.
+		:type imagePath: unicode
+		:return: File format.
+		:rtype: FREE_IMAGE_FORMAT
 		"""
 
 		imagePath = imagePath or self.__imagePath
@@ -2221,9 +2238,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def load(self):
 		"""
-		This method loads the file.
+		Loads the file.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if not self.__imagePath:
@@ -2241,9 +2259,10 @@ class Image(object):
 
 	def save(self):
 		"""
-		This method saves the file.
+		Saves the file.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
@@ -2251,12 +2270,16 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
-		This method saves the image to the given file.
+		Saves the image to the given file.
 
-		:param imageFormat: Image format. ( Integer )
-		:param imagePath: Image path. ( String )
-		:param flags: Save flags. ( Integer )
-		:return: Method success. ( Boolean )
+		:param imageFormat: Image format.
+		:type imageFormat: int
+		:param imagePath: Image path.
+		:type imagePath: unicode
+		:param flags: Save flags.
+		:type flags: int
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
@@ -2271,11 +2294,14 @@ class Image(object):
 
 	def convertToType(self, targetType, linearScale=True):
 		"""
-		This method converts the bitmap to given type.
+		Converts the bitmap to given type.
 
-		:param targetType: Target type. ( Integer )
-		:param linearScale: Linear scale. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param targetType: Target type.
+		:type targetType: int
+		:param linearScale: Linear scale.
+		:type linearScale: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Converting '{0}' image bitmap to type '{1}'!".format(self.__imagePath, targetType))
@@ -2286,10 +2312,12 @@ class Image(object):
 
 	def convertToLdr(self, gamma=2.2):
 		"""
-		This method converts the HDR bitmap to LDR.
+		Converts the HDR bitmap to LDR.
 
-		:param gamma: Image conversion gamma. ( Float )
-		:return: Method success. ( Boolean )
+		:param gamma: Image conversion gamma.
+		:type gamma: float
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Converting '{0}' HDR image bitmap to LDR!".format(self.__imagePath))
@@ -2301,9 +2329,10 @@ class Image(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
-		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
+		Converts the bitmap to `QImage <http://doc.qt.nokia.com/qimage.html>`_.
 
-		:return: Converted image. ( QImage )
+		:return: Converted image.
+		:rtype: QImage
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)
