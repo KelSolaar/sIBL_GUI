@@ -1,5 +1,6 @@
 [Dependencies]
-Oncilla=Foundations=v2.0.8-65-g505a443
-Manager=v2.0.3-35-g7d74430
-Umbra=v1.0.5-112-g3d23b01
-sIBL_GUI_Templates=v2.1.1-6-g3587914
+Oncilla=v0.1.0-alpha
+Foundations=v2.1.0
+Manager=v2.0.5
+Umbra=v1.0.9
+sIBL_GUI_Templates=v2.1.3
