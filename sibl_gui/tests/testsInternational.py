@@ -63,7 +63,7 @@ def testsInternational():
 	"""
 
 	userApplicationDirectory = tempfile.mkdtemp(prefix=USER_APPLICATION_DIRECTORY_PREFIX)
-	command = [os.path.join(sibl_gui.__path__[0], "../bin/sIBL_GUI"),
+	command = [os.path.join(sibl_gui.__path__[0], "..", "bin", "sIBL_GUI"),
  			"-u", userApplicationDirectory,
 			"-x", unicode(INTERNATIONAL_TEST_SCRIPT_FILE)]
 	if subprocess.check_call(command) == 0:
