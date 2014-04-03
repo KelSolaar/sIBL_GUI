@@ -23,6 +23,8 @@ Module Attributes
 Functions
 ---------
 
+.. autofunction:: toUnicode
+
 .. autofunction:: indentMessage
 
 .. autofunction:: tracer

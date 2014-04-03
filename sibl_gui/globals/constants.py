@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package default constants through the :class:`Constants` class.
+	Defines **sIBL_GUI** package default constants through the :class:`Constants` class.
 
 **Others:**
 
@@ -26,10 +26,15 @@ import os
 import platform
 
 #**********************************************************************************************************************
+#***	Internal imports.
+#**********************************************************************************************************************
+import sibl_gui
+
+#**********************************************************************************************************************
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -42,46 +47,105 @@ __all__ = ["Constants"]
 #**********************************************************************************************************************
 class Constants():
 	"""
-	This class provides **sIBL_GUI** package default constants.
+	Defines **sIBL_GUI** package default constants.
 	"""
 
 	applicationName = "sIBL_GUI"
-	"""Package Application name: '**sIBL_GUI**' ( String )"""
+	"""
+	:param applicationName: Package Application name.
+	:type applicationName: unicode
+	"""
 	majorVersion = "4"
-	"""Package major version: '**4**' ( String )"""
+	"""
+	:param majorVersion: Package major version.
+	:type majorVersion: unicode
+	"""
 	minorVersion = "0"
-	"""Package minor version: '**0**' ( String )"""
-	changeVersion = "7"
-	"""Package change version: '**7**' ( String )"""
-	releaseVersion = ".".join((majorVersion, minorVersion, changeVersion))
-	"""Package release version: '**4.0.7**' ( String )"""
+	"""
+	:param minorVersion: Package minor version.
+	:type minorVersion: unicode
+	"""
+	changeVersion = "8"
+	"""
+	:param changeVersion: Package change version.
+	:type changeVersion: unicode
+	"""
+	version = ".".join((majorVersion, minorVersion, changeVersion))
+	"""
+	:param version: Package version.
+	:type version: unicode
+	"""
 
 	logger = "sIBL_GUI_Logger"
-	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
+	"""
+	:param logger: Package logger name.
+	:type logger: unicode
+	"""
+
+	defaultCodec = sibl_gui.DEFAULT_CODEC
+	"""
+	:param defaultCodec: Default codec.
+	:type defaultCodec: unicode
+	"""
+	codecError = sibl_gui.CODEC_ERROR
+	"""
+	:param codecError: Default codec error behavior.
+	:type codecError: unicode
+	"""
 
 	applicationDirectory = os.sep.join(("sIBL_GUI", ".".join((majorVersion, minorVersion))))
-	"""Package Application directory: '**sIBL_GUI**' ( String )"""
+	"""
+	:param applicationDirectory: Package Application directory.
+	:type applicationDirectory: unicode
+	"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
 		providerDirectory = "HDRLabs"
-		"""Package provider directory: '**HDRLabs** on Windows / Darwin, **.HDRLabs** on Linux' ( String )"""
+		"""
+		:param providerDirectory: Package provider directory.
+		:type providerDirectory: unicode
+		"""
 	elif platform.system() == "Linux":
 		providerDirectory = ".HDRLabs"
-		"""Package provider directory: '**HDRLabs** on Windows / Darwin, **.HDRLabs** on Linux' ( String )"""
+		"""
+		:param providerDirectory: Package provider directory.
+		:type providerDirectory: unicode
+		"""
 
 	databaseDirectory = "database"
-	"""Application Database directory: '**database**' ( String )"""
+	"""
+	:param databaseDirectory: Application Database directory.
+	:type databaseDirectory: unicode
+	"""
 	patchesDirectory = "patches"
-	"""Application patches directory: '**patches**' ( String )"""
+	"""
+	:param patchesDirectory: Application patches directory.
+	:type patchesDirectory: unicode
+	"""
 	settingsDirectory = "settings"
-	"""Application settings directory: '**settings**' ( String )"""
+	"""
+	:param settingsDirectory: Application settings directory.
+	:type settingsDirectory: unicode
+	"""
 	userComponentsDirectory = "components"
-	"""Application user components directory: '**components**' ( String )"""
+	"""
+	:param userComponentsDirectory: Application user components directory.
+	:type userComponentsDirectory: unicode
+	"""
 	loggingDirectory = "logging"
-	"""Application logging directory: '**logging**' ( String )"""
+	"""
+	:param loggingDirectory: Application logging directory.
+	:type loggingDirectory: unicode
+	"""
 	templatesDirectory = "templates"
-	"""Application templates directory: '**templates**' ( String )"""
+	"""
+	:param templatesDirectory: Application templates directory.
+	:type templatesDirectory: unicode
+	"""
 	ioDirectory = "io"
-	"""Application io directory: '**io**' ( String )"""
+	"""
+	:param ioDirectory: Application io directory.
+	:type ioDirectory: unicode
+	"""
 
 	preferencesDirectories = (databaseDirectory,
 								patchesDirectory,
@@ -90,30 +154,60 @@ class Constants():
 								loggingDirectory,
 								templatesDirectory,
 								ioDirectory)
-	"""Application preferences directories ( Tuple )"""
+	"""
+	:param preferencesDirectories: Application preferences directories.
+	:type preferencesDirectories: tuple
+	"""
 
 	coreComponentsDirectory = "components/core"
-	"""Application core components directory: '**components/core**' ( String )"""
+	"""
+	:param coreComponentsDirectory: Application core components directory.
+	:type coreComponentsDirectory: unicode
+	"""
 	addonsComponentsDirectory = "components/addons"
-	"""Application addons components directory: '**components/addons**' ( String )"""
+	"""
+	:param addonsComponentsDirectory: Application addons components directory.
+	:type addonsComponentsDirectory: unicode
+	"""
 
 	resourcesDirectory = "resources"
-	"""Application resources directory: '**resources**' ( String )"""
+	"""
+	:param resourcesDirectory: Application resources directory.
+	:type resourcesDirectory: unicode
+	"""
 
 	patchesFile = "sIBL_GUI_Patches.rc"
-	"""Application settings file: '**sIBL_GUI_Patches.rc**' ( String )"""
+	"""
+	:param patchesFile: Application settings file.
+	:type patchesFile: unicode
+	"""
 	databaseFile = "sIBL_GUI_Database.sqlite"
-	"""Application Database file: '**sIBL_GUI_Database.sqlite**' ( String )"""
+	"""
+	:param databaseFile: Application Database file.
+	:type databaseFile: unicode
+	"""
 	settingsFile = "sIBL_GUI_Settings.rc"
-	"""Application settings file: '**sIBL_GUI_Settings.rc**' ( String )"""
+	"""
+	:param settingsFile: Application settings file.
+	:type settingsFile: unicode
+	"""
 	loggingFile = "sIBL_GUI_Logging_{0}.log"
-	"""Application logging file: '**sIBL_GUI_Logging_{0}.log**' ( String )"""
+	"""
+	:param loggingFile: Application logging file.
+	:type loggingFile: unicode
+	"""
 
 	databaseMigrationsFilesExtension = "py"
-	"""Application Database migrations files extension: '**py**' ( String )"""
+	"""
+	:param databaseMigrationsFilesExtension: Application Database migrations files extension.
+	:type databaseMigrationsFilesExtension: unicode
+	"""
 
 	librariesDirectory = "libraries"
-	"""Application libraries directory: '**libraries**' ( String )"""
+	"""
+	:param librariesDirectory: Application libraries directory.
+	:type librariesDirectory: unicode
+	"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
 		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows,

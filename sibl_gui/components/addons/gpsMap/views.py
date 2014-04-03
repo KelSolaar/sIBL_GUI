@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines
+	Defines
 	the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component
 	Interface class Views.
 
@@ -35,7 +35,7 @@ import foundations.verbose
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -50,38 +50,45 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Map_QWebView(QWebView):
 	"""
-	| This class is a `QWebView <http://doc.qt.nokia.com/qwebview.html>`_ subclass used for the GPS map.
+	| Defines a `QWebView <http://doc.qt.nokia.com/qwebview.html>`_ subclass used for the GPS map.
 	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined
 		in the Component resources html file through Javascript evaluation.
 	"""
 
 	def __init__(self, parent=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		QWebView.__init__(self, parent)
 
 	def __evaluateJavascript(self, javascript):
 		"""
-		This method evaluates given javascript content in the View.
+		Evaluates given javascript content in the View.
 
-		:param javascript: Javascript. ( String )
+		:param javascript: Javascript.
+		:type javascript: unicode
 		"""
 
 		self.page().mainFrame().evaluateJavaScript(javascript)
 
 	def addMarker(self, coordinates, title, icon, content):
 		"""
-		This method adds a marker to the GPS map.
+		Adds a marker to the GPS map.
 
-		:param coordinates: Marker coordinates. ( Tuple )
-		:param title: Marker title. ( String )
-		:param icon: Marker icon. ( String )
-		:param content: Marker popup window content. ( String )
-		:return: Method success. ( Boolean )
+		:param coordinates: Marker coordinates.
+		:type coordinates: tuple
+		:param title: Marker title.
+		:type title: unicode
+		:param icon: Marker icon.
+		:type icon: unicode
+		:param content: Marker popup window content.
+		:type content: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
@@ -97,9 +104,10 @@ class Map_QWebView(QWebView):
 
 	def removeMarkers(self):
 		"""
-		This method removes the GPS map markers.
+		Removes the GPS map markers.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing GPS map markers.")
@@ -109,9 +117,10 @@ class Map_QWebView(QWebView):
 
 	def setCenter(self):
 		"""
-		This method centers the GPS map.
+		Centers the GPS map.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Centering GPS map.")
@@ -121,7 +130,7 @@ class Map_QWebView(QWebView):
 
 	def setMapType(self, mapTypeId):
 		"""
-		This method sets the GPS map type.
+		Sets the GPS map type.
 		
 		Available map types:
 			
@@ -129,8 +138,10 @@ class Map_QWebView(QWebView):
 			- MapTypeId.aerial
 			- MapTypeId.road
 			
-		:param mapTypeId: GPS map type. ( String )
-		:return: Method success. ( Boolean )
+		:param mapTypeId: GPS map type.
+		:type mapTypeId: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
@@ -140,10 +151,12 @@ class Map_QWebView(QWebView):
 
 	def setZoom(self, type):
 		"""
-		This method sets the GPS map zoom.
+		Sets the GPS map zoom.
 
-		:param type: Zoom type. ( String )
-		:return: Method success. ( Boolean )
+		:param type: Zoom type.
+		:type type: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))

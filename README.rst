@@ -2,6 +2,7 @@ sIBL_GUI
 ========
 
 ..  image:: https://secure.travis-ci.org/KelSolaar/sIBL_GUI.png?branch=master
+..  image:: https://gemnasium.com/KelSolaar/sIBL_GUI.png  
 
 Introduction
 ------------
@@ -53,7 +54,7 @@ If you want to support third party images formats through FreeImage, you will ne
 
 - **FreeImage_For_sIBL_GUI**: https://github.com/KelSolaar/FreeImage_For_sIBL_GUI
 
-Alternatively, if you want to directly install from `Github <http://github.com/KelSolaar/sIBL_GUI>`_ source repository::
+You can also directly install from `Github <http://github.com/KelSolaar/sIBL_GUI>`_ source repository::
 
       git clone git://github.com/KelSolaar/sIBL_GUI.git
       cd sIBL_GUI
@@ -73,7 +74,7 @@ Once installed, you can launch **sIBL_GUI** using this shell command::
 About
 -----
 
-| **sIBL_GUI** by Thomas Mansencal – 2008 - 2013
-| Copyright© 2008 - 2013 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| **sIBL_GUI** by Thomas Mansencal – 2008 - 2014
+| Copyright © 2008 - 2014 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This software is released under terms of GNU GPL V3 license: http://www.gnu.org/licenses/
 | `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Inspector` Component Interface class and others helpers objects.
+	Defines the :class:`Inspector` Component Interface class and others helpers objects.
 
 **Others:**
 
@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 import os
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
 	from ordereddict import OrderedDict
 else:
@@ -61,13 +62,12 @@ from sibl_gui.components.core.inspector.models import PlatesModel
 from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
-from umbra.globals.uiConstants import UiConstants
 
 #**********************************************************************************************************************
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -84,14 +84,15 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui"
 #**********************************************************************************************************************
 class Plate(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for an Ibl Set Plate.
+	Defines a storage object for an Ibl Set Plate.
 	"""
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param kwargs: name, icon, previewImage, image ( Key / Value pairs )
+		:param kwargs: name, icon, previewImage, image
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -100,14 +101,15 @@ class Plate(foundations.dataStructures.Structure):
 
 class Light(foundations.dataStructures.Structure):
 	"""
-	This class represents a storage object for an Ibl Set light.
+	Defines a storage object for an Ibl Set light.
 	"""
 
 	def __init__(self, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
+		:param kwargs: name, color, uCoordinate, vCoordinate
+		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -116,7 +118,7 @@ class Light(foundations.dataStructures.Structure):
 
 class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate
 		into the current selected Database Collection.
 	"""
@@ -140,12 +142,16 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -245,9 +251,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -256,30 +263,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiPreviousImage(self):
 		"""
-		This method is the property for **self.__uiPreviousImage** attribute.
+		Property for **self.__uiPreviousImage** attribute.
 
-		:return: self.__uiPreviousImage. ( String )
+		:return: self.__uiPreviousImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiPreviousImage
@@ -288,30 +297,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This method is the setter method for **self.__uiPreviousImage** attribute.
+		Setter for **self.__uiPreviousImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@uiPreviousImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This method is the deleter method for **self.__uiPreviousImage** attribute.
+		Deleter for **self.__uiPreviousImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@property
 	def uiNextImage(self):
 		"""
-		This method is the property for **self.__uiNextImage** attribute.
+		Property for **self.__uiNextImage** attribute.
 
-		:return: self.__uiNextImage. ( String )
+		:return: self.__uiNextImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiNextImage
@@ -320,30 +331,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This method is the setter method for **self.__uiNextImage** attribute.
+		Setter for **self.__uiNextImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
 
 	@uiNextImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This method is the deleter method for **self.__uiNextImage** attribute.
+		Deleter for **self.__uiNextImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
 
 	@property
 	def uiLoadingImage(self):
 		"""
-		This method is the property for **self.__uiLoadingImage** attribute.
+		Property for **self.__uiLoadingImage** attribute.
 
-		:return: self.__uiLoadingImage. ( String )
+		:return: self.__uiLoadingImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLoadingImage
@@ -352,30 +365,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLoadingImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLoadingImage** attribute.
+		Setter for **self.__uiLoadingImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@uiLoadingImage.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLoadingImage(self):
 		"""
-		This method is the deleter method for **self.__uiLoadingImage** attribute.
+		Deleter for **self.__uiLoadingImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
 
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -384,30 +399,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
 	def listViewIconSize(self):
 		"""
-		This method is the property for **self.__listViewIconSize** attribute.
+		Property for **self.__listViewIconSize** attribute.
 
-		:return: self.__listViewIconSize. ( Integer )
+		:return: self.__listViewIconSize.
+		:rtype: int
 		"""
 
 		return self.__listViewIconSize
@@ -416,9 +433,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This method is the setter method for **self.__listViewIconSize** attribute.
+		Setter for **self.__listViewIconSize** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -430,18 +448,19 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This method is the deleter method for **self.__listViewIconSize** attribute.
+		Deleter for **self.__listViewIconSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -450,30 +469,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -482,30 +503,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@iblSetsOutliner.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
 
 	@property
 	def sectionsFileParsersCache(self):
 		"""
-		This method is the property for **self.__sectionsFileParsersCache** attribute.
+		Property for **self.__sectionsFileParsersCache** attribute.
 
-		:return: self.__sectionsFileParsersCache. ( Cache )
+		:return: self.__sectionsFileParsersCache.
+		:rtype: Cache
 		"""
 
 		return self.__sectionsFileParsersCache
@@ -514,30 +537,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def sectionsFileParsersCache(self, value):
 		"""
-		This method is the setter method for **self.__sectionsFileParsersCache** attribute.
+		Setter for **self.__sectionsFileParsersCache** attribute.
 
-		:param value: Attribute value. ( Cache )
+		:param value: Attribute value.
+		:type value: Cache
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
 	@sectionsFileParsersCache.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def sectionsFileParsersCache(self):
 		"""
-		This method is the deleter method for **self.__sectionsFileParsersCache** attribute.
+		Deleter for **self.__sectionsFileParsersCache** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
 
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
-		:return: self.__model. ( PlatesModel )
+		:return: self.__model.
+		:rtype: PlatesModel
 		"""
 
 		return self.__model
@@ -546,30 +571,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
-		:param value: Attribute value. ( PlatesModel )
+		:param value: Attribute value.
+		:type value: PlatesModel
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -578,30 +605,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
 	@view.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
 	def thumbnailsSize(self):
 		"""
-		This method is the property for **self.__thumbnailsSize** attribute.
+		Property for **self.__thumbnailsSize** attribute.
 
-		:return: self.__thumbnailsSize. ( String )
+		:return: self.__thumbnailsSize.
+		:rtype: unicode
 		"""
 
 		return self.__thumbnailsSize
@@ -610,31 +639,34 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def thumbnailsSize(self, value):
 		"""
-		This method is the setter method for **self.__thumbnailsSize** attribute.
+		Setter for **self.__thumbnailsSize** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize", value)
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize",
+																								  value)
 		self.__thumbnailsSize = value
 
 	@thumbnailsSize.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def thumbnailsSize(self):
 		"""
-		This method is the deleter method for **self.__thumbnailsSize** attribute.
+		Deleter for **self.__thumbnailsSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
 
 	@property
 	def activeIblSet(self):
 		"""
-		This method is the property for **self.__activeIblSet** attribute.
+		Property for **self.__activeIblSet** attribute.
 
-		:return: self.__activeIblSet. ( IblSet )
+		:return: self.__activeIblSet.
+		:rtype: IblSet
 		"""
 
 		return self.__activeIblSet
@@ -643,30 +675,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSet(self, value):
 		"""
-		This method is the setter method for **self.__activeIblSet** attribute.
+		Setter for **self.__activeIblSet** attribute.
 
-		:param value: Attribute value. ( IblSet )
+		:param value: Attribute value.
+		:type value: IblSet
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
 
 	@activeIblSet.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSet(self):
 		"""
-		This method is the deleter method for **self.__activeIblSet** attribute.
+		Deleter for **self.__activeIblSet** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
 
 	@property
 	def inspectorPlates(self):
 		"""
-		This method is the property for **self.__inspectorPlates** attribute.
+		Property for **self.__inspectorPlates** attribute.
 
-		:return: self.__inspectorPlates. ( Dictionary )
+		:return: self.__inspectorPlates.
+		:rtype: dict
 		"""
 
 		return self.__inspectorPlates
@@ -675,30 +709,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self, value):
 		"""
-		This method is the setter method for **self.__inspectorPlates** attribute.
+		Setter for **self.__inspectorPlates** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorPlates"))
 
 	@inspectorPlates.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self):
 		"""
-		This method is the deleter method for **self.__inspectorPlates** attribute.
+		Deleter for **self.__inspectorPlates** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorPlates"))
 
 	@property
 	def noPreviewImageText(self):
 		"""
-		This method is the property for **self.__noPreviewImageText** attribute.
+		Property for **self.__noPreviewImageText** attribute.
 
-		:return: self.__noPreviewImageText. ( String )
+		:return: self.__noPreviewImageText.
+		:rtype: unicode
 		"""
 
 		return self.__noPreviewImageText
@@ -707,30 +743,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self, value):
 		"""
-		This method is the setter method for **self.__noPreviewImageText** attribute.
+		Setter for **self.__noPreviewImageText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noPreviewImageText"))
 
 	@noPreviewImageText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self):
 		"""
-		This method is the deleter method for **self.__noPreviewImageText** attribute.
+		Deleter for **self.__noPreviewImageText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
 
 	@property
 	def noActiveIblSetText(self):
 		"""
-		This method is the property for **self.__noActiveIblSetText** attribute.
+		Property for **self.__noActiveIblSetText** attribute.
 
-		:return: self.__noActiveIblSetText. ( String )
+		:return: self.__noActiveIblSetText.
+		:rtype: unicode
 		"""
 
 		return self.__noActiveIblSetText
@@ -739,30 +777,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noActiveIblSetText(self, value):
 		"""
-		This method is the setter method for **self.__noActiveIblSetText** attribute.
+		Setter for **self.__noActiveIblSetText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
 
 	@noActiveIblSetText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def noActiveIblSetText(self):
 		"""
-		This method is the deleter method for **self.__noActiveIblSetText** attribute.
+		Deleter for **self.__noActiveIblSetText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
 
 	@property
 	def activeIblSetToolTipText(self):
 		"""
-		This method is the property for **self.__activeIblSetToolTipText** attribute.
+		Property for **self.__activeIblSetToolTipText** attribute.
 
-		:return: self.__activeIblSetToolTipText. ( String )
+		:return: self.__activeIblSetToolTipText.
+		:rtype: unicode
 		"""
 
 		return self.__activeIblSetToolTipText
@@ -771,30 +811,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSetToolTipText(self, value):
 		"""
-		This method is the setter method for **self.__activeIblSetToolTipText** attribute.
+		Setter for **self.__activeIblSetToolTipText** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
 	@activeIblSetToolTipText.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def activeIblSetToolTipText(self):
 		"""
-		This method is the deleter method for **self.__activeIblSetToolTipText** attribute.
+		Deleter for **self.__activeIblSetToolTipText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
 
 	@property
 	def lightLabelRadius(self):
 		"""
-		This method is the property for **self.__lightLabelRadius** attribute.
+		Property for **self.__lightLabelRadius** attribute.
 
-		:return: self.__lightLabelRadius. ( Integer )
+		:return: self.__lightLabelRadius.
+		:rtype: int
 		"""
 
 		return self.__lightLabelRadius
@@ -803,30 +845,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelRadius** attribute.
+		Setter for **self.__lightLabelRadius** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelRadius"))
 
 	@lightLabelRadius.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self):
 		"""
-		This method is the deleter method for **self.__lightLabelRadius** attribute.
+		Deleter for **self.__lightLabelRadius** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelRadius"))
 
 	@property
 	def lightLabelTextOffset(self):
 		"""
-		This method is the property for **self.__lightLabelTextOffset** attribute.
+		Property for **self.__lightLabelTextOffset** attribute.
 
-		:return: self.__lightLabelTextOffset. ( Integer )
+		:return: self.__lightLabelTextOffset.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextOffset
@@ -835,30 +879,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextOffset** attribute.
+		Setter for **self.__lightLabelTextOffset** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextOffset"))
 
 	@lightLabelTextOffset.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextOffset** attribute.
+		Deleter for **self.__lightLabelTextOffset** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextOffset"))
 
 	@property
 	def lightLabelTextMargin(self):
 		"""
-		This method is the property for **self.__lightLabelTextMargin** attribute.
+		Property for **self.__lightLabelTextMargin** attribute.
 
-		:return: self.__lightLabelTextMargin. ( Integer )
+		:return: self.__lightLabelTextMargin.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextMargin
@@ -867,30 +913,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextMargin** attribute.
+		Setter for **self.__lightLabelTextMargin** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextMargin"))
 
 	@lightLabelTextMargin.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextMargin** attribute.
+		Deleter for **self.__lightLabelTextMargin** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextMargin"))
 
 	@property
 	def lightLabelTextHeight(self):
 		"""
-		This method is the property for **self.__lightLabelTextHeight** attribute.
+		Property for **self.__lightLabelTextHeight** attribute.
 
-		:return: self.__lightLabelTextHeight. ( Integer )
+		:return: self.__lightLabelTextHeight.
+		:rtype: int
 		"""
 
 		return self.__lightLabelTextHeight
@@ -899,30 +947,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextHeight** attribute.
+		Setter for **self.__lightLabelTextHeight** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextHeight"))
 
 	@lightLabelTextHeight.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextHeight** attribute.
+		Deleter for **self.__lightLabelTextHeight** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextHeight"))
 
 	@property
 	def lightLabelTextFont(self):
 		"""
-		This method is the property for **self.__lightLabelTextFont** attribute.
+		Property for **self.__lightLabelTextFont** attribute.
 
-		:return: self.__lightLabelTextFont. ( String )
+		:return: self.__lightLabelTextFont.
+		:rtype: unicode
 		"""
 
 		return self.__lightLabelTextFont
@@ -931,30 +981,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self, value):
 		"""
-		This method is the setter method for **self.__lightLabelTextFont** attribute.
+		Setter for **self.__lightLabelTextFont** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextFont"))
 
 	@lightLabelTextFont.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self):
 		"""
-		This method is the deleter method for **self.__lightLabelTextFont** attribute.
+		Deleter for **self.__lightLabelTextFont** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
 
 	@property
 	def unnamedLightName(self):
 		"""
-		This method is the property for **self.__unnamedLightName** attribute.
+		Property for **self.__unnamedLightName** attribute.
 
-		:return: self.__unnamedLightName. ( String )
+		:return: self.__unnamedLightName.
+		:rtype: unicode
 		"""
 
 		return self.__unnamedLightName
@@ -963,35 +1015,38 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def unnamedLightName(self, value):
 		"""
-		This method is the setter method for **self.__unnamedLightName** attribute.
+		Setter for **self.__unnamedLightName** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		if value is not None:
 			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-			"unnamedLightName", value)
+				"unnamedLightName", value)
 		self.__unnamedLightName = value
 
 	@unnamedLightName.deleter
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def unnamedLightName(self):
 		"""
-		This method is the deleter method for **self.__unnamedLightName** attribute.
+		Deleter for **self.__unnamedLightName** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1010,24 +1065,25 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+			"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
-		
-		:return: Method success. ( Boolean )		
+		Initializes the Component ui.
+
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__pixmapPlaceholder = \
-		sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
-									asynchronousLoading=False)
+			sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
+										 asynchronousLoading=False)
 
 		self.__sectionsFileParsersCache = foundations.cache.Cache()
 
@@ -1038,9 +1094,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Plates_listView.setObjectName("Plates_listView")
 		self.Plates_frame_gridLayout.addWidget(self.Plates_listView, 0, 1)
 		self.__view = self.Plates_listView
-		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda:True
+		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda: True
 
-		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+		self.Previous_Ibl_Set_pushButton.setIcon(
+			QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
 		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
 		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
 		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
@@ -1076,17 +1133,18 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+			"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -1098,15 +1156,15 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+			"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		if self.__activeIblSet:
@@ -1120,8 +1178,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				if foundations.common.pathExists(self.__activeIblSet.backgroundImage):
 					pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.backgroundImage,
-														size=self.__thumbnailsSize,
-														placeholder=self.__pixmapPlaceholder)
+														  size=self.__thumbnailsSize,
+														  placeholder=self.__pixmapPlaceholder)
 					previewAvailable = True
 
 			if previewAvailable:
@@ -1129,17 +1187,17 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__drawActiveIblSetOverlay()
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(
-																sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
-																self.__activeIblSet.author,
-																self.__activeIblSet.link))
+					sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
+					self.__activeIblSet.author,
+					self.__activeIblSet.link))
 
 			self.Image_label.setToolTip(self.__activeIblSetToolTipText.format(
-													self.__activeIblSet.title,
-													self.__activeIblSet.author or Constants.nullObject,
-													self.__activeIblSet.location or Constants.nullObject,
-													sibl_gui.ui.common.getFormatedShotDate(self.__activeIblSet.date,
-																self.__activeIblSet.time) or Constants.nullObject,
-																self.__activeIblSet.comment or Constants.nullObject))
+				self.__activeIblSet.title,
+				self.__activeIblSet.author or Constants.nullObject,
+				self.__activeIblSet.location or Constants.nullObject,
+				sibl_gui.ui.common.getFormattedShotDate(self.__activeIblSet.date,
+													   self.__activeIblSet.time) or Constants.nullObject,
+				self.__activeIblSet.comment or Constants.nullObject))
 
 			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__activeIblSet.comment))
 
@@ -1149,14 +1207,14 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
 
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This method clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
+		Clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.Title_label.setText(QString())
@@ -1168,24 +1226,26 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Inspector_Overall_frame_addActions(self):
 		"""
-		This method sets the **Inspector_Overall_frame** actions.
+		Sets the **Inspector_Overall_frame** actions.
 		"""
 
 		pass
 
 	def __model__refreshNodes(self):
 		"""
-		This method refreshes the **Plates_listView** Model nodes.
+		Refreshes the **Plates_listView** Model nodes.
 		"""
 
 		self.setPlates()
 
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **Plates_listView** Model selection has changed.
+		Defines the slot triggered by **Plates_listView** when Model selection has changed.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		index = foundations.common.getFirstItem(selectedItems.indexes())
@@ -1200,9 +1260,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __engine_fileSystemEventsManager__fileChanged(self, file):
 		"""
-		This method is triggered by the **fileSystemEventsManager** when a file is changed.
-		
-		:param file: File changed. ( String )
+		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
+
+		:param file: File changed.
+		:type file: unicode
 		"""
 
 		file = foundations.strings.toString(file)
@@ -1219,33 +1280,36 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __engine_imagesCaches_QPixmap__contentAdded(self, paths):
 		"""
-		This method is triggered by the **QPixmap** images cache when contend is added.
-		
-		:param paths: Added content. ( List )
+		Defines the slot triggered by the **QPixmap** images cache when content is added.
+
+		:param paths: Added content.
+		:type paths: list
 		"""
 
 		if not self.__activeIblSet:
-				return
+			return
 
 		if foundations.common.getFirstItem(paths) in (self.__activeIblSet.previewImage,
-													self.__activeIblSet.backgroundImage):
+													  self.__activeIblSet.backgroundImage):
 			self.__Inspector_DockWidget_setUi()
 
 	def __iblSetsOutliner__modelReset(self):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
-		Component Model has changed.
+		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Component Model when changed.
 		"""
 
 		self.__setActiveIblSet()
 
 	def __iblSetsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
-		Component Model selection has changed.
+		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Component Model selection when changed.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.__setActiveIblSet()
@@ -1260,64 +1324,70 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Ibl_Set_pushButton** Widget is clicked.
+		Defines the slot triggered by **Previous_Ibl_Set_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughIblSets(True)
 
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Ibl_Set_pushButton** Widget is clicked.
+		Defines the slot triggered by **Next_Ibl_Set_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughIblSets()
 
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Plate_pushButton** Widget is clicked.
+		Defines the slot triggered by **Previous_Plate_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughPlates(True)
 
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Plate_pushButton** Widget is clicked.
+		Defines the slot triggered by **Next_Plate_pushButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.loopThroughPlates()
 
 	def __Image_label__linkActivated(self, url):
 		"""
-		This method is triggered when a link is clicked in the **Image_label** Widget.
+		Defines the slot triggered by **Image_label** Widget when a link is clicked.
 
-		:param url: Url to explore. ( QString )
+		:param url: Url to explore.
+		:type url: QString
 		"""
 
 		QDesktopServices.openUrl(QUrl(url))
 
 	def __setActiveIblSet(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
 		self.__activeIblSet = foundations.common.getFirstItem(selectedIblSets)
 		if not self.__activeIblSet:
 			rootNode = self.__iblSetsOutliner.model.rootNode
-			self.__activeIblSet = rootNode.children and foundations.common.getFirstItem(rootNode.children).databaseItem
+			childNode = foundations.common.getFirstItem(rootNode.children)
+			self.__activeIblSet = childNode.databaseItem if childNode is not None else None
 		self.__activeIblSet and self.__setActiveIblSetParser()
 
 	def __setActiveIblSetParser(self):
 		"""
-		This method sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
+		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
 		if foundations.common.pathExists(self.__activeIblSet.path):
@@ -1325,38 +1395,40 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
-				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path : sectionsFileParser})
+				sectionsFileParser.parse()
+				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path: sectionsFileParser})
 
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def __setActiveIblSetPlates(self):
 		"""
-		This method sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
+		Sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		path = self.__activeIblSet.path
 		if not foundations.common.pathExists(path):
 			raise foundations.exceptions.FileExistsError(
-			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
-			self.__class__.__name__, self.__activeIblSet.title))
+				"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
+					self.__class__.__name__, self.__activeIblSet.title))
 
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(path)
 		self.__inspectorPlates = OrderedDict()
 		for section in sectionsFileParser.sections:
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
-				Plate(name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
-					icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-														sectionsFileParser.getValue("PLATEthumb", section))),
-					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-															sectionsFileParser.getValue("PLATEpreview", section))),
-					image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-														sectionsFileParser.getValue("PLATEfile", section))))
+					Plate(
+						name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
+						icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+														   sectionsFileParser.getValue("PLATEthumb", section))),
+						previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+																   sectionsFileParser.getValue("PLATEpreview",
+																							   section))),
+						image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
+															sectionsFileParser.getValue("PLATEfile", section))))
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError)
+	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError, ValueError)
 	def __drawActiveIblSetOverlay(self):
 		"""
-		This method draws an overlay on :obj:`Inspector.Image_Label` Widget.
+		Draws an overlay on :obj:`Inspector.Image_Label` Widget.
 		"""
 
 		painter = QPainter(self.Image_label.pixmap())
@@ -1366,30 +1438,37 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
 		if sectionsFileParser is None:
 			raise foundations.exceptions.ExecutionError(
-			"'{1}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+				"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
 
 		for section in sectionsFileParser.sections:
 			if section == "Sun":
-				self.__drawLightLabel(painter, Light(name="Sun",
-												color=[int(value) for value in sectionsFileParser.getValue(
+				self.__drawLightLabel(painter,
+									  Light(name="Sun",
+											color=[int(value) for value in sectionsFileParser.getValue(
 												"SUNcolor", section).split(",")],
-												uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
-												vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
+											uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
+											vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
+
 			elif re.search(r"Light\d+", section):
 				self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
-												"LIGHTname", section) or self.__unnamedLightName,
-												color=[int(value) for value in sectionsFileParser.getValue(
-												"LIGHTcolor", section).split(",")],
-												uCoordinate=float(sectionsFileParser.getValue("LIGHTu", section)),
-												vCoordinate=float(sectionsFileParser.getValue("LIGHTv", section))))
+					"LIGHTname", section) or self.__unnamedLightName,
+													 color=[int(value) for value in sectionsFileParser.getValue(
+														 "LIGHTcolor", section).split(",")],
+													 uCoordinate=float(
+														 sectionsFileParser.getValue("LIGHTu", section)),
+													 vCoordinate=float(
+														 sectionsFileParser.getValue("LIGHTv", section))))
+
 		painter.end()
 
 	def __drawLightLabel(self, painter, light):
 		"""
-		This method draws a light label on given QPainter.
+		Draws a light label on given QPainter.
 
-		:param painter: QPainter. ( QPainter )
-		:param light: Light. ( Light )
+		:param painter: QPainter.
+		:type painter: QPainter
+		:param light: Light.
+		:type light: Light
 		"""
 
 		width = painter.window().width()
@@ -1408,18 +1487,18 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		textWidth = painter.fontMetrics().width(light.name.title())
 		xLabelTextOffset = -(self.__lightLabelTextOffset + textWidth) if \
-						pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
-						self.__lightLabelTextOffset
+			pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
+			self.__lightLabelTextOffset
 		yLabelTextOffset = -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) if \
-						pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
-						self.__lightLabelTextOffset
+			pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
+			self.__lightLabelTextOffset
 		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
 
 		painter.drawLine(pointX,
-						pointY,
-						pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
-						pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
-								if yLabelTextOffset < 0 else yLabelTextOffset))
+						 pointY,
+						 pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
+						 pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
+									   if yLabelTextOffset < 0 else yLabelTextOffset))
 
 		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
 
@@ -1431,9 +1510,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def setPlates(self):
 		"""
-		This method sets the Plates Model nodes.
+		Sets the Plates Model nodes.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
@@ -1444,7 +1524,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								name=self.__activeIblSet.title,
 								parent=rootNode,
 								nodeFlags=nodeFlags,
-								attributesFlags=attributesFlags)
+								attributesFlags=attributesFlags,
+								iconPath = self.__activeIblSet.icon)
 		iblSetNode.roles[Qt.DisplayRole] = ""
 
 		if not self.__inspectorPlates:
@@ -1452,10 +1533,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for name, plate in self.__inspectorPlates.iteritems():
 			plateNode = PlatesNode(plate,
-								name=name,
-								parent=rootNode,
-								nodeFlags=nodeFlags,
-								attributesFlags=attributesFlags)
+								   name=name,
+								   parent=rootNode,
+								   nodeFlags=nodeFlags,
+								   attributesFlags=attributesFlags)
 			plateNode.roles[Qt.DisplayRole] = ""
 			plateNode.roles[Qt.DecorationRole] = foundations.common.filterPath(plate.icon)
 
@@ -1464,16 +1545,19 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This method loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
+		Loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
 
-		:param backward: Looping backward. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param backward: Looping backward.
+		:type backward: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if self.__activeIblSet:
 			model = self.__iblSetsOutliner.model
 
-			activeIblSetNode = [node for node in model.rootNode.children if node.databaseItem.path == self.__activeIblSet.path]
+			activeIblSetNode = [node for node in model.rootNode.children if
+								node.databaseItem.path == self.__activeIblSet.path]
 			activeIblSetNode = foundations.common.getFirstItem(activeIblSetNode)
 			if not activeIblSetNode:
 				return True
@@ -1496,10 +1580,12 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def loopThroughPlates(self, backward=False):
 		"""
-		This method loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
+		Loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
 
-		:param backward: Looping backward. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param backward: Looping backward.
+		:type backward: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		index = foundations.common.getFirstItem(self.Plates_listView.selectedIndexes())

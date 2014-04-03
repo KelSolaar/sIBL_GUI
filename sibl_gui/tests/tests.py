@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module runs the tests suite.
+	Runs the tests suite.
 
 **Others:**
 
@@ -33,7 +33,7 @@ else:
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -46,9 +46,10 @@ __all__ = ["testsSuite"]
 #**********************************************************************************************************************
 def _setPackageDirectory():
 	"""
-	This definition sets the package directory in the path.
+	Sets the package directory in the path.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
@@ -59,9 +60,10 @@ _setPackageDirectory()
 
 def testsSuite():
 	"""
-	This definitions runs the tests suite.
+	Runs the tests suite.
 	
-	:return: Tests suite. ( TestSuite )
+	:return: Tests suite.
+	:rtype: TestSuite
 	"""
 
 	testsLoader = unittest.TestLoader()

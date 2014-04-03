@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner`
+	Defines the :class:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner.IblSetsOutliner`
 	Component Interface class Views.
 
 **Others:**
@@ -39,7 +39,7 @@ import sibl_gui.ui.views
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -54,17 +54,21 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
-	This class is used to display Database Ibl Sets as thumbnails.
+	Defines the view for Database Ibl Sets as thumbnails.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -83,9 +87,10 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@property
 	def listViewSpacing(self):
 		"""
-		This method is the property for **self.__listViewSpacing** attribute.
+		Property for **self.__listViewSpacing** attribute.
 
-		:return: self.__listViewSpacing. ( Integer )
+		:return: self.__listViewSpacing.
+		:rtype: int
 		"""
 
 		return self.__listViewSpacing
@@ -94,9 +99,10 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewSpacing(self, value):
 		"""
-		This method is the setter method for **self.__listViewSpacing** attribute.
+		Setter for **self.__listViewSpacing** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -108,7 +114,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewSpacing(self):
 		"""
-		This method is the deleter method for **self.__listViewSpacing** attribute.
+		Deleter for **self.__listViewSpacing** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -117,9 +123,10 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@property
 	def listViewMargin(self):
 		"""
-		This method is the property for **self.__listViewMargin** attribute.
+		Property for **self.__listViewMargin** attribute.
 
-		:return: self.__listViewMargin. ( Integer )
+		:return: self.__listViewMargin.
+		:rtype: int
 		"""
 
 		return self.__listViewMargin
@@ -128,9 +135,10 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def listViewMargin(self, value):
 		"""
-		This method is the setter method for **self.__listViewMargin** attribute.
+		Setter for **self.__listViewMargin** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		if value is not None:
@@ -142,7 +150,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def listViewMargin(self):
 		"""
-		This method is the deleter method for **self.__listViewMargin** attribute.
+		Deleter for **self.__listViewMargin** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -153,7 +161,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAutoScroll(True)
@@ -170,10 +178,12 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 	def __setDefaultUiState(self, iconsSize=None, iconsRatio=2):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 
-		:param iconsSize: Icons size. ( Integer )
-		:param iconRatio: Icons ratio. ( Integer )
+		:param iconsSize: Icons size.
+		:type iconsSize: int
+		:param iconRatio: Icons ratio.
+		:type iconRatio: int
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -187,17 +197,21 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
-	This class is used to display Database Ibl Sets columns.
+	Defines the view for Database Ibl Sets columns.
 	"""
 
 	def __init__(self, parent, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -215,9 +229,10 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@property
 	def treeViewIndentation(self):
 		"""
-		This method is the property for **self.__treeViewIndentation** attribute.
+		Property for **self.__treeViewIndentation** attribute.
 
-		:return: self.__treeViewIndentation. ( Integer )
+		:return: self.__treeViewIndentation.
+		:rtype: int
 		"""
 
 		return self.__treeViewIndentation
@@ -226,9 +241,10 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for **self.__treeViewIndentation** attribute.
+		Setter for **self.__treeViewIndentation** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -238,7 +254,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for **self.__treeViewIndentation** attribute.
+		Deleter for **self.__treeViewIndentation** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -249,7 +265,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#******************************************************************************************************************
 	def __initializeUi(self):
 		"""
-		This method initializes the Widget ui.
+		Initializes the Widget ui.
 		"""
 
 		self.setAutoScroll(True)
@@ -268,7 +284,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default ui state.
+		Sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")

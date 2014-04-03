@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.addons.searchDatabase.searchDatabase.SearchDatabase`
+	Defines the :class:`sibl_gui.components.addons.searchDatabase.searchDatabase.SearchDatabase`
 	Component Interface class Views.
 
 **Others:**
@@ -30,7 +30,7 @@ import umbra.ui.views
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -45,7 +45,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class TagsCloud_QListView(umbra.ui.views.Abstract_QListWidget):
 	"""
-	This class is used to display Database Ibl Sets tags cloud.
+	Defines the view for Database Ibl Sets tags cloud.
 	"""
 
 	pass

@@ -1,5 +1,6 @@
 [Dependencies]
-Foundations=v2.0.8
-Manager=v2.0.4
-Umbra=v1.0.8
-sIBL_GUI_Templates=v2.1.0
+Oncilla=v0.1.0-alpha
+Foundations=v2.1.0
+Manager=v2.0.5
+Umbra=v1.0.9
+sIBL_GUI_Templates=v2.1.3

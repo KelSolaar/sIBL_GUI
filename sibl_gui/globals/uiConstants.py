@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package ui constants through the :class:`UiConstants` class.
+	Defines **sIBL_GUI** package ui constants through the :class:`UiConstants` class.
 
 **Others:**
 
@@ -23,7 +23,7 @@ from __future__ import unicode_literals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -36,109 +36,235 @@ __all__ = ["UiConstants"]
 #**********************************************************************************************************************
 class UiConstants():
 	"""
-	This class provides **sIBL_GUI** package ui constants.
+	Defines **sIBL_GUI** package ui constants.
 	"""
 
 	uiFile = "sIBL_GUI.ui"
-	"""Application ui file: '**sIBL_GUI.ui**' ( String )"""
+	"""
+	:param uiFile: Application ui file.
+	:type uiFile: unicode
+	"""
 
 	windowsStylesheetFile = "styles/Windows_styleSheet.qss"
-	"""Application Windows Os stylesheet file: '**styles/Windows_styleSheet.qss**' ( String )"""
+	"""
+	:param windowsStylesheetFile: Application Windows Os stylesheet file.
+	:type windowsStylesheetFile: unicode
+	"""
 	darwinStylesheetFile = "styles/Darwin_styleSheet.qss"
-	"""Application Mac Os X Os stylesheet file: '**styles/Darwin_styleSheet.qss**' ( String )"""
+	"""
+	:param darwinStylesheetFile: Application Mac Os X Os stylesheet file.
+	:type darwinStylesheetFile: unicode
+	"""
 	linuxStylesheetFile = "styles/Linux_styleSheet.qss"
-	"""Application Linux Os stylesheet file: '**styles/Linux_styleSheet.qss**' ( String )"""
+	"""
+	:param linuxStylesheetFile: Application Linux Os stylesheet file.
+	:type linuxStylesheetFile: unicode
+	"""
 	windowsStyle = "plastique"
-	"""Application Windows Os style: '**plastique**' ( String )"""
+	"""
+	:param windowsStyle: Application Windows Os style.
+	:type windowsStyle: unicode
+	"""
 	darwinStyle = "plastique"
-	"""Application Mac Os X Os style: '**plastique**' ( String )"""
+	"""
+	:param darwinStyle: Application Mac Os X Os style.
+	:type darwinStyle: unicode
+	"""
 	linuxStyle = "plastique"
-	"""Application Linux Os style: '**plastique**' ( String )"""
+	"""
+	:param linuxStyle: Application Linux Os style.
+	:type linuxStyle: unicode
+	"""
 
 	settingsFile = "preferences/Default_Settings.rc"
-	"""Application defaults settings file: '**preferences/Default_Settings.rc**' ( String )"""
+	"""
+	:param settingsFile: Application defaults settings file.
+	:type settingsFile: unicode
+	"""
 
 	layoutsFile = "layouts/Default_Layouts.rc"
-	"""Application defaults layouts file: '**layouts/Default_Layouts.rc**' ( String )"""
+	"""
+	:param layoutsFile: Application defaults layouts file.
+	:type layoutsFile: unicode
+	"""
 
 	applicationWindowsIcon = "images/Icon_Light.png"
-	"""Application icon file: '**images/Icon_Light.png**' ( String )"""
+	"""
+	:param applicationWindowsIcon: Application icon file.
+	:type applicationWindowsIcon: unicode
+	"""
 
 	splashScreenImage = "images/sIBL_GUI_SpashScreen.png"
-	"""Application splashscreen image: '**images/sIBL_GUI_SpashScreen.png**' ( String )"""
+	"""
+	:param splashScreenImage: Application splashscreen image.
+	:type splashScreenImage: unicode
+	"""
 	logoImage = "images/sIBL_GUI_Logo.png"
-	"""Application logo image: '**images/sIBL_GUI_Logo.png**' ( String )"""
+	"""
+	:param logoImage: Application logo image.
+	:type logoImage: unicode
+	"""
 
 	defaultToolbarIconSize = 32
-	"""Application toolbar icons size: '**32**' ( Integer )"""
+	"""
+	:param defaultToolbarIconSize: Application toolbar icons size.
+	:type defaultToolbarIconSize: int
+	"""
 
 	centralWidgetIcon = "images/Central_Widget.png"
-	"""Application **Central Widget** icon: '**images/Central_Widget.png**' ( String )"""
+	"""
+	:param centralWidgetIcon: Application **Central Widget** icon.
+	:type centralWidgetIcon: unicode
+	"""
 	centralWidgetHoverIcon = "images/Central_Widget_Hover.png"
-	"""Application **Central Widget** hover icon: '**images/Central_Widget_Hover.png**' ( String )"""
+	"""
+	:param centralWidgetHoverIcon: Application **Central Widget** hover icon.
+	:type centralWidgetHoverIcon: unicode
+	"""
 	centralWidgetActiveIcon = "images/Central_Widget_Active.png"
-	"""Application **Central Widget** active icon: '**images/Central_Widget_Active.png**' ( String )"""
+	"""
+	:param centralWidgetActiveIcon: Application **Central Widget** active icon.
+	:type centralWidgetActiveIcon: unicode
+	"""
 
 	customLayoutsIcon = "images/Custom_Layouts.png"
-	"""Application **Custom Layouts** icon: '**images/Custom_Layouts.png**' ( String )"""
+	"""
+	:param customLayoutsIcon: Application **Custom Layouts** icon.
+	:type customLayoutsIcon: unicode
+	"""
 	customLayoutsHoverIcon = "images/Custom_Layouts_Hover.png"
-	"""Application **Custom Layouts** hover icon: '**images/Custom_Layouts_Hover.png**' ( String )"""
+	"""
+	:param customLayoutsHoverIcon: Application **Custom Layouts** hover icon.
+	:type customLayoutsHoverIcon: unicode
+	"""
 	customLayoutsActiveIcon = "images/Custom_Layouts_Active.png"
-	"""Application **Custom Layouts** active icon: '**images/Custom_Layouts_Active.png**' ( String )"""
+	"""
+	:param customLayoutsActiveIcon: Application **Custom Layouts** active icon.
+	:type customLayoutsActiveIcon: unicode
+	"""
 
 	miscellaneousIcon = "images/Miscellaneous.png"
-	"""Application **Miscellaneous** icon: '**images/Miscellaneous.png**' ( String )"""
+	"""
+	:param miscellaneousIcon: Application **Miscellaneous** icon.
+	:type miscellaneousIcon: unicode
+	"""
 	miscellaneousHoverIcon = "images/Miscellaneous_Hover.png"
-	"""Application **Miscellaneous** hover icon: '**images/Miscellaneous_Hover.png**' ( String )"""
+	"""
+	:param miscellaneousHoverIcon: Application **Miscellaneous** hover icon.
+	:type miscellaneousHoverIcon: unicode
+	"""
 	miscellaneousActiveIcon = "images/Miscellaneous_Active.png"
-	"""Application **Miscellaneous** active icon: '**images/Miscellaneous_Active.png**' ( String )"""
+	"""
+	:param miscellaneousActiveIcon: Application **Miscellaneous** active icon.
+	:type miscellaneousActiveIcon: unicode
+	"""
 
 	libraryIcon = "images/Library.png"
-	"""Application **Library** icon: '**images/Library.png**' ( String )"""
+	"""
+	:param libraryIcon: Application **Library** icon.
+	:type libraryIcon: unicode
+	"""
 	libraryHoverIcon = "images/Library_Hover.png"
-	"""Application **Library** hover icon: '**images/Library_Hover.png**' ( String )"""
+	"""
+	:param libraryHoverIcon: Application **Library** hover icon.
+	:type libraryHoverIcon: unicode
+	"""
 	libraryActiveIcon = "images/Library_Active.png"
-	"""Application **Library** active icon: '**images/Library_Active.png**' ( String )"""
+	"""
+	:param libraryActiveIcon: Application **Library** active icon.
+	:type libraryActiveIcon: unicode
+	"""
 
 	inspectIcon = "images/Inspect.png"
-	"""Application **Inspect** icon: '**images/Inspect.png**' ( String )"""
+	"""
+	:param inspectIcon: Application **Inspect** icon.
+	:type inspectIcon: unicode
+	"""
 	inspectHoverIcon = "images/Inspect_Hover.png"
-	"""Application **Inspect** hover icon: '**images/Inspect_Hover.png**' ( String )"""
+	"""
+	:param inspectHoverIcon: Application **Inspect** hover icon.
+	:type inspectHoverIcon: unicode
+	"""
 	inspectActiveIcon = "images/Inspect_Active.png"
-	"""Application **Inspect** active icon: '**images/Inspect_Active.png**' ( String )"""
+	"""
+	:param inspectActiveIcon: Application **Inspect** active icon.
+	:type inspectActiveIcon: unicode
+	"""
 
 	exportIcon = "images/Export.png"
-	"""Application **Export** icon: '**images/Export.png**' ( String )"""
+	"""
+	:param exportIcon: Application **Export** icon.
+	:type exportIcon: unicode
+	"""
 	exportHoverIcon = "images/Export_Hover.png"
-	"""Application **Export** hover icon: '**images/Export_Hover.png**' ( String )"""
+	"""
+	:param exportHoverIcon: Application **Export** hover icon.
+	:type exportHoverIcon: unicode
+	"""
 	exportActiveIcon = "images/Export_Active.png"
-	"""Application **Export** active icon: '**images/Export_Active.png**' ( String )"""
+	"""
+	:param exportActiveIcon: Application **Export** active icon.
+	:type exportActiveIcon: unicode
+	"""
 
 	editIcon = "images/Edit.png"
-	"""Application **Edit** icon: '**images/Edit.png**' ( String )"""
+	"""
+	:param editIcon: Application **Edit** icon.
+	:type editIcon: unicode
+	"""
 	editHoverIcon = "images/Edit_Hover.png"
-	"""Application **Edit** hover icon: '**images/Edit_Hover.png**' ( String )"""
+	"""
+	:param editHoverIcon: Application **Edit** hover icon.
+	:type editHoverIcon: unicode
+	"""
 	editActiveIcon = "images/Edit_Active.png"
-	"""Application **Edit** active icon: '**images/Edit_Active.png**' ( String )"""
+	"""
+	:param editActiveIcon: Application **Edit** active icon.
+	:type editActiveIcon: unicode
+	"""
 
 	preferencesIcon = "images/Preferences.png"
-	"""Application **Preferences** icon: '**images/Preferences.png**' ( String )"""
+	"""
+	:param preferencesIcon: Application **Preferences** icon.
+	:type preferencesIcon: unicode
+	"""
 	preferencesHoverIcon = "images/Preferences_Hover.png"
-	"""Application **Preferences** hover icon: '**images/Preferences_Hover.png**' ( String )"""
+	"""
+	:param preferencesHoverIcon: Application **Preferences** hover icon.
+	:type preferencesHoverIcon: unicode
+	"""
 	preferencesActiveIcon = "images/Preferences_Active.png"
-	"""Application **Preferences** active icon: '**images/Preferences_Active.png**' ( String )"""
+	"""
+	:param preferencesActiveIcon: Application **Preferences** active icon.
+	:type preferencesActiveIcon: unicode
+	"""
 
 	formatErrorImage = "images/Thumbnail_Format_Not_Supported_Yet.png"
-	"""Application format error image thumbnail: '**images/Thumbnail_Format_Not_Supported_Yet.png**' ( String )"""
+	"""
+	:param formatErrorImage: Application format error image thumbnail.
+	:type formatErrorImage: unicode
+	"""
 	missingImage = "images/Thumbnail_Not_Found.png"
-	"""Application missing image thumbnail: '**images/Thumbnail_Not_Found.png**' ( String )"""
+	"""
+	:param missingImage: Application missing image thumbnail.
+	:type missingImage: unicode
+	"""
 	loadingImage = "images/Loading.png"
-	"""Application loading image thumbnail: '**images/Loading.png**' ( String )"""
+	"""
+	:param loadingImage: Application loading image thumbnail.
+	:type loadingImage: unicode
+	"""
 
 	startupLayout = "startupCentric"
-	"""Application startup layout: '**startupCentric**' ( String )"""
+	"""
+	:param startupLayout: Application startup layout.
+	:type startupLayout: unicode
+	"""
 	developmentLayout = "editCentric"
-	"""Application development layout: '**"editCentric"**' ( String )"""
+	"""
+	:param developmentLayout: Application development layout.
+	:type developmentLayout: unicode
+	"""
 
 	helpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
 	"""Application online help file:
@@ -154,14 +280,20 @@ class UiConstants():
 						"Jpeg" : "\.jpeg$",
 						"Jpg" : "\.jpg$",
 						"Png" : "\.png$" }
-	"""Application native image file formats. ( Dictionary )"""
+	"""
+	:param nativeImageFormats: Application native image file formats.
+	:type nativeImageFormats: dict
+	"""
 
 	thirdPartyImageFormats = {"Exr" : ("\.exr$"),
 							"Hdr" : ("\.hdr$"),
 							"Tif" : ("\.tif$"),
 							"Tiff" : ("\.tiff$"),
 							"Tga" : ("\.tga$")}
-	"""Application third party image file formats. ( Dictionary )"""
+	"""
+	:param thirdPartyImageFormats: Application third party image file formats.
+	:type thirdPartyImageFormats: dict
+	"""
 
 	thumbnailsSizes = { "Default" : None,
 					"XLarge" : 512,
@@ -170,11 +302,17 @@ class UiConstants():
 					"Small" : 64,
 					"XSmall" : 32,
 					"Special1" : 600}
-	"""Application thumbnails sizes. ( Dictionary )"""
+	"""
+	:param thumbnailsSizes: Application thumbnails sizes.
+	:type thumbnailsSizes: dict
+	"""
 
 	thumbnailsCacheDirectory = "thumbnails"
 	"""Thumbnails cache directory."""
 
 	crittercismId = "51290b3589ea7429250004fe"
-	"""Crittercism Id: '**51290b3589ea7429250004fe**' ( String )"""
+	"""
+	:param crittercismId: Crittercism Id.
+	:type crittercismId: unicode
+	"""
 

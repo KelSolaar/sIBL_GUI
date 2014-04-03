@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module runs the international tests suite.
+	Runs the international tests suite.
 
 **Others:**
 
@@ -36,7 +36,7 @@ import sibl_gui
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -56,13 +56,14 @@ USER_APPLICATION_DIRECTORY_PREFIX = "标准"
 #**********************************************************************************************************************
 def testsInternational():
 	"""
-	This definitions runs the international tests suite.
+	Runs the international tests suite.
 	
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	userApplicationDirectory = tempfile.mkdtemp(prefix=USER_APPLICATION_DIRECTORY_PREFIX)
-	command = [os.path.join(sibl_gui.__path__[0], "../bin/sIBL_GUI"),
+	command = [os.path.join(sibl_gui.__path__[0], "..", "bin", "sIBL_GUI"),
  			"-u", userApplicationDirectory,
 			"-x", unicode(INTERNATIONAL_TEST_SCRIPT_FILE)]
 	if subprocess.check_call(command) == 0:

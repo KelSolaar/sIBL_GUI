@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Database` Component Interface class.
+	Defines the :class:`Database` Component Interface class.
 
 **Others:**
 
@@ -41,7 +41,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -56,16 +56,17 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Database(Component):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.database.database` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.database.database` Component Interface class.
 	| It provides Application Database creation and session, proceeds to its backup using
 		the :mod:`foundations.rotatingBackup`.
 	"""
 
 	def __init__(self, name=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param name: Component name. ( String )
+		:param name: Component name.
+		:type name: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -94,9 +95,10 @@ class Database(Component):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -105,9 +107,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -117,7 +120,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -126,9 +129,10 @@ class Database(Component):
 	@property
 	def databaseName(self):
 		"""
-		This method is the property for **self.__databaseName** attribute.
+		Property for **self.__databaseName** attribute.
 
-		:return: self.__databaseName. ( String )
+		:return: self.__databaseName.
+		:rtype: unicode
 		"""
 
 		return self.__databaseName
@@ -137,9 +141,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseName(self, value):
 		"""
-		This method is the setter method for **self.__databaseName** attribute.
+		Setter for **self.__databaseName** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -149,7 +154,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseName(self):
 		"""
-		This method is the deleter method for **self.__databaseName** attribute.
+		Deleter for **self.__databaseName** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -158,9 +163,10 @@ class Database(Component):
 	@property
 	def databaseEngine(self):
 		"""
-		This method is the property for **self.__databaseEngine** attribute.
+		Property for **self.__databaseEngine** attribute.
 
-		:return: self.__databaseEngine. ( Object )
+		:return: self.__databaseEngine.
+		:rtype: object
 		"""
 
 		return self.__databaseEngine
@@ -169,9 +175,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseEngine(self, value):
 		"""
-		This method is the setter method for **self.__databaseEngine** attribute.
+		Setter for **self.__databaseEngine** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -181,7 +188,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseEngine(self):
 		"""
-		This method is the deleter method for **self.__databaseEngine** attribute.
+		Deleter for **self.__databaseEngine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -190,9 +197,10 @@ class Database(Component):
 	@property
 	def databaseCatalog(self):
 		"""
-		This method is the property for **self.__databaseCatalog** attribute.
+		Property for **self.__databaseCatalog** attribute.
 
-		:return: self.__databaseCatalog. ( Object )
+		:return: self.__databaseCatalog.
+		:rtype: object
 		"""
 
 		return self.__databaseCatalog
@@ -201,9 +209,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseCatalog(self, value):
 		"""
-		This method is the setter method for **self.__databaseCatalog** attribute.
+		Setter for **self.__databaseCatalog** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -213,7 +222,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseCatalog(self):
 		"""
-		This method is the deleter method for **self.__databaseCatalog** attribute.
+		Deleter for **self.__databaseCatalog** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -222,9 +231,10 @@ class Database(Component):
 	@property
 	def databaseSession(self):
 		"""
-		This method is the property for **self.__databaseSession** attribute.
+		Property for **self.__databaseSession** attribute.
 
-		:return: self.__databaseSession. ( Object )
+		:return: self.__databaseSession.
+		:rtype: object
 		"""
 
 		return self.__databaseSession
@@ -233,9 +243,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSession(self, value):
 		"""
-		This method is the setter method for **self.__databaseSession** attribute.
+		Setter for **self.__databaseSession** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -245,7 +256,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSession(self):
 		"""
-		This method is the deleter method for **self.__databaseSession** attribute.
+		Deleter for **self.__databaseSession** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -254,9 +265,10 @@ class Database(Component):
 	@property
 	def databaseSessionMaker(self):
 		"""
-		This method is the property for **self.__databaseSessionMaker** attribute.
+		Property for **self.__databaseSessionMaker** attribute.
 
-		:return: self.__databaseSessionMaker. ( Object )
+		:return: self.__databaseSessionMaker.
+		:rtype: object
 		"""
 
 		return self.__databaseSessionMaker
@@ -265,9 +277,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSessionMaker(self, value):
 		"""
-		This method is the setter method for **self.__databaseSessionMaker** attribute.
+		Setter for **self.__databaseSessionMaker** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -277,7 +290,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseSessionMaker(self):
 		"""
-		This method is the deleter method for **self.__databaseSessionMaker** attribute.
+		Deleter for **self.__databaseSessionMaker** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -286,9 +299,10 @@ class Database(Component):
 	@property
 	def databaseConnectionString(self):
 		"""
-		This method is the property for **self.__databaseConnectionString** attribute.
+		Property for **self.__databaseConnectionString** attribute.
 
-		:return: self.__databaseConnectionString. ( String )
+		:return: self.__databaseConnectionString.
+		:rtype: unicode
 		"""
 
 		return self.__databaseConnectionString
@@ -297,9 +311,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseConnectionString(self, value):
 		"""
-		This method is the setter method for **self.__databaseConnectionString** attribute.
+		Setter for **self.__databaseConnectionString** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -309,7 +324,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseConnectionString(self):
 		"""
-		This method is the deleter method for **self.__databaseConnectionString** attribute.
+		Deleter for **self.__databaseConnectionString** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -318,9 +333,10 @@ class Database(Component):
 	@property
 	def databaseBackupDirectory(self):
 		"""
-		This method is the property for **self.__databaseBackupDirectory** attribute.
+		Property for **self.__databaseBackupDirectory** attribute.
 
-		:return: self.__databaseBackupDirectory. ( String )
+		:return: self.__databaseBackupDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__databaseBackupDirectory
@@ -329,9 +345,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBackupDirectory(self, value):
 		"""
-		This method is the setter method for **self.__databaseBackupDirectory** attribute.
+		Setter for **self.__databaseBackupDirectory** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -341,7 +358,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBackupDirectory(self):
 		"""
-		This method is the deleter method for **self.__databaseBackupDirectory** attribute.
+		Deleter for **self.__databaseBackupDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -350,9 +367,10 @@ class Database(Component):
 	@property
 	def databaseBackupCount(self):
 		"""
-		This method is the property for **self.__databaseBackupCount** attribute.
+		Property for **self.__databaseBackupCount** attribute.
 
-		:return: self.__databaseBackupCount. ( String )
+		:return: self.__databaseBackupCount.
+		:rtype: unicode
 		"""
 
 		return self.__databaseBackupCount
@@ -361,9 +379,10 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBackupCount(self, value):
 		"""
-		This method is the setter method for **self.__databaseBackupCount** attribute.
+		Setter for **self.__databaseBackupCount** attribute.
 
-		:param value: Attribute value. ( Object )
+		:param value: Attribute value.
+		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -373,7 +392,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def databaseBackupCount(self):
 		"""
-		This method is the deleter method for **self.__databaseBackupCount** attribute.
+		Deleter for **self.__databaseBackupCount** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -384,10 +403,12 @@ class Database(Component):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -400,7 +421,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -408,9 +429,10 @@ class Database(Component):
 
 	def initialize(self):
 		"""
-		This method initializes the Component.
+		Initializes the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -464,7 +486,7 @@ class Database(Component):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitialize(self):
 		"""
-		This method uninitializes the Component.
+		Uninitializes the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -472,9 +494,10 @@ class Database(Component):
 
 	def commit(self):
 		"""
-		This method commits pending changes in the Database.
+		Commits pending changes in the Database.
 	
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return sibl_gui.components.core.database.operations.commit(self.__databaseSession)

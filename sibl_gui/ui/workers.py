@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application workers classes.
+	Defines the Application workers classes.
 
 **Others:**
 
@@ -38,7 +38,7 @@ import sibl_gui.ui.common
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -53,7 +53,7 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class GraphicsItem_worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to load images.
+	Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to load images.
 	"""
 
 	# If the signal uses **QImage** as signature instead of **object**, a copy gets passed to the slot instead
@@ -62,14 +62,16 @@ class GraphicsItem_worker(QThread):
 	"""
 	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded. ( pyqtSignal )
 	
-	:return: Loaded image. ( QImage )		
+	:return: Loaded image.
+	:rtype: QImage
 	"""
 
 	def __init__(self, parent=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
+		:param parent: Object parent.
+		:type parent: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -86,9 +88,10 @@ class GraphicsItem_worker(QThread):
 	@property
 	def requests(self):
 		"""
-		This method is the property for **self.__requests** attribute.
+		Property for **self.__requests** attribute.
 
-		:return: self.__requests. ( Queue )
+		:return: self.__requests.
+		:rtype: Queue
 		"""
 
 		return self.__requests
@@ -97,9 +100,10 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self, value):
 		"""
-		This method is the setter method for **self.__requests** attribute.
+		Setter for **self.__requests** attribute.
 
-		:param value: Attribute value. ( Queue )
+		:param value: Attribute value.
+		:type value: Queue
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -109,7 +113,7 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
-		This method is the deleter method for **self.__requests** attribute.
+		Deleter for **self.__requests** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -121,10 +125,12 @@ class GraphicsItem_worker(QThread):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
 	def addRequest(self, request):
 		"""
-		This method adds given request to the requests queue.
+		Adds given request to the requests queue.
 
-		:param request: Request. ( Tuple / List )
-		:return: Method success. ( Boolean )
+		:param request: Request.
+		:type request: tuple or list
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		path, size = request
@@ -138,9 +144,10 @@ class GraphicsItem_worker(QThread):
 
 	def flushRequests(self):
 		"""
-		This method flushes the requests queue.
+		Flushes the requests queue.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		with self.__requests.mutex:
@@ -149,7 +156,7 @@ class GraphicsItem_worker(QThread):
 
 	def run(self):
 		"""
-		This method reimplements the :meth:`QThread.run` method.
+		Reimplements the :meth:`QThread.run` method.
 		"""
 
 		while True:
@@ -165,7 +172,7 @@ class GraphicsItem_worker(QThread):
 
 	def quit(self):
 		"""
-		This method reimplements the :meth:`QThread.quit` method.
+		Reimplements the :meth:`QThread.quit` method.
 		"""
 
 		self.__interrupt = True

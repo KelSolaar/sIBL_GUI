@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the Application views classes.
+	Defines the Application views classes.
 
 **Others:**
 
@@ -31,7 +31,7 @@ import umbra.ui.views
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -49,14 +49,15 @@ LOGGER = foundations.verbose.installLogger()
 #**********************************************************************************************************************
 class Mixin_AbstractView(object):
 	"""
-	This class is a mixin used to bring common capabilities in Application Views classes.
+	Defines a mixin used to bring common capabilities in Application Views classes.
 	"""
 
 	def __init__(self, model=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param model: Model. ( QObject )
+		:param model: Model.
+		:type model: QObject
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -72,9 +73,10 @@ class Mixin_AbstractView(object):
 	@property
 	def modelSelection(self):
 		"""
-		This method is the property for **self.__modelSelection** attribute.
+		Property for **self.__modelSelection** attribute.
 
-		:return: self.__modelSelection. ( Dictionary )
+		:return: self.__modelSelection.
+		:rtype: dict
 		"""
 
 		return self.__modelSelection
@@ -83,9 +85,10 @@ class Mixin_AbstractView(object):
 	@foundations.exceptions.handleExceptions(AssertionError)
 	def modelSelection(self, value):
 		"""
-		This method is the setter method for **self.__modelSelection** attribute.
+		Setter for **self.__modelSelection** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value.
+		:type value: dict
 		"""
 
 		if value is not None:
@@ -101,7 +104,7 @@ class Mixin_AbstractView(object):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
+		Deleter for **self.__modelSelection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -112,9 +115,10 @@ class Mixin_AbstractView(object):
 	#******************************************************************************************************************
 	def setModel(self, model):
 		"""
-		This method reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
+		Reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.
 		
-		:param model: Model to set. ( QObject )
+		:param model: Model to set.
+		:type model: QObject
 		"""
 
 		if not model:
@@ -130,23 +134,24 @@ class Mixin_AbstractView(object):
 
 	def __model__modelAboutToBeReset(self):
 		"""
-		This method is triggered when the Model is about to be reset.
+		Defines the slot triggered by the Model when about to be reset.
 		"""
 
 		self.storeModelSelection()
 
 	def __model__modelReset(self):
 		"""
-		This method is triggered when the Model is changed.
+		Defines the slot triggered by the Model when reset.
 		"""
 
 		self.restoreModelSelection()
 
 	def storeModelSelection(self):
 		"""
-		This method stores the Model selection.
+		Stores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Storing Model selection!")
@@ -158,9 +163,10 @@ class Mixin_AbstractView(object):
 
 	def restoreModelSelection(self):
 		"""
-		This method restores the Model selection.
+		Restores the Model selection.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Restoring Model selection!")
@@ -180,17 +186,21 @@ class Mixin_AbstractView(object):
 
 class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 	"""
-	This class used as base by others Application Views classes.
+	Defines the base class used by others Application Views classes.
 	"""
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -200,17 +210,21 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 
 class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 	"""
-	This class used as base by others Application Views classes.
+	Defines the base class used by others Application Views classes.
 	"""
 
 	def __init__(self, parent=None, model=None, readOnly=False, message=None):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param readOnly: View is read only. ( Boolean )
-		:param message: View default message when Model is empty. ( String )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param model: Model.
+		:type model: QObject
+		:param readOnly: View is read only.
+		:type readOnly: bool
+		:param message: View default message when Model is empty.
+		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

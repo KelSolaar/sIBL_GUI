@@ -1,4 +1,4 @@
-**sIBL_GUI** - 4.0.7 - Stable
+**sIBL_GUI** - 4.0.8 - Stable
 =============================
 
 .. .changes
@@ -6,15 +6,56 @@
 Changes
 =======
 
-.. raw:: html
+4.0.8 - Stable
+--------------
 
-    <div style="color: rgb(160, 96, 64);">
-        <h2>Notes:</h2>
-        <ul>
-            <li>The following changes reflects the changes of <b>sIBL_GUI</b> package and also its dependencies.
-            </li>
-        </ul>
-    </div>
+| **sIBL_GUI** 4.0.8 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=10&page=1&state=closed
+| **Umbra** 1.0.9 - Stable - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=10&state=closed
+| **Manager** 2.0.5 - Stable - Milestone: https://github.com/KelSolaar/Manager/issues?milestone=4&state=closed
+| **Foundations** 2.1.0 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=8&page=1&state=closed
+
+-  Handled **WindowsError** in **database** component while retrieving stats on a non existing file.
+-  Handled exception while searching in tags cloud using an invalid regex pattern in **searchDatabase** component.
+-  Handled potential **IOError** exceptions related to **foundations.common.foundations.common.isBinaryFile** definition usage when accessing a locked file.
+-  Prevented exception in **sibl_gui.ui.common.getFormattedShotDate** definition.
+-  Prevented **AttributeError** exception in **sibl_gui.components.core.inspector.inspector.Inspector.__setActiveIblSet** method when no active iblSet is defined.
+-  Prevented **ValueError** exception in **sibl_gui.components.core.inspector.inspector.Inspector.__drawActiveIblSetOverlay** method when invalid lights colors attributes are used.
+-  Prevented **IndexError** exception in **inspector** component.
+-  Prevented exception reports stacking.
+-  Prevented **AttributeError** exception in **umbra.components.scriptEditor.scriptEditor.ScriptEditor.__editor__modificationChanged** method.
+-  Prevented files reloading on exit in **scriptEditor** component.
+-  Fixed long startup delay when no Internet connection is available.
+-  Fixed **notificationsManager** notifiers insertion order.
+-  Fixed caching issue in **foundations.parsers.SectionsFileParser.write** method.
+-  Fixed various issues in **Softimage_Arnold_Standard**, **Softimage_Arnold_Dome_Light** and **Softimage_Arnold_Lightsmith** templates to support latest **SItoA** build.
+-  Handled **BadZipfile** exception in **foundations.pkzip.Pkzip.extractZipFile** method.
+-  Ensured **fileSystemEventsManager** manager doesn't compares integer paths modification times to float ones.
+-  Ensured **Softimage_Arnold_Lightsmith** Template compatibility with **SItoA 2.8.0** by removing deprecated legacy light filter code.
+-  Ensured directional light position is correct in **Maya_Arnold_Standard** and **Maya_Arnold_Dome_Light** Templates.
+-  Ensured Templates are downloaded into **Factory** directory only if writable.
+-  Ensured Ibl Set icon is properly displayed in **inspector** component plates view.
+-  Ensured **Softimage_Arnold_*** Templates compatibility with latest **SItoA** build.
+-  Ensured **notificationsManager** has a maximum number of displayed notifiers at same time.
+-  Ensured **foundations.parsers.SectionsFileParser.parse** method reads current file content if no content has been previously set.
+-  Ensured that loggers and their formatters receive unicode data. 
+-  Ensured directional light position is correct in **Maya_Arnold_Standard** and **Maya_Arnold_Dome_Light** templates.  
+-  Removed **miCreateOtherOptionsNodesForURG** mel procedure call in **Maya_MR_Standard** Template.
+-  Removed dependency on **ordereddict** for Python versions that already include it.
+-  Moved **foundations.common.isBinaryFile** definition into **foundations.io** module.
+-  Added **foundations.shell.** module.
+-  Added Jed Frechette **Blender_Cycles_Standard** template.
+-  Extracted documentation utilities to their own repository.
+-  Pass various globals variables through arguments in **umbra.engine.Umbra** class.
+-  Refactored magic methods implementation in various managers.
+-  Implemented fall-back preferences directory support.
+-  Implemented **get** method in various managers.
+-  Implemented **__setitem__** method in various managers.
+-  Implemented magic methods tests for **foundations.parsers.SectionsFileParser** class.
+-  Implemented **foundations.parsers.SectionsFileParser.setValue** method.
+-  Implemented support for **ANSI** escape codes.
+-  Implemented new documentation theme.
+-  Reformatted package docstrings.
+-  Verbosed **PyQt** version on startup.
 
 4.0.7 - Stable
 --------------
@@ -624,7 +665,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 About
 -----
 
-| **sIBL_GUI** by Thomas Mansencal – 2008 - 2013
-| Copyright© 2008 - 2013 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| **sIBL_GUI** by Thomas Mansencal – 2008 - 2014
+| Copyright © 2008 - 2014 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This software is released under terms of GNU GPL V3 license: http://www.gnu.org/licenses/
 | `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_

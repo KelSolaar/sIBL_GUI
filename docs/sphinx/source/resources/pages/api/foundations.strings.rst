@@ -10,10 +10,10 @@ Module Attributes
 
 .. attribute:: foundations.strings.ASCII_CHARACTERS
 
+.. attribute:: foundations.strings.toString
+
 Functions
 ---------
-
-.. autofunction:: toString
 
 .. autofunction:: getNiceName
 

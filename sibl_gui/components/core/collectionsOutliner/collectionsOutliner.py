@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`CollectionsOutliner` Component Interface class.
+	Defines the :class:`CollectionsOutliner` Component Interface class.
 
 **Others:**
 
@@ -62,7 +62,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -79,7 +79,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_O
 #**********************************************************************************************************************
 class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
 	| It defines methods for Database Collections management.
 	"""
 
@@ -92,12 +92,16 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -134,9 +138,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -145,9 +150,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -157,7 +163,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -166,9 +172,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiDefaultCollectionImage(self):
 		"""
-		This method is the property for **self.__uiDefaultCollectionImage** attribute.
+		Property for **self.__uiDefaultCollectionImage** attribute.
 
-		:return: self.__uiDefaultCollectionImage. ( String )
+		:return: self.__uiDefaultCollectionImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiDefaultCollectionImage
@@ -177,9 +184,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDefaultCollectionImage(self, value):
 		"""
-		This method is the setter method for **self.__uiDefaultCollectionImage** attribute.
+		Setter for **self.__uiDefaultCollectionImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -189,7 +197,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiDefaultCollectionImage(self):
 		"""
-		This method is the deleter method for **self.__uiDefaultCollectionImage** attribute.
+		Deleter for **self.__uiDefaultCollectionImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -198,9 +206,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiUserCollectionImage(self):
 		"""
-		This method is the property for **self.__uiUserCollectionImage** attribute.
+		Property for **self.__uiUserCollectionImage** attribute.
 
-		:return: self.__uiUserCollectionImage. ( String )
+		:return: self.__uiUserCollectionImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiUserCollectionImage
@@ -209,9 +218,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUserCollectionImage(self, value):
 		"""
-		This method is the setter method for **self.__uiUserCollectionImage** attribute.
+		Setter for **self.__uiUserCollectionImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -221,7 +231,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiUserCollectionImage(self):
 		"""
-		This method is the deleter method for **self.__uiUserCollectionImage** attribute.
+		Deleter for **self.__uiUserCollectionImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -230,9 +240,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -241,9 +252,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -253,7 +265,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -262,9 +274,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -273,9 +286,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -285,7 +299,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -294,9 +308,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settings(self):
 		"""
-		This method is the property for **self.__settings** attribute.
+		Property for **self.__settings** attribute.
 
-		:return: self.__settings. ( QSettings )
+		:return: self.__settings.
+		:rtype: QSettings
 		"""
 
 		return self.__settings
@@ -305,9 +320,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for **self.__settings** attribute.
+		Setter for **self.__settings** attribute.
 
-		:param value: Attribute value. ( QSettings )
+		:param value: Attribute value.
+		:type value: QSettings
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -317,7 +333,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for **self.__settings** attribute.
+		Deleter for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -326,9 +342,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for **self.__settingsSection** attribute.
+		Property for **self.__settingsSection** attribute.
 
-		:return: self.__settingsSection. ( String )
+		:return: self.__settingsSection.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSection
@@ -337,9 +354,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for **self.__settingsSection** attribute.
+		Setter for **self.__settingsSection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -349,7 +367,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for **self.__settingsSection** attribute.
+		Deleter for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -358,9 +376,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for **self.__settingsSeparator** attribute.
+		Property for **self.__settingsSeparator** attribute.
 
-		:return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator.
+		:rtype: unicode
 		"""
 
 		return self.__settingsSeparator
@@ -369,9 +388,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for **self.__settingsSeparator** attribute.
+		Setter for **self.__settingsSeparator** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -381,7 +401,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for **self.__settingsSeparator** attribute.
+		Deleter for **self.__settingsSeparator** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -390,9 +410,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -401,9 +422,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -413,7 +435,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -422,9 +444,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def model(self):
 		"""
-		This method is the property for **self.__model** attribute.
+		Property for **self.__model** attribute.
 
-		:return: self.__model. ( CollectionsModel )
+		:return: self.__model.
+		:rtype: CollectionsModel
 		"""
 
 		return self.__model
@@ -433,9 +456,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for **self.__model** attribute.
+		Setter for **self.__model** attribute.
 
-		:param value: Attribute value. ( CollectionsModel )
+		:param value: Attribute value.
+		:type value: CollectionsModel
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -445,7 +469,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for **self.__model** attribute.
+		Deleter for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -454,9 +478,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def view(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		Property for **self.__view** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__view.
+		:rtype: QWidget
 		"""
 
 		return self.__view
@@ -465,9 +490,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		Setter for **self.__view** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -477,7 +503,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		Deleter for **self.__view** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -486,9 +512,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def overallCollection(self):
 		"""
-		This method is the property for **self.__overallCollection** attribute.
+		Property for **self.__overallCollection** attribute.
 
-		:return: self.__overallCollection. ( String )
+		:return: self.__overallCollection.
+		:rtype: unicode
 		"""
 
 		return self.__overallCollection
@@ -497,9 +524,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def overallCollection(self, value):
 		"""
-		This method is the setter method for **self.__overallCollection** attribute.
+		Setter for **self.__overallCollection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -509,7 +537,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def overallCollection(self):
 		"""
-		This method is the deleter method for **self.__overallCollection** attribute.
+		Deleter for **self.__overallCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -518,9 +546,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def defaultCollection(self):
 		"""
-		This method is the property for **self.__defaultCollection** attribute.
+		Property for **self.__defaultCollection** attribute.
 
-		:return: self.__defaultCollection. ( String )
+		:return: self.__defaultCollection.
+		:rtype: unicode
 		"""
 
 		return self.__defaultCollection
@@ -529,9 +558,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollection(self, value):
 		"""
-		This method is the setter method for **self.__defaultCollection** attribute.
+		Setter for **self.__defaultCollection** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -541,7 +571,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def defaultCollection(self):
 		"""
-		This method is the deleter method for **self.__defaultCollection** attribute.
+		Deleter for **self.__defaultCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -550,9 +580,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsCountLabel(self):
 		"""
-		This method is the property for **self.__iblSetsCountLabel** attribute.
+		Property for **self.__iblSetsCountLabel** attribute.
 
-		:return: self.__iblSetsCountLabel. ( String )
+		:return: self.__iblSetsCountLabel.
+		:rtype: unicode
 		"""
 
 		return self.__iblSetsCountLabel
@@ -561,9 +592,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsCountLabel(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsCountLabel** attribute.
+		Setter for **self.__iblSetsCountLabel** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -573,7 +605,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsCountLabel(self):
 		"""
-		This method is the deleter method for **self.__iblSetsCountLabel** attribute.
+		Deleter for **self.__iblSetsCountLabel** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -582,9 +614,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def headers(self):
 		"""
-		This method is the property for **self.__headers** attribute.
+		Property for **self.__headers** attribute.
 
-		:return: self.__headers. ( OrderedDict )
+		:return: self.__headers.
+		:rtype: OrderedDict
 		"""
 
 		return self.__headers
@@ -593,9 +626,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self, value):
 		"""
-		This method is the setter method for **self.__headers** attribute.
+		Setter for **self.__headers** attribute.
 
-		:param value: Attribute value. ( OrderedDict )
+		:param value: Attribute value.
+		:type value: OrderedDict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -605,7 +639,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def headers(self):
 		"""
-		This method is the deleter method for **self.__headers** attribute.
+		Deleter for **self.__headers** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -616,10 +650,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -637,7 +673,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -645,9 +681,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -681,7 +718,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -689,9 +726,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -703,7 +741,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -711,9 +749,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def onStartup(self):
 		"""
-		This method is triggered on Framework startup.
+		Defines the slot triggered on Framework startup.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
@@ -743,9 +782,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def onClose(self):
 		"""
-		This method is triggered on Framework close.
+		Defines the slot triggered on Framework close.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
@@ -764,14 +804,14 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __model__refreshNodes(self):
 		"""
-		This method is triggered when the Model Nodes need refresh.
+		Defines the slot triggered by the Model when Nodes need refresh.
 		"""
 
 		self.setCollections()
 
 	def __model__refreshAttributes(self):
 		"""
-		This method refreshes the Model Nodes attributes.
+		Refreshes the Model Nodes attributes.
 		"""
 
 		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
@@ -788,10 +828,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method is triggered when the Model data has changed.
+		Defines the slot triggered by the Model when data has changed.
 		
-		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
+		:param startIndex: Edited item starting QModelIndex.
+		:type startIndex: QModelIndex
+		:param endIndex: Edited item ending QModelIndex.
+		:type endIndex: QModelIndex
 		"""
 
 		collectionNode = self.__model.getNode(startIndex)
@@ -818,7 +860,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view_addActions(self):
 		"""
-		This method sets the View actions.
+		Sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -838,41 +880,49 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __view_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Content ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Content ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.addContentUi()
 
 	def __view_addCollectionAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.addCollectionUi()
 
 	def __view_removeCollectionsAction__triggered(self, checked):
 		"""
-		This method is triggered by 
+		Defines the slot triggered by 
 		**'Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		return self.removeCollectionsUi()
 
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when the View **selectionModel** has changed.
+		Defines the slot triggered by the View **selectionModel** when selection changed.
 
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items.
+		:type selectedItems: QItemSelection
+		:param deselectedItems: Deselected items.
+		:type deselectedItems: QItemSelection
 		"""
 
 		self.__iblSetsOutliner.refreshNodes.emit()
@@ -881,11 +931,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.showProcessing("Adding Content ...")
 	def addContentUi(self):
 		"""
-		This method adds user defined content to the Database.
+		Adds user defined content to the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		collection = self.addCollectionUi()
@@ -911,11 +962,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.showProcessing("Adding Collection ...")
 	def addCollectionUi(self):
 		"""
-		This method adds an user defined Collection to the Database.
+		Adds an user defined Collection to the Database.
 
-		:return: Collection name. ( String )
+		:return: Collection name.
+		:rtype: unicode
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name:")
@@ -953,11 +1005,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.encapsulateProcessing
 	def removeCollectionsUi(self):
 		"""
-		This method removes user selected Collections from the Database.
+		Removes user selected Collections from the Database.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 
-		:note: This method may require user interaction.
+		:note: May require user interaction.
 		"""
 
 		selectedNodes = self.getSelectedNodes().keys()
@@ -996,11 +1049,14 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def addCollection(self, name, comment="Double click to set a comment!"):
 		"""
-		This method adds a Collection to the Database.
+		Adds a Collection to the Database.
 
-		:param name: Collection name. ( String )
-		:param collection: Collection name. ( String )
-		:return: Method success. ( Boolean )
+		:param name: Collection name.
+		:type name: unicode
+		:param collection: Collection name.
+		:type collection: unicode
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		if name != self.__overallCollection:
@@ -1023,10 +1079,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
-		This method removes given Collection from the Database.
+		Removes given Collection from the Database.
 
-		:param collection: Collection to remove. ( Collection )
-		:return: Method success. ( Boolean )
+		:param collection: Collection to remove.
+		:type collection: Collection
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		iblSets = sibl_gui.components.core.database.operations.getCollectionsIblSets((collection.id,))
@@ -1045,22 +1103,27 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 																								collection.name))
 	def getCollections(self):
 		"""
-		This method returns Database Ibl Sets Collections.
+		Returns Database Ibl Sets Collections.
 
-		:return: Database Ibl Sets Collections. ( List )
+		:return: Database Ibl Sets Collections.
+		:rtype: list
 		"""
 
 		return sibl_gui.components.core.database.operations.getCollectionsByType("IblSets")
 
 	def filterCollections(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
-		This method filters the Database Ibl Sets Collections on given attribute using given pattern.
+		Filters the Database Ibl Sets Collections on given attribute using given pattern.
 		
-		:param pattern: Filter pattern. ( String )
-		:param attribute: Attribute to filter on. ( String )
-		:param flags: Regex filtering flags. ( Integer )
+		:param pattern: Filter pattern.
+		:type pattern: unicode
+		:param attribute: Attribute to filter on.
+		:type attribute: unicode
+		:param flags: Regex filtering flags.
+		:type flags: int
 
-		:return: Filtered Database Ibl Sets Collections. ( List )
+		:return: Filtered Database Ibl Sets Collections.
+		:rtype: list
 		"""
 
 		try:
@@ -1073,26 +1136,29 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def collectionExists(self, name):
 		"""
-		This method returns if given Collection name exists in the Database.
+		Returns if given Collection name exists in the Database.
 
-		:param name: Collection name. ( String )
-		:return: Collection exists. ( Boolean )
+		:param name: Collection name.
+		:type name: unicode
+		:return: Collection exists.
+		:rtype: bool
 		"""
 
 		return sibl_gui.components.core.database.operations.collectionExists(name)
 
 	def listCollections(self):
 		"""
-		This method lists Database Ibl Sets Collections names.
+		Lists Database Ibl Sets Collections names.
 
-		:return: Database Ibl Sets Collections names. ( List )
+		:return: Database Ibl Sets Collections names.
+		:rtype: list
 		"""
 
 		return [collection.name for collection in self.getCollections()]
 
 	def setCollections(self):
 		"""
-		This method sets the Collections Model nodes.
+		Sets the Collections Model nodes.
 		"""
 
 		nodeFlags = attributesFlags = self.__engine.parameters.databaseReadOnly and \
@@ -1130,10 +1196,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getCollectionByName(self, name):
 		"""
-		This method returns Database Ibl Sets Collection with given name.
+		Returns Database Ibl Sets Collection with given name.
 
-		:param name: Collection name. ( String )
-		:return: Database Ibl Sets Collection. ( Collection )
+		:param name: Collection name.
+		:type name: unicode
+		:return: Database Ibl Sets Collection.
+		:rtype: Collection
 		"""
 
 		collections = self.filterCollections(r"^{0}$".format(name), "name")
@@ -1141,10 +1209,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getCollectionsIblSets(self, collections):
 		"""
-		This method gets given Collections Ibl Sets.
+		Gets given Collections Ibl Sets.
 
-		:param collections: Collections to get Ibl Sets from. ( List )
-		:return: Ibl Sets list. ( List )
+		:param collections: Collections to get Ibl Sets from.
+		:type collections: list
+		:return: Ibl Sets list.
+		:rtype: list
 		"""
 
 		return [iblSet for iblSet in \
@@ -1152,10 +1222,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getCollectionId(self, collection):
 		"""
-		This method returns given Collection id.
+		Returns given Collection id.
 
-		:param collection: Collection to get the id from. ( String )
-		:return: Provided Collection id. ( Integer )
+		:param collection: Collection to get the id from.
+		:type collection: unicode
+		:return: Provided Collection id.
+		:rtype: int
 		"""
 
 		children = self.__model.findChildren(r"^{0}$".format(collection))
@@ -1164,27 +1236,30 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getSelectedNodes(self):
 		"""
-		This method returns the View selected nodes.
+		Returns the View selected nodes.
 
-		:return: View selected nodes. ( Dictionary )
+		:return: View selected nodes.
+		:rtype: dict
 		"""
 
 		return self.__view.getSelectedNodes()
 
 	def getSelectedCollectionsNodes(self):
 		"""
-		This method returns the View selected Collections nodes.
+		Returns the View selected Collections nodes.
 
-		:return: View selected Collections nodes. ( List )
+		:return: View selected Collections nodes.
+		:rtype: list
 		"""
 
 		return [node for node in self.getSelectedNodes() if node.family == "Collection"]
 
 	def getSelectedCollections(self):
 		"""
-		This method gets the View selected Collections.
+		Gets the View selected Collections.
 
-		:return: View selected Collections. ( List )
+		:return: View selected Collections.
+		:rtype: list
 		"""
 
 		return [node.databaseItem for node in self.getSelectedCollectionsNodes()]

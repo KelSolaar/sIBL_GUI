@@ -8,7 +8,7 @@
 	Windows.
 
 **Description:**
-	This module defines the pyinstaller configuration file.
+	Defines the pyinstaller configuration file.
 
 **Others:**
 
@@ -28,7 +28,7 @@ import os
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -40,7 +40,7 @@ a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
 			os.path.join(HOMEPATH, "support\\useUnicode.py"),
 			"z:/Documents/Development/sIBL_GUI/sibl_gui/launcher.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
-             excludes=["foundations", "manager", "umbra", "sibl_gui"])
+             excludes=["oncilla", "foundations", "manager", "umbra", "sibl_gui"])
 
 pyz = PYZ(a.pure)
 

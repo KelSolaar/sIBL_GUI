@@ -15,3 +15,5 @@ Functions
 
 .. autofunction:: memoize
 
+.. autofunction:: systemExit
+

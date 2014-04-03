@@ -1,7 +1,7 @@
-_`umbra.guerilla`
-=================
+_`foundations.guerilla`
+=======================
 
-.. automodule:: umbra.guerilla
+.. automodule:: foundations.guerilla
 
 Functions
 ---------

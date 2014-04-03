@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`RewiringTool` Component Interface class.
+	Defines the :class:`RewiringTool` Component Interface class.
 
 **Others:**
 
@@ -43,7 +43,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -60,18 +60,22 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool
 #**********************************************************************************************************************
 class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component Interface class.
 	| It provides override keys on request for the :mod:`sibl_gui.components.addons.loaderScript.loaderScript` Component.
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -104,9 +108,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for **self.__dockArea** attribute.
+		Property for **self.__dockArea** attribute.
 
-		:return: self.__dockArea. ( Integer )
+		:return: self.__dockArea.
+		:rtype: int
 		"""
 
 		return self.__dockArea
@@ -115,9 +120,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for **self.__dockArea** attribute.
+		Setter for **self.__dockArea** attribute.
 
-		:param value: Attribute value. ( Integer )
+		:param value: Attribute value.
+		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -127,7 +133,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for **self.__dockArea** attribute.
+		Deleter for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -136,9 +142,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -147,9 +154,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -159,7 +167,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -168,9 +176,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def iblSetsOutliner(self):
 		"""
-		This method is the property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__iblSetsOutliner** attribute.
 
-		:return: self.__iblSetsOutliner. ( QWidget )
+		:return: self.__iblSetsOutliner.
+		:rtype: QWidget
 		"""
 
 		return self.__iblSetsOutliner
@@ -179,9 +188,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self, value):
 		"""
-		This method is the setter method for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__iblSetsOutliner** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value.
+		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -191,7 +201,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def iblSetsOutliner(self):
 		"""
-		This method is the deleter method for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__iblSetsOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -200,9 +210,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def reWireFramesWidgets(self):
 		"""
-		This method is the property for **self.__reWireFramesWidgets** attribute.
+		Property for **self.__reWireFramesWidgets** attribute.
 
-		:return: self.__reWireFramesWidgets. ( Tuple )
+		:return: self.__reWireFramesWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireFramesWidgets
@@ -211,9 +222,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self, value):
 		"""
-		This method is the setter method for **self.__reWireFramesWidgets** attribute.
+		Setter for **self.__reWireFramesWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -223,7 +235,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self):
 		"""
-		This method is the deleter method for **self.__reWireFramesWidgets** attribute.
+		Deleter for **self.__reWireFramesWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -232,9 +244,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def reWireComboBoxesWidgets(self):
 		"""
-		This method is the property for **self.__reWireComboBoxesWidgets** attribute.
+		Property for **self.__reWireComboBoxesWidgets** attribute.
 
-		:return: self.__reWireComboBoxesWidgets. ( Tuple )
+		:return: self.__reWireComboBoxesWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireComboBoxesWidgets
@@ -243,9 +256,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self, value):
 		"""
-		This method is the setter method for **self.__reWireComboBoxesWidgets** attribute.
+		Setter for **self.__reWireComboBoxesWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -255,7 +269,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self):
 		"""
-		This method is the deleter method for **self.__reWireComboBoxesWidgets** attribute.
+		Deleter for **self.__reWireComboBoxesWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -264,9 +278,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def reWireLineEditWidgets(self):
 		"""
-		This method is the property for **self.__reWireLineEditWidgets** attribute.
+		Property for **self.__reWireLineEditWidgets** attribute.
 
-		:return: self.__reWireLineEditWidgets. ( Tuple )
+		:return: self.__reWireLineEditWidgets.
+		:rtype: tuple
 		"""
 
 		return self.__reWireLineEditWidgets
@@ -275,9 +290,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self, value):
 		"""
-		This method is the setter method for **self.__reWireLineEditWidgets** attribute.
+		Setter for **self.__reWireLineEditWidgets** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -287,7 +303,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self):
 		"""
-		This method is the deleter method for **self.__reWireLineEditWidgets** attribute.
+		Deleter for **self.__reWireLineEditWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -296,9 +312,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def rewiringParameters(self):
 		"""
-		This method is the property for **self.__rewiringParameters** attribute.
+		Property for **self.__rewiringParameters** attribute.
 
-		:return: self.__rewiringParameters. ( Tuple )
+		:return: self.__rewiringParameters.
+		:rtype: tuple
 		"""
 
 		return self.__rewiringParameters
@@ -307,9 +324,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self, value):
 		"""
-		This method is the setter method for **self.__rewiringParameters** attribute.
+		Setter for **self.__rewiringParameters** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value.
+		:type value: tuple
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -319,7 +337,7 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self):
 		"""
-		This method is the deleter method for **self.__rewiringParameters** attribute.
+		Deleter for **self.__rewiringParameters** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -330,10 +348,12 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -348,9 +368,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -365,9 +386,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -401,9 +423,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -425,9 +448,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -438,9 +462,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -452,36 +477,40 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Background_ToolButton** Widget is clicked.
+		Defines the slot triggered by **Background_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Background")
 
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Lighting_ToolButton** Widget is clicked.
+		Defines the slot triggered by **Lighting_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Lighting")
 
 	def __Reflection_Path_toolButton__clicked(self, checked):
 		"""
-		This method is triggered when **Reflection_ToolButton** Widget is clicked.
+		Defines the slot triggered by **Reflection_ToolButton** Widget when clicked.
 
-		:param checked: Checked state. ( Boolean )
+		:param checked: Checked state.
+		:type checked: bool
 		"""
 
 		self.__setReWireCustomPath("Reflection")
 
 	def __setReWireWidgetFramesVisibility(self, index):
 		"""
-		This method shows / hides rewire Widget frames.
+		Shows / hides rewire Widget frames.
 
-		:param index: ComboBox index. ( Tuple )
+		:param index: ComboBox index.
+		:type index: tuple
 		"""
 
 		for index in range(len(self.__reWireComboBoxesWidgets)):
@@ -494,10 +523,11 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __setReWireCustomPath(self, component):
 		"""
-		This method sets the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component
+		Sets the :mod:`sibl_gui.components.addons.rewiringTool.rewiringTool` Component
 		custom image QLineEdit Widgets.
 
-		:param component: Target Component. ( String )
+		:param component: Target Component.
+		:type component: unicode
 		"""
 
 		customFile = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self,
@@ -514,9 +544,10 @@ class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def getOverrideKeys(self):
 		"""
-		This method gets override keys.
+		Gets override keys.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))

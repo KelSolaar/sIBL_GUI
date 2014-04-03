@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`About` Component Interface class.
+	Defines the :class:`About` Component Interface class.
 
 **Others:**
 
@@ -37,7 +37,7 @@ from umbra.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -91,7 +91,7 @@ Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com">
 <span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
 </p>
 <p>
-sIBL_GUI by Thomas Mansencal - 2008 - 2013
+sIBL_GUI by Thomas Mansencal - 2008 - 2014
 <br/>
 This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/">
 <span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
@@ -119,7 +119,7 @@ This software is released under terms of GNU GPL v3 license: <a href="http://www
 #**********************************************************************************************************************
 class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
+	| Defines the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
 	| The message displayed by the **sIBL_GUI - About** window is defined by the
 		:attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.  
@@ -127,12 +127,16 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
-		This method initializes the class.
+		Initializes the class.
 
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \*\* )
+		:param parent: Object parent.
+		:type parent: QObject
+		:param name: Component name.
+		:type name: unicode
+		:param \*args: Arguments.
+		:type \*args: \*
+		:param \*\*kwargs: Keywords arguments.
+		:type \*\*kwargs: \*\*
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -155,9 +159,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResourcesDirectory. ( String )
+		:return: self.__uiResourcesDirectory.
+		:rtype: unicode
 		"""
 
 		return self.__uiResourcesDirectory
@@ -166,9 +171,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__uiResourcesDirectory** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -178,7 +184,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__uiResourcesDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -187,9 +193,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for **self.__uiLogoImage** attribute.
+		Property for **self.__uiLogoImage** attribute.
 
-		:return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage.
+		:rtype: unicode
 		"""
 
 		return self.__uiLogoImage
@@ -198,9 +205,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
+		Setter for **self.__uiLogoImage** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -210,7 +218,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
+		Deleter for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -219,9 +227,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def uiGpl3Image(self):
 		"""
-		This method is the property for **self.__uiGpl3Image** attribute.
+		Property for **self.__uiGpl3Image** attribute.
 
-		:return: self.__uiGpl3Image. ( String )
+		:return: self.__uiGpl3Image.
+		:rtype: unicode
 		"""
 
 		return self.__uiGpl3Image
@@ -230,9 +239,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self, value):
 		"""
-		This method is the setter method for **self.__uiGpl3Image** attribute.
+		Setter for **self.__uiGpl3Image** attribute.
 
-		:param value: Attribute value. ( String )
+		:param value: Attribute value.
+		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -242,7 +252,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self):
 		"""
-		This method is the deleter method for **self.__uiGpl3Image** attribute.
+		Deleter for **self.__uiGpl3Image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -251,9 +261,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def engine(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		Property for **self.__engine** attribute.
 
-		:return: self.__engine. ( QObject )
+		:return: self.__engine.
+		:rtype: QObject
 		"""
 
 		return self.__engine
@@ -262,9 +273,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		Setter for **self.__engine** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value.
+		:type value: QObject
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -274,7 +286,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		Deleter for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -283,9 +295,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def miscellaneousMenu(self):
 		"""
-		This method is the property for **self.__miscellaneousMenu** attribute.
+		Property for **self.__miscellaneousMenu** attribute.
 
-		:return: self.__miscellaneousMenu. ( QMenu )
+		:return: self.__miscellaneousMenu.
+		:rtype: QMenu
 		"""
 
 		return self.__miscellaneousMenu
@@ -294,9 +307,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self, value):
 		"""
-		This method is the setter method for **self.__miscellaneousMenu** attribute.
+		Setter for **self.__miscellaneousMenu** attribute.
 
-		:param value: Attribute value. ( QMenu )
+		:param value: Attribute value.
+		:type value: QMenu
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -306,7 +320,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
 	def miscellaneousMenu(self):
 		"""
-		This method is the deleter method for **self.__miscellaneousMenu** attribute.
+		Deleter for **self.__miscellaneousMenu** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -317,10 +331,12 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
-		This method activates the Component.
+		Activates the Component.
 
-		:param engine: Engine to attach the Component to. ( QObject )
-		:return: Method success. ( Boolean )
+		:param engine: Engine to attach the Component to.
+		:type engine: QObject
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -336,9 +352,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def deactivate(self):
 		"""
-		This method deactivates the Component.
+		Deactivates the Component.
 
-		:return: Method success. ( Boolean )
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -354,9 +371,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def initializeUi(self):
 		"""
-		This method initializes the Component ui.
+		Initializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -366,9 +384,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def uninitializeUi(self):
 		"""
-		This method uninitializes the Component ui.
+		Uninitializes the Component ui.
 		
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -378,9 +397,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the engine.
+		Adds the Component Widget to the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -389,9 +409,10 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the engine.
+		Removes the Component Widget from the engine.
 
-		:return: Method success. ( Boolean )		
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
@@ -400,7 +421,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __addActions(self):
 		"""
-		This method sets Component actions.
+		Sets Component actions.
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
@@ -411,7 +432,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __removeActions(self):
 		"""
-		This method removes actions.
+		Removes actions.
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
@@ -422,10 +443,12 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	def __miscellaneousMenu_aboutAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
+		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
 
-		:param checked: Action checked state. ( Boolean )
-		:return: Method success. ( Boolean )
+		:param checked: Action checked state.
+		:type checked: bool
+		:return: Method success.
+		:rtype: bool
 		"""
 
 		LOGGER.debug("> Initializing '{0}' window.".format("About"))
@@ -433,7 +456,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		umbra.ui.common.setWindowDefaultIcon(self)
 
 		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage),
-						Constants.releaseVersion.replace(".", " . "),
+						Constants.version.replace(".", " . "),
 						os.path.join(self.__uiResourcesDirectory, self.__uiGpl3Image))
 
 		self.About_label.setText(aboutMessage)

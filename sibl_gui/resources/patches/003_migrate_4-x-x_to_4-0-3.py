@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module migrates sIBL_GUI from 4.x.x to 4.0.3.
+	Migrates sIBL_GUI from 4.x.x to 4.0.3.
 
 **Others:**
 
@@ -38,7 +38,7 @@ from umbra.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -55,13 +55,14 @@ UID = "97DD5A8BEA1E9CA5F849754730C4EEB3"
 #**********************************************************************************************************************
 def apply():
 	"""
-	This definition is called by the Application and triggers the patch execution.
+	Triggers the patch execution.
 
-	:return: Definition success. ( Boolean )
+	:return: Definition success.
+	:rtype: bool
 	"""
 
 	umbra.ui.widgets.messageBox.messageBox("Information",
-	"sIBL_GUI | Message",
+	"Message",
 	"Hello!\n\nUpon startup and from now on, sIBL_GUI will attempt to connect to \
 https://www.crittercism.com/ to report unhandled exceptions whenever they occur!\n\nThis message will only display once!")
 

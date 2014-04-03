@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`sibl_gui.globals.runtimeGlobals` module.
+	Defines units tests for :mod:`sibl_gui.globals.runtimeGlobals` module.
 
 **Others:**
 
@@ -37,7 +37,7 @@ from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -50,12 +50,12 @@ __all__ = ["RuntimeGlobalsTestCase"]
 #**********************************************************************************************************************
 class RuntimeGlobalsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`sibl_gui.globals.runtimeGlobals.RuntimeGlobals` class units tests methods.
+	Defines :class:`sibl_gui.globals.runtimeGlobals.RuntimeGlobals` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
 		"""
-		This method tests presence of required attributes.
+		Tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("templatesFactoryDirectory",

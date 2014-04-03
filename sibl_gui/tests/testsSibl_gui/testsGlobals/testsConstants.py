@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`sibl_gui.globals.constants` module.
+	Defines units tests for :mod:`sibl_gui.globals.constants` module.
 
 **Others:**
 
@@ -37,7 +37,7 @@ from sibl_gui.globals.constants import Constants
 #***	Module attributes.
 #**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
-__copyright__ = "Copyright (C) 2008 - 2013 - Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
@@ -50,20 +50,22 @@ __all__ = ["ConstantsTestCase"]
 #**********************************************************************************************************************
 class ConstantsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`sibl_gui.globals.constants.Constants` class units tests methods.
+	Defines :class:`sibl_gui.globals.constants.Constants` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
 		"""
-		This method tests presence of required attributes.
+		Tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("applicationName",
 								"majorVersion",
 								"minorVersion",
 								"changeVersion",
-								"releaseVersion",
+								"version",
 								"logger",
+								"defaultCodec",
+								"codecError",
 								"applicationDirectory",
 								"providerDirectory",
 								"databaseDirectory",
@@ -90,182 +92,204 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testApplicationNameAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.applicationName` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.applicationName` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.applicationName, "\w+")
 
 	def testMajorVersionAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.majorVersion` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.majorVersion` attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+		self.assertRegexpMatches(Constants.version, "\d")
 
 	def testMinorVersionAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.minorVersion` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.minorVersion` attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+		self.assertRegexpMatches(Constants.version, "\d")
 
 	def testChangeVersionAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.changeVersion` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.changeVersion` attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.releaseVersion, "\d")
+		self.assertRegexpMatches(Constants.version, "\d")
 
-	def testReleaseVersionAttribute(self):
+	def testversionAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.releaseVersion` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.version` attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.releaseVersion, "\d\.\d\.\d")
+		self.assertRegexpMatches(Constants.version, "\d\.\d\.\d")
 
 	def testLoggerAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.logger` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.logger` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.logger, "\w+")
 
+	def testDefaultCodecAttribute(self):
+		"""
+		Tests :attr:`umbra.globals.constants.Constants.defaultCodec` attribute.
+		"""
+
+		validEncodings = ("utf-8",
+						"cp1252")
+
+		self.assertIn(Constants.defaultCodec, validEncodings)
+
+	def testEncodingErrorAttribute(self):
+		"""
+		Tests :attr:`umbra.globals.constants.Constants.codecError` attribute.
+		"""
+
+		validEncodingsErrors = ("strict",
+						"ignore",
+						"replace",
+						"xmlcharrefreplace")
+
+		self.assertIn(Constants.codecError, validEncodingsErrors)
+
 	def testApplicationDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.applicationDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.applicationDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.applicationDirectory, "\w+")
 
 	def testProviderDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.providerDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.providerDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.providerDirectory, "\w+")
 
 	def testDatabaseDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.databaseDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.databaseDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.databaseDirectory, "\w+")
 
 	def testPatchesDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.patchesDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.patchesDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.patchesDirectory, "\w+")
 
 	def testSettingsDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.settingsDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.settingsDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.settingsDirectory, "\w+")
 
 	def testUserComponentsDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.userComponentsDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.userComponentsDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.userComponentsDirectory, "\w+")
 
 	def testLoggingDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.loggingDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.loggingDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.loggingDirectory, "\w+")
 
 	def testTemplatesDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.templatesDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.templatesDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.templatesDirectory, "\w+")
 
 	def testIoDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.ioDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.ioDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.ioDirectory, "\w+")
 
 	def testPreferencesDirectoriesAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.preferencesDirectories` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.preferencesDirectories` attribute.
 		"""
 
 		self.assertIsInstance(Constants.preferencesDirectories, tuple)
 
 	def testCoreComponentsDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.coreComponentsDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.coreComponentsDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.coreComponentsDirectory, "\w+")
 
 	def testAddonsComponentsDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.addonsComponentsDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.addonsComponentsDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.addonsComponentsDirectory, "\w+")
 
 	def testResourcesDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.resourcesDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.resourcesDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.resourcesDirectory, "\w+")
 
 	def testPatchesFileAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.patchesFile` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.patchesFile` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.patchesFile, "\w+")
 
 	def testDatabaseFileAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.databaseFile` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.databaseFile` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.databaseFile, "\w+")
 
 	def testSettingsFileAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.settingsFile` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.settingsFile` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.settingsFile, "\w+")
 
 	def testLoggingFileAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.loggingFile` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.loggingFile` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.loggingFile, "\w+")
 
 	def testDatabaseMigrationsFilesExtensionAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.databaseMigrationsFilesExtension` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.databaseMigrationsFilesExtension` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.databaseMigrationsFilesExtension, "\w+")
 
 	def testLibrariesDirectoryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.librariesDirectory` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.librariesDirectory` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.librariesDirectory, "\w+")
 
 	def testFreeImageLibraryAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.constants.Constants.freeImageLibrary` attribute.
+		Tests :attr:`sibl_gui.globals.constants.Constants.freeImageLibrary` attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.freeImageLibrary, "\w+")

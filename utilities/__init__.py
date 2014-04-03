@@ -2,22 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-**RuntimeGlobals.py**
+**__init__.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
 
 **Others:**
 
 """
-
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
-from __future__ import unicode_literals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -29,24 +23,23 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["RuntimeGlobals"]
+__all__ = ["DEFAULT_CODEC"]
+
+DEFAULT_CODEC = "utf-8"
 
 #**********************************************************************************************************************
-#***	Module classes and definitions.
+#***	Encoding manipulations.
 #**********************************************************************************************************************
-class RuntimeGlobals():
+def _setEncoding():
 	"""
-	Defines **sIBL_GUI** package runtime constants.
+	Sets the Package encoding.
 	"""
 
-	templatesFactoryDirectory = None
-	"""Templates factory directory."""
-	templatesUserDirectory = None
-	"""Templates user directory."""
+	import sys
+	reload(sys)
 
-	thumbnailsCacheDirectory = None
-	"""Thumbnails cache directory."""
+	sys.setdefaultencoding(DEFAULT_CODEC)
 
-	imagesCaches = None
-	"""Images cache."""
+_setEncoding()
+
 
