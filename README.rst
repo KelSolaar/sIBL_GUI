@@ -1,11 +1,11 @@
-.. image:: https://badge.waffle.io/kelsolaar/sibl_gui.png?label=ready&title=Ready 
- :target: https://waffle.io/kelsolaar/sibl_gui
- :alt: 'Stories in Ready'
 sIBL_GUI
 ========
 
 ..  image:: https://secure.travis-ci.org/KelSolaar/sIBL_GUI.png?branch=master
 ..  image:: https://gemnasium.com/KelSolaar/sIBL_GUI.png  
+.. image:: https://badge.waffle.io/kelsolaar/sibl_gui.png?label=ready&title=Ready 
+ :target: https://waffle.io/kelsolaar/sibl_gui
+ :alt: 'Stories in Ready'
 
 Introduction
 ------------
