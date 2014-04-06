@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/kelsolaar/sibl_gui.png?label=ready&title=Ready 
+ :target: https://waffle.io/kelsolaar/sibl_gui
+ :alt: 'Stories in Ready'
 sIBL_GUI
 ========
 
