@@ -82,12 +82,12 @@ class Constants():
 	:type logger: unicode
 	"""
 
-	defaultCodec = sibl_gui.DEFAULT_CODEC
+	defaultCodec = "utf-8"
 	"""
 	:param defaultCodec: Default codec.
 	:type defaultCodec: unicode
 	"""
-	codecError = sibl_gui.CODEC_ERROR
+	codecError = "ignore"
 	"""
 	:param codecError: Default codec error behavior.
 	:type codecError: unicode

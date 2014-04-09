@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**__init__.py**
+**sitecustomize.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
@@ -23,23 +23,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["DEFAULT_CODEC"]
-
-DEFAULT_CODEC = "utf-8"
+__all__ = []
 
 #**********************************************************************************************************************
 #***	Encoding manipulations.
 #**********************************************************************************************************************
-def _setEncoding():
-	"""
-	Sets the Package encoding.
-	"""
 
-	import sys
-	reload(sys)
-
-	sys.setdefaultencoding(DEFAULT_CODEC)
-
-_setEncoding()
-
-
+import sys
+sys.setdefaultencoding("utf-8")

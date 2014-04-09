@@ -69,6 +69,7 @@ do
 		rm -f $DEPENDENCIES_DIRECTORY/$package/resources/images/*.$extension
 	done
 done
+cp $UTILITIES_DIRECTORY/sitecustomize.py $DEPENDENCIES_DIRECTORY/
 cp $SOURCE_DIRECTORY/sibl_gui/resources/images/Icon_Light_256.icns $RESOURCES_DIRECTORY/icon-windowed.icns
 python $UTILITIES_DIRECTORY/recursiveRemove.py --input $BUNDLE_DIRECTORY --pattern .pyc
 rm -f $DEPENDENCIES_DIRECTORY/sibl_gui/libraries/freeImage/resources/*.dll

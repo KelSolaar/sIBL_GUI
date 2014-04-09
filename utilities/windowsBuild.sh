@@ -69,6 +69,7 @@ do
 		rm -f $DEPENDENCIES_DIRECTORY/$package/resources/images/*.$extension
 	done
 done
+cp $UTILITIES_DIRECTORY/sitecustomize.py $DEPENDENCIES_DIRECTORY/
 rm -f $DEPENDENCIES_DIRECTORY/sibl_gui/libraries/freeImage/resources/*.dylib
 rm -f $DEPENDENCIES_DIRECTORY/sibl_gui/libraries/freeImage/resources/*.so
 rm -rf $DEPENDENCIES_DIRECTORY/*/tests
