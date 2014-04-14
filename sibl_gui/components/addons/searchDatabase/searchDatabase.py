@@ -619,7 +619,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					try:
 						pattern = re.compile(pattern, flags)
 						for tag in tagsCloud:
-							if re.search(pattern, tag, flags=flags):
+							if re.search(pattern, tag):
 								patternMatched = True
 								break
 					except re.error:
