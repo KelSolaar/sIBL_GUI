@@ -902,7 +902,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.settimeout(2.5)
-				connection.connect((foundations.strings.toString(self.__tcpClientUi.address), 	self.__tcpClientUi.port))
+				connection.connect((foundations.strings.toString(self.__tcpClientUi.address), self.__tcpClientUi.port))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand",
 								templateSectionsFileParser.getValue("ExecutionCommand",
 								self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath",
@@ -919,7 +919,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 				LOGGER.info("{0} | Closing remote connection on timeout!".format(self.__class__.__name__))
 			except Exception as error:
 				raise sibl_gui.exceptions.SocketConnectionError(
-				"{0} | Socket connection error: '{1}'!".format(self.__class__.__name__, error))
+				"{0} | Socket connection error: '{1}'!".format(self.__class__.__name__,
+															foundations.strings.toString(error)))
 		elif connectionType.value == "Win32":
 			if platform.system() == "Windows" or platform.system() == "Microsoft":
 				try:
@@ -938,7 +939,8 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 					"{0} | Win32 connection command dispatched!".format(self.__class__.__name__))
 				except Exception as error:
 					raise sibl_gui.exceptions.Win32OLEServerConnectionError(
-					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
+					"{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__,
+																			foundations.strings.toString(error)))
 		return True
 
 	def getDefaultOverrideKeys(self):
