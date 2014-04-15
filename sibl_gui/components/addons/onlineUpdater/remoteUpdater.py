@@ -815,7 +815,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
 					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
-					os.remove(download)
+					try:
+						os.remove(download)
+					except OSError as error:
+						LOGGER.warning("!> {0} | Cannot remove '{1}' file!".format(download))
 				else:
 					self.__container.engine.notificationsManager.exceptify(
 					"{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__,

@@ -310,7 +310,7 @@ class UiConstants():
 	thumbnailsCacheDirectory = "thumbnails"
 	"""Thumbnails cache directory."""
 
-	crittercismId = "51290b3589ea7429250004fe"
+	crittercismId = "5075c158d5f9b9796b000002"
 	"""
 	:param crittercismId: Crittercism Id.
 	:type crittercismId: unicode
