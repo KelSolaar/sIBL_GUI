@@ -47,7 +47,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "Base", "IblSet", "Template", "Collection"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -56,10 +56,10 @@ Base = sqlalchemy.ext.declarative.declarative_base()
 
 class IblSet(Base):
 	"""
-	Defines the Database IblSets type.
+	Defines the Database ibl_sets type.
 	"""
 
-	__tablename__ = "IblSets"
+	__tablename__ = "ibl_sets"
 	"""
 	:param __tablename__: Table name.
 	:type __tablename__: unicode
@@ -68,16 +68,16 @@ class IblSet(Base):
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
 	path = sqlalchemy.Column(sqlalchemy.String)
-	osStats = sqlalchemy.Column(sqlalchemy.String)
-	collection = sqlalchemy.Column(sqlalchemy.Integer, ForeignKey("Collections.id"))
+	os_stats = sqlalchemy.Column(sqlalchemy.String)
+	collection = sqlalchemy.Column(sqlalchemy.Integer, ForeignKey("collections.id"))
 	title = sqlalchemy.Column(sqlalchemy.String)
 	author = sqlalchemy.Column(sqlalchemy.String)
 	link = sqlalchemy.Column(sqlalchemy.String)
 	icon = sqlalchemy.Column(sqlalchemy.String)
-	previewImage = sqlalchemy.Column(sqlalchemy.String)
-	backgroundImage = sqlalchemy.Column(sqlalchemy.String)
-	lightingImage = sqlalchemy.Column(sqlalchemy.String)
-	reflectionImage = sqlalchemy.Column(sqlalchemy.String)
+	preview_image = sqlalchemy.Column(sqlalchemy.String)
+	background_image = sqlalchemy.Column(sqlalchemy.String)
+	lighting_image = sqlalchemy.Column(sqlalchemy.String)
+	reflection_image = sqlalchemy.Column(sqlalchemy.String)
 	location = sqlalchemy.Column(sqlalchemy.String)
 	latitude = sqlalchemy.Column(sqlalchemy.String)
 	longitude = sqlalchemy.Column(sqlalchemy.String)
@@ -88,16 +88,16 @@ class IblSet(Base):
 	def __init__(self,
 			name=None,
 			path=None,
-			osStats=None,
+			os_stats=None,
 			collection=None,
 			title=None,
 			author=None,
 			link=None,
 			icon=None,
-			previewImage=None,
-			backgroundImage=None,
-			lightingImage=None,
-			reflectionImage=None,
+			preview_image=None,
+			background_image=None,
+			lighting_image=None,
+			reflection_image=None,
 			location=None,
 			latitude=None,
 			longitude=None,
@@ -111,8 +111,8 @@ class IblSet(Base):
 		:type name: unicode
 		:param path: Ibl Set file path.
 		:type path: unicode
-		:param osStats: Ibl Set file statistics.
-		:type osStats: unicode
+		:param os_stats: Ibl Set file statistics.
+		:type os_stats: unicode
 		:param collection: Ibl Set collection.
 		:type collection: unicode
 		:param title: Ibl Set title.
@@ -123,14 +123,14 @@ class IblSet(Base):
 		:type link: unicode
 		:param icon: Ibl Set icon path.
 		:type icon: unicode
-		:param previewImage: Ibl Set preview image path.
-		:type previewImage: unicode
-		:param backgroundImage: Ibl Set background image path.
-		:type backgroundImage: unicode
-		:param lightingImage: Ibl Set lighting image path.
-		:type lightingImage: unicode
-		:param reflectionImage: Ibl Set reflection image path.
-		:type reflectionImage: unicode
+		:param preview_image: Ibl Set preview image path.
+		:type preview_image: unicode
+		:param background_image: Ibl Set background image path.
+		:type background_image: unicode
+		:param lighting_image: Ibl Set lighting image path.
+		:type lighting_image: unicode
+		:param reflection_image: Ibl Set reflection image path.
+		:type reflection_image: unicode
 		:param location: Ibl Set location.
 		:type location: unicode
 		:param latitude: Ibl Set latitude.
@@ -150,16 +150,16 @@ class IblSet(Base):
 		# --- Setting class attributes. ---
 		self.name = name
 		self.path = path
-		self.osStats = osStats
+		self.os_stats = os_stats
 		self.collection = collection
 		self.title = title
 		self.author = author
 		self.link = link
 		self.icon = icon
-		self.previewImage = previewImage
-		self.backgroundImage = backgroundImage
-		self.lightingImage = lightingImage
-		self.reflectionImage = reflectionImage
+		self.preview_image = preview_image
+		self.background_image = background_image
+		self.lighting_image = lighting_image
+		self.reflection_image = reflection_image
 		self.location = location
 		self.latitude = latitude
 		self.longitude = longitude
@@ -167,8 +167,8 @@ class IblSet(Base):
 		self.time = time
 		self.comment = comment
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.FileStructureParsingError)
-	def setContent(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.FileStructureParsingError)
+	def set_content(self):
 		"""
 		Initializes the class attributes.
 
@@ -176,34 +176,34 @@ class IblSet(Base):
 		:rtype: bool
 		"""
 
-		sectionsFileParser = SectionsFileParser(self.path)
-		sectionsFileParser.parse()
+		sections_file_parser = SectionsFileParser(self.path)
+		sections_file_parser.parse()
 
-		if sectionsFileParser.sections:
-			self.title = sectionsFileParser.getValue("Name", "Header")
-			self.author = sectionsFileParser.getValue("Author", "Header")
-			self.link = sectionsFileParser.getValue("Link", "Header")
+		if sections_file_parser.sections:
+			self.title = sections_file_parser.get_value("Name", "Header")
+			self.author = sections_file_parser.get_value("Author", "Header")
+			self.link = sections_file_parser.get_value("Link", "Header")
 			self.icon = os.path.normpath(os.path.join(os.path.dirname(self.path),
-										sectionsFileParser.getValue("ICOfile", "Header"))) \
-										if sectionsFileParser.getValue("ICOfile", "Header") else None
-			self.previewImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
-								 				sectionsFileParser.getValue("PREVIEWfile", "Header"))) \
-								 				if sectionsFileParser.getValue("PREVIEWfile", "Header") else None
-			self.backgroundImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
-													sectionsFileParser.getValue("BGfile", "Background"))) \
-													if sectionsFileParser.getValue("BGfile", "Background") else None
-			self.lightingImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
-												sectionsFileParser.getValue("EVfile", "Enviroment"))) \
-												if sectionsFileParser.getValue("EVfile", "Enviroment") else None
-			self.reflectionImage = os.path.normpath(os.path.join(os.path.dirname(self.path),
-													sectionsFileParser.getValue("REFfile", "Reflection"))) \
-													if sectionsFileParser.getValue("REFfile", "Reflection") else None
-			self.location = sectionsFileParser.getValue("Location", "Header")
-			self.latitude = sectionsFileParser.getValue("GEOlat", "Header")
-			self.longitude = sectionsFileParser.getValue("GEOlong", "Header")
-			self.date = sectionsFileParser.getValue("Date", "Header")
-			self.time = sectionsFileParser.getValue("Time", "Header")
-			self.comment = sectionsFileParser.getValue("Comment", "Header")
+										sections_file_parser.get_value("ICOfile", "Header"))) \
+										if sections_file_parser.get_value("ICOfile", "Header") else None
+			self.preview_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
+								 				sections_file_parser.get_value("PREVIEWfile", "Header"))) \
+								 				if sections_file_parser.get_value("PREVIEWfile", "Header") else None
+			self.background_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
+													sections_file_parser.get_value("BGfile", "Background"))) \
+													if sections_file_parser.get_value("BGfile", "Background") else None
+			self.lighting_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
+												sections_file_parser.get_value("EVfile", "Enviroment"))) \
+												if sections_file_parser.get_value("EVfile", "Enviroment") else None
+			self.reflection_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
+													sections_file_parser.get_value("REFfile", "Reflection"))) \
+													if sections_file_parser.get_value("REFfile", "Reflection") else None
+			self.location = sections_file_parser.get_value("Location", "Header")
+			self.latitude = sections_file_parser.get_value("GEOlat", "Header")
+			self.longitude = sections_file_parser.get_value("GEOlong", "Header")
+			self.date = sections_file_parser.get_value("Date", "Header")
+			self.time = sections_file_parser.get_value("Time", "Header")
+			self.comment = sections_file_parser.get_value("Comment", "Header")
 
 			return True
 		else:
@@ -215,7 +215,7 @@ class Template(Base):
 	Defines the Database Template type.
 	"""
 
-	__tablename__ = "Templates"
+	__tablename__ = "templates"
 	"""
 	:param __tablename__: Table name.
 	:type __tablename__: unicode
@@ -224,9 +224,9 @@ class Template(Base):
 	id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
 	name = sqlalchemy.Column(sqlalchemy.String)
 	path = sqlalchemy.Column(sqlalchemy.String)
-	osStats = sqlalchemy.Column(sqlalchemy.String)
-	collection = sqlalchemy.Column(sqlalchemy.Integer, ForeignKey("Collections.id"))
-	helpFile = sqlalchemy.Column(sqlalchemy.String)
+	os_stats = sqlalchemy.Column(sqlalchemy.String)
+	collection = sqlalchemy.Column(sqlalchemy.Integer, ForeignKey("collections.id"))
+	help_file = sqlalchemy.Column(sqlalchemy.String)
 	title = sqlalchemy.Column(sqlalchemy.String)
 	author = sqlalchemy.Column(sqlalchemy.String)
 	email = sqlalchemy.Column(sqlalchemy.String)
@@ -236,15 +236,15 @@ class Template(Base):
 	software = sqlalchemy.Column(sqlalchemy.String)
 	version = sqlalchemy.Column(sqlalchemy.String)
 	renderer = sqlalchemy.Column(sqlalchemy.String)
-	outputScript = sqlalchemy.Column(sqlalchemy.String)
+	output_script = sqlalchemy.Column(sqlalchemy.String)
 	comment = sqlalchemy.Column(sqlalchemy.String)
 
 	def __init__(self,
 			name=None,
 			path=None,
-			osStats=None,
+			os_stats=None,
 			collection=None,
-			helpFile=None,
+			help_file=None,
 			title=None,
 			author=None,
 			email=None,
@@ -254,7 +254,7 @@ class Template(Base):
 			software=None,
 			version=None,
 			renderer=None,
-			outputScript=None,
+			output_script=None,
 			comment=None):
 		"""
 		Initializes the class.
@@ -263,12 +263,12 @@ class Template(Base):
 		:type name: unicode
 		:param path: Template file path.
 		:type path: unicode
-		:param osStats: Template file statistics.
-		:type osStats: unicode
+		:param os_stats: Template file statistics.
+		:type os_stats: unicode
 		:param collection: Template collection.
 		:type collection: unicode
-		:param helpFile: Template help file path.
-		:type helpFile: unicode
+		:param help_file: Template help file path.
+		:type help_file: unicode
 		:param title: Template title.
 		:type title: unicode
 		:param author: Template author.
@@ -287,8 +287,8 @@ class Template(Base):
 		:type version: unicode
 		:param renderer: Template target renderer.
 		:type renderer: unicode
-		:param outputScript: Template loader script name.
-		:type outputScript: unicode
+		:param output_script: Template loader script name.
+		:type output_script: unicode
 		:param comment: Template comment.
 		:type comment: unicode
 		"""
@@ -298,9 +298,9 @@ class Template(Base):
 		# --- Setting class attributes. ---
 		self.name = name
 		self.path = path
-		self.osStats = osStats
+		self.os_stats = os_stats
 		self.collection = collection
-		self.helpFile = helpFile
+		self.help_file = help_file
 		self.title = title
 		self.author = author
 		self.email = email
@@ -310,11 +310,11 @@ class Template(Base):
 		self.software = software
 		self.version = version
 		self.renderer = renderer
-		self.outputScript = outputScript
+		self.output_script = output_script
 		self.comment = comment
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.FileStructureParsingError)
-	def setContent(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.FileStructureParsingError)
+	def set_content(self):
 		"""
 		Initializes the class attributes.
 
@@ -322,37 +322,37 @@ class Template(Base):
 		:rtype: bool
 		"""
 
-		sectionsFileParser = SectionsFileParser(self.path)
-		sectionsFileParser.parse(rawSections=("Script"))
+		sections_file_parser = SectionsFileParser(self.path)
+		sections_file_parser.parse(raw_sections=("Script"))
 
-		if sectionsFileParser.sections:
-			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile",
-							sectionsFileParser.getValue("HelpFile", "Template")).value and \
+		if sections_file_parser.sections:
+			self.help_file = foundations.parsers.get_attribute_compound("HelpFile",
+							sections_file_parser.get_value("HelpFile", "Template")).value and \
 							os.path.join(os.path.dirname(self.path),
-										foundations.parsers.getAttributeCompound("HelpFile",
-										sectionsFileParser.getValue("HelpFile", 	"Template")).value) or None
-			self.title = foundations.parsers.getAttributeCompound("Name",
-						sectionsFileParser.getValue("Name", 	"Template")).value
-			self.author = foundations.parsers.getAttributeCompound("Author",
-						sectionsFileParser.getValue("Author", "Template")).value
-			self.email = foundations.parsers.getAttributeCompound("Email",
-						sectionsFileParser.getValue("Email", "Template")).value
-			self.url = foundations.parsers.getAttributeCompound("Url",
-						sectionsFileParser.getValue("Url", "Template")).value
-			self.release = foundations.parsers.getAttributeCompound("Release",
-							sectionsFileParser.getValue("Release", "Template")).value
-			self.date = foundations.parsers.getAttributeCompound("Date",
-						sectionsFileParser.getValue("Date", "Template")).value
-			self.software = foundations.parsers.getAttributeCompound("Software",
-							sectionsFileParser.getValue("Software", "Template")).value
-			self.version = foundations.parsers.getAttributeCompound("Version",
-							sectionsFileParser.getValue("Version", "Template")).value
-			self.renderer = foundations.parsers.getAttributeCompound("Renderer",
-							sectionsFileParser.getValue("Renderer", "Template")).value
-			self.outputScript = foundations.parsers.getAttributeCompound("OutputScript",
-								sectionsFileParser.getValue("OutputScript", "Template")).value
-			self.comment = foundations.parsers.getAttributeCompound("Comment",
-							sectionsFileParser.getValue("Comment", "Template")).value
+										foundations.parsers.get_attribute_compound("HelpFile",
+										sections_file_parser.get_value("HelpFile", 	"Template")).value) or None
+			self.title = foundations.parsers.get_attribute_compound("Name",
+						sections_file_parser.get_value("Name", 	"Template")).value
+			self.author = foundations.parsers.get_attribute_compound("Author",
+						sections_file_parser.get_value("Author", "Template")).value
+			self.email = foundations.parsers.get_attribute_compound("Email",
+						sections_file_parser.get_value("Email", "Template")).value
+			self.url = foundations.parsers.get_attribute_compound("Url",
+						sections_file_parser.get_value("Url", "Template")).value
+			self.release = foundations.parsers.get_attribute_compound("Release",
+							sections_file_parser.get_value("Release", "Template")).value
+			self.date = foundations.parsers.get_attribute_compound("Date",
+						sections_file_parser.get_value("Date", "Template")).value
+			self.software = foundations.parsers.get_attribute_compound("Software",
+							sections_file_parser.get_value("Software", "Template")).value
+			self.version = foundations.parsers.get_attribute_compound("Version",
+							sections_file_parser.get_value("Version", "Template")).value
+			self.renderer = foundations.parsers.get_attribute_compound("Renderer",
+							sections_file_parser.get_value("Renderer", "Template")).value
+			self.output_script = foundations.parsers.get_attribute_compound("OutputScript",
+								sections_file_parser.get_value("OutputScript", "Template")).value
+			self.comment = foundations.parsers.get_attribute_compound("Comment",
+							sections_file_parser.get_value("Comment", "Template")).value
 
 			return True
 
@@ -365,7 +365,7 @@ class Collection(Base):
 	Defines the Database Collection type.
 	"""
 
-	__tablename__ = "Collections"
+	__tablename__ = "collections"
 	"""
 	:param __tablename__: Table name.
 	:type __tablename__: unicode

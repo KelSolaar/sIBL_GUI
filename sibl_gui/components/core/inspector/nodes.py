@@ -44,7 +44,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "PlatesNode"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -67,10 +67,10 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 				parent=None,
 				children=None,
 				roles=None,
-				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-				iconSize=None,
-				iconPlaceholder=None,
+				node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
@@ -85,14 +85,14 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 		:type children: list
 		:param roles: Roles.
 		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param node_flags: Node flags.
+		:type node_flags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -104,19 +104,19 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 												parent,
 												children,
 												roles,
-												nodeFlags,
-												iconSize,
-												iconPlaceholder,
+												node_flags,
+												icon_size,
+												icon_placeholder,
 												**kwargs)
 
 		# --- Setting class attributes. ---
 		self.__plate = plate
 
-		self.__toolTipText = """
+		self.__tool_tip_text = """
 								<p><b>{0}</b></p>
 								"""
 
-		PlatesNode.__initializeNode(self, attributesFlags)
+		PlatesNode.__initialize_node(self, attributes_flags)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -133,7 +133,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 		return self.__plate
 
 	@plate.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def plate(self, value):
 		"""
 		Setter for **self.__plate** attribute.
@@ -146,7 +146,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
 
 	@plate.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def plate(self):
 		"""
 		Deleter for **self.__plate** attribute.
@@ -156,34 +156,34 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
 	@property
-	def toolTipText(self):
+	def tool_tip_text(self):
 		"""
-		Property for **self.__toolTipText** attribute.
+		Property for **self.__tool_tip_text** attribute.
 
-		:return: self.__toolTipText.
+		:return: self.__tool_tip_text.
 		:rtype: unicode
 		"""
 
-		return self.__toolTipText
+		return self.__tool_tip_text
 
-	@toolTipText.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
+	@tool_tip_text.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def tool_tip_text(self, value):
 		"""
-		Setter for **self.__toolTipText** attribute.
+		Setter for **self.__tool_tip_text** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tool_tip_text"))
 
-	@toolTipText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
+	@tool_tip_text.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def tool_tip_text(self):
 		"""
-		Deleter for **self.__toolTipText** attribute.
+		Deleter for **self.__tool_tip_text** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -192,12 +192,12 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
+	def __initialize_node(self, attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
 		Initializes the node.
 		
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
 		"""
 
-		self.roles.update({Qt.ToolTipRole : self.__toolTipText.format(self.name)})
+		self.roles.update({Qt.ToolTipRole : self.__tool_tip_text.format(self.name)})

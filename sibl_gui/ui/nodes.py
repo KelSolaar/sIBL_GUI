@@ -46,7 +46,7 @@ __all__ = ["LOGGER",
 		"GraphModelAttribute",
 		"GraphModelNode"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -65,28 +65,28 @@ class Mixin_GraphModelObject(object):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
-		self.__iconSize = None
-		self.__iconPlaceholder = None
+		self.__icon_size = None
+		self.__icon_placeholder = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def iconSize(self):
+	def icon_size(self):
 		"""
-		Property for **self.__iconSize** attribute.
+		Property for **self.__icon_size** attribute.
 
-		:return: self.__iconSize.
+		:return: self.__icon_size.
 		:rtype: unicode
 		"""
 
-		return self.__iconSize
+		return self.__icon_size
 
-	@iconSize.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def iconSize(self, value):
+	@icon_size.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def icon_size(self, value):
 		"""
-		Setter for **self.__iconSize** attribute.
+		Setter for **self.__icon_size** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
@@ -94,35 +94,35 @@ class Mixin_GraphModelObject(object):
 
 		if value is not None:
 			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-			"iconSize", value)
-		self.__iconSize = value
+			"icon_size", value)
+		self.__icon_size = value
 
-	@iconSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iconSize(self):
+	@icon_size.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def icon_size(self):
 		"""
-		Deleter for **self.__iconSize** attribute.
+		Deleter for **self.__icon_size** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iconSize"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_size"))
 
 	@property
-	def iconPlaceholder(self):
+	def icon_placeholder(self):
 		"""
-		Property for **self.__iconPlaceholder** attribute.
+		Property for **self.__icon_placeholder** attribute.
 
-		:return: self.__iconPlaceholder.
+		:return: self.__icon_placeholder.
 		:rtype: QIcon
 		"""
 
-		return self.__iconPlaceholder
+		return self.__icon_placeholder
 
-	@iconPlaceholder.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def iconPlaceholder(self, value):
+	@icon_placeholder.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def icon_placeholder(self, value):
 		"""
-		Setter for **self.__iconPlaceholder** attribute.
+		Setter for **self.__icon_placeholder** attribute.
 
 		:param value: Attribute value.
 		:type value: QIcon
@@ -130,18 +130,18 @@ class Mixin_GraphModelObject(object):
 
 		if value is not None:
 			assert type(value) is QIcon, "'{0}' attribute: '{1}' type is not 'QIcon'!".format(
-			"iconPlaceholder", value)
-		self.__iconPlaceholder = value
+			"icon_placeholder", value)
+		self.__icon_placeholder = value
 
-	@iconPlaceholder.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iconPlaceholder(self):
+	@icon_placeholder.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def icon_placeholder(self):
 		"""
-		Deleter for **self.__iconPlaceholder** attribute.
+		Deleter for **self.__icon_placeholder** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iconPlaceholder"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_placeholder"))
 
 class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelObject):
 	"""
@@ -153,8 +153,8 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 				value=None,
 				roles=None,
 				flags=None,
-				iconSize=None,
-				iconPlaceholder=None,
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
@@ -167,10 +167,10 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 		:type roles: dict
 		:param flags: Flags.
 		:type flags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -181,8 +181,8 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
 		Mixin_GraphModelObject.__init__(self)
 
 		# --- Setting class attributes. ---
-		self.iconSize = iconSize if iconSize is not None else "Default"
-		self.iconPlaceholder = iconPlaceholder
+		self.icon_size = icon_size if icon_size is not None else "Default"
+		self.icon_placeholder = icon_placeholder
 
 class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 	"""
@@ -201,8 +201,8 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 				children=None,
 				roles=None,
 				flags=None,
-				iconSize=None,
-				iconPlaceholder=None,
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
@@ -216,10 +216,10 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 		:param roles: Roles.
 		:type roles: dict
 		:param flags: Flags. ( Qt.ItemFlag )
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -230,5 +230,5 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
 		Mixin_GraphModelObject.__init__(self)
 
 		# --- Setting class attributes. ---
-		self.iconSize = iconSize if iconSize is not None else "Default"
-		self.iconPlaceholder = iconPlaceholder
+		self.icon_size = icon_size if icon_size is not None else "Default"
+		self.icon_placeholder = icon_placeholder

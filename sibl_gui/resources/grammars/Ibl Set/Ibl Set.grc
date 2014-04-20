@@ -9,9 +9,9 @@ SymbolsPairs = ()|[]|{}|""|''|``
 [Accelerators]
 Highlighter = DefaultHighlighter
 Completer = DefaultCompleter
-PreInputAccelerators = symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators
-PostInputAccelerators = completionPostEventInputAccelerators
-VisualAccelerators = highlightCurrentLine|highlightOccurences|highlightMatchingSymbolsPairs
+PreInputAccelerators = symbols_expanding_pre_event_input_accelerators|completion_pre_event_input_accelerators
+PostInputAccelerators = completion_post_event_input_accelerators
+VisualAccelerators = highlight_current_line|highlight_occurences|highlight_matching_symbols_pairs
 Dictionary = Ibl Set.drc
 Theme = DefaultTheme
 

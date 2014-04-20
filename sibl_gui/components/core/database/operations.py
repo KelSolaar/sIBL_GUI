@@ -50,44 +50,44 @@ __all__ = ["LOGGER",
 			"DATABASE_EXCEPTIONS",
 			"DEFAULT_SESSION_MAKER",
 			"DEFAULT_SESSION",
-			"createSession",
-			"getSession",
+			"create_session",
+			"get_session",
 			"commit",
-			"addItem",
-			"addStandardItem",
-			"removeItem",
-			"removeStandardItem",
-			"updateItemContent",
-			"updateItemLocation",
-			"filterItems",
-			"itemExists",
-			"getIblSets",
-			"filterIblSets",
-			"iblSetExists",
-			"addIblSet",
-			"removeIblSet",
-			"updateIblSetContent",
-			"updateIblSetLocation",
-			"checkIblSetsTableIntegrity",
-			"getCollections",
-			"filterCollections",
-			"getCollectionsByType",
-			"collectionExists",
-			"addCollection",
-			"removeCollection",
-			"getCollectionsIblSets",
+			"add_item",
+			"add_standard_item",
+			"remove_item",
+			"remove_standard_item",
+			"update_item_content",
+			"update_item_location",
+			"filter_items",
+			"item_exists",
+			"get_ibl_sets",
+			"filter_ibl_sets",
+			"ibl_set_exists",
+			"add_ibl_set",
+			"remove_ibl_set",
+			"update_ibl_set_content",
+			"update_ibl_set_location",
+			"check_ibl_sets_table_integrity",
+			"get_collections",
+			"filter_collections",
+			"get_collections_by_type",
+			"collection_exists",
+			"add_collection",
+			"remove_collection",
+			"get_collections_ibl_sets",
 			"getCollectionIblSetsCount",
-			"getCollectionTemplatesCount",
-			"getTemplates",
-			"filterTemplates",
-			"templateExists",
-			"addTemplate",
-			"removeTemplate",
-			"updateTemplateContent",
-			"updateTemplateLocation",
-			"checkTemplatesTableIntegrity"]
+			"get_collection_templates_count",
+			"get_templates",
+			"filter_templates",
+			"template_exists",
+			"add_template",
+			"remove_template",
+			"update_template_content",
+			"update_template_location",
+			"check_templates_table_integrity"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 DATABASE_EXCEPTIONS = {
 	sibl_gui.components.core.database.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",
@@ -105,7 +105,7 @@ DEFAULT_SESSION = None
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def createSession():
+def create_session():
 	"""
 	Creates a default session.
 
@@ -115,7 +115,7 @@ def createSession():
 
 	return DEFAULT_SESSION_MAKER()
 
-def getSession(session=None):
+def get_session(session=None):
 	"""
 	Returns either given session or the default one.
 
@@ -145,9 +145,9 @@ def query(*args, **kwargs):
 	:rtype: object
 	"""
 
-	return getSession(kwargs.get("session")).query(*args, **kwargs)
+	return get_session(kwargs.get("session")).query(*args, **kwargs)
 
-@foundations.exceptions.handleExceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+@foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 def commit(session=None):
 	"""
 	Commits changes to the Database.
@@ -158,7 +158,7 @@ def commit(session=None):
 	:rtype: bool
 	"""
 
-	session = getSession(session)
+	session = get_session(session)
 
 	try:
 		session.commit()
@@ -168,7 +168,7 @@ def commit(session=None):
 		raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
 		"{0} | Database commit error: '{1}'".format(__name__, error))
 
-def addItem(item, session=None):
+def add_item(item, session=None):
 	"""
 	Adds an item to the Database.
 
@@ -182,11 +182,11 @@ def addItem(item, session=None):
 
 	LOGGER.debug("> Adding: '{0}' item to the Database.".format(item))
 
-	session = getSession(session)
+	session = get_session(session)
 	session.add(item)
 	return commit(session)
 
-def addStandardItem(type, name, path, collection, session=None):
+def add_standard_item(type, name, path, collection, session=None):
 	"""
 	Adds a new standard item to the Database.
 
@@ -206,22 +206,22 @@ def addStandardItem(type, name, path, collection, session=None):
 
 	LOGGER.debug("> Adding: '{0}' '{1}' to the Database.".format(name, type.__name__))
 
-	session = getSession(session)
+	session = get_session(session)
 
-	if not filterItems(query(type), "^{0}$".format(re.escape(path)), "path"):
-		if not foundations.common.pathExists(path):
+	if not filter_items(query(type), "^{0}$".format(re.escape(path)), "path"):
+		if not foundations.common.path_exists(path):
 			LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(__name__, path))
 			return False
 
-		osStats = ",".join((foundations.strings.toString(stat) for stat in os.stat(path)))
-		databaseItem = type(name=name, path=path, collection=collection, osStats=osStats)
-		if databaseItem.setContent():
-			return addItem(databaseItem, session)
+		os_stats = ",".join((foundations.strings.to_string(stat) for stat in os.stat(path)))
+		database_item = type(name=name, path=path, collection=collection, os_stats=os_stats)
+		if database_item.set_content():
+			return add_item(database_item, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__, path, type.__name__))
 		return False
 
-def removeItem(item, session=None):
+def remove_item(item, session=None):
 	"""
 	Removes an item from the Database.
 
@@ -235,11 +235,11 @@ def removeItem(item, session=None):
 
 	LOGGER.debug("> Removing: '{0}' item from the Database.".format(item))
 
-	session = getSession(session)
+	session = get_session(session)
 	session.delete(item)
 	return commit(session)
 
-def removeStandardItem(type, identity, session=None):
+def remove_standard_item(type, identity, session=None):
 	"""
 	Removes a standard item from the Database.
 
@@ -256,9 +256,9 @@ def removeStandardItem(type, identity, session=None):
 	LOGGER.debug("> Removing item type '{0}' with id '{1}' from the Database.".format(type.__name__, identity))
 
 	item = session.query(type).filter_by(id=identity).one()
-	return removeItem(item, getSession(session))
+	return remove_item(item, get_session(session))
 
-def updateItemContent(item, session=None):
+def update_item_content(item, session=None):
 	"""
 	Update an item content.
 
@@ -272,20 +272,20 @@ def updateItemContent(item, session=None):
 
 	LOGGER.debug("> Updating '{0}' '{1}' content.".format(item.name, item.__class__.__name__))
 
-	if not foundations.common.pathExists(item.path):
+	if not foundations.common.path_exists(item.path):
 		LOGGER.warning("!> {0} | '{1}' file doesn't exists!".format(__name__, item.path))
 		return False
 
-	item.osStats = ",".join(map(foundations.strings.toString, os.stat(item.path)))
-	if item.setContent():
-		return commit(getSession(session))
+	item.os_stats = ",".join(map(foundations.strings.to_string, os.stat(item.path)))
+	if item.set_content():
+		return commit(get_session(session))
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(__name__,
 																		item.name,
 																		item.__class__.__name__))
 		return False
 
-def updateItemLocation(item, path, session=None):
+def update_item_location(item, path, session=None):
 	"""
 	Updates an item location.
 
@@ -301,18 +301,18 @@ def updateItemLocation(item, path, session=None):
 
 	LOGGER.debug("> Updating '{0}' '{1}' location.".format(item, item.__class__.__name__))
 
-	session = getSession(session)
+	session = get_session(session)
 
-	if not filterItems(query(item.__class__), "^{0}$".format(re.escape(path)), "path"):
+	if not filter_items(query(item.__class__), "^{0}$".format(re.escape(path)), "path"):
 		item.path = path
-		return updateItemContent(item, session)
+		return update_item_content(item, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__,
 																					path,
 																					item.__class__.__name__))
 		return False
 
-def filterItems(items, pattern, field, flags=0):
+def filter_items(items, pattern, field, flags=0):
 	"""
 	Filters items from the Database.
 
@@ -328,9 +328,9 @@ def filterItems(items, pattern, field, flags=0):
 	:rtype: list
 	"""
 
-	return [item for item in items if re.search(pattern, foundations.strings.toString(item.__dict__[field]), flags)]
+	return [item for item in items if re.search(pattern, foundations.strings.to_string(item.__dict__[field]), flags)]
 
-def itemExists(items, pattern, field, flags=0):
+def item_exists(items, pattern, field, flags=0):
 	"""
 	Returns if given item exists in the Database.
 
@@ -346,9 +346,9 @@ def itemExists(items, pattern, field, flags=0):
 	:rtype: list
 	"""
 
-	return filterItems(items, pattern, field, flags) and True or False
+	return True if filter_items(items, pattern, field, flags) else False
 
-def getIblSets(session=None):
+def get_ibl_sets(session=None):
 	"""
 	Returns the Ibl Sets from the Database.
 
@@ -358,9 +358,9 @@ def getIblSets(session=None):
 	:rtype: list
 	"""
 
-	return getSession(session).query(IblSet)
+	return get_session(session).query(IblSet)
 
-def filterIblSets(pattern, field, flags=0, session=None):
+def filter_ibl_sets(pattern, field, flags=0, session=None):
 	"""
 	Filters the sets from the Database.
 
@@ -376,9 +376,9 @@ def filterIblSets(pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return filterItems(getIblSets(getSession(session)), pattern, field, flags)
+	return filter_items(get_ibl_sets(get_session(session)), pattern, field, flags)
 
-def iblSetExists(path, session=None):
+def ibl_set_exists(path, session=None):
 	"""
 	Returns if given Ibl Set exists in the Database.
 
@@ -390,9 +390,9 @@ def iblSetExists(path, session=None):
 	:rtype: bool
 	"""
 
-	return filterIblSets("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
+	return True if filter_ibl_sets("^{0}$".format(re.escape(path)), "path", session=get_session(session)) else False
 
-def addIblSet(name, path, collection, session=None):
+def add_ibl_set(name, path, collection, session=None):
 	"""
 	Adds a new Ibl Set to the Database.
 
@@ -408,9 +408,9 @@ def addIblSet(name, path, collection, session=None):
 	:rtype: bool
 	"""
 
-	return addStandardItem(IblSet, name, path, collection, getSession(session))
+	return add_standard_item(IblSet, name, path, collection, get_session(session))
 
-def removeIblSet(identity, session=None):
+def remove_ibl_set(identity, session=None):
 	"""
 	Removes an Ibl Set from the Database.
 
@@ -422,28 +422,28 @@ def removeIblSet(identity, session=None):
 	:rtype: bool
 	"""
 
-	return removeStandardItem(IblSet, identity, getSession(session))
+	return remove_standard_item(IblSet, identity, get_session(session))
 
-def updateIblSetContent(iblSet, session=None):
+def update_ibl_set_content(ibl_set, session=None):
 	"""
 	Update an Ibl Set content.
 
-	:param iblSet: Ibl Set to set content.
-	:type iblSet: IblSet
+	:param ibl_set: Ibl Set to set content.
+	:type ibl_set: IblSet
 	:param session: Database session.
 	:type session: Session
 	:return: Database commit success.
 	:rtype: bool
 	"""
 
-	return updateItemContent(iblSet, getSession(session))
+	return update_item_content(ibl_set, get_session(session))
 
-def updateIblSetLocation(iblSet, path, session=None):
+def update_ibl_set_location(ibl_set, path, session=None):
 	"""
 	Updates an Ibl Set location.
 
-	:param iblSet: Ibl Set to update.
-	:type iblSet: IblSet
+	:param ibl_set: Ibl Set to update.
+	:type ibl_set: IblSet
 	:param path: Ibl Set path.
 	:type path: Path
 	:param session: Database session.
@@ -452,9 +452,9 @@ def updateIblSetLocation(iblSet, path, session=None):
 	:rtype: bool
 	"""
 
-	return updateItemLocation(iblSet, path, getSession(session))
+	return update_item_location(ibl_set, path, get_session(session))
 
-def checkIblSetsTableIntegrity(session=None):
+def check_ibl_sets_table_integrity(session=None):
 	"""
 	Checks sets table integrity.
 
@@ -466,37 +466,37 @@ def checkIblSetsTableIntegrity(session=None):
 
 	LOGGER.debug("> Checking 'Sets' Database table integrity.")
 
-	session = getSession(session)
+	session = get_session(session)
 
-	erroneousIblSets = {}
-	if getIblSets(session):
-		for iblSet in getIblSets(session):
+	erroneous_ibl_sets = {}
+	if get_ibl_sets(session):
+		for ibl_set in get_ibl_sets(session):
 			exceptions = []
-			if not foundations.common.pathExists(iblSet.path):
+			if not foundations.common.path_exists(ibl_set.path):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetFileError)
 
-			if not foundations.common.pathExists(iblSet.icon):
+			if not foundations.common.path_exists(ibl_set.icon):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetIconError)
 
-			if iblSet.previewImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
-																	iblSet.previewImage)):
+			if ibl_set.preview_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
+																	ibl_set.preview_image)):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError)
-			if iblSet.backgroundImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
-																		iblSet.backgroundImage)):
+			if ibl_set.background_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
+																		ibl_set.background_image)):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError)
-			if iblSet.lightingImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
-																		iblSet.lightingImage)):
+			if ibl_set.lighting_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
+																		ibl_set.lighting_image)):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError)
-			if iblSet.reflectionImage and not foundations.common.pathExists(os.path.join(os.path.dirname(iblSet.path),
-																		iblSet.reflectionImage)):
+			if ibl_set.reflection_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
+																		ibl_set.reflection_image)):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError)
 
 			if exceptions:
-				erroneousIblSets[iblSet] = exceptions
+				erroneous_ibl_sets[ibl_set] = exceptions
 
-	return erroneousIblSets
+	return erroneous_ibl_sets
 
-def getCollections(session=None):
+def get_collections(session=None):
 	"""
 	Returns the Collections from the Database.
 
@@ -506,9 +506,9 @@ def getCollections(session=None):
 	:rtype: list
 	"""
 
-	return getSession(session).query(Collection)
+	return get_session(session).query(Collection)
 
-def filterCollections(pattern, field, flags=0, session=None):
+def filter_collections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Collections from the Database.
 
@@ -524,9 +524,9 @@ def filterCollections(pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return filterItems(getCollections(getSession(session)), pattern, field, flags)
+	return filter_items(get_collections(get_session(session)), pattern, field, flags)
 
-def getCollectionsByType(type, session=None):
+def get_collections_by_type(type, session=None):
 	"""
 	Returns Collections of given type.
 
@@ -538,9 +538,9 @@ def getCollectionsByType(type, session=None):
 	:rtype: list
 	"""
 
-	return [collection for collection in filterCollections(type, "type", session=getSession(session))]
+	return [collection for collection in filter_collections(type, "type", session=get_session(session))]
 
-def filterCollectionsByType(type, pattern, field, flags=0, session=None):
+def filter_collections_by_type(type, pattern, field, flags=0, session=None):
 	"""
 	Filters the Ibl Sets Collections from the Database.
 
@@ -558,10 +558,10 @@ def filterCollectionsByType(type, pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return list(set(getCollectionsByType(type, session)).intersection(
-	filterCollections("{0}".format(pattern), field, flags, getSession(session))))
+	return list(set(get_collections_by_type(type, session)).intersection(
+	filter_collections("{0}".format(pattern), field, flags, get_session(session))))
 
-def filterIblSetsCollections(pattern, field, flags=0, session=None):
+def filter_ibl_sets_collections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Ibl Sets Collections from the Database.
 
@@ -577,9 +577,9 @@ def filterIblSetsCollections(pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return filterCollectionsByType("IblSets", pattern, field, flags, getSession(session))
+	return filter_collections_by_type("ibl_sets", pattern, field, flags, get_session(session))
 
-def filterTemplatesCollections(pattern, field, flags=0, session=None):
+def filter_templates_collections(pattern, field, flags=0, session=None):
 	"""
 	Filters the Templates Collections from the Database.
 
@@ -595,9 +595,9 @@ def filterTemplatesCollections(pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return filterCollectionsByType("Templates", pattern, field, flags, getSession(session))
+	return filter_collections_by_type("templates", pattern, field, flags, get_session(session))
 
-def collectionExists(name, session=None):
+def collection_exists(name, session=None):
 	"""
 	Returns if the Collection exists in the Database.
 
@@ -609,9 +609,9 @@ def collectionExists(name, session=None):
 	:rtype: bool
 	"""
 
-	return filterCollections("^{0}$".format(name), "name", session=getSession(session)) and True or False
+	return True if filter_collections("^{0}$".format(name), "name", session=get_session(session)) else False
 
-def addCollection(collection, type, comment, session=None):
+def add_collection(collection, type, comment, session=None):
 	"""
 	Adds a Collection to the Database.
 
@@ -629,16 +629,16 @@ def addCollection(collection, type, comment, session=None):
 
 	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
-	session = getSession(session)
+	session = get_session(session)
 
-	if not filterCollections("^{0}$".format(collection), "name", session=session):
-		databaseItem = Collection(name=collection, type=type, comment=comment)
-		return addItem(databaseItem, session)
+	if not filter_collections("^{0}$".format(collection), "name", session=session):
+		database_item = Collection(name=collection, type=type, comment=comment)
+		return add_item(database_item, session)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(__name__, collection))
 		return False
 
-def removeCollection(identity, session=None):
+def remove_collection(identity, session=None):
 	"""
 	Removes a Collection from the Database.
 
@@ -650,9 +650,9 @@ def removeCollection(identity, session=None):
 	:rtype: bool
 	"""
 
-	return removeStandardItem(Collection, identity, getSession(session))
+	return remove_standard_item(Collection, identity, get_session(session))
 
-def getCollectionsIblSets(identities, session=None):
+def get_collections_ibl_sets(identities, session=None):
 	"""
 	Returns Ibl Sets from Collections ids
 
@@ -664,13 +664,13 @@ def getCollectionsIblSets(identities, session=None):
 	:rtype: list
 	"""
 
-	iblSets = []
+	ibl_sets = []
 	for identity in identities:
-		collectionSets = filterIblSets("^{0}$".format(identity), "collection", session=getSession(session))
+		collectionSets = filter_ibl_sets("^{0}$".format(identity), "collection", session=get_session(session))
 		if collectionSets:
-			for iblSet in collectionSets:
-				iblSets.append(iblSet)
-	return iblSets
+			for ibl_set in collectionSets:
+				ibl_sets.append(ibl_set)
+	return ibl_sets
 
 def getCollectionIblSetsCount(collection, session=None):
 	"""
@@ -684,9 +684,9 @@ def getCollectionIblSetsCount(collection, session=None):
 	:rtype: int
 	"""
 
-	return getSession(session).query(IblSet).filter_by(collection=collection.id).count()
+	return get_session(session).query(IblSet).filter_by(collection=collection.id).count()
 
-def getCollectionTemplatesCount(collection, session=None):
+def get_collection_templates_count(collection, session=None):
 	"""
 	Returns given Collection Tempates count.
 
@@ -698,9 +698,9 @@ def getCollectionTemplatesCount(collection, session=None):
 	:rtype: int
 	"""
 
-	return getSession(session).query(Template).filter_by(collection=collection.id).count()
+	return get_session(session).query(Template).filter_by(collection=collection.id).count()
 
-def getTemplates(session=None):
+def get_templates(session=None):
 	"""
 	Returns the Templates from the Database.
 
@@ -710,9 +710,9 @@ def getTemplates(session=None):
 	:rtype: list
 	"""
 
-	return getSession(session).query(Template)
+	return get_session(session).query(Template)
 
-def filterTemplates(pattern, field, flags=0, session=None):
+def filter_templates(pattern, field, flags=0, session=None):
 	"""
 	Filters the Templates from the Database.
 
@@ -728,9 +728,9 @@ def filterTemplates(pattern, field, flags=0, session=None):
 	:rtype: list
 	"""
 
-	return filterItems(getTemplates(getSession(session)), pattern, field, flags)
+	return filter_items(get_templates(get_session(session)), pattern, field, flags)
 
-def templateExists(path, session=None):
+def template_exists(path, session=None):
 	"""
 	Returns if given Template exists in the Database.
 
@@ -742,9 +742,9 @@ def templateExists(path, session=None):
 	:rtype: bool
 	"""
 
-	return filterTemplates("^{0}$".format(re.escape(path)), "path", session=getSession(session)) and True or False
+	return True if filter_templates("^{0}$".format(re.escape(path)), "path", session=get_session(session)) else False
 
-def addTemplate(name, path, collection, session=None):
+def add_template(name, path, collection, session=None):
 	"""
 	Adds a new Template to the Database.
 
@@ -760,9 +760,9 @@ def addTemplate(name, path, collection, session=None):
 	:rtype: bool
 	"""
 
-	return addStandardItem(Template, name, path, collection, getSession(session))
+	return add_standard_item(Template, name, path, collection, get_session(session))
 
-def removeTemplate(identity, session=None):
+def remove_template(identity, session=None):
 	"""
 	Removes a Template from the Database.
 
@@ -774,9 +774,9 @@ def removeTemplate(identity, session=None):
 	:rtype: bool
 	"""
 
-	return removeStandardItem(Template, identity, getSession(session))
+	return remove_standard_item(Template, identity, get_session(session))
 
-def updateTemplateContent(template, session=None):
+def update_template_content(template, session=None):
 	"""
 	Update a Template content.
 
@@ -788,9 +788,9 @@ def updateTemplateContent(template, session=None):
 	:rtype: bool
 	"""
 
-	return updateItemContent(template, getSession(session))
+	return update_item_content(template, get_session(session))
 
-def updateTemplateLocation(template, path, session=None):
+def update_template_location(template, path, session=None):
 	"""
 	Updates a Template location.
 
@@ -804,9 +804,9 @@ def updateTemplateLocation(template, path, session=None):
 	:rtype: bool
 	"""
 
-	return updateItemLocation(template, path, getSession(session))
+	return update_item_location(template, path, get_session(session))
 
-def checkTemplatesTableIntegrity(session=None):
+def check_templates_table_integrity(session=None):
 	"""
 	Checks Templates table integrity.
 
@@ -816,21 +816,21 @@ def checkTemplatesTableIntegrity(session=None):
 	:rtype: dict
 	"""
 
-	LOGGER.debug("> Checking 'Templates' Database table integrity.")
+	LOGGER.debug("> Checking 'templates' Database table integrity.")
 
-	session = getSession(session)
+	session = get_session(session)
 
-	erroneousTemplates = {}
-	if getTemplates(session):
-		for template in getTemplates(session):
+	erroneous_templates = {}
+	if get_templates(session):
+		for template in get_templates(session):
 			exceptions = []
-			if not foundations.common.pathExists(template.path):
+			if not foundations.common.path_exists(template.path):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingTemplateFileError)
 
-			if not foundations.common.pathExists(template.helpFile):
+			if not foundations.common.path_exists(template.help_file):
 				exceptions.append(sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError)
 
 			if exceptions:
-				erroneousTemplates[template] = exceptions
+				erroneous_templates[template] = exceptions
 
-	return erroneousTemplates
+	return erroneous_templates

@@ -49,14 +49,14 @@ from PyQt4.QtGui import QPen
 #**********************************************************************************************************************
 import foundations.cache
 import foundations.common
-import foundations.dataStructures
+import foundations.data_structures
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import sibl_gui.ui.common
 import umbra.ui.nodes
 from foundations.parsers import SectionsFileParser
-from manager.qwidgetComponent import QWidgetComponentFactory
+from manager.QWidget_component import QWidgetComponentFactory
 from sibl_gui.components.core.database.nodes import IblSetNode
 from sibl_gui.components.core.inspector.models import PlatesModel
 from sibl_gui.components.core.inspector.nodes import PlatesNode
@@ -75,14 +75,14 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "Plate", "Light", "Inspector"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui")
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class Plate(foundations.dataStructures.Structure):
+class Plate(foundations.data_structures.Structure):
 	"""
 	Defines a storage object for an Ibl Set Plate.
 	"""
@@ -91,15 +91,15 @@ class Plate(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: name, icon, previewImage, image
+		:param kwargs: name, icon, preview_image, image
 		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		foundations.dataStructures.Structure.__init__(self, **kwargs)
+		foundations.data_structures.Structure.__init__(self, **kwargs)
 
-class Light(foundations.dataStructures.Structure):
+class Light(foundations.data_structures.Structure):
 	"""
 	Defines a storage object for an Ibl Set light.
 	"""
@@ -108,15 +108,15 @@ class Light(foundations.dataStructures.Structure):
 		"""
 		Initializes the class.
 
-		:param kwargs: name, color, uCoordinate, vCoordinate
+		:param kwargs: name, color, u_coordinate, v_coordinate
 		:type kwargs: dict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		foundations.dataStructures.Structure.__init__(self, **kwargs)
+		foundations.data_structures.Structure.__init__(self, **kwargs)
 
-class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
+class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate
@@ -124,20 +124,20 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	refreshNodes = pyqtSignal()
+	refresh_nodes = pyqtSignal()
 	"""
 	This signal is emited by the :class:`Inspector` class when :obj:`Inspector.model` class property model
-	nodes needs to be refreshed. ( pyqtSignal )
+	nodes needs to be refreshed.
 	"""
 
-	uiRefresh = pyqtSignal()
+	ui_refresh = pyqtSignal()
 	"""
-	This signal is emited by the :class:`Inspector` class when the Ui needs to be refreshed. ( pyqtSignal )
+	This signal is emited by the :class:`Inspector` class when the Ui needs to be refreshed.
 	"""
 
-	uiClear = pyqtSignal()
+	ui_clear = pyqtSignal()
 	"""
-	This signal is emited by the :class:`Inspector` class when the Ui needs to be cleared. ( pyqtSignal )
+	This signal is emited by the :class:`Inspector` class when the Ui needs to be cleared.
 	"""
 
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -161,31 +161,31 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__uiResourcesDirectory = "resources"
-		self.__uiPreviousImage = "Previous.png"
-		self.__uiNextImage = "Next.png"
-		self.__uiLoadingImage = "Loading.png"
-		self.__dockArea = 2
-		self.__listViewIconSize = 30
+		self.__ui_resources_directory = "resources"
+		self.__ui_previous_image = "Previous.png"
+		self.__ui_next_image = "Next.png"
+		self.__ui_loading_image = "Loading.png"
+		self.__dock_area = 2
+		self.__list_view_icon_size = 30
 
 		self.__engine = None
 		self.__settings = None
-		self.__settingsSection = None
+		self.__settings_section = None
 
-		self.__preferencesManager = None
-		self.__iblSetsOutliner = None
+		self.__preferences_manager = None
+		self.__ibl_sets_outliner = None
 
-		self.__sectionsFileParsersCache = None
+		self.__sections_file_parsers_cache = None
 
 		self.__model = None
 		self.__view = None
 
-		self.__thumbnailsSize = "Special1"
+		self.__thumbnails_size = "Special1"
 
-		self.__activeIblSet = None
-		self.__inspectorPlates = None
+		self.__active_ibl_set = None
+		self.__inspector_plates = None
 
-		self.__noPreviewImageText = """
+		self.__no_preview_image_text = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -213,7 +213,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								</table>
 								</center>
 								"""
-		self.__noActiveIblSetText = """
+		self.__no_active_ibl_set_text = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -228,7 +228,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								</table>
 								</center>
 								"""
-		self.__activeIblSetToolTipText = """
+		self.__active_ibl_set_tool_tip_text = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -236,223 +236,223 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 								<b>Comment: </b>{4}</p>
 								"""
 
-		self.__lightLabelRadius = 4
-		self.__lightLabelTextOffset = 24
-		self.__lightLabelTextMargin = 16
-		self.__lightLabelTextHeight = 14
-		self.__lightLabelTextFont = "Helvetica"
-		self.__unnamedLightName = "Unnamed_Light"
+		self.__light_label_radius = 4
+		self.__light_label_text_offset = 24
+		self.__light_label_text_margin = 16
+		self.__light_label_text_height = 14
+		self.__light_label_text_font = "Helvetica"
+		self.__unnamed_light_name = "Unnamed_Light"
 
-		self.__pixmapPlaceholder = None
+		self.__pixmap_placeholder = None
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def uiResourcesDirectory(self):
+	def ui_resources_directory(self):
 		"""
-		Property for **self.__uiResourcesDirectory** attribute.
+		Property for **self.__ui_resources_directory** attribute.
 
-		:return: self.__uiResourcesDirectory.
+		:return: self.__ui_resources_directory.
 		:rtype: unicode
 		"""
 
-		return self.__uiResourcesDirectory
+		return self.__ui_resources_directory
 
-	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self, value):
+	@ui_resources_directory.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_resources_directory(self, value):
 		"""
-		Setter for **self.__uiResourcesDirectory** attribute.
+		Setter for **self.__ui_resources_directory** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
-	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self):
+	@ui_resources_directory.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_resources_directory(self):
 		"""
-		Deleter for **self.__uiResourcesDirectory** attribute.
+		Deleter for **self.__ui_resources_directory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
 	@property
-	def uiPreviousImage(self):
+	def ui_previous_image(self):
 		"""
-		Property for **self.__uiPreviousImage** attribute.
+		Property for **self.__ui_previous_image** attribute.
 
-		:return: self.__uiPreviousImage.
+		:return: self.__ui_previous_image.
 		:rtype: unicode
 		"""
 
-		return self.__uiPreviousImage
+		return self.__ui_previous_image
 
-	@uiPreviousImage.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiPreviousImage(self, value):
+	@ui_previous_image.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_previous_image(self, value):
 		"""
-		Setter for **self.__uiPreviousImage** attribute.
+		Setter for **self.__ui_previous_image** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_previous_image"))
 
-	@uiPreviousImage.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiPreviousImage(self):
+	@ui_previous_image.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_previous_image(self):
 		"""
-		Deleter for **self.__uiPreviousImage** attribute.
+		Deleter for **self.__ui_previous_image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_previous_image"))
 
 	@property
-	def uiNextImage(self):
+	def ui_next_image(self):
 		"""
-		Property for **self.__uiNextImage** attribute.
+		Property for **self.__ui_next_image** attribute.
 
-		:return: self.__uiNextImage.
+		:return: self.__ui_next_image.
 		:rtype: unicode
 		"""
 
-		return self.__uiNextImage
+		return self.__ui_next_image
 
-	@uiNextImage.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiNextImage(self, value):
+	@ui_next_image.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_next_image(self, value):
 		"""
-		Setter for **self.__uiNextImage** attribute.
+		Setter for **self.__ui_next_image** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_next_image"))
 
-	@uiNextImage.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiNextImage(self):
+	@ui_next_image.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_next_image(self):
 		"""
-		Deleter for **self.__uiNextImage** attribute.
+		Deleter for **self.__ui_next_image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_next_image"))
 
 	@property
-	def uiLoadingImage(self):
+	def ui_loading_image(self):
 		"""
-		Property for **self.__uiLoadingImage** attribute.
+		Property for **self.__ui_loading_image** attribute.
 
-		:return: self.__uiLoadingImage.
+		:return: self.__ui_loading_image.
 		:rtype: unicode
 		"""
 
-		return self.__uiLoadingImage
+		return self.__ui_loading_image
 
-	@uiLoadingImage.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLoadingImage(self, value):
+	@ui_loading_image.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_loading_image(self, value):
 		"""
-		Setter for **self.__uiLoadingImage** attribute.
+		Setter for **self.__ui_loading_image** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_loading_image"))
 
-	@uiLoadingImage.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLoadingImage(self):
+	@ui_loading_image.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ui_loading_image(self):
 		"""
-		Deleter for **self.__uiLoadingImage** attribute.
+		Deleter for **self.__ui_loading_image** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLoadingImage"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_loading_image"))
 
 	@property
-	def dockArea(self):
+	def dock_area(self):
 		"""
-		Property for **self.__dockArea** attribute.
+		Property for **self.__dock_area** attribute.
 
-		:return: self.__dockArea.
+		:return: self.__dock_area.
 		:rtype: int
 		"""
 
-		return self.__dockArea
+		return self.__dock_area
 
-	@dockArea.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dockArea(self, value):
+	@dock_area.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def dock_area(self, value):
 		"""
-		Setter for **self.__dockArea** attribute.
+		Setter for **self.__dock_area** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
-	@dockArea.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def dockArea(self):
+	@dock_area.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def dock_area(self):
 		"""
-		Deleter for **self.__dockArea** attribute.
+		Deleter for **self.__dock_area** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
 	@property
-	def listViewIconSize(self):
+	def list_view_icon_size(self):
 		"""
-		Property for **self.__listViewIconSize** attribute.
+		Property for **self.__list_view_icon_size** attribute.
 
-		:return: self.__listViewIconSize.
+		:return: self.__list_view_icon_size.
 		:rtype: int
 		"""
 
-		return self.__listViewIconSize
+		return self.__list_view_icon_size
 
-	@listViewIconSize.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def listViewIconSize(self, value):
+	@list_view_icon_size.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def list_view_icon_size(self, value):
 		"""
-		Setter for **self.__listViewIconSize** attribute.
+		Setter for **self.__list_view_icon_size** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		if value is not None:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
-		self.__listViewIconSize = value
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("list_view_icon_size", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("list_view_icon_size", value)
+		self.__list_view_icon_size = value
 
-	@listViewIconSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewIconSize(self):
+	@list_view_icon_size.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def list_view_icon_size(self):
 		"""
-		Deleter for **self.__listViewIconSize** attribute.
+		Deleter for **self.__list_view_icon_size** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_icon_size"))
 
 	@property
 	def engine(self):
@@ -466,7 +466,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__engine
 
 	@engine.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def engine(self, value):
 		"""
 		Setter for **self.__engine** attribute.
@@ -479,7 +479,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def engine(self):
 		"""
 		Deleter for **self.__engine** attribute.
@@ -489,72 +489,72 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
-	def iblSetsOutliner(self):
+	def ibl_sets_outliner(self):
 		"""
-		Property for **self.__iblSetsOutliner** attribute.
+		Property for **self.__ibl_sets_outliner** attribute.
 
-		:return: self.__iblSetsOutliner.
+		:return: self.__ibl_sets_outliner.
 		:rtype: QWidget
 		"""
 
-		return self.__iblSetsOutliner
+		return self.__ibl_sets_outliner
 
-	@iblSetsOutliner.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iblSetsOutliner(self, value):
+	@ibl_sets_outliner.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ibl_sets_outliner(self, value):
 		"""
-		Setter for **self.__iblSetsOutliner** attribute.
+		Setter for **self.__ibl_sets_outliner** attribute.
 
 		:param value: Attribute value.
 		:type value: QWidget
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
-	@iblSetsOutliner.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iblSetsOutliner(self):
+	@ibl_sets_outliner.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def ibl_sets_outliner(self):
 		"""
-		Deleter for **self.__iblSetsOutliner** attribute.
+		Deleter for **self.__ibl_sets_outliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsOutliner"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
 	@property
-	def sectionsFileParsersCache(self):
+	def sections_file_parsers_cache(self):
 		"""
-		Property for **self.__sectionsFileParsersCache** attribute.
+		Property for **self.__sections_file_parsers_cache** attribute.
 
-		:return: self.__sectionsFileParsersCache.
+		:return: self.__sections_file_parsers_cache.
 		:rtype: Cache
 		"""
 
-		return self.__sectionsFileParsersCache
+		return self.__sections_file_parsers_cache
 
-	@sectionsFileParsersCache.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def sectionsFileParsersCache(self, value):
+	@sections_file_parsers_cache.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def sections_file_parsers_cache(self, value):
 		"""
-		Setter for **self.__sectionsFileParsersCache** attribute.
+		Setter for **self.__sections_file_parsers_cache** attribute.
 
 		:param value: Attribute value.
 		:type value: Cache
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "sections_file_parsers_cache"))
 
-	@sectionsFileParsersCache.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def sectionsFileParsersCache(self):
+	@sections_file_parsers_cache.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def sections_file_parsers_cache(self):
 		"""
-		Deleter for **self.__sectionsFileParsersCache** attribute.
+		Deleter for **self.__sections_file_parsers_cache** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sectionsFileParsersCache"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "sections_file_parsers_cache"))
 
 	@property
 	def model(self):
@@ -568,7 +568,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__model
 
 	@model.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
 		Setter for **self.__model** attribute.
@@ -581,7 +581,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
 		Deleter for **self.__model** attribute.
@@ -602,7 +602,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.__view
 
 	@view.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def view(self, value):
 		"""
 		Setter for **self.__view** attribute.
@@ -615,7 +615,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
 	@view.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def view(self):
 		"""
 		Deleter for **self.__view** attribute.
@@ -625,397 +625,397 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
-	def thumbnailsSize(self):
+	def thumbnails_size(self):
 		"""
-		Property for **self.__thumbnailsSize** attribute.
+		Property for **self.__thumbnails_size** attribute.
 
-		:return: self.__thumbnailsSize.
+		:return: self.__thumbnails_size.
 		:rtype: unicode
 		"""
 
-		return self.__thumbnailsSize
+		return self.__thumbnails_size
 
-	@thumbnailsSize.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def thumbnailsSize(self, value):
+	@thumbnails_size.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def thumbnails_size(self, value):
 		"""
-		Setter for **self.__thumbnailsSize** attribute.
+		Setter for **self.__thumbnails_size** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		if value is not None:
-			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnailsSize",
+			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnails_size",
 																								  value)
-		self.__thumbnailsSize = value
+		self.__thumbnails_size = value
 
-	@thumbnailsSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsSize(self):
+	@thumbnails_size.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def thumbnails_size(self):
 		"""
-		Deleter for **self.__thumbnailsSize** attribute.
+		Deleter for **self.__thumbnails_size** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsSize"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnails_size"))
 
 	@property
-	def activeIblSet(self):
+	def active_ibl_set(self):
 		"""
-		Property for **self.__activeIblSet** attribute.
+		Property for **self.__active_ibl_set** attribute.
 
-		:return: self.__activeIblSet.
+		:return: self.__active_ibl_set.
 		:rtype: IblSet
 		"""
 
-		return self.__activeIblSet
+		return self.__active_ibl_set
 
-	@activeIblSet.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def activeIblSet(self, value):
+	@active_ibl_set.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def active_ibl_set(self, value):
 		"""
-		Setter for **self.__activeIblSet** attribute.
+		Setter for **self.__active_ibl_set** attribute.
 
 		:param value: Attribute value.
 		:type value: IblSet
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "active_ibl_set"))
 
-	@activeIblSet.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def activeIblSet(self):
+	@active_ibl_set.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def active_ibl_set(self):
 		"""
-		Deleter for **self.__activeIblSet** attribute.
+		Deleter for **self.__active_ibl_set** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSet"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "active_ibl_set"))
 
 	@property
-	def inspectorPlates(self):
+	def inspector_plates(self):
 		"""
-		Property for **self.__inspectorPlates** attribute.
+		Property for **self.__inspector_plates** attribute.
 
-		:return: self.__inspectorPlates.
+		:return: self.__inspector_plates.
 		:rtype: dict
 		"""
 
-		return self.__inspectorPlates
+		return self.__inspector_plates
 
-	@inspectorPlates.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorPlates(self, value):
+	@inspector_plates.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def inspector_plates(self, value):
 		"""
-		Setter for **self.__inspectorPlates** attribute.
+		Setter for **self.__inspector_plates** attribute.
 
 		:param value: Attribute value.
 		:type value: dict
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector_plates"))
 
-	@inspectorPlates.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def inspectorPlates(self):
+	@inspector_plates.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def inspector_plates(self):
 		"""
-		Deleter for **self.__inspectorPlates** attribute.
+		Deleter for **self.__inspector_plates** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorPlates"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector_plates"))
 
 	@property
-	def noPreviewImageText(self):
+	def no_preview_image_text(self):
 		"""
-		Property for **self.__noPreviewImageText** attribute.
+		Property for **self.__no_preview_image_text** attribute.
 
-		:return: self.__noPreviewImageText.
+		:return: self.__no_preview_image_text.
 		:rtype: unicode
 		"""
 
-		return self.__noPreviewImageText
+		return self.__no_preview_image_text
 
-	@noPreviewImageText.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noPreviewImageText(self, value):
+	@no_preview_image_text.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def no_preview_image_text(self, value):
 		"""
-		Setter for **self.__noPreviewImageText** attribute.
+		Setter for **self.__no_preview_image_text** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "no_preview_image_text"))
 
-	@noPreviewImageText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noPreviewImageText(self):
+	@no_preview_image_text.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def no_preview_image_text(self):
 		"""
-		Deleter for **self.__noPreviewImageText** attribute.
+		Deleter for **self.__no_preview_image_text** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noPreviewImageText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "no_preview_image_text"))
 
 	@property
-	def noActiveIblSetText(self):
+	def no_active_ibl_set_text(self):
 		"""
-		Property for **self.__noActiveIblSetText** attribute.
+		Property for **self.__no_active_ibl_set_text** attribute.
 
-		:return: self.__noActiveIblSetText.
+		:return: self.__no_active_ibl_set_text.
 		:rtype: unicode
 		"""
 
-		return self.__noActiveIblSetText
+		return self.__no_active_ibl_set_text
 
-	@noActiveIblSetText.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noActiveIblSetText(self, value):
+	@no_active_ibl_set_text.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def no_active_ibl_set_text(self, value):
 		"""
-		Setter for **self.__noActiveIblSetText** attribute.
+		Setter for **self.__no_active_ibl_set_text** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "no_active_ibl_set_text"))
 
-	@noActiveIblSetText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def noActiveIblSetText(self):
+	@no_active_ibl_set_text.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def no_active_ibl_set_text(self):
 		"""
-		Deleter for **self.__noActiveIblSetText** attribute.
+		Deleter for **self.__no_active_ibl_set_text** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "noActiveIblSetText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "no_active_ibl_set_text"))
 
 	@property
-	def activeIblSetToolTipText(self):
+	def active_ibl_set_tool_tip_text(self):
 		"""
-		Property for **self.__activeIblSetToolTipText** attribute.
+		Property for **self.__active_ibl_set_tool_tip_text** attribute.
 
-		:return: self.__activeIblSetToolTipText.
+		:return: self.__active_ibl_set_tool_tip_text.
 		:rtype: unicode
 		"""
 
-		return self.__activeIblSetToolTipText
+		return self.__active_ibl_set_tool_tip_text
 
-	@activeIblSetToolTipText.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def activeIblSetToolTipText(self, value):
+	@active_ibl_set_tool_tip_text.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def active_ibl_set_tool_tip_text(self, value):
 		"""
-		Setter for **self.__activeIblSetToolTipText** attribute.
+		Setter for **self.__active_ibl_set_tool_tip_text** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "active_ibl_set_tool_tip_text"))
 
-	@activeIblSetToolTipText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def activeIblSetToolTipText(self):
+	@active_ibl_set_tool_tip_text.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def active_ibl_set_tool_tip_text(self):
 		"""
-		Deleter for **self.__activeIblSetToolTipText** attribute.
+		Deleter for **self.__active_ibl_set_tool_tip_text** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeIblSetToolTipText"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "active_ibl_set_tool_tip_text"))
 
 	@property
-	def lightLabelRadius(self):
+	def light_label_radius(self):
 		"""
-		Property for **self.__lightLabelRadius** attribute.
+		Property for **self.__light_label_radius** attribute.
 
-		:return: self.__lightLabelRadius.
+		:return: self.__light_label_radius.
 		:rtype: int
 		"""
 
-		return self.__lightLabelRadius
+		return self.__light_label_radius
 
-	@lightLabelRadius.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelRadius(self, value):
+	@light_label_radius.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_radius(self, value):
 		"""
-		Setter for **self.__lightLabelRadius** attribute.
+		Setter for **self.__light_label_radius** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "light_label_radius"))
 
-	@lightLabelRadius.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelRadius(self):
+	@light_label_radius.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_radius(self):
 		"""
-		Deleter for **self.__lightLabelRadius** attribute.
+		Deleter for **self.__light_label_radius** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelRadius"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "light_label_radius"))
 
 	@property
-	def lightLabelTextOffset(self):
+	def light_label_text_offset(self):
 		"""
-		Property for **self.__lightLabelTextOffset** attribute.
+		Property for **self.__light_label_text_offset** attribute.
 
-		:return: self.__lightLabelTextOffset.
+		:return: self.__light_label_text_offset.
 		:rtype: int
 		"""
 
-		return self.__lightLabelTextOffset
+		return self.__light_label_text_offset
 
-	@lightLabelTextOffset.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextOffset(self, value):
+	@light_label_text_offset.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_offset(self, value):
 		"""
-		Setter for **self.__lightLabelTextOffset** attribute.
+		Setter for **self.__light_label_text_offset** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "light_label_text_offset"))
 
-	@lightLabelTextOffset.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextOffset(self):
+	@light_label_text_offset.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_offset(self):
 		"""
-		Deleter for **self.__lightLabelTextOffset** attribute.
+		Deleter for **self.__light_label_text_offset** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextOffset"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "light_label_text_offset"))
 
 	@property
-	def lightLabelTextMargin(self):
+	def light_label_text_margin(self):
 		"""
-		Property for **self.__lightLabelTextMargin** attribute.
+		Property for **self.__light_label_text_margin** attribute.
 
-		:return: self.__lightLabelTextMargin.
+		:return: self.__light_label_text_margin.
 		:rtype: int
 		"""
 
-		return self.__lightLabelTextMargin
+		return self.__light_label_text_margin
 
-	@lightLabelTextMargin.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextMargin(self, value):
+	@light_label_text_margin.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_margin(self, value):
 		"""
-		Setter for **self.__lightLabelTextMargin** attribute.
+		Setter for **self.__light_label_text_margin** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "light_label_text_margin"))
 
-	@lightLabelTextMargin.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextMargin(self):
+	@light_label_text_margin.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_margin(self):
 		"""
-		Deleter for **self.__lightLabelTextMargin** attribute.
+		Deleter for **self.__light_label_text_margin** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextMargin"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "light_label_text_margin"))
 
 	@property
-	def lightLabelTextHeight(self):
+	def light_label_text_height(self):
 		"""
-		Property for **self.__lightLabelTextHeight** attribute.
+		Property for **self.__light_label_text_height** attribute.
 
-		:return: self.__lightLabelTextHeight.
+		:return: self.__light_label_text_height.
 		:rtype: int
 		"""
 
-		return self.__lightLabelTextHeight
+		return self.__light_label_text_height
 
-	@lightLabelTextHeight.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextHeight(self, value):
+	@light_label_text_height.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_height(self, value):
 		"""
-		Setter for **self.__lightLabelTextHeight** attribute.
+		Setter for **self.__light_label_text_height** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "light_label_text_height"))
 
-	@lightLabelTextHeight.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextHeight(self):
+	@light_label_text_height.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_height(self):
 		"""
-		Deleter for **self.__lightLabelTextHeight** attribute.
+		Deleter for **self.__light_label_text_height** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextHeight"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "light_label_text_height"))
 
 	@property
-	def lightLabelTextFont(self):
+	def light_label_text_font(self):
 		"""
-		Property for **self.__lightLabelTextFont** attribute.
+		Property for **self.__light_label_text_font** attribute.
 
-		:return: self.__lightLabelTextFont.
+		:return: self.__light_label_text_font.
 		:rtype: unicode
 		"""
 
-		return self.__lightLabelTextFont
+		return self.__light_label_text_font
 
-	@lightLabelTextFont.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextFont(self, value):
+	@light_label_text_font.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_font(self, value):
 		"""
-		Setter for **self.__lightLabelTextFont** attribute.
+		Setter for **self.__light_label_text_font** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "light_label_text_font"))
 
-	@lightLabelTextFont.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def lightLabelTextFont(self):
+	@light_label_text_font.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def light_label_text_font(self):
 		"""
-		Deleter for **self.__lightLabelTextFont** attribute.
+		Deleter for **self.__light_label_text_font** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "lightLabelTextFont"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "light_label_text_font"))
 
 	@property
-	def unnamedLightName(self):
+	def unnamed_light_name(self):
 		"""
-		Property for **self.__unnamedLightName** attribute.
+		Property for **self.__unnamed_light_name** attribute.
 
-		:return: self.__unnamedLightName.
+		:return: self.__unnamed_light_name.
 		:rtype: unicode
 		"""
 
-		return self.__unnamedLightName
+		return self.__unnamed_light_name
 
-	@unnamedLightName.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def unnamedLightName(self, value):
+	@unnamed_light_name.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def unnamed_light_name(self, value):
 		"""
-		Setter for **self.__unnamedLightName** attribute.
+		Setter for **self.__unnamed_light_name** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
@@ -1023,18 +1023,18 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if value is not None:
 			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-				"unnamedLightName", value)
-		self.__unnamedLightName = value
+				"unnamed_light_name", value)
+		self.__unnamed_light_name = value
 
-	@unnamedLightName.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def unnamedLightName(self):
+	@unnamed_light_name.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def unnamed_light_name(self):
 		"""
-		Deleter for **self.__unnamedLightName** attribute.
+		Deleter for **self.__unnamed_light_name** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamedLightName"))
+			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamed_light_name"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -1051,18 +1051,18 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
+		self.__ui_resources_directory = os.path.join(os.path.dirname(__file__), self.__ui_resources_directory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
-		self.__settingsSection = self.name
+		self.__settings_section = self.name
 
-		self.__preferencesManager = self.__engine.componentsManager["factory.preferencesManager"]
-		self.__iblSetsOutliner = self.__engine.componentsManager["core.iblSetsOutliner"]
+		self.__preferences_manager = self.__engine.components_manager["factory.preferences_manager"]
+		self.__ibl_sets_outliner = self.__engine.components_manager["core.ibl_sets_outliner"]
 
 		self.activated = True
 		return True
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
 		Deactivates the Component.
@@ -1071,7 +1071,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 			"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
-	def initializeUi(self):
+	def initialize_ui(self):
 		"""
 		Initializes the Component ui.
 
@@ -1081,11 +1081,11 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__pixmapPlaceholder = \
-			sibl_gui.ui.common.getPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLoadingImage),
-										 asynchronousLoading=False)
+		self.__pixmap_placeholder = \
+			sibl_gui.ui.common.get_pixmap(os.path.join(self.__ui_resources_directory, self.__ui_loading_image),
+										 asynchronous_loading=False)
 
-		self.__sectionsFileParsersCache = foundations.cache.Cache()
+		self.__sections_file_parsers_cache = foundations.cache.Cache()
 
 		self.__model = PlatesModel()
 
@@ -1094,44 +1094,44 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Plates_listView.setObjectName("Plates_listView")
 		self.Plates_frame_gridLayout.addWidget(self.Plates_listView, 0, 1)
 		self.__view = self.Plates_listView
-		self.__view.storeModelSelection = self.__view.restoreModelSelection = lambda: True
+		self.__view.store_model_selection = self.__view.restore_model_selection = lambda: True
 
 		self.Previous_Ibl_Set_pushButton.setIcon(
-			QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
-		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
-		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
-		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
+			QIcon(os.path.join(self.__ui_resources_directory, self.__ui_previous_image)))
+		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_next_image)))
+		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_previous_image)))
+		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_next_image)))
 
 		self.Plates_frame.hide()
 		self.Inspector_Options_groupBox.hide()
 
-		self.__Inspector_DockWidget_setUi()
+		self.__Inspector_DockWidget_set_ui()
 
 		self.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Inspector_Overall_frame_addActions()
+		self.__Inspector_Overall_frame_add_actions()
 
 		# Signals / Slots.
-		self.__engine.imagesCaches.QIcon.contentAdded.connect(self.__view.viewport().update)
-		self.__engine.imagesCaches.QPixmap.contentAdded.connect(self.__engine_imagesCaches_QPixmap__contentAdded)
+		self.__engine.images_caches.QIcon.content_added.connect(self.__view.viewport().update)
+		self.__engine.images_caches.QPixmap.content_added.connect(self.__engine_images_caches_QPixmap__content_added)
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-		self.__iblSetsOutliner.model.modelReset.connect(self.__iblSetsOutliner__modelReset)
-		self.__engine.fileSystemEventsManager.fileChanged.connect(self.__engine_fileSystemEventsManager__fileChanged)
-		for view in self.__iblSetsOutliner.views:
-			view.selectionModel().selectionChanged.connect(self.__iblSetsOutliner_view_selectionModel__selectionChanged)
+		self.__ibl_sets_outliner.model.modelReset.connect(self.__ibl_sets_outliner__modelReset)
+		self.__engine.file_system_events_manager.file_changed.connect(self.__engine_file_system_events_manager__file_changed)
+		for view in self.__ibl_sets_outliner.views:
+			view.selectionModel().selectionChanged.connect(self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
 		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
 		self.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
 		self.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
-		self.refreshNodes.connect(self.__model__refreshNodes)
-		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
-		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
+		self.refresh_nodes.connect(self.__model__refresh_nodes)
+		self.ui_refresh.connect(self.__Inspector_DockWidget_refresh_ui)
+		self.ui_clear.connect(self.__Inspector_DockWidget_clear_ui)
 
-		self.initializedUi = True
+		self.initialized_ui = True
 		return True
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uninitializeUi(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def uninitialize_ui(self):
 		"""
 		Uninitializes the Component ui.
 		"""
@@ -1139,7 +1139,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 			"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
-	def addWidget(self):
+	def add_widget(self):
 		"""
 		Adds the Component Widget to the engine.
 
@@ -1149,12 +1149,12 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dock_area), self)
 
 		return True
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def removeWidget(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def remove_widget(self):
 		"""
 		Removes the Component Widget from the engine.
 		"""
@@ -1162,123 +1162,123 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 			"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
-	def __Inspector_DockWidget_setUi(self):
+	def __Inspector_DockWidget_set_ui(self):
 		"""
 		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
-		if self.__activeIblSet:
-			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__activeIblSet.title,
-																				self.__activeIblSet.location))
+		if self.__active_ibl_set:
+			self.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__active_ibl_set.title,
+																				self.__active_ibl_set.location))
 
-			previewAvailable = False
-			if foundations.common.pathExists(self.__activeIblSet.previewImage):
-				pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.previewImage)
-				previewAvailable = True
+			preview_available = False
+			if foundations.common.path_exists(self.__active_ibl_set.preview_image):
+				pixmap = sibl_gui.ui.common.get_pixmap(self.__active_ibl_set.preview_image)
+				preview_available = True
 			else:
-				if foundations.common.pathExists(self.__activeIblSet.backgroundImage):
-					pixmap = sibl_gui.ui.common.getPixmap(self.__activeIblSet.backgroundImage,
-														  size=self.__thumbnailsSize,
-														  placeholder=self.__pixmapPlaceholder)
-					previewAvailable = True
+				if foundations.common.path_exists(self.__active_ibl_set.background_image):
+					pixmap = sibl_gui.ui.common.get_pixmap(self.__active_ibl_set.background_image,
+														  size=self.__thumbnails_size,
+														  placeholder=self.__pixmap_placeholder)
+					preview_available = True
 
-			if previewAvailable:
+			if preview_available:
 				self.Image_label.setPixmap(pixmap)
-				self.__drawActiveIblSetOverlay()
+				self.__draw_active_ibl_set_overlay()
 			else:
-				self.Image_label.setText(self.__noPreviewImageText.format(
-					sibl_gui.ui.common.filterImagePath(self.__activeIblSet.icon),
-					self.__activeIblSet.author,
-					self.__activeIblSet.link))
+				self.Image_label.setText(self.__no_preview_image_text.format(
+					sibl_gui.ui.common.filter_image_path(self.__active_ibl_set.icon),
+					self.__active_ibl_set.author,
+					self.__active_ibl_set.link))
 
-			self.Image_label.setToolTip(self.__activeIblSetToolTipText.format(
-				self.__activeIblSet.title,
-				self.__activeIblSet.author or Constants.nullObject,
-				self.__activeIblSet.location or Constants.nullObject,
-				sibl_gui.ui.common.getFormattedShotDate(self.__activeIblSet.date,
-													   self.__activeIblSet.time) or Constants.nullObject,
-				self.__activeIblSet.comment or Constants.nullObject))
+			self.Image_label.setToolTip(self.__active_ibl_set_tool_tip_text.format(
+				self.__active_ibl_set.title,
+				self.__active_ibl_set.author or Constants.null_object,
+				self.__active_ibl_set.location or Constants.null_object,
+				sibl_gui.ui.common.get_formatted_shot_date(self.__active_ibl_set.date,
+													   self.__active_ibl_set.time) or Constants.null_object,
+				self.__active_ibl_set.comment or Constants.null_object))
 
-			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__activeIblSet.comment))
+			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__active_ibl_set.comment))
 
-			self.Plates_frame.setVisible(bool(self.__inspectorPlates))
+			self.Plates_frame.setVisible(bool(self.__inspector_plates))
 		else:
-			self.__Inspector_DockWidget_clearUi()
+			self.__Inspector_DockWidget_clear_ui()
 
-	def __Inspector_DockWidget_refreshUi(self):
+	def __Inspector_DockWidget_refresh_ui(self):
 		"""
 		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
-		self.__Inspector_DockWidget_setUi()
+		self.__Inspector_DockWidget_set_ui()
 
-	def __Inspector_DockWidget_clearUi(self):
+	def __Inspector_DockWidget_clear_ui(self):
 		"""
 		Clears the :mod:`sibl_gui.components.core.inspector.inspector` Component Widget ui.
 		"""
 
 		self.Title_label.setText(QString())
-		self.Image_label.setText(self.__noActiveIblSetText.format(sibl_gui.ui.common.filterImagePath("")))
+		self.Image_label.setText(self.__no_active_ibl_set_text.format(sibl_gui.ui.common.filter_image_path("")))
 		self.Image_label.setToolTip(QString())
 		self.Details_label.setText(QString())
 
 		self.Plates_frame.hide()
 
-	def __Inspector_Overall_frame_addActions(self):
+	def __Inspector_Overall_frame_add_actions(self):
 		"""
 		Sets the **Inspector_Overall_frame** actions.
 		"""
 
 		pass
 
-	def __model__refreshNodes(self):
+	def __model__refresh_nodes(self):
 		"""
 		Refreshes the **Plates_listView** Model nodes.
 		"""
 
-		self.setPlates()
+		self.set_plates()
 
-	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __view_selectionModel__selectionChanged(self, selected_items, deselected_items):
 		"""
 		Defines the slot triggered by **Plates_listView** when Model selection has changed.
 
-		:param selectedItems: Selected items.
-		:type selectedItems: QItemSelection
-		:param deselectedItems: Deselected items.
-		:type deselectedItems: QItemSelection
+		:param selected_items: Selected items.
+		:type selected_items: QItemSelection
+		:param deselected_items: Deselected items.
+		:type deselected_items: QItemSelection
 		"""
 
-		index = foundations.common.getFirstItem(selectedItems.indexes())
-		node = index and self.__model.getNode(index) or None
+		index = foundations.common.get_first_item(selected_items.indexes())
+		node = index and self.__model.get_node(index) or None
 		if not node:
 			return
 
 		if node.family == "Plate":
-			self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(node.plate.previewImage, asynchronousLoading=False))
+			self.Image_label.setPixmap(sibl_gui.ui.common.get_pixmap(node.plate.preview_image, asynchronous_loading=False))
 		else:
-			self.uiRefresh.emit()
+			self.ui_refresh.emit()
 
-	def __engine_fileSystemEventsManager__fileChanged(self, file):
+	def __engine_file_system_events_manager__file_changed(self, file):
 		"""
-		Defines the slot triggered by the **fileSystemEventsManager** when a file is changed.
+		Defines the slot triggered by the **file_system_events_manager** when a file is changed.
 
 		:param file: File changed.
 		:type file: unicode
 		"""
 
-		file = foundations.strings.toString(file)
-		if file in self.__sectionsFileParsersCache:
+		file = foundations.strings.to_string(file)
+		if file in self.__sections_file_parsers_cache:
 			LOGGER.debug("> Removing modified '{0}' file from cache.".format(file))
-			self.__sectionsFileParsersCache.removeContent(file)
+			self.__sections_file_parsers_cache.remove_content(file)
 
-			if not self.__activeIblSet:
+			if not self.__active_ibl_set:
 				return
 
-			if self.__activeIblSet.path == file:
-				self.__setActiveIblSet()
-				self.uiRefresh.emit()
+			if self.__active_ibl_set.path == file:
+				self.__set_active_ibl_set()
+				self.ui_refresh.emit()
 
-	def __engine_imagesCaches_QPixmap__contentAdded(self, paths):
+	def __engine_images_caches_QPixmap__content_added(self, paths):
 		"""
 		Defines the slot triggered by the **QPixmap** images cache when content is added.
 
@@ -1286,41 +1286,41 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:type paths: list
 		"""
 
-		if not self.__activeIblSet:
+		if not self.__active_ibl_set:
 			return
 
-		if foundations.common.getFirstItem(paths) in (self.__activeIblSet.previewImage,
-													  self.__activeIblSet.backgroundImage):
-			self.__Inspector_DockWidget_setUi()
+		if foundations.common.get_first_item(paths) in (self.__active_ibl_set.preview_image,
+													  self.__active_ibl_set.background_image):
+			self.__Inspector_DockWidget_set_ui()
 
-	def __iblSetsOutliner__modelReset(self):
+	def __ibl_sets_outliner__modelReset(self):
 		"""
-		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Defines the slot triggered by :mod:`sibl_gui.components.core.ibl_sets_outliner.ibl_sets_outliner`
 		Component Model when changed.
 		"""
 
-		self.__setActiveIblSet()
+		self.__set_active_ibl_set()
 
-	def __iblSetsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __ibl_sets_outliner_view_selectionModel__selectionChanged(self, selected_items, deselected_items):
 		"""
-		Defines the slot triggered by :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner`
+		Defines the slot triggered by :mod:`sibl_gui.components.core.ibl_sets_outliner.ibl_sets_outliner`
 		Component Model selection when changed.
 
-		:param selectedItems: Selected items.
-		:type selectedItems: QItemSelection
-		:param deselectedItems: Deselected items.
-		:type deselectedItems: QItemSelection
+		:param selected_items: Selected items.
+		:type selected_items: QItemSelection
+		:param deselected_items: Deselected items.
+		:type deselected_items: QItemSelection
 		"""
 
-		self.__setActiveIblSet()
+		self.__set_active_ibl_set()
 
-		self.__setActiveIblSetPlates()
-		self.refreshNodes.emit()
+		self.__set_active_ibl_set_plates()
+		self.refresh_nodes.emit()
 
-		if self.__activeIblSet:
-			self.uiRefresh.emit()
+		if self.__active_ibl_set:
+			self.ui_refresh.emit()
 		else:
-			self.uiClear.emit()
+			self.ui_clear.emit()
 
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
@@ -1330,7 +1330,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:type checked: bool
 		"""
 
-		self.loopThroughIblSets(True)
+		self.loop_through_ibl_sets(True)
 
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
@@ -1340,7 +1340,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:type checked: bool
 		"""
 
-		self.loopThroughIblSets()
+		self.loop_through_ibl_sets()
 
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
@@ -1350,7 +1350,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:type checked: bool
 		"""
 
-		self.loopThroughPlates(True)
+		self.loop_through_plates(True)
 
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
@@ -1360,7 +1360,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:type checked: bool
 		"""
 
-		self.loopThroughPlates()
+		self.loop_through_plates()
 
 	def __Image_label__linkActivated(self, url):
 		"""
@@ -1372,61 +1372,61 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		QDesktopServices.openUrl(QUrl(url))
 
-	def __setActiveIblSet(self):
+	def __set_active_ibl_set(self):
 		"""
 		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		selectedIblSets = self.__iblSetsOutliner.getSelectedIblSets()
-		self.__activeIblSet = foundations.common.getFirstItem(selectedIblSets)
-		if not self.__activeIblSet:
-			rootNode = self.__iblSetsOutliner.model.rootNode
-			childNode = foundations.common.getFirstItem(rootNode.children)
-			self.__activeIblSet = childNode.databaseItem if childNode is not None else None
-		self.__activeIblSet and self.__setActiveIblSetParser()
+		selected_ibl_sets = self.__ibl_sets_outliner.get_selected_ibl_sets()
+		self.__active_ibl_set = foundations.common.get_first_item(selected_ibl_sets)
+		if not self.__active_ibl_set:
+			root_node = self.__ibl_sets_outliner.model.root_node
+			childNode = foundations.common.get_first_item(root_node.children)
+			self.__active_ibl_set = childNode.database_item if childNode is not None else None
+		self.__active_ibl_set and self.__set_active_ibl_setParser()
 
-	def __setActiveIblSetParser(self):
+	def __set_active_ibl_setParser(self):
 		"""
 		Sets the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
-		if foundations.common.pathExists(self.__activeIblSet.path):
-			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__activeIblSet))
+		if foundations.common.path_exists(self.__active_ibl_set.path):
+			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__active_ibl_set))
 
-			if not self.__sectionsFileParsersCache.getContent(self.__activeIblSet.path):
-				sectionsFileParser = SectionsFileParser(self.__activeIblSet.path)
-				sectionsFileParser.parse()
-				self.__sectionsFileParsersCache.addContent(**{self.__activeIblSet.path: sectionsFileParser})
+			if not self.__sections_file_parsers_cache.get_content(self.__active_ibl_set.path):
+				sections_file_parser = SectionsFileParser(self.__active_ibl_set.path)
+				sections_file_parser.parse()
+				self.__sections_file_parsers_cache.add_content(**{self.__active_ibl_set.path: sections_file_parser})
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
-	def __setActiveIblSetPlates(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.FileExistsError)
+	def __set_active_ibl_set_plates(self):
 		"""
 		Sets the Plates from the :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
-		path = self.__activeIblSet.path
-		if not foundations.common.pathExists(path):
+		path = self.__active_ibl_set.path
+		if not foundations.common.path_exists(path):
 			raise foundations.exceptions.FileExistsError(
 				"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
-					self.__class__.__name__, self.__activeIblSet.title))
+					self.__class__.__name__, self.__active_ibl_set.title))
 
-		sectionsFileParser = self.__sectionsFileParsersCache.getContent(path)
-		self.__inspectorPlates = OrderedDict()
-		for section in sectionsFileParser.sections:
+		sections_file_parser = self.__sections_file_parsers_cache.get_content(path)
+		self.__inspector_plates = OrderedDict()
+		for section in sections_file_parser.sections:
 			if re.search(r"Plate\d+", section):
-				self.__inspectorPlates[section] = \
+				self.__inspector_plates[section] = \
 					Plate(
-						name=foundations.strings.getSplitextBasename(sectionsFileParser.getValue("PLATEfile", section)),
-						icon=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-														   sectionsFileParser.getValue("PLATEthumb", section))),
-						previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-																   sectionsFileParser.getValue("PLATEpreview",
+						name=foundations.strings.get_splitext_basename(sections_file_parser.get_value("PLATEfile", section)),
+						icon=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
+														   sections_file_parser.get_value("PLATEthumb", section))),
+						preview_image=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
+																   sections_file_parser.get_value("PLATEpreview",
 																							   section))),
-						image=os.path.normpath(os.path.join(os.path.dirname(self.__activeIblSet.path),
-															sectionsFileParser.getValue("PLATEfile", section))))
+						image=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
+															sections_file_parser.get_value("PLATEfile", section))))
 
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ExecutionError, ValueError)
-	def __drawActiveIblSetOverlay(self):
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ExecutionError, ValueError)
+	def __draw_active_ibl_set_overlay(self):
 		"""
 		Draws an overlay on :obj:`Inspector.Image_Label` Widget.
 		"""
@@ -1434,34 +1434,34 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
 
-		iblSetPath = self.__activeIblSet.path
-		sectionsFileParser = self.__sectionsFileParsersCache.getContent(iblSetPath)
-		if sectionsFileParser is None:
+		ibl_set_path = self.__active_ibl_set.path
+		sections_file_parser = self.__sections_file_parsers_cache.get_content(ibl_set_path)
+		if sections_file_parser is None:
 			raise foundations.exceptions.ExecutionError(
-				"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(iblSetPath))
+				"'{0}' Ibl Set file 'SectionsFileParser' instance not found!".format(ibl_set_path))
 
-		for section in sectionsFileParser.sections:
+		for section in sections_file_parser.sections:
 			if section == "Sun":
-				self.__drawLightLabel(painter,
+				self.__draw_light_label(painter,
 									  Light(name="Sun",
-											color=[int(value) for value in sectionsFileParser.getValue(
+											color=[int(value) for value in sections_file_parser.get_value(
 												"SUNcolor", section).split(",")],
-											uCoordinate=float(sectionsFileParser.getValue("SUNu", section)),
-											vCoordinate=float(sectionsFileParser.getValue("SUNv", section))))
+											u_coordinate=float(sections_file_parser.get_value("SUNu", section)),
+											v_coordinate=float(sections_file_parser.get_value("SUNv", section))))
 
 			elif re.search(r"Light\d+", section):
-				self.__drawLightLabel(painter, Light(name=sectionsFileParser.getValue(
-					"LIGHTname", section) or self.__unnamedLightName,
-													 color=[int(value) for value in sectionsFileParser.getValue(
+				self.__draw_light_label(painter, Light(name=sections_file_parser.get_value(
+					"LIGHTname", section) or self.__unnamed_light_name,
+													 color=[int(value) for value in sections_file_parser.get_value(
 														 "LIGHTcolor", section).split(",")],
-													 uCoordinate=float(
-														 sectionsFileParser.getValue("LIGHTu", section)),
-													 vCoordinate=float(
-														 sectionsFileParser.getValue("LIGHTv", section))))
+													 u_coordinate=float(
+														 sections_file_parser.get_value("LIGHTu", section)),
+													 v_coordinate=float(
+														 sections_file_parser.get_value("LIGHTv", section))))
 
 		painter.end()
 
-	def __drawLightLabel(self, painter, light):
+	def __draw_light_label(self, painter, light):
 		"""
 		Draws a light label on given QPainter.
 
@@ -1474,41 +1474,41 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		width = painter.window().width()
 		height = painter.window().height()
 
-		lightColorRed, lightColorGreen, lightColorBlue = light.color
+		light_color_red, light_color_green, light_color_blue = light.color
 
-		painter.setBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 200))
-		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 200)), 2))
-		font = QFont(self.__lightLabelTextFont, self.__lightLabelTextHeight)
+		painter.setBrush(QColor(light_color_red, light_color_green, light_color_blue, 200))
+		painter.setPen(QPen(QBrush(QColor(light_color_red, light_color_green, light_color_blue, 200)), 2))
+		font = QFont(self.__light_label_text_font, self.__light_label_text_height)
 		font.setBold(True)
 		painter.setFont(font)
 
-		pointX = int(light.uCoordinate * width)
-		pointY = int(light.vCoordinate * height)
+		point_x = int(light.u_coordinate * width)
+		point_y = int(light.v_coordinate * height)
 
-		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = -(self.__lightLabelTextOffset + textWidth) if \
-			pointX + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width else \
-			self.__lightLabelTextOffset
-		yLabelTextOffset = -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) if \
-			pointY - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 else \
-			self.__lightLabelTextOffset
-		painter.drawText(pointX + xLabelTextOffset, pointY - yLabelTextOffset, light.name.title())
+		text_width = painter.fontMetrics().width(light.name.title())
+		x_label_text_offset = -(self.__light_label_text_offset + text_width) if \
+			point_x + text_width + self.__light_label_text_margin + self.__light_label_text_offset > width else \
+			self.__light_label_text_offset
+		y_label_text_offset = -(self.__light_label_text_offset + self.__light_label_text_height) if \
+			point_y - (self.__light_label_text_height + self.__light_label_text_margin + self.__light_label_text_offset) < 0 else \
+			self.__light_label_text_offset
+		painter.drawText(point_x + x_label_text_offset, point_y - y_label_text_offset, light.name.title())
 
-		painter.drawLine(pointX,
-						 pointY,
-						 pointX + (xLabelTextOffset + textWidth if xLabelTextOffset < 0 else xLabelTextOffset),
-						 pointY - (yLabelTextOffset + self.__lightLabelTextHeight \
-									   if yLabelTextOffset < 0 else yLabelTextOffset))
+		painter.drawLine(point_x,
+						 point_y,
+						 point_x + (x_label_text_offset + text_width if x_label_text_offset < 0 else x_label_text_offset),
+						 point_y - (y_label_text_offset + self.__light_label_text_height \
+									   if y_label_text_offset < 0 else y_label_text_offset))
 
-		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius, self.__lightLabelRadius)
+		painter.drawEllipse(QPoint(point_x, point_y), self.__light_label_radius, self.__light_label_radius)
 
 		painter.setBrush(Qt.NoBrush)
-		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 100)), 2))
-		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius * 3, self.__lightLabelRadius * 3)
-		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 50)), 2))
-		painter.drawEllipse(QPoint(pointX, pointY), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
+		painter.setPen(QPen(QBrush(QColor(light_color_red, light_color_green, light_color_blue, 100)), 2))
+		painter.drawEllipse(QPoint(point_x, point_y), self.__light_label_radius * 3, self.__light_label_radius * 3)
+		painter.setPen(QPen(QBrush(QColor(light_color_red, light_color_green, light_color_blue, 50)), 2))
+		painter.drawEllipse(QPoint(point_x, point_y), self.__light_label_radius * 4, self.__light_label_radius * 4)
 
-	def setPlates(self):
+	def set_plates(self):
 		"""
 		Sets the Plates Model nodes.
 
@@ -1518,34 +1518,34 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
 
-		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-		rootNode = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
-		iblSetNode = IblSetNode(self.__activeIblSet,
-								name=self.__activeIblSet.title,
-								parent=rootNode,
-								nodeFlags=nodeFlags,
-								attributesFlags=attributesFlags,
-								iconPath = self.__activeIblSet.icon)
-		iblSetNode.roles[Qt.DisplayRole] = ""
+		node_flags = attributes_flags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+		root_node = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
+		ibl_set_node = IblSetNode(self.__active_ibl_set,
+								name=self.__active_ibl_set.title,
+								parent=root_node,
+								node_flags=node_flags,
+								attributes_flags=attributes_flags,
+								icon_path=self.__active_ibl_set.icon)
+		ibl_set_node.roles[Qt.DisplayRole] = ""
 
-		if not self.__inspectorPlates:
+		if not self.__inspector_plates:
 			return False
 
-		for name, plate in self.__inspectorPlates.iteritems():
-			plateNode = PlatesNode(plate,
+		for name, plate in self.__inspector_plates.iteritems():
+			plate_node = PlatesNode(plate,
 								   name=name,
-								   parent=rootNode,
-								   nodeFlags=nodeFlags,
-								   attributesFlags=attributesFlags)
-			plateNode.roles[Qt.DisplayRole] = ""
-			plateNode.roles[Qt.DecorationRole] = foundations.common.filterPath(plate.icon)
+								   parent=root_node,
+								   node_flags=node_flags,
+								   attributes_flags=attributes_flags)
+			plate_node.roles[Qt.DisplayRole] = ""
+			plate_node.roles[Qt.DecorationRole] = foundations.common.filter_path(plate.icon)
 
-		self.__model.initializeModel(rootNode)
+		self.__model.initialize_model(root_node)
 		return True
 
-	def loopThroughIblSets(self, backward=False):
+	def loop_through_ibl_sets(self, backward=False):
 		"""
-		Loops through :mod:`sibl_gui.components.core.iblSetsOutliner.iblSetsOutliner` Component Ibl Sets.
+		Loops through :mod:`sibl_gui.components.core.ibl_sets_outliner.ibl_sets_outliner` Component Ibl Sets.
 
 		:param backward: Looping backward.
 		:type backward: bool
@@ -1553,32 +1553,32 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:rtype: bool
 		"""
 
-		if self.__activeIblSet:
-			model = self.__iblSetsOutliner.model
+		if self.__active_ibl_set:
+			model = self.__ibl_sets_outliner.model
 
-			activeIblSetNode = [node for node in model.rootNode.children if
-								node.databaseItem.path == self.__activeIblSet.path]
-			activeIblSetNode = foundations.common.getFirstItem(activeIblSetNode)
-			if not activeIblSetNode:
+			active_ibl_set_node = [node for node in model.root_node.children if
+								node.database_item.path == self.__active_ibl_set.path]
+			active_ibl_set_node = foundations.common.get_first_item(active_ibl_set_node)
+			if not active_ibl_set_node:
 				return True
 
-			row = activeIblSetNode.row()
+			row = active_ibl_set_node.row()
 
 			step = not backward and 1 or -1
 			idx = row + step
 			if idx < 0:
-				idx = model.rootNode.childrenCount() - 1
-			elif idx > model.rootNode.childrenCount() - 1:
+				idx = model.root_node.children_count() - 1
+			elif idx > model.root_node.children_count() - 1:
 				idx = 0
 
-			selectionModel = self.__iblSetsOutliner.getActiveView().selectionModel()
-			selectionModel.clear()
-			selectionModel.setCurrentIndex(model.index(idx), QItemSelectionModel.Select)
+			selection_model = self.__ibl_sets_outliner.get_active_view().selectionModel()
+			selection_model.clear()
+			selection_model.setCurrentIndex(model.index(idx), QItemSelectionModel.Select)
 		else:
-			self.uiClear.emit()
+			self.ui_clear.emit()
 		return True
 
-	def loopThroughPlates(self, backward=False):
+	def loop_through_plates(self, backward=False):
 		"""
 		Loops through :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set Plates.
 
@@ -1588,7 +1588,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:rtype: bool
 		"""
 
-		index = foundations.common.getFirstItem(self.Plates_listView.selectedIndexes())
+		index = foundations.common.get_first_item(self.Plates_listView.selectedIndexes())
 		if index:
 			step = not backward and 1 or -1
 			idx = index.row() + step
@@ -1597,9 +1597,9 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif idx > self.__model.rowCount() - 1:
 				idx = 0
 
-			selectionModel = self.Plates_listView.selectionModel()
-			selectionModel.clear()
-			selectionModel.setCurrentIndex(self.__model.index(idx), QItemSelectionModel.Select)
+			selection_model = self.Plates_listView.selectionModel()
+			selection_model.clear()
+			selection_model.setCurrentIndex(self.__model.index(idx), QItemSelectionModel.Select)
 		else:
 			self.Plates_listView.setCurrentIndex(self.__model.index(0, 0))
 		return True

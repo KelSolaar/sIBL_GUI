@@ -1,0 +1,13 @@
+[Component]
+Name = addons.sibl_edit_utilities
+Title = sIBLedit Utilities
+Module = sibl_edit_utilities
+Object = sIBLeditUtilities
+Require = core.ibl_sets_outliner|core.inspector|factory.preferences_manager
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = sIBLedit Utilities addon Component.

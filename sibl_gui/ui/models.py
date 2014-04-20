@@ -44,7 +44,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "GraphModel"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -56,25 +56,25 @@ class GraphModel(umbra.ui.models.GraphModel):
 	to support various images formats as **Qt.DecorationRole**.
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None, defaultNode=None):
+	def __init__(self, parent=None, root_node=None, horizontal_headers=None, vertical_headers=None, default_node=None):
 		"""
 		Initializes the class.
 
 		:param parent: Object parent.
 		:type parent: QObject
-		:param rootNode: Root node.
-		:type rootNode: AbstractCompositeNode
-		:param horizontalHeaders: Headers.
-		:type horizontalHeaders: OrderedDict
-		:param verticalHeaders: Headers.
-		:type verticalHeaders: OrderedDict
-		:param defaultNode: Default node.
-		:type defaultNode: GraphModelNode
+		:param root_node: Root node.
+		:type root_node: AbstractCompositeNode
+		:param horizontal_headers: Headers.
+		:type horizontal_headers: OrderedDict
+		:param vertical_headers: Headers.
+		:type vertical_headers: OrderedDict
+		:param default_node: Default node.
+		:type default_node: GraphModelNode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders, defaultNode)
+		umbra.ui.models.GraphModel.__init__(self, parent, root_node, horizontal_headers, vertical_headers, default_node)
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -94,26 +94,26 @@ class GraphModel(umbra.ui.models.GraphModel):
 		if not index.isValid():
 			return QVariant()
 
-		node = self.getNode(index)
+		node = self.get_node(index)
 		if index.column() == 0:
 			if hasattr(node, "roles"):
 				value = node.roles.get(role)
 				if role == Qt.DecorationRole:
-					return sibl_gui.ui.common.getIcon(value,
-													size=node.get("iconSize", "Default"),
-													placeholder=node.get("iconPlaceholder")) \
+					return sibl_gui.ui.common.get_icon(value,
+													size=node.get("icon_size", "Default"),
+													placeholder=node.get("icon_placeholder")) \
 													if value is not None else QVariant()
 				else:
 					return value if value is not None else QVariant()
 		else:
-			attribute = self.getAttribute(node, index.column())
+			attribute = self.get_attribute(node, index.column())
 			if attribute:
 				if hasattr(attribute, "roles"):
 					value = attribute.roles.get(role)
 					if role == Qt.DecorationRole:
-						return sibl_gui.ui.common.getIcon(value,
-													size=attribute.get("iconSize", "Default"),
-													placeholder=attribute.get("iconPlaceholder")) \
+						return sibl_gui.ui.common.get_icon(value,
+													size=attribute.get("icon_size", "Default"),
+													placeholder=attribute.get("icon_placeholder")) \
 													if value is not None else QVariant()
 					else:
 						return value if value is not None else QVariant()

@@ -36,5 +36,5 @@ __status__ = "Production"
 
 __all__ = ["LOGGER"]
 
-LOGGER = foundations.verbose.installLogger()
-foundations.verbose.getLoggingConsoleHandler()
+LOGGER = foundations.verbose.install_logger()
+foundations.verbose.get_logging_console_handler()

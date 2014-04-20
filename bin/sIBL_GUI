@@ -28,15 +28,15 @@ import sys
 #**********************************************************************************************************************
 #***	Path manipulations.
 #**********************************************************************************************************************
-def _setApplicationPackageDirectory():
+def _set_application_package_directory():
 	"""
 	This definition sets the Application package directory in the path.
 	"""
 
-	applicationPackageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
-	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
+	application_package_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+	application_package_directory not in sys.path and sys.path.append(application_package_directory)
 
-_setApplicationPackageDirectory()
+_set_application_package_directory()
 
 ##**********************************************************************************************************************
 #***	Internal imports.

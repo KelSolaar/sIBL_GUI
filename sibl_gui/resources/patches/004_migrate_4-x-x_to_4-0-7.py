@@ -36,7 +36,7 @@ import foundations.common
 import foundations.verbose
 import sibl_gui.components.core.database.operations
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+from umbra.globals.runtime_globals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -50,7 +50,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "UID", "apply"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 UID = "ddfd9d292ea73aa3450989af7d7ee945"
 
@@ -65,14 +65,14 @@ def apply():
 	:rtype: bool
 	"""
 
-	databaseDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory, Constants.databaseDirectory)
+	database_directory = os.path.join(RuntimeGlobals.user_application_data_directory, Constants.database_directory)
 
-	migrationsDirectory = os.path.join(databaseDirectory, "migrations")
-	if foundations.common.pathExists(migrationsDirectory):
-		foundations.io.remove(migrationsDirectory)
+	migrations_directory = os.path.join(database_directory, "migrations")
+	if foundations.common.path_exists(migrations_directory):
+		foundations.io.remove(migrations_directory)
 
-	databaseFile = os.path.join(databaseDirectory, Constants.databaseFile)
-	engine = create_engine("sqlite:///{0}".format(databaseFile))
+	database_file = os.path.join(database_directory, Constants.database_file)
+	engine = create_engine("sqlite:///{0}".format(database_file))
 	connection = engine.connect()
 	transaction = connection.begin()
 	inspector = reflection.Inspector.from_engine(engine)

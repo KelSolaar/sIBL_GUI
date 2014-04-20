@@ -38,7 +38,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "PlatesModel"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -49,45 +49,45 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 	Component Interface class. 
 	"""
 
-	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
+	def __init__(self, parent=None, root_node=None, horizontal_headers=None, vertical_headers=None):
 		"""
 		Initializes the class.
 
 		:param parent: Object parent.
 		:type parent: QObject
-		:param rootNode: Root node.
-		:type rootNode: AbstractCompositeNode
-		:param horizontalHeaders: Headers.
-		:type horizontalHeaders: OrderedDict
-		:param verticalHeaders: Headers.
-		:type verticalHeaders: OrderedDict
+		:param root_node: Root node.
+		:type root_node: AbstractCompositeNode
+		:param horizontal_headers: Headers.
+		:type horizontal_headers: OrderedDict
+		:param vertical_headers: Headers.
+		:type vertical_headers: OrderedDict
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		sibl_gui.ui.models.GraphModel.__init__(self,
 											parent,
-											rootNode,
-											horizontalHeaders,
-											verticalHeaders)
+											root_node,
+											horizontal_headers,
+											vertical_headers)
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def initializeModel(self, rootNode):
+	def initialize_model(self, root_node):
 		"""
 		Initializes the Model using given root node.
 		
-		:param rootNode: Graph root node.
-		:type rootNode: DefaultNode
+		:param root_node: Graph root node.
+		:type root_node: DefaultNode
 		:return: Method success
 		:rtype: bool
 		"""
 
-		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))
+		LOGGER.debug("> Initializing model with '{0}' root node.".format(root_node))
 
 		self.beginResetModel()
-		self.rootNode = rootNode
-		self.enableModelTriggers(True)
+		self.root_node = root_node
+		self.enable_model_triggers(True)
 		self.endResetModel()
 		return True

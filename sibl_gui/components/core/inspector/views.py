@@ -47,7 +47,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "Plates_QListView"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -57,7 +57,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	Defines the view for Ibl Sets Plates as thumbnails.
 	"""
 
-	def __init__(self, parent, model=None, readOnly=False, message=None):
+	def __init__(self, parent, model=None, read_only=False, message=None):
 		"""
 		Initializes the class.
 
@@ -65,62 +65,62 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		:type parent: QObject
 		:param model: Model.
 		:type model: QObject
-		:param readOnly: View is read only.
-		:type readOnly: bool
+		:param read_only: View is read only.
+		:type read_only: bool
 		:param message: View default message when Model is empty.
 		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly, message)
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, read_only, message)
 
 		# --- Setting class attributes. ---
-		self.__listViewIconSize = 30
+		self.__list_view_icon_size = 30
 
-		Plates_QListView.__initializeUi(self)
+		Plates_QListView.__initialize_ui(self)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def listViewIconSize(self):
+	def list_view_icon_size(self):
 		"""
-		Property for **self.__listViewIconSize** attribute.
+		Property for **self.__list_view_icon_size** attribute.
 
-		:return: self.__listViewIconSize.
+		:return: self.__list_view_icon_size.
 		:rtype: int
 		"""
 
-		return self.__listViewIconSize
+		return self.__list_view_icon_size
 
-	@listViewIconSize.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewIconSize(self, value):
+	@list_view_icon_size.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def list_view_icon_size(self, value):
 		"""
-		Setter for **self.__listViewIconSize** attribute.
+		Setter for **self.__list_view_icon_size** attribute.
 
 		:param value: Attribute value.
 		:type value: int
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "listViewIconSize"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "list_view_icon_size"))
 
-	@listViewIconSize.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def listViewIconSize(self):
+	@list_view_icon_size.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def list_view_icon_size(self):
 		"""
-		Deleter for **self.__listViewIconSize** attribute.
+		Deleter for **self.__list_view_icon_size** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_icon_size"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeUi(self):
+	def __initialize_ui(self):
 		"""
 		Initializes the Widget ui.
 		"""
@@ -135,12 +135,12 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.setViewMode(QListView.IconMode)
 		self.setWrapping(False)
 
-		self.__setDefaultUiState()
+		self.__set_default_ui_state()
 
 		# Signals / Slots.
-		self.model().modelReset.connect(self.__setDefaultUiState)
+		self.model().modelReset.connect(self.__set_default_ui_state)
 
-	def __setDefaultUiState(self):
+	def __set_default_ui_state(self):
 		"""
 		Sets the Widget default ui state.
 		"""
@@ -149,4 +149,4 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 		self.setMinimumSize(600, 52)
 		self.setMaximumSize(16777215, 52)
-		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.setIconSize(QSize(self.__list_view_icon_size, self.__list_view_icon_size))

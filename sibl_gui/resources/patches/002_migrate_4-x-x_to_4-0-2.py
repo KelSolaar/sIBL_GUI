@@ -31,7 +31,7 @@ import foundations.common
 import foundations.core
 import foundations.verbose
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+from umbra.globals.runtime_globals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -45,7 +45,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "UID", "apply"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 UID = "00fd997f2a2c395b59aa31f1997f831b"
 
@@ -60,12 +60,12 @@ def apply():
 	:rtype: bool
 	"""
 
-	defaultScriptEditorDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory,
-														Constants.ioDirectory,
-														"scriptEditor")
-	defaultScriptEditorFile = os.path.join(defaultScriptEditorDirectory, "defaultScript.py")
+	default_script_editor_directory = os.path.join(RuntimeGlobals.user_application_data_directory,
+														Constants.io_directory,
+														"script_editor")
+	default_script_editor_file = os.path.join(default_script_editor_directory, "default_script.py")
 
-	if foundations.common.pathExists(defaultScriptEditorFile):
-		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, defaultScriptEditorFile))
-		os.remove(defaultScriptEditorFile)
+	if foundations.common.path_exists(default_script_editor_file):
+		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, default_script_editor_file))
+		os.remove(default_script_editor_file)
 	return True

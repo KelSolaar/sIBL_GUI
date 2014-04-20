@@ -47,18 +47,18 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"getTemplateUserName",
+			"get_template_user_name",
 			"AbstractDatabaseNode",
 			"IblSetNode",
 			"TemplateNode",
 			"CollectionNode"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def getTemplateUserName(title, software):
+def get_template_user_name(title, software):
 	"""
 	Returns the Template user name.
 
@@ -70,7 +70,7 @@ def getTemplateUserName(title, software):
 	:rtype: unicode
 	"""
 
-	return foundations.strings.removeStrip(title, software)
+	return foundations.strings.remove_strip(title, software)
 
 class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
@@ -84,21 +84,21 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 	"""
 
 	def __init__(self,
-				databaseItem,
+				database_item,
 				name=None,
 				parent=None,
 				children=None,
 				roles=None,
-				nodeFlags=None,
-				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled),
-				iconSize=None,
-				iconPlaceholder=None,
+				node_flags=None,
+				attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled),
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
 
-		:param databaseItem: Database object.
-		:type databaseItem: object
+		:param database_item: Database object.
+		:type database_item: object
 		:param name: Node name.
 		:type name: unicode
 		:param parent: Node parent.
@@ -107,14 +107,14 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		:type children: list
 		:param roles: Roles.
 		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param node_flags: Node flags.
+		:type node_flags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -126,70 +126,70 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 												parent,
 												children,
 												roles,
-												nodeFlags,
-												iconSize,
-												iconPlaceholder,
+												node_flags,
+												icon_size,
+												icon_placeholder,
 												**kwargs)
 
 		# --- Setting class attributes. ---
-		self.__databaseItem = databaseItem
-		self.__toolTipText = ""
+		self.__database_item = database_item
+		self.__tool_tip_text = ""
 
-		AbstractDatabaseNode.__initializeNode(self, attributesFlags)
+		AbstractDatabaseNode.__initialize_node(self, attributes_flags)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def databaseItem(self):
+	def database_item(self):
 		"""
-		Property for **self.__databaseItem** attribute.
+		Property for **self.__database_item** attribute.
 
-		:return: self.__databaseItem.
+		:return: self.__database_item.
 		:rtype: object
 		"""
 
-		return self.__databaseItem
+		return self.__database_item
 
-	@databaseItem.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseItem(self, value):
+	@database_item.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def database_item(self, value):
 		"""
-		Setter for **self.__databaseItem** attribute.
+		Setter for **self.__database_item** attribute.
 
 		:param value: Attribute value.
 		:type value: object
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseItem"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_item"))
 
-	@databaseItem.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def databaseItem(self):
+	@database_item.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def database_item(self):
 		"""
-		Deleter for **self.__databaseItem** attribute.
+		Deleter for **self.__database_item** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseItem"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_item"))
 
 	@property
-	def toolTipText(self):
+	def tool_tip_text(self):
 		"""
-		Property for **self.__toolTipText** attribute.
+		Property for **self.__tool_tip_text** attribute.
 
-		:return: self.__toolTipText.
+		:return: self.__tool_tip_text.
 		:rtype: unicode
 		"""
 
-		return self.__toolTipText
+		return self.__tool_tip_text
 
-	@toolTipText.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def toolTipText(self, value):
+	@tool_tip_text.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def tool_tip_text(self, value):
 		"""
-		Setter for **self.__toolTipText** attribute.
+		Setter for **self.__tool_tip_text** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
@@ -197,41 +197,41 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 		if value is not None:
 			assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-			"toolTipText", value)
-		self.__toolTipText = value
+			"tool_tip_text", value)
+		self.__tool_tip_text = value
 
-	@toolTipText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
+	@tool_tip_text.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def tool_tip_text(self):
 		"""
-		Deleter for **self.__toolTipText** attribute.
+		Deleter for **self.__tool_tip_text** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tool_tip_text"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
+	def __initialize_node(self, attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
 		Initializes the node.
 
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
 		"""
 
-		for column in self.__databaseItem.__table__.columns:
+		for column in self.__database_item.__table__.columns:
 			attribute = column.key
 			if attribute == "name":
 				continue
 
-			value = getattr(self.__databaseItem, attribute)
+			value = getattr(self.__database_item, attribute)
 			roles = {Qt.DisplayRole : value,
 					Qt.EditRole : value}
-			self[attribute] = sibl_gui.ui.nodes.GraphModelAttribute(attribute, value, roles, attributesFlags)
+			self[attribute] = sibl_gui.ui.nodes.GraphModelAttribute(attribute, value, roles, attributes_flags)
 
-	def updateNode(self):
+	def update_node(self):
 		"""
 		Updates the Node from the database item.
 
@@ -240,9 +240,9 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.updateNode.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.update_node.__name__, self.__class__.__name__))
 
-	def updateNodeAttributes(self):
+	def update_node_attributes(self):
 		"""
 		Updates the Node attributes from the database item attributes.
 
@@ -250,17 +250,17 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		:rtype: bool
 		"""
 
-		for column in self.__databaseItem.__table__.columns:
+		for column in self.__database_item.__table__.columns:
 			attribute = column.key
 			if not attribute in self:
 				continue
 
 			if issubclass(self[attribute].__class__, sibl_gui.ui.nodes.GraphModelAttribute):
 				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
-				getattr(self.__databaseItem, attribute)
+				getattr(self.__database_item, attribute)
 		return True
 
-	def updateDatabaseItem(self):
+	def update_database_item(self):
 		"""
 		Updates the database item from the node.
 
@@ -269,9 +269,9 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.updateDatabaseItem.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.update_database_item.__name__, self.__class__.__name__))
 
-	def updateDatabaseItemAttributes(self):
+	def update_database_itemAttributes(self):
 		"""
 		Updates the database item attributes from the Node attributes.
 
@@ -279,17 +279,17 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		:rtype: bool
 		"""
 
-		for column in self.__databaseItem.__table__.columns:
+		for column in self.__database_item.__table__.columns:
 			attribute = column.key
 			if not attribute in self:
 				continue
 
 			if issubclass(self[attribute].__class__, sibl_gui.ui.nodes.GraphModelAttribute):
-				setattr(self.__databaseItem, attribute, self[attribute].value)
+				setattr(self.__database_item, attribute, self[attribute].value)
 		return True
 
-	@foundations.exceptions.handleExceptions(NotImplementedError)
-	def updateToolTip(self):
+	@foundations.exceptions.handle_exceptions(NotImplementedError)
+	def update_tool_tip(self):
 		"""
 		Updates the Node tooltip.
 
@@ -298,7 +298,7 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		"""
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
-		self.__class__.__name__, self.updateToolTip.__name__, self.__class__.__name__))
+		self.__class__.__name__, self.update_tool_tip.__name__, self.__class__.__name__))
 
 class IblSetNode(AbstractDatabaseNode):
 	"""
@@ -312,22 +312,22 @@ class IblSetNode(AbstractDatabaseNode):
 	"""
 
 	def __init__(self,
-				databaseItem,
+				database_item,
 				name=None,
 				parent=None,
 				children=None,
 				roles=None,
-				nodeFlags=None,
-				attributesFlags=None,
-				iconPath=None,
-				iconSize=None,
-				iconPlaceholder=None,
+				node_flags=None,
+				attributes_flags=None,
+				icon_path=None,
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
 
-		:param databaseItem: Database object.
-		:type databaseItem: object
+		:param database_item: Database object.
+		:type database_item: object
 		:param name: Node name.
 		:type name: unicode
 		:param parent: Node parent.
@@ -336,16 +336,16 @@ class IblSetNode(AbstractDatabaseNode):
 		:type children: list
 		:param roles: Roles.
 		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconPath: Icon path.
-		:type iconPath: unicode
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param node_flags: Node flags.
+		:type node_flags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
+		:param icon_path: Icon path.
+		:type icon_path: unicode
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -353,20 +353,20 @@ class IblSetNode(AbstractDatabaseNode):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		AbstractDatabaseNode.__init__(self,
-									databaseItem,
+									database_item,
 									name,
 									parent,
 									children,
 									roles,
-									nodeFlags,
-									attributesFlags,
-									iconSize,
-									iconPlaceholder,
+									node_flags,
+									attributes_flags,
+									icon_size,
+									icon_placeholder,
 									**kwargs)
 
 		# --- Setting class attributes. ---
-		self.__iconPath = iconPath
-		self.toolTipText = """
+		self.__icon_path = icon_path
+		self.tool_tip_text = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
 				<b>Location: </b>{2}<br>
@@ -374,59 +374,59 @@ class IblSetNode(AbstractDatabaseNode):
 				<b>Comment: </b>{4}</p>
 				"""
 
-		IblSetNode.__initializeNode(self)
+		IblSetNode.__initialize_node(self)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def iconPath(self):
+	def icon_path(self):
 		"""
-		Property for **self.__iconPath** attribute.
+		Property for **self.__icon_path** attribute.
 
-		:return: self.__iconPath.
+		:return: self.__icon_path.
 		:rtype: unicode
 		"""
 
-		return self.__iconPath
+		return self.__icon_path
 
-	@iconPath.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iconPath(self, value):
+	@icon_path.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def icon_path(self, value):
 		"""
-		Setter for **self.__iconPath** attribute.
+		Setter for **self.__icon_path** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iconPath"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "icon_path"))
 
-	@iconPath.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def iconPath(self):
+	@icon_path.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def icon_path(self):
 		"""
-		Deleter for **self.__iconPath** attribute.
+		Deleter for **self.__icon_path** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iconPath"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_path"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self):
+	def __initialize_node(self):
 		"""
 		Initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : self.databaseItem.title,
-							Qt.DecorationRole : foundations.common.filterPath(self.__iconPath),
-							Qt.EditRole : self.databaseItem.title})
-		self.updateToolTip()
+		self.roles.update({Qt.DisplayRole : self.database_item.title,
+							Qt.DecorationRole : foundations.common.filter_path(self.__icon_path),
+							Qt.EditRole : self.database_item.title})
+		self.update_tool_tip()
 
-	def updateNode(self):
+	def update_node(self):
 		"""
 		Updates the node from the database item.
 
@@ -434,10 +434,10 @@ class IblSetNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__databaseItem.title
-		return self.updateNodeAttributes()
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__database_item.title
+		return self.update_node_attributes()
 
-	def updateNodeAttributes(self):
+	def update_node_attributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
 
@@ -445,9 +445,9 @@ class IblSetNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		return AbstractDatabaseNode.updateNodeAttributes(self)
+		return AbstractDatabaseNode.update_node_attributes(self)
 
-	def updateDatabaseItem(self):
+	def update_database_item(self):
 		"""
 		Updates the database item from the node.
 
@@ -455,10 +455,10 @@ class IblSetNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.title = self.databaseItem.title = self.name
-		return self.updateDatabaseItemAttributes()
+		self.title = self.database_item.title = self.name
+		return self.update_database_itemAttributes()
 
-	def updateToolTip(self):
+	def update_tool_tip(self):
 		"""
 		Updates the node tooltip.
 
@@ -466,12 +466,12 @@ class IblSetNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.databaseItem.title,
-															self.databaseItem.author or Constants.nullObject,
-															self.databaseItem.location or Constants.nullObject,
-															sibl_gui.ui.common.getFormattedShotDate(self.databaseItem.date,
-																			self.databaseItem.time) or Constants.nullObject,
-															self.databaseItem.comment or Constants.nullObject)
+		self.roles[Qt.ToolTipRole] = self.tool_tip_text.format(self.database_item.title,
+															self.database_item.author or Constants.null_object,
+															self.database_item.location or Constants.null_object,
+															sibl_gui.ui.common.get_formatted_shot_date(self.database_item.date,
+																			self.database_item.time) or Constants.null_object,
+															self.database_item.comment or Constants.null_object)
 		return True
 
 class TemplateNode(AbstractDatabaseNode):
@@ -486,21 +486,21 @@ class TemplateNode(AbstractDatabaseNode):
 	"""
 
 	def __init__(self,
-				databaseItem,
+				database_item,
 				name=None,
 				parent=None,
 				children=None,
 				roles=None,
-				nodeFlags=None,
-				attributesFlags=None,
-				iconSize=None,
-				iconPlaceholder=None,
+				node_flags=None,
+				attributes_flags=None,
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
 
-		:param databaseItem: Database object.
-		:type databaseItem: object
+		:param database_item: Database object.
+		:type database_item: object
 		:param name: Node name.
 		:type name: unicode
 		:param parent: Node parent.
@@ -509,14 +509,14 @@ class TemplateNode(AbstractDatabaseNode):
 		:type children: list
 		:param roles: Roles.
 		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param node_flags: Node flags.
+		:type node_flags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -524,41 +524,41 @@ class TemplateNode(AbstractDatabaseNode):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		AbstractDatabaseNode.__init__(self,
-									databaseItem,
+									database_item,
 									name,
 									parent,
 									children,
 									roles,
-									nodeFlags,
-									attributesFlags,
-									iconSize,
-									iconPlaceholder,
+									node_flags,
+									attributes_flags,
+									icon_size,
+									icon_placeholder,
 									**kwargs)
 
 		# --- Setting class attributes. ---
-		self.toolTipText = """
+		self.tool_tip_text = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
 				<b>Release Date: </b>{2}<br>
 				<b>Comment: </b>{3}</p></p>
 				"""
 
-		TemplateNode.__initializeNode(self)
+		TemplateNode.__initialize_node(self)
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self):
+	def __initialize_node(self):
 		"""
 		Initializes the node.
 		"""
 
-		templateUserName = getTemplateUserName(self.databaseItem.title, self.databaseItem.software)
-		self.roles.update({Qt.DisplayRole : templateUserName,
-							Qt.EditRole : templateUserName})
-		self.updateToolTip()
+		template_user_name = get_template_user_name(self.database_item.title, self.database_item.software)
+		self.roles.update({Qt.DisplayRole : template_user_name,
+							Qt.EditRole : template_user_name})
+		self.update_tool_tip()
 
-	def updateNode(self):
+	def update_node(self):
 		"""
 		Updates the node from the database item.
 
@@ -566,12 +566,12 @@ class TemplateNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = getTemplateUserName(self.databaseItem.title,
-																								self.databaseItem.software)
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = get_template_user_name(self.database_item.title,
+																								self.database_item.software)
 
-		return self.updateNodeAttributes()
+		return self.update_node_attributes()
 
-	def updateNodeAttributes(self):
+	def update_node_attributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
 
@@ -579,9 +579,9 @@ class TemplateNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		return AbstractDatabaseNode.updateNodeAttributes(self)
+		return AbstractDatabaseNode.update_node_attributes(self)
 
-	def updateDatabaseItem(self):
+	def update_database_item(self):
 		"""
 		Updates the database item from the node.
 
@@ -589,10 +589,10 @@ class TemplateNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.title = self.databaseItem.title = self.name
-		return self.updateDatabaseItemAttributes()
+		self.title = self.database_item.title = self.name
+		return self.update_database_itemAttributes()
 
-	def updateToolTip(self):
+	def update_tool_tip(self):
 		"""
 		Updates the node tooltip.
 
@@ -600,11 +600,11 @@ class TemplateNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(getTemplateUserName(self.databaseItem.title,
-																				self.databaseItem.software),
-																	self.databaseItem.author,
-																	self.databaseItem.date,
-																	self.databaseItem.comment)
+		self.roles[Qt.ToolTipRole] = self.tool_tip_text.format(get_template_user_name(self.database_item.title,
+																				self.database_item.software),
+																	self.database_item.author,
+																	self.database_item.date,
+																	self.database_item.comment)
 		return True
 
 class CollectionNode(AbstractDatabaseNode):
@@ -619,21 +619,21 @@ class CollectionNode(AbstractDatabaseNode):
 	"""
 
 	def __init__(self,
-				databaseItem,
+				database_item,
 				name=None,
 				parent=None,
 				children=None,
 				roles=None,
-				nodeFlags=None,
-				attributesFlags=None,
-				iconSize=None,
-				iconPlaceholder=None,
+				node_flags=None,
+				attributes_flags=None,
+				icon_size=None,
+				icon_placeholder=None,
 				**kwargs):
 		"""
 		Initializes the class.
 
-		:param databaseItem: Database object.
-		:type databaseItem: object
+		:param database_item: Database object.
+		:type database_item: object
 		:param name: Node name.
 		:type name: unicode
 		:param parent: Node parent.
@@ -642,14 +642,14 @@ class CollectionNode(AbstractDatabaseNode):
 		:type children: list
 		:param roles: Roles.
 		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
+		:param node_flags: Node flags.
+		:type node_flags: int
+		:param attributes_flags: Attributes flags.
+		:type attributes_flags: int
+		:param icon_size: Icon size.
+		:type icon_size: unicode
+		:param icon_placeholder: Icon placeholder.
+		:type icon_placeholder: QIcon
 		:param \*\*kwargs: Keywords arguments.
 		:type \*\*kwargs: \*\*
 		"""
@@ -657,42 +657,42 @@ class CollectionNode(AbstractDatabaseNode):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		AbstractDatabaseNode.__init__(self,
-									databaseItem,
+									database_item,
 									name,
 									parent,
 									children,
 									roles,
-									nodeFlags,
-									attributesFlags,
-									iconSize,
-									iconPlaceholder,
+									node_flags,
+									attributes_flags,
+									icon_size,
+									icon_placeholder,
 									**kwargs)
 
 		# --- Setting class attributes. ---
-		self.toolTipText = """
+		self.tool_tip_text = """
 				<p><b>{0}</b></p>
 				<p><b>Comment: </b>{1}<br></p>
 				"""
 
-		CollectionNode.__initializeNode(self)
+		CollectionNode.__initialize_node(self)
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __initializeNode(self):
+	def __initialize_node(self):
 		"""
 		Initializes the node.
 		"""
 
 		self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(
 						name="count",
-						value=sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem),
+						value=sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.database_item),
 						flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
-		self.roles.update({Qt.DisplayRole : self.databaseItem.name, Qt.EditRole : self.databaseItem.name})
-		self.updateToolTip()
+		self.roles.update({Qt.DisplayRole : self.database_item.name, Qt.EditRole : self.database_item.name})
+		self.update_tool_tip()
 
-	def updateNode(self):
+	def update_node(self):
 		"""
 		Updates the node from the database item.
 
@@ -700,10 +700,10 @@ class CollectionNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.databaseItem.name
-		return self.updateNodeAttributes()
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.database_item.name
+		return self.update_node_attributes()
 
-	def updateNodeAttributes(self):
+	def update_node_attributes(self):
 		"""
 		Updates the node attributes from the database item attributes.
 
@@ -712,11 +712,11 @@ class CollectionNode(AbstractDatabaseNode):
 		"""
 
 		self.count.value = self.count.roles[Qt.DisplayRole] = \
-		sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.databaseItem)
+		sibl_gui.components.core.database.operations.getCollectionIblSetsCount(self.database_item)
 
-		return AbstractDatabaseNode.updateNodeAttributes(self)
+		return AbstractDatabaseNode.update_node_attributes(self)
 
-	def updateDatabaseItem(self):
+	def update_database_item(self):
 		"""
 		Updates the database item from the node.
 
@@ -724,10 +724,10 @@ class CollectionNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.databaseItem.name = self.name
-		return self.updateDatabaseItemAttributes()
+		self.database_item.name = self.name
+		return self.update_database_itemAttributes()
 
-	def updateToolTip(self):
+	def update_tool_tip(self):
 		"""
 		Updates the node tooltip.
 
@@ -735,6 +735,6 @@ class CollectionNode(AbstractDatabaseNode):
 		:rtype: bool
 		"""
 
-		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.databaseItem.name,
-																self.databaseItem.comment)
+		self.roles[Qt.ToolTipRole] = self.tool_tip_text.format(self.database_item.name,
+																self.database_item.comment)
 		return True

@@ -32,47 +32,47 @@ from PyQt4.QtGui import QPixmap
 #**********************************************************************************************************************
 #***	Path manipulations.
 #**********************************************************************************************************************
-def _setPackageDirectory():
+def _set_package_directory():
 	"""
 	Sets the Application package directory in the path.
 	"""
 
 	if hasattr(sys, "frozen"):
-		packageDirectory = os.path.dirname(__file__)
+		package_directory = os.path.dirname(__file__)
 	else:
-		packageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
-	packageDirectory not in sys.path and sys.path.append(packageDirectory)
+		package_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+	package_directory not in sys.path and sys.path.append(package_directory)
 
-_setPackageDirectory()
+_set_package_directory()
 
 #**********************************************************************************************************************
 #***	Internal imports.
 #**********************************************************************************************************************
 import sibl_gui.globals.constants
-import sibl_gui.globals.uiConstants
-import sibl_gui.globals.runtimeGlobals
+import sibl_gui.globals.ui_constants
+import sibl_gui.globals.runtime_globals
 import umbra.globals.constants
-import umbra.globals.uiConstants
-import umbra.globals.runtimeGlobals
+import umbra.globals.ui_constants
+import umbra.globals.runtime_globals
 
 #**********************************************************************************************************************
 #***	Dependencies globals manipulation.
 #**********************************************************************************************************************
 umbra.globals.constants.Constants.__dict__.update(sibl_gui.globals.constants.Constants.__dict__)
-umbra.globals.uiConstants.UiConstants.__dict__.update(sibl_gui.globals.uiConstants.UiConstants.__dict__)
-umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtimeGlobals.RuntimeGlobals.__dict__)
+umbra.globals.ui_constants.UiConstants.__dict__.update(sibl_gui.globals.ui_constants.UiConstants.__dict__)
+umbra.globals.runtime_globals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtime_globals.RuntimeGlobals.__dict__)
 
-for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory),
-			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
+for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resources_directory),
+			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resources_directory)):
 	path = os.path.normpath(path)
 	if os.path.exists(path):
-		path not in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories and \
-		umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesDirectories.append(path)
+		path not in umbra.globals.runtime_globals.RuntimeGlobals.resources_directories and \
+		umbra.globals.runtime_globals.RuntimeGlobals.resources_directories.append(path)
 
 import foundations.globals.constants
 import manager.globals.constants
 
-def _overrideDependenciesGlobals():
+def _override_dependencies_globals():
 	"""
 	Overrides dependencies globals.
 	"""
@@ -80,10 +80,10 @@ def _overrideDependenciesGlobals():
 	foundations.globals.constants.Constants.logger = \
 	manager.globals.constants.Constants.logger = umbra.globals.constants.Constants.logger
 
-	foundations.globals.constants.Constants.applicationDirectory = \
-	manager.globals.constants.Constants.applicationDirectory = umbra.globals.constants.Constants.applicationDirectory
+	foundations.globals.constants.Constants.application_directory = \
+	manager.globals.constants.Constants.application_directory = umbra.globals.constants.Constants.application_directory
 
-_overrideDependenciesGlobals()
+_override_dependencies_globals()
 
 #**********************************************************************************************************************
 #***	Internal imports.
@@ -108,9 +108,9 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "sIBL_GUI", "extendCommandLineParametersParser"]
+__all__ = ["LOGGER", "sIBL_GUI", "extend_command_line_parameters_parser"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -141,84 +141,84 @@ class sIBL_GUI(umbra.engine.Umbra):
 									**kwargs)
 
 		# --- Setting class attributes. ---
-		self.__thumbnailsCacheDirectory = self.__thumbnailsCacheDirectory
-		self.__imagesCaches = self.__imagesCaches
+		self.__thumbnails_cache_directory = self.__thumbnails_cache_directory
+		self.__images_caches = self.__images_caches
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def thumbnailsCacheDirectory(self):
+	def thumbnails_cache_directory(self):
 		"""
-		Property for **self.__thumbnailsCacheDirectory** attribute.
+		Property for **self.__thumbnails_cache_directory** attribute.
 
-		:return: self.__thumbnailsCacheDirectory.
+		:return: self.__thumbnails_cache_directory.
 		:rtype: unicode
 		"""
 
-		return self.__thumbnailsCacheDirectory
+		return self.__thumbnails_cache_directory
 
-	@thumbnailsCacheDirectory.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsCacheDirectory(self, value):
+	@thumbnails_cache_directory.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def thumbnails_cache_directory(self, value):
 		"""
-		Setter for **self.__thumbnailsCacheDirectory** attribute.
+		Setter for **self.__thumbnails_cache_directory** attribute.
 
 		:param value: Attribute value.
 		:type value: unicode
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnailsCacheDirectory"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnails_cache_directory"))
 
-	@thumbnailsCacheDirectory.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def thumbnailsCacheDirectory(self):
+	@thumbnails_cache_directory.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def thumbnails_cache_directory(self):
 		"""
-		Deleter for **self.__thumbnailsCacheDirectory** attribute.
+		Deleter for **self.__thumbnails_cache_directory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnailsCacheDirectory"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnails_cache_directory"))
 
 	@property
-	def imagesCaches(self):
+	def images_caches(self):
 		"""
-		Property for **self.__imagesCaches** attribute.
+		Property for **self.__images_caches** attribute.
 
-		:return: self.__imagesCaches.
+		:return: self.__images_caches.
 		:rtype: Structure
 		"""
 
-		return self.__imagesCaches
+		return self.__images_caches
 
-	@imagesCaches.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def imagesCaches(self, value):
+	@images_caches.setter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def images_caches(self, value):
 		"""
-		Setter for **self.__imagesCaches** attribute.
+		Setter for **self.__images_caches** attribute.
 
 		:param value: Attribute value.
 		:type value: Structure
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesCaches"))
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "images_caches"))
 
-	@imagesCaches.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def imagesCaches(self):
+	@images_caches.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def images_caches(self):
 		"""
-		Deleter for **self.__imagesCaches** attribute.
+		Deleter for **self.__images_caches** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesCaches"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "images_caches"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	def __overrideApplicationToolbar(self):
+	def __override_application_toolbar(self):
 		"""
 		Overrides the Application toolbar.
 		"""
@@ -226,63 +226,63 @@ class sIBL_GUI(umbra.engine.Umbra):
 		umbra.ui.widgets.application_QToolBar.Application_QToolBar = \
 		sibl_gui.ui.widgets.application_QToolBar.Application_QToolBar
 
-	def __setThumbnailsCacheDirectory(self):
+	def __set_thumbnails_cache_directory(self):
 		"""
 		Sets the Application thumbnails cache directory.
 		"""
 
-		self.__thumbnailsCacheDirectory = umbra.globals.runtimeGlobals.RuntimeGlobals.thumbnailsCacheDirectory = \
-								os.path.join(umbra.globals.runtimeGlobals.RuntimeGlobals.userApplicationDataDirectory,
-											umbra.globals.constants.Constants.ioDirectory,
-											umbra.globals.uiConstants.UiConstants.thumbnailsCacheDirectory)
+		self.__thumbnails_cache_directory = umbra.globals.runtime_globals.RuntimeGlobals.thumbnails_cache_directory = \
+								os.path.join(umbra.globals.runtime_globals.RuntimeGlobals.user_application_data_directory,
+											umbra.globals.constants.Constants.io_directory,
+											umbra.globals.ui_constants.UiConstants.thumbnails_cache_directory)
 
-	def __setImagesCaches(self):
+	def __set_images_caches(self):
 		"""
 		Sets the Application images caches.
 		"""
 
-		loadingImage = umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.loadingImage)
-		self.__imagesCaches = umbra.globals.runtimeGlobals.RuntimeGlobals.imagesCaches = \
-					foundations.dataStructures.Structure(**{
-					"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loadingImage),
-					"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loadingImage),
-					"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loadingImage)})
+		loading_image = umbra.ui.common.get_resource_path(umbra.globals.ui_constants.UiConstants.loading_image)
+		self.__images_caches = umbra.globals.runtime_globals.RuntimeGlobals.images_caches = \
+					foundations.data_structures.Structure(**{
+					"QImage":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QImage, placeholder=loading_image),
+					"QPixmap":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QPixmap, placeholder=loading_image),
+					"QIcon":sibl_gui.ui.caches.AsynchronousGraphicsItemsCache(type=QIcon, placeholder=loading_image)})
 
 		# Override "umbra.ui.models.GraphModel.data" method to use "sibl_gui.ui.models.GraphModel.data" method
 		# with asynchronous images loading.
 		setattr(umbra.ui.models.GraphModel, "data", umbra.ui.models.GraphModel.data)
 
-	def onPreInitialisation(self):
+	def on_pre_initialisation(self):
 		"""
 		Called by :class:`umbra.engine.Umbra` class before Application main class initialisation.
 		"""
 
-		self.__overrideApplicationToolbar()
-		self.__setThumbnailsCacheDirectory()
-		self.__setImagesCaches()
+		self.__override_application_toolbar()
+		self.__set_thumbnails_cache_directory()
+		self.__set_images_caches()
 
-	def onInitialisation(self):
+	def on_initialisation(self):
 		"""
 		Called by :class:`umbra.engine.Umbra` class on Application main class initialisation.
 		"""
 
 		pass
 
-	def onPostInitialisation(self):
+	def on_post_initialisation(self):
 		"""
 		Called by :class:`umbra.engine.Umbra` class after Application main class initialisation.
 		"""
 
-		for cache in self.__imagesCaches.itervalues():
-			self.workerThreads.append(cache.worker)
+		for cache in self.__images_caches.itervalues():
+			self.worker_threads.append(cache.worker)
 
-		componentsManagerUi = self.componentsManager.getInterface("factory.componentsManagerUi")
-		self.imagesCaches.QIcon.contentAdded.connect(componentsManagerUi.view.viewport().update)
+		components_manager_ui = self.components_manager.get_interface("factory.components_manager_ui")
+		self.images_caches.QIcon.content_added.connect(components_manager_ui.view.viewport().update)
 
-		scriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
-		self.contentDropped.disconnect(scriptEditor._ScriptEditor__engine__contentDropped)
+		script_editor = self.components_manager.get_interface("factory.script_editor")
+		self.content_dropped.disconnect(script_editor._ScriptEditor__engine__content_dropped)
 
-def extendCommandLineParametersParser(parser):
+def extend_command_line_parameters_parser(parser):
 	"""
 	Returns the command line parameters parser.
 
@@ -293,22 +293,22 @@ def extendCommandLineParametersParser(parser):
 	"""
 
 	parser.add_option("-d",
-					"--databaseDirectory",
+					"--database_directory",
 					action="store",
 					type="string",
-					dest="databaseDirectory",
+					dest="database_directory",
 					help="'Database directory'.")
 	parser.add_option("-r",
-					"--databaseReadOnly",
+					"--database_read_only",
 					action="store_true",
 					default=False,
-					dest="databaseReadOnly",
+					dest="database_read_only",
 					help="'Database read only'.")
 	parser.add_option("-o",
-					"--loaderScriptsOutputDirectory",
+					"--loader_scripts_output_directory",
 					action="store",
 					type="string",
-					dest="loaderScriptsOutputDirectory",
+					dest="loader_scripts_output_directory",
 					help="'Loader Scripts output directory'.")
 
 	return True
@@ -324,34 +324,34 @@ def main():
 	:rtype: bool
 	"""
 
-	commandLineParametersParser = umbra.engine.getCommandLineParametersParser()
-	extendCommandLineParametersParser(commandLineParametersParser)
-	componentsPaths = []
-	for path in (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
-		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryComponentsDirectory),
-		os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryAddonsComponentsDirectory),
-		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryAddonsComponentsDirectory),
-		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
-		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
-		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
-		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
-		(foundations.common.pathExists(path) and not path in componentsPaths) and componentsPaths.append(path)
+	command_line_parameters_parser = umbra.engine.get_command_line_parameters_parser()
+	extend_command_line_parameters_parser(command_line_parameters_parser)
+	components_paths = []
+	for path in (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factory_components_directory),
+		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factory_components_directory),
+		os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factory_addons_components_directory),
+		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factory_addons_components_directory),
+		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.core_components_directory),
+		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.core_components_directory),
+		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addons_components_directory),
+		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addons_components_directory)):
+		(foundations.common.path_exists(path) and not path in components_paths) and components_paths.append(path)
 
 	return umbra.engine.run(sIBL_GUI,
-						commandLineParametersParser.parse_args([unicode(argument,
-															umbra.globals.constants.Constants.defaultCodec,
-															umbra.globals.constants.Constants.codecError) \
+						command_line_parameters_parser.parse_args([unicode(argument,
+															umbra.globals.constants.Constants.default_codec,
+															umbra.globals.constants.Constants.codec_error) \
 															for argument in sys.argv]),
-						componentsPaths,
-						("factory.scriptEditor",
-						"factory.preferencesManager",
-						"factory.componentsManagerUi",
+						components_paths,
+						("factory.script_editor",
+						"factory.preferences_manager",
+						"factory.components_manager_ui",
 						"core.database",
-						"core.collectionsOutliner",
-						"core.iblSetsOutliner",
+						"core.collections_outliner",
+						"core.ibl_sets_outliner",
 						"core.inspector",
-						"core.templatesOutliner"),
-						("core.iblSetsOutliner",))
+						"core.templates_outliner"),
+						("core.ibl_sets_outliner",))
 
 if __name__ == "__main__":
 	main()

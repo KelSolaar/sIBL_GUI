@@ -50,27 +50,27 @@ class Constants():
 	Defines **sIBL_GUI** package default constants.
 	"""
 
-	applicationName = "sIBL_GUI"
+	application_name = "sIBL_GUI"
 	"""
-	:param applicationName: Package Application name.
-	:type applicationName: unicode
+	:param application_name: Package Application name.
+	:type application_name: unicode
 	"""
-	majorVersion = "4"
+	major_version = "4"
 	"""
-	:param majorVersion: Package major version.
-	:type majorVersion: unicode
+	:param major_version: Package major version.
+	:type major_version: unicode
 	"""
-	minorVersion = "0"
+	minor_version = "0"
 	"""
-	:param minorVersion: Package minor version.
-	:type minorVersion: unicode
+	:param minor_version: Package minor version.
+	:type minor_version: unicode
 	"""
-	changeVersion = "8"
+	change_version = "8"
 	"""
-	:param changeVersion: Package change version.
-	:type changeVersion: unicode
+	:param change_version: Package change version.
+	:type change_version: unicode
 	"""
-	version = ".".join((majorVersion, minorVersion, changeVersion))
+	version = ".".join((major_version, minor_version, change_version))
 	"""
 	:param version: Package version.
 	:type version: unicode
@@ -82,144 +82,138 @@ class Constants():
 	:type logger: unicode
 	"""
 
-	defaultCodec = "utf-8"
+	default_codec = "utf-8"
 	"""
-	:param defaultCodec: Default codec.
-	:type defaultCodec: unicode
+	:param default_codec: Default codec.
+	:type default_codec: unicode
 	"""
-	codecError = "ignore"
+	codec_error = "ignore"
 	"""
-	:param codecError: Default codec error behavior.
-	:type codecError: unicode
+	:param codec_error: Default codec error behavior.
+	:type codec_error: unicode
 	"""
 
-	applicationDirectory = os.sep.join(("sIBL_GUI", ".".join((majorVersion, minorVersion))))
+	application_directory = os.sep.join(("sIBL_GUI", ".".join((major_version, minor_version))))
 	"""
-	:param applicationDirectory: Package Application directory.
-	:type applicationDirectory: unicode
+	:param application_directory: Package Application directory.
+	:type application_directory: unicode
 	"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
-		providerDirectory = "HDRLabs"
+		provider_directory = "HDRLabs"
 		"""
-		:param providerDirectory: Package provider directory.
-		:type providerDirectory: unicode
+		:param provider_directory: Package provider directory.
+		:type provider_directory: unicode
 		"""
 	elif platform.system() == "Linux":
-		providerDirectory = ".HDRLabs"
+		provider_directory = ".HDRLabs"
 		"""
-		:param providerDirectory: Package provider directory.
-		:type providerDirectory: unicode
+		:param provider_directory: Package provider directory.
+		:type provider_directory: unicode
 		"""
 
-	databaseDirectory = "database"
+	database_directory = "database"
 	"""
-	:param databaseDirectory: Application Database directory.
-	:type databaseDirectory: unicode
+	:param database_directory: Application Database directory.
+	:type database_directory: unicode
 	"""
-	patchesDirectory = "patches"
+	patches_directory = "patches"
 	"""
-	:param patchesDirectory: Application patches directory.
-	:type patchesDirectory: unicode
+	:param patches_directory: Application patches directory.
+	:type patches_directory: unicode
 	"""
-	settingsDirectory = "settings"
+	settings_directory = "settings"
 	"""
-	:param settingsDirectory: Application settings directory.
-	:type settingsDirectory: unicode
+	:param settings_directory: Application settings directory.
+	:type settings_directory: unicode
 	"""
-	userComponentsDirectory = "components"
+	user_components_directory = "components"
 	"""
-	:param userComponentsDirectory: Application user components directory.
-	:type userComponentsDirectory: unicode
+	:param user_components_directory: Application user components directory.
+	:type user_components_directory: unicode
 	"""
-	loggingDirectory = "logging"
+	logging_directory = "logging"
 	"""
-	:param loggingDirectory: Application logging directory.
-	:type loggingDirectory: unicode
+	:param logging_directory: Application logging directory.
+	:type logging_directory: unicode
 	"""
-	templatesDirectory = "templates"
+	templates_directory = "templates"
 	"""
-	:param templatesDirectory: Application templates directory.
-	:type templatesDirectory: unicode
+	:param templates_directory: Application Templates directory.
+	:type templates_directory: unicode
 	"""
-	ioDirectory = "io"
+	io_directory = "io"
 	"""
-	:param ioDirectory: Application io directory.
-	:type ioDirectory: unicode
-	"""
-
-	preferencesDirectories = (databaseDirectory,
-								patchesDirectory,
-								settingsDirectory,
-								userComponentsDirectory,
-								loggingDirectory,
-								templatesDirectory,
-								ioDirectory)
-	"""
-	:param preferencesDirectories: Application preferences directories.
-	:type preferencesDirectories: tuple
+	:param io_directory: Application io directory.
+	:type io_directory: unicode
 	"""
 
-	coreComponentsDirectory = "components/core"
+	preferences_directories = (database_directory,
+								patches_directory,
+								settings_directory,
+								user_components_directory,
+								logging_directory,
+								templates_directory,
+								io_directory)
 	"""
-	:param coreComponentsDirectory: Application core components directory.
-	:type coreComponentsDirectory: unicode
-	"""
-	addonsComponentsDirectory = "components/addons"
-	"""
-	:param addonsComponentsDirectory: Application addons components directory.
-	:type addonsComponentsDirectory: unicode
-	"""
-
-	resourcesDirectory = "resources"
-	"""
-	:param resourcesDirectory: Application resources directory.
-	:type resourcesDirectory: unicode
+	:param preferences_directories: Application preferences directories.
+	:type preferences_directories: tuple
 	"""
 
-	patchesFile = "sIBL_GUI_Patches.rc"
+	core_components_directory = "components/core"
 	"""
-	:param patchesFile: Application settings file.
-	:type patchesFile: unicode
+	:param core_components_directory: Application core components directory.
+	:type core_components_directory: unicode
 	"""
-	databaseFile = "sIBL_GUI_Database.sqlite"
+	addons_components_directory = "components/addons"
 	"""
-	:param databaseFile: Application Database file.
-	:type databaseFile: unicode
-	"""
-	settingsFile = "sIBL_GUI_Settings.rc"
-	"""
-	:param settingsFile: Application settings file.
-	:type settingsFile: unicode
-	"""
-	loggingFile = "sIBL_GUI_Logging_{0}.log"
-	"""
-	:param loggingFile: Application logging file.
-	:type loggingFile: unicode
+	:param addons_components_directory: Application addons components directory.
+	:type addons_components_directory: unicode
 	"""
 
-	databaseMigrationsFilesExtension = "py"
+	resources_directory = "resources"
 	"""
-	:param databaseMigrationsFilesExtension: Application Database migrations files extension.
-	:type databaseMigrationsFilesExtension: unicode
+	:param resources_directory: Application resources directory.
+	:type resources_directory: unicode
 	"""
 
-	librariesDirectory = "libraries"
+	patches_file = "sIBL_GUI_Patches.rc"
 	"""
-	:param librariesDirectory: Application libraries directory.
-	:type librariesDirectory: unicode
+	:param patches_file: Application settings file.
+	:type patches_file: unicode
+	"""
+	database_file = "sIBL_GUI_Database.sqlite"
+	"""
+	:param database_file: Application Database file.
+	:type database_file: unicode
+	"""
+	settings_file = "sIBL_GUI_Settings.rc"
+	"""
+	:param settings_file: Application settings file.
+	:type settings_file: unicode
+	"""
+	logging_file = "sIBL_GUI_Logging_{0}.log"
+	"""
+	:param logging_file: Application logging file.
+	:type logging_file: unicode
+	"""
+
+	libraries_directory = "libraries"
+	"""
+	:param libraries_directory: Application libraries directory.
+	:type libraries_directory: unicode
 	"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows,
-		**freeImage/resources/libfreeimage.dylib** on Darwin,
-		**freeImage/resources/libfreeimage.so** on Linux' ( String )"""
+		freeimage_library = os.path.join(libraries_directory, "freeimage/resources/FreeImage.dll")
+		"""FreeImage library path: '**freeimage/resources/FreeImage.dll** on Windows,
+		**freeimage/resources/libfreeimage.dylib** on Darwin,
+		**freeimage/resources/libfreeimage.so** on Linux' ( String )"""
 	elif platform.system() == "Darwin":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.dylib")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows,
-		**freeImage/resources/libfreeimage.dylib** on Darwin,
-		**freeImage/resources/libfreeimage.so** on Linux' ( String )"""
+		freeimage_library = os.path.join(libraries_directory, "freeimage/resources/libfreeimage.dylib")
+		"""FreeImage library path: '**freeimage/resources/FreeImage.dll** on Windows,
+		**freeimage/resources/libfreeimage.dylib** on Darwin,
+		**freeimage/resources/libfreeimage.so** on Linux' ( String )"""
 	elif platform.system() == "Linux":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows,
-		**freeImage/resources/libfreeimage.dylib** on Darwin,
-		**freeImage/resources/libfreeimage.so** on Linux' ( String )"""
+		freeimage_library = os.path.join(libraries_directory, "freeimage/resources/libfreeimage.so")
+		"""FreeImage library path: '**freeimage/resources/FreeImage.dll** on Windows,
+		**freeimage/resources/libfreeimage.dylib** on Darwin,
+		**freeimage/resources/libfreeimage.so** on Linux' ( String )"""

@@ -3,7 +3,7 @@ Name = addons.preview
 Title = Preview
 Module = preview
 Object = Preview
-Require = addons.locationsBrowser|core.iblSetsOutliner|core.inspector|factory.preferencesManager
+Require = addons.locations_browser|core.ibl_sets_outliner|core.inspector|factory.preferences_manager
 Version = 1.0
 
 [Informations]

@@ -42,7 +42,7 @@ __all__ = ["LOGGER",
 			"Abstract_QListView",
 			"Abstract_QTreeView"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -63,7 +63,7 @@ class Mixin_AbstractView(object):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
-		self.__modelSelection = {"Default" : []}
+		self.__model_selection = {"Default" : []}
 
 		Mixin_AbstractView.setModel(self, model)
 
@@ -71,44 +71,44 @@ class Mixin_AbstractView(object):
 	#***	Attributes properties.
 	#******************************************************************************************************************
 	@property
-	def modelSelection(self):
+	def model_selection(self):
 		"""
-		Property for **self.__modelSelection** attribute.
+		Property for **self.__model_selection** attribute.
 
-		:return: self.__modelSelection.
+		:return: self.__model_selection.
 		:rtype: dict
 		"""
 
-		return self.__modelSelection
+		return self.__model_selection
 
-	@modelSelection.setter
-	@foundations.exceptions.handleExceptions(AssertionError)
-	def modelSelection(self, value):
+	@model_selection.setter
+	@foundations.exceptions.handle_exceptions(AssertionError)
+	def model_selection(self, value):
 		"""
-		Setter for **self.__modelSelection** attribute.
+		Setter for **self.__model_selection** attribute.
 
 		:param value: Attribute value.
 		:type value: dict
 		"""
 
 		if value is not None:
-			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
+			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("model_selection", value)
 			for key, element in value.iteritems():
 				assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-				"modelSelection", key)
-				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
+				"model_selection", key)
+				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("model_selection",
 																								element)
-		self.__modelSelection = value
+		self.__model_selection = value
 
-	@modelSelection.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
+	@model_selection.deleter
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+	def model_selection(self):
 		"""
-		Deleter for **self.__modelSelection** attribute.
+		Deleter for **self.__model_selection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model_selection"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -137,16 +137,16 @@ class Mixin_AbstractView(object):
 		Defines the slot triggered by the Model when about to be reset.
 		"""
 
-		self.storeModelSelection()
+		self.store_model_selection()
 
 	def __model__modelReset(self):
 		"""
 		Defines the slot triggered by the Model when reset.
 		"""
 
-		self.restoreModelSelection()
+		self.restore_model_selection()
 
-	def storeModelSelection(self):
+	def store_model_selection(self):
 		"""
 		Stores the Model selection.
 
@@ -156,12 +156,12 @@ class Mixin_AbstractView(object):
 
 		LOGGER.debug("> Storing Model selection!")
 
-		self.modelSelection = {"Default" : []}
-		for node in self.getSelectedNodes():
-			self.modelSelection["Default"].append(node.id.value)
+		self.model_selection = {"Default" : []}
+		for node in self.get_selected_nodes():
+			self.model_selection["Default"].append(node.id.value)
 		return True
 
-	def restoreModelSelection(self):
+	def restore_model_selection(self):
 		"""
 		Restores the Model selection.
 
@@ -171,25 +171,25 @@ class Mixin_AbstractView(object):
 
 		LOGGER.debug("> Restoring Model selection!")
 
-		if not self.modelSelection:
+		if not self.model_selection:
 			return False
 
-		selection = self.modelSelection.get("Default", None)
+		selection = self.model_selection.get("Default", None)
 		if not selection:
 			return False
 
 		indexes = []
-		for node in foundations.walkers.nodesWalker(self.model().rootNode):
-			node.id.value in selection and indexes.append(self.model().getNodeIndex(node))
+		for node in foundations.walkers.nodes_walker(self.model().root_node):
+			node.id.value in selection and indexes.append(self.model().get_node_index(node))
 
-		return self.selectViewIndexes(indexes)
+		return self.select_view_indexes(indexes)
 
 class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 	"""
 	Defines the base class used by others Application Views classes.
 	"""
 
-	def __init__(self, parent=None, model=None, readOnly=False, message=None):
+	def __init__(self, parent=None, model=None, read_only=False, message=None):
 		"""
 		Initializes the class.
 
@@ -197,15 +197,15 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 		:type parent: QObject
 		:param model: Model.
 		:type model: QObject
-		:param readOnly: View is read only.
-		:type readOnly: bool
+		:param read_only: View is read only.
+		:type read_only: bool
 		:param message: View default message when Model is empty.
 		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.views.Abstract_QListView.__init__(self, parent, readOnly, message)
+		umbra.ui.views.Abstract_QListView.__init__(self, parent, read_only, message)
 		Mixin_AbstractView.__init__(self, model)
 
 class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
@@ -213,7 +213,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 	Defines the base class used by others Application Views classes.
 	"""
 
-	def __init__(self, parent=None, model=None, readOnly=False, message=None):
+	def __init__(self, parent=None, model=None, read_only=False, message=None):
 		"""
 		Initializes the class.
 
@@ -221,14 +221,14 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
 		:type parent: QObject
 		:param model: Model.
 		:type model: QObject
-		:param readOnly: View is read only.
-		:type readOnly: bool
+		:param read_only: View is read only.
+		:type read_only: bool
 		:param message: View default message when Model is empty.
 		:type message: unicode
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.views.Abstract_QTreeView.__init__(self, parent, readOnly, message)
+		umbra.ui.views.Abstract_QTreeView.__init__(self, parent, read_only, message)
 		Mixin_AbstractView.__init__(self, model)
 

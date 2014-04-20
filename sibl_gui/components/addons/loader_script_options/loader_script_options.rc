@@ -1,0 +1,13 @@
+[Component]
+Name = addons.loader_script_options
+Title = Loader Script Options
+Module = loader_script_options
+Object = LoaderScriptOptions
+Require = addons.loader_script|core.templates_outliner
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Loader Script Options addon Component.

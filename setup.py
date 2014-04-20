@@ -41,12 +41,12 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["getLongDescription"]
+__all__ = ["get_long_description"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def getLongDescription():
+def get_long_description():
 	"""
 	Returns the Package long description.
 
@@ -66,7 +66,7 @@ def getLongDescription():
 			description.append(line)
 	return "".join(description)
 
-setup(name=sibl_gui.globals.constants.Constants.applicationName,
+setup(name=sibl_gui.globals.constants.Constants.application_name,
 	version=sibl_gui.globals.constants.Constants.version,
 	author=sibl_gui.globals.constants.__author__,
 	author_email=sibl_gui.globals.constants.__email__,
@@ -76,8 +76,8 @@ setup(name=sibl_gui.globals.constants.Constants.applicationName,
 	url="https://github.com/KelSolaar/sIBL_GUI",
 	license="GPLv3",
 	description="sIBL_GUI is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of \"Smart Ibl\" files.",
-	long_description=getLongDescription(),
-	install_requires=["Counter>=1.0.0", "SQLAlchemy==0.7.8", "Umbra>=1.0.9"],
+	long_description=get_long_description(),
+	install_requires=["Alembic>=0.6.4", "Counter>=1.0.0", "SQLAlchemy==0.9.4", "Umbra>=1.0.9"],
 	classifiers=["Development Status :: 5 - Production/Stable",
 				"Environment :: Console",
 				"Environment :: MacOS X",

@@ -1,0 +1,13 @@
+[Component]
+Name = core.ibl_sets_outliner
+Title = Ibl Sets Outliner
+Module = ibl_sets_outliner
+Object = IblSetsOutliner
+Require = core.collections_outliner|core.database|factory.script_editor
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Ibl Sets Outliner core Component.

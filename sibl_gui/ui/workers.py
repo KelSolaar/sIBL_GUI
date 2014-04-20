@@ -46,7 +46,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "GraphicsItem_worker"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -58,9 +58,9 @@ class GraphicsItem_worker(QThread):
 
 	# If the signal uses **QImage** as signature instead of **object**, a copy gets passed to the slot instead
 	# of the object itself, the issue is that the copy loses any defined extra attributes.
-	imageLoaded = pyqtSignal(object, unicode)
+	image_loaded = pyqtSignal(object, unicode)
 	"""
-	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded. ( pyqtSignal )
+	This signal is emited by the :class:`GraphicsItem_worker` class when an image has been loaded.
 	
 	:return: Loaded image.
 	:rtype: QImage
@@ -97,7 +97,7 @@ class GraphicsItem_worker(QThread):
 		return self.__requests
 
 	@requests.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def requests(self, value):
 		"""
 		Setter for **self.__requests** attribute.
@@ -110,7 +110,7 @@ class GraphicsItem_worker(QThread):
 		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "requests"))
 
 	@requests.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
 		Deleter for **self.__requests** attribute.
@@ -122,7 +122,7 @@ class GraphicsItem_worker(QThread):
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
-	@foundations.exceptions.handleExceptions(foundations.exceptions.FileExistsError)
+	@foundations.exceptions.handle_exceptions(foundations.exceptions.FileExistsError)
 	def addRequest(self, request):
 		"""
 		Adds given request to the requests queue.
@@ -134,7 +134,7 @@ class GraphicsItem_worker(QThread):
 		"""
 
 		path, size = request
-		if not foundations.common.pathExists(path):
+		if not foundations.common.path_exists(path):
 			raise foundations.exceptions.FileExistsError(
 			"{0} | Exception raised while adding request: '{1}' file doesn't exists!".format(
 			self.__class__.__name__, path))
@@ -142,7 +142,7 @@ class GraphicsItem_worker(QThread):
 		self.__requests.put(request)
 		return True
 
-	def flushRequests(self):
+	def flush_requests(self):
 		"""
 		Flushes the requests queue.
 
@@ -166,9 +166,9 @@ class GraphicsItem_worker(QThread):
 				return
 
 			path, size = request
-			image = sibl_gui.ui.common.loadGraphicsItem(path, QImage, size)
-			image.data = sibl_gui.ui.common.getImageInformationsHeader(path, image)
-			self.imageLoaded.emit(image, size)
+			image = sibl_gui.ui.common.load_graphics_item(path, QImage, size)
+			image.data = sibl_gui.ui.common.get_image_informations_header(path, image)
+			self.image_loaded.emit(image, size)
 
 	def quit(self):
 		"""

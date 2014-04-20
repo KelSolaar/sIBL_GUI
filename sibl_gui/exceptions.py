@@ -35,10 +35,13 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"AbstractNetworkError",
-			"NetworkError",
-			"SocketConnectionError",
-			"Win32OLEServerConnectionError"]
+		"AbstractNetworkError",
+		"NetworkError",
+		"SocketConnectionError",
+		"Win32OLEServerConnectionError",
+		"AbstractCacheError",
+		"CacheExistsError",
+		"CacheOperationError"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.

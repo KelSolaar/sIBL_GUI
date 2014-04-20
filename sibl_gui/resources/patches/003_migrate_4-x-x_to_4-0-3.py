@@ -30,9 +30,9 @@ import os
 import foundations.common
 import foundations.core
 import foundations.verbose
-import umbra.ui.widgets.messageBox
+import umbra.ui.widgets.message_box
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+from umbra.globals.runtime_globals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Module attributes.
@@ -46,7 +46,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "UID", "apply"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 UID = "97DD5A8BEA1E9CA5F849754730C4EEB3"
 
@@ -61,17 +61,17 @@ def apply():
 	:rtype: bool
 	"""
 
-	umbra.ui.widgets.messageBox.messageBox("Information",
+	umbra.ui.widgets.message_box.message_box("Information",
 	"Message",
 	"Hello!\n\nUpon startup and from now on, sIBL_GUI will attempt to connect to \
 https://www.crittercism.com/ to report unhandled exceptions whenever they occur!\n\nThis message will only display once!")
 
-	defaultScriptEditorDirectory = os.path.join(RuntimeGlobals.userApplicationDataDirectory,
-														Constants.ioDirectory,
-														"scriptEditor")
-	defaultScriptEditorFile = os.path.join(defaultScriptEditorDirectory, "defaultScript.py")
+	default_script_editor_directory = os.path.join(RuntimeGlobals.user_application_data_directory,
+														Constants.io_directory,
+														"script_editor")
+	default_script_editor_file = os.path.join(default_script_editor_directory, "default_script.py")
 
-	if foundations.common.pathExists(defaultScriptEditorFile):
-		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, defaultScriptEditorFile))
-		os.remove(defaultScriptEditorFile)
+	if foundations.common.path_exists(default_script_editor_file):
+		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, default_script_editor_file))
+		os.remove(default_script_editor_file)
 	return True
