@@ -44,12 +44,12 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["UiConstantsTestCase"]
+__all__ = ["TestUiConstants"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class UiConstantsTestCase(unittest.TestCase):
+class TestUiConstants(unittest.TestCase):
 	"""
 	Defines :class:`sibl_gui.globals.ui_constants.UiConstants` class units tests methods.
 	"""

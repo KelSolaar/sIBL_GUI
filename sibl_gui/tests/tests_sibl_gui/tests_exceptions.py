@@ -44,7 +44,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["EXCEPTIONS", "ExceptionsTestCase"]
+__all__ = ["EXCEPTIONS", "TestExceptions"]
 
 EXCEPTIONS = []
 
@@ -65,7 +65,7 @@ _gather_exceptions()
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class ExceptionsTestCase(unittest.TestCase):
+class TestExceptions(unittest.TestCase):
 	"""
 	Defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
 	"""
