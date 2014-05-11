@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import re
 import sys
@@ -36,9 +30,6 @@ from PyQt4.QtGui import QInputDialog
 from PyQt4.QtGui import QItemSelectionModel
 from PyQt4.QtGui import QMessageBox
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.walkers
@@ -58,9 +49,6 @@ from sibl_gui.components.core.collections_outliner.views import IblSetsCollectio
 from sibl_gui.components.core.database.nodes import CollectionNode
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -74,9 +62,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_Outliner.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.core.collections_outliner.collections_outliner` Component Interface class.
@@ -132,9 +117,6 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 										(self.__ibl_sets_count_label, "count"),
 										("Comment", "comment")])
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def ui_resources_directory(self):
 		"""
@@ -645,9 +627,6 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

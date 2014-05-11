@@ -14,30 +14,18 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
 import sibl_gui.ui.workers
 from umbra.globals.ui_constants import UiConstants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -52,9 +40,6 @@ __all__ = ["LOGGER",
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class CacheMetrics(foundations.data_structures.Structure):
 	"""
 	Defines a storage object for cache metrics.
@@ -107,9 +92,6 @@ class AbstractResourcesCache(QObject):
 
 		self.__mapping = {}
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def mapping(self):
 		"""
@@ -144,9 +126,6 @@ class AbstractResourcesCache(QObject):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "mapping"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __getitem__(self, item):
 		"""
 		Reimplements the :meth:`object.__getitem__` method.
@@ -335,9 +314,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
 		self.__set_placeholder_graphics_item(placeholder)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def type(self):
 		"""
@@ -477,9 +453,6 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "worker"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __worker__image_loaded(self, image, size):
 		"""
 		Defines the slot triggered by :obj:`AsynchronousGraphicsItemsCache.worker` method when an image has been loaded.

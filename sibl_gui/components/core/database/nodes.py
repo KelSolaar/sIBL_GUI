@@ -14,19 +14,10 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import Qt
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -36,9 +27,6 @@ import sibl_gui.ui.common
 import sibl_gui.ui.nodes
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -55,9 +43,6 @@ __all__ = ["LOGGER",
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 def get_template_user_name(title, software):
 	"""
 	Returns the Template user name.
@@ -137,9 +122,6 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 
 		AbstractDatabaseNode.__initialize_node(self, attributes_flags)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def database_item(self):
 		"""
@@ -210,9 +192,6 @@ class AbstractDatabaseNode(sibl_gui.ui.nodes.GraphModelNode):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tool_tip_text"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_node(self, attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
 		"""
 		Initializes the node.
@@ -376,9 +355,6 @@ class IblSetNode(AbstractDatabaseNode):
 
 		IblSetNode.__initialize_node(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def icon_path(self):
 		"""
@@ -413,9 +389,6 @@ class IblSetNode(AbstractDatabaseNode):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_path"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_node(self):
 		"""
 		Initializes the node.
@@ -545,9 +518,6 @@ class TemplateNode(AbstractDatabaseNode):
 
 		TemplateNode.__initialize_node(self)
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_node(self):
 		"""
 		Initializes the node.
@@ -676,9 +646,6 @@ class CollectionNode(AbstractDatabaseNode):
 
 		CollectionNode.__initialize_node(self)
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_node(self):
 		"""
 		Initializes the node.

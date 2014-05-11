@@ -15,22 +15,13 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import re
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import pyqtSignal
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -39,9 +30,6 @@ import foundations.walkers
 import sibl_gui.components.core.database.operations
 from sibl_gui.components.core.database.types import IblSet
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -53,9 +41,6 @@ __all__ = ["LOGGER", "IblSetsScanner_worker"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class IblSetsScanner_worker(QThread):
 	"""
 	Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
@@ -92,9 +77,6 @@ class IblSetsScanner_worker(QThread):
 
 		self.__extension = "ibl"
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -231,9 +213,6 @@ class IblSetsScanner_worker(QThread):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "newIblSets"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def run(self):
 		"""
 		Reimplements the :meth:`QThread.run` method.

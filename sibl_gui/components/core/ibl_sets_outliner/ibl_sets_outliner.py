@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import functools
 import os
 import platform
@@ -44,9 +38,6 @@ from PyQt4.QtGui import QSizePolicy
 from PyQt4.QtGui import QStackedWidget
 from PyQt4.QtGui import QStringListModel
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -69,9 +60,6 @@ from umbra.globals.ui_constants import UiConstants
 from umbra.globals.runtime_globals import RuntimeGlobals
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -85,9 +73,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Ibl_Sets_Outliner.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.core.ibl_sets_outliner.ibl_sets_outliner` Component Interface class.
@@ -182,9 +167,6 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__icon_place_holder = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def ui_resources_directory(self):
 		"""
@@ -1241,9 +1223,6 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "search_context_menu"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

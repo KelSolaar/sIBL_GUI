@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QFile
 from PyQt4.QtCore import QIODevice
@@ -30,9 +24,6 @@ from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QPixmap
 from PyQt4.QtNetwork import QNetworkRequest
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -40,9 +31,6 @@ import foundations.ui.common
 import foundations.verbose
 import umbra.ui.common
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -56,9 +44,6 @@ LOGGER = foundations.verbose.install_logger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Download_Manager.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 	"""
 	| Defines the Application download manager.
@@ -116,9 +101,6 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 
 		DownloadManager.__initialize_ui(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -497,9 +479,6 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "download_status"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def closeEvent(self, event):
 		"""
 		Reimplements the :meth:`QWidget.closeEvent` method.

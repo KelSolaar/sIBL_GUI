@@ -14,23 +14,14 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QSize
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QIcon
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -41,9 +32,6 @@ from manager.QWidget_component import QWidgetComponentFactory
 from sibl_gui.components.addons.gps_map.views import Map_QWebView
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -57,9 +45,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.gps_map.gps_map` Component Interface class.
@@ -101,9 +86,6 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 		self.__map = None
 		self.__map_type_ids = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def ui_resources_directory(self):
 		"""
@@ -442,9 +424,6 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map_type_ids"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

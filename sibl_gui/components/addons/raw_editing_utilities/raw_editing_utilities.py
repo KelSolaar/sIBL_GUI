@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import platform
 import re
@@ -31,9 +25,6 @@ from PyQt4.QtGui import QAction
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QGridLayout
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -44,9 +35,6 @@ import umbra.ui.common
 from manager.QWidget_component import QWidgetComponentFactory
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -60,9 +48,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Raw_Editing_Utilities.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.raw_editing_utilities.raw_editing_utilities` Component Interface class.
@@ -103,9 +88,6 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		self.__inspector = None
 		self.__templates_outliner = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -412,9 +394,6 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

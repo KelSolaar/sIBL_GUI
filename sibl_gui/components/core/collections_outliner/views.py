@@ -15,30 +15,18 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import pickle
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QAbstractItemView
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.components.core.database.operations
 import sibl_gui.ui.views
 import umbra.exceptions
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -50,9 +38,6 @@ __all__ = ["LOGGER", "IblSetsCollections_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
 	Defines the view for Database Collections.
@@ -83,9 +68,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		IblSetsCollections_QTreeView.__initialize_ui(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -154,9 +136,6 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def dragEnterEvent(self, event):
 		"""
 		Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dragEnterEvent` method.

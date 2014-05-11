@@ -15,14 +15,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QRectF
 from PyQt4.QtCore import Qt
@@ -35,18 +29,12 @@ from PyQt4.QtGui import QGraphicsView
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.ui.common
 import foundations.verbose
 import sibl_gui.ui.common
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -60,9 +48,6 @@ LOGGER = foundations.verbose.install_logger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Previewer.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
 	Defines a `QGraphicsItem <http://doc.qt.nokia.com/qgraphicsitem.html>`_ subclass used
@@ -89,9 +74,6 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__width = image.width()
 		self.__height = image.height()
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def image(self):
 		"""
@@ -197,9 +179,6 @@ class Image_QGraphicsItem(QGraphicsItem):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "height"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def boundingRect(self):
 		"""
 		Reimplements the :meth:`QGraphicsItem.boundingRect` method.
@@ -283,9 +262,6 @@ class ImagesPreviewer(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 
 		self.load_image()
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -868,9 +844,6 @@ class ImagesPreviewer(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "display_graphics_item"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def show(self):
 		"""
 		Reimplements the :meth:`QWidget.show` method.

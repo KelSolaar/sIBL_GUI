@@ -14,22 +14,13 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import alembic.command
 import os
 import sqlalchemy.orm
 from alembic.config import Config
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.verbose
@@ -39,9 +30,6 @@ from manager.component import Component
 from sibl_gui.components.core.database.types import Base
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -59,9 +47,6 @@ LOGGER = foundations.verbose.install_logger()
 ALEMBIC_CONFIGURATION_FILE = os.path.join(os.path.dirname(__file__), "migration", "alembic.ini")
 ALEMBIC_SCRIPTS_DIRECTORY = os.path.join(os.path.dirname(__file__), "migration", "alembic")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Database(Component):
 	"""
 	| Defines the :mod:`sibl_gui.components.core.database.database` Component Interface class.
@@ -97,9 +82,6 @@ class Database(Component):
 		self.__databaseBackupDirectory = "backup"
 		self.__databaseBackupCount = 6
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -406,9 +388,6 @@ class Database(Component):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupCount"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

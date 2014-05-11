@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import re
 import sys
@@ -38,9 +32,6 @@ from PyQt4.QtGui import QLabel
 from PyQt4.QtGui import QLineEdit
 from PyQt4.QtGui import QPalette
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.io
@@ -55,9 +46,6 @@ from sibl_gui.components.addons.loader_script_options.views import TemplatesAttr
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -71,9 +59,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script_Options.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Definesthe :mod:`sibl_gui.components.addons.loader_script_options.loader_script_options` Component Interface class.
@@ -128,9 +113,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__enum_splitter = ";"
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def dock_area(self):
 		"""
@@ -721,9 +703,6 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "enum_splitter"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

@@ -15,29 +15,17 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QAbstractItemView
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.namespace
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
 import sibl_gui.ui.views
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -49,9 +37,6 @@ __all__ = ["LOGGER", "Templates_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
 	Defines the view for Database Collections.
@@ -82,9 +67,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		Templates_QTreeView.__initialize_ui(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -153,9 +135,6 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_ui(self):
 		"""
 		Initializes the Widget ui.

@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import re
 import itertools
@@ -34,9 +28,6 @@ from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QListView
 from PyQt4.QtGui import QScrollArea
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.strings
 import foundations.verbose
@@ -45,9 +36,6 @@ from manager.QWidget_component import QWidgetComponentFactory
 from sibl_gui.components.addons.search_database.views import TagsCloud_QListView
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -61,9 +49,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Search_Database.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.search_database.search_database` Component Interface class.
@@ -103,9 +88,6 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__cloud_excluded_tags = ("a", "and", "by", "for", "from", "in", "of", "on", "or", "the", "to", "with")
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def dock_area(self):
 		"""
@@ -345,9 +327,6 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "cloud_excluded_tags"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

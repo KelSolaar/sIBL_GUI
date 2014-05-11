@@ -14,22 +14,13 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QFileDialog
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.parsers
@@ -39,9 +30,6 @@ import umbra.ui.common
 from manager.QWidget_component import QWidgetComponentFactory
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -55,9 +43,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.rewiring_tool.rewiring_tool` Component Interface class.
@@ -102,9 +87,6 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 									("Reflection", "Reflection|REFfile", "reflection_image"),
 									("Custom image", None, None))
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def dock_area(self):
 		"""
@@ -343,9 +325,6 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewiring_parameters"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

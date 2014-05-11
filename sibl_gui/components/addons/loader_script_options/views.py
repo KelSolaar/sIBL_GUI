@@ -15,15 +15,9 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.verbose
 import umbra.ui.views
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -35,9 +29,6 @@ __all__ = ["LOGGER", "TemplatesAttributes_QTableWidget"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class TemplatesAttributes_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
 	"""
 	Defines the view for Templates attributes.

@@ -15,23 +15,14 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import sys
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QImage
 from PyQt4.QtGui import QPixmap
 
-#**********************************************************************************************************************
-#***	Path manipulations.
-#**********************************************************************************************************************
 def _set_package_directory():
 	"""
 	Sets the Application package directory in the path.
@@ -45,9 +36,6 @@ def _set_package_directory():
 
 _set_package_directory()
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import sibl_gui.globals.constants
 import sibl_gui.globals.ui_constants
 import sibl_gui.globals.runtime_globals
@@ -55,9 +43,6 @@ import umbra.globals.constants
 import umbra.globals.ui_constants
 import umbra.globals.runtime_globals
 
-#**********************************************************************************************************************
-#***	Dependencies globals manipulation.
-#**********************************************************************************************************************
 umbra.globals.constants.Constants.__dict__.update(sibl_gui.globals.constants.Constants.__dict__)
 umbra.globals.ui_constants.UiConstants.__dict__.update(sibl_gui.globals.ui_constants.UiConstants.__dict__)
 umbra.globals.runtime_globals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtime_globals.RuntimeGlobals.__dict__)
@@ -85,9 +70,6 @@ def _override_dependencies_globals():
 
 _override_dependencies_globals()
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.verbose
 import sibl_gui.ui.models
@@ -98,9 +80,6 @@ import umbra.ui.common
 import umbra.ui.models
 import umbra.ui.widgets.application_QToolBar
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -112,9 +91,6 @@ __all__ = ["LOGGER", "sIBL_GUI", "extend_command_line_parameters_parser"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
 	Defines the main class of the **sIBL_GUI** package.
@@ -144,9 +120,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		self.__thumbnails_cache_directory = self.__thumbnails_cache_directory
 		self.__images_caches = self.__images_caches
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def thumbnails_cache_directory(self):
 		"""
@@ -215,9 +188,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "images_caches"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __override_application_toolbar(self):
 		"""
 		Overrides the Application toolbar.
@@ -313,9 +283,6 @@ def extend_command_line_parameters_parser(parser):
 
 	return True
 
-#**********************************************************************************************************************
-#***	Launcher.
-#**********************************************************************************************************************
 def main():
 	"""
 	Starts the Application.

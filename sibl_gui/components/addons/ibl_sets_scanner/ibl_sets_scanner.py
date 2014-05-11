@@ -14,19 +14,10 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtGui import QMessageBox
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.namespace
 import foundations.verbose
@@ -36,9 +27,6 @@ import umbra.ui.widgets.message_box as message_box
 from manager.QObject_component import QObjectComponent
 from sibl_gui.components.addons.ibl_sets_scanner.workers import IblSetsScanner_worker
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -50,9 +38,6 @@ __all__ = ["LOGGER", "IblSetsScanner"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class IblSetsScanner(QObjectComponent):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.ibl_sets_scanner.ibl_sets_scanner` Component Interface class.
@@ -88,9 +73,6 @@ class IblSetsScanner(QObjectComponent):
 
 		self.__ibl_sets_scanner_worker_thread = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -227,9 +209,6 @@ class IblSetsScanner(QObjectComponent):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_scanner_worker_thread"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

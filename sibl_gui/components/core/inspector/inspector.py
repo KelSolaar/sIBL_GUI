@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import re
 import sys
@@ -44,9 +38,6 @@ from PyQt4.QtGui import QItemSelectionModel
 from PyQt4.QtGui import QPainter
 from PyQt4.QtGui import QPen
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.cache
 import foundations.common
 import foundations.data_structures
@@ -63,9 +54,6 @@ from sibl_gui.components.core.inspector.nodes import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -79,9 +67,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Plate(foundations.data_structures.Structure):
 	"""
 	Defines a storage object for an Ibl Set Plate.
@@ -245,9 +230,6 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__pixmap_placeholder = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def ui_resources_directory(self):
 		"""
@@ -1036,9 +1018,6 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 			"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamed_light_name"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

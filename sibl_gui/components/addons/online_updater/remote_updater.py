@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import platform
 from PyQt4.QtCore import QByteArray
@@ -37,9 +31,6 @@ from PyQt4.QtGui import QPalette
 from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QTableWidgetItem
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.data_structures
 import foundations.exceptions
 import foundations.io
@@ -54,9 +45,6 @@ from umbra.globals.constants import Constants
 from umbra.globals.runtime_globals import RuntimeGlobals
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -70,9 +58,6 @@ LOGGER = foundations.verbose.install_logger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Remote_Updater.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class ReleaseObject(foundations.data_structures.Structure):
 	"""
 	Defines a storage object for a :class:`RemoteUpdater` class release.
@@ -144,9 +129,6 @@ class RemoteUpdater(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 
 		RemoteUpdater.__initialize_ui(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -629,9 +611,6 @@ class RemoteUpdater(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "network_access_manager"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_ui(self):
 		"""
 		Initializes the Widget ui.

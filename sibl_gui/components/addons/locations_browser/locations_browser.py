@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import platform
 from PyQt4.QtCore import QProcess
@@ -29,9 +23,6 @@ from PyQt4.QtCore import QString
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QPushButton
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -41,9 +32,6 @@ from foundations.environment import Environment
 from manager.QWidget_component import QWidgetComponentFactory
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -57,9 +45,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Locations_Browser.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.locations_browser.locations_browser` Component Interface class.
@@ -122,9 +107,6 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__linux_browsers = ("nautilus", "dolphin", "konqueror", "thunar")
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -465,9 +447,6 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "linux_browsers"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

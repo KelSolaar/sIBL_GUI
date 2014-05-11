@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import platform
 import re
@@ -40,9 +34,6 @@ from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QMessageBox
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -66,9 +57,6 @@ from umbra.globals.constants import Constants
 from umbra.globals.runtime_globals import RuntimeGlobals
 from umbra.globals.ui_constants import UiConstants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -82,9 +70,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Outliner.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.core.templates_outliner.templates_outliner` Component Interface class.
@@ -173,9 +158,6 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 											</p>
 											"""
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def ui_resources_directory(self):
 		"""
@@ -856,9 +838,6 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_informations_text"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

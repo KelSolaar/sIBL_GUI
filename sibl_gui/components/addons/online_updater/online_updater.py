@@ -14,23 +14,14 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtNetwork import QNetworkAccessManager
 from PyQt4.QtNetwork import QNetworkRequest
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.strings
@@ -44,9 +35,6 @@ from sibl_gui.components.addons.online_updater.remote_updater import ReleaseObje
 from sibl_gui.components.addons.online_updater.remote_updater import RemoteUpdater
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -62,9 +50,6 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Online_Update
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 	"""
 	| Defines the :mod:`sibl_gui.components.addons.online_updater.online_updater` Component Interface class.
@@ -113,9 +98,6 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		self.__remote_updater = None
 		self.__report_update_status = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -558,9 +540,6 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "report_update_status"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

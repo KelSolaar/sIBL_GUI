@@ -14,22 +14,13 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import foundations.walkers
 import umbra.ui.views
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -44,9 +35,6 @@ __all__ = ["LOGGER",
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Mixin_AbstractView(object):
 	"""
 	Defines a mixin used to bring common capabilities in Application Views classes.
@@ -67,9 +55,6 @@ class Mixin_AbstractView(object):
 
 		Mixin_AbstractView.setModel(self, model)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def model_selection(self):
 		"""
@@ -110,9 +95,6 @@ class Mixin_AbstractView(object):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model_selection"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def setModel(self, model):
 		"""
 		Reimplements the **umbra.ui.views.Abstract_QListView.setModel** method.

@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import hashlib
 import itertools
 import os
@@ -34,9 +28,6 @@ from PyQt4.QtGui import QPainter
 from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QPen
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.exceptions
 import foundations.verbose
@@ -48,9 +39,6 @@ from umbra.globals.ui_constants import UiConstants
 from umbra.globals.constants import Constants
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -74,9 +62,6 @@ __all__ = ["LOGGER",
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 def convert_image(image, type):
 	"""
 	Converts given image to given type.

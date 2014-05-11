@@ -14,23 +14,14 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtGui import QPixmap
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.guerilla
 import foundations.verbose
 import umbra.ui.widgets.application_QToolBar
@@ -38,9 +29,6 @@ from umbra.globals.ui_constants import UiConstants
 from umbra.ui.widgets.active_QLabel import Active_QLabel
 from umbra.ui.widgets.active_QLabelsCollection import Active_QLabelsCollection
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -52,9 +40,6 @@ __all__ = ["LOGGER", "Application_QToolBar"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QToolBar):
 	"""
 	Defines defines the Application toolbar.
@@ -62,9 +47,6 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
 
 	__metaclass__ = foundations.guerilla.base_warfare
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __central_widgetButton__clicked(self):
 		"""
 		Sets the **Central** Widget visibility.

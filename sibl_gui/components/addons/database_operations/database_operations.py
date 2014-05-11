@@ -14,22 +14,13 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from PyQt4.QtCore import QString
 from PyQt4.QtGui import QGridLayout
 from PyQt4.QtGui import QMessageBox
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.data_structures
 import foundations.exceptions
@@ -39,9 +30,6 @@ import umbra.engine
 import umbra.ui.widgets.message_box as message_box
 from manager.QWidget_component import QWidgetComponentFactory
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -55,9 +43,6 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Operations.ui")
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class DatabaseType(foundations.data_structures.Structure):
 	"""
 	| Defines a storage object for manipulation methods associated to a given Database type.
@@ -114,9 +99,6 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
 		self.__types = None
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -355,9 +337,6 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "types"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def activate(self, engine):
 		"""
 		Activates the Component.

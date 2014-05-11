@@ -15,23 +15,14 @@
 	Michele Petrazzo: http://freeimagepy.sourceforge.net/ and ctypesgen: http://code.google.com/p/ctypesgen/.
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import ctypes
 import os
 import platform
 import re
 import sys
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.data_structures
 import foundations.exceptions
@@ -41,9 +32,6 @@ import sibl_gui
 from foundations.library import LibraryHook
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -412,9 +400,6 @@ __all__ = ["LOGGER",
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Ctypes manipulations from ctypesgen.
-#**********************************************************************************************************************
 def pointer(data):
 	"""
 	Converts None to a real NULL pointer to work around bugs
@@ -456,9 +441,6 @@ def unchecked(type):
 	else:
 		return ctypes.c_void_p
 
-#**********************************************************************************************************************
-#***	FreeImage variables.
-#**********************************************************************************************************************
 FREEIMAGE_LIBRARY_PATH = None
 
 if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -1999,9 +1981,6 @@ FREEIMAGE_FUNCTIONS = (
 				arguments_types=[pointer(FIBITMAP), ctypes.c_double],
 				return_value=pointer(FIBITMAP)),)
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 def get_free_image_library_path():
 	"""
 	Returns the FreeImage library path.
@@ -2065,9 +2044,6 @@ class Image(object):
 		if image_path:
 			self.load()
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def library(self):
 		"""
@@ -2204,9 +2180,6 @@ class Image(object):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "bitmap"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	@foundations.exceptions.handle_exceptions(foundations.exceptions.LibraryExecutionError)
 	def __log_library_errors(self, error_code, message):
 		"""

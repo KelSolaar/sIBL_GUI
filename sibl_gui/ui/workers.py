@@ -14,29 +14,17 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QImage
 from Queue import Queue
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.common
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -48,9 +36,6 @@ __all__ = ["LOGGER", "GraphicsItem_worker"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class GraphicsItem_worker(QThread):
 	"""
 	Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to load images.
@@ -82,9 +67,6 @@ class GraphicsItem_worker(QThread):
 		self.__requests = Queue()
 		self.__interrupt = False
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def requests(self):
 		"""
@@ -119,9 +101,6 @@ class GraphicsItem_worker(QThread):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "requests"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	@foundations.exceptions.handle_exceptions(foundations.exceptions.FileExistsError)
 	def addRequest(self, request):
 		"""

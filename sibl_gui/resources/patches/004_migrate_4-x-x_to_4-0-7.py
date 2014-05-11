@@ -14,14 +14,8 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.engine import reflection
@@ -29,18 +23,12 @@ from sqlalchemy.schema import DropTable
 from sqlalchemy.schema import MetaData
 from sqlalchemy.schema import Table
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.common
 import foundations.verbose
 import sibl_gui.components.core.database.operations
 from umbra.globals.constants import Constants
 from umbra.globals.runtime_globals import RuntimeGlobals
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -54,9 +42,6 @@ LOGGER = foundations.verbose.install_logger()
 
 UID = "ddfd9d292ea73aa3450989af7d7ee945"
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 def apply():
 	"""
 	Triggers the patch execution.

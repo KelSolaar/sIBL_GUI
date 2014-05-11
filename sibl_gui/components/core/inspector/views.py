@@ -15,29 +15,17 @@
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import QSize
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QAbstractItemView
 from PyQt4.QtGui import QListView
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.views
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -49,9 +37,6 @@ __all__ = ["LOGGER", "Plates_QListView"]
 
 LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
 class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
 	Defines the view for Ibl Sets Plates as thumbnails.
@@ -80,9 +65,6 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 		Plates_QListView.__initialize_ui(self)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
 	@property
 	def list_view_icon_size(self):
 		"""
@@ -117,9 +99,6 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_icon_size"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
 	def __initialize_ui(self):
 		"""
 		Initializes the Widget ui.
