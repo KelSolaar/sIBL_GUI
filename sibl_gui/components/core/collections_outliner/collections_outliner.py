@@ -19,6 +19,7 @@ from __future__ import unicode_literals
 import os
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     from ordereddict import OrderedDict
 else:
@@ -61,6 +62,7 @@ __all__ = ["LOGGER", "COMPONENT_UI_FILE", "CollectionsOutliner"]
 LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_Outliner.ui")
+
 
 class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -114,8 +116,8 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__default_collection = "Default"
         self.__ibl_sets_count_label = "Ibl Sets"
         self.__headers = OrderedDict([("Collections", "name"),
-                                        (self.__ibl_sets_count_label, "count"),
-                                        ("Comment", "comment")])
+                                      (self.__ibl_sets_count_label, "count"),
+                                      ("Comment", "comment")])
 
     @property
     def ui_resources_directory(self):
@@ -139,7 +141,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -149,7 +151,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_default_collection_image(self):
@@ -173,7 +175,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_default_collection_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_default_collection_image"))
 
     @ui_default_collection_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -183,7 +185,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_default_collection_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_default_collection_image"))
 
     @property
     def ui_user_collection_image(self):
@@ -207,7 +209,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_user_collection_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_user_collection_image"))
 
     @ui_user_collection_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -217,7 +219,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_user_collection_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_user_collection_image"))
 
     @property
     def dock_area(self):
@@ -241,7 +243,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -251,7 +253,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -275,7 +277,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -285,7 +287,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -309,7 +311,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -319,7 +321,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -343,7 +345,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -353,7 +355,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def settings_separator(self):
@@ -377,7 +379,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
 
     @settings_separator.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -387,7 +389,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
 
     @property
     def ibl_sets_outliner(self):
@@ -411,7 +413,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -421,7 +423,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def model(self):
@@ -445,7 +447,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
     @model.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -455,7 +457,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
     @property
     def view(self):
@@ -479,7 +481,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
     @view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -489,7 +491,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def overall_collection(self):
@@ -513,7 +515,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "overall_collection"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "overall_collection"))
 
     @overall_collection.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -523,7 +525,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "overall_collection"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "overall_collection"))
 
     @property
     def default_collection(self):
@@ -547,7 +549,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default_collection"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default_collection"))
 
     @default_collection.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -557,7 +559,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_collection"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_collection"))
 
     @property
     def ibl_sets_count_label(self):
@@ -581,7 +583,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_count_label"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_count_label"))
 
     @ibl_sets_count_label.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -591,7 +593,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_count_label"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_count_label"))
 
     @property
     def headers(self):
@@ -615,7 +617,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
 
     @headers.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -625,7 +627,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
     def activate(self, engine):
         """
@@ -656,7 +658,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+            "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
     def initialize_ui(self):
         """
@@ -669,15 +671,16 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
         self.__engine.parameters.database_read_only and \
-        LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
-                                                                                                    "database_read_only"))
+        LOGGER.info(
+            "{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
+                                                                                            "database_read_only"))
         self.__model = CollectionsModel(self, horizontal_headers=self.__headers)
         self.set_collections()
 
         self.Collections_Outliner_treeView.setParent(None)
         self.Collections_Outliner_treeView = IblSetsCollections_QTreeView(self,
-                                                                        self.__model,
-                                                                        self.__engine.parameters.database_read_only)
+                                                                          self.__model,
+                                                                          self.__engine.parameters.database_read_only)
         self.Collections_Outliner_treeView.setObjectName("Collections_Outliner_treeView")
         self.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.Collections_Outliner_treeView, 0, 0)
         self.__view = self.Collections_Outliner_treeView
@@ -701,7 +704,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
     def add_widget(self):
         """
@@ -724,7 +727,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
     def on_startup(self):
         """
@@ -739,23 +742,24 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         if not self.__engine.parameters.database_read_only:
             not self.get_collections() and self.add_collection(self.__default_collection, "Default Collection")
         else:
-            LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+            LOGGER.info(
+                "{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(
+                    self.__class__.__name__, "database_read_only"))
 
         active_collections_identities = foundations.strings.to_string(
-        self.__settings.get_key(self.__settings_section, "active_collections").toString())
+            self.__settings.get_key(self.__settings_section, "active_collections").toString())
         LOGGER.debug("> '{0}' View stored selected Collections identities '{1}'.".format(self.__class__.__name__,
-                                                                                        active_collections_identities))
+                                                                                         active_collections_identities))
         self.__view.model_selection["collections"] = active_collections_identities and \
-                                                    [int(identity) for identity in active_collections_identities.split(
-                                                    self.__settings_separator)] or []
+                                                     [int(identity) for identity in active_collections_identities.split(
+                                                         self.__settings_separator)] or []
 
         active_overall_collection = foundations.strings.to_string(
-        self.__settings.get_key(self.__settings_section, "active_overall_collection").toString())
+            self.__settings.get_key(self.__settings_section, "active_overall_collection").toString())
         LOGGER.debug("> '{0}' View stored 'Overall' Collection: '{1}'.".format(self.__class__.__name__,
-                                                                                active_overall_collection))
+                                                                               active_overall_collection))
         self.__view.model_selection[self.__overall_collection] = active_collections_identities and \
-                                                                [active_overall_collection] or []
+                                                                 [active_overall_collection] or []
         self.__view.restore_model_selection()
         return True
 
@@ -773,12 +777,13 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__settings.set_key(self.__settings_section,
                                 "active_collections",
                                 self.__settings_separator.join((foundations.strings.to_string(
-                                identity) for identity in self.__view.model_selection[
-                                "collections"])))
+                                    identity) for identity in self.__view.model_selection[
+                                                                    "collections"])))
         self.__settings.set_key(self.__settings_section,
                                 "active_overall_collection",
                                 self.__settings_separator.join((foundations.strings.to_string(name)
-                                for name in self.__view.model_selection[self.__overall_collection])))
+                                                                for name in self.__view.model_selection[
+                                    self.__overall_collection])))
         return True
 
     def __model__refresh_nodes(self):
@@ -800,11 +805,11 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             node.update_node_attributes()
 
         overall_collection_node = \
-        foundations.common.get_first_item(self.__model.find_children("^{0}$".format(self.__overall_collection)))
+            foundations.common.get_first_item(self.__model.find_children("^{0}$".format(self.__overall_collection)))
         overall_collection_node.update_node_attributes()
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     def __model__dataChanged(self, start_index, end_index):
         """
         Defines the slot triggered by the Model when data has changed.
@@ -822,15 +827,15 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         if start_index.column() == 0:
             if self.collection_exists(collection_node.name):
                 self.__engine.notifications_manager.warnify(
-                "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__,
-                                                                                collection_node.name))
+                    "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__,
+                                                                                     collection_node.name))
                 return
 
             if not collection_node.name:
                 collection_node.update_node()
                 raise foundations.exceptions.UserError(
-                "{0} | Exception while editing a Collection field: Cannot use an empty value!".format(
-                self.__class__.__name__))
+                    "{0} | Exception while editing a Collection field: Cannot use an empty value!".format(
+                        self.__class__.__name__))
 
         collection_node.update_database_item()
         collection_node.update_tool_tip()
@@ -844,18 +849,18 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if not self.__engine.parameters.database_read_only:
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.collections_outliner|Add Content ...",
-            slot=self.__view_add_content_action__triggered))
+                "Actions|Umbra|Components|core.collections_outliner|Add Content ...",
+                slot=self.__view_add_content_action__triggered))
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.collections_outliner|Add Collection ...",
-            slot=self.__view_add_collectionAction__triggered))
+                "Actions|Umbra|Components|core.collections_outliner|Add Collection ...",
+                slot=self.__view_add_collectionAction__triggered))
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.collections_outliner|Remove Collection(s) ...",
-            slot=self.__view_remove_collectionsAction__triggered))
+                "Actions|Umbra|Components|core.collections_outliner|Remove Collection(s) ...",
+                slot=self.__view_remove_collectionsAction__triggered))
         else:
             LOGGER.info(
-            "{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                "{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
+                    self.__class__.__name__, "database_read_only"))
 
     def __view_add_content_action__triggered(self, checked):
         """
@@ -923,8 +928,8 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return False
 
         directory = umbra.ui.common.store_last_browsed_path((QFileDialog.getExistingDirectory(self,
-                                                                                        "Add Content:",
-                                                                                        RuntimeGlobals.last_browsed_path)))
+                                                                                              "Add Content:",
+                                                                                              RuntimeGlobals.last_browsed_path)))
         if not directory:
             return False
 
@@ -933,11 +938,11 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return True
         else:
             raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-            self.__class__.__name__, directory))
+                self.__class__.__name__, directory))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError,
-                                            Exception)
+                                              foundations.exceptions.UserError,
+                                              Exception)
     @umbra.engine.show_processing("Adding Collection ...")
     def add_collection_ui(self):
         """
@@ -959,26 +964,26 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             if name != self.__overall_collection:
                 if not self.collection_exists(name):
                     comment = len(collection_informations) == 1 and "Double click to set a comment!" or \
-                    collection_informations[1].strip()
+                              collection_informations[1].strip()
                     if self.add_collection(name, comment):
                         self.__view.selectionModel().setCurrentIndex(self.__model.get_node_index(
-                        foundations.common.get_first_item(self.__model.find_children(r"^{0}$".format(name)))),
-                        QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+                            foundations.common.get_first_item(self.__model.find_children(r"^{0}$".format(name)))),
+                                                                     QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
                         return name
                     else:
                         raise Exception("{0} | Exception raised while adding '{1}' Collection to the Database!".format(
-                        self.__class__.__name__, name))
+                            self.__class__.__name__, name))
                 else:
                     self.__engine.notifications_manager.warnify(
-                    "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
+                        "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
             else:
                 raise foundations.exceptions.UserError(
-                "{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(
-                self.__class__.__name__, self.__model.overall_collection))
+                    "{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(
+                        self.__class__.__name__, self.__model.overall_collection))
         else:
             raise foundations.exceptions.UserError(
-            "{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(
-            self.__class__.__name__))
+                "{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(
+                    self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -994,11 +999,11 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         selected_nodes = self.get_selected_nodes().keys()
         if self.__overall_collection in (node.name for node in selected_nodes) or \
-        self.__default_collection in (node.name for node in selected_nodes):
+                        self.__default_collection in (node.name for node in selected_nodes):
             self.__engine.notifications_manager.warnify(
-            "{0} | '{1}' and '{2}' Collections cannot be removed!".format(self.__class__.__name__,
-                                                                    self.__overall_collection,
-                                                                    self.__default_collection))
+                "{0} | '{1}' and '{2}' Collections cannot be removed!".format(self.__class__.__name__,
+                                                                              self.__overall_collection,
+                                                                              self.__default_collection))
 
         selected_collections = [collection
                                 for collection in self.get_selected_collections()
@@ -1007,9 +1012,10 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return False
 
         if message_box.message_box("Question", "Question",
-        "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((foundations.strings.to_string(collection.name)
-                                                                    for collection in selected_collections))),
-        buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                   "Are you sure you want to remove '{0}' Collection(s)?".format(
+                                           ", ".join((foundations.strings.to_string(collection.name)
+                                                      for collection in selected_collections))),
+                                   buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             self.__engine.start_processing("Removing Collections ...", len(selected_collections))
             success = True
             for collection in selected_collections:
@@ -1017,15 +1023,15 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 self.__engine.step_processing()
             self.__engine.stop_processing()
             self.__view.selectionModel().setCurrentIndex(self.__model.index(0, 0),
-            QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+                                                         QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
             if success:
                 return True
             else:
                 raise Exception("{0} | Exception raised while removing '{1}' Collections from the Database!".format(
-                self.__class__.__name__, ", ". join((collection.name for collection in selected_collections))))
+                    self.__class__.__name__, ", ".join((collection.name for collection in selected_collections))))
 
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError,
-                                            sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+                                              sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def add_collection(self, name, comment="Double click to set a comment!"):
         """
         Adds a Collection to the Database.
@@ -1046,14 +1052,16 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                     return True
                 else:
                     raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-                    "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__,
-                                                                                                    name))
+                        "{0} | Exception raised while adding '{1}' Collection to the Database!".format(
+                            self.__class__.__name__,
+                            name))
             else:
                 raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
+                    "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
         else:
             raise foundations.exceptions.ProgrammingError(
-        "{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overall_collection))
+                "{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__,
+                                                                    self.__model.overall_collection))
 
     @foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def remove_collection(self, collection):
@@ -1068,18 +1076,22 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         ibl_sets = sibl_gui.components.core.database.operations.get_collections_ibl_sets((collection.id,))
         for ibl_set in ibl_sets:
-            LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, ibl_set.title))
+            LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(
+                self.__class__.__name__, ibl_set.title))
             ibl_set.collection = self.get_collection_id(self.__default_collection)
 
-        LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
+        LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(
+            self.__class__.__name__, collection.name))
         if sibl_gui.components.core.database.operations.remove_collection(foundations.strings.to_string(collection.id)):
             self.refresh_nodes.emit()
             self.__ibl_sets_outliner.refresh_nodes.emit()
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__,
-                                                                                                collection.name))
+                "{0} | Exception raised while removing '{1}' Collection from the Database!".format(
+                    self.__class__.__name__,
+                    collection.name))
+
     def get_collections(self):
         """
         Returns Database Ibl Sets Collections.
@@ -1111,7 +1123,7 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return list()
 
         return sibl_gui.components.core.database.operations.filter_ibl_sets_collections(
-        "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)
+            "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)
 
     def collection_exists(self, name):
         """
@@ -1141,31 +1153,32 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         node_flags = attributes_flags = self.__engine.parameters.database_read_only and \
-        int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled)
+                                        int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(
+            Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled)
         collections = self.get_collections()
 
         root_node = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
         overall_collection_node = OverallCollectionNode(name=self.__overall_collection,
-                                                    parent=root_node,
-                                                    node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                                                    attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                        parent=root_node,
+                                                        node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                                                        attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
         for collection in collections:
             decoration_role = os.path.join(self.__ui_resources_directory, self.__ui_user_collection_image)
             if collection.name == self.__default_collection:
                 collection_node = CollectionNode(collection,
-                                                name=collection.name,
-                                                parent=overall_collection_node,
-                                                node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                                                attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                 name=collection.name,
+                                                 parent=overall_collection_node,
+                                                 node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                                                 attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
                 decoration_role = os.path.join(self.__ui_resources_directory, self.__ui_default_collection_image)
             else:
                 collection_node = CollectionNode(collection,
-                                                name=collection.name,
-                                                parent=overall_collection_node,
-                                                node_flags=node_flags,
-                                                attributes_flags=attributes_flags)
+                                                 name=collection.name,
+                                                 parent=overall_collection_node,
+                                                 node_flags=node_flags,
+                                                 attributes_flags=attributes_flags)
             collection_node.roles[Qt.DecorationRole] = foundations.common.filter_path(decoration_role)
         overall_collection_node.update_node_attributes()
         root_node.sort_children()
@@ -1196,8 +1209,9 @@ class CollectionsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         :rtype: list
         """
 
-        return [ibl_set for ibl_set in \
-        sibl_gui.components.core.database.operations.get_collections_ibl_sets([collection.id for collection in collections])]
+        return [ibl_set for ibl_set in
+                sibl_gui.components.core.database.operations.get_collections_ibl_sets(
+                    [collection.id for collection in collections])]
 
     def get_collection_id(self, collection):
         """

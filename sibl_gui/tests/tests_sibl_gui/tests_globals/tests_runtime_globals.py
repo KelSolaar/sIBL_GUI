@@ -17,6 +17,7 @@
 from __future__ import unicode_literals
 
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     import unittest2 as unittest
 else:
@@ -33,6 +34,7 @@ __status__ = "Production"
 
 __all__ = ["TestRuntimeGlobals"]
 
+
 class TestRuntimeGlobals(unittest.TestCase):
     """
     Defines :class:`sibl_gui.globals.runtime_globals.RuntimeGlobals` class units tests methods.
@@ -44,12 +46,13 @@ class TestRuntimeGlobals(unittest.TestCase):
         """
 
         required_attributes = ("templates_factory_directory",
-                                "templates_user_directory",
-                                "thumbnails_cache_directory",
-                                "images_caches")
+                               "templates_user_directory",
+                               "thumbnails_cache_directory",
+                               "images_caches")
 
         for attribute in required_attributes:
             self.assertIn(attribute, RuntimeGlobals.__dict__)
+
 
 if __name__ == "__main__":
     unittest.main()

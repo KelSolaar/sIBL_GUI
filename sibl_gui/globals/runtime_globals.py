@@ -25,6 +25,7 @@ __status__ = "Production"
 
 __all__ = ["RuntimeGlobals"]
 
+
 class RuntimeGlobals():
     """
     Defines **sIBL_GUI** package runtime constants.

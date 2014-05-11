@@ -18,6 +18,7 @@ from __future__ import unicode_literals
 
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     import unittest2 as unittest
 else:
@@ -34,6 +35,7 @@ __status__ = "Production"
 
 __all__ = ["TestUiConstants"]
 
+
 class TestUiConstants(unittest.TestCase):
     """
     Defines :class:`sibl_gui.globals.ui_constants.UiConstants` class units tests methods.
@@ -45,54 +47,54 @@ class TestUiConstants(unittest.TestCase):
         """
 
         required_attributes = ("ui_file",
-                            "windows_stylesheet_file",
-                            "darwin_stylesheet_file",
-                            "linux_stylesheet_file",
-                            "windows_style",
-                            "darwin_style",
-                            "settings_file",
-                            "linux_style",
-                            "layouts_file",
-                            "application_windows_icon",
-                            "splash_screen_image",
-                            "logo_image",
-                            "default_toolbar_icon_size",
-                            "central_widget_icon",
-                            "central_widget_hover_icon",
-                            "central_widget_active_icon",
-                            "custom_layouts_icon",
-                            "custom_layouts_hover_icon",
-                            "custom_layouts_active_icon",
-                            "miscellaneous_icon",
-                            "miscellaneous_hover_icon",
-                            "miscellaneous_active_icon",
-                            "library_icon",
-                            "library_hover_icon",
-                            "library_active_icon",
-                            "inspect_icon",
-                            "inspect_hover_icon",
-                            "inspect_active_icon",
-                            "export_icon",
-                            "export_hover_icon",
-                            "export_active_icon",
-                            "edit_icon",
-                            "edit_hover_icon",
-                            "edit_active_icon",
-                            "preferences_icon",
-                            "preferences_hover_icon",
-                            "preferences_active_icon",
-                            "format_error_image",
-                            "missing_image",
-                            "loading_image",
-                            "startup_layout",
-                            "development_layout",
-                            "help_file",
-                            "api_file",
-                            "native_image_formats",
-                            "third_party_image_formats",
-                            "thumbnails_sizes",
-                            "thumbnails_cache_directory",
-                            "crittercism_id")
+                               "windows_stylesheet_file",
+                               "darwin_stylesheet_file",
+                               "linux_stylesheet_file",
+                               "windows_style",
+                               "darwin_style",
+                               "settings_file",
+                               "linux_style",
+                               "layouts_file",
+                               "application_windows_icon",
+                               "splash_screen_image",
+                               "logo_image",
+                               "default_toolbar_icon_size",
+                               "central_widget_icon",
+                               "central_widget_hover_icon",
+                               "central_widget_active_icon",
+                               "custom_layouts_icon",
+                               "custom_layouts_hover_icon",
+                               "custom_layouts_active_icon",
+                               "miscellaneous_icon",
+                               "miscellaneous_hover_icon",
+                               "miscellaneous_active_icon",
+                               "library_icon",
+                               "library_hover_icon",
+                               "library_active_icon",
+                               "inspect_icon",
+                               "inspect_hover_icon",
+                               "inspect_active_icon",
+                               "export_icon",
+                               "export_hover_icon",
+                               "export_active_icon",
+                               "edit_icon",
+                               "edit_hover_icon",
+                               "edit_active_icon",
+                               "preferences_icon",
+                               "preferences_hover_icon",
+                               "preferences_active_icon",
+                               "format_error_image",
+                               "missing_image",
+                               "loading_image",
+                               "startup_layout",
+                               "development_layout",
+                               "help_file",
+                               "api_file",
+                               "native_image_formats",
+                               "third_party_image_formats",
+                               "thumbnails_sizes",
+                               "thumbnails_cache_directory",
+                               "crittercism_id")
 
         for attribute in required_attributes:
             self.assertIn(attribute, UiConstants.__dict__)
@@ -175,7 +177,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.splash_screen_image, "\w+")
         self.assertRegexpMatches(UiConstants.splash_screen_image,
-                                "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+                                 "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
     def test_logo_image_attribute(self):
         """
@@ -184,7 +186,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.logo_image, "\w+")
         self.assertRegexpMatches(UiConstants.logo_image,
-                                "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+                                 "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
     def test_default_toolbar_icon_size_attribute(self):
         """
@@ -370,7 +372,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.format_error_image, "\w+")
         self.assertRegexpMatches(UiConstants.format_error_image,
-                                "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+                                 "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
     def test_missing_image_attribute(self):
         """
@@ -379,7 +381,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.missing_image, "\w+")
         self.assertRegexpMatches(UiConstants.missing_image,
-                                "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+                                 "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
     def test_loading_image_attribute(self):
         """
@@ -388,7 +390,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.loading_image, "\w+")
         self.assertRegexpMatches(UiConstants.loading_image,
-                                "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+                                 "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
     def test_startup_layout_attribute(self):
         """
@@ -464,6 +466,7 @@ class TestUiConstants(unittest.TestCase):
 
         self.assertRegexpMatches(UiConstants.crittercism_id, "\w+")
         self.assertEqual(UiConstants.crittercism_id, "51290b3589ea7429250004fe")
+
 
 if __name__ == "__main__":
     unittest.main()

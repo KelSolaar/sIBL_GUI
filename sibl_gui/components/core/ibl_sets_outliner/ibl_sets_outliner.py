@@ -21,6 +21,7 @@ import os
 import platform
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     from ordereddict import OrderedDict
 else:
@@ -72,6 +73,7 @@ __all__ = ["LOGGER", "COMPONENT_UI_FILE", "IblSetsOutliner"]
 LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Ibl_Sets_Outliner.ui")
+
 
 class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -144,13 +146,13 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__thumbnails_view = None
         self.__details_view = None
         self.__details_headers = OrderedDict([("Ibl Set", "title"),
-                                        ("Author", "author"),
-                                        ("Shot Location", "location"),
-                                        ("Latitude", "latitude"),
-                                        ("Longitude", "longitude"),
-                                        ("Shot Date", "date"),
-                                        ("Shot Time", "time"),
-                                        ("Comment", "comment")])
+                                              ("Author", "author"),
+                                              ("Shot Location", "location"),
+                                              ("Latitude", "latitude"),
+                                              ("Longitude", "longitude"),
+                                              ("Shot Date", "date"),
+                                              ("Shot Time", "time"),
+                                              ("Comment", "comment")])
 
         self.__panoramic_thumbnails = "True"
         self.__panoramic_thumbnails_size = "XLarge"
@@ -158,10 +160,10 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__thumbnails_minimum_size = "XSmall"
 
         self.__search_contexts = OrderedDict([("Search In Names", "title"),
-                                ("Search In Authors", "author"),
-                                ("Search In Links", "link"),
-                                ("Search In Locations", "location"),
-                                ("Search In Comments", "comment")])
+                                              ("Search In Authors", "author"),
+                                              ("Search In Links", "link"),
+                                              ("Search In Locations", "location"),
+                                              ("Search In Comments", "comment")])
         self.__active_search_context = "Search In Names"
         self.__search_context_menu = None
 
@@ -189,7 +191,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -199,7 +201,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_thumbnails_view_image(self):
@@ -223,7 +225,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_thumbnails_view_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_thumbnails_view_image"))
 
     @ui_thumbnails_view_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -233,7 +235,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_thumbnails_view_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_thumbnails_view_image"))
 
     @property
     def ui_columns_view_image(self):
@@ -257,7 +259,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_columns_view_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_columns_view_image"))
 
     @ui_columns_view_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -267,7 +269,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_columns_view_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_columns_view_image"))
 
     @property
     def ui_details_view_image(self):
@@ -291,7 +293,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_details_view_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_details_view_image"))
 
     @ui_details_view_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -301,7 +303,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_details_view_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_details_view_image"))
 
     @property
     def ui_largest_size_image(self):
@@ -325,7 +327,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_largest_size_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_largest_size_image"))
 
     @ui_largest_size_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -335,7 +337,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_largest_size_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_largest_size_image"))
 
     @property
     def ui_smallest_size_image(self):
@@ -359,7 +361,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_smallest_size_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_smallest_size_image"))
 
     @ui_smallest_size_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -369,7 +371,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_smallest_size_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_smallest_size_image"))
 
     @property
     def ui_panoramic_loading_image(self):
@@ -393,7 +395,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_panoramic_loading_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_panoramic_loading_image"))
 
     @ui_panoramic_loading_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -403,7 +405,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_panoramic_loading_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_panoramic_loading_image"))
 
     @property
     def ui_square_loading_image(self):
@@ -427,7 +429,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_square_loading_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_square_loading_image"))
 
     @ui_square_loading_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -437,7 +439,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_square_loading_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_square_loading_image"))
+
     @property
     def ui_switch_thumbnails_type_image(self):
         """
@@ -460,7 +463,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_switch_thumbnails_type_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_switch_thumbnails_type_image"))
 
     @ui_switch_thumbnails_type_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -470,7 +473,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_switch_thumbnails_type_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "ui_switch_thumbnails_type_image"))
 
     @property
     def dock_area(self):
@@ -494,7 +498,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -504,7 +508,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -528,7 +532,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -538,7 +542,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -562,7 +566,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -572,7 +576,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -596,7 +600,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -606,7 +610,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def settings_separator(self):
@@ -630,7 +634,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
 
     @settings_separator.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -640,7 +644,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
 
     @property
     def extension(self):
@@ -664,7 +668,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
     @extension.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -674,7 +678,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
     @property
     def inspect_layout(self):
@@ -698,7 +702,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspect_layout"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspect_layout"))
 
     @inspect_layout.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -708,7 +712,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspect_layout"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspect_layout"))
 
     @property
     def script_editor(self):
@@ -732,7 +736,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
 
     @script_editor.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -742,7 +746,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
 
     @property
     def collections_outliner(self):
@@ -766,7 +770,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
 
     @collections_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -776,7 +780,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
 
     @property
     def model(self):
@@ -800,7 +804,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
     @model.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -810,7 +814,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
     @property
     def views(self):
@@ -834,7 +838,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
 
     @views.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -844,7 +848,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
 
     @property
     def views_push_buttons(self):
@@ -868,7 +872,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views_push_buttons"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views_push_buttons"))
 
     @views_push_buttons.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -878,7 +882,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views_push_buttons"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views_push_buttons"))
 
     @property
     def thumbnails_view(self):
@@ -902,7 +906,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnails_view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnails_view"))
 
     @thumbnails_view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -912,7 +916,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def details_view(self):
@@ -936,7 +940,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "details_view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "details_view"))
 
     @details_view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -946,7 +950,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def details_viewHeaders(self):
@@ -970,7 +974,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "details_viewHeaders"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "details_viewHeaders"))
 
     @details_viewHeaders.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -980,7 +984,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def panoramic_thumbnails(self):
@@ -1004,7 +1008,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         if value is not None:
-            assert type(value) is bool, "'{0}' attribute: '{1}' type is not 'bool'!".format("panoramic_thumbnails", value)
+            assert type(value) is bool, "'{0}' attribute: '{1}' type is not 'bool'!".format(
+                "panoramic_thumbnails", value)
         self.set_panoramic_thumbnails(value)
 
     @panoramic_thumbnails.deleter
@@ -1015,7 +1020,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramic_thumbnails"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramic_thumbnails"))
 
     @property
     def panoramic_thumbnails_size(self):
@@ -1039,7 +1044,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         if value is not None:
-            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("panoramic_thumbnails_size", value)
+            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
+                "panoramic_thumbnails_size", value)
         self.__panoramic_thumbnails_size = value
 
     @panoramic_thumbnails_size.deleter
@@ -1050,7 +1056,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramic_thumbnails_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "panoramic_thumbnails_size"))
 
     @property
     def square_thumbnails_size(self):
@@ -1074,7 +1080,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         if value is not None:
-            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("square_thumbnails_size", value)
+            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
+                "square_thumbnails_size", value)
         self.__square_thumbnails_size = value
 
     @square_thumbnails_size.deleter
@@ -1085,7 +1092,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "square_thumbnails_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "square_thumbnails_size"))
 
     @property
     def thumbnails_minimum_size(self):
@@ -1109,7 +1116,8 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         if value is not None:
-            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format("thumbnails_minimum_size", value)
+            assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
+                "thumbnails_minimum_size", value)
         self.__thumbnails_minimum_size = value
 
     @thumbnails_minimum_size.deleter
@@ -1120,7 +1128,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnails_minimum_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "thumbnails_minimum_size"))
 
     @property
     def search_contexts(self):
@@ -1144,7 +1152,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "search_contexts"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "search_contexts"))
 
     @search_contexts.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -1154,7 +1162,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "search_contexts"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "search_contexts"))
 
     @property
     def active_search_context(self):
@@ -1178,7 +1186,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "active_search_context"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "active_search_context"))
 
     @active_search_context.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -1188,7 +1196,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "active_search_context"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "active_search_context"))
 
     @property
     def search_context_menu(self):
@@ -1211,7 +1219,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "search_context_menu"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "search_context_menu"))
 
     @search_context_menu.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -1221,7 +1229,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "search_context_menu"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "search_context_menu"))
 
     def activate(self, engine):
         """
@@ -1253,7 +1261,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+            "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
     def initialize_ui(self):
         """
@@ -1266,39 +1274,41 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
         self.__engine.parameters.database_read_only and \
-        LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
-                                                                                                    "database_read_only"))
+        LOGGER.info(
+            "{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__,
+                                                                                            "database_read_only"))
         self.__model = IblSetsModel(self, horizontal_headers=self.__details_headers)
 
         self.Ibl_Sets_Outliner_stackedWidget = QStackedWidget(self)
         self.Ibl_Sets_Outliner_gridLayout.addWidget(self.Ibl_Sets_Outliner_stackedWidget)
 
         self.__thumbnails_view = Thumbnails_QListView(self,
-                                                    self.__model,
-                                                    self.__engine.parameters.database_read_only,
-                                                    "No Ibl Set to view!")
+                                                      self.__model,
+                                                      self.__engine.parameters.database_read_only,
+                                                      "No Ibl Set to view!")
         self.__thumbnails_view.setObjectName("Thumbnails_listView")
         self.__thumbnails_view.setContextMenuPolicy(Qt.ActionsContextMenu)
         self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__thumbnails_view)
 
         self.__details_view = Details_QTreeView(self,
-                                            self.__model,
-                                            self.__engine.parameters.database_read_only,
-                                            "No Ibl Set to view!")
+                                                self.__model,
+                                                self.__engine.parameters.database_read_only,
+                                                "No Ibl Set to view!")
         self.__details_view.setObjectName("Details_treeView")
         self.__details_view.setContextMenuPolicy(Qt.ActionsContextMenu)
         self.Ibl_Sets_Outliner_stackedWidget.addWidget(self.__details_view)
 
         self.__views = (self.__thumbnails_view, self.__details_view)
         self.__views_add_actions()
-        self.__views_push_buttons = {0 : (self.Thumbnails_View_pushButton, self.__ui_thumbnails_view_image),
-                                    1 : (self.Details_View_pushButton, self.__ui_details_view_image)}
+        self.__views_push_buttons = {0: (self.Thumbnails_View_pushButton, self.__ui_thumbnails_view_image),
+                                     1: (self.Details_View_pushButton, self.__ui_details_view_image)}
 
         for index, data in self.__views_push_buttons.iteritems():
             view_push_button, image = data
             view_push_button.setIcon(QIcon(os.path.join(self.__ui_resources_directory, image)))
 
-        self.Switch_Thumbnails_Type_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_switch_thumbnails_type_image)))
+        self.Switch_Thumbnails_Type_pushButton.setIcon(
+            QIcon(os.path.join(self.__ui_resources_directory, self.__ui_switch_thumbnails_type_image)))
 
         self.Search_Database_lineEdit = Search_QLineEdit(self)
         self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
@@ -1306,21 +1316,25 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__search_context_menu = QMenu()
         for context in self.__search_contexts.iterkeys():
             self.__search_context_menu.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Search|Set '{0}' Context ...".format(context),
-            text="{0} ...".format(context),
-            checkable=True,
-            slot=functools.partial(self.set_active_search_context, context)))
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Search|Set '{0}' Context ...".format(context),
+                text="{0} ...".format(context),
+                checkable=True,
+                slot=functools.partial(self.set_active_search_context, context)))
         self.Search_Database_lineEdit.search_active_label.set_menu(self.__search_context_menu)
         self.set_active_search_context(self.__active_search_context)
 
-        self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__ui_resources_directory, self.__ui_largest_size_image)))
-        self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__ui_resources_directory, self.__ui_smallest_size_image)))
+        self.Largest_Size_label.setPixmap(
+            QPixmap(os.path.join(self.__ui_resources_directory, self.__ui_largest_size_image)))
+        self.Smallest_Size_label.setPixmap(
+            QPixmap(os.path.join(self.__ui_resources_directory, self.__ui_smallest_size_image)))
 
         if self.__settings.key_exists(self.__settings_section, "panoramic_thumbnails"):
-            self.__panoramic_thumbnails = self.__settings.get_key(self.__settings_section, "panoramic_thumbnails").toBool()
+            self.__panoramic_thumbnails = self.__settings.get_key(
+                self.__settings_section, "panoramic_thumbnails").toBool()
 
         self.__views_set_ui(
-        foundations.common.get_first_item(self.__settings.get_key(self.__settings_section, "list_view_icon_size").toInt()))
+            foundations.common.get_first_item(
+                self.__settings.get_key(self.__settings_section, "list_view_icon_size").toInt()))
 
         # Signals / Slots.
         for view in self.__views:
@@ -1340,11 +1354,12 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__model.modelReset.connect(self.__collections_outliner._CollectionsOutliner__model__refresh_attributes)
 
         if not self.__engine.parameters.database_read_only:
-            self.__engine.file_system_events_manager.file_changed.connect(self.__engine_file_system_events_manager__file_changed)
+            self.__engine.file_system_events_manager.file_changed.connect(
+                self.__engine_file_system_events_manager__file_changed)
             self.__engine.content_dropped.connect(self.__engine__content_dropped)
         else:
             LOGGER.info("{0} | Ibl Sets file system events ignored by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                self.__class__.__name__, "database_read_only"))
 
         self.initialized_ui = True
         return True
@@ -1356,7 +1371,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
     def add_widget(self):
         """
@@ -1379,7 +1394,7 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def on_startup(self):
@@ -1396,26 +1411,26 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             # Wizard if Ibl Sets table is empty.
             if not self.get_ibl_sets():
                 if message_box.message_box("Question", "Question",
-                "The Database has no Ibl Sets, would you like to add some?",
-                buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                           "The Database has no Ibl Sets, would you like to add some?",
+                                           buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
                     directory = umbra.ui.common.store_last_browsed_path((QFileDialog.getExistingDirectory(self,
-                                                                                         "Add Content:",
-                                                                                        RuntimeGlobals.last_browsed_path)))
+                                                                                                          "Add Content:",
+                                                                                                          RuntimeGlobals.last_browsed_path)))
                     if directory:
                         if not self.add_directory(directory):
                             raise Exception(
-                            "{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-                            self.__class__.__name__, directory))
+                                "{0} | Exception raised while adding '{1}' directory content to the Database!".format(
+                                    self.__class__.__name__, directory))
 
             # Ibl Sets table integrity checking.
             erroneous_ibl_sets = sibl_gui.components.core.database.operations.check_ibl_sets_table_integrity()
             for ibl_set, exceptions in erroneous_ibl_sets.iteritems():
                 if sibl_gui.components.core.database.exceptions.MissingIblSetFileError in exceptions:
                     choice = message_box.message_box("Question", "Error",
-                    "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
-                    self.__class__.__name__, ibl_set.name),
-                    QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-                    custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
+                                                     "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(
+                                                         self.__class__.__name__, ibl_set.name),
+                                                     QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+                                                     custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
 
                     if choice == 0:
                         break
@@ -1427,9 +1442,10 @@ class IblSetsOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
                 for exception in exceptions:
                     self.__engine.notifications_manager.warnify(
-                    "{0} | '{1}' {2}".format(self.__class__.__name__,
-                                    ibl_set.name,
-                                    sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
+                        "{0} | '{1}' {2}".format(self.__class__.__name__,
+                                                 ibl_set.name,
+                                                 sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[
+                                                     exception]))
         else:
             LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "database_read_only"))
@@ -1439,12 +1455,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         for view in self.__views:
             viewName = view.objectName()
-            viewSelectedIblSetsIdentities = foundations.strings.to_string(self.__settings.get_key(self.__settings_section,
-                                                                    "{0}_viewSelecteIblSets".format(viewName)).toString())
+            viewSelectedIblSetsIdentities = foundations.strings.to_string(
+                self.__settings.get_key(self.__settings_section,
+                                        "{0}_viewSelecteIblSets".format(viewName)).toString())
             LOGGER.debug("> '{0}' View stored selected Ibl Sets identities: '{1}'.".format(viewName,
-                                                                                            viewSelectedIblSetsIdentities))
+                                                                                           viewSelectedIblSetsIdentities))
             view.model_selection["Default"] = viewSelectedIblSetsIdentities and \
-            [int(identity) for identity in viewSelectedIblSetsIdentities.split(self.__settings_separator)] or []
+                                              [int(identity) for identity in
+                                               viewSelectedIblSetsIdentities.split(self.__settings_separator)] or []
             view.restore_model_selection()
         return True
 
@@ -1461,9 +1479,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         for view in self.__views:
             view.store_model_selection()
             self.__settings.set_key(self.__settings_section,
-                                "{0}_viewSelecteIblSets".format(view.objectName()),
-                                self.__settings_separator.join(foundations.strings.to_string(identity) \
-                                for identity in view.model_selection["Default"]))
+                                    "{0}_viewSelecteIblSets".format(view.objectName()),
+                                    self.__settings_separator.join(foundations.strings.to_string(identity)
+                                                                   for identity in view.model_selection["Default"]))
 
         self.__settings.set_key(self.__settings_section, "activeView", self.get_active_viewIndex())
 
@@ -1478,20 +1496,22 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         if not thumbnails_size:
-            thumbnails_size = UiConstants.thumbnails_sizes.get(self.__panoramic_thumbnails_size \
-                                                        if self.__panoramic_thumbnails else self.__square_thumbnails_size)
+            thumbnails_size = UiConstants.thumbnails_sizes.get(self.__panoramic_thumbnails_size
+                                                               if self.__panoramic_thumbnails else self.__square_thumbnails_size)
         self.__icon_place_holder = \
-        sibl_gui.ui.common.get_icon(os.path.join(self.__ui_resources_directory,
-                                            self.__ui_panoramic_loading_image if self.__panoramic_thumbnails else \
-                                            self.__ui_square_loading_image),
-                                    asynchronous_loading=False)
+            sibl_gui.ui.common.get_icon(os.path.join(self.__ui_resources_directory,
+                                                     self.__ui_panoramic_loading_image if self.__panoramic_thumbnails else
+                                                     self.__ui_square_loading_image),
+                                        asynchronous_loading=False)
 
         self.__thumbnails_view._Thumbnails_QListView__set_default_ui_state(thumbnails_size,
-                                                                        2 if self.__panoramic_thumbnails else 1)
+                                                                           2 if self.__panoramic_thumbnails else 1)
 
-        self.Thumbnails_Size_horizontalSlider.setMinimum(UiConstants.thumbnails_sizes.get(self.__thumbnails_minimum_size))
-        self.Thumbnails_Size_horizontalSlider.setMaximum(UiConstants.thumbnails_sizes.get(self.__panoramic_thumbnails_size \
-                                                        if self.__panoramic_thumbnails else self.__square_thumbnails_size))
+        self.Thumbnails_Size_horizontalSlider.setMinimum(
+            UiConstants.thumbnails_sizes.get(self.__thumbnails_minimum_size))
+        self.Thumbnails_Size_horizontalSlider.setMaximum(
+            UiConstants.thumbnails_sizes.get(self.__panoramic_thumbnails_size
+                                             if self.__panoramic_thumbnails else self.__square_thumbnails_size))
         self.Thumbnails_Size_horizontalSlider.setValue(thumbnails_size)
 
     def __views_refresh_ui(self, thumbnails_size=None):
@@ -1518,31 +1538,31 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         if not self.__engine.parameters.database_read_only:
             add_content_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Add Content ...",
-            slot=self.__views_add_content_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Add Content ...",
+                slot=self.__views_add_content_action__triggered)
             add_ibl_set_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Add Ibl Set ...",
-            slot=self.__views_add_ibl_set_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Add Ibl Set ...",
+                slot=self.__views_add_ibl_set_action__triggered)
             remove_ibl_sets_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Remove Ibl Set(s) ...",
-            slot=self.__views_remove_ibl_sets_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Remove Ibl Set(s) ...",
+                slot=self.__views_remove_ibl_sets_action__triggered)
             update_ibl_sets_locations_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Update Ibl Set(s) Location(s) ...",
-            slot=self.__views_update_ibl_sets_locations_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Update Ibl Set(s) Location(s) ...",
+                slot=self.__views_update_ibl_sets_locations_action__triggered)
 
             for view in self.__views:
                 separator_action = QAction(view)
                 separator_action.setSeparator(True)
                 for action in (add_content_action,
-                                add_ibl_set_action,
-                                remove_ibl_sets_action,
-                                update_ibl_sets_locations_action,
-                                separator_action):
+                               add_ibl_set_action,
+                               remove_ibl_sets_action,
+                               update_ibl_sets_locations_action,
+                               separator_action):
                     view.addAction(action)
         else:
             LOGGER.info(
-            "{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                "{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(
+                    self.__class__.__name__, "database_read_only"))
 
     def __views_add_content_action__triggered(self, checked):
         """
@@ -1647,8 +1667,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         self.set_ibl_sets(self.__search_ibl_sets(foundations.strings.to_string(self.Search_Database_lineEdit.text()),
-                                            self.__search_contexts[self.__active_search_context],
-                                            re.IGNORECASE if self.Case_Sensitive_Matching_pushButton.isChecked() else 0))
+                                                 self.__search_contexts[self.__active_search_context],
+                                                 re.IGNORECASE if self.Case_Sensitive_Matching_pushButton.isChecked() else 0))
 
     def __Thumbnails_Size_horizontalSlider__changed(self, value):
         """
@@ -1658,14 +1678,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         :type value: int
         """
 
-        self.__thumbnails_view._Thumbnails_QListView__set_default_ui_state(value, 2 if self.__panoramic_thumbnails else 1)
+        self.__thumbnails_view._Thumbnails_QListView__set_default_ui_state(
+            value, 2 if self.__panoramic_thumbnails else 1)
 
         # Storing settings key.
         LOGGER.debug("> Setting '{0}' with value '{1}'.".format("list_view_icon_size", value))
         self.__settings.set_key(self.__settings_section, "list_view_icon_size", value)
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     @umbra.engine.show_processing("Retrieving Ibl Sets ...")
     def __engine__content_dropped(self, event):
         """
@@ -1685,14 +1706,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 path = foundations.strings.to_string(url.path())
                 LOGGER.debug("> Handling dropped '{0}' file.".format(path))
                 path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-                re.search(r"^\/[A-Z]:", path) and path[1:] or path
+                       re.search(r"^\/[A-Z]:", path) and path[1:] or path
                 if re.search(r"\.{0}$".format(self.__extension), path):
                     name = foundations.strings.get_splitext_basename(path)
                     choice = message_box.message_box("Question", "Question",
-                    "'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
+                                                     "'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or \
 'Edit' it in the Script Editor?".format(name),
-                    buttons=QMessageBox.Cancel,
-                    custom_buttons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
+                                                     buttons=QMessageBox.Cancel,
+                                                     custom_buttons=((QString("Add"), QMessageBox.AcceptRole),
+                                                                     (QString("Edit"), QMessageBox.AcceptRole)))
                     if choice == 0:
                         self.add_ibl_set(name, path)
                     elif choice == 1:
@@ -1705,13 +1727,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                         return
 
                     if message_box.message_box("Question", "Question",
-                    "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(path),
-                    buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                               "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(
+                                                       path),
+                                               buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
                         self.add_directory(path)
                 self.__engine.process_events()
         else:
-            raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(
-            self.__class__.__name__))
+            raise foundations.exceptions.UserError(
+                "{0} | Cannot perform action, Database has been set read only!".format(
+                    self.__class__.__name__))
 
     def __engine_file_system_events_manager__file_changed(self, file):
         """
@@ -1727,8 +1751,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         if sibl_gui.components.core.database.operations.update_ibl_set_content(ibl_set):
             self.__engine.notifications_manager.notify(
-            "{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
-            self.__class__.__name__, ibl_set.title))
+                "{0} | '{1}' Ibl Set file has been reparsed and associated database object updated!".format(
+                    self.__class__.__name__, ibl_set.title))
             self.refresh_nodes.emit()
 
     def __get_candidate_collection_id(self):
@@ -1743,7 +1767,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         collection = foundations.common.get_first_item(collections)
         identity = collection and collection.id or None
         return identity and identity or self.__collections_outliner.get_collection_id(
-        self.__collections_outliner.default_collection)
+            self.__collections_outliner.default_collection)
 
     def __search_ibl_sets(self, pattern, attribute, flags=re.IGNORECASE):
         """
@@ -1766,13 +1790,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return list()
 
         ibl_sets = [ibl_set for ibl_set in set(self.__collections_outliner.get_collections_ibl_sets(
-        self.__collections_outliner.get_selected_collections() or \
-        self.__collections_outliner.get_collections())).intersection(
-        sibl_gui.components.core.database.operations.filter_ibl_sets(
-        "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags))]
+            self.__collections_outliner.get_selected_collections() or
+            self.__collections_outliner.get_collections())).intersection(
+            sibl_gui.components.core.database.operations.filter_ibl_sets(
+                "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags))]
         self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value
-                                                        for value in set((getattr(ibl_set_node, attribute)
-                                                        for ibl_set_node in ibl_sets if getattr(ibl_set_node, attribute)))))))
+                                                                                  for value in
+                                                                                  set((getattr(ibl_set_node, attribute)
+                                                                                       for ibl_set_node in ibl_sets if
+                                                                                       getattr(ibl_set_node,
+                                                                                               attribute)))))))
 
         return ibl_sets
 
@@ -1838,8 +1865,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         text = "{0} ...".format(context)
-        for action in  self.__engine.actions_manager.get_category(
-        "Actions|Umbra|Components|core.ibl_sets_outliner|Search").itervalues():
+        for action in self.__engine.actions_manager.get_category(
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Search").itervalues():
             action.setChecked(action.text() == text and True or False)
 
         self.__active_search_context = context
@@ -1856,14 +1883,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         :rtype: bool
         """
 
-        old_in, old_out = UiConstants.thumbnails_sizes.get(self.__thumbnails_minimum_size), UiConstants.thumbnails_sizes.get(
-                    self.__panoramic_thumbnails_size if self.__panoramic_thumbnails else self.__square_thumbnails_size)
+        old_in, old_out = UiConstants.thumbnails_sizes.get(
+            self.__thumbnails_minimum_size), UiConstants.thumbnails_sizes.get(
+            self.__panoramic_thumbnails_size if self.__panoramic_thumbnails else self.__square_thumbnails_size)
 
-        new_in, new_out = UiConstants.thumbnails_sizes.get(self.__thumbnails_minimum_size), UiConstants.thumbnails_sizes.get(
-                    self.__panoramic_thumbnails_size if state else self.__square_thumbnails_size)
+        new_in, new_out = UiConstants.thumbnails_sizes.get(
+            self.__thumbnails_minimum_size), UiConstants.thumbnails_sizes.get(
+            self.__panoramic_thumbnails_size if state else self.__square_thumbnails_size)
 
-        thumbnails_size = (((self.Thumbnails_Size_horizontalSlider.value() - old_in) * (new_out - new_in)) \
-                        / (old_out - old_in)) + new_in
+        thumbnails_size = (((self.Thumbnails_Size_horizontalSlider.value() - old_in) * (new_out - new_in))
+                           / (old_out - old_in)) + new_in
 
         self.__panoramic_thumbnails = state
         self.__settings.set_key(self.__settings_section, "panoramic_thumbnails", self.__panoramic_thumbnails)
@@ -1884,8 +1913,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         directory = umbra.ui.common.store_last_browsed_path((QFileDialog.getExistingDirectory(self,
-                                                                                        "Add Content:",
-                                                                                        RuntimeGlobals.last_browsed_path)))
+                                                                                              "Add Content:",
+                                                                                              RuntimeGlobals.last_browsed_path)))
         if not directory:
             return False
 
@@ -1894,7 +1923,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-            self.__class__.__name__, directory))
+                self.__class__.__name__, directory))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.show_processing("Adding Ibl Set ...")
@@ -1909,9 +1938,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         path = umbra.ui.common.store_last_browsed_path((QFileDialog.getOpenFileName(self,
-                                                                        "Add Ibl Set:",
-                                                                        RuntimeGlobals.last_browsed_path,
-                                                                        "Ibls files (*{0})".format(self.__extension))))
+                                                                                    "Add Ibl Set:",
+                                                                                    RuntimeGlobals.last_browsed_path,
+                                                                                    "Ibls files (*{0})".format(
+                                                                                        self.__extension))))
         if not path:
             return False
 
@@ -1921,10 +1951,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 return True
             else:
                 raise Exception("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
-                self.__class__.__name__, path))
+                    self.__class__.__name__, path))
         else:
             self.__engine.notifications_manager.warnify(
-            "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
+                "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -1943,8 +1973,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return False
 
         if message_box.message_box("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(
-        ", ".join((ibl_set.title for ibl_set in selected_ibl_sets))),
-         buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                ", ".join((ibl_set.title for ibl_set in selected_ibl_sets))),
+                                   buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             self.__engine.start_processing("Removing Ibl Sets ...", len(selected_ibl_sets))
             success = True
             for ibl_set in selected_ibl_sets:
@@ -1958,10 +1988,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 return True
             else:
                 raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(
-                self.__class__.__name__, ", ". join((ibl_set.title for ibl_set in selected_ibl_sets))))
+                    self.__class__.__name__, ", ".join((ibl_set.title for ibl_set in selected_ibl_sets))))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+                                              sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def update_ibl_set_location_ui(self, ibl_set):
         """
         Updates given Ibl Set location.
@@ -1975,20 +2005,23 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         file = umbra.ui.common.store_last_browsed_path((QFileDialog.getOpenFileName(self,
-                                                                "Updating '{0}' Template Location:".format(ibl_set.name),
-                                                                RuntimeGlobals.last_browsed_path,
-                                                                "Ibl Set files (*{0})".format(self.__extension))))
+                                                                                    "Updating '{0}' Template Location:".format(
+                                                                                        ibl_set.name),
+                                                                                    RuntimeGlobals.last_browsed_path,
+                                                                                    "Ibl Set files (*{0})".format(
+                                                                                        self.__extension))))
         if not file:
             return False
 
         LOGGER.info("{0} | Updating '{1}' Ibl Set with new location '{2}'!".format(self.__class__.__name__,
-                                                                                    ibl_set.name, file))
+                                                                                   ibl_set.name, file))
         if sibl_gui.components.core.database.operations.update_ibl_set_location(ibl_set, file):
             self.refresh_nodes.emit()
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, ibl_set.name))
+                "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__,
+                                                                                       ibl_set.name))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -2019,10 +2052,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise Exception("{0} | Exception raised while updating '{1}' Ibls sets locations!".format(
-            self.__class__.__name__, ", ". join((ibl_set.title for ibl_set in selected_ibl_sets))))
+                self.__class__.__name__, ", ".join((ibl_set.title for ibl_set in selected_ibl_sets))))
 
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError,
-                                            sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+                                              sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def add_ibl_set(self, name, path, collection_id=None):
         """
         Adds an Ibl Set to the Database.
@@ -2040,15 +2073,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         if not self.ibl_set_exists(path):
             LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
             if sibl_gui.components.core.database.operations.add_ibl_set(
-            name, path, collection_id or self.__get_candidate_collection_id()):
+                    name, path, collection_id or self.__get_candidate_collection_id()):
                 self.refresh_nodes.emit()
                 return True
             else:
                 raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-                "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
+                    "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__,
+                                                                                                name))
         else:
             raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
+                "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -2073,10 +2107,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         for path in files:
             if not self.ibl_set_exists(path):
                 success *= umbra.ui.common.signals_blocker(self,
-                                                        self.add_ibl_set,
-                                                        foundations.strings.get_splitext_basename(path),
-                                                        path,
-                                                        collection_id or self.__get_candidate_collection_id()) or False
+                                                           self.add_ibl_set,
+                                                           foundations.strings.get_splitext_basename(path),
+                                                           path,
+                                                           collection_id or self.__get_candidate_collection_id()) or False
             self.__engine.step_processing()
         self.__engine.stop_processing()
 
@@ -2086,7 +2120,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-            self.__class__.__name__, directory))
+                self.__class__.__name__, directory))
 
     @foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def remove_ibl_set(self, ibl_set):
@@ -2105,8 +2139,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
-                                                                                            ibl_set.title))
+                "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__,
+                                                                                                ibl_set.title))
 
     @foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def update_ibl_set_location(self, ibl_set, file):
@@ -2129,7 +2163,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, ibl_set.title))
+                "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__,
+                                                                                       ibl_set.title))
 
     def get_ibl_sets(self):
         """
@@ -2162,8 +2197,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return list()
 
         return list(set(self.get_ibl_sets()).intersection(
-        sibl_gui.components.core.database.operations.filter_ibl_sets(
-        "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)))
+            sibl_gui.components.core.database.operations.filter_ibl_sets(
+                "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)))
 
     def ibl_set_exists(self, path):
         """
@@ -2200,35 +2235,37 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         node_flags = self.__engine.parameters.database_read_only and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or \
-        int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
+                     int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
         ibl_sets = ibl_sets or self.__collections_outliner.get_collections_ibl_sets(
-        self.__collections_outliner.get_selected_collections() or self.__collections_outliner.get_collections())
+            self.__collections_outliner.get_selected_collections() or self.__collections_outliner.get_collections())
         root_node = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
 
         for ibl_set in ibl_sets:
             if self.__panoramic_thumbnails:
-                icon_path = foundations.common.get_first_item(filter(foundations.common.path_exists, [ibl_set.background_image,
-                                                                                            ibl_set.preview_image]))
+                icon_path = foundations.common.get_first_item(
+                    filter(foundations.common.path_exists, [ibl_set.background_image,
+                                                            ibl_set.preview_image]))
                 icon_size = self.__panoramic_thumbnails_size
             else:
                 icon_path = ibl_set.icon
                 icon_size = self.__square_thumbnails_size
 
             ibl_set_node = IblSetNode(ibl_set,
-                                    name=ibl_set.title,
-                                    parent=root_node,
-                                    node_flags=node_flags,
-                                    attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                                    icon_path=icon_path,
-                                    icon_size=icon_size,
-                                    icon_placeholder=self.__icon_place_holder)
+                                      name=ibl_set.title,
+                                      parent=root_node,
+                                      node_flags=node_flags,
+                                      attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                                      icon_path=icon_path,
+                                      icon_size=icon_size,
+                                      icon_placeholder=self.__icon_place_holder)
 
             path = foundations.strings.to_string(ibl_set.path)
             if not foundations.common.path_exists(path):
                 continue
 
             not self.__engine.file_system_events_manager.is_path_registered(path) and \
-            self.__engine.file_system_events_manager.register_path(path, modified_time=float(ibl_set.os_stats.split(",")[8]))
+            self.__engine.file_system_events_manager.register_path(
+                path, modified_time=float(ibl_set.os_stats.split(",")[8]))
 
         root_node.sort_children(attribute="title")
 

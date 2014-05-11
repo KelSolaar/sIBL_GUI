@@ -35,60 +35,61 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-            "DATABASE_EXCEPTIONS",
-            "DEFAULT_SESSION_MAKER",
-            "DEFAULT_SESSION",
-            "create_session",
-            "get_session",
-            "commit",
-            "add_item",
-            "add_standard_item",
-            "remove_item",
-            "remove_standard_item",
-            "update_item_content",
-            "update_item_location",
-            "filter_items",
-            "item_exists",
-            "get_ibl_sets",
-            "filter_ibl_sets",
-            "ibl_set_exists",
-            "add_ibl_set",
-            "remove_ibl_set",
-            "update_ibl_set_content",
-            "update_ibl_set_location",
-            "check_ibl_sets_table_integrity",
-            "get_collections",
-            "filter_collections",
-            "get_collections_by_type",
-            "collection_exists",
-            "add_collection",
-            "remove_collection",
-            "get_collections_ibl_sets",
-            "getCollectionIblSetsCount",
-            "get_collection_templates_count",
-            "get_templates",
-            "filter_templates",
-            "template_exists",
-            "add_template",
-            "remove_template",
-            "update_template_content",
-            "update_template_location",
-            "check_templates_table_integrity"]
+           "DATABASE_EXCEPTIONS",
+           "DEFAULT_SESSION_MAKER",
+           "DEFAULT_SESSION",
+           "create_session",
+           "get_session",
+           "commit",
+           "add_item",
+           "add_standard_item",
+           "remove_item",
+           "remove_standard_item",
+           "update_item_content",
+           "update_item_location",
+           "filter_items",
+           "item_exists",
+           "get_ibl_sets",
+           "filter_ibl_sets",
+           "ibl_set_exists",
+           "add_ibl_set",
+           "remove_ibl_set",
+           "update_ibl_set_content",
+           "update_ibl_set_location",
+           "check_ibl_sets_table_integrity",
+           "get_collections",
+           "filter_collections",
+           "get_collections_by_type",
+           "collection_exists",
+           "add_collection",
+           "remove_collection",
+           "get_collections_ibl_sets",
+           "getCollectionIblSetsCount",
+           "get_collection_templates_count",
+           "get_templates",
+           "filter_templates",
+           "template_exists",
+           "add_template",
+           "remove_template",
+           "update_template_content",
+           "update_template_location",
+           "check_templates_table_integrity"]
 
 LOGGER = foundations.verbose.install_logger()
 
 DATABASE_EXCEPTIONS = {
-    sibl_gui.components.core.database.exceptions.MissingIblSetFileError : "Ibl Set's file is missing!",
-    sibl_gui.components.core.database.exceptions.MissingIblSetIconError : "Ibl Set's icon is missing!",
-    sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError : "Ibl Set's preview image is missing!",
-    sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError : "Ibl Set's background image is missing!",
-    sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError : "Ibl Set's lighting image is missing!",
-    sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError : "Ibl Set's reflection image is missing!",
-    sibl_gui.components.core.database.exceptions.MissingTemplateFileError : "Template file is missing!",
-    sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError : "Template help file is missing!"}
+    sibl_gui.components.core.database.exceptions.MissingIblSetFileError: "Ibl Set's file is missing!",
+    sibl_gui.components.core.database.exceptions.MissingIblSetIconError: "Ibl Set's icon is missing!",
+    sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError: "Ibl Set's preview image is missing!",
+    sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError: "Ibl Set's background image is missing!",
+    sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError: "Ibl Set's lighting image is missing!",
+    sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError: "Ibl Set's reflection image is missing!",
+    sibl_gui.components.core.database.exceptions.MissingTemplateFileError: "Template file is missing!",
+    sibl_gui.components.core.database.exceptions.MissingTemplateHelpFileError: "Template help file is missing!"}
 
 DEFAULT_SESSION_MAKER = None
 DEFAULT_SESSION = None
+
 
 def create_session():
     """
@@ -99,6 +100,7 @@ def create_session():
     """
 
     return DEFAULT_SESSION_MAKER()
+
 
 def get_session(session=None):
     """
@@ -118,6 +120,7 @@ def get_session(session=None):
     else:
         LOGGER.warning("!> {0} | Default session is not set, creating one!".format(__name__))
 
+
 def query(*args, **kwargs):
     """
     Queries given session or the default one.
@@ -131,6 +134,7 @@ def query(*args, **kwargs):
     """
 
     return get_session(kwargs.get("session")).query(*args, **kwargs)
+
 
 @foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
 def commit(session=None):
@@ -151,7 +155,8 @@ def commit(session=None):
     except Exception as error:
         session.rollback()
         raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-        "{0} | Database commit error: '{1}'".format(__name__, error))
+            "{0} | Database commit error: '{1}'".format(__name__, error))
+
 
 def add_item(item, session=None):
     """
@@ -170,6 +175,7 @@ def add_item(item, session=None):
     session = get_session(session)
     session.add(item)
     return commit(session)
+
 
 def add_standard_item(type, name, path, collection, session=None):
     """
@@ -206,6 +212,7 @@ def add_standard_item(type, name, path, collection, session=None):
         LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__, path, type.__name__))
         return False
 
+
 def remove_item(item, session=None):
     """
     Removes an item from the Database.
@@ -223,6 +230,7 @@ def remove_item(item, session=None):
     session = get_session(session)
     session.delete(item)
     return commit(session)
+
 
 def remove_standard_item(type, identity, session=None):
     """
@@ -242,6 +250,7 @@ def remove_standard_item(type, identity, session=None):
 
     item = session.query(type).filter_by(id=identity).one()
     return remove_item(item, get_session(session))
+
 
 def update_item_content(item, session=None):
     """
@@ -266,9 +275,10 @@ def update_item_content(item, session=None):
         return commit(get_session(session))
     else:
         LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(__name__,
-                                                                        item.name,
-                                                                        item.__class__.__name__))
+                                                                            item.name,
+                                                                            item.__class__.__name__))
         return False
+
 
 def update_item_location(item, path, session=None):
     """
@@ -293,9 +303,10 @@ def update_item_location(item, path, session=None):
         return update_item_content(item, session)
     else:
         LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(__name__,
-                                                                                    path,
-                                                                                    item.__class__.__name__))
+                                                                                      path,
+                                                                                      item.__class__.__name__))
         return False
+
 
 def filter_items(items, pattern, field, flags=0):
     """
@@ -315,6 +326,7 @@ def filter_items(items, pattern, field, flags=0):
 
     return [item for item in items if re.search(pattern, foundations.strings.to_string(item.__dict__[field]), flags)]
 
+
 def item_exists(items, pattern, field, flags=0):
     """
     Returns if given item exists in the Database.
@@ -333,6 +345,7 @@ def item_exists(items, pattern, field, flags=0):
 
     return True if filter_items(items, pattern, field, flags) else False
 
+
 def get_ibl_sets(session=None):
     """
     Returns the Ibl Sets from the Database.
@@ -344,6 +357,7 @@ def get_ibl_sets(session=None):
     """
 
     return get_session(session).query(IblSet)
+
 
 def filter_ibl_sets(pattern, field, flags=0, session=None):
     """
@@ -363,6 +377,7 @@ def filter_ibl_sets(pattern, field, flags=0, session=None):
 
     return filter_items(get_ibl_sets(get_session(session)), pattern, field, flags)
 
+
 def ibl_set_exists(path, session=None):
     """
     Returns if given Ibl Set exists in the Database.
@@ -376,6 +391,7 @@ def ibl_set_exists(path, session=None):
     """
 
     return True if filter_ibl_sets("^{0}$".format(re.escape(path)), "path", session=get_session(session)) else False
+
 
 def add_ibl_set(name, path, collection, session=None):
     """
@@ -395,6 +411,7 @@ def add_ibl_set(name, path, collection, session=None):
 
     return add_standard_item(IblSet, name, path, collection, get_session(session))
 
+
 def remove_ibl_set(identity, session=None):
     """
     Removes an Ibl Set from the Database.
@@ -409,6 +426,7 @@ def remove_ibl_set(identity, session=None):
 
     return remove_standard_item(IblSet, identity, get_session(session))
 
+
 def update_ibl_set_content(ibl_set, session=None):
     """
     Update an Ibl Set content.
@@ -422,6 +440,7 @@ def update_ibl_set_content(ibl_set, session=None):
     """
 
     return update_item_content(ibl_set, get_session(session))
+
 
 def update_ibl_set_location(ibl_set, path, session=None):
     """
@@ -438,6 +457,7 @@ def update_ibl_set_location(ibl_set, path, session=None):
     """
 
     return update_item_location(ibl_set, path, get_session(session))
+
 
 def check_ibl_sets_table_integrity(session=None):
     """
@@ -464,22 +484,25 @@ def check_ibl_sets_table_integrity(session=None):
                 exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetIconError)
 
             if ibl_set.preview_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
-                                                                    ibl_set.preview_image)):
+                                                                                         ibl_set.preview_image)):
                 exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetPreviewImageError)
-            if ibl_set.background_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
-                                                                        ibl_set.background_image)):
+            if ibl_set.background_image and not foundations.common.path_exists(
+                    os.path.join(os.path.dirname(ibl_set.path),
+                                 ibl_set.background_image)):
                 exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetBackgroundImageError)
             if ibl_set.lighting_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
-                                                                        ibl_set.lighting_image)):
+                                                                                          ibl_set.lighting_image)):
                 exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetLightingImageError)
-            if ibl_set.reflection_image and not foundations.common.path_exists(os.path.join(os.path.dirname(ibl_set.path),
-                                                                        ibl_set.reflection_image)):
+            if ibl_set.reflection_image and not foundations.common.path_exists(
+                    os.path.join(os.path.dirname(ibl_set.path),
+                                 ibl_set.reflection_image)):
                 exceptions.append(sibl_gui.components.core.database.exceptions.MissingIblSetReflectionImageError)
 
             if exceptions:
                 erroneous_ibl_sets[ibl_set] = exceptions
 
     return erroneous_ibl_sets
+
 
 def get_collections(session=None):
     """
@@ -492,6 +515,7 @@ def get_collections(session=None):
     """
 
     return get_session(session).query(Collection)
+
 
 def filter_collections(pattern, field, flags=0, session=None):
     """
@@ -511,6 +535,7 @@ def filter_collections(pattern, field, flags=0, session=None):
 
     return filter_items(get_collections(get_session(session)), pattern, field, flags)
 
+
 def get_collections_by_type(type, session=None):
     """
     Returns Collections of given type.
@@ -524,6 +549,7 @@ def get_collections_by_type(type, session=None):
     """
 
     return [collection for collection in filter_collections(type, "type", session=get_session(session))]
+
 
 def filter_collections_by_type(type, pattern, field, flags=0, session=None):
     """
@@ -544,7 +570,8 @@ def filter_collections_by_type(type, pattern, field, flags=0, session=None):
     """
 
     return list(set(get_collections_by_type(type, session)).intersection(
-    filter_collections("{0}".format(pattern), field, flags, get_session(session))))
+        filter_collections("{0}".format(pattern), field, flags, get_session(session))))
+
 
 def filter_ibl_sets_collections(pattern, field, flags=0, session=None):
     """
@@ -564,6 +591,7 @@ def filter_ibl_sets_collections(pattern, field, flags=0, session=None):
 
     return filter_collections_by_type("ibl_sets", pattern, field, flags, get_session(session))
 
+
 def filter_templates_collections(pattern, field, flags=0, session=None):
     """
     Filters the Templates Collections from the Database.
@@ -582,6 +610,7 @@ def filter_templates_collections(pattern, field, flags=0, session=None):
 
     return filter_collections_by_type("templates", pattern, field, flags, get_session(session))
 
+
 def collection_exists(name, session=None):
     """
     Returns if the Collection exists in the Database.
@@ -595,6 +624,7 @@ def collection_exists(name, session=None):
     """
 
     return True if filter_collections("^{0}$".format(name), "name", session=get_session(session)) else False
+
 
 def add_collection(collection, type, comment, session=None):
     """
@@ -623,6 +653,7 @@ def add_collection(collection, type, comment, session=None):
         LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(__name__, collection))
         return False
 
+
 def remove_collection(identity, session=None):
     """
     Removes a Collection from the Database.
@@ -636,6 +667,7 @@ def remove_collection(identity, session=None):
     """
 
     return remove_standard_item(Collection, identity, get_session(session))
+
 
 def get_collections_ibl_sets(identities, session=None):
     """
@@ -657,6 +689,7 @@ def get_collections_ibl_sets(identities, session=None):
                 ibl_sets.append(ibl_set)
     return ibl_sets
 
+
 def getCollectionIblSetsCount(collection, session=None):
     """
     Returns given Collection Ibl Sets count.
@@ -670,6 +703,7 @@ def getCollectionIblSetsCount(collection, session=None):
     """
 
     return get_session(session).query(IblSet).filter_by(collection=collection.id).count()
+
 
 def get_collection_templates_count(collection, session=None):
     """
@@ -685,6 +719,7 @@ def get_collection_templates_count(collection, session=None):
 
     return get_session(session).query(Template).filter_by(collection=collection.id).count()
 
+
 def get_templates(session=None):
     """
     Returns the Templates from the Database.
@@ -696,6 +731,7 @@ def get_templates(session=None):
     """
 
     return get_session(session).query(Template)
+
 
 def filter_templates(pattern, field, flags=0, session=None):
     """
@@ -715,6 +751,7 @@ def filter_templates(pattern, field, flags=0, session=None):
 
     return filter_items(get_templates(get_session(session)), pattern, field, flags)
 
+
 def template_exists(path, session=None):
     """
     Returns if given Template exists in the Database.
@@ -728,6 +765,7 @@ def template_exists(path, session=None):
     """
 
     return True if filter_templates("^{0}$".format(re.escape(path)), "path", session=get_session(session)) else False
+
 
 def add_template(name, path, collection, session=None):
     """
@@ -747,6 +785,7 @@ def add_template(name, path, collection, session=None):
 
     return add_standard_item(Template, name, path, collection, get_session(session))
 
+
 def remove_template(identity, session=None):
     """
     Removes a Template from the Database.
@@ -761,6 +800,7 @@ def remove_template(identity, session=None):
 
     return remove_standard_item(Template, identity, get_session(session))
 
+
 def update_template_content(template, session=None):
     """
     Update a Template content.
@@ -774,6 +814,7 @@ def update_template_content(template, session=None):
     """
 
     return update_item_content(template, get_session(session))
+
 
 def update_template_location(template, path, session=None):
     """
@@ -790,6 +831,7 @@ def update_template_location(template, path, session=None):
     """
 
     return update_item_location(template, path, get_session(session))
+
 
 def check_templates_table_integrity(session=None):
     """

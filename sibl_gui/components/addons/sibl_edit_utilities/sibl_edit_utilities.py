@@ -43,6 +43,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "sIBLedit_Utilities.ui")
 
+
 class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.sibl_edit_utilities.sIBLeditUtilities` Component Interface class.
@@ -100,7 +101,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -110,7 +111,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -134,7 +135,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -144,7 +145,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -168,7 +169,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -178,7 +179,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def preferences_manager(self):
@@ -202,7 +203,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -212,7 +213,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     @property
     def ibl_sets_outliner(self):
@@ -236,7 +237,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -246,7 +247,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def inspector(self):
@@ -270,7 +271,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
     @inspector.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -280,7 +281,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
 
     def activate(self, engine):
         """
@@ -403,17 +404,17 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if not self.__engine.parameters.database_read_only:
             edit_ibl_set_in_sibl_edit_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Edit In sIBLEdit ...",
-            slot=self.__ibl_sets_outliner_views_edit_ibl_set_in_sibl_edit_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Edit In sIBLEdit ...",
+                slot=self.__ibl_sets_outliner_views_edit_ibl_set_in_sibl_edit_action__triggered)
             for view in self.__ibl_sets_outliner.views:
                 view.addAction(edit_ibl_set_in_sibl_edit_action)
 
             self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.inspector|Edit In sIBLEdit ...",
-            slot=self.__inspector_edit_active_ibl_set_in_sibl_edit_action__triggered))
+                "Actions|Umbra|Components|core.inspector|Edit In sIBLEdit ...",
+                slot=self.__inspector_edit_active_ibl_set_in_sibl_edit_action__triggered))
         else:
             LOGGER.info("{0} | sIBLEdit editing capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                self.__class__.__name__, "database_read_only"))
 
     def __remove_actions(self):
         """
@@ -429,7 +430,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             self.__engine.actions_manager.unregister_action(edit_ibl_set_in_sibl_edit_action)
             edit_active_ibl_set_in_sibl_edit_action = "Actions|Umbra|Components|core.inspector|Edit In sIBLEdit ..."
             self.__inspector.Inspector_Overall_frame.removeAction(self.__engine.actions_manager.get_action(
-            edit_active_ibl_set_in_sibl_edit_action))
+                edit_active_ibl_set_in_sibl_edit_action))
             self.__engine.actions_manager.unregister_action(edit_active_ibl_set_in_sibl_edit_action)
 
     def __ibl_sets_outliner_views_edit_ibl_set_in_sibl_edit_action__triggered(self, checked):
@@ -462,7 +463,8 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         sibl_edit_executable = self.__settings.get_key(self.__settings_section, "sibl_edit_executable")
-        LOGGER.debug("> Setting '{0}' with value '{1}'.".format("sIBLedit_Path_lineEdit", sibl_edit_executable.toString()))
+        LOGGER.debug("> Setting '{0}' with value '{1}'.".format(
+            "sIBLedit_Path_lineEdit", sibl_edit_executable.toString()))
         self.sIBLedit_Path_lineEdit.setText(sibl_edit_executable.toString())
 
     def __sIBLedit_Path_toolButton__clicked(self, checked):
@@ -474,15 +476,16 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         sibl_edit_executable = umbra.ui.common.store_last_browsed_path(QFileDialog.getOpenFileName(self,
-                                                                                        "sibl_edit Executable:",
-                                                                                        RuntimeGlobals.last_browsed_path))
+                                                                                                   "sibl_edit Executable:",
+                                                                                                   RuntimeGlobals.last_browsed_path))
         if sibl_edit_executable != "":
             LOGGER.debug("> Chosen sIBLEdit executable: '{0}'.".format(sibl_edit_executable))
             self.sIBLedit_Path_lineEdit.setText(QString(sibl_edit_executable))
-            self.__settings.set_key(self.__settings_section, "sibl_edit_executable", self.sIBLedit_Path_lineEdit.text())
+            self.__settings.set_key(
+                self.__settings_section, "sibl_edit_executable", self.sIBLedit_Path_lineEdit.text())
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     def __sIBLedit_Path_lineEdit__editFinished(self):
         """
         Defines the slot triggered by **sIBLedit_Path_lineEdit** Widget when edited and check that entered path is valid.
@@ -493,12 +496,14 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             LOGGER.debug("> Restoring preferences!")
             self.__sIBLedit_Path_lineEdit_set_ui()
 
-            raise foundations.exceptions.UserError("{0} | Invalid sIBLEdit executable file!".format(self.__class__.__name__))
+            raise foundations.exceptions.UserError(
+                "{0} | Invalid sIBLEdit executable file!".format(self.__class__.__name__))
         else:
-            self.__settings.set_key(self.__settings_section, "sibl_edit_executable", self.sIBLedit_Path_lineEdit.text())
+            self.__settings.set_key(
+                self.__settings_section, "sibl_edit_executable", self.sIBLedit_Path_lineEdit.text())
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.FileExistsError)
+                                              foundations.exceptions.FileExistsError)
     def edit_ibl_set_in_sibl_edit_ui(self):
         """
         Edits selected Ibl Set in sIBLEdit.
@@ -517,17 +522,17 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
             if foundations.common.path_exists(selected_ibl_set.path):
                 return self.edit_ibl_set_in_sibl_edit(selected_ibl_set.path,
-                                                foundations.strings.to_string(self.sIBLedit_Path_lineEdit.text()))
+                                                      foundations.strings.to_string(self.sIBLedit_Path_lineEdit.text()))
             else:
                 raise foundations.exceptions.FileExistsError(
-                "{0} | Exception raised while sending Ibl Set to sIBLEdit: '{1}' Ibl Set file doesn't exists!".format(
-                self.__class__.__name__, selected_ibl_set.name))
+                    "{0} | Exception raised while sending Ibl Set to sIBLEdit: '{1}' Ibl Set file doesn't exists!".format(
+                        self.__class__.__name__, selected_ibl_set.name))
         else:
             self.__engine.notifications_manager.warnify(
-            "{0} | Please define an 'sIBLEdit' executable in the preferences!".format(self.__class__.__name__))
+                "{0} | Please define an 'sIBLEdit' executable in the preferences!".format(self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.FileExistsError)
+                                              foundations.exceptions.FileExistsError)
     def edit_active_ibl_set_in_sibl_edit_ui(self):
         """
         Edits :mod:`sibl_gui.components.core.inspector.inspector` Component inspected Ibl Set in sIBLEdit.
@@ -548,11 +553,11 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 return self.edit_ibl_set_in_sibl_edit(active_ibl_set.path, sibl_edit)
             else:
                 raise foundations.exceptions.FileExistsError(
-                "{0} | Exception raised while sending Inspector Ibl Set to sIBLEdit: '{1}' Ibl Set file doesn't exists!".format(
-                self.__class__.__name__, active_ibl_set.title))
+                    "{0} | Exception raised while sending Inspector Ibl Set to sIBLEdit: '{1}' Ibl Set file doesn't exists!".format(
+                        self.__class__.__name__, active_ibl_set.title))
         else:
             self.__engine.notifications_manager.warnify(
-            "{0} | Please define an 'sIBLEdit' executable in the preferences!".format(self.__class__.__name__))
+                "{0} | Please define an 'sIBLEdit' executable in the preferences!".format(self.__class__.__name__))
 
     def get_process_command(self, path, sibl_edit):
         """
@@ -589,4 +594,5 @@ class sIBLeditUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             edit_process.startDetached(edit_command)
             return True
         else:
-            raise Exception("{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))
+            raise Exception(
+                "{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))

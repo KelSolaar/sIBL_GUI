@@ -37,6 +37,7 @@ __all__ = ["LOGGER", "Plates_QListView"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
     """
     Defines the view for Ibl Sets Plates as thumbnails.
@@ -87,7 +88,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "list_view_icon_size"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "list_view_icon_size"))
 
     @list_view_icon_size.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -97,7 +98,7 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_icon_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_icon_size"))
 
     def __initialize_ui(self):
         """

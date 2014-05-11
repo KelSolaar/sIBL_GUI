@@ -26,17 +26,18 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER", "AbstractDatabaseError",
-            "DatabaseOperationError",
-            "AbstractIblSetError",
-            "MissingIblSetFileError",
-            "MissingIblSetIconError",
-            "MissingIblSetPreviewImageError",
-            "MissingIblSetBackgroundImageError",
-            "MissingIblSetLightingImageError",
-            "MissingIblSetReflectionImageError",
-            "AbstractTemplateError",
-            "MissingTemplateFileError",
-            "MissingTemplateHelpFileError"]
+           "DatabaseOperationError",
+           "AbstractIblSetError",
+           "MissingIblSetFileError",
+           "MissingIblSetIconError",
+           "MissingIblSetPreviewImageError",
+           "MissingIblSetBackgroundImageError",
+           "MissingIblSetLightingImageError",
+           "MissingIblSetReflectionImageError",
+           "AbstractTemplateError",
+           "MissingTemplateFileError",
+           "MissingTemplateHelpFileError"]
+
 
 class AbstractDatabaseError(foundations.exceptions.AbstractError):
     """
@@ -45,12 +46,14 @@ class AbstractDatabaseError(foundations.exceptions.AbstractError):
 
     pass
 
+
 class DatabaseOperationError(AbstractDatabaseError):
     """
     Defines Database operation exceptions.
     """
 
     pass
+
 
 class AbstractIblSetError(foundations.exceptions.AbstractError):
     """
@@ -59,12 +62,14 @@ class AbstractIblSetError(foundations.exceptions.AbstractError):
 
     pass
 
+
 class MissingIblSetFileError(AbstractIblSetError):
     """
     Raises when an Ibl Set's file is missing.
     """
 
     pass
+
 
 class MissingIblSetIconError(AbstractIblSetError):
     """
@@ -73,12 +78,14 @@ class MissingIblSetIconError(AbstractIblSetError):
 
     pass
 
+
 class MissingIblSetPreviewImageError(AbstractIblSetError):
     """
     Raises when an Ibl Set's preview image is missing.
     """
 
     pass
+
 
 class MissingIblSetBackgroundImageError(AbstractIblSetError):
     """
@@ -87,12 +94,14 @@ class MissingIblSetBackgroundImageError(AbstractIblSetError):
 
     pass
 
+
 class MissingIblSetLightingImageError(AbstractIblSetError):
     """
     Raises when an Ibl Set's lighting image is missing.
     """
 
     pass
+
 
 class MissingIblSetReflectionImageError(AbstractIblSetError):
     """
@@ -101,6 +110,7 @@ class MissingIblSetReflectionImageError(AbstractIblSetError):
 
     pass
 
+
 class AbstractTemplateError(foundations.exceptions.AbstractError):
     """
     Defines the abstract base class for Template related exceptions.
@@ -108,12 +118,14 @@ class AbstractTemplateError(foundations.exceptions.AbstractError):
 
     pass
 
+
 class MissingTemplateFileError(AbstractTemplateError):
     """
     Raises when a Template file is missing.
     """
 
     pass
+
 
 class MissingTemplateHelpFileError(AbstractTemplateError):
     """

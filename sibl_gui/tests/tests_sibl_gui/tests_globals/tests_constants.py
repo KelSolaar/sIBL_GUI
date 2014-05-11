@@ -17,6 +17,7 @@
 from __future__ import unicode_literals
 
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     import unittest2 as unittest
 else:
@@ -33,6 +34,7 @@ __status__ = "Production"
 
 __all__ = ["TestConstants"]
 
+
 class TestConstants(unittest.TestCase):
     """
     Defines :class:`sibl_gui.globals.constants.Constants` class units tests methods.
@@ -44,32 +46,32 @@ class TestConstants(unittest.TestCase):
         """
 
         required_attributes = ("application_name",
-                                "major_version",
-                                "minor_version",
-                                "change_version",
-                                "version",
-                                "logger",
-                                "default_codec",
-                                "codec_error",
-                                "application_directory",
-                                "provider_directory",
-                                "database_directory",
-                                "patches_directory",
-                                "settings_directory",
-                                "user_components_directory",
-                                "logging_directory",
-                                "templates_directory",
-                                "io_directory",
-                                "preferences_directories",
-                                "core_components_directory",
-                                "addons_components_directory",
-                                "resources_directory",
-                                "patches_file",
-                                "database_file",
-                                "settings_file",
-                                "logging_file",
-                                "libraries_directory",
-                                "freeimage_library")
+                               "major_version",
+                               "minor_version",
+                               "change_version",
+                               "version",
+                               "logger",
+                               "default_codec",
+                               "codec_error",
+                               "application_directory",
+                               "provider_directory",
+                               "database_directory",
+                               "patches_directory",
+                               "settings_directory",
+                               "user_components_directory",
+                               "logging_directory",
+                               "templates_directory",
+                               "io_directory",
+                               "preferences_directories",
+                               "core_components_directory",
+                               "addons_components_directory",
+                               "resources_directory",
+                               "patches_file",
+                               "database_file",
+                               "settings_file",
+                               "logging_file",
+                               "libraries_directory",
+                               "freeimage_library")
 
         for attribute in required_attributes:
             self.assertIn(attribute, Constants.__dict__)
@@ -122,7 +124,7 @@ class TestConstants(unittest.TestCase):
         """
 
         valid_encodings = ("utf-8",
-                        "cp1252")
+                           "cp1252")
 
         self.assertIn(Constants.default_codec, valid_encodings)
 
@@ -132,9 +134,9 @@ class TestConstants(unittest.TestCase):
         """
 
         valid_encodings_errors = ("strict",
-                        "ignore",
-                        "replace",
-                        "xmlcharrefreplace")
+                                  "ignore",
+                                  "replace",
+                                  "xmlcharrefreplace")
 
         self.assertIn(Constants.codec_error, valid_encodings_errors)
 
@@ -270,6 +272,7 @@ class TestConstants(unittest.TestCase):
         """
 
         self.assertRegexpMatches(Constants.freeimage_library, "\w+")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -28,30 +28,30 @@ __status__ = "Production"
 __all__ = ["a", "pyz", "exe", "coll", "app"]
 
 a = Analysis([os.path.join(HOMEPATH, "support\\_mountzlib.py"),
-            os.path.join(HOMEPATH, "support\\useUnicode.py"),
-            "z:/Documents/Development/sIBL_GUI/sibl_gui/launcher.py"],
+              os.path.join(HOMEPATH, "support\\useUnicode.py"),
+              "z:/Documents/Development/sIBL_GUI/sibl_gui/launcher.py"],
              pathex=["C:\\cygwin\\home\\KelSolaar"],
              excludes=["oncilla", "foundations", "manager", "umbra", "sibl_gui"])
 
 pyz = PYZ(a.pure)
 
 exe = EXE(pyz,
-        a.scripts,
-        exclude_binaries=1,
-        name=os.path.join("build\\pyi.win32\\sIBL_GUI", "sIBL_GUI.exe"),
-        debug=False,
-        strip=False,
-        upx=True,
-        console=True if os.environ.get("CONSOLE_BUILD") else False,
-        icon="z:\\Documents\\Development\\sIBL_GUI\\sibl_gui\\resources\\images\\Icon_Light.ico")
+          a.scripts,
+          exclude_binaries=1,
+          name=os.path.join("build\\pyi.win32\\sIBL_GUI", "sIBL_GUI.exe"),
+          debug=False,
+          strip=False,
+          upx=True,
+          console=True if os.environ.get("CONSOLE_BUILD") else False,
+          icon="z:\\Documents\\Development\\sIBL_GUI\\sibl_gui\\resources\\images\\Icon_Light.ico")
 
 coll = COLLECT(exe,
-            filter(lambda x: "API-MS-Win" not in x[0], a.binaries),
-            a.zipfiles,
-            a.datas,
-            strip=False,
-            upx=True,
-            name=os.path.join("dist", "sIBL_GUI"))
+               filter(lambda x: "API-MS-Win" not in x[0], a.binaries),
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               name=os.path.join("dist", "sIBL_GUI"))
 
 app = BUNDLE(coll,
-            name=os.path.join("dist", "sIBL_GUI.app"))
+             name=os.path.join("dist", "sIBL_GUI.app"))

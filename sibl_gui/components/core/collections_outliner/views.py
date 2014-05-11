@@ -38,6 +38,7 @@ __all__ = ["LOGGER", "IblSetsCollections_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
     """
     Defines the view for Database Collections.
@@ -90,7 +91,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
     @container.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -100,7 +101,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
     @property
     def tree_view_indentation(self):
@@ -124,7 +125,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
 
     @tree_view_indentation.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -134,7 +135,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
 
     def dragEnterEvent(self, event):
         """
@@ -161,8 +162,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         pass
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.DirectoryExistsError,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.DirectoryExistsError,
+                                              foundations.exceptions.UserError)
     def dropEvent(self, event):
         """
         Reimplements the :meth:`sibl_gui.ui.views.Abstract_QTreeView.dropEvent` method.
@@ -193,14 +194,14 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
                 node._AbstractDatabaseNode__database_item = database_session.merge(node.database_item)
                 if collection_node.database_item.id != node.database_item.collection:
                     LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.database_item.title,
-                                                                                    collection_node.database_item.name))
+                                                                                     collection_node.database_item.name))
                     node.database_item.collection = collection_node.database_item.id
 
             if sibl_gui.components.core.database.operations.commit():
                 self.__container.refresh_nodes.emit()
         else:
             raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(
-            self.__class__.__name__))
+                self.__class__.__name__))
 
     def __initialize_ui(self):
         """
@@ -245,7 +246,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
         LOGGER.debug("> Storing Model selection!")
 
-        self.model_selection = {self.__container.overall_collection : [], "collections" : []}
+        self.model_selection = {self.__container.overall_collection: [], "collections": []}
         for node in self.get_selected_nodes():
             if node.name == self.__container.overall_collection:
                 self.model_selection[self.__container.overall_collection].append(node.name)
@@ -266,7 +267,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         if not self.model_selection:
             return False
 
-        selection = self.model_selection.get(self.__container.overall_collection, None) or self.model_selection.get("collections", None)
+        selection = self.model_selection.get(
+            self.__container.overall_collection, None) or self.model_selection.get("collections", None)
         if not selection:
             return False
 
@@ -274,9 +276,11 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         for node in foundations.walkers.nodes_walker(self.model().root_node):
             if node.family == "Collection":
                 self.model_selection.get("collections", None) and \
-                node.id.value in self.model_selection["collections"] and indexes.append(self.model().get_node_index(node))
+                node.id.value in self.model_selection[
+                    "collections"] and indexes.append(self.model().get_node_index(node))
             else:
                 self.model_selection.get(self.__container.overall_collection, None) and \
-                node.name in self.model_selection[self.__container.overall_collection] and indexes.append(self.model().get_node_index(node))
+                node.name in self.model_selection[self.__container.overall_collection] and indexes.append(
+                    self.model().get_node_index(node))
 
         return self.select_indexes(indexes)

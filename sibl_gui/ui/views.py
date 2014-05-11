@@ -29,11 +29,12 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-            "Mixin_AbstractView"
-            "Abstract_QListView",
-            "Abstract_QTreeView"]
+           "Mixin_AbstractView"
+           "Abstract_QListView",
+           "Abstract_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 class Mixin_AbstractView(object):
     """
@@ -51,7 +52,7 @@ class Mixin_AbstractView(object):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         # --- Setting class attributes. ---
-        self.__model_selection = {"Default" : []}
+        self.__model_selection = {"Default": []}
 
         Mixin_AbstractView.setModel(self, model)
 
@@ -80,9 +81,9 @@ class Mixin_AbstractView(object):
             assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("model_selection", value)
             for key, element in value.iteritems():
                 assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-                "model_selection", key)
+                    "model_selection", key)
                 assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("model_selection",
-                                                                                                element)
+                                                                                                  element)
         self.__model_selection = value
 
     @model_selection.deleter
@@ -93,7 +94,7 @@ class Mixin_AbstractView(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model_selection"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model_selection"))
 
     def setModel(self, model):
         """
@@ -138,7 +139,7 @@ class Mixin_AbstractView(object):
 
         LOGGER.debug("> Storing Model selection!")
 
-        self.model_selection = {"Default" : []}
+        self.model_selection = {"Default": []}
         for node in self.get_selected_nodes():
             self.model_selection["Default"].append(node.id.value)
         return True
@@ -166,6 +167,7 @@ class Mixin_AbstractView(object):
 
         return self.select_view_indexes(indexes)
 
+
 class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
     """
     Defines the base class used by others Application Views classes.
@@ -189,6 +191,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView, Mixin_AbstractView):
 
         umbra.ui.views.Abstract_QListView.__init__(self, parent, read_only, message)
         Mixin_AbstractView.__init__(self, model)
+
 
 class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView, Mixin_AbstractView):
     """

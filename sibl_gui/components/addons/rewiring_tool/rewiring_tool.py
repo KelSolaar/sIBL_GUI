@@ -43,6 +43,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool.ui")
 
+
 class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.rewiring_tool.rewiring_tool` Component Interface class.
@@ -83,9 +84,9 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__loader_script = None
 
         self.__rewiring_parameters = (("Background", "Background|BGfile", "background_image"),
-                                    ("Lighting", "Enviroment|EVfile", "lighting_image"),
-                                    ("Reflection", "Reflection|REFfile", "reflection_image"),
-                                    ("Custom image", None, None))
+                                      ("Lighting", "Enviroment|EVfile", "lighting_image"),
+                                      ("Reflection", "Reflection|REFfile", "reflection_image"),
+                                      ("Custom image", None, None))
 
     @property
     def dock_area(self):
@@ -109,7 +110,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -119,7 +120,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -143,7 +144,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -153,7 +154,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def ibl_sets_outliner(self):
@@ -177,7 +178,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -187,7 +188,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def rewire_frames_widgets(self):
@@ -211,7 +212,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_frames_widgets"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_frames_widgets"))
 
     @rewire_frames_widgets.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -221,7 +222,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_frames_widgets"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_frames_widgets"))
 
     @property
     def rewire_combo_boxes_widgets(self):
@@ -245,7 +246,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_combo_boxes_widgets"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_combo_boxes_widgets"))
 
     @rewire_combo_boxes_widgets.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -255,7 +256,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_combo_boxes_widgets"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_combo_boxes_widgets"))
 
     @property
     def rewire_line_edit_widgets(self):
@@ -279,7 +280,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_line_edit_widgets"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewire_line_edit_widgets"))
 
     @rewire_line_edit_widgets.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -289,7 +290,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_line_edit_widgets"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewire_line_edit_widgets"))
 
     @property
     def rewiring_parameters(self):
@@ -313,7 +314,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewiring_parameters"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "rewiring_parameters"))
 
     @rewiring_parameters.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -323,7 +324,7 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewiring_parameters"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "rewiring_parameters"))
 
     def activate(self, engine):
         """
@@ -374,10 +375,11 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
         self.__rewire_frames_widgets = (self.Background_frame, self.Lighting_frame, self.Reflection_frame)
-        self.__rewire_combo_boxes_widgets = (self.Background_comboBox, self.Lighting_comboBox, self.Reflection_comboBox)
+        self.__rewire_combo_boxes_widgets = (
+            self.Background_comboBox, self.Lighting_comboBox, self.Reflection_comboBox)
         self.__rewire_line_edit_widgets = (self.Background_Path_lineEdit,
-                                        self.Lighting_Path_lineEdit,
-                                        self.Reflection_Path_lineEdit)
+                                           self.Lighting_Path_lineEdit,
+                                           self.Reflection_Path_lineEdit)
 
         for frame in self.__rewire_frames_widgets:
             LOGGER.debug("> Hiding '%s'.", frame)
@@ -385,8 +387,8 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         for index in range(len(self.__rewire_combo_boxes_widgets)):
             self.__rewire_combo_boxes_widgets[index].data = self.__rewiring_parameters[index][1]
-            self.__rewire_combo_boxes_widgets[index].addItems([foundations.common.get_first_item(parameter) \
-                                                         for parameter in self.__rewiring_parameters])
+            self.__rewire_combo_boxes_widgets[index].addItems([foundations.common.get_first_item(parameter)
+                                                               for parameter in self.__rewiring_parameters])
             self.__rewire_combo_boxes_widgets[index].setCurrentIndex(index)
 
         # Signals / Slots.
@@ -510,8 +512,9 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         custom_file = umbra.ui.common.store_last_browsed_path(QFileDialog.getOpenFileName(self,
-                                                                                    "Custom {0} File:".format(component),
-                                                                                    RuntimeGlobals.last_browsed_path))
+                                                                                          "Custom {0} File:".format(
+                                                                                              component),
+                                                                                          RuntimeGlobals.last_browsed_path))
         LOGGER.debug("> Chosen custom '{0}': '{1}'.".format(component, custom_file))
         if custom_file != "":
             if component == "Background":
@@ -539,16 +542,18 @@ class RewiringTool(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             parameter = self.__rewiring_parameters[combo_box.currentIndex()]
             if combo_box.currentText() == "Custom image":
                 LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(
-                combo_box.data, foundations.strings.to_string(self.__rewire_line_edit_widgets[index].text())))
+                    combo_box.data, foundations.strings.to_string(self.__rewire_line_edit_widgets[index].text())))
                 self.__loader_script.override_keys[combo_box.data] = foundations.parsers.get_attribute_compound(
-                                                                        parameter[1],
-                                                                        foundations.strings.get_normalized_path(
-                                                                        foundations.strings.to_string(
-                                                                        self.__rewire_line_edit_widgets[index].text())))
+                    parameter[1],
+                    foundations.strings.get_normalized_path(
+                        foundations.strings.to_string(
+                            self.__rewire_line_edit_widgets[index].text())))
             else:
                 LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(combo_box.data,
-                                                                                    getattr(ibl_set, parameter[2])))
+                                                                                     getattr(ibl_set, parameter[2])))
                 self.__loader_script.override_keys[combo_box.data] = getattr(ibl_set, parameter[2]) and \
-                                                                foundations.parsers.get_attribute_compound(parameter[1],
-                                                                foundations.strings.get_normalized_path(getattr(ibl_set, parameter[2])))
+                                                                     foundations.parsers.get_attribute_compound(
+                                                                         parameter[1],
+                                                                         foundations.strings.get_normalized_path(
+                                                                             getattr(ibl_set, parameter[2])))
         return True

@@ -35,6 +35,7 @@ LOGGER = foundations.verbose.install_logger()
 foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
+
 def get_package_path(package):
     """
     Writes given package path to stdout.
@@ -49,6 +50,7 @@ def get_package_path(package):
     sys.stdout.write(package.__path__[0])
 
     return True
+
 
 def get_command_line_arguments():
     """
@@ -77,6 +79,7 @@ def get_command_line_arguments():
 
     return parser.parse_args()
 
+
 @foundations.decorators.system_exit
 def main():
     """
@@ -88,6 +91,7 @@ def main():
 
     args = get_command_line_arguments()
     return get_package_path(args.package)
+
 
 if __name__ == "__main__":
     main()

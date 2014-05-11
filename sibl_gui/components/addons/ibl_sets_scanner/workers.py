@@ -41,6 +41,7 @@ __all__ = ["LOGGER", "IblSetsScanner_worker"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class IblSetsScanner_worker(QThread):
     """
     Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to retrieve
@@ -99,7 +100,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
     @container.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -109,7 +110,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
     @property
     def database_session(self):
@@ -133,7 +134,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session"))
 
     @database_session.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -143,7 +144,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session"))
 
     @property
     def extension(self):
@@ -167,7 +168,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
     @extension.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -177,7 +178,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
     @property
     def newIblSets(self):
@@ -201,7 +202,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "newIblSets"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "newIblSets"))
 
     @newIblSets.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -211,7 +212,7 @@ class IblSetsScanner_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "newIblSets"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "newIblSets"))
 
     def run(self):
         """
@@ -237,11 +238,12 @@ class IblSetsScanner_worker(QThread):
             if foundations.common.path_exists(directory):
                 for path in foundations.walkers.files_walker(directory, ("\.{0}$".format(self.__extension),), ("\._",)):
                     if not sibl_gui.components.core.database.operations.filter_ibl_sets("^{0}$".format(re.escape(path)),
-                                                                                    "path",
-                                                                                    session=self.__database_session):
+                                                                                        "path",
+                                                                                        session=self.__database_session):
                         self.__newIblSets.append(path)
             else:
-                LOGGER.warning("!> {0} | '{1}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(self.__class__.__name__, directory))
+                LOGGER.warning("!> {0} | '{1}' directory doesn't exists and won't be scanned for new Ibl Sets!".format(
+                    self.__class__.__name__, directory))
 
         self.__database_session.close()
 

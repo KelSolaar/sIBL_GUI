@@ -25,6 +25,7 @@ __status__ = "Production"
 
 __all__ = ["UiConstants"]
 
+
 class UiConstants():
     """
     Defines **sIBL_GUI** package ui constants.
@@ -267,32 +268,32 @@ class UiConstants():
     """Application online donation file:
     '**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Donations/Make_A_Donation.html**' ( String )"""
 
-    native_image_formats = {"Bmp" : "\.bmp$",
-                        "Jpeg" : "\.jpeg$",
-                        "Jpg" : "\.jpg$",
-                        "Png" : "\.png$" }
+    native_image_formats = {"Bmp": "\.bmp$",
+                            "Jpeg": "\.jpeg$",
+                            "Jpg": "\.jpg$",
+                            "Png": "\.png$"}
     """
     :param native_image_formats: Application native image file formats.
     :type native_image_formats: dict
     """
 
-    third_party_image_formats = {"Exr" : ("\.exr$"),
-                            "Hdr" : ("\.hdr$"),
-                            "Tif" : ("\.tif$"),
-                            "Tiff" : ("\.tiff$"),
-                            "Tga" : ("\.tga$")}
+    third_party_image_formats = {"Exr": ("\.exr$"),
+                                 "Hdr": ("\.hdr$"),
+                                 "Tif": ("\.tif$"),
+                                 "Tiff": ("\.tiff$"),
+                                 "Tga": ("\.tga$")}
     """
     :param third_party_image_formats: Application third party image file formats.
     :type third_party_image_formats: dict
     """
 
-    thumbnails_sizes = { "Default" : None,
-                    "XLarge" : 512,
-                    "Large" : 256,
-                    "Medium" : 128,
-                    "Small" : 64,
-                    "XSmall" : 32,
-                    "Special1" : 600}
+    thumbnails_sizes = {"Default": None,
+                        "XLarge": 512,
+                        "Large": 256,
+                        "Medium": 128,
+                        "Small": 64,
+                        "XSmall": 32,
+                        "Special1": 600}
     """
     :param thumbnails_sizes: Application thumbnails sizes.
     :type thumbnails_sizes: dict

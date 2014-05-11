@@ -40,365 +40,366 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-            "pointer",
-            "FREEIMAGE_LIBRARY_PATH",
-            "DLL_CALLCONV",
-            "FREEIMAGE_MAJOR_VERSION",
-            "FREEIMAGE_MINOR_VERSION",
-            "FREEIMAGE_RELEASE_SERIAL",
-            "FREEIMAGE_LOOKUP",
-            "INT",
-            "BOOL",
-            "BYTE",
-            "WORD",
-            "DWORD",
-            "LONG",
-            "DOUBLE",
-            "BYTE_P",
-            "FREEIMAGE_BIGENDIAN",
-            "FREEIMAGE_COLORORDER_BGR",
-            "FREEIMAGE_COLORORDER_RGB",
-            "FREEIMAGE_COLORORDER",
-            "FIBITMAP",
-            "FIMULTIBITMAP",
-            "tagRGBQUAD",
-            "RGBQUAD",
-            "tagRGBTRIPLE",
-            "RGBTRIPLE",
-            "tagBITMAPINFOHEADER",
-            "BITMAPINFOHEADER",
-            "tagBITMAPINFO",
-            "BITMAPINFO",
-            "PBITMAPINFO",
-            "tagFIRGB16",
-            "FIRGB16",
-            "tagFIRGBA16",
-            "FIRGBA16",
-            "tagFIRGBF",
-            "FIRGBF",
-            "tagFIRGBAF",
-            "FIRGBAF",
-            "tagFICOMPLEX",
-            "FICOMPLEX",
-            "FI_RGBA_RED",
-            "FI_RGBA_GREEN",
-            "FI_RGBA_BLUE",
-            "FI_RGBA_ALPHA",
-            "FI_RGBA_RED_MASK",
-            "FI_RGBA_GREEN_MASK",
-            "FI_RGBA_BLUE_MASK",
-            "FI_RGBA_ALPHA_MASK",
-            "FI_RGBA_RED_SHIFT",
-            "FI_RGBA_GREEN_SHIFT",
-            "FI_RGBA_BLUE_SHIFT",
-            "FI_RGBA_ALPHA_SHIFT",
-            "FI_RGBA_RGB_MASK",
-            "FI_RGBA_LOOKUP",
-            "FI16_555_RED_MASK",
-            "FI16_555_GREEN_MASK",
-            "FI16_555_BLUE_MASK",
-            "FI16_555_RED_SHIFT",
-            "FI16_555_GREEN_SHIFT",
-            "FI16_555_BLUE_SHIFT",
-            "FI16_565_RED_MASK",
-            "FI16_565_GREEN_MASK",
-            "FI16_565_BLUE_MASK",
-            "FI16_565_RED_SHIFT",
-            "FI16_565_GREEN_SHIFT",
-            "FI16_565_BLUE_SHIFT",
-            "FI16_LOOKUP",
-            "FIICC_DEFAULT",
-            "FIICC_COLOR_IS_CMYK",
-            "FIICC_LOOKUP",
-            "FIICCPROFILE",
-            "FREE_IMAGE_FORMAT",
-            "FIF_UNKNOWN",
-            "FIF_BMP",
-            "FIF_ICO",
-            "FIF_JPEG",
-            "FIF_JNG",
-            "FIF_KOALA",
-            "FIF_LBM",
-            "FIF_IFF",
-            "FIF_MNG",
-            "FIF_PBM",
-            "FIF_PBMRAW",
-            "FIF_PCD",
-            "FIF_PCX",
-            "FIF_PGM",
-            "FIF_PGMRAW",
-            "FIF_PNG",
-            "FIF_PPM",
-            "FIF_PPMRAW",
-            "FIF_RAS",
-            "FIF_TARGA",
-            "FIF_TIFF",
-            "FIF_WBMP",
-            "FIF_PSD",
-            "FIF_CUT",
-            "FIF_XBM",
-            "FIF_XPM",
-            "FIF_DDS",
-            "FIF_GIF",
-            "FIF_HDR",
-            "FIF_FAXG3",
-            "FIF_SGI",
-            "FIF_EXR",
-            "FIF_J2K",
-            "FIF_JP2",
-            "FIF_PFM",
-            "FIF_PICT",
-            "FIF_RAW",
-            "FIF_LOOKUP",
-            "FREE_IMAGE_TYPE",
-            "FIT_UNKNOWN",
-            "FIT_BITMAP",
-            "FIT_UINT16",
-            "FIT_INT16",
-            "FIT_UINT32",
-            "FIT_INT32",
-            "FIT_FLOAT",
-            "FIT_DOUBLE",
-            "FIT_COMPLEX",
-            "FIT_RGB16",
-            "FIT_RGBA16",
-            "FIT_RGBF",
-            "FIT_RGBAF",
-            "FIT_LOOKUP",
-            "FREE_IMAGE_COLOR_TYPE",
-            "FIC_MINISWHITE",
-            "FIC_MINISBLACK",
-            "FIC_RGB",
-            "FIC_PALETTE",
-            "FIC_RGBALPHA",
-            "FIC_CMYK",
-            "FIC_LOOKUP",
-            "FREE_IMAGE_QUANTIZE",
-            "FIQ_WUQUANT",
-            "FIQ_NNQUANT",
-            "FIQ_LOOKUP",
-            "FREE_IMAGE_DITHER",
-            "FID_FS",
-            "FID_BAYER4x4",
-            "FID_BAYER8x8",
-            "FID_CLUSTER6x6",
-            "FID_CLUSTER8x8",
-            "FID_CLUSTER16x16",
-            "FID_BAYER16x16",
-            "FID_LOOKUP",
-            "FREE_IMAGE_JPEG_OPERATION",
-            "FIJPEG_OP_NONE",
-            "FIJPEG_OP_FLIP_H",
-            "FIJPEG_OP_FLIP_V",
-            "FIJPEG_OP_TRANSPOSE",
-            "FIJPEG_OP_TRANSVERSE",
-            "FIJPEG_OP_ROTATE_90",
-            "FIJPEG_OP_ROTATE_180",
-            "FIJPEG_OP_ROTATE_270",
-            "FIJPEG_LOOKUP",
-            "FREE_IMAGE_TMO",
-            "FITMO_DRAGO03",
-            "FITMO_REINHARD05",
-            "FITMO_FATTAL02",
-            "FITMO_LOOKUP",
-            "FREE_IMAGE_FILTER",
-            "FILTER_BOX",
-            "FILTER_BICUBIC",
-            "FILTER_BILINEAR",
-            "FILTER_BSPLINE",
-            "FILTER_CATMULLROM",
-            "FILTER_LANCZOS3",
-            "FILTER_LOOKUP",
-            "FREE_IMAGE_COLOR_CHANNEL",
-            "FICC_RGB",
-            "FICC_RED",
-            "FICC_GREEN",
-            "FICC_BLUE",
-            "FICC_ALPHA",
-            "FICC_BLACK",
-            "FICC_REAL",
-            "FICC_IMAG",
-            "FICC_MAG",
-            "FICC_PHASE",
-            "FICC_LOOKUP",
-            "FREE_IMAGE_MDTYPE",
-            "FIDT_NOTYPE",
-            "FIDT_BYTE",
-            "FIDT_ASCII",
-            "FIDT_SHORT",
-            "FIDT_LONG",
-            "FIDT_RATIONAL",
-            "FIDT_SBYTE",
-            "FIDT_UNDEFINED",
-            "FIDT_SSHORT",
-            "FIDT_SLONG",
-            "FIDT_SRATIONAL",
-            "FIDT_FLOAT",
-            "FIDT_DOUBLE",
-            "FIDT_IFD",
-            "FIDT_PALETTE",
-            "FIDT_LOOKUP",
-            "FREE_IMAGE_MDMODEL",
-            "FIMD_NODATA",
-            "FIMD_COMMENTS",
-            "FIMD_EXIF_MAIN",
-            "FIMD_EXIF_EXIF",
-            "FIMD_EXIF_GPS",
-            "FIMD_EXIF_MAKERNOTE",
-            "FIMD_EXIF_INTEROP",
-            "FIMD_IPTC",
-            "FIMD_XMP",
-            "FIMD_GEOTIFF",
-            "FIMD_ANIMATION",
-            "FIMD_CUSTOM",
-            "FIMD_EXIF_RAW",
-            "FIMD_LOOKUP",
-            "FIMETADATA",
-            "FITAG",
-            "fi_handle",
-            "FI_ReadProc",
-            "FI_WriteProc",
-            "FI_SeekProc",
-            "FI_TellProc",
-            "FreeImageIO	",
-            "FIMEMORY",
-            "FI_FormatProc",
-            "FI_DescriptionProc",
-            "FI_ExtensionListProc",
-            "FI_RegExprProc",
-            "FI_OpenProc",
-            "FI_CloseProc",
-            "FI_PageCountProc",
-            "FI_PageCapabilityProc",
-            "FI_LoadProc",
-            "FI_SaveProc",
-            "FI_ValidateProc",
-            "FI_MimeProc",
-            "FI_SupportsExportBPPProc",
-            "FI_SupportsExportTypeProc",
-            "FI_SupportsICCProfilesProc",
-            "FI_SupportsNoPixelsProc",
-            "Plugin",
-            "FI_InitProc",
-            "FIF_LOAD_NOPIXELS",
-            "BMP_DEFAULT",
-            "BMP_SAVE_RLE",
-            "CUT_DEFAULT",
-            "DDS_DEFAULT",
-            "EXR_DEFAULT",
-            "EXR_FLOAT",
-            "EXR_NONE",
-            "EXR_ZIP",
-            "EXR_PIZ",
-            "EXR_PXR24",
-            "EXR_B44",
-            "EXR_LC",
-            "FAXG3_DEFAULT",
-            "GIF_DEFAULT",
-            "GIF_LOAD256",
-            "GIF_PLAYBACK",
-            "HDR_DEFAULT",
-            "ICO_DEFAULT",
-            "ICO_MAKEALPHA",
-            "IFF_DEFAULT",
-            "J2K_DEFAULT",
-            "JP2_DEFAULT",
-            "JPEG_DEFAULT",
-            "JPEG_FAST",
-            "JPEG_ACCURATE",
-            "JPEG_CMYK",
-            "JPEG_EXIFROTATE",
-            "JPEG_QUALITYSUPERB",
-            "JPEG_QUALITYGOOD",
-            "JPEG_QUALITYNORMAL",
-            "JPEG_QUALITYAVERAGE",
-            "JPEG_QUALITYBAD",
-            "JPEG_PROGRESSIVE",
-            "JPEG_SUBSAMPLING_411",
-            "JPEG_SUBSAMPLING_420",
-            "JPEG_SUBSAMPLING_422",
-            "JPEG_SUBSAMPLING_444",
-            "JPEG_OPTIMIZE",
-            "JPEG_BASELINE",
-            "KOALA_DEFAULT",
-            "LBM_DEFAULT",
-            "MNG_DEFAULT",
-            "PCD_DEFAULT",
-            "PCD_BASE",
-            "PCD_BASEDIV4",
-            "PCD_BASEDIV16",
-            "PCX_DEFAULT",
-            "PFM_DEFAULT",
-            "PICT_DEFAULT",
-            "PNG_DEFAULT",
-            "PNG_IGNOREGAMMA",
-            "PNG_Z_BEST_SPEED",
-            "PNG_Z_DEFAULT_COMPRESSION",
-            "PNG_Z_BEST_COMPRESSION",
-            "PNG_Z_NO_COMPRESSION",
-            "PNG_INTERLACED",
-            "PNM_DEFAULT",
-            "PNM_SAVE_RAW",
-            "PNM_SAVE_ASCII",
-            "PSD_DEFAULT",
-            "PSD_CMYK",
-            "PSD_LAB",
-            "RAS_DEFAULT",
-            "RAW_DEFAULT",
-            "RAW_PREVIEW",
-            "RAW_DISPLAY",
-            "RAW_HALFSIZE",
-            "SGI_DEFAULT",
-            "TARGA_DEFAULT",
-            "TARGA_LOAD_RGB888",
-            "TIFF_DEFAULT",
-            "TIFF_CMYK",
-            "TIFF_PACKBITS",
-            "TIFF_DEFLATE",
-            "TIFF_ADOBE_DEFLATE",
-            "TIFF_NONE",
-            "TIFF_CCITTFAX3",
-            "TIFF_CCITTFAX4",
-            "TIFF_LZW",
-            "TIFF_JPEG",
-            "TIFF_LOGLUV",
-            "WBMP_DEFAULT",
-            "XBM_DEFAULT",
-            "XPM_DEFAULT",
-            "FI_COLOR_IS_RGB_COLOR",
-            "FI_COLOR_IS_RGBA_COLOR",
-            "FI_COLOR_FIND_EQUAL_COLOR",
-            "FI_COLOR_ALPHA_IS_INDEX",
-            "FI_COLOR_PALETTE_SEARCH_MASK",
-            "FI_COLOR_LOOKUP",
-            "BPP_1",
-            "BPP_4",
-            "BPP_8",
-            "BPP_16",
-            "BPP_24",
-            "BPP_32",
-            "BPP_48",
-            "BPP_64",
-            "BPP_96",
-            "BPP_1TO8",
-            "BPP_16TO32",
-            "BPP_1TO32",
-            "BPP_1TO48",
-            "BPP_LOOKUP",
-            "CPC_8",
-            "CPC_16",
-            "CPC_LOOKUP",
-            "FI_DEFAULT_NULL",
-            "FI_DEFAULT_GAMMA",
-            "FI_DEFAULT_LOOKUP",
-            "FreeImage_OutputMessageFunctionStdCall",
-            "FreeImage_OutputMessageFunction",
-            "FREEIMAGE_FUNCTIONS",
-            "get_free_image_library_path",
-            "ImageInformationsHeader",
-            "Image"]
+           "pointer",
+           "FREEIMAGE_LIBRARY_PATH",
+           "DLL_CALLCONV",
+           "FREEIMAGE_MAJOR_VERSION",
+           "FREEIMAGE_MINOR_VERSION",
+           "FREEIMAGE_RELEASE_SERIAL",
+           "FREEIMAGE_LOOKUP",
+           "INT",
+           "BOOL",
+           "BYTE",
+           "WORD",
+           "DWORD",
+           "LONG",
+           "DOUBLE",
+           "BYTE_P",
+           "FREEIMAGE_BIGENDIAN",
+           "FREEIMAGE_COLORORDER_BGR",
+           "FREEIMAGE_COLORORDER_RGB",
+           "FREEIMAGE_COLORORDER",
+           "FIBITMAP",
+           "FIMULTIBITMAP",
+           "tagRGBQUAD",
+           "RGBQUAD",
+           "tagRGBTRIPLE",
+           "RGBTRIPLE",
+           "tagBITMAPINFOHEADER",
+           "BITMAPINFOHEADER",
+           "tagBITMAPINFO",
+           "BITMAPINFO",
+           "PBITMAPINFO",
+           "tagFIRGB16",
+           "FIRGB16",
+           "tagFIRGBA16",
+           "FIRGBA16",
+           "tagFIRGBF",
+           "FIRGBF",
+           "tagFIRGBAF",
+           "FIRGBAF",
+           "tagFICOMPLEX",
+           "FICOMPLEX",
+           "FI_RGBA_RED",
+           "FI_RGBA_GREEN",
+           "FI_RGBA_BLUE",
+           "FI_RGBA_ALPHA",
+           "FI_RGBA_RED_MASK",
+           "FI_RGBA_GREEN_MASK",
+           "FI_RGBA_BLUE_MASK",
+           "FI_RGBA_ALPHA_MASK",
+           "FI_RGBA_RED_SHIFT",
+           "FI_RGBA_GREEN_SHIFT",
+           "FI_RGBA_BLUE_SHIFT",
+           "FI_RGBA_ALPHA_SHIFT",
+           "FI_RGBA_RGB_MASK",
+           "FI_RGBA_LOOKUP",
+           "FI16_555_RED_MASK",
+           "FI16_555_GREEN_MASK",
+           "FI16_555_BLUE_MASK",
+           "FI16_555_RED_SHIFT",
+           "FI16_555_GREEN_SHIFT",
+           "FI16_555_BLUE_SHIFT",
+           "FI16_565_RED_MASK",
+           "FI16_565_GREEN_MASK",
+           "FI16_565_BLUE_MASK",
+           "FI16_565_RED_SHIFT",
+           "FI16_565_GREEN_SHIFT",
+           "FI16_565_BLUE_SHIFT",
+           "FI16_LOOKUP",
+           "FIICC_DEFAULT",
+           "FIICC_COLOR_IS_CMYK",
+           "FIICC_LOOKUP",
+           "FIICCPROFILE",
+           "FREE_IMAGE_FORMAT",
+           "FIF_UNKNOWN",
+           "FIF_BMP",
+           "FIF_ICO",
+           "FIF_JPEG",
+           "FIF_JNG",
+           "FIF_KOALA",
+           "FIF_LBM",
+           "FIF_IFF",
+           "FIF_MNG",
+           "FIF_PBM",
+           "FIF_PBMRAW",
+           "FIF_PCD",
+           "FIF_PCX",
+           "FIF_PGM",
+           "FIF_PGMRAW",
+           "FIF_PNG",
+           "FIF_PPM",
+           "FIF_PPMRAW",
+           "FIF_RAS",
+           "FIF_TARGA",
+           "FIF_TIFF",
+           "FIF_WBMP",
+           "FIF_PSD",
+           "FIF_CUT",
+           "FIF_XBM",
+           "FIF_XPM",
+           "FIF_DDS",
+           "FIF_GIF",
+           "FIF_HDR",
+           "FIF_FAXG3",
+           "FIF_SGI",
+           "FIF_EXR",
+           "FIF_J2K",
+           "FIF_JP2",
+           "FIF_PFM",
+           "FIF_PICT",
+           "FIF_RAW",
+           "FIF_LOOKUP",
+           "FREE_IMAGE_TYPE",
+           "FIT_UNKNOWN",
+           "FIT_BITMAP",
+           "FIT_UINT16",
+           "FIT_INT16",
+           "FIT_UINT32",
+           "FIT_INT32",
+           "FIT_FLOAT",
+           "FIT_DOUBLE",
+           "FIT_COMPLEX",
+           "FIT_RGB16",
+           "FIT_RGBA16",
+           "FIT_RGBF",
+           "FIT_RGBAF",
+           "FIT_LOOKUP",
+           "FREE_IMAGE_COLOR_TYPE",
+           "FIC_MINISWHITE",
+           "FIC_MINISBLACK",
+           "FIC_RGB",
+           "FIC_PALETTE",
+           "FIC_RGBALPHA",
+           "FIC_CMYK",
+           "FIC_LOOKUP",
+           "FREE_IMAGE_QUANTIZE",
+           "FIQ_WUQUANT",
+           "FIQ_NNQUANT",
+           "FIQ_LOOKUP",
+           "FREE_IMAGE_DITHER",
+           "FID_FS",
+           "FID_BAYER4x4",
+           "FID_BAYER8x8",
+           "FID_CLUSTER6x6",
+           "FID_CLUSTER8x8",
+           "FID_CLUSTER16x16",
+           "FID_BAYER16x16",
+           "FID_LOOKUP",
+           "FREE_IMAGE_JPEG_OPERATION",
+           "FIJPEG_OP_NONE",
+           "FIJPEG_OP_FLIP_H",
+           "FIJPEG_OP_FLIP_V",
+           "FIJPEG_OP_TRANSPOSE",
+           "FIJPEG_OP_TRANSVERSE",
+           "FIJPEG_OP_ROTATE_90",
+           "FIJPEG_OP_ROTATE_180",
+           "FIJPEG_OP_ROTATE_270",
+           "FIJPEG_LOOKUP",
+           "FREE_IMAGE_TMO",
+           "FITMO_DRAGO03",
+           "FITMO_REINHARD05",
+           "FITMO_FATTAL02",
+           "FITMO_LOOKUP",
+           "FREE_IMAGE_FILTER",
+           "FILTER_BOX",
+           "FILTER_BICUBIC",
+           "FILTER_BILINEAR",
+           "FILTER_BSPLINE",
+           "FILTER_CATMULLROM",
+           "FILTER_LANCZOS3",
+           "FILTER_LOOKUP",
+           "FREE_IMAGE_COLOR_CHANNEL",
+           "FICC_RGB",
+           "FICC_RED",
+           "FICC_GREEN",
+           "FICC_BLUE",
+           "FICC_ALPHA",
+           "FICC_BLACK",
+           "FICC_REAL",
+           "FICC_IMAG",
+           "FICC_MAG",
+           "FICC_PHASE",
+           "FICC_LOOKUP",
+           "FREE_IMAGE_MDTYPE",
+           "FIDT_NOTYPE",
+           "FIDT_BYTE",
+           "FIDT_ASCII",
+           "FIDT_SHORT",
+           "FIDT_LONG",
+           "FIDT_RATIONAL",
+           "FIDT_SBYTE",
+           "FIDT_UNDEFINED",
+           "FIDT_SSHORT",
+           "FIDT_SLONG",
+           "FIDT_SRATIONAL",
+           "FIDT_FLOAT",
+           "FIDT_DOUBLE",
+           "FIDT_IFD",
+           "FIDT_PALETTE",
+           "FIDT_LOOKUP",
+           "FREE_IMAGE_MDMODEL",
+           "FIMD_NODATA",
+           "FIMD_COMMENTS",
+           "FIMD_EXIF_MAIN",
+           "FIMD_EXIF_EXIF",
+           "FIMD_EXIF_GPS",
+           "FIMD_EXIF_MAKERNOTE",
+           "FIMD_EXIF_INTEROP",
+           "FIMD_IPTC",
+           "FIMD_XMP",
+           "FIMD_GEOTIFF",
+           "FIMD_ANIMATION",
+           "FIMD_CUSTOM",
+           "FIMD_EXIF_RAW",
+           "FIMD_LOOKUP",
+           "FIMETADATA",
+           "FITAG",
+           "fi_handle",
+           "FI_ReadProc",
+           "FI_WriteProc",
+           "FI_SeekProc",
+           "FI_TellProc",
+           "FreeImageIO	",
+           "FIMEMORY",
+           "FI_FormatProc",
+           "FI_DescriptionProc",
+           "FI_ExtensionListProc",
+           "FI_RegExprProc",
+           "FI_OpenProc",
+           "FI_CloseProc",
+           "FI_PageCountProc",
+           "FI_PageCapabilityProc",
+           "FI_LoadProc",
+           "FI_SaveProc",
+           "FI_ValidateProc",
+           "FI_MimeProc",
+           "FI_SupportsExportBPPProc",
+           "FI_SupportsExportTypeProc",
+           "FI_SupportsICCProfilesProc",
+           "FI_SupportsNoPixelsProc",
+           "Plugin",
+           "FI_InitProc",
+           "FIF_LOAD_NOPIXELS",
+           "BMP_DEFAULT",
+           "BMP_SAVE_RLE",
+           "CUT_DEFAULT",
+           "DDS_DEFAULT",
+           "EXR_DEFAULT",
+           "EXR_FLOAT",
+           "EXR_NONE",
+           "EXR_ZIP",
+           "EXR_PIZ",
+           "EXR_PXR24",
+           "EXR_B44",
+           "EXR_LC",
+           "FAXG3_DEFAULT",
+           "GIF_DEFAULT",
+           "GIF_LOAD256",
+           "GIF_PLAYBACK",
+           "HDR_DEFAULT",
+           "ICO_DEFAULT",
+           "ICO_MAKEALPHA",
+           "IFF_DEFAULT",
+           "J2K_DEFAULT",
+           "JP2_DEFAULT",
+           "JPEG_DEFAULT",
+           "JPEG_FAST",
+           "JPEG_ACCURATE",
+           "JPEG_CMYK",
+           "JPEG_EXIFROTATE",
+           "JPEG_QUALITYSUPERB",
+           "JPEG_QUALITYGOOD",
+           "JPEG_QUALITYNORMAL",
+           "JPEG_QUALITYAVERAGE",
+           "JPEG_QUALITYBAD",
+           "JPEG_PROGRESSIVE",
+           "JPEG_SUBSAMPLING_411",
+           "JPEG_SUBSAMPLING_420",
+           "JPEG_SUBSAMPLING_422",
+           "JPEG_SUBSAMPLING_444",
+           "JPEG_OPTIMIZE",
+           "JPEG_BASELINE",
+           "KOALA_DEFAULT",
+           "LBM_DEFAULT",
+           "MNG_DEFAULT",
+           "PCD_DEFAULT",
+           "PCD_BASE",
+           "PCD_BASEDIV4",
+           "PCD_BASEDIV16",
+           "PCX_DEFAULT",
+           "PFM_DEFAULT",
+           "PICT_DEFAULT",
+           "PNG_DEFAULT",
+           "PNG_IGNOREGAMMA",
+           "PNG_Z_BEST_SPEED",
+           "PNG_Z_DEFAULT_COMPRESSION",
+           "PNG_Z_BEST_COMPRESSION",
+           "PNG_Z_NO_COMPRESSION",
+           "PNG_INTERLACED",
+           "PNM_DEFAULT",
+           "PNM_SAVE_RAW",
+           "PNM_SAVE_ASCII",
+           "PSD_DEFAULT",
+           "PSD_CMYK",
+           "PSD_LAB",
+           "RAS_DEFAULT",
+           "RAW_DEFAULT",
+           "RAW_PREVIEW",
+           "RAW_DISPLAY",
+           "RAW_HALFSIZE",
+           "SGI_DEFAULT",
+           "TARGA_DEFAULT",
+           "TARGA_LOAD_RGB888",
+           "TIFF_DEFAULT",
+           "TIFF_CMYK",
+           "TIFF_PACKBITS",
+           "TIFF_DEFLATE",
+           "TIFF_ADOBE_DEFLATE",
+           "TIFF_NONE",
+           "TIFF_CCITTFAX3",
+           "TIFF_CCITTFAX4",
+           "TIFF_LZW",
+           "TIFF_JPEG",
+           "TIFF_LOGLUV",
+           "WBMP_DEFAULT",
+           "XBM_DEFAULT",
+           "XPM_DEFAULT",
+           "FI_COLOR_IS_RGB_COLOR",
+           "FI_COLOR_IS_RGBA_COLOR",
+           "FI_COLOR_FIND_EQUAL_COLOR",
+           "FI_COLOR_ALPHA_IS_INDEX",
+           "FI_COLOR_PALETTE_SEARCH_MASK",
+           "FI_COLOR_LOOKUP",
+           "BPP_1",
+           "BPP_4",
+           "BPP_8",
+           "BPP_16",
+           "BPP_24",
+           "BPP_32",
+           "BPP_48",
+           "BPP_64",
+           "BPP_96",
+           "BPP_1TO8",
+           "BPP_16TO32",
+           "BPP_1TO32",
+           "BPP_1TO48",
+           "BPP_LOOKUP",
+           "CPC_8",
+           "CPC_16",
+           "CPC_LOOKUP",
+           "FI_DEFAULT_NULL",
+           "FI_DEFAULT_GAMMA",
+           "FI_DEFAULT_LOOKUP",
+           "FreeImage_OutputMessageFunctionStdCall",
+           "FreeImage_OutputMessageFunction",
+           "FREEIMAGE_FUNCTIONS",
+           "get_free_image_library_path",
+           "ImageInformationsHeader",
+           "Image"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 def pointer(data):
     """
@@ -419,8 +420,10 @@ def pointer(data):
                 return class_()
             else:
                 return value
+
         pointer.from_param = classmethod(from_param)
     return pointer
+
 
 def unchecked(type):
     """
@@ -441,6 +444,7 @@ def unchecked(type):
     else:
         return ctypes.c_void_p
 
+
 FREEIMAGE_LIBRARY_PATH = None
 
 if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -452,7 +456,7 @@ FREEIMAGE_MAJOR_VERSION = 3
 FREEIMAGE_MINOR_VERSION = 15
 FREEIMAGE_RELEASE_SERIAL = 1
 FREEIMAGE_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                    if re.search(r"^FREEIMAGE_\w+", key)))
+                                                             if re.search(r"^FREEIMAGE_\w+", key)))
 
 """
 Internal types.
@@ -483,6 +487,7 @@ if FREEIMAGE_BIGENDIAN:
 else:
     FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_BGR
 
+
 class FIBITMAP(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
@@ -491,6 +496,7 @@ class FIBITMAP(ctypes.Structure):
     __slots__ = ["data"]
     _fields_ = [("data", pointer(None))]
 
+
 class FIMULTIBITMAP(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMULTIBITMAP** C / C++ object.
@@ -498,6 +504,7 @@ class FIMULTIBITMAP(ctypes.Structure):
 
     __slots__ = ["data"]
     _fields_ = [("data", pointer(None))]
+
 
 class tagRGBQUAD(ctypes.Structure):
     """
@@ -517,7 +524,9 @@ class tagRGBQUAD(ctypes.Structure):
                      ("rgbBlue", BYTE)]
     _fields_ += [("rgbReserved", BYTE)]
 
+
 RGBQUAD = tagRGBQUAD
+
 
 class tagRGBTRIPLE(ctypes.Structure):
     """
@@ -529,44 +538,48 @@ class tagRGBTRIPLE(ctypes.Structure):
 
     if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
         _fields_ += [("rgbBlue", BYTE),
-                    ("rgbGreen", BYTE),
-                    ("rgbRed", BYTE)]
+                     ("rgbGreen", BYTE),
+                     ("rgbRed", BYTE)]
     else:
         _fields_ += [("rgbRed", BYTE),
-                    ("rgbGreen", BYTE),
-                    ("rgbBlue", BYTE)]
+                     ("rgbGreen", BYTE),
+                     ("rgbBlue", BYTE)]
+
 
 RGBTRIPLE = tagRGBTRIPLE
+
 
 class tagBITMAPINFOHEADER(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **tagBITMAPINFOHEADER** C / C++ object.
     """
     __slots__ = ["biSize",
-                "biWidth",
-                "biHeight",
-                "biPlanes",
-                "biHeight",
-                "biBitCount",
-                "biCompression",
-                "biSizeImage",
-                "biXPelsPerMeter",
-                "biYPelsPerMeter",
-                "biClrUsed",
-                "biClrImportant"]
+                 "biWidth",
+                 "biHeight",
+                 "biPlanes",
+                 "biHeight",
+                 "biBitCount",
+                 "biCompression",
+                 "biSizeImage",
+                 "biXPelsPerMeter",
+                 "biYPelsPerMeter",
+                 "biClrUsed",
+                 "biClrImportant"]
     _fields_ = [("biSize", DWORD),
-                 ("biWidth", LONG),
-                 ("biHeight", LONG),
-                 ("biPlanes", WORD),
-                 ("biBitCount", WORD),
-                 ("biCompression", DWORD),
-                 ("biSizeImage", DWORD),
-                 ("biXPelsPerMeter", LONG),
-                 ("biYPelsPerMeter", LONG),
-                 ("biClrUsed", DWORD),
-                 ("biClrImportant", DWORD)]
+                ("biWidth", LONG),
+                ("biHeight", LONG),
+                ("biPlanes", WORD),
+                ("biBitCount", WORD),
+                ("biCompression", DWORD),
+                ("biSizeImage", DWORD),
+                ("biXPelsPerMeter", LONG),
+                ("biYPelsPerMeter", LONG),
+                ("biClrUsed", DWORD),
+                ("biClrImportant", DWORD)]
+
 
 BITMAPINFOHEADER = tagBITMAPINFOHEADER
+
 
 class tagBITMAPINFO(ctypes.Structure):
     """
@@ -576,9 +589,11 @@ class tagBITMAPINFO(ctypes.Structure):
     _fields_ = [("bmiHeader", BITMAPINFOHEADER),
                 ("bmiColors", RGBQUAD * 1)]
 
+
 BITMAPINFO = tagBITMAPINFO
 
 PBITMAPINFO = pointer(tagBITMAPINFO)
+
 
 class tagFIRGB16(ctypes.Structure):
     """
@@ -590,7 +605,9 @@ class tagFIRGB16(ctypes.Structure):
                 ("green", WORD),
                 ("blue", WORD)]
 
+
 FIRGB16 = tagFIRGB16
+
 
 class tagFIRGBA16(ctypes.Structure):
     """
@@ -603,7 +620,9 @@ class tagFIRGBA16(ctypes.Structure):
                 ("blue", WORD),
                 ("alpha", WORD)]
 
+
 FIRGBA16 = tagFIRGBA16
+
 
 class tagFIRGBF(ctypes.Structure):
     """
@@ -615,7 +634,9 @@ class tagFIRGBF(ctypes.Structure):
                 ("green", ctypes.c_float),
                 ("blue", ctypes.c_float)]
 
+
 FIRGBF = tagFIRGBF
+
 
 class tagFIRGBAF(ctypes.Structure):
     """
@@ -628,7 +649,9 @@ class tagFIRGBAF(ctypes.Structure):
                 ("blue", ctypes.c_float),
                 ("alpha", ctypes.c_float)]
 
+
 FIRGBAF = tagFIRGBAF
+
 
 class tagFICOMPLEX(ctypes.Structure):
     """
@@ -638,6 +661,7 @@ class tagFICOMPLEX(ctypes.Structure):
     __slots__ = ["r", "i"]
     _fields_ = [("r", ctypes.c_double),
                 ("i", ctypes.c_double)]
+
 
 FICOMPLEX = tagFICOMPLEX
 
@@ -705,7 +729,7 @@ else:
 
 FI_RGBA_RGB_MASK = ((FI_RGBA_RED_MASK | FI_RGBA_GREEN_MASK) | FI_RGBA_BLUE_MASK)
 FI_RGBA_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                    if re.search(r"^FI_RGBA_\w+", key)))
+                                                           if re.search(r"^FI_RGBA_\w+", key)))
 
 FI16_555_RED_MASK = 0x7C00
 FI16_555_GREEN_MASK = 0x03E0
@@ -720,7 +744,7 @@ FI16_565_RED_SHIFT = 11
 FI16_565_GREEN_SHIFT = 5
 FI16_565_BLUE_SHIFT = 0
 FI16_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FI16_\w+", key)))
+                                                        if re.search(r"^FI16_\w+", key)))
 
 """
 ICC Profile support
@@ -728,7 +752,8 @@ ICC Profile support
 FIICC_DEFAULT = 0x00
 FIICC_COLOR_IS_CMYK = 0x01
 FIICC_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIICC_\w+", key)))
+                                                         if re.search(r"^FIICC_\w+", key)))
+
 
 class FIICCPROFILE(ctypes.Structure):
     """
@@ -739,6 +764,7 @@ class FIICCPROFILE(ctypes.Structure):
     _fields_ = [("flags", WORD),
                 ("size", DWORD),
                 ("data", pointer(None))]
+
 
 FREE_IMAGE_FORMAT = ctypes.c_int
 FIF_UNKNOWN = -1
@@ -779,7 +805,7 @@ FIF_PFM = 32
 FIF_PICT = 33
 FIF_RAW = 34
 FIF_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIF_\w+", key)))
+                                                       if re.search(r"^FIF_\w+", key)))
 
 FREE_IMAGE_TYPE = ctypes.c_int
 FIT_UNKNOWN = 0
@@ -796,7 +822,7 @@ FIT_RGBA16 = 10
 FIT_RGBF = 11
 FIT_RGBAF = 12
 FIT_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIT_\w+", key)))
+                                                       if re.search(r"^FIT_\w+", key)))
 
 FREE_IMAGE_COLOR_TYPE = ctypes.c_int
 FIC_MINISWHITE = 0
@@ -806,13 +832,13 @@ FIC_PALETTE = 3
 FIC_RGBALPHA = 4
 FIC_CMYK = 5
 FIC_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIC_\w+", key)))
+                                                       if re.search(r"^FIC_\w+", key)))
 
 FREE_IMAGE_QUANTIZE = ctypes.c_int
 FIQ_WUQUANT = 0
 FIQ_NNQUANT = 1
 FIQ_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIQ_\w+", key)))
+                                                       if re.search(r"^FIQ_\w+", key)))
 
 FREE_IMAGE_DITHER = ctypes.c_int
 FID_FS = 0
@@ -823,7 +849,7 @@ FID_CLUSTER8x8 = 4
 FID_CLUSTER16x16 = 5
 FID_BAYER16x16 = 6
 FID_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FID_\w+", key)))
+                                                       if re.search(r"^FID_\w+", key)))
 
 FREE_IMAGE_JPEG_OPERATION = ctypes.c_int
 FIJPEG_OP_NONE = 0
@@ -835,14 +861,14 @@ FIJPEG_OP_ROTATE_90 = 5
 FIJPEG_OP_ROTATE_180 = 6
 FIJPEG_OP_ROTATE_270 = 7
 FIJPEG_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                    if re.search(r"^FIJPEG_\w+", key)))
+                                                          if re.search(r"^FIJPEG_\w+", key)))
 
 FREE_IMAGE_TMO = ctypes.c_int
 FITMO_DRAGO03 = 0
 FITMO_REINHARD05 = 1
 FITMO_FATTAL02 = 2
 FITMO_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FITMO_\w+", key)))
+                                                         if re.search(r"^FITMO_\w+", key)))
 
 FREE_IMAGE_FILTER = ctypes.c_int
 FILTER_BOX = 0
@@ -852,7 +878,7 @@ FILTER_BSPLINE = 3
 FILTER_CATMULLROM = 4
 FILTER_LANCZOS3 = 5
 FILTER_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FILTER_\w+", key)))
+                                                          if re.search(r"^FILTER_\w+", key)))
 
 FREE_IMAGE_COLOR_CHANNEL = ctypes.c_int
 FICC_RGB = 0
@@ -866,7 +892,7 @@ FICC_IMAG = 7
 FICC_MAG = 8
 FICC_PHASE = 9
 FICC_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FICC_\w+", key)))
+                                                        if re.search(r"^FICC_\w+", key)))
 
 FREE_IMAGE_MDTYPE = ctypes.c_int
 FIDT_NOTYPE = 0
@@ -885,7 +911,7 @@ FIDT_DOUBLE = 12
 FIDT_IFD = 13
 FIDT_PALETTE = 14
 FIDT_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIDT_\w+", key)))
+                                                        if re.search(r"^FIDT_\w+", key)))
 
 FREE_IMAGE_MDMODEL = ctypes.c_int
 FIMD_NODATA = -1
@@ -902,7 +928,8 @@ FIMD_ANIMATION = 9
 FIMD_CUSTOM = 10
 FIMD_EXIF_RAW = 11
 FIMD_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^FIMD_\w+", key)))
+                                                        if re.search(r"^FIMD_\w+", key)))
+
 
 class FIMETADATA(ctypes.Structure):
     """
@@ -912,6 +939,7 @@ class FIMETADATA(ctypes.Structure):
     __slots__ = ["data"]
     _fields_ = [("data", pointer(None)), ]
 
+
 class FITAG(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
@@ -919,6 +947,7 @@ class FITAG(ctypes.Structure):
 
     __slots__ = ["data"]
     _fields_ = [("data", pointer(None))]
+
 
 """
 File io routines.
@@ -931,6 +960,7 @@ FI_WriteProc = DLL_CALLCONV(unchecked(ctypes.c_uint), pointer(None), ctypes.c_ui
 FI_SeekProc = DLL_CALLCONV(unchecked(ctypes.c_int), fi_handle, ctypes.c_long, ctypes.c_int)
 FI_TellProc = DLL_CALLCONV(unchecked(ctypes.c_long), fi_handle)
 
+
 class FreeImageIO(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
@@ -942,6 +972,7 @@ class FreeImageIO(ctypes.Structure):
                 ("seek_proc", FI_SeekProc),
                 ("tell_proc", FI_TellProc)]
 
+
 class FIMEMORY(ctypes.Structure):
     """
     Defines a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
@@ -950,36 +981,38 @@ class FIMEMORY(ctypes.Structure):
     __slots__ = ["data"]
     _fields_ = [("data", pointer(None))]
 
+
 """
 Plugin routines.
 """
-FI_FormatProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p),)
-FI_DescriptionProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p),)
-FI_ExtensionListProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p),)
-FI_RegExprProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p),)
+FI_FormatProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p), )
+FI_DescriptionProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p), )
+FI_ExtensionListProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p), )
+FI_RegExprProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p), )
 FI_OpenProc = ctypes.CFUNCTYPE(unchecked(pointer(None)), pointer(FreeImageIO), fi_handle, BOOL)
 FI_CloseProc = ctypes.CFUNCTYPE(unchecked(None), pointer(FreeImageIO), fi_handle, pointer(None))
 FI_PageCountProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_int), pointer(FreeImageIO), fi_handle, pointer(None))
 FI_PageCapabilityProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_int), pointer(FreeImageIO), fi_handle, pointer(None))
 FI_LoadProc = ctypes.CFUNCTYPE(unchecked(pointer(FIBITMAP)),
-                                pointer(FreeImageIO),
-                                fi_handle,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                pointer(None))
+                               pointer(FreeImageIO),
+                               fi_handle,
+                               ctypes.c_int,
+                               ctypes.c_int,
+                               pointer(None))
 FI_SaveProc = ctypes.CFUNCTYPE(unchecked(BOOL),
-                                pointer(FreeImageIO),
-                                pointer(FIBITMAP),
-                                fi_handle,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                pointer(None))
+                               pointer(FreeImageIO),
+                               pointer(FIBITMAP),
+                               fi_handle,
+                               ctypes.c_int,
+                               ctypes.c_int,
+                               pointer(None))
 FI_ValidateProc = ctypes.CFUNCTYPE(unchecked(BOOL), pointer(FreeImageIO), fi_handle)
-FI_MimeProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p),)
+FI_MimeProc = ctypes.CFUNCTYPE(unchecked(ctypes.c_char_p), )
 FI_SupportsExportBPPProc = ctypes.CFUNCTYPE(unchecked(BOOL), ctypes.c_int)
 FI_SupportsExportTypeProc = ctypes.CFUNCTYPE(unchecked(BOOL), FREE_IMAGE_TYPE)
-FI_SupportsICCProfilesProc = ctypes.CFUNCTYPE(unchecked(BOOL),)
-FI_SupportsNoPixelsProc = ctypes.CFUNCTYPE(unchecked(BOOL),)
+FI_SupportsICCProfilesProc = ctypes.CFUNCTYPE(unchecked(BOOL), )
+FI_SupportsNoPixelsProc = ctypes.CFUNCTYPE(unchecked(BOOL), )
+
 
 class Plugin(ctypes.Structure):
     """
@@ -987,37 +1020,38 @@ class Plugin(ctypes.Structure):
     """
 
     __slots__ = ["format_proc",
-                "description_proc",
-                "extension_proc",
-                "regexpr_proc",
-                "open_proc",
-                "close_proc",
-                "pagecount_proc",
-                "pagecapability_proc",
-                "load_proc",
-                "save_proc",
-                "validate_proc",
-                "mime_proc",
-                "supports_export_bpp_proc",
-                "supports_export_type_proc",
-                "supports_icc_profiles_proc",
-                "supports_no_pixels_proc"]
+                 "description_proc",
+                 "extension_proc",
+                 "regexpr_proc",
+                 "open_proc",
+                 "close_proc",
+                 "pagecount_proc",
+                 "pagecapability_proc",
+                 "load_proc",
+                 "save_proc",
+                 "validate_proc",
+                 "mime_proc",
+                 "supports_export_bpp_proc",
+                 "supports_export_type_proc",
+                 "supports_icc_profiles_proc",
+                 "supports_no_pixels_proc"]
     _fields_ = [("format_proc", FI_FormatProc),
-            ("description_proc", FI_DescriptionProc),
-            ("extension_proc", FI_ExtensionListProc),
-            ("regexpr_proc", FI_RegExprProc),
-            ("open_proc", FI_OpenProc),
-            ("close_proc", FI_CloseProc),
-            ("pagecount_proc", FI_PageCountProc),
-            ("pagecapability_proc", FI_PageCapabilityProc),
-            ("load_proc", FI_LoadProc),
-            ("save_proc", FI_SaveProc),
-            ("validate_proc", FI_ValidateProc),
-            ("mime_proc", FI_MimeProc),
-            ("supports_export_bpp_proc", FI_SupportsExportBPPProc),
-            ("supports_export_type_proc", FI_SupportsExportTypeProc),
-            ("supports_icc_profiles_proc", FI_SupportsICCProfilesProc),
-            ("supports_no_pixels_proc", FI_SupportsNoPixelsProc)]
+                ("description_proc", FI_DescriptionProc),
+                ("extension_proc", FI_ExtensionListProc),
+                ("regexpr_proc", FI_RegExprProc),
+                ("open_proc", FI_OpenProc),
+                ("close_proc", FI_CloseProc),
+                ("pagecount_proc", FI_PageCountProc),
+                ("pagecapability_proc", FI_PageCapabilityProc),
+                ("load_proc", FI_LoadProc),
+                ("save_proc", FI_SaveProc),
+                ("validate_proc", FI_ValidateProc),
+                ("mime_proc", FI_MimeProc),
+                ("supports_export_bpp_proc", FI_SupportsExportBPPProc),
+                ("supports_export_type_proc", FI_SupportsExportTypeProc),
+                ("supports_icc_profiles_proc", FI_SupportsICCProfilesProc),
+                ("supports_no_pixels_proc", FI_SupportsNoPixelsProc)]
+
 
 FI_InitProc = ctypes.CFUNCTYPE(unchecked(None), pointer(Plugin), ctypes.c_int)
 
@@ -1120,7 +1154,7 @@ FI_COLOR_FIND_EQUAL_COLOR = 0x02
 FI_COLOR_ALPHA_IS_INDEX = 0x04
 FI_COLOR_PALETTE_SEARCH_MASK = (FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX)
 FI_COLOR_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                    if re.search(r"^FI_COLOR_\w+", key)))
+                                                            if re.search(r"^FI_COLOR_\w+", key)))
 
 """
 Custom constants
@@ -1139,17 +1173,17 @@ BPP_16TO32 = (BPP_16, BPP_24, BPP_32)
 BPP_1TO32 = (BPP_1, BPP_4, BPP_8, BPP_16, BPP_24, BPP_32)
 BPP_1TO48 = BPP_1TO32 + (BPP_48,)
 BPP_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^BPP_\w+", key)))
+                                                       if re.search(r"^BPP_\w+", key)))
 
 CPC_8 = 255
 CPC_16 = 65535
 CPC_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                if re.search(r"^CPC_\w+", key)))
+                                                       if re.search(r"^CPC_\w+", key)))
 
 FI_DEFAULT_NULL = 0
 FI_DEFAULT_GAMMA = 2.2
 FI_DEFAULT_LOOKUP = foundations.data_structures.Lookup(**dict((key, value) for key, value in locals().iteritems()
-                                                        if re.search(r"^FI_DEFAULT_\w+", key)))
+                                                              if re.search(r"^FI_DEFAULT_\w+", key)))
 
 FreeImage_OutputMessageFunctionStdCall = ctypes.CFUNCTYPE(unchecked(None), FREE_IMAGE_FORMAT, ctypes.c_char_p)
 FreeImage_OutputMessageFunction = ctypes.CFUNCTYPE(unchecked(None), FREE_IMAGE_FORMAT, ctypes.c_char_p)
@@ -1186,16 +1220,17 @@ FREEIMAGE_FUNCTIONS = (
 
     # Allocate / clone / unload functions.
     LibraryHook(name="FreeImage_Allocate",
-                arguments_types=[ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_uint, ctypes.c_uint, ctypes.c_uint],
+                arguments_types=[ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                                 ctypes.c_uint, ctypes.c_uint, ctypes.c_uint],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_AllocateT",
                 arguments_types=[FREE_IMAGE_TYPE,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint],
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_Clone",
                 arguments_types=[pointer(FIBITMAP)],
@@ -1334,7 +1369,8 @@ FREEIMAGE_FUNCTIONS = (
                 arguments_types=[FREE_IMAGE_FORMAT, pointer(FreeImageIO), fi_handle, ctypes.c_int],
                 return_value=pointer(FIMULTIBITMAP)),
     LibraryHook(name="FreeImage_SaveMultiBitmapToHandle",
-                arguments_types=[FREE_IMAGE_FORMAT, pointer(FIMULTIBITMAP), pointer(FreeImageIO), fi_handle, ctypes.c_int],
+                arguments_types=[FREE_IMAGE_FORMAT, pointer(
+                    FIMULTIBITMAP), pointer(FreeImageIO), fi_handle, ctypes.c_int],
                 return_value=BOOL),
     LibraryHook(name="FreeImage_CloseMultiBitmap",
                 arguments_types=[pointer(FIMULTIBITMAP), ctypes.c_int],
@@ -1663,24 +1699,24 @@ FREEIMAGE_FUNCTIONS = (
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_ConvertFromRawBits",
                 arguments_types=[pointer(BYTE),
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                BOOL],
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 BOOL],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_ConvertToRawBits",
                 arguments_types=[pointer(BYTE),
-                                pointer(FIBITMAP),
-                                ctypes.c_int,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                BOOL],
+                                 pointer(FIBITMAP),
+                                 ctypes.c_int,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 BOOL],
                 return_value=None),
     LibraryHook(name="FreeImage_ConvertToFloat",
                 arguments_types=[pointer(FIBITMAP)],
@@ -1712,7 +1748,8 @@ FREEIMAGE_FUNCTIONS = (
                 arguments_types=[pointer(FIBITMAP), ctypes.c_double, ctypes.c_double],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_TmoReinhard05Ex",
-                arguments_types=[pointer(FIBITMAP), ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double],
+                arguments_types=[
+                    pointer(FIBITMAP), ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_TmoFattal02",
                 arguments_types=[pointer(FIBITMAP), ctypes.c_double, ctypes.c_double],
@@ -1829,12 +1866,12 @@ FREEIMAGE_FUNCTIONS = (
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_RotateEx",
                 arguments_types=[pointer(FIBITMAP),
-                                ctypes.c_double,
-                                ctypes.c_double,
-                                ctypes.c_double,
-                                ctypes.c_double,
-                                ctypes.c_double,
-                                BOOL],
+                                 ctypes.c_double,
+                                 ctypes.c_double,
+                                 ctypes.c_double,
+                                 ctypes.c_double,
+                                 ctypes.c_double,
+                                 BOOL],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_FlipHorizontal",
                 arguments_types=[pointer(FIBITMAP)],
@@ -1920,15 +1957,16 @@ FREEIMAGE_FUNCTIONS = (
                 arguments_types=[pointer(FIBITMAP), BOOL, pointer(RGBQUAD), pointer(FIBITMAP)],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_JPEGCrop",
-                arguments_types=[ctypes.c_char_p, ctypes.c_char_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int],
+                arguments_types=[ctypes.c_char_p, ctypes.c_char_p,
+                                 ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int],
                 return_value=BOOL),
     LibraryHook(name="FreeImage_JPEGCropU",
                 arguments_types=[pointer(ctypes.c_wchar),
-                                pointer(ctypes.c_wchar),
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int],
+                                 pointer(ctypes.c_wchar),
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int],
                 return_value=BOOL),
     LibraryHook(name="FreeImage_PreMultiplyWithAlpha",
                 arguments_types=[pointer(FIBITMAP)],
@@ -1940,35 +1978,35 @@ FREEIMAGE_FUNCTIONS = (
                 return_value=BOOL),
     LibraryHook(name="FreeImage_EnlargeCanvas",
                 arguments_types=[pointer(FIBITMAP),
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                pointer(None),
-                                ctypes.c_int],
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 pointer(None),
+                                 ctypes.c_int],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_AllocateEx",
                 arguments_types=[ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                pointer(RGBQUAD),
-                                ctypes.c_int,
-                                pointer(RGBQUAD),
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint],
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 pointer(RGBQUAD),
+                                 ctypes.c_int,
+                                 pointer(RGBQUAD),
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint],
                 return_value=pointer(FIBITMAP)),
     LibraryHook(name="FreeImage_AllocateExT",
                 arguments_types=[FREE_IMAGE_TYPE,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                ctypes.c_int,
-                                pointer(None),
-                                ctypes.c_int,
-                                pointer(RGBQUAD),
-                                ctypes.c_uint,
-                                ctypes.c_uint,
-                                ctypes.c_uint],
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 ctypes.c_int,
+                                 pointer(None),
+                                 ctypes.c_int,
+                                 pointer(RGBQUAD),
+                                 ctypes.c_uint,
+                                 ctypes.c_uint,
+                                 ctypes.c_uint],
                 return_value=pointer(FIBITMAP)),
 
     # Miscellaneous algorithms functions.
@@ -1981,6 +2019,7 @@ FREEIMAGE_FUNCTIONS = (
                 arguments_types=[pointer(FIBITMAP), ctypes.c_double],
                 return_value=pointer(FIBITMAP)),)
 
+
 def get_free_image_library_path():
     """
     Returns the FreeImage library path.
@@ -1992,11 +2031,12 @@ def get_free_image_library_path():
     global FREEIMAGE_LIBRARY_PATH
     if FREEIMAGE_LIBRARY_PATH is None:
         for path in (os.path.join(foundations.common.get_first_item(sibl_gui.__path__), Constants.freeimage_library),
-        os.path.join(os.getcwd(), sibl_gui.__name__, Constants.freeimage_library)):
+                     os.path.join(os.getcwd(), sibl_gui.__name__, Constants.freeimage_library)):
             if foundations.common.path_exists(path):
                 FREEIMAGE_LIBRARY_PATH = path
                 continue
     return FREEIMAGE_LIBRARY_PATH
+
 
 class ImageInformationsHeader(foundations.data_structures.Structure):
     """
@@ -2014,6 +2054,7 @@ class ImageInformationsHeader(foundations.data_structures.Structure):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         foundations.data_structures.Structure.__init__(self, **kwargs)
+
 
 class Image(object):
     """
@@ -2066,7 +2107,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "library"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "library"))
 
     @library.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -2076,7 +2117,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "library"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "library"))
 
     @property
     def errors_callback(self):
@@ -2100,7 +2141,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "errors_callback"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "errors_callback"))
 
     @errors_callback.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -2110,7 +2151,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "errors_callback"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "errors_callback"))
 
     @property
     def image_path(self):
@@ -2145,7 +2186,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "image_path"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "image_path"))
 
     @property
     def bitmap(self):
@@ -2178,7 +2219,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "bitmap"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "bitmap"))
 
     @foundations.exceptions.handle_exceptions(foundations.exceptions.LibraryExecutionError)
     def __log_library_errors(self, error_code, message):
@@ -2187,7 +2228,7 @@ class Image(object):
         """
 
         raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(
-        self.__class__.__name__, error_code, message))
+            self.__class__.__name__, error_code, message))
 
     def get_image_format(self, image_path=None):
         """
@@ -2228,7 +2269,7 @@ class Image(object):
                 return True
             else:
                 raise foundations.exceptions.LibraryExecutionError("{0} | '{1}' format read isn't supported!".format(
-                self.__class__.__name__, FIF_LOOKUP.get_first_key_from_value(image_format)))
+                    self.__class__.__name__, FIF_LOOKUP.get_first_key_from_value(image_format)))
 
     def save(self):
         """
@@ -2263,7 +2304,7 @@ class Image(object):
                 return True
         else:
             raise foundations.exceptions.LibraryExecutionError(
-            "{0} | '{1}' format write isn't supported!".format(image_format))
+                "{0} | '{1}' format write isn't supported!".format(image_format))
 
     def convert_to_type(self, target_type, linear_scale=True):
         """
@@ -2310,7 +2351,7 @@ class Image(object):
 
         bpp = self.__library.FreeImage_GetBPP(self.__bitmap)
         (self.__library.FreeImage_GetImageType(self.__bitmap) == FIT_RGBF or self.__library.FreeImage_GetImageType(
-        self.__bitmap) == FIT_RGBAF) and self.convert_to_ldr(2.2)
+            self.__bitmap) == FIT_RGBAF) and self.convert_to_ldr(2.2)
 
         if self.__library.FreeImage_GetImageType(self.__bitmap) == FIT_BITMAP:
             LOGGER.debug("> Converting '{0}' image bitmap to QImage!".format(self.__image_path))
@@ -2323,13 +2364,13 @@ class Image(object):
             pitch = width * (BPP_32 / 8)
             bits = ctypes.create_string_buffer(chr(0) * height * pitch)
             self.__library.FreeImage_ConvertToRawBits(bits,
-                                                    self.__bitmap,
-                                                    pitch,
-                                                    BPP_32,
-                                                    FI_RGBA_RED_MASK,
-                                                    FI_RGBA_GREEN_MASK,
-                                                    FI_RGBA_BLUE_MASK,
-                                                    True)
+                                                      self.__bitmap,
+                                                      pitch,
+                                                      BPP_32,
+                                                      FI_RGBA_RED_MASK,
+                                                      FI_RGBA_GREEN_MASK,
+                                                      FI_RGBA_BLUE_MASK,
+                                                      True)
 
             self.__library.FreeImage_Unload(self.__bitmap)
 
@@ -2344,10 +2385,10 @@ class Image(object):
             image = QImage(voidptr(bits_pointer, size=height * pitch), width, height, pitch, QImage.Format_RGB32)
 
             image.data = ImageInformationsHeader(path=self.__image_path,
-                                                width=width,
-                                                height=height,
-                                                bpp=bpp,
-                                                os_stats=os.stat(self.__image_path))
+                                                 width=width,
+                                                 height=height,
+                                                 bpp=bpp,
+                                                 os_stats=os.stat(self.__image_path))
 
             # Removing the following line would result in a blank image display the first time.
             LOGGER.debug("> Final memory pointer with '{0}' address.".format(image.bits().__int__()))
@@ -2357,4 +2398,4 @@ class Image(object):
             return image
         else:
             raise foundations.exceptions.LibraryExecutionError("{0} | Image bitmap is not of type '{1}'!".format(
-            FREE_IMAGE_TYPE.FIT_BITMAP))
+                FREE_IMAGE_TYPE.FIT_BITMAP))

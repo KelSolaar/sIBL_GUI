@@ -45,6 +45,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Locations_Browser.ui")
 
+
 class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.locations_browser.locations_browser` Component Interface class.
@@ -129,7 +130,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -139,7 +140,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -163,7 +164,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -173,7 +174,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -197,7 +198,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -207,7 +208,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def components_manager_ui(self):
@@ -231,7 +232,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "components_manager_ui"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "components_manager_ui"))
 
     @components_manager_ui.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -241,7 +242,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "components_manager_ui"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "components_manager_ui"))
 
     @property
     def preferences_manager(self):
@@ -265,7 +266,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -275,7 +276,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     @property
     def ibl_sets_outliner(self):
@@ -299,7 +300,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -309,7 +310,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def templates_outliner(self):
@@ -333,7 +334,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -343,7 +344,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     @property
     def loader_script(self):
@@ -367,7 +368,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loader_script"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loader_script"))
 
     @loader_script.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -377,7 +378,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loader_script"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loader_script"))
 
     @property
     def Open_Output_Directory_pushButton(self):
@@ -401,7 +402,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "Open_Output_Directory_pushButton"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "Open_Output_Directory_pushButton"))
 
     @Open_Output_Directory_pushButton.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -411,7 +412,8 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "Open_Output_Directory_pushButton"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "Open_Output_Directory_pushButton"))
 
     @property
     def linux_browsers(self):
@@ -435,7 +437,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "linux_browsers"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "linux_browsers"))
 
     @linux_browsers.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -445,7 +447,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "linux_browsers"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "linux_browsers"))
 
     def activate(self, engine):
         """
@@ -514,7 +516,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.Custom_File_Browser_Path_toolButton.clicked.connect(self.__Custom_File_Browser_Path_toolButton__clicked)
         self.Custom_File_Browser_Path_lineEdit.editingFinished.connect(
-        self.__Custom_File_Browser_Path_lineEdit__editFinished)
+            self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
         # LoaderScript addon component specific code.
         if self.__loader_script.activated:
@@ -538,14 +540,16 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
         # Signals / Slots.
-        self.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
+        self.Custom_File_Browser_Path_toolButton.clicked.disconnect(
+            self.__Custom_File_Browser_Path_toolButton__clicked)
         self.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(
-        self.__Custom_File_Browser_Path_lineEdit__editFinished)
+            self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
         # LoaderScript addon component specific code.
         if self.__loader_script.activated:
             # Signals / Slots.
-            self.__Open_Output_Directory_pushButton.clicked.disconnect(self.__Open_Output_Directory_pushButton__clicked)
+            self.__Open_Output_Directory_pushButton.clicked.disconnect(
+                self.__Open_Output_Directory_pushButton__clicked)
 
             self.__Open_Output_Directory_pushButton.setParent(None)
             self.__Open_Output_Directory_pushButton = None
@@ -591,23 +595,23 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
         open_ibl_sets_locations_action = self.__engine.actions_manager.register_action(
-                                    "Actions|Umbra|Components|core.ibl_sets_outliner|Open Ibl Set(s) Location(s) ...",
-                                    slot=self.__ibl_sets_outliner_views_open_ibl_sets_locations_action__triggered)
+            "Actions|Umbra|Components|core.ibl_sets_outliner|Open Ibl Set(s) Location(s) ...",
+            slot=self.__ibl_sets_outliner_views_open_ibl_sets_locations_action__triggered)
         for view in self.__ibl_sets_outliner.views:
             view.addAction(open_ibl_sets_locations_action)
 
         self.__inspector.Inspector_Overall_frame.addAction(
-        self.__engine.actions_manager.register_action(
-        "Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
-        slot=self.__inspector_open_active_ibl_set_location_action__triggered))
+            self.__engine.actions_manager.register_action(
+                "Actions|Umbra|Components|core.inspector|Open Ibl Set location ...",
+                slot=self.__inspector_open_active_ibl_set_location_action__triggered))
         self.__components_manager_ui.view.addAction(
-        self.__engine.actions_manager.register_action(
-        "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
-        slot=self.__components_manager_ui_view_open_components_locations_action__triggered))
+            self.__engine.actions_manager.register_action(
+                "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...",
+                slot=self.__components_manager_ui_view_open_components_locations_action__triggered))
         self.__templates_outliner.view.addAction(
-        self.__engine.actions_manager.register_action(
-        "Actions|Umbra|Components|core.templates_outliner|Open Template(s) Location(s) ...",
-        slot=self.__templates_outliner_view_open_templates_locations_action__triggered))
+            self.__engine.actions_manager.register_action(
+                "Actions|Umbra|Components|core.templates_outliner|Open Template(s) Location(s) ...",
+                slot=self.__templates_outliner_view_open_templates_locations_action__triggered))
 
     def __remove_actions(self):
         """
@@ -622,17 +626,17 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__engine.actions_manager.unregister_action(open_ibl_sets_locations_action)
         open_active_ibl_set_location_action = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
         self.__inspector.Inspector_Overall_frame.removeAction(
-        self.__engine.actions_manager.get_action(open_active_ibl_set_location_action))
+            self.__engine.actions_manager.get_action(open_active_ibl_set_location_action))
         self.__engine.actions_manager.unregister_action(open_active_ibl_set_location_action)
         open_components_locations_action = \
-        "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
+            "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
         self.__components_manager_ui.view.removeAction(
-        self.__engine.actions_manager.get_action(open_components_locations_action))
+            self.__engine.actions_manager.get_action(open_components_locations_action))
         self.__engine.actions_manager.unregister_action(open_components_locations_action)
         open_templates_locations_action = \
-        "Actions|Umbra|Components|core.templates_outliner|Open Template(s) Location(s) ..."
+            "Actions|Umbra|Components|core.templates_outliner|Open Template(s) Location(s) ..."
         self.__templates_outliner.view.removeAction(
-        self.__engine.actions_manager.get_action(open_templates_locations_action))
+            self.__engine.actions_manager.get_action(open_templates_locations_action))
         self.__engine.actions_manager.unregister_action(open_templates_locations_action)
 
     def __ibl_sets_outliner_views_open_ibl_sets_locations_action__triggered(self, checked):
@@ -693,7 +697,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         custom_file_browser = self.__settings.get_key(self.__settings_section, "custom_file_browser")
         LOGGER.debug("> Setting '{0}' with value '{1}'.".format(
-        "Custom_File_Browser_Path_lineEdit", custom_file_browser.toString()))
+            "Custom_File_Browser_Path_lineEdit", custom_file_browser.toString()))
         self.Custom_File_Browser_Path_lineEdit.setText(custom_file_browser.toString())
 
     def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
@@ -705,7 +709,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         custom_file_browser_executable = umbra.ui.common.store_last_browsed_path(
-        QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", RuntimeGlobals.last_browsed_path))
+            QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", RuntimeGlobals.last_browsed_path))
         if custom_file_browser_executable != "":
             LOGGER.debug("> Chosen custom file browser executable: '{0}'.".format(custom_file_browser_executable))
             self.Custom_File_Browser_Path_lineEdit.setText(QString(custom_file_browser_executable))
@@ -714,7 +718,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                                     self.Custom_File_Browser_Path_lineEdit.text())
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     def __Custom_File_Browser_Path_lineEdit__editFinished(self):
         """
         Defines the slot triggered by **Custom_File_Browser_Path_lineEdit** Widget
@@ -727,7 +731,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             self.__Custom_File_Browser_Path_lineEdit_set_ui()
 
             raise foundations.exceptions.UserError(
-            "{0} | Invalid custom file browser executable file!".format(self.__class__.__name__))
+                "{0} | Invalid custom file browser executable file!".format(self.__class__.__name__))
         else:
             self.__settings.set_key(self.__settings_section,
                                     "custom_file_browser",
@@ -760,20 +764,21 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         for ibl_set in selected_ibl_sets:
             path = ibl_set.path and foundations.common.path_exists(ibl_set.path) and os.path.dirname(ibl_set.path)
             if path:
-                success *= self.explore_directory(path, \
-                foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text())) or False
+                success *= self.explore_directory(path,
+                                                  foundations.strings.to_string(
+                                                      self.Custom_File_Browser_Path_lineEdit.text())) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(
-                self.__class__.__name__, ibl_set.title))
+                    self.__class__.__name__, ibl_set.title))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(
-            self.__class__.__name__, ", ".join(ibl_set.title for ibl_set in selected_ibl_sets)))
+                self.__class__.__name__, ", ".join(ibl_set.title for ibl_set in selected_ibl_sets)))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.FileExistsError)
+                                              foundations.exceptions.FileExistsError)
     def open_active_ibl_set_location_ui(self):
         """
         Opens :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set directory.
@@ -790,11 +795,11 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if foundations.common.path_exists(active_ibl_set.path):
             return self.explore_directory(os.path.dirname(active_ibl_set.path),
-                                        foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text()))
+                                          foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text()))
         else:
             raise foundations.exceptions.FileExistsError(
-            "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
-            self.__class__.__name__, active_ibl_set.title))
+                "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(
+                    self.__class__.__name__, active_ibl_set.title))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def open_components_locations_ui(self):
@@ -813,17 +818,18 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         for component in selected_components:
             path = component.directory and foundations.common.path_exists(component.directory) and component.directory
             if path:
-                success *= self.explore_directory(path, \
-                foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text())) or False
+                success *= self.explore_directory(path,
+                                                  foundations.strings.to_string(
+                                                      self.Custom_File_Browser_Path_lineEdit.text())) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Component file doesn't exists and will be skipped!".format(
-                self.__class__.__name__, component.name))
+                    self.__class__.__name__, component.name))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while opening '{1}' Components directories!".format(
-            self.__class__.__name__, ", ".join(component.name for component in selected_components)))
+                self.__class__.__name__, ", ".join(component.name for component in selected_components)))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def open_templates_locations_ui(self):
@@ -842,21 +848,22 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         for template in selected_templates:
             path = template.path and foundations.common.path_exists(template.path) and os.path.dirname(template.path)
             if path:
-                success *= self.explore_directory(path, \
-                foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text())) or False
+                success *= self.explore_directory(path,
+                                                  foundations.strings.to_string(
+                                                      self.Custom_File_Browser_Path_lineEdit.text())) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(
-                self.__class__.__name__, template.name))
+                    self.__class__.__name__, template.name))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while opening '{1}' Templates directories!".format(
-            self.__class__.__name__, ", ".join(template.name for template in selected_templates)))
+                self.__class__.__name__, ", ".join(template.name for template in selected_templates)))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.DirectoryExistsError,
-                                            Exception)
+                                              foundations.exceptions.DirectoryExistsError,
+                                              Exception)
     def open_output_directory_ui(self):
         """
         Opens output directory.
@@ -872,13 +879,14 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if not foundations.common.path_exists(directory):
             raise foundations.exceptions.DirectoryExistsError(
-            "{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
+                "{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
 
-        if self.explore_directory(directory, foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text())):
+        if self.explore_directory(directory,
+                                  foundations.strings.to_string(self.Custom_File_Browser_Path_lineEdit.text())):
             return True
         else:
             raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(
-            self.__class__.__name__, directory))
+                self.__class__.__name__, directory))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def get_process_command(self, directory, custom_browser=None):
@@ -928,7 +936,7 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
                 if not browser_found:
                     raise Exception("{0} | Exception raised: No suitable Linux browser found!".format(
-                    self.__class__.__name__))
+                        self.__class__.__name__))
         return process_command
 
     def explore_directory(self, directory, custom_browser=None):
@@ -946,9 +954,11 @@ class LocationsBrowser(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         browser_command = self.get_process_command(directory, custom_browser)
         if browser_command:
             LOGGER.debug("> Current browser command: '{0}'.".format(browser_command))
-            LOGGER.info("{0} | Launching file browser with '{1}' directory.".format(self.__class__.__name__, directory))
+            LOGGER.info("{0} | Launching file browser with '{1}' directory.".format(
+                self.__class__.__name__, directory))
             browser_process = QProcess()
             browser_process.startDetached(browser_command)
             return True
         else:
-            raise Exception("{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))
+            raise Exception(
+                "{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))

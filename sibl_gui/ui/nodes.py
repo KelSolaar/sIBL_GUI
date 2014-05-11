@@ -30,11 +30,12 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "Mixin_GraphModelObject",
-        "GraphModelAttribute",
-        "GraphModelNode"]
+           "Mixin_GraphModelObject",
+           "GraphModelAttribute",
+           "GraphModelNode"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 class Mixin_GraphModelObject(object):
     """
@@ -76,7 +77,7 @@ class Mixin_GraphModelObject(object):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "icon_size", value)
+                "icon_size", value)
         self.__icon_size = value
 
     @icon_size.deleter
@@ -87,7 +88,7 @@ class Mixin_GraphModelObject(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_size"))
 
     @property
     def icon_placeholder(self):
@@ -112,7 +113,7 @@ class Mixin_GraphModelObject(object):
 
         if value is not None:
             assert type(value) is QIcon, "'{0}' attribute: '{1}' type is not 'QIcon'!".format(
-            "icon_placeholder", value)
+                "icon_placeholder", value)
         self.__icon_placeholder = value
 
     @icon_placeholder.deleter
@@ -123,7 +124,8 @@ class Mixin_GraphModelObject(object):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_placeholder"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "icon_placeholder"))
+
 
 class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelObject):
     """
@@ -131,13 +133,13 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
     """
 
     def __init__(self,
-                name=None,
-                value=None,
-                roles=None,
-                flags=None,
-                icon_size=None,
-                icon_placeholder=None,
-                **kwargs):
+                 name=None,
+                 value=None,
+                 roles=None,
+                 flags=None,
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
         """
         Initializes the class.
 
@@ -166,6 +168,7 @@ class GraphModelAttribute(umbra.ui.nodes.GraphModelAttribute, Mixin_GraphModelOb
         self.icon_size = icon_size if icon_size is not None else "Default"
         self.icon_placeholder = icon_placeholder
 
+
 class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
     """
     Defines :class:`GraphModel` class base Node object.
@@ -178,14 +181,14 @@ class GraphModelNode(umbra.ui.nodes.GraphModelNode, Mixin_GraphModelObject):
     """
 
     def __init__(self,
-                name=None,
-                parent=None,
-                children=None,
-                roles=None,
-                flags=None,
-                icon_size=None,
-                icon_placeholder=None,
-                **kwargs):
+                 name=None,
+                 parent=None,
+                 children=None,
+                 roles=None,
+                 flags=None,
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
         """
         Initializes the class.
 

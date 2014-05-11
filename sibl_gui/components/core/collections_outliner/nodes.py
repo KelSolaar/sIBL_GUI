@@ -33,6 +33,7 @@ __all__ = ["LOGGER", "OverallCollectionNode"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
     """
     Defines :class:`sibl_gui.components.core.collections_outliner.collections_outliner.CollectionsOutliner`
@@ -42,15 +43,15 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
     __family = "OverallCollection"
 
     def __init__(self,
-                name=None,
-                parent=None,
-                children=None,
-                roles=None,
-                node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                icon_size=None,
-                icon_placeholder=None,
-                **kwargs):
+                 name=None,
+                 parent=None,
+                 children=None,
+                 roles=None,
+                 node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
         """
         Initializes the class.
 
@@ -77,14 +78,14 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         sibl_gui.ui.nodes.GraphModelNode.__init__(self,
-                                                name,
-                                                parent,
-                                                children,
-                                                roles,
-                                                node_flags,
-                                                icon_size,
-                                                icon_placeholder,
-                                                **kwargs)
+                                                  name,
+                                                  parent,
+                                                  children,
+                                                  roles,
+                                                  node_flags,
+                                                  icon_size,
+                                                  icon_placeholder,
+                                                  **kwargs)
 
         OverallCollectionNode.__initialize_node(self, attributes_flags)
 
@@ -97,10 +98,10 @@ class OverallCollectionNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         self["count"] = sibl_gui.ui.nodes.GraphModelAttribute(name="count",
-                                                            value=sum(node["count"].value for node in self.children),
-                                                            flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                              value=sum(node["count"].value for node in self.children),
+                                                              flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
         self["comment"] = sibl_gui.ui.nodes.GraphModelAttribute(name="comment",
-                                                            flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                                flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
     def update_node(self):
         """

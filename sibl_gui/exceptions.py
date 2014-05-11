@@ -26,13 +26,14 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "AbstractNetworkError",
-        "NetworkError",
-        "SocketConnectionError",
-        "Win32OLEServerConnectionError",
-        "AbstractCacheError",
-        "CacheExistsError",
-        "CacheOperationError"]
+           "AbstractNetworkError",
+           "NetworkError",
+           "SocketConnectionError",
+           "Win32OLEServerConnectionError",
+           "AbstractCacheError",
+           "CacheExistsError",
+           "CacheOperationError"]
+
 
 class AbstractNetworkError(foundations.exceptions.AbstractError):
     """
@@ -41,12 +42,14 @@ class AbstractNetworkError(foundations.exceptions.AbstractError):
 
     pass
 
+
 class NetworkError(AbstractNetworkError):
     """
     Defines network exceptions.
     """
 
     pass
+
 
 class SocketConnectionError(AbstractNetworkError):
     """
@@ -55,12 +58,14 @@ class SocketConnectionError(AbstractNetworkError):
 
     pass
 
+
 class Win32OLEServerConnectionError(AbstractNetworkError):
     """
     Defines Win32OLE Server connection exception.
     """
 
     pass
+
 
 class AbstractCacheError(foundations.exceptions.AbstractError):
     """
@@ -69,12 +74,14 @@ class AbstractCacheError(foundations.exceptions.AbstractError):
 
     pass
 
+
 class CacheExistsError(foundations.exceptions.AbstractError):
     """
     Defines non existing cache exception.
     """
 
     pass
+
 
 class CacheOperationError(foundations.exceptions.AbstractError):
     """

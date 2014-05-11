@@ -38,6 +38,7 @@ __all__ = ["LOGGER", "IblSetsScanner"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class IblSetsScanner(QObjectComponent):
     """
     | Defines the :mod:`sibl_gui.components.addons.ibl_sets_scanner.ibl_sets_scanner` Component Interface class.
@@ -95,7 +96,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -105,7 +106,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def collections_outliner(self):
@@ -129,7 +130,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
 
     @collections_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -139,7 +140,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
 
     @property
     def ibl_sets_outliner(self):
@@ -163,7 +164,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -173,7 +174,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def ibl_sets_scanner_worker_thread(self):
@@ -197,7 +198,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_scanner_worker_thread"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_scanner_worker_thread"))
 
     @ibl_sets_scanner_worker_thread.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -207,7 +208,7 @@ class IblSetsScanner(QObjectComponent):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_scanner_worker_thread"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_scanner_worker_thread"))
 
     def activate(self, engine):
         """
@@ -263,13 +264,16 @@ class IblSetsScanner(QObjectComponent):
         if not self.__engine.parameters.database_read_only:
             if not self.__engine.parameters.deactivate_worker_threads:
                 # Signals / Slots.
-                self.__ibl_sets_scanner_worker_thread.ibl_sets_retrieved.connect(self.__ibl_sets_scanner_worker_thread__ibl_sets_retrieved)
+                self.__ibl_sets_scanner_worker_thread.ibl_sets_retrieved.connect(
+                    self.__ibl_sets_scanner_worker_thread__ibl_sets_retrieved)
             else:
-                LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
-                self.__class__.__name__, "deactivate_worker_threads"))
+                LOGGER.info(
+                    "{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
+                        self.__class__.__name__, "deactivate_worker_threads"))
         else:
-            LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+            LOGGER.info(
+                "{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
+                    self.__class__.__name__, "database_read_only"))
 
         self.initialized = True
         return True
@@ -289,7 +293,7 @@ class IblSetsScanner(QObjectComponent):
                 # Signals / Slots.
                 not self.__engine.parameters.database_read_only and \
                 self.__ibl_sets_scanner_worker_thread.ibl_sets_retrieved.disconnect(
-                self.__ibl_sets_scanner_worker_thread__ibl_sets_retrieved)
+                    self.__ibl_sets_scanner_worker_thread__ibl_sets_retrieved)
 
         self.__engine.worker_threads.remove(self.__ibl_sets_scanner_worker_thread)
         self.__ibl_sets_scanner_worker_thread = None
@@ -321,17 +325,18 @@ class IblSetsScanner(QObjectComponent):
         """
 
         if message_box.message_box("Question", "Question",
-        "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(
-        ", ".join(map(foundations.strings.get_splitext_basename, ibl_sets))),
-         buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                   "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(
+                                           ", ".join(map(foundations.strings.get_splitext_basename, ibl_sets))),
+                                   buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             self.__engine.start_processing("Adding Retrieved Ibl Sets ...", len(ibl_sets))
             for path in ibl_sets:
                 ibl_set = foundations.strings.get_splitext_basename(path)
                 LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, ibl_set))
                 if not sibl_gui.components.core.database.operations.add_ibl_set(
-                ibl_set, path, self.__collections_outliner.get_collection_id(self.__collections_outliner.default_collection)):
+                        ibl_set, path,
+                        self.__collections_outliner.get_collection_id(self.__collections_outliner.default_collection)):
                     LOGGER.error("!> {0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
-                    self.__class__.__name__, ibl_set))
+                        self.__class__.__name__, ibl_set))
                 self.__engine.step_processing()
             self.__engine.stop_processing()
 

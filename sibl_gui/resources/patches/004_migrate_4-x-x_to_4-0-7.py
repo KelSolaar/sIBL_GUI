@@ -42,6 +42,7 @@ LOGGER = foundations.verbose.install_logger()
 
 UID = "ddfd9d292ea73aa3450989af7d7ee945"
 
+
 def apply():
     """
     Triggers the patch execution.

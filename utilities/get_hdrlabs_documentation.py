@@ -38,6 +38,7 @@ LOGGER = foundations.verbose.install_logger()
 foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
+
 def get_hdrlabs_documentation(input, output):
     """
     Extracts sIBL_GUI Documentation body for HDRLabs.com.
@@ -50,7 +51,8 @@ def get_hdrlabs_documentation(input, output):
     :rtype: bool
     """
 
-    LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(get_hdrlabs_documentation.__name__, input))
+    LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(
+        get_hdrlabs_documentation.__name__, input))
     file = File(input)
     file.cache()
 
@@ -70,6 +72,7 @@ def get_hdrlabs_documentation(input, output):
     file.write()
 
     return True
+
 
 def get_command_line_arguments():
     """
@@ -104,6 +107,7 @@ def get_command_line_arguments():
 
     return parser.parse_args()
 
+
 @foundations.decorators.system_exit
 def main():
     """
@@ -115,6 +119,7 @@ def main():
 
     args = get_command_line_arguments()
     return get_hdrlabs_documentation(args.input, args.output)
+
 
 if __name__ == "__main__":
     main()

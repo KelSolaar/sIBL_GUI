@@ -43,6 +43,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Operations.ui")
 
+
 class DatabaseType(foundations.data_structures.Structure):
     """
     | Defines a storage object for manipulation methods associated to a given Database type.
@@ -61,6 +62,7 @@ class DatabaseType(foundations.data_structures.Structure):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         foundations.data_structures.Structure.__init__(self, **kwargs)
+
 
 class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -121,7 +123,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -131,7 +133,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -155,7 +157,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -165,7 +167,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -189,7 +191,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -199,7 +201,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def preferences_manager(self):
@@ -223,7 +225,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -233,7 +235,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     @property
     def ibl_sets_outliner(self):
@@ -257,7 +259,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -267,7 +269,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def templates_outliner(self):
@@ -291,7 +293,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -301,7 +303,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     @property
     def types(self):
@@ -325,7 +327,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "types"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "types"))
 
     @types.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -335,7 +337,7 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "types"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "types"))
 
     def activate(self, engine):
         """
@@ -358,17 +360,17 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__templates_outliner = self.__engine.components_manager["core.templates_outliner"]
 
         self.__types = (DatabaseType(type="Ibl Set",
-                        get_method=sibl_gui.components.core.database.operations.get_ibl_sets,
-                        update_content_method=sibl_gui.components.core.database.operations.update_ibl_set_content,
-                        remove_method=sibl_gui.components.core.database.operations.remove_ibl_set,
-                        model_container=self.__ibl_sets_outliner,
-                        update_location_method=self.__ibl_sets_outliner.update_ibl_set_location_ui),
+                                     get_method=sibl_gui.components.core.database.operations.get_ibl_sets,
+                                     update_content_method=sibl_gui.components.core.database.operations.update_ibl_set_content,
+                                     remove_method=sibl_gui.components.core.database.operations.remove_ibl_set,
+                                     model_container=self.__ibl_sets_outliner,
+                                     update_location_method=self.__ibl_sets_outliner.update_ibl_set_location_ui),
                         DatabaseType(type="Template",
-                        get_method=sibl_gui.components.core.database.operations.get_templates,
-                        update_content_method=sibl_gui.components.core.database.operations.update_template_content,
-                        remove_method=sibl_gui.components.core.database.operations.remove_template,
-                        model_container=self.__templates_outliner,
-                        update_location_method=self.__templates_outliner.update_template_location_ui))
+                                     get_method=sibl_gui.components.core.database.operations.get_templates,
+                                     update_content_method=sibl_gui.components.core.database.operations.update_template_content,
+                                     remove_method=sibl_gui.components.core.database.operations.remove_template,
+                                     model_container=self.__templates_outliner,
+                                     update_location_method=self.__templates_outliner.update_template_location_ui))
 
         self.activated = True
         return True
@@ -410,8 +412,8 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             self.Remove_Invalid_Data_pushButton.clicked.connect(self.__Remove_Invalid_Data_pushButton__clicked)
         else:
             LOGGER.info(
-            "{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                "{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(
+                    self.__class__.__name__, "database_read_only"))
 
         self.initialized_ui = True
         return True
@@ -499,14 +501,14 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 if foundations.common.path_exists(item.path):
                     if type.update_content_method(item):
                         LOGGER.info("{0} | '{1}' {2} has been updated!".format(self.__class__.__name__,
-                                                                                    item.name,
-                                                                                    type.type))
+                                                                               item.name,
+                                                                               type.type))
                 else:
                     choice = message_box.message_box("Question", "Error",
-                    "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(
-                    self.__class__.__name__, item.name, type.type),
-                    QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-                    custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
+                                                     "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(
+                                                         self.__class__.__name__, item.name, type.type),
+                                                     QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+                                                     custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
 
                     if choice == 0:
                         break
@@ -529,21 +531,22 @@ class DatabaseOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         if message_box.message_box("Question", "Question",
-        "Are you sure you want to remove invalid data from the Database?",
-        buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                   "Are you sure you want to remove invalid data from the Database?",
+                                   buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             for type in self.__types:
                 for item in type.get_method():
                     if foundations.common.path_exists(item.path):
                         continue
 
-                    LOGGER.info("{0} | Removing non existing '{1}' {2} from the Database!".format(self.__class__.__name__,
-                                                                                                item.name,
-                                                                                                type.type))
+                    LOGGER.info(
+                        "{0} | Removing non existing '{1}' {2} from the Database!".format(self.__class__.__name__,
+                                                                                          item.name,
+                                                                                          type.type))
                     type.remove_method(item.id)
 
                     self.__engine.process_events()
                 type.model_container.refresh_nodes.emit()
             self.__engine.stop_processing()
             self.__engine.notifications_manager.notify(
-            "{0} | Invalid data removed from Database!".format(self.__class__.__name__))
+                "{0} | Invalid data removed from Database!".format(self.__class__.__name__))
         return True

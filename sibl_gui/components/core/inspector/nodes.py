@@ -34,6 +34,7 @@ __all__ = ["LOGGER", "PlatesNode"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
     """
     Defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
@@ -47,16 +48,16 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
     """
 
     def __init__(self,
-                plate,
-                name=None,
-                parent=None,
-                children=None,
-                roles=None,
-                node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                icon_size=None,
-                icon_placeholder=None,
-                **kwargs):
+                 plate,
+                 name=None,
+                 parent=None,
+                 children=None,
+                 roles=None,
+                 node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
         """
         Initializes the class.
 
@@ -85,14 +86,14 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         sibl_gui.ui.nodes.GraphModelNode.__init__(self,
-                                                name,
-                                                parent,
-                                                children,
-                                                roles,
-                                                node_flags,
-                                                icon_size,
-                                                icon_placeholder,
-                                                **kwargs)
+                                                  name,
+                                                  parent,
+                                                  children,
+                                                  roles,
+                                                  node_flags,
+                                                  icon_size,
+                                                  icon_placeholder,
+                                                  **kwargs)
 
         # --- Setting class attributes. ---
         self.__plate = plate
@@ -125,7 +126,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
 
     @plate.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -135,7 +136,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
     @property
     def tool_tip_text(self):
@@ -159,7 +160,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tool_tip_text"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tool_tip_text"))
 
     @tool_tip_text.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -169,7 +170,7 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
     def __initialize_node(self, attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
         """
@@ -179,4 +180,4 @@ class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
         :type attributes_flags: int
         """
 
-        self.roles.update({Qt.ToolTipRole : self.__tool_tip_text.format(self.name)})
+        self.roles.update({Qt.ToolTipRole: self.__tool_tip_text.format(self.name)})

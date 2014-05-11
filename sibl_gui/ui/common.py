@@ -47,20 +47,21 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "convert_image",
-        "get_thumbnail_path",
-        "extract_thumbnail",
-        "load_graphics_item",
-        "get_graphics_item",
-        "get_icon",
-        "get_pixmap",
-        "get_image",
-        "create_pixmap",
-        "get_image_informations_header",
-        "filter_image_path",
-        "get_formatted_shot_date"]
+           "convert_image",
+           "get_thumbnail_path",
+           "extract_thumbnail",
+           "load_graphics_item",
+           "get_graphics_item",
+           "get_icon",
+           "get_pixmap",
+           "get_image",
+           "create_pixmap",
+           "get_image_informations_header",
+           "filter_image_path",
+           "get_formatted_shot_date"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 def convert_image(image, type):
     """
@@ -82,6 +83,7 @@ def convert_image(image, type):
 
     return graphics_item
 
+
 def get_thumbnail_path(path, size, cache_directory=None):
     """
     Returns given image thumbnail cached path at given size.
@@ -98,14 +100,15 @@ def get_thumbnail_path(path, size, cache_directory=None):
 
     cache_directory = cache_directory if cache_directory is not None else RuntimeGlobals.thumbnails_cache_directory
     return os.path.join(cache_directory,
-                    hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.default_codec)).hexdigest())
+                        hashlib.md5("{0}_{1}.png".format(path, size).encode(Constants.default_codec)).hexdigest())
+
 
 def extract_thumbnail(path,
-                    size="Default",
-                    image=None,
-                    format="PNG",
-                    quality= -1,
-                    cache_directory=None):
+                      size="Default",
+                      image=None,
+                      format="PNG",
+                      quality=-1,
+                      cache_directory=None):
     """
     Extract given image thumbnail at given size.
 
@@ -134,13 +137,14 @@ def extract_thumbnail(path,
     if not os.path.exists(thumbnail_path):
         thumbnail = QImage(path) if image is None else image
         thumbnail = thumbnail.scaled(UiConstants.thumbnails_sizes.get(size),
-                            UiConstants.thumbnails_sizes.get(size),
-                            Qt.KeepAspectRatio,
-                            Qt.SmoothTransformation)
+                                     UiConstants.thumbnails_sizes.get(size),
+                                     Qt.KeepAspectRatio,
+                                     Qt.SmoothTransformation)
         thumbnail.save(thumbnail_path, format, quality)
         return thumbnail
     else:
         return QImage(thumbnail_path)
+
 
 def load_graphics_item(path, type, size="Default"):
     """
@@ -172,18 +176,19 @@ def load_graphics_item(path, type, size="Default"):
                         image = Image(path)
                         image = image.convert_to_QImage()
                         graphics_item = \
-                        convert_image(extract_thumbnail(path, size, image), type) if size != "Default" else \
-                        convert_image(image, type)
+                            convert_image(extract_thumbnail(path, size, image), type) if size != "Default" else \
+                                convert_image(image, type)
                         break
                     except Exception as error:
                         LOGGER.error("!> {0} | Exception raised while reading '{1}' image: '{2}'!".format(__name__,
-                                                                                                    path,
-                                                                                                    error))
+                                                                                                          path,
+                                                                                                          error))
                         graphics_item = type(error_image)
                         break
             else:
                 graphics_item = type(error_image)
     return graphics_item
+
 
 def get_graphics_item(path, type, size="Default", asynchronous_loading=True, placeholder=None, images_cache=None):
     """
@@ -216,11 +221,12 @@ def get_graphics_item(path, type, size="Default", asynchronous_loading=True, pla
     graphics_item = cache.get_content(path, size)
     if graphics_item is None:
         if asynchronous_loading:
-            cache.load_asynchronous_content(**{path : (type, size, placeholder)})
+            cache.load_asynchronous_content(**{path: (type, size, placeholder)})
         else:
-            cache.load_content(**{path : (type, size)})
+            cache.load_content(**{path: (type, size)})
         return cache.get_content(path, size)
     return graphics_item
+
 
 def get_icon(path, size="Default", asynchronous_loading=True, placeholder=None, images_cache=None):
     """
@@ -243,6 +249,7 @@ def get_icon(path, size="Default", asynchronous_loading=True, placeholder=None, 
     cache = images_cache if images_cache else RuntimeGlobals.images_caches.get("QIcon")
     return get_graphics_item(path, QIcon, size, asynchronous_loading, placeholder, cache)
 
+
 def get_pixmap(path, size="Default", asynchronous_loading=True, placeholder=None, images_cache=None):
     """
     Returns a `QPixmap <http://doc.qt.nokia.com/qpixmap.html>`_ instance.
@@ -264,6 +271,7 @@ def get_pixmap(path, size="Default", asynchronous_loading=True, placeholder=None
     cache = images_cache if images_cache else RuntimeGlobals.images_caches.get("QPixmap")
     return get_graphics_item(path, QPixmap, size, asynchronous_loading, placeholder, cache)
 
+
 def get_image(path, size="Default", asynchronous_loading=True, placeholder=None, images_cache=None):
     """
     Returns a `QImage <http://doc.qt.nokia.com/qimage.html>`_ instance.
@@ -284,6 +292,7 @@ def get_image(path, size="Default", asynchronous_loading=True, placeholder=None,
 
     cache = images_cache if images_cache else RuntimeGlobals.images_caches.get("QImage")
     return get_graphics_item(path, QImage, size, asynchronous_loading, placeholder, cache)
+
 
 def create_pixmap(width=128, height=128, text=None):
     """
@@ -309,6 +318,7 @@ def create_pixmap(width=128, height=128, text=None):
         painter.drawText(point_x, point_y, text)
     return loading_pixmap
 
+
 @foundations.exceptions.handle_exceptions(foundations.exceptions.FileExistsError)
 def get_image_informations_header(path, graphics_item):
     """
@@ -329,10 +339,11 @@ def get_image_informations_header(path, graphics_item):
         graphics_item = QPixmap(path)
 
     return ImageInformationsHeader(path=path,
-                                    width=graphics_item.width(),
-                                    height=graphics_item.height(),
-                                    bpp=graphics_item.depth(),
-                                    os_stats=os.stat(path))
+                                   width=graphics_item.width(),
+                                   height=graphics_item.height(),
+                                   bpp=graphics_item.depth(),
+                                   os_stats=os.stat(path))
+
 
 def filter_image_path(path):
     """
@@ -346,13 +357,14 @@ def filter_image_path(path):
 
     if foundations.common.path_exists(path):
         for extension in itertools.chain(UiConstants.native_image_formats.itervalues(),
-                                        UiConstants.third_party_image_formats.itervalues()):
+                                         UiConstants.third_party_image_formats.itervalues()):
             if re.search(extension, path, flags=re.IGNORECASE):
                 return path
         else:
             return umbra.ui.common.get_resource_path(UiConstants.format_error_image)
     else:
         return umbra.ui.common.get_resource_path(UiConstants.missing_image)
+
 
 def get_formatted_shot_date(date, time):
     """

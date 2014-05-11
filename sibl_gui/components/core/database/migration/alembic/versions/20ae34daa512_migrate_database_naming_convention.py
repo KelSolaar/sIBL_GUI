@@ -32,6 +32,7 @@ __all__ = ["revision", "down_revision", "upgrade", "downgrade"]
 revision = "20ae34daa512"
 down_revision = "10df7481424c"
 
+
 def upgrade():
     """
     Upgrade the database to current revision.
@@ -63,6 +64,7 @@ def upgrade():
         collections.c.type == op.inline_literal("IblSets")).values({"type": op.inline_literal("ibl_sets")}))
     op.execute(collections.update().where(
         collections.c.type == op.inline_literal("Templates")).values({"type": op.inline_literal("templates")}))
+
 
 def downgrade():
     """

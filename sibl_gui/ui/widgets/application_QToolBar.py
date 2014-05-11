@@ -40,6 +40,7 @@ __all__ = ["LOGGER", "Application_QToolBar"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QToolBar):
     """
     Defines defines the Application toolbar.
@@ -108,45 +109,47 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
         self.__layouts_active_labels_collection = Active_QLabelsCollection(self)
 
         self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.library_icon,
-                                                                                    UiConstants.library_hover_icon,
-                                                                                    UiConstants.library_active_icon),
-                                                                                    "Library_active_label",
-                                                                                    "Library",
-                                                                                    "sets_centric",
-                                                                                    Qt.Key_6))
+                                                                                               UiConstants.library_hover_icon,
+                                                                                               UiConstants.library_active_icon),
+                                                                                              "Library_active_label",
+                                                                                              "Library",
+                                                                                              "sets_centric",
+                                                                                              Qt.Key_6))
 
         self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.inspect_icon,
-                                                                                    UiConstants.inspect_hover_icon,
-                                                                                    UiConstants.inspect_active_icon),
-                                                                                    "Inspect_active_label",
-                                                                                    "Inspect",
-                                                                                    "inspect_centric",
-                                                                                    Qt.Key_7))
+                                                                                               UiConstants.inspect_hover_icon,
+                                                                                               UiConstants.inspect_active_icon),
+                                                                                              "Inspect_active_label",
+                                                                                              "Inspect",
+                                                                                              "inspect_centric",
+                                                                                              Qt.Key_7))
 
         self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.export_icon,
-                                                                                    UiConstants.export_hover_icon,
-                                                                                    UiConstants.export_active_icon),
-                                                                                    "Export_active_label",
-                                                                                    "Export",
-                                                                                    "templates_centric",
-                                                                                    Qt.Key_8))
+                                                                                               UiConstants.export_hover_icon,
+                                                                                               UiConstants.export_active_icon),
+                                                                                              "Export_active_label",
+                                                                                              "Export",
+                                                                                              "templates_centric",
+                                                                                              Qt.Key_8))
 
         self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.edit_icon,
-                                                                                    UiConstants.edit_hover_icon,
-                                                                                    UiConstants.edit_active_icon),
-                                                                                    "Edit_active_label",
-                                                                                    "Edit",
-                                                                                    "edit_centric",
-                                                                                    Qt.Key_9))
+                                                                                               UiConstants.edit_hover_icon,
+                                                                                               UiConstants.edit_active_icon),
+                                                                                              "Edit_active_label",
+                                                                                              "Edit",
+                                                                                              "edit_centric",
+                                                                                              Qt.Key_9))
 
-        self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.preferences_icon,
-                                                                                    UiConstants.preferences_hover_icon,
-                                                                                    UiConstants.preferences_active_icon),
-                                                                                    "Preferences_active_label",
-                                                                                    "Preferences",
-                                                                                    "preferences_centric",
-                                                                                    Qt.Key_0))
+        self.__layouts_active_labels_collection.add_active_label(
+            self.get_layout_active_label((UiConstants.preferences_icon,
+                                          UiConstants.preferences_hover_icon,
+                                          UiConstants.preferences_active_icon),
+                                         "Preferences_active_label",
+                                         "Preferences",
+                                         "preferences_centric",
+                                         Qt.Key_0))
         return self.__layouts_active_labels_collection.active_labels
+
     def get_central_widget_active_label(self):
         """
         Provides the default **Central_Widget_active_label** widget.
@@ -156,9 +159,12 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
         """
 
         central_widget_button = Active_QLabel(self,
-                                            QPixmap(umbra.ui.common.get_resource_path(UiConstants.central_widget_icon)),
-                                            QPixmap(umbra.ui.common.get_resource_path(UiConstants.central_widget_hover_icon)),
-                                            QPixmap(umbra.ui.common.get_resource_path(UiConstants.central_widget_active_icon)))
+                                              QPixmap(
+                                                  umbra.ui.common.get_resource_path(UiConstants.central_widget_icon)),
+                                              QPixmap(umbra.ui.common.get_resource_path(
+                                                  UiConstants.central_widget_hover_icon)),
+                                              QPixmap(umbra.ui.common.get_resource_path(
+                                                  UiConstants.central_widget_active_icon)))
         central_widget_button.setObjectName("Central_Widget_active_label")
 
         # Signals / Slots.
@@ -174,8 +180,8 @@ class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QTo
         """
 
         self.miscellaneous_menu.addAction(self.__container.actions_manager.register_action(
-        "Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
-        slot=self.__make_donation_display_misc_action__triggered))
+            "Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
+            slot=self.__make_donation_display_misc_action__triggered))
         self.miscellaneous_menu.addSeparator()
         return True
 

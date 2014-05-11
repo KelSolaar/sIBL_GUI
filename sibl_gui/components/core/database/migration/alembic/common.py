@@ -30,9 +30,10 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "rename_column"]
+           "rename_column"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 def rename_column(table, column, name):
     """
@@ -69,7 +70,7 @@ def rename_column(table, column, name):
     target_table = metadata.tables[target_table_name]
 
     insert = sqlalchemy.sql.insert(target_table).from_select([source_column.name for source_column in source_columns],
-                                                            select)
+                                                             select)
     engine.execute(insert)
 
     op.drop_table(source_table_name)

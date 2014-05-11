@@ -33,6 +33,7 @@ __all__ = ["LOGGER", "SoftwareNode"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
     """
     Defines :class:`sibl_gui.components.core.templates_outliner.templates_outliner.TemplatesOutliner`
@@ -46,15 +47,15 @@ class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
     """
 
     def __init__(self,
-                name=None,
-                parent=None,
-                children=None,
-                roles=None,
-                node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                icon_size=None,
-                icon_placeholder=None,
-                **kwargs):
+                 name=None,
+                 parent=None,
+                 children=None,
+                 roles=None,
+                 node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
         """
         Initializes the class.
 
@@ -81,14 +82,14 @@ class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         sibl_gui.ui.nodes.GraphModelNode.__init__(self,
-                                                name,
-                                                parent,
-                                                children,
-                                                roles,
-                                                node_flags,
-                                                icon_size,
-                                                icon_placeholder,
-                                                **kwargs)
+                                                  name,
+                                                  parent,
+                                                  children,
+                                                  roles,
+                                                  node_flags,
+                                                  icon_size,
+                                                  icon_placeholder,
+                                                  **kwargs)
 
         SoftwareNode.__initialize_node(self, attributes_flags)
 
@@ -101,6 +102,6 @@ class SoftwareNode(sibl_gui.ui.nodes.GraphModelNode):
         """
 
         self["release"] = sibl_gui.ui.nodes.GraphModelAttribute(name="release",
-                                                            flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                                flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
         self["version"] = sibl_gui.ui.nodes.GraphModelAttribute(name="version",
-                                                            flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                                flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))

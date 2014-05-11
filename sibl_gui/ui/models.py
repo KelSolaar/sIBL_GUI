@@ -34,6 +34,7 @@ __all__ = ["LOGGER", "GraphModel"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class GraphModel(umbra.ui.models.GraphModel):
     """
     Defines a graph Model based on :class:`umbra.ui.models.GraphModel`
@@ -59,7 +60,8 @@ class GraphModel(umbra.ui.models.GraphModel):
 
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-        umbra.ui.models.GraphModel.__init__(self, parent, root_node, horizontal_headers, vertical_headers, default_node)
+        umbra.ui.models.GraphModel.__init__(
+            self, parent, root_node, horizontal_headers, vertical_headers, default_node)
 
     def data(self, index, role=Qt.DisplayRole):
         """
@@ -82,9 +84,9 @@ class GraphModel(umbra.ui.models.GraphModel):
                 value = node.roles.get(role)
                 if role == Qt.DecorationRole:
                     return sibl_gui.ui.common.get_icon(value,
-                                                    size=node.get("icon_size", "Default"),
-                                                    placeholder=node.get("icon_placeholder")) \
-                                                    if value is not None else QVariant()
+                                                       size=node.get("icon_size", "Default"),
+                                                       placeholder=node.get("icon_placeholder")) \
+                        if value is not None else QVariant()
                 else:
                     return value if value is not None else QVariant()
         else:
@@ -94,9 +96,9 @@ class GraphModel(umbra.ui.models.GraphModel):
                     value = attribute.roles.get(role)
                     if role == Qt.DecorationRole:
                         return sibl_gui.ui.common.get_icon(value,
-                                                    size=attribute.get("icon_size", "Default"),
-                                                    placeholder=attribute.get("icon_placeholder")) \
-                                                    if value is not None else QVariant()
+                                                           size=attribute.get("icon_size", "Default"),
+                                                           placeholder=attribute.get("icon_placeholder")) \
+                            if value is not None else QVariant()
                     else:
                         return value if value is not None else QVariant()
         return QVariant()

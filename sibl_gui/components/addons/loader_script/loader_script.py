@@ -47,6 +47,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script.ui")
 
+
 class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.loader_script.loader_script` Component Interface class.
@@ -127,7 +128,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -137,7 +138,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -161,7 +162,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -171,7 +172,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def ibl_sets_outliner(self):
@@ -195,7 +196,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -205,7 +206,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def templates_outliner(self):
@@ -229,7 +230,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -239,7 +240,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     @property
     def tcp_client_ui(self):
@@ -263,7 +264,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tcp_client_ui"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tcp_client_ui"))
 
     @tcp_client_ui.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -273,7 +274,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tcp_client_ui"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tcp_client_ui"))
 
     @property
     def io_directory(self):
@@ -297,7 +298,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "io_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "io_directory"))
 
     @io_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -307,7 +308,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "io_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "io_directory"))
 
     @property
     def binding_identifier_pattern(self):
@@ -331,7 +332,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "binding_identifier_pattern"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "binding_identifier_pattern"))
 
     @binding_identifier_pattern.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -341,7 +342,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "binding_identifier_pattern"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "binding_identifier_pattern"))
 
     @property
     def template_script_section(self):
@@ -365,7 +366,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_script_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_script_section"))
 
     @template_script_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -375,7 +376,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_script_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_script_section"))
 
     @property
     def template_ibl_set_attributes_section(self):
@@ -399,7 +400,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_ibl_set_attributes_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__,
+                                                         "template_ibl_set_attributes_section"))
 
     @template_ibl_set_attributes_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -409,7 +411,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_ibl_set_attributes_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "template_ibl_set_attributes_section"))
 
     @property
     def template_remote_connection_section(self):
@@ -433,7 +436,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_remote_connection_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_remote_connection_section"))
 
     @template_remote_connection_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -443,7 +446,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_remote_connection_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "template_remote_connection_section"))
 
     @property
     def override_keys(self):
@@ -470,10 +474,10 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
             assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("override_keys", value)
             for key, element in value.iteritems():
                 assert type(key) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-                "override_keys", key)
+                    "override_keys", key)
                 assert type(element) is foundations.parsers.AttributeCompound, \
-                "'{0}' attribute: '{1}' type is not 'foundations.parsers.AttributeCompound'!".format(
-                "override_keys", element)
+                    "'{0}' attribute: '{1}' type is not 'foundations.parsers.AttributeCompound'!".format(
+                        "override_keys", element)
         self.__override_keys = value
 
     @override_keys.deleter
@@ -484,7 +488,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "override_keys"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "override_keys"))
 
     @property
     def default_string_separator(self):
@@ -509,11 +513,11 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "default_string_separator", value)
+                "default_string_separator", value)
             assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
-            "default_string_separator", value)
+                "default_string_separator", value)
             assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
-            "default_string_separator", value)
+                "default_string_separator", value)
         self.__default_string_separator = value
 
     @default_string_separator.deleter
@@ -524,7 +528,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_string_separator"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_string_separator"))
 
     @property
     def unnamed_light_name(self):
@@ -549,7 +553,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "unnamed_light_name", value)
+                "unnamed_light_name", value)
         self.__unnamed_light_name = value
 
     @unnamed_light_name.deleter
@@ -560,7 +564,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamed_light_name"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "unnamed_light_name"))
 
     def activate(self, engine):
         """
@@ -581,8 +585,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         self.__tcp_client_ui = self.__engine.components_manager["addons.tcp_client_ui"]
 
         self.__io_directory = os.path.join(self.__engine.user_application_data_directory,
-                                        Constants.io_directory,
-                                        self.__io_directory)
+                                           Constants.io_directory,
+                                           self.__io_directory)
         not foundations.common.path_exists(self.__io_directory) and os.makedirs(self.__io_directory)
 
         self.activated = True
@@ -626,7 +630,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         self.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
         self.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
         self.__templates_outliner.view.selectionModel().selectionChanged.connect(
-        self.__templates_outliner_view_selectionModel__selectionChanged)
+            self.__templates_outliner_view_selectionModel__selectionChanged)
 
         self.initialized_ui = True
         return True
@@ -645,7 +649,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         self.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
         self.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
         self.__templates_outliner.view.selectionModel().selectionChanged.disconnect(
-        self.__templates_outliner_view_selectionModel__selectionChanged)
+            self.__templates_outliner_view_selectionModel__selectionChanged)
 
         self.initialized_ui = False
         return True
@@ -715,7 +719,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
             return
 
         LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name,
-                                                                    self.__template_remote_connection_section))
+                                                                          self.__template_remote_connection_section))
         template_sections_file_parser = foundations.parsers.SectionsFileParser(template.path)
         template_sections_file_parser.parse(raw_sections=(self.__template_script_section))
 
@@ -724,21 +728,25 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         LOGGER.debug("> {0}' section found.".format(self.__template_remote_connection_section))
         connection_type = foundations.parsers.get_attribute_compound("ConnectionType",
-        template_sections_file_parser.get_value("ConnectionType", self.__template_remote_connection_section))
+                                                                     template_sections_file_parser.get_value(
+                                                                         "ConnectionType",
+                                                                         self.__template_remote_connection_section))
         if connection_type.value == "Socket":
             LOGGER.debug("> Remote connection type: 'Socket'.")
             self.__tcp_client_ui.address = foundations.parsers.get_attribute_compound("DefaultAddress",
-            template_sections_file_parser.get_value("DefaultAddress",
-                                                self.__template_remote_connection_section)).value
+                                                                                      template_sections_file_parser.get_value(
+                                                                                          "DefaultAddress",
+                                                                                          self.__template_remote_connection_section)).value
             self.__tcp_client_ui.port = int(foundations.parsers.get_attribute_compound("DefaultPort",
-            template_sections_file_parser.get_value("DefaultPort",
-                                                self.__template_remote_connection_section)).value)
+                                                                                       template_sections_file_parser.get_value(
+                                                                                           "DefaultPort",
+                                                                                           self.__template_remote_connection_section)).value)
         elif connection_type.value == "Win32":
             LOGGER.debug("> Remote connection: 'Win32'.")
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.FileExistsError,
-                                            Exception)
+                                              foundations.exceptions.FileExistsError,
+                                              Exception)
     def output_loader_script_ui(self):
         """
         Outputs the Loader Script.
@@ -754,41 +762,45 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         selected_templates = self.__templates_outliner.get_selected_templates()
         if selected_templates and len(selected_templates) != 1:
             self.__engine.notifications_manager.warnify(
-            "{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__,
-                                                                    foundations.common.get_first_item(selected_templates).name))
+                "{0} | Multiple selected Templates, '{1}' will be used!".format(self.__class__.__name__,
+                                                                                foundations.common.get_first_item(
+                                                                                    selected_templates).name))
 
         template = foundations.common.get_first_item(selected_templates)
 
         if not template:
             raise foundations.exceptions.UserError(
-            "{0} | In order to output the Loader Script, you need to select a Template!".format(self.__class__.__name__))
+                "{0} | In order to output the Loader Script, you need to select a Template!".format(
+                    self.__class__.__name__))
 
         if not foundations.common.path_exists(template.path):
             raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(
-            self.__class__.__name__, template.name))
+                self.__class__.__name__, template.name))
 
         selected_ibl_sets = self.__ibl_sets_outliner.get_selected_ibl_sets()
         if selected_ibl_sets and len(selected_ibl_sets) != 1:
             self.__engine.notifications_manager.warnify(
-            "{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
-                                                                    foundations.common.get_first_item(selected_ibl_sets).name))
+                "{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__,
+                                                                               foundations.common.get_first_item(
+                                                                                   selected_ibl_sets).name))
 
         ibl_set = foundations.common.get_first_item(selected_ibl_sets)
         if not ibl_set:
             raise foundations.exceptions.UserError(
-            "{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__))
+                "{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(
+                    self.__class__.__name__))
 
         if not foundations.common.path_exists(ibl_set.path):
             raise foundations.exceptions.FileExistsError("{0} | '{1}' Ibl Set file doesn't exists!".format(
-            self.__class__.__name__, ibl_set.title))
+                self.__class__.__name__, ibl_set.title))
 
         if self.output_loader_script(template, ibl_set):
             self.__engine.notifications_manager.notify(
-            "{0} | '{1}' output done!".format(self.__class__.__name__, template.output_script))
+                "{0} | '{1}' output done!".format(self.__class__.__name__, template.output_script))
             return True
         else:
             raise Exception("{0} | Exception raised: '{1}' output failed!".format(self.__class__.__name__,
-            template.output_script))
+                                                                                  template.output_script))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def send_loader_script_to_software_ui(self):
@@ -809,7 +821,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         if not template:
             return False
 
-        loader_script_path = foundations.strings.get_normalized_path(os.path.join(self.__io_directory, template.output_script))
+        loader_script_path = foundations.strings.get_normalized_path(
+            os.path.join(self.__io_directory, template.output_script))
         if self.Convert_To_Posix_Paths_checkBox.isChecked():
             loader_script_path = foundations.strings.to_posix_path(loader_script_path)
         if self.send_loader_script_to_software(template, loader_script_path):
@@ -818,7 +831,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
             raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.DirectoryExistsError)
+                                              foundations.exceptions.DirectoryExistsError)
     def output_loader_script(self, template, ibl_set):
         """
         Outputs the Loader Script.
@@ -841,11 +854,12 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         if self.__engine.parameters.loader_scripts_output_directory:
             if foundations.common.path_exists(self.__engine.parameters.loader_scripts_output_directory):
-                loader_script = File(os.path.join(self.__engine.parameters.loader_scripts_output_directory, template.output_script))
+                loader_script = File(
+                    os.path.join(self.__engine.parameters.loader_scripts_output_directory, template.output_script))
             else:
                 raise foundations.exceptions.DirectoryExistsError(
-                "{0} | '{1}' loader Script output directory doesn't exists!".format(
-                self.__class__.__name__, self.__engine.parameters.loader_scripts_output_directory))
+                    "{0} | '{1}' loader Script output directory doesn't exists!".format(
+                        self.__class__.__name__, self.__engine.parameters.loader_scripts_output_directory))
         else:
             loader_script = File(os.path.join(self.__io_directory, template.output_script))
 
@@ -857,8 +871,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
             return loader_script.path
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.exceptions.SocketConnectionError,
-                                            sibl_gui.exceptions.Win32OLEServerConnectionError)
+                                              sibl_gui.exceptions.SocketConnectionError,
+                                              sibl_gui.exceptions.Win32OLEServerConnectionError)
     def send_loader_script_to_software(self, template, loader_script_path):
         """
         Sends the Loader Script to associated 3d package.
@@ -875,21 +889,26 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         template_sections_file_parser = foundations.parsers.SectionsFileParser(template.path)
         template_sections_file_parser.parse(raw_sections=(self.__template_script_section))
         connection_type = foundations.parsers.get_attribute_compound("ConnectionType",
-        template_sections_file_parser.get_value("ConnectionType", self.__template_remote_connection_section))
+                                                                     template_sections_file_parser.get_value(
+                                                                         "ConnectionType",
+                                                                         self.__template_remote_connection_section))
 
         if connection_type.value == "Socket":
             try:
                 connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 connection.settimeout(2.5)
-                connection.connect((foundations.strings.to_string(self.__tcp_client_ui.address), self.__tcp_client_ui.port))
+                connection.connect(
+                    (foundations.strings.to_string(self.__tcp_client_ui.address), self.__tcp_client_ui.port))
                 socket_command = foundations.parsers.get_attribute_compound("ExecutionCommand",
-                                template_sections_file_parser.get_value("ExecutionCommand",
-                                self.__template_remote_connection_section)).value.replace("$loader_script_path",
-                                                                                        loader_script_path)
+                                                                            template_sections_file_parser.get_value(
+                                                                                "ExecutionCommand",
+                                                                                self.__template_remote_connection_section)).value.replace(
+                    "$loader_script_path",
+                    loader_script_path)
                 LOGGER.debug("> Current socket command: '%s'.", socket_command)
                 connection.send(socket_command)
                 self.__engine.notifications_manager.notify(
-                "{0} | Socket connection command dispatched!".format(self.__class__.__name__))
+                    "{0} | Socket connection command dispatched!".format(self.__class__.__name__))
                 dataBack = connection.recv(4096)
                 LOGGER.debug("> Received from connection: '{0}'.".format(dataBack))
                 connection.close()
@@ -898,28 +917,33 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
                 LOGGER.info("{0} | Closing remote connection on timeout!".format(self.__class__.__name__))
             except Exception as error:
                 raise sibl_gui.exceptions.SocketConnectionError(
-                "{0} | Socket connection error: '{1}'!".format(self.__class__.__name__,
-                                                            foundations.strings.to_string(error)))
+                    "{0} | Socket connection error: '{1}'!".format(self.__class__.__name__,
+                                                                   foundations.strings.to_string(error)))
         elif connection_type.value == "Win32":
             if platform.system() == "Windows" or platform.system() == "Microsoft":
                 try:
                     import win32com.client
-                    connection = win32com.client.Dispatch(foundations.parsers.get_attribute_compound("TargetApplication",
-                                template_sections_file_parser.get_value("TargetApplication",
-                                                                    self.__template_remote_connection_section)).value)
+
+                    connection = win32com.client.Dispatch(
+                        foundations.parsers.get_attribute_compound("TargetApplication",
+                                                                   template_sections_file_parser.get_value(
+                                                                       "TargetApplication",
+                                                                       self.__template_remote_connection_section)).value)
                     connection._FlagAsMethod(self.__win32_execution_method)
                     connection_command = foundations.parsers.get_attribute_compound("ExecutionCommand",
-                                        template_sections_file_parser.get_value("ExecutionCommand",
-                                        self.__template_remote_connection_section)).value.replace("$loader_script_path",
-                                                                                                loader_script_path)
+                                                                                    template_sections_file_parser.get_value(
+                                                                                        "ExecutionCommand",
+                                                                                        self.__template_remote_connection_section)).value.replace(
+                        "$loader_script_path",
+                        loader_script_path)
                     LOGGER.debug("> Current connection command: '%s'.", connection_command)
                     getattr(connection, self.__win32_execution_method)(connection_command)
                     self.__engine.notifications_manager.notify(
-                    "{0} | Win32 connection command dispatched!".format(self.__class__.__name__))
+                        "{0} | Win32 connection command dispatched!".format(self.__class__.__name__))
                 except Exception as error:
                     raise sibl_gui.exceptions.Win32OLEServerConnectionError(
-                    "{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__,
-                                                                            foundations.strings.to_string(error)))
+                        "{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__,
+                                                                                 foundations.strings.to_string(error)))
         return True
 
     def get_default_override_keys(self):
@@ -946,28 +970,31 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         if ibl_set:
             LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", ibl_set.path))
             override_keys["Ibl Set|Path"] = ibl_set.path and foundations.parsers.get_attribute_compound("Ibl Set|Path",
-                                                            foundations.strings.get_normalized_path(ibl_set.path))
+                                                                                                        foundations.strings.get_normalized_path(
+                                                                                                            ibl_set.path))
 
             LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Background|BGfile",
-                                                                                ibl_set.background_image))
-            override_keys["Background|BGfile"] = ibl_set.background_image and foundations.parsers.get_attribute_compound(
-                                                                            "Background|BGfile",
-                                                                            foundations.strings.get_normalized_path(
-                                                                            ibl_set.background_image))
+                                                                                 ibl_set.background_image))
+            override_keys[
+                "Background|BGfile"] = ibl_set.background_image and foundations.parsers.get_attribute_compound(
+                "Background|BGfile",
+                foundations.strings.get_normalized_path(
+                    ibl_set.background_image))
 
             LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Enviroment|EVfile",
-                                                                                ibl_set.lighting_image))
+                                                                                 ibl_set.lighting_image))
             override_keys["Enviroment|EVfile"] = ibl_set.lighting_image and foundations.parsers.get_attribute_compound(
-                                                                        "Enviroment|EVfile",
-                                                                        foundations.strings.get_normalized_path(
-                                                                        ibl_set.lighting_image))
+                "Enviroment|EVfile",
+                foundations.strings.get_normalized_path(
+                    ibl_set.lighting_image))
 
             LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Reflection|REFfile",
-                                                                        ibl_set.reflection_image))
-            override_keys["Reflection|REFfile"] = ibl_set.reflection_image and foundations.parsers.get_attribute_compound(
-                                                                            "Reflection|REFfile",
-                                                                            foundations.strings.get_normalized_path(
-                                                                            ibl_set.reflection_image))
+                                                                                 ibl_set.reflection_image))
+            override_keys[
+                "Reflection|REFfile"] = ibl_set.reflection_image and foundations.parsers.get_attribute_compound(
+                "Reflection|REFfile",
+                foundations.strings.get_normalized_path(
+                    ibl_set.reflection_image))
         return override_keys
 
     def get_loader_script(self, template, ibl_set, override_keys):
@@ -990,14 +1017,15 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         template_sections = dict.copy(template_sections_file_parser.sections)
 
         for attribute, value in dict.copy(template_sections[self.__template_ibl_set_attributes_section]).iteritems():
-            template_sections[self.__template_ibl_set_attributes_section][foundations.namespace.remove_namespace(attribute,
-                                                                                                root_only=True)] = value
+            template_sections[self.__template_ibl_set_attributes_section][
+                foundations.namespace.remove_namespace(attribute,
+                                                       root_only=True)] = value
             del template_sections[self.__template_ibl_set_attributes_section][attribute]
 
         LOGGER.debug("> Binding Templates file attributes.")
         bound_attributes = dict(((attribute, foundations.parsers.get_attribute_compound(attribute, value))
-                            for section in template_sections if section not in (self.__template_script_section)
-                            for attribute, value in template_sections[section].iteritems()))
+                                 for section in template_sections if section not in (self.__template_script_section)
+                                 for attribute, value in template_sections[section].iteritems()))
 
         LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(ibl_set))
         ibl_set_sections_file_parser = foundations.parsers.SectionsFileParser(ibl_set)
@@ -1006,8 +1034,8 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         LOGGER.debug("> Flattening Ibl Set file attributes.")
         flattened_ibl_attributes = dict(((attribute, foundations.parsers.get_attribute_compound(attribute, value))
-                                for section in ibl_set_sections
-                                for attribute, value in ibl_set_sections[section].iteritems()))
+                                         for section in ibl_set_sections
+                                         for attribute, value in ibl_set_sections[section].iteritems()))
 
         for attribute in flattened_ibl_attributes:
             if attribute in bound_attributes:
@@ -1029,7 +1057,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
                     dynamic_lights.append(ibl_set_sections_file_parser.get_value("LIGHTv", section))
 
             LOGGER.debug("> Adding '{0}' custom attribute with value: '{1}'.".format("Lights|DynamicLights",
-                                                                                    ", ".join(dynamic_lights)))
+                                                                                     ", ".join(dynamic_lights)))
             bound_attributes["Lights|DynamicLights"].value = self.__default_string_separator.join(dynamic_lights)
 
         LOGGER.debug("> Updating attributes with override keys.")
@@ -1039,7 +1067,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         LOGGER.debug("> Updating Loader Script content.")
         loader_script = template_sections_file_parser.sections[
-                        self.__template_script_section][template_sections_file_parser.raw_section_content_identifier]
+            self.__template_script_section][template_sections_file_parser.raw_section_content_identifier]
 
         bound_loader_script = []
         for line in loader_script:
@@ -1051,7 +1079,7 @@ class LoaderScript(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
                             continue
 
                         LOGGER.debug("> Updating Loader Script parameter '{0}' with value: '{1}'.".format(parameter,
-                                                                                                        attribute.value))
+                                                                                                          attribute.value))
                         line = line.replace(parameter, attribute.value if attribute.value else "-1")
             bound_loader_script.append(line)
         return bound_loader_script

@@ -38,6 +38,7 @@ LOGGER = foundations.verbose.install_logger()
 
 UID = "97DD5A8BEA1E9CA5F849754730C4EEB3"
 
+
 def apply():
     """
     Triggers the patch execution.
@@ -47,16 +48,17 @@ def apply():
     """
 
     umbra.ui.widgets.message_box.message_box("Information",
-    "Message",
-    "Hello!\n\nUpon startup and from now on, sIBL_GUI will attempt to connect to \
-https://www.crittercism.com/ to report unhandled exceptions whenever they occur!\n\nThis message will only display once!")
+                                             "Message",
+                                             "Hello!\n\nUpon startup and from now on, sIBL_GUI will attempt to connect to \
+                                         https://www.crittercism.com/ to report unhandled exceptions whenever they occur!\n\nThis message will only display once!")
 
     default_script_editor_directory = os.path.join(RuntimeGlobals.user_application_data_directory,
-                                                        Constants.io_directory,
-                                                        "script_editor")
+                                                   Constants.io_directory,
+                                                   "script_editor")
     default_script_editor_file = os.path.join(default_script_editor_directory, "default_script.py")
 
     if foundations.common.path_exists(default_script_editor_file):
-        LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, default_script_editor_file))
+        LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(
+            __name__, default_script_editor_file))
         os.remove(default_script_editor_file)
     return True

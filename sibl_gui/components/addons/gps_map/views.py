@@ -33,6 +33,7 @@ __all__ = ["LOGGER", "Map_QWebView"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class Map_QWebView(QWebView):
     """
     | Defines a `QWebView <http://doc.qt.nokia.com/qwebview.html>`_ subclass used for the GPS map.
@@ -80,11 +81,11 @@ class Map_QWebView(QWebView):
 
         latitude, longitude = coordinates
         self.__evaluate_javascript(
-        "addMarker(new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude,
-                                                                                        longitude,
-                                                                                        title,
-                                                                                        icon,
-                                                                                        content))
+            "addMarker(new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude,
+                                                                                             longitude,
+                                                                                             title,
+                                                                                             icon,
+                                                                                             content))
         return True
 
     def remove_markers(self):

@@ -19,6 +19,7 @@ from __future__ import unicode_literals
 import os
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     from ordereddict import OrderedDict
 else:
@@ -58,6 +59,7 @@ __all__ = ["LOGGER", "COMPONENT_UI_FILE", "LoaderScriptOptions"]
 LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script_Options.ui")
+
 
 class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -135,7 +137,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -145,7 +147,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -169,7 +171,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -179,7 +181,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def templates_outliner(self):
@@ -203,7 +205,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -213,7 +215,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     @property
     def loader_script(self):
@@ -237,7 +239,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loader_script"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "loader_script"))
 
     @loader_script.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -247,7 +249,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loader_script"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "loader_script"))
 
     @property
     def views(self):
@@ -271,7 +273,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
 
     @views.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -281,7 +283,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
 
     @property
     def common_view(self):
@@ -305,7 +307,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "common_view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "common_view"))
 
     @common_view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -315,7 +317,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def additional_view(self):
@@ -339,7 +341,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "additional_view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "additional_view"))
 
     @additional_view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -349,7 +351,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def namespace_splitter(self):
@@ -374,11 +376,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "namespace_splitter", value)
+                "namespace_splitter", value)
             assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
-            "namespace_splitter", value)
+                "namespace_splitter", value)
             assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
-            "namespace_splitter", value)
+                "namespace_splitter", value)
         self.__namespace_splitter = value
 
     @namespace_splitter.deleter
@@ -389,7 +391,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "namespace_splitter"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "namespace_splitter"))
 
     @property
     def templates_settings_directory(self):
@@ -413,7 +415,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_settings_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_settings_directory"))
 
     @templates_settings_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -423,7 +425,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_settings_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_settings_directory"))
 
     @property
     def template_settings_file(self):
@@ -447,7 +449,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_settings_file"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_settings_file"))
 
     @template_settings_file.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -457,7 +459,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_settings_file"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_settings_file"))
 
     @property
     def template_common_attributes_section(self):
@@ -481,7 +483,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_common_attributes_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_common_attributes_section"))
 
     @template_common_attributes_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -491,7 +493,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_common_attributes_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "template_common_attributes_section"))
 
     @property
     def template_additional_attributes_section(self):
@@ -515,7 +518,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_additional_attributes_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__,
+                                                         "template_additional_attributes_section"))
 
     @template_additional_attributes_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -525,8 +529,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(
-        self.__class__.__name__, "template_additional_attributes_section"))
+            "{0} | '{1}' attribute is not deletable!".format(
+                self.__class__.__name__, "template_additional_attributes_section"))
 
     @property
     def template_script_section(self):
@@ -550,7 +554,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_script_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "template_script_section"))
 
     @template_script_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -560,7 +564,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_script_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "template_script_section"))
 
     @property
     def options_toolboxes_headers(self):
@@ -584,7 +588,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "options_toolboxes_headers"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "options_toolboxes_headers"))
 
     @options_toolboxes_headers.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -594,7 +598,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "options_toolboxes_headers"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "options_toolboxes_headers"))
 
     @property
     def ui_light_gray_color(self):
@@ -618,7 +622,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_light_gray_color"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_light_gray_color"))
 
     @ui_light_gray_color.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -628,7 +632,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_light_gray_color"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_light_gray_color"))
 
     @property
     def ui_dark_gray_color(self):
@@ -652,7 +656,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_dark_gray_color"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_dark_gray_color"))
 
     @ui_dark_gray_color.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -662,7 +666,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_dark_gray_color"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_dark_gray_color"))
 
     @property
     def enum_splitter(self):
@@ -687,10 +691,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "enum_splitter", value)
+                "enum_splitter", value)
             assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enum_splitter", value)
             assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
-            "enum_splitter", value)
+                "enum_splitter", value)
         self.__enum_splitter = value
 
     @enum_splitter.deleter
@@ -701,7 +705,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "enum_splitter"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "enum_splitter"))
 
     def activate(self, engine):
         """
@@ -721,8 +725,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__loader_script = self.__engine.components_manager["addons.loader_script"]
 
         self.__templates_settings_directory = os.path.join(self.__engine.user_application_data_directory,
-                                                        Constants.settings_directory,
-                                                        self.__templates_settings_directory)
+                                                           Constants.settings_directory,
+                                                           self.__templates_settings_directory)
         not foundations.common.path_exists(self.__templates_settings_directory) and \
         os.makedirs(self.__templates_settings_directory)
         self.__template_settings_file = None
@@ -770,7 +774,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__common_view = self.Common_Attributes_tableWidget
 
         self.Additional_Attributes_tableWidget.setParent(None)
-        self.Additional_Attributes_tableWidget = TemplatesAttributes_QTableWidget(self, message="No Attributes to view!")
+        self.Additional_Attributes_tableWidget = TemplatesAttributes_QTableWidget(
+            self, message="No Attributes to view!")
         self.Additional_Attributes_tableWidget.setObjectName("Additional_Attributes_tableWidget")
         self.Additional_Attributes_page_gridLayout.addWidget(self.Additional_Attributes_tableWidget, 0, 0)
         self.__additional_view = self.Additional_Attributes_tableWidget
@@ -779,7 +784,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         # Signals / Slots.
         self.__templates_outliner.view.selectionModel().selectionChanged.connect(
-        self.__templates_outliner_view_selectionModel__selectionChanged)
+            self.__templates_outliner_view_selectionModel__selectionChanged)
 
         self.initialized_ui = True
         return True
@@ -800,7 +805,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         # Signals / Slots.
         self.__templates_outliner.view.selectionModel().selectionChanged.disconnect(
-        self.__templates_outliner_view_selectionModel__selectionChanged)
+            self.__templates_outliner_view_selectionModel__selectionChanged)
 
         self.initialized_ui = False
         return True
@@ -878,11 +883,12 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
             LOGGER.debug("> Attribute type: '{0}'.".format(attribute_compound.type))
             if attribute_compound.type == "Boolean":
-                state = True if int(overrides_value if overrides_value is not None else attribute_compound.value) else False
+                state = True if int(
+                    overrides_value if overrides_value is not None else attribute_compound.value) else False
                 item = Variable_QPushButton(self,
-                        state,
-                        (self.__ui_light_gray_color, self.__ui_dark_gray_color),
-                        ("True", "False"))
+                                            state,
+                                            (self.__ui_light_gray_color, self.__ui_dark_gray_color),
+                                            ("True", "False"))
                 item.setObjectName("Spread_Sheet_pushButton")
                 item.setChecked(state)
 
@@ -898,7 +904,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 item.valueChanged.connect(self.__view__valueChanged)
             elif attribute_compound.type == "Enum":
                 item = QComboBox()
-                combo_box_items = [enumItem.strip() for enumItem in attribute_compound.value.split(self.__enum_splitter)]
+                combo_box_items = [enumItem.strip()
+                                   for enumItem in attribute_compound.value.split(self.__enum_splitter)]
                 item.addItems(combo_box_items)
                 if overrides_value in combo_box_items:
                     item.setCurrentIndex(combo_box_items.index(overrides_value))
@@ -951,11 +958,12 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Attempting to read '{0}' Template settings file.".format(template.name))
         common_attributes_overrides = {}
         additional_attributes_overrides = {}
-        template_settings_directory = os.path.join(self.__templates_settings_directory, template.software, template.name)
+        template_settings_directory = os.path.join(
+            self.__templates_settings_directory, template.software, template.name)
         current_template_settings_directory = os.path.join(template_settings_directory, template.release)
         self.__template_settings_file = os.path.join(template_settings_directory,
-                                        template.release,
-                                        os.path.basename(template.path))
+                                                     template.release,
+                                                     os.path.basename(template.path))
 
         not foundations.common.path_exists(current_template_settings_directory) and \
         foundations.io.set_directory(current_template_settings_directory)
@@ -965,33 +973,36 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             template_settings_file = self.__template_settings_file
         else:
             for version in sorted((
-                            path for path in os.listdir(template_settings_directory)
-                            if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(foundations.strings.get_version_rank(x))):
+                                          path for path in os.listdir(template_settings_directory)
+                                          if re.search(r"\d\.\d\.\d", path)), reverse=True,
+                                  key=lambda x: (foundations.strings.get_version_rank(x))):
                 path = os.path.join(template_settings_directory, version, os.path.basename(template.path))
                 if foundations.common.path_exists(path):
                     template_settings_file = path
                     break
 
         if template_settings_file:
-            LOGGER.debug("> Accessing '{0}' Template settings file: '{1}'.".format(template.name, template_settings_file))
+            LOGGER.debug("> Accessing '{0}' Template settings file: '{1}'.".format(
+                template.name, template_settings_file))
             template_settings_sections_file_parser = SectionsFileParser(template_settings_file)
             template_settings_sections_file_parser.parse()
             common_attributes_overrides.update(
-            template_settings_sections_file_parser.sections[self.__template_common_attributes_section])
+                template_settings_sections_file_parser.sections[self.__template_common_attributes_section])
             additional_attributes_overrides.update(
-            template_settings_sections_file_parser.sections[self.__template_additional_attributes_section])
+                template_settings_sections_file_parser.sections[self.__template_additional_attributes_section])
         else:
             LOGGER.debug("> No Template settings file found for : '{0}'.".format(template.name))
 
         LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(
-        template.name, self.__template_common_attributes_section, self.__template_additional_attributes_section))
+            template.name, self.__template_common_attributes_section, self.__template_additional_attributes_section))
         template_sections_file_parser = SectionsFileParser(template.path)
         template_sections_file_parser.parse(raw_sections=(self.__template_script_section))
 
         self.__view_set_ui(template_sections_file_parser.sections.get(self.__template_common_attributes_section, {}),
-                                self.__common_view, common_attributes_overrides)
-        self.__view_set_ui(template_sections_file_parser.sections.get(self.__template_additional_attributes_section, {}),
-                                self.__additional_view, additional_attributes_overrides)
+                           self.__common_view, common_attributes_overrides)
+        self.__view_set_ui(
+            template_sections_file_parser.sections.get(self.__template_additional_attributes_section, {}),
+            self.__additional_view, additional_attributes_overrides)
 
     def __view__valueChanged(self, *args):
         """
@@ -1005,9 +1016,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         template_settings_sections_file_parser = SectionsFileParser(self.__template_settings_file)
         template_settings_sections_file_parser.sections = OrderedDict()
         for section, view in OrderedDict([(self.__template_common_attributes_section,
-                                                self.Common_Attributes_tableWidget),
-                                                (self.__template_additional_attributes_section,
-                                                self.Additional_Attributes_tableWidget)]).iteritems():
+                                           self.Common_Attributes_tableWidget),
+                                          (self.__template_additional_attributes_section,
+                                           self.Additional_Attributes_tableWidget)]).iteritems():
             template_settings_sections_file_parser.sections[section] = OrderedDict()
             for row in range(view.rowCount()):
                 widget = view.cellWidget(row, 0)
@@ -1020,7 +1031,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 else:
                     value = foundations.strings.to_string(widget.text())
                 template_settings_sections_file_parser.sections[
-                section][foundations.namespace.remove_namespace(widget.data.name)] = value
+                    section][foundations.namespace.remove_namespace(widget.data.name)] = value
         template_settings_sections_file_parser.write()
 
     def __templates_outliner_view_selectionModel__selectionChanged(self, selected_items, deselected_items):

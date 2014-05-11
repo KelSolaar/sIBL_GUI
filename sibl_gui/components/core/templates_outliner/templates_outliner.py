@@ -20,6 +20,7 @@ import os
 import platform
 import re
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     from ordereddict import OrderedDict
 else:
@@ -69,6 +70,7 @@ __all__ = ["LOGGER", "COMPONENT_UI_FILE", "TemplatesOutliner"]
 LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Outliner.ui")
+
 
 class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -120,8 +122,8 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__model = None
         self.__view = None
         self.__headers = OrderedDict([("templates", "name"),
-                                        ("Release", "release"),
-                                        ("Software Version", "version")])
+                                      ("Release", "release"),
+                                      ("Software Version", "version")])
 
         self.__extension = "sIBLT"
 
@@ -132,7 +134,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__tree_view_inner_margins = QMargins(0, 0, 0, 12)
 
         self.__templates_informations_default_text = \
-                    "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
+            "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
         self.__templates_informations_text = """
                                             <h4><center>{0}</center></h4>
                                             <p>
@@ -180,7 +182,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -190,7 +192,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_software_affixe(self):
@@ -214,7 +216,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_software_affixe"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_software_affixe"))
 
     @ui_software_affixe.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -224,7 +226,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_software_affixe"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_software_affixe"))
 
     @property
     def ui_unknown_software_image(self):
@@ -248,7 +250,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_unknown_software_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_unknown_software_image"))
 
     @ui_unknown_software_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -258,7 +260,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_unknown_software_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_unknown_software_image"))
 
     @property
     def dock_area(self):
@@ -282,7 +284,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -292,7 +294,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -316,7 +318,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -326,7 +328,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -350,7 +352,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -360,7 +362,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -384,7 +386,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -394,7 +396,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def settings_separator(self):
@@ -418,7 +420,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_separator"))
 
     @settings_separator.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -428,7 +430,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_separator"))
 
     @property
     def script_editor(self):
@@ -452,7 +454,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
 
     @script_editor.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -462,7 +464,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
 
     @property
     def database(self):
@@ -486,7 +488,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database"))
 
     @database.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -496,7 +498,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database"))
 
     @property
     def model(self):
@@ -520,7 +522,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
     @model.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -530,7 +532,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
     @property
     def view(self):
@@ -554,7 +556,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
     @view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -564,7 +566,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def headers(self):
@@ -588,7 +590,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
 
     @headers.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -598,7 +600,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
     @property
     def extension(self):
@@ -622,7 +624,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
     @extension.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -632,7 +634,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
     @property
     def default_collections(self):
@@ -656,7 +658,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default_collections"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "default_collections"))
 
     @default_collections.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -666,7 +668,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_collections"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "default_collections"))
 
     @property
     def factory_collection(self):
@@ -690,7 +692,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factory_collection"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factory_collection"))
 
     @factory_collection.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -700,7 +702,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factory_collection"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factory_collection"))
 
     @property
     def user_collection(self):
@@ -724,7 +726,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "user_collection"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "user_collection"))
 
     @user_collection.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -734,7 +736,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "user_collection"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "user_collection"))
 
     @property
     def templates_informations_default_text(self):
@@ -758,7 +760,8 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_informations_default_text"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__,
+                                                         "templates_informations_default_text"))
 
     @templates_informations_default_text.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -768,7 +771,8 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_informations_default_text"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__,
+                                                             "templates_informations_default_text"))
 
     @property
     def tree_view_inner_margins(self):
@@ -792,7 +796,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_inner_margins"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_inner_margins"))
 
     @tree_view_inner_margins.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -802,7 +806,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_inner_margins"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_inner_margins"))
 
     @property
     def templates_informations_text(self):
@@ -826,7 +830,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_informations_text"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_informations_text"))
 
     @templates_informations_text.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -836,7 +840,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_informations_text"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_informations_text"))
 
     def activate(self, engine):
         """
@@ -860,10 +864,10 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         RuntimeGlobals.templates_factory_directory = umbra.ui.common.get_resource_path(Constants.templates_directory)
         RuntimeGlobals.templates_user_directory = os.path.join(self.__engine.user_application_data_directory,
-                                                            Constants.templates_directory)
+                                                               Constants.templates_directory)
 
-        self.__default_collections = {self.__factory_collection : RuntimeGlobals.templates_factory_directory,
-                                    self.__user_collection : RuntimeGlobals.templates_user_directory}
+        self.__default_collections = {self.__factory_collection: RuntimeGlobals.templates_factory_directory,
+                                      self.__user_collection: RuntimeGlobals.templates_user_directory}
 
         self.activated = True
         return True
@@ -875,7 +879,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+            "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
     def initialize_ui(self):
         """
@@ -889,15 +893,15 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         self.__engine.parameters.database_read_only and \
         LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(
-        self.__class__.__name__, "database_read_only"))
+            self.__class__.__name__, "database_read_only"))
         self.__model = TemplatesModel(self, horizontal_headers=self.__headers)
         self.set_templates()
 
         self.Templates_Outliner_treeView.setParent(None)
         self.Templates_Outliner_treeView = Templates_QTreeView(self,
-                                                            self.__model,
-                                                            self.__engine.parameters.database_read_only,
-                                                            "No Template to view!")
+                                                               self.__model,
+                                                               self.__engine.parameters.database_read_only,
+                                                               "No Template to view!")
         self.Templates_Outliner_treeView.setObjectName("Templates_Outliner_treeView")
         self.Templates_Outliner_gridLayout.setContentsMargins(self.__tree_view_inner_margins)
         self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
@@ -913,14 +917,16 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.__engine.images_caches.QIcon.content_added.connect(self.__view.viewport().update)
         self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-        self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
+        self.Template_Informations_textBrowser.anchorClicked.connect(
+            self.__Template_Informations_textBrowser__anchorClicked)
         self.refresh_nodes.connect(self.__model__refresh_nodes)
         if not self.__engine.parameters.database_read_only:
-            self.__engine.file_system_events_manager.file_changed.connect(self.__engine_file_system_events_manager__file_changed)
+            self.__engine.file_system_events_manager.file_changed.connect(
+                self.__engine_file_system_events_manager__file_changed)
             self.__engine.content_dropped.connect(self.__engine__content_dropped)
         else:
             LOGGER.info("{0} | Templates file system events ignored by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                self.__class__.__name__, "database_read_only"))
 
         self.initialized_ui = True
         return True
@@ -932,7 +938,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
     def add_widget(self):
         """
@@ -955,7 +961,7 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
     def on_startup(self):
         """
@@ -974,26 +980,26 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             # Wizard if Templates table is empty.
             if not self.get_templates():
                 if message_box.message_box("Question", "Question",
-                "The Database has no Templates, would you like to add some?",
-                buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                           "The Database has no Templates, would you like to add some?",
+                                           buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
                     directory = umbra.ui.common.store_last_browsed_path((QFileDialog.getExistingDirectory(self,
-                                                                                         "Add Content:",
-                                                                                        RuntimeGlobals.last_browsed_path)))
+                                                                                                          "Add Content:",
+                                                                                                          RuntimeGlobals.last_browsed_path)))
                     if directory:
                         if not self.add_directory(directory):
                             raise Exception(
-                            "{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-                            self.__class__.__name__, directory))
+                                "{0} | Exception raised while adding '{1}' directory content to the Database!".format(
+                                    self.__class__.__name__, directory))
 
             # Templates table integrity checking.
             erroneous_templates = sibl_gui.components.core.database.operations.check_templates_table_integrity()
             for template, exceptions in erroneous_templates.iteritems():
                 if sibl_gui.components.core.database.exceptions.MissingTemplateFileError in exceptions:
                     choice = message_box.message_box("Question", "Error",
-                    "{0} | '{1}' Template file is missing, would you like to update it's location?".format(
-                    self.__class__.__name__, template.name),
-                    QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
-                    custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
+                                                     "{0} | '{1}' Template file is missing, would you like to update it's location?".format(
+                                                         self.__class__.__name__, template.name),
+                                                     QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No,
+                                                     custom_buttons=((QString("No To All"), QMessageBox.RejectRole),))
 
                     if choice == 0:
                         break
@@ -1005,33 +1011,38 @@ class TemplatesOutliner(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
                 for exception in exceptions:
                     self.__engine.notifications_manager.warnify(
-                    "{0} | '{1}' {2}".format(self.__class__.__name__,
-                                    template.name,
-                                    sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[exception]))
+                        "{0} | '{1}' {2}".format(self.__class__.__name__,
+                                                 template.name,
+                                                 sibl_gui.components.core.database.operations.DATABASE_EXCEPTIONS[
+                                                     exception]))
         else:
             LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated\
 by '{1}' command line parameter value!".format(self.__class__.__name__, "database_read_only"))
 
         active_collections_identities = foundations.strings.to_string(self.__settings.get_key(
-        self.__settings_section, "active_collections").toString())
+            self.__settings_section, "active_collections").toString())
         LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
-                                                                                active_collections_identities))
+                                                                                  active_collections_identities))
         self.__view.model_selection["collections"] = active_collections_identities and [int(identity)
-                                                                        for identity in active_collections_identities.split(
-                                                                        self.__settings_separator)] or []
+                                                                                        for identity in
+                                                                                        active_collections_identities.split(
+                                                                                            self.__settings_separator)] or []
 
         active_softwares = foundations.strings.to_string(
-        self.__settings.get_key(self.__settings_section, "active_softwares").toString())
-        LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, active_softwares))
-        self.__view.model_selection["Softwares"] = active_softwares and active_softwares.split(self.__settings_separator) or []
+            self.__settings.get_key(self.__settings_section, "active_softwares").toString())
+        LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(
+            self.__class__.__name__, active_softwares))
+        self.__view.model_selection["Softwares"] = active_softwares and active_softwares.split(
+            self.__settings_separator) or []
 
         active_templates_identities = foundations.strings.to_string(
-        self.__settings.get_key(self.__settings_section, "activeTemplates").toString())
+            self.__settings.get_key(self.__settings_section, "activeTemplates").toString())
         LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__,
-                                                                                        active_templates_identities))
+                                                                                       active_templates_identities))
         self.__view.model_selection["templates"] = active_templates_identities and [int(identity)
-                                                                        for identity in active_templates_identities.split(
-                                                                        self.__settings_separator)] or []
+                                                                                    for identity in
+                                                                                    active_templates_identities.split(
+                                                                                        self.__settings_separator)] or []
 
         self.__view.restore_model_selection()
         return True
@@ -1050,15 +1061,17 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         self.__settings.set_key(self.__settings_section,
                                 "activeTemplates",
                                 self.__settings_separator.join(foundations.strings.to_string(identity)
-                                                            for identity in self.__view.model_selection["templates"]))
+                                                               for identity in
+                                                               self.__view.model_selection["templates"]))
         self.__settings.set_key(self.__settings_section,
                                 "active_collections",
                                 self.__settings_separator.join(foundations.strings.to_string(identity)
-                                                            for identity in self.__view.model_selection["collections"]))
+                                                               for identity in
+                                                               self.__view.model_selection["collections"]))
         self.__settings.set_key(self.__settings_section,
                                 "active_softwares",
                                 self.__settings_separator.join(foundations.strings.to_string(name)
-                                                            for name in self.__view.model_selection["Softwares"]))
+                                                               for name in self.__view.model_selection["Softwares"]))
         return True
 
     def __model__refresh_nodes(self):
@@ -1075,22 +1088,22 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         if not self.__engine.parameters.database_read_only:
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.templates_outliner|Add Template ...",
-            slot=self.__view_add_template_action__triggered))
+                "Actions|Umbra|Components|core.templates_outliner|Add Template ...",
+                slot=self.__view_add_template_action__triggered))
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.templates_outliner|Remove Template(s) ...",
-            slot=self.__view_remove_templates_action__triggered))
+                "Actions|Umbra|Components|core.templates_outliner|Remove Template(s) ...",
+                slot=self.__view_remove_templates_action__triggered))
 
             separator_action = QAction(self.__view)
             separator_action.setSeparator(True)
             self.__view.addAction(separator_action)
 
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.templates_outliner|Import Default Templates",
-            slot=self.__view_import_default_templates_action__triggered))
+                "Actions|Umbra|Components|core.templates_outliner|Import Default Templates",
+                slot=self.__view_import_default_templates_action__triggered))
             self.__view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.templates_outliner|Filter Templates Versions",
-            slot=self.__view_filter_templates_versions_action__triggered))
+                "Actions|Umbra|Components|core.templates_outliner|Filter Templates Versions",
+                slot=self.__view_filter_templates_versions_action__triggered))
 
             separator_action = QAction(self.__view)
             separator_action.setSeparator(True)
@@ -1100,8 +1113,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 by '{1}' command line parameter value!".format(self.__class__.__name__, "database_read_only"))
 
         self.__view.addAction(self.__engine.actions_manager.register_action(
-        "Actions|Umbra|Components|core.templates_outliner|Display Help File(s) ...",
-        slot=self.__view_display_help_files_action__triggered))
+            "Actions|Umbra|Components|core.templates_outliner|Display Help File(s) ...",
+            slot=self.__view_display_help_files_action__triggered))
 
         separator_action = QAction(self.__view)
         separator_action.setSeparator(True)
@@ -1186,13 +1199,13 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             for template in selected_templates:
                 help_file = template.help_file or umbra.ui.common.get_resource_path(UiConstants.invalid_link_html_file)
                 content.append(self.__templates_informations_text.format(template.title,
-                                                                    template.date,
-                                                                    template.author,
-                                                                    template.email,
-                                                                    template.url,
-                                                                    template.output_script,
-                                                                    template.comment,
-                                                                    QUrl.fromLocalFile(help_file).toString()))
+                                                                         template.date,
+                                                                         template.author,
+                                                                         template.email,
+                                                                         template.url,
+                                                                         template.output_script,
+                                                                         template.comment,
+                                                                         QUrl.fromLocalFile(help_file).toString()))
         else:
             content.append(self.__templates_informations_default_text)
 
@@ -1201,7 +1214,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         self.Template_Informations_textBrowser.setText(separator.join(content))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     @umbra.engine.show_processing("Retrieving Templates ...")
     def __engine__content_dropped(self, event):
         """
@@ -1221,14 +1234,15 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 path = foundations.strings.to_string(url.path())
                 LOGGER.debug("> Handling dropped '{0}' file.".format(path))
                 path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-                re.search(r"^\/[A-Z]:", path) and path[1:] or path
+                       re.search(r"^\/[A-Z]:", path) and path[1:] or path
                 if re.search(r"\.{0}$".format(self.__extension), path):
                     name = foundations.strings.get_splitext_basename(path)
                     choice = message_box.message_box("Question", "Question",
-                    "'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
+                                                     "'{0}' Template file has been dropped, would you like to 'Add' it to the Database or \
 'Edit' it in the Script Editor?".format(name),
-                    buttons=QMessageBox.Cancel,
-                    custom_buttons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
+                                                     buttons=QMessageBox.Cancel,
+                                                     custom_buttons=((QString("Add"), QMessageBox.AcceptRole),
+                                                                     (QString("Edit"), QMessageBox.AcceptRole)))
                     if choice == 0:
                         self.add_template(name, path)
                     elif choice == 1:
@@ -1241,13 +1255,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                         return
 
                     if message_box.message_box("Question", "Question",
-                    "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path),
-                    buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                               "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(
+                                                       path),
+                                               buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
                         self.add_directory(path)
                 self.__engine.process_events()
         else:
             raise foundations.exceptions.UserError(
-            "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
+                "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
     def __engine_file_system_events_manager__file_changed(self, file):
         """
@@ -1263,8 +1278,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         if sibl_gui.components.core.database.operations.update_template_content(template):
             self.__engine.notifications_manager.notify(
-            "{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
-            self.__class__.__name__, template.title))
+                "{0} | '{1}' Template file has been reparsed and associated database object updated!".format(
+                    self.__class__.__name__, template.title))
             self.refresh_nodes.emit()
 
     def __Template_Informations_textBrowser__anchorClicked(self, url):
@@ -1310,9 +1325,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         path = umbra.ui.common.store_last_browsed_path((QFileDialog.getOpenFileName(self,
-                                                                        "Add Template:",
-                                                                        RuntimeGlobals.last_browsed_path,
-                                                                        "sIBLT files (*.{0})".format(self.__extension))))
+                                                                                    "Add Template:",
+                                                                                    RuntimeGlobals.last_browsed_path,
+                                                                                    "sIBLT files (*.{0})".format(
+                                                                                        self.__extension))))
         if not path:
             return
 
@@ -1322,10 +1338,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 return True
             else:
                 raise Exception("{0} | Exception raised while adding '{1}' Template to the Database!".format(
-                self.__class__.__name__, path))
+                    self.__class__.__name__, path))
         else:
             self.__engine.notifications_manager.warnify(
-            "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
+                "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -1349,18 +1365,20 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             elif item.family == "Software":
                 selected_softwares.append(item.name)
         selected_collections and self.__engine.notifications_manager.warnify(
-        "{0} | '{1}' Collection(s) cannot be removed!".format(self.__class__.__name__, ", ".join(selected_collections)))
+            "{0} | '{1}' Collection(s) cannot be removed!".format(self.__class__.__name__,
+                                                                  ", ".join(selected_collections)))
         selected_softwares and self.__engine.notifications_manager.warnify(
-        "{0} | '{1}' software(s) cannot be removed!".format(self.__class__.__name__, ", ".join(selected_softwares)))
+            "{0} | '{1}' software(s) cannot be removed!".format(self.__class__.__name__, ", ".join(selected_softwares)))
 
         selected_templates = self.get_selected_templates()
         if not selected_templates:
             return False
 
         if message_box.message_box("Question", "Question",
-        "Are you sure you want to remove '{0}' Template(s)?".format(
-        ", ".join([foundations.strings.to_string(template.name) for template in selected_templates])),
-        buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                                   "Are you sure you want to remove '{0}' Template(s)?".format(
+                                           ", ".join([foundations.strings.to_string(template.name) for template in
+                                                      selected_templates])),
+                                   buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             self.__engine.start_processing("Removing Templates ...", len(selected_templates))
             success = True
             for template in selected_templates:
@@ -1374,10 +1392,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
                 return True
             else:
                 raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
-                self.__class__.__name__, ", ". join((template.name for template in selected_templates))))
+                    self.__class__.__name__, ", ".join((template.name for template in selected_templates))))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+                                              sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def update_template_location_ui(self, template):
         """
         Updates given Template location.
@@ -1391,9 +1409,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         """
 
         file = umbra.ui.common.store_last_browsed_path((QFileDialog.getOpenFileName(self,
-                                                                "Updating '{0}' Template Location:".format(template.name),
-                                                                RuntimeGlobals.last_browsed_path,
-                                                                "Template files (*{0})".format(self.__extension))))
+                                                                                    "Updating '{0}' Template Location:".format(
+                                                                                        template.name),
+                                                                                    RuntimeGlobals.last_browsed_path,
+                                                                                    "Template files (*{0})".format(
+                                                                                        self.__extension))))
         if not file:
             return False
 
@@ -1404,7 +1424,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
+                "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__,
+                                                                                        template.name))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.show_processing("Importing Default Templates ...")
@@ -1422,7 +1443,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(
-            self.__class__.__name__))
+                self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -1448,7 +1469,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         if success:
             return True
         else:
-            raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
+            raise Exception(
+                "{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -1467,13 +1489,14 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         success = True
         for template in templates:
             matching_templates = sibl_gui.components.core.database.operations.filter_templates(
-                                 "^{0}$".format(template.name), "name")
+                "^{0}$".format(template.name), "name")
             if len(matching_templates) != 1:
-                for identity in sorted([(database_template.id, database_template.release) for database_template in matching_templates],
-                                reverse=True,
-                                key=lambda x:(foundations.strings.get_version_rank(x[1])))[1:]:
-                    success *= 	sibl_gui.components.core.database.operations.remove_template(
-                                foundations.common.get_first_item(identity)) or False
+                for identity in sorted(
+                        [(database_template.id, database_template.release) for database_template in matching_templates],
+                        reverse=True,
+                        key=lambda x: (foundations.strings.get_version_rank(x[1])))[1:]:
+                    success *= sibl_gui.components.core.database.operations.remove_template(
+                        foundations.common.get_first_item(identity)) or False
                 self.refresh_nodes.emit()
             self.__engine.step_processing()
         self.__engine.stop_processing()
@@ -1481,10 +1504,11 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         if success:
             return True
         else:
-            raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
+            raise Exception(
+                "{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError,
-                                            sibl_gui.components.core.database.exceptions.DatabaseOperationError)
+                                              sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def add_template(self, name, path, collection_id=None):
         """
         Adds a Template to the Database.
@@ -1502,15 +1526,16 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         if not sibl_gui.components.core.database.operations.filter_templates("^{0}$".format(re.escape(path)), "path"):
             LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
             if sibl_gui.components.core.database.operations.add_template(
-            name, path, collection_id or self.__get_candidate_collection_id(path)):
+                    name, path, collection_id or self.__get_candidate_collection_id(path)):
                 self.refresh_nodes.emit()
                 return True
             else:
                 raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-                "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
+                    "{0} | Exception raised while adding '{1}' Template to the Database!".format(
+                        self.__class__.__name__, name))
         else:
             raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
+                "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     @umbra.engine.encapsulate_processing
@@ -1535,10 +1560,10 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         for path in files:
             if not self.template_exists(path):
                 success *= umbra.ui.common.signals_blocker(self,
-                                                        self.add_template,
-                                                        foundations.strings.get_splitext_basename(path),
-                                                        path,
-                                                        collection_id) or False
+                                                           self.add_template,
+                                                           foundations.strings.get_splitext_basename(path),
+                                                           path,
+                                                           collection_id) or False
             self.__engine.step_processing()
         self.__engine.stop_processing()
 
@@ -1548,7 +1573,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
-            self.__class__.__name__, directory))
+                self.__class__.__name__, directory))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def add_default_templates(self, force_import=False):
@@ -1567,23 +1592,25 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
         LOGGER.debug("> Adding default Templates to the Database.")
 
         success = True
-        for collection, path in ((collection, path) for (collection, path) in self.__default_collections.iteritems() if path):
+        for collection, path in ((collection, path) for (collection, path) in self.__default_collections.iteritems() if
+                                 path):
             if not foundations.common.path_exists(path):
                 continue
 
             if not set(sibl_gui.components.core.database.operations.filter_collections(
-                                    "^{0}$".format(collection), "name")).intersection(
-                                    sibl_gui.components.core.database.operations.filter_collections("templates", "type")):
-                LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
+                    "^{0}$".format(collection), "name")).intersection(
+                    sibl_gui.components.core.database.operations.filter_collections("templates", "type")):
+                LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(
+                    self.__class__.__name__, collection))
                 sibl_gui.components.core.database.operations.add_collection(
-                collection, "templates", "Template {0} Collection".format(collection))
+                    collection, "templates", "Template {0} Collection".format(collection))
             success *= self.add_directory(path, self.get_collection_by_name(collection).id)
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(
-            self.__class__.__name__))
+                self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(sibl_gui.components.core.database.exceptions.DatabaseOperationError)
     def remove_template(self, template):
@@ -1602,8 +1629,9 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise sibl_gui.components.core.database.exceptions.DatabaseOperationError(
-            "{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__,
-                                                                                            template.name))
+                "{0} | Exception raised while removing '{1}' Template from the Database!".format(
+                    self.__class__.__name__,
+                    template.name))
 
     def template_exists(self, path):
         """
@@ -1637,8 +1665,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return True
         else:
             raise foundations.exceptions.FileExistsError(
-            "{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
-            self.__class__.__name__, template.name, help_file))
+                "{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
+                    self.__class__.__name__, template.name, help_file))
 
     def get_collections(self):
         """
@@ -1671,7 +1699,7 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return list()
 
         return sibl_gui.components.core.database.operations.filter_templates_collections(
-        "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)
+            "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)
 
     def get_templates(self):
         """
@@ -1704,8 +1732,8 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
             return list()
 
         return list(set(self.get_templates()).intersection(
-        sibl_gui.components.core.database.operations.filter_templates(
-        "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)))
+            sibl_gui.components.core.database.operations.filter_templates(
+                "{0}".format(foundations.strings.to_string(pattern.pattern)), attribute, flags)))
 
     def list_templates(self):
         """
@@ -1728,50 +1756,55 @@ by '{1}' command line parameter value!".format(self.__class__.__name__, "databas
 
         collections = sibl_gui.components.core.database.operations.filter_collections("templates", "type")
         for collection in collections:
-            softwares = set((foundations.common.get_first_item(software) for software in \
-                        sibl_gui.components.core.database.operations.query(Template.software).filter(
-                        Template.collection == collection.id)))
+            softwares = set((foundations.common.get_first_item(software) for software in
+                             sibl_gui.components.core.database.operations.query(Template.software).filter(
+                                 Template.collection == collection.id)))
             if not softwares:
                 continue
 
             collection_node = CollectionNode(collection,
-                                            name=collection.name,
-                                            parent=root_node,
-                                            node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                                            attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                             name=collection.name,
+                                             parent=root_node,
+                                             node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                                             attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
             collection_node["release"] = sibl_gui.ui.nodes.GraphModelAttribute(name="release",
-                                                                flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                                               flags=int(
+                                                                                   Qt.ItemIsSelectable | Qt.ItemIsEnabled))
             collection_node["version"] = sibl_gui.ui.nodes.GraphModelAttribute(name="version",
-                                                                flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                                                                               flags=int(
+                                                                                   Qt.ItemIsSelectable | Qt.ItemIsEnabled))
             for software in softwares:
                 templates = set((template for template in sibl_gui.components.core.database.operations.query(
-                            Template).filter(Template.collection == collection.id).filter(
-                            Template.software == software)))
+                    Template).filter(Template.collection == collection.id).filter(
+                    Template.software == software)))
 
                 if not templates:
                     continue
 
                 software_node = SoftwareNode(name=software,
-                                            parent=collection_node,
-                                            node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-                                            attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-                icon_path = os.path.join(self.__ui_resources_directory, "{0}{1}".format(software, self.__ui_software_affixe))
+                                             parent=collection_node,
+                                             node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                                             attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+                icon_path = os.path.join(
+                    self.__ui_resources_directory, "{0}{1}".format(software, self.__ui_software_affixe))
                 software_node.roles[Qt.DecorationRole] = icon_path if foundations.common.path_exists(icon_path) else \
-                                                os.path.join(self.__ui_resources_directory, self.__ui_unknown_software_image)
+                    os.path.join(self.__ui_resources_directory, self.__ui_unknown_software_image)
 
                 for template in templates:
                     template_node = TemplateNode(template,
-                                                name=foundations.strings.remove_strip(template.title, template.software),
-                                                parent=software_node,
-                                                node_flags=node_flags,
-                                                attributes_flags=attributes_flags)
+                                                 name=foundations.strings.remove_strip(
+                                                     template.title, template.software),
+                                                 parent=software_node,
+                                                 node_flags=node_flags,
+                                                 attributes_flags=attributes_flags)
 
                     path = foundations.strings.to_string(template.path)
                     if not foundations.common.path_exists(path):
                         continue
 
                     not self.__engine.file_system_events_manager.is_path_registered(path) and \
-                    self.__engine.file_system_events_manager.register_path(path, modified_time=float(template.os_stats.split(",")[8]))
+                    self.__engine.file_system_events_manager.register_path(
+                        path, modified_time=float(template.os_stats.split(",")[8]))
 
         root_node.sort_children(attribute="title")
 

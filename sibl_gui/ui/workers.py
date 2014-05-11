@@ -36,6 +36,7 @@ __all__ = ["LOGGER", "GraphicsItem_worker"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class GraphicsItem_worker(QThread):
     """
     Defines a `QThread <http://doc.qt.nokia.com/qthread.html>`_ subclass used to load images.
@@ -89,7 +90,7 @@ class GraphicsItem_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "requests"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "requests"))
 
     @requests.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -99,7 +100,7 @@ class GraphicsItem_worker(QThread):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "requests"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "requests"))
 
     @foundations.exceptions.handle_exceptions(foundations.exceptions.FileExistsError)
     def addRequest(self, request):
@@ -115,8 +116,8 @@ class GraphicsItem_worker(QThread):
         path, size = request
         if not foundations.common.path_exists(path):
             raise foundations.exceptions.FileExistsError(
-            "{0} | Exception raised while adding request: '{1}' file doesn't exists!".format(
-            self.__class__.__name__, path))
+                "{0} | Exception raised while adding request: '{1}' file doesn't exists!".format(
+                    self.__class__.__name__, path))
 
         self.__requests.put(request)
         return True

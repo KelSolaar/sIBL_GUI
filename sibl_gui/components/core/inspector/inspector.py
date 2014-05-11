@@ -67,6 +67,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui")
 
+
 class Plate(foundations.data_structures.Structure):
     """
     Defines a storage object for an Ibl Set Plate.
@@ -84,6 +85,7 @@ class Plate(foundations.data_structures.Structure):
 
         foundations.data_structures.Structure.__init__(self, **kwargs)
 
+
 class Light(foundations.data_structures.Structure):
     """
     Defines a storage object for an Ibl Set light.
@@ -100,6 +102,7 @@ class Light(foundations.data_structures.Structure):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         foundations.data_structures.Structure.__init__(self, **kwargs)
+
 
 class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -423,7 +426,8 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if value is not None:
             assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("list_view_icon_size", value)
-            assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("list_view_icon_size", value)
+            assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format(
+                "list_view_icon_size", value)
         self.__list_view_icon_size = value
 
     @list_view_icon_size.deleter
@@ -1062,7 +1066,7 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         self.__pixmap_placeholder = \
             sibl_gui.ui.common.get_pixmap(os.path.join(self.__ui_resources_directory, self.__ui_loading_image),
-                                         asynchronous_loading=False)
+                                          asynchronous_loading=False)
 
         self.__sections_file_parsers_cache = foundations.cache.Cache()
 
@@ -1078,7 +1082,8 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.Previous_Ibl_Set_pushButton.setIcon(
             QIcon(os.path.join(self.__ui_resources_directory, self.__ui_previous_image)))
         self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_next_image)))
-        self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_previous_image)))
+        self.Previous_Plate_pushButton.setIcon(
+            QIcon(os.path.join(self.__ui_resources_directory, self.__ui_previous_image)))
         self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_next_image)))
 
         self.Plates_frame.hide()
@@ -1094,9 +1099,11 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__engine.images_caches.QPixmap.content_added.connect(self.__engine_images_caches_QPixmap__content_added)
         self.Plates_listView.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
         self.__ibl_sets_outliner.model.modelReset.connect(self.__ibl_sets_outliner__modelReset)
-        self.__engine.file_system_events_manager.file_changed.connect(self.__engine_file_system_events_manager__file_changed)
+        self.__engine.file_system_events_manager.file_changed.connect(
+            self.__engine_file_system_events_manager__file_changed)
         for view in self.__ibl_sets_outliner.views:
-            view.selectionModel().selectionChanged.connect(self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
+            view.selectionModel().selectionChanged.connect(
+                self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
         self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
         self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
         self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
@@ -1157,8 +1164,8 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             else:
                 if foundations.common.path_exists(self.__active_ibl_set.background_image):
                     pixmap = sibl_gui.ui.common.get_pixmap(self.__active_ibl_set.background_image,
-                                                          size=self.__thumbnails_size,
-                                                          placeholder=self.__pixmap_placeholder)
+                                                           size=self.__thumbnails_size,
+                                                           placeholder=self.__pixmap_placeholder)
                     preview_available = True
 
             if preview_available:
@@ -1175,7 +1182,7 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 self.__active_ibl_set.author or Constants.null_object,
                 self.__active_ibl_set.location or Constants.null_object,
                 sibl_gui.ui.common.get_formatted_shot_date(self.__active_ibl_set.date,
-                                                       self.__active_ibl_set.time) or Constants.null_object,
+                                                           self.__active_ibl_set.time) or Constants.null_object,
                 self.__active_ibl_set.comment or Constants.null_object))
 
             self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__active_ibl_set.comment))
@@ -1233,7 +1240,8 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return
 
         if node.family == "Plate":
-            self.Image_label.setPixmap(sibl_gui.ui.common.get_pixmap(node.plate.preview_image, asynchronous_loading=False))
+            self.Image_label.setPixmap(
+                sibl_gui.ui.common.get_pixmap(node.plate.preview_image, asynchronous_loading=False))
         else:
             self.ui_refresh.emit()
 
@@ -1269,7 +1277,7 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return
 
         if foundations.common.get_first_item(paths) in (self.__active_ibl_set.preview_image,
-                                                      self.__active_ibl_set.background_image):
+                                                        self.__active_ibl_set.background_image):
             self.__Inspector_DockWidget_set_ui()
 
     def __ibl_sets_outliner__modelReset(self):
@@ -1395,12 +1403,13 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             if re.search(r"Plate\d+", section):
                 self.__inspector_plates[section] = \
                     Plate(
-                        name=foundations.strings.get_splitext_basename(sections_file_parser.get_value("PLATEfile", section)),
+                        name=foundations.strings.get_splitext_basename(
+                            sections_file_parser.get_value("PLATEfile", section)),
                         icon=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
                                                            sections_file_parser.get_value("PLATEthumb", section))),
                         preview_image=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
-                                                                   sections_file_parser.get_value("PLATEpreview",
-                                                                                               section))),
+                                                                    sections_file_parser.get_value("PLATEpreview",
+                                                                                                   section))),
                         image=os.path.normpath(os.path.join(os.path.dirname(self.__active_ibl_set.path),
                                                             sections_file_parser.get_value("PLATEfile", section))))
 
@@ -1422,21 +1431,21 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         for section in sections_file_parser.sections:
             if section == "Sun":
                 self.__draw_light_label(painter,
-                                      Light(name="Sun",
-                                            color=[int(value) for value in sections_file_parser.get_value(
-                                                "SUNcolor", section).split(",")],
-                                            u_coordinate=float(sections_file_parser.get_value("SUNu", section)),
-                                            v_coordinate=float(sections_file_parser.get_value("SUNv", section))))
+                                        Light(name="Sun",
+                                              color=[int(value) for value in sections_file_parser.get_value(
+                                                  "SUNcolor", section).split(",")],
+                                              u_coordinate=float(sections_file_parser.get_value("SUNu", section)),
+                                              v_coordinate=float(sections_file_parser.get_value("SUNv", section))))
 
             elif re.search(r"Light\d+", section):
                 self.__draw_light_label(painter, Light(name=sections_file_parser.get_value(
                     "LIGHTname", section) or self.__unnamed_light_name,
-                                                     color=[int(value) for value in sections_file_parser.get_value(
-                                                         "LIGHTcolor", section).split(",")],
-                                                     u_coordinate=float(
-                                                         sections_file_parser.get_value("LIGHTu", section)),
-                                                     v_coordinate=float(
-                                                         sections_file_parser.get_value("LIGHTv", section))))
+                                                       color=[int(value) for value in sections_file_parser.get_value(
+                                                           "LIGHTcolor", section).split(",")],
+                                                       u_coordinate=float(
+                                                           sections_file_parser.get_value("LIGHTu", section)),
+                                                       v_coordinate=float(
+                                                           sections_file_parser.get_value("LIGHTv", section))))
 
         painter.end()
 
@@ -1469,15 +1478,17 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             point_x + text_width + self.__light_label_text_margin + self.__light_label_text_offset > width else \
             self.__light_label_text_offset
         y_label_text_offset = -(self.__light_label_text_offset + self.__light_label_text_height) if \
-            point_y - (self.__light_label_text_height + self.__light_label_text_margin + self.__light_label_text_offset) < 0 else \
+            point_y - (
+                self.__light_label_text_height + self.__light_label_text_margin + self.__light_label_text_offset) < 0 else \
             self.__light_label_text_offset
         painter.drawText(point_x + x_label_text_offset, point_y - y_label_text_offset, light.name.title())
 
         painter.drawLine(point_x,
                          point_y,
-                         point_x + (x_label_text_offset + text_width if x_label_text_offset < 0 else x_label_text_offset),
-                         point_y - (y_label_text_offset + self.__light_label_text_height \
-                                       if y_label_text_offset < 0 else y_label_text_offset))
+                         point_x + (x_label_text_offset + text_width if x_label_text_offset <
+                                                                        0 else x_label_text_offset),
+                         point_y - (y_label_text_offset + self.__light_label_text_height
+                                    if y_label_text_offset < 0 else y_label_text_offset))
 
         painter.drawEllipse(QPoint(point_x, point_y), self.__light_label_radius, self.__light_label_radius)
 
@@ -1500,11 +1511,11 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         node_flags = attributes_flags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
         root_node = umbra.ui.nodes.DefaultNode(name="InvisibleRootNode")
         ibl_set_node = IblSetNode(self.__active_ibl_set,
-                                name=self.__active_ibl_set.title,
-                                parent=root_node,
-                                node_flags=node_flags,
-                                attributes_flags=attributes_flags,
-                                icon_path=self.__active_ibl_set.icon)
+                                  name=self.__active_ibl_set.title,
+                                  parent=root_node,
+                                  node_flags=node_flags,
+                                  attributes_flags=attributes_flags,
+                                  icon_path=self.__active_ibl_set.icon)
         ibl_set_node.roles[Qt.DisplayRole] = ""
 
         if not self.__inspector_plates:
@@ -1512,10 +1523,10 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         for name, plate in self.__inspector_plates.iteritems():
             plate_node = PlatesNode(plate,
-                                   name=name,
-                                   parent=root_node,
-                                   node_flags=node_flags,
-                                   attributes_flags=attributes_flags)
+                                    name=name,
+                                    parent=root_node,
+                                    node_flags=node_flags,
+                                    attributes_flags=attributes_flags)
             plate_node.roles[Qt.DisplayRole] = ""
             plate_node.roles[Qt.DecorationRole] = foundations.common.filter_path(plate.icon)
 
@@ -1536,7 +1547,7 @@ class Inspector(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             model = self.__ibl_sets_outliner.model
 
             active_ibl_set_node = [node for node in model.root_node.children if
-                                node.database_item.path == self.__active_ibl_set.path]
+                                   node.database_item.path == self.__active_ibl_set.path]
             active_ibl_set_node = foundations.common.get_first_item(active_ibl_set_node)
             if not active_ibl_set_node:
                 return True

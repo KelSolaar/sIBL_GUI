@@ -20,6 +20,7 @@ import os
 import re
 import itertools
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     from counter import Counter
 else:
@@ -48,6 +49,7 @@ __all__ = ["LOGGER", "COMPONENT_UI_FILE", "SearchDatabase"]
 LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Search_Database.ui")
+
 
 class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
@@ -110,7 +112,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -120,7 +122,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def view_spacing(self):
@@ -144,7 +146,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view_spacing"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view_spacing"))
 
     @view_spacing.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -154,7 +156,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view_spacing"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view_spacing"))
 
     @property
     def engine(self):
@@ -178,7 +180,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -188,8 +190,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
-
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def ibl_sets_outliner(self):
@@ -213,7 +214,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -223,7 +224,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def collections_outliner(self):
@@ -247,7 +248,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "collections_outliner"))
 
     @collections_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -257,7 +258,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "collections_outliner"))
 
     @property
     def view(self):
@@ -281,7 +282,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
     @view.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -291,7 +292,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
     @property
     def cloud_excluded_tags(self):
@@ -315,7 +316,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "cloud_excluded_tags"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "cloud_excluded_tags"))
 
     @cloud_excluded_tags.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -325,7 +326,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "cloud_excluded_tags"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "cloud_excluded_tags"))
 
     def activate(self, engine):
         """
@@ -392,8 +393,8 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__view.setSpacing(self.__view_spacing)
 
         self.__cloud_excluded_tags = list(itertools.chain.from_iterable(
-                                    [(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper()))
-                                    for tag in self.__cloud_excluded_tags]))
+            [(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper()))
+             for tag in self.__cloud_excluded_tags]))
         self.set_tags_cloud_matching_ibls_sets_ui()
 
         # Remove vertical scrollBars from **Search_toolBox** Widget.
@@ -407,7 +408,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
         self.__view.itemDoubleClicked.connect(self.__view__doubleClicked)
         self.__collections_outliner.view.selectionModel().selectionChanged.connect(
-        self.__collections_outliner_view_selectionModel__selectionChanged)
+            self.__collections_outliner_view_selectionModel__selectionChanged)
 
         self.initialized_ui = True
         return True
@@ -429,7 +430,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
         self.__view.itemDoubleClicked.disconnect(self.__view__doubleClicked)
         self.__collections_outliner.view.selectionModel().selectionChanged.disconnect(
-        self.__collections_outliner_view_selectionModel__selectionChanged)
+            self.__collections_outliner_view_selectionModel__selectionChanged)
 
         self.Search_Database_lineEdit.setParent(None)
         self.Search_Database_lineEdit = None
@@ -518,7 +519,8 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         :type list_widget_item: Qlist_widget_item
         """
 
-        self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), list_widget_item.text()))
+        self.Search_Database_lineEdit.setText(
+            "{0} {1}".format(self.Search_Database_lineEdit.text(), list_widget_item.text()))
 
     def __collections_outliner_view_selectionModel__selectionChanged(self, selected_items, deselected_items):
         """
@@ -543,8 +545,9 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         :note: May require user interaction.
         """
 
-        return self.set_tags_cloud_matching_ibls_sets(foundations.strings.to_string(self.Search_Database_lineEdit.text()),
-        not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
+        return self.set_tags_cloud_matching_ibls_sets(
+            foundations.strings.to_string(self.Search_Database_lineEdit.text()),
+            not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0)
 
     def set_time_matching_ibl_sets_ui(self):
         """
@@ -581,15 +584,15 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         filtered_ibl_sets = []
 
         ibl_sets = self.__collections_outliner.get_collections_ibl_sets(
-        self.__collections_outliner.get_selected_collections() or self.__collections_outliner.get_collections())
+            self.__collections_outliner.get_selected_collections() or self.__collections_outliner.get_collections())
         for ibl_set in ibl_sets:
             comment = getattr(ibl_set, "comment")
             if not comment:
                 continue
 
             tags_cloud = foundations.strings.filter_words(foundations.strings.get_words(comment),
-                                                        filters_out=self.__cloud_excluded_tags,
-                                                        flags=flags)
+                                                          filters_out=self.__cloud_excluded_tags,
+                                                          flags=flags)
 
             patterns_matched = True
             if pattern_tokens != patterns_default:
@@ -602,7 +605,8 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                                 pattern_matched = True
                                 break
                     except re.error:
-                        LOGGER.warning("!> {0} | '{1}' regex pattern is invalid!".format(self.__class__.__name__, pattern))
+                        LOGGER.warning(
+                            "!> {0} | '{1}' regex pattern is invalid!".format(self.__class__.__name__, pattern))
                     patterns_matched *= pattern_matched
 
             if patterns_matched:
@@ -610,13 +614,14 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 filtered_ibl_sets.append(ibl_set)
 
         self.__view.clear()
-        self.__view.addItems(sorted(all_tags, key=lambda x:x.lower()))
+        self.__view.addItems(sorted(all_tags, key=lambda x: x.lower()))
         if Counter(filtered_ibl_sets) != Counter(ibl_sets) or \
-        len(self.__ibl_sets_outliner.get_active_view().filter_nodes("IblSet", "family")) != len(ibl_sets):
+                        len(self.__ibl_sets_outliner.get_active_view().filter_nodes("IblSet", "family")) != len(
+                        ibl_sets):
             filtered_ibl_sets = [ibl_set for ibl_set in set(ibl_sets).intersection(set(filtered_ibl_sets))]
 
             LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(
-            ", ".join((foundations.strings.to_string(ibl_set.name) for ibl_set in filtered_ibl_sets))))
+                ", ".join((foundations.strings.to_string(ibl_set.name) for ibl_set in filtered_ibl_sets))))
 
             self.__ibl_sets_outliner.set_ibl_sets(filtered_ibl_sets)
         return True
@@ -637,7 +642,7 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(time_low, time_high))
 
         ibl_sets = self.__collections_outliner.get_collections_ibl_sets(
-                self.__collections_outliner.get_selected_collections())
+            self.__collections_outliner.get_selected_collections())
 
         filtered_ibl_sets = []
         for ibl_set in ibl_sets:
@@ -652,9 +657,10 @@ class SearchDatabase(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         filtered_ibl_sets = [ibl_set for ibl_set in set(ibl_sets).intersection(filtered_ibl_sets)]
 
         if Counter(filtered_ibl_sets) != Counter(ibl_sets) or \
-        len(self.__ibl_sets_outliner.get_active_view().filter_nodes("IblSet", "family")) != len(ibl_sets):
+                        len(self.__ibl_sets_outliner.get_active_view().filter_nodes("IblSet", "family")) != len(
+                        ibl_sets):
             LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(
-            ", ".join((ibl_set.name for ibl_set in filtered_ibl_sets))))
+                ", ".join((ibl_set.name for ibl_set in filtered_ibl_sets))))
 
             self.__ibl_sets_outliner.set_ibl_sets(filtered_ibl_sets)
         return True

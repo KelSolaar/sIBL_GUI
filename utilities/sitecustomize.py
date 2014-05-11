@@ -22,6 +22,6 @@ __status__ = "Production"
 
 __all__ = []
 
-
 import sys
+
 sys.setdefaultencoding("utf-8")

@@ -18,6 +18,7 @@ from __future__ import unicode_literals
 
 import inspect
 import sys
+
 if sys.version_info[:2] <= (2, 6):
     import unittest2 as unittest
 else:
@@ -36,6 +37,7 @@ __all__ = ["EXCEPTIONS", "TestExceptions"]
 
 EXCEPTIONS = []
 
+
 def _gather_exceptions():
     """
     Gathers the exceptions.
@@ -48,7 +50,9 @@ def _gather_exceptions():
         if issubclass(object, Exception):
             EXCEPTIONS.append(object)
 
+
 _gather_exceptions()
+
 
 class TestExceptions(unittest.TestCase):
     """
@@ -78,6 +82,7 @@ class TestExceptions(unittest.TestCase):
             self.assertIsInstance(exception_instance.__str__(), str)
             exception_instance = exception(0)
             self.assertIsInstance(exception_instance.__str__(), str)
+
 
 if __name__ == "__main__":
     unittest.main()

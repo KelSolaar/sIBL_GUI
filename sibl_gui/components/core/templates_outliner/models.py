@@ -31,6 +31,7 @@ __all__ = ["LOGGER", "TemplatesModel"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class TemplatesModel(sibl_gui.ui.models.GraphModel):
     """
     Defines the Model used the by
@@ -54,10 +55,10 @@ class TemplatesModel(sibl_gui.ui.models.GraphModel):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         sibl_gui.ui.models.GraphModel.__init__(self,
-                                            parent,
-                                            root_node,
-                                            horizontal_headers,
-                                            vertical_headers)
+                                               parent,
+                                               root_node,
+                                               horizontal_headers,
+                                               vertical_headers)
 
     def initialize_model(self, root_node):
         """

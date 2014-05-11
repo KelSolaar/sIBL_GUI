@@ -34,11 +34,12 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "CacheMetrics",
-        "AbstractResourcesCache",
-        "AsynchronousGraphicsItemsCache"]
+           "CacheMetrics",
+           "AbstractResourcesCache",
+           "AsynchronousGraphicsItemsCache"]
 
 LOGGER = foundations.verbose.install_logger()
+
 
 class CacheMetrics(foundations.data_structures.Structure):
     """
@@ -56,6 +57,7 @@ class CacheMetrics(foundations.data_structures.Structure):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         foundations.data_structures.Structure.__init__(self, **kwargs)
+
 
 class AbstractResourcesCache(QObject):
     """
@@ -114,7 +116,7 @@ class AbstractResourcesCache(QObject):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "mapping"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "mapping"))
 
     @mapping.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -124,7 +126,7 @@ class AbstractResourcesCache(QObject):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "mapping"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "mapping"))
 
     def __getitem__(self, item):
         """
@@ -236,7 +238,7 @@ class AbstractResourcesCache(QObject):
             if not key in self:
                 raise KeyError("{0} | '{1}' key doesn't exists in cache content!".format(self.__class__.__name__, key))
 
-            del(self.__mapping[key])
+            del (self.__mapping[key])
             self.content_removed.emit([key])
         return True
 
@@ -281,6 +283,7 @@ class AbstractResourcesCache(QObject):
         cache_metrics.type = None
         cache_metrics.content = dict.fromkeys(self.__mapping.keys())
         return cache_metrics
+
 
 class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
     """
@@ -336,7 +339,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "type"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "type"))
 
     @type.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -346,7 +349,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "type"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "type"))
 
     @property
     def placeholder(self):
@@ -370,7 +373,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholder"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholder"))
 
     @placeholder.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -380,7 +383,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholder"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholder"))
 
     @property
     def placeholder_graphics_item(self):
@@ -404,7 +407,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholder_graphics_item"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "placeholder_graphics_item"))
 
     @placeholder_graphics_item.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -414,7 +417,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholder_graphics_item"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "placeholder_graphics_item"))
 
     @property
     def worker(self):
@@ -439,7 +442,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
         if value is not None:
             assert type(value) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-            "worker", value)
+                "worker", value)
             assert os.path.exists(value), "'{0}' attribute: '{1}' file doesn't exists!".format("worker", value)
         self.__worker = value
 
@@ -451,7 +454,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "worker"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "worker"))
 
     def __worker__image_loaded(self, image, size):
         """
@@ -482,12 +485,13 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
         if not foundations.common.path_exists(path):
             LOGGER.warning(
-            "!> {0} | '{1}' placeholder graphics item file doesn't exists, unexpected behavior may occur!".format(
-            self.__class__.__name__, self))
+                "!> {0} | '{1}' placeholder graphics item file doesn't exists, unexpected behavior may occur!".format(
+                    self.__class__.__name__, self))
             return
 
         self.__placeholder_graphics_item = self.__type(path)
-        self.__placeholder_graphics_item.data = sibl_gui.ui.common.get_image_informations_header(path, self.__placeholder_graphics_item)
+        self.__placeholder_graphics_item.data = sibl_gui.ui.common.get_image_informations_header(path,
+                                                                                                 self.__placeholder_graphics_item)
 
     def get_content(self, key, size="Default"):
         """
@@ -541,7 +545,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
             if not foundations.common.path_exists(path):
                 LOGGER.warning("!> {0} | '{1}' file doesn't exists and has been skipped!".format(
-                self.__class__.__name__, path))
+                    self.__class__.__name__, path))
                 continue
 
             if not self.is_cached(path):
@@ -572,7 +576,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
 
             if not foundations.common.path_exists(path):
                 raise foundations.exceptions.FileExistsError("{0} | '{1}' file doesn't exists!".format(
-                self.__class__.__name__, path))
+                    self.__class__.__name__, path))
 
             if not self.is_cached(path):
                 self[path] = dict.fromkeys(UiConstants.thumbnails_sizes.keys())
@@ -581,7 +585,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
             if image is not None:
                 if not hasattr(image, "data"):
                     LOGGER.debug("> {0} | '{1}' object has not 'data' attribute and has been skipped!".format(
-                    self.__class__.__name__, image))
+                        self.__class__.__name__, image))
                     continue
 
                 if image.data.path != path:
@@ -591,7 +595,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
                     continue
                 else:
                     LOGGER.info("{0} | '{1}' file has been modified and will be reloaded!".format(
-                    self.__class__.__name__, path))
+                        self.__class__.__name__, path))
 
             self[path][size] = placeholder if placeholder is not None else self.__placeholder_graphics_item
             self.content_added.emit([path])
@@ -613,7 +617,7 @@ class AsynchronousGraphicsItemsCache(AbstractResourcesCache):
             thumbnails = {}
             for size, thumbnail in data.iteritems():
                 thumbnails[size] = None if thumbnail is None else (sibl_gui.ui.common.get_thumbnail_path(path, size),
-                                                                    thumbnail.data)
+                                                                   thumbnail.data)
             content[path] = thumbnails
         cache_metrics.content = content
         return cache_metrics

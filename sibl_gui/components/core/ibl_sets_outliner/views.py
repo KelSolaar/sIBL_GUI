@@ -37,6 +37,7 @@ __all__ = ["LOGGER", "Thumbnails_QListView", "Details_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
     """
     Defines the view for Database Ibl Sets as thumbnails.
@@ -100,7 +101,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_spacing"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_spacing"))
 
     @property
     def list_view_margin(self):
@@ -136,7 +137,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_margin"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "list_view_margin"))
 
     def __initialize_ui(self):
         """
@@ -173,6 +174,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
         self.setIconSize(QSize(iconsSize, iconsSize / iconsRatio))
         self.setGridSize(QSize(iconsSize + self.__list_view_spacing, iconsSize / iconsRatio + self.__list_view_margin))
         self.viewport().update()
+
 
 class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
     """
@@ -224,7 +226,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
 
     @tree_view_indentation.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -234,7 +236,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
 
     def __initialize_ui(self):
         """

@@ -31,6 +31,7 @@ __all__ = ["LOGGER", "TagsCloud_QListWidget"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class TagsCloud_QListView(umbra.ui.views.Abstract_QListWidget):
     """
     Defines the view for Database Ibl Sets tags cloud.

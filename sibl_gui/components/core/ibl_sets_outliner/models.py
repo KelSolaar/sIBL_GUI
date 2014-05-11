@@ -33,6 +33,7 @@ __all__ = ["LOGGER", "IblSetsModel"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class IblSetsModel(sibl_gui.ui.models.GraphModel):
     """
     Defines the Model used the by
@@ -56,10 +57,10 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
         LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
         sibl_gui.ui.models.GraphModel.__init__(self,
-                                            parent,
-                                            root_node,
-                                            horizontal_headers,
-                                            vertical_headers)
+                                               parent,
+                                               root_node,
+                                               horizontal_headers,
+                                               vertical_headers)
 
     def initialize_model(self, root_node):
         """
@@ -98,5 +99,5 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
             self.root_node.sort_children(attribute="title", reverse_order=order)
         else:
             self.root_node.sort_children(attribute=self.horizontal_headers[self.horizontal_headers.keys()[column]],
-                                        reverse_order=order)
+                                         reverse_order=order)
         self.endResetModel()

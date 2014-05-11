@@ -9,8 +9,10 @@ import os
 import foundations.core
 import umbra.ui.common
 
+
 def ____():
     print "-" * 120
+
 
 ____()
 
@@ -31,7 +33,6 @@ LOGGER.info("This is an 'Info' logging message!")
 LOGGER.debug("This is a 'Debug' logging message!")
 
 ____()
-
 
 """
 Verbosity level interactions:

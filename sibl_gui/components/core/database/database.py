@@ -38,14 +38,15 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-        "ALEMBIC_CONFIGURATION_FILE",
-        "ALEMBIC_SCRIPTS_DIRECTORY",
-        "Database"]
+           "ALEMBIC_CONFIGURATION_FILE",
+           "ALEMBIC_SCRIPTS_DIRECTORY",
+           "Database"]
 
 LOGGER = foundations.verbose.install_logger()
 
 ALEMBIC_CONFIGURATION_FILE = os.path.join(os.path.dirname(__file__), "migration", "alembic.ini")
 ALEMBIC_SCRIPTS_DIRECTORY = os.path.join(os.path.dirname(__file__), "migration", "alembic")
+
 
 class Database(Component):
     """
@@ -104,7 +105,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -114,7 +115,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def database_name(self):
@@ -138,7 +139,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_name"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_name"))
 
     @database_name.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -148,7 +149,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_name"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_name"))
 
     @property
     def database_engine(self):
@@ -172,7 +173,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_engine"))
 
     @database_engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -182,7 +183,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_engine"))
 
     @property
     def databaseCatalog(self):
@@ -206,7 +207,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseCatalog"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseCatalog"))
 
     @databaseCatalog.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -216,7 +217,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseCatalog"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseCatalog"))
 
     @property
     def database_session(self):
@@ -240,7 +241,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session"))
 
     @database_session.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -250,7 +251,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session"))
 
     @property
     def database_session_maker(self):
@@ -274,7 +275,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session_maker"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "database_session_maker"))
 
     @database_session_maker.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -284,7 +285,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session_maker"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "database_session_maker"))
 
     @property
     def databaseConnectionString(self):
@@ -308,7 +309,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseConnectionString"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseConnectionString"))
 
     @databaseConnectionString.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -318,7 +319,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseConnectionString"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseConnectionString"))
 
     @property
     def databaseBackupDirectory(self):
@@ -342,7 +343,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupDirectory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupDirectory"))
 
     @databaseBackupDirectory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -352,7 +353,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupDirectory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupDirectory"))
 
     @property
     def databaseBackupCount(self):
@@ -376,7 +377,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupCount"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseBackupCount"))
 
     @databaseBackupCount.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -386,7 +387,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupCount"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBackupCount"))
 
     def activate(self, engine):
         """
@@ -412,7 +413,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+            "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
     def initialize(self):
         """
@@ -427,15 +428,17 @@ class Database(Component):
         LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.database_file))
         if self.__engine.parameters.database_directory:
             if foundations.common.path_exists(self.__engine.parameters.database_directory):
-                self.__database_name = os.path.join(self.__engine.parameters.database_directory, Constants.database_file)
+                self.__database_name = os.path.join(
+                    self.__engine.parameters.database_directory, Constants.database_file)
             else:
                 raise foundations.exceptions.DirectoryExistsError(
-                "{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(
-                self.__class__.__name__, self.__engine.parameters.database_directory, Constants.application_name))
+                    "{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(
+                        self.__class__.__name__, self.__engine.parameters.database_directory,
+                        Constants.application_name))
         else:
             self.__database_name = os.path.join(self.__engine.user_application_data_directory,
-                                        Constants.database_directory,
-                                        Constants.database_file)
+                                                Constants.database_directory,
+                                                Constants.database_file)
 
         LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__database_name))
         self.__databaseConnectionString = "sqlite:///{0}".format(self.__database_name)
@@ -445,17 +448,19 @@ class Database(Component):
                 backupDestination = os.path.join(os.path.dirname(self.database_name), self.__databaseBackupDirectory)
 
                 LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__,
-                                                                                Constants.database_file,
-                                                                                backupDestination))
+                                                                               Constants.database_file,
+                                                                               backupDestination))
                 rotating_backup = RotatingBackup(self.__database_name, backupDestination, self.__databaseBackupCount)
                 rotating_backup.backup()
             else:
                 LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(
-                self.__class__.__name__, "database_read_only"))
+                    self.__class__.__name__, "database_read_only"))
 
         LOGGER.info("{0} | Migrating Database schema.".format(self.__class__.__name__))
-        LOGGER.info("{0} | Alembic configuration file: '{1}'.".format(self.__class__.__name__, ALEMBIC_CONFIGURATION_FILE))
-        LOGGER.info("{0} | Alembic scripts directory: '{1}'.".format(self.__class__.__name__, ALEMBIC_SCRIPTS_DIRECTORY))
+        LOGGER.info("{0} | Alembic configuration file: '{1}'.".format(
+            self.__class__.__name__, ALEMBIC_CONFIGURATION_FILE))
+        LOGGER.info("{0} | Alembic scripts directory: '{1}'.".format(
+            self.__class__.__name__, ALEMBIC_SCRIPTS_DIRECTORY))
         alembic_configuration = Config(ALEMBIC_CONFIGURATION_FILE)
         alembic_configuration.set_main_option("sqlalchemy.url", self.__databaseConnectionString)
         alembic_configuration.set_main_option("script_location", ALEMBIC_SCRIPTS_DIRECTORY)
@@ -470,10 +475,10 @@ class Database(Component):
 
         LOGGER.debug("> Initializing Database session.")
         self.__database_session_maker = sibl_gui.components.core.database.operations.DEFAULT_SESSION_MAKER = \
-        sqlalchemy.orm.sessionmaker(bind=self.__database_engine)
+            sqlalchemy.orm.sessionmaker(bind=self.__database_engine)
 
         self.__database_session = sibl_gui.components.core.database.operations.DEFAULT_SESSION = \
-        self.__database_session_maker()
+            self.__database_session_maker()
 
         self.initialized = True
         return True
@@ -485,7 +490,7 @@ class Database(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
+            "{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
     def commit(self):
         """

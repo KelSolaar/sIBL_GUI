@@ -37,6 +37,7 @@ __all__ = ["LOGGER", "Templates_QTreeView"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
     """
     Defines the view for Database Collections.
@@ -89,7 +90,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
     @container.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -99,7 +100,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
     @property
     def tree_view_indentation(self):
@@ -123,7 +124,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tree_view_indentation"))
 
     @tree_view_indentation.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -133,7 +134,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tree_view_indentation"))
 
     def __initialize_ui(self):
         """
@@ -178,14 +179,15 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
         LOGGER.debug("> Storing Model selection!")
 
-        self.model_selection = {"templates" : [], "collections" : [], "Softwares" : []}
+        self.model_selection = {"templates": [], "collections": [], "Softwares": []}
         for node in self.get_selected_nodes():
             if node.family == "Template":
                 self.model_selection["templates"].append(node.id.value)
             elif node.family == "Collection":
                 self.model_selection["collections"].append(node.id.value)
             elif node.family == "Software":
-                self.model_selection["Softwares"].append(foundations.namespace.set_namespace(node.parent.id.value, node.name))
+                self.model_selection["Softwares"].append(
+                    foundations.namespace.set_namespace(node.parent.id.value, node.name))
         return True
 
     def restore_model_selection(self):
@@ -202,7 +204,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
             return False
 
         selection = self.model_selection.get("templates", None) or self.model_selection.get("collections", None) or \
-        self.model_selection.get("Softwares", None)
+                    self.model_selection.get("Softwares", None)
         if not selection:
             return False
 
@@ -212,7 +214,8 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
                 self.model_selection.get("templates", None) and node.id.value in self.model_selection["templates"] and \
                 indexes.append(self.model().get_node_index(node))
             elif node.family == "Collection":
-                self.model_selection.get("collections", None) and node.id.value in self.model_selection["collections"] and \
+                self.model_selection.get("collections", None) and node.id.value in self.model_selection[
+                    "collections"] and \
                 indexes.append(self.model().get_node_index(node))
             elif node.family == "Software":
                 for item in self.model_selection["Softwares"]:

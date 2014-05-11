@@ -45,6 +45,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 
+
 class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.gps_map.gps_map` Component Interface class.
@@ -108,7 +109,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -118,7 +119,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_zoom_in_image(self):
@@ -142,7 +143,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_zoom_in_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_zoom_in_image"))
 
     @ui_zoom_in_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -152,7 +153,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_zoom_in_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_zoom_in_image"))
 
     @property
     def ui_zoom_out_image(self):
@@ -176,7 +177,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_zoom_out_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_zoom_out_image"))
 
     @ui_zoom_out_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -186,7 +187,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_zoom_out_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_zoom_out_image"))
 
     @property
     def gps_map_html_file(self):
@@ -210,7 +211,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gps_map_html_file"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gps_map_html_file"))
 
     @gps_map_html_file.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -220,7 +221,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gps_map_html_file"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gps_map_html_file"))
 
     @property
     def gps_map_base_size(self):
@@ -242,7 +243,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gps_map_base_size"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gps_map_base_size"))
 
     @gps_map_base_size.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -252,7 +253,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gps_map_base_size"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gps_map_base_size"))
 
     @property
     def dock_area(self):
@@ -276,7 +277,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dock_area"))
 
     @dock_area.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -286,7 +287,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dock_area"))
 
     @property
     def engine(self):
@@ -310,7 +311,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -320,7 +321,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def ibl_sets_outliner(self):
@@ -344,7 +345,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -354,7 +355,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def map(self):
@@ -378,7 +379,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map"))
 
     @map.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -388,7 +389,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map"))
 
     @property
     def map_type_ids(self):
@@ -412,7 +413,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map_type_ids"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map_type_ids"))
 
     @map_type_ids.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -422,7 +423,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map_type_ids"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map_type_ids"))
 
     def activate(self, engine):
         """
@@ -477,12 +478,13 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_zoom_in_image)))
         self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__ui_resources_directory, self.__ui_zoom_out_image)))
 
-        self.Map_Type_comboBox.addItems([foundations.common.get_first_item(mapType) for mapType in self.__map_type_ids])
+        self.Map_Type_comboBox.addItems([foundations.common.get_first_item(mapType)
+                                         for mapType in self.__map_type_ids])
 
         self.__map = Map_QWebView()
         self.__map.setMinimumSize(self.__gps_map_base_size)
         self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__ui_resources_directory,
-                                                                        self.__gps_map_html_file))))
+                                                                         self.__gps_map_html_file))))
         self.__map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
         self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
         self.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
@@ -490,7 +492,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         # Signals / Slots.
         for view in self.__ibl_sets_outliner.views:
             view.selectionModel().selectionChanged.connect(
-            self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
+                self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
         self.__map.loadFinished.connect(self.__map__loadFinished)
         self.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
         self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
@@ -510,7 +512,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
         # Signals / Slots.
         for view in self.__ibl_sets_outliner.views:
             view.selectionModel().selectionChanged.disconnect(
-            self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
+                self.__ibl_sets_outliner_view_selectionModel__selectionChanged)
         self.__map.loadFinished.disconnect(self.__map__loadFinished)
         self.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
         self.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
@@ -638,7 +640,7 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
             return True
         else:
             raise Exception("{0} | Exception raised while setting '{1}' GPS markers!".format(
-            self.__class__.__name__, ", ". join((ibl_set.title for ibl_set in selected_ibl_sets))))
+                self.__class__.__name__, ", ".join((ibl_set.title for ibl_set in selected_ibl_sets))))
 
     def set_marker(self, ibl_set):
         """
@@ -655,14 +657,14 @@ class GpsMap(QWidgetComponentFactory(ui_file=COMPONENT_FILE)):
 
         LOGGER.debug("> Ibl Set '{0}' provides GEO coordinates.".format(ibl_set.name))
         shot_date_string = "<b>Shot Date: </b>{0}".format(
-        sibl_gui.ui.common.get_formatted_shot_date(ibl_set.date, ibl_set.time) or Constants.null_object)
+            sibl_gui.ui.common.get_formatted_shot_date(ibl_set.date, ibl_set.time) or Constants.null_object)
         content = "<p><h3><b>{0}</b></h3></p><p><b>\
         Author: </b>{1}<br><b>\
         Location: </b>{2}<br>{3}<br><b>\
         Comment: </b>{4}</p>".format(ibl_set.title, ibl_set.author, ibl_set.location, shot_date_string, ibl_set.comment)
         return self.__map.add_marker((ibl_set.latitude, ibl_set.longitude),
-                                    ibl_set.title,
-                                    foundations.strings.to_forward_slashes(ibl_set.icon), content)
+                                     ibl_set.title,
+                                     foundations.strings.to_forward_slashes(ibl_set.icon), content)
 
     def remove_markers(self):
         """

@@ -43,6 +43,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Caches_Operations.ui")
 
+
 class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.caches_operations.caches_operations` Component Interface class.
@@ -97,7 +98,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -107,7 +108,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def script_editor(self):
@@ -131,7 +132,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
 
     @script_editor.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -141,7 +142,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
 
     @property
     def preferences_manager(self):
@@ -165,7 +166,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -175,7 +176,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     def activate(self, engine):
         """
@@ -324,9 +325,10 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         for type, cache in self.__engine.images_caches.iteritems():
             LOGGER.info(separator)
             LOGGER.info("{0} | Metrics for '{1}' '{2}' images memory cache:".format(self.__class__.__name__,
-                                                                            Constants.application_name, type))
+                                                                                    Constants.application_name, type))
             cache_metrics = cache.get_metrics().content
-            LOGGER.info("{0} | \tCached graphics items count: '{1}'".format(self.__class__.__name__, len(cache_metrics)))
+            LOGGER.info("{0} | \tCached graphics items count: '{1}'".format(
+                self.__class__.__name__, len(cache_metrics)))
             for path, data in sorted(cache.get_metrics().content.iteritems()):
                 LOGGER.info("{0} | \t\t'{1}':".format(self.__class__.__name__, path))
                 for size, data in sorted(data.iteritems()):
@@ -335,12 +337,13 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                         path, image_informations_header = data
                         LOGGER.info("{0} | \t\t\t'{1}': '{2}':".format(self.__class__.__name__, size, path))
                         LOGGER.info("{0} | \t\t\t\tSize: {1}x{2} px".format(self.__class__.__name__,
-                                                                        image_informations_header.width,
-                                                                        image_informations_header.height))
+                                                                            image_informations_header.width,
+                                                                            image_informations_header.height))
                         LOGGER.info("{0} | \t\t\t\tBpp: {1} bit".format(self.__class__.__name__,
-                                                                    image_informations_header.bpp / 4))
+                                                                        image_informations_header.bpp / 4))
                     else:
-                        LOGGER.info("{0} | \t\t\t'{1}': '{2}'.".format(self.__class__.__name__, size, Constants.null_object))
+                        LOGGER.info("{0} | \t\t\t'{1}': '{2}'.".format(
+                            self.__class__.__name__, size, Constants.null_object))
             LOGGER.info(separator)
 
         LOGGER.info(separator)
@@ -353,7 +356,7 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         return True
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.exceptions.CacheOperationError)
+                                              sibl_gui.exceptions.CacheOperationError)
     def clear_thumbnails_cache(self):
         """
         Clears the thumbnails cache.
@@ -370,15 +373,15 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if success:
             self.__engine.notifications_manager.notify(
-            "{0} | Thumbnails cache has been successfully cleared!".format(self.__class__.__name__))
+                "{0} | Thumbnails cache has been successfully cleared!".format(self.__class__.__name__))
             return True
         else:
             raise sibl_gui.exceptions.CacheOperationError(
                 "{0} | Exception raised while attempting to clear thumbnails cache!".format(
-                self.__class__.__name__))
+                    self.__class__.__name__))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.exceptions.CacheOperationError)
+                                              sibl_gui.exceptions.CacheOperationError)
     def clear_images_caches(self):
         """
         Clears the images caches.
@@ -393,9 +396,9 @@ class CachesOperations(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if success:
             self.__engine.notifications_manager.notify(
-            "{0} | Images caches have been successfully cleared!".format(self.__class__.__name__))
+                "{0} | Images caches have been successfully cleared!".format(self.__class__.__name__))
             return True
         else:
             raise sibl_gui.exceptions.CacheOperationError(
                 "{0} | Exception raised while attempting to clear images caches!".format(
-                self.__class__.__name__))
+                    self.__class__.__name__))

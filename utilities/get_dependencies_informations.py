@@ -65,6 +65,7 @@ DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
+
 def get_dependencies_informations():
     """
     Gets sIBL_GUI dependencies informations file.
@@ -87,6 +88,7 @@ def get_dependencies_informations():
 
     return True
 
+
 @foundations.decorators.system_exit
 def main():
     """
@@ -97,6 +99,7 @@ def main():
     """
 
     return get_dependencies_informations()
+
 
 if __name__ == "__main__":
     main()

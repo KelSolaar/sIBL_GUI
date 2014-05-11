@@ -5,13 +5,13 @@
 **${up_revision}_.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
 
 **Others:**
-	Revises: ${down_revision}
-	Creation date: ${create_date}
+    Revises: ${down_revision}
+    Creation date: ${create_date}
 """
 
 import sqlalchemy
@@ -31,15 +31,15 @@ revision = "${up_revision}"
 down_revision = "${down_revision}"
 
 def upgrade():
-	"""
-	Upgrade the database to current revision.
-	"""
+    """
+    Upgrade the database to current revision.
+    """
 
-	${upgrades if upgrades else "pass"}
+    ${upgrades if upgrades else "pass"}
 
 def downgrade():
-	"""
-	Downgrade the database to previous revision.
-	"""
+    """
+    Downgrade the database to previous revision.
+    """
 
-	${upgrades if upgrades else "pass"}
+    ${upgrades if upgrades else "pass"}

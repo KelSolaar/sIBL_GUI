@@ -39,6 +39,7 @@ LOGGER = foundations.verbose.install_logger()
 
 Base = sqlalchemy.ext.declarative.declarative_base()
 
+
 class IblSet(Base):
     """
     Defines the Database ibl_sets type.
@@ -71,24 +72,24 @@ class IblSet(Base):
     comment = sqlalchemy.Column(sqlalchemy.String)
 
     def __init__(self,
-            name=None,
-            path=None,
-            os_stats=None,
-            collection=None,
-            title=None,
-            author=None,
-            link=None,
-            icon=None,
-            preview_image=None,
-            background_image=None,
-            lighting_image=None,
-            reflection_image=None,
-            location=None,
-            latitude=None,
-            longitude=None,
-            date=None,
-            time=None,
-            comment=None):
+                 name=None,
+                 path=None,
+                 os_stats=None,
+                 collection=None,
+                 title=None,
+                 author=None,
+                 link=None,
+                 icon=None,
+                 preview_image=None,
+                 background_image=None,
+                 lighting_image=None,
+                 reflection_image=None,
+                 location=None,
+                 latitude=None,
+                 longitude=None,
+                 date=None,
+                 time=None,
+                 comment=None):
         """
         Initializes the class.
 
@@ -169,20 +170,22 @@ class IblSet(Base):
             self.author = sections_file_parser.get_value("Author", "Header")
             self.link = sections_file_parser.get_value("Link", "Header")
             self.icon = os.path.normpath(os.path.join(os.path.dirname(self.path),
-                                        sections_file_parser.get_value("ICOfile", "Header"))) \
-                                        if sections_file_parser.get_value("ICOfile", "Header") else None
+                                                      sections_file_parser.get_value("ICOfile", "Header"))) \
+                if sections_file_parser.get_value("ICOfile", "Header") else None
             self.preview_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
-                                                sections_file_parser.get_value("PREVIEWfile", "Header"))) \
-                                                if sections_file_parser.get_value("PREVIEWfile", "Header") else None
+                                                               sections_file_parser.get_value("PREVIEWfile", "Header"))) \
+                if sections_file_parser.get_value("PREVIEWfile", "Header") else None
             self.background_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
-                                                    sections_file_parser.get_value("BGfile", "Background"))) \
-                                                    if sections_file_parser.get_value("BGfile", "Background") else None
+                                                                  sections_file_parser.get_value("BGfile",
+                                                                                                 "Background"))) \
+                if sections_file_parser.get_value("BGfile", "Background") else None
             self.lighting_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
-                                                sections_file_parser.get_value("EVfile", "Enviroment"))) \
-                                                if sections_file_parser.get_value("EVfile", "Enviroment") else None
+                                                                sections_file_parser.get_value("EVfile", "Enviroment"))) \
+                if sections_file_parser.get_value("EVfile", "Enviroment") else None
             self.reflection_image = os.path.normpath(os.path.join(os.path.dirname(self.path),
-                                                    sections_file_parser.get_value("REFfile", "Reflection"))) \
-                                                    if sections_file_parser.get_value("REFfile", "Reflection") else None
+                                                                  sections_file_parser.get_value("REFfile",
+                                                                                                 "Reflection"))) \
+                if sections_file_parser.get_value("REFfile", "Reflection") else None
             self.location = sections_file_parser.get_value("Location", "Header")
             self.latitude = sections_file_parser.get_value("GEOlat", "Header")
             self.longitude = sections_file_parser.get_value("GEOlong", "Header")
@@ -193,7 +196,9 @@ class IblSet(Base):
             return True
         else:
             raise foundations.exceptions.FileStructureParsingError(
-            "{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
+                "{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__,
+                                                                                      self.path))
+
 
 class Template(Base):
     """
@@ -225,22 +230,22 @@ class Template(Base):
     comment = sqlalchemy.Column(sqlalchemy.String)
 
     def __init__(self,
-            name=None,
-            path=None,
-            os_stats=None,
-            collection=None,
-            help_file=None,
-            title=None,
-            author=None,
-            email=None,
-            url=None,
-            release=None,
-            date=None,
-            software=None,
-            version=None,
-            renderer=None,
-            output_script=None,
-            comment=None):
+                 name=None,
+                 path=None,
+                 os_stats=None,
+                 collection=None,
+                 help_file=None,
+                 title=None,
+                 author=None,
+                 email=None,
+                 url=None,
+                 release=None,
+                 date=None,
+                 software=None,
+                 version=None,
+                 renderer=None,
+                 output_script=None,
+                 comment=None):
         """
         Initializes the class.
 
@@ -312,38 +317,54 @@ class Template(Base):
 
         if sections_file_parser.sections:
             self.help_file = foundations.parsers.get_attribute_compound("HelpFile",
-                            sections_file_parser.get_value("HelpFile", "Template")).value and \
-                            os.path.join(os.path.dirname(self.path),
-                                        foundations.parsers.get_attribute_compound("HelpFile",
-                                        sections_file_parser.get_value("HelpFile", 	"Template")).value) or None
+                                                                        sections_file_parser.get_value("HelpFile",
+                                                                                                       "Template")).value and \
+                             os.path.join(os.path.dirname(self.path),
+                                          foundations.parsers.get_attribute_compound("HelpFile",
+                                                                                     sections_file_parser.get_value(
+                                                                                         "HelpFile",
+                                                                                         "Template")).value) or None
             self.title = foundations.parsers.get_attribute_compound("Name",
-                        sections_file_parser.get_value("Name", 	"Template")).value
+                                                                    sections_file_parser.get_value("Name",
+                                                                                                   "Template")).value
             self.author = foundations.parsers.get_attribute_compound("Author",
-                        sections_file_parser.get_value("Author", "Template")).value
+                                                                     sections_file_parser.get_value("Author",
+                                                                                                    "Template")).value
             self.email = foundations.parsers.get_attribute_compound("Email",
-                        sections_file_parser.get_value("Email", "Template")).value
+                                                                    sections_file_parser.get_value("Email",
+                                                                                                   "Template")).value
             self.url = foundations.parsers.get_attribute_compound("Url",
-                        sections_file_parser.get_value("Url", "Template")).value
+                                                                  sections_file_parser.get_value("Url",
+                                                                                                 "Template")).value
             self.release = foundations.parsers.get_attribute_compound("Release",
-                            sections_file_parser.get_value("Release", "Template")).value
+                                                                      sections_file_parser.get_value("Release",
+                                                                                                     "Template")).value
             self.date = foundations.parsers.get_attribute_compound("Date",
-                        sections_file_parser.get_value("Date", "Template")).value
+                                                                   sections_file_parser.get_value("Date",
+                                                                                                  "Template")).value
             self.software = foundations.parsers.get_attribute_compound("Software",
-                            sections_file_parser.get_value("Software", "Template")).value
+                                                                       sections_file_parser.get_value("Software",
+                                                                                                      "Template")).value
             self.version = foundations.parsers.get_attribute_compound("Version",
-                            sections_file_parser.get_value("Version", "Template")).value
+                                                                      sections_file_parser.get_value("Version",
+                                                                                                     "Template")).value
             self.renderer = foundations.parsers.get_attribute_compound("Renderer",
-                            sections_file_parser.get_value("Renderer", "Template")).value
+                                                                       sections_file_parser.get_value("Renderer",
+                                                                                                      "Template")).value
             self.output_script = foundations.parsers.get_attribute_compound("OutputScript",
-                                sections_file_parser.get_value("OutputScript", "Template")).value
+                                                                            sections_file_parser.get_value(
+                                                                                "OutputScript", "Template")).value
             self.comment = foundations.parsers.get_attribute_compound("Comment",
-                            sections_file_parser.get_value("Comment", "Template")).value
+                                                                      sections_file_parser.get_value("Comment",
+                                                                                                     "Template")).value
 
             return True
 
         else:
             raise foundations.exceptions.FileStructureParsingError(
-            "{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
+                "{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__,
+                                                                                      self.path))
+
 
 class Collection(Base):
     """

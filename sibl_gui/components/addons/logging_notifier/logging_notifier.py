@@ -31,6 +31,7 @@ __all__ = ["LOGGER", "LoggingNotifier"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class LoggingNotifier(Component):
     """
     | Defines the :mod:`sibl_gui.components.addons.logging_notifier.logging_notifier` Component Interface class.
@@ -78,7 +79,7 @@ class LoggingNotifier(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -88,7 +89,7 @@ class LoggingNotifier(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def memory_handler_stack_depth(self):
@@ -112,7 +113,7 @@ class LoggingNotifier(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "memory_handler_stack_depth"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "memory_handler_stack_depth"))
 
     @memory_handler_stack_depth.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -122,7 +123,7 @@ class LoggingNotifier(Component):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "memory_handler_stack_depth"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "memory_handler_stack_depth"))
 
     def activate(self, engine):
         """

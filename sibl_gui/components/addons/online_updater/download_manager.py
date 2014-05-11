@@ -44,6 +44,7 @@ LOGGER = foundations.verbose.install_logger()
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Download_Manager.ui")
 
+
 class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
     """
     | Defines the Application download manager.
@@ -123,7 +124,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
     @container.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -133,7 +134,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
     @property
     def network_access_manager(self):
@@ -157,7 +158,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "network_access_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "network_access_manager"))
 
     @network_access_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -167,7 +168,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "network_access_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "network_access_manager"))
 
     @property
     def download_directory(self):
@@ -191,7 +192,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "download_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "download_directory"))
 
     @download_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -201,7 +202,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "download_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "download_directory"))
 
     @property
     def ui_resources_directory(self):
@@ -225,7 +226,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -235,7 +236,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_logo_image(self):
@@ -259,7 +260,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_logo_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_logo_image"))
 
     @ui_logo_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -269,7 +270,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_logo_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_logo_image"))
 
     @property
     def requests(self):
@@ -296,7 +297,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
             assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
             for element in value:
                 assert type(element) is unicode, "'{0}' attribute: '{1}' type is not 'unicode'!".format(
-                "requests", element)
+                    "requests", element)
         self.__requests = value
 
     @requests.deleter
@@ -307,7 +308,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "requests"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "requests"))
 
     @property
     def downloads(self):
@@ -331,7 +332,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloads"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloads"))
 
     @downloads.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -341,7 +342,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "downloads"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "downloads"))
 
     @property
     def current_request(self):
@@ -365,7 +366,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_request"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_request"))
 
     @current_request.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -375,7 +376,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_request"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_request"))
 
     @property
     def current_file(self):
@@ -399,7 +400,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_file"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_file"))
 
     @current_file.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -409,7 +410,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_file"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_file"))
 
     @property
     def current_filePath(self):
@@ -433,7 +434,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_filePath"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "current_filePath"))
 
     @current_filePath.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -443,7 +444,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_filePath"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "current_filePath"))
 
     @property
     def download_status(self):
@@ -467,7 +468,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "download_status"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "download_status"))
 
     @download_status.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -477,7 +478,7 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "download_status"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "download_status"))
 
     def closeEvent(self, event):
         """
@@ -501,7 +502,6 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         self.Download_progressBar.setValue(0)
         self.Download_progressBar.hide()
         self.Logo_label.setPixmap(QPixmap(os.path.join(self.__ui_resources_directory, self.__ui_logo_image)))
-
 
         # Signals / Slots.
         self.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
@@ -529,17 +529,18 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         self.__current_request = self.__network_access_manager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
         self.__current_filePath = os.path.join(self.__download_directory,
-                                            os.path.basename(foundations.strings.to_string(self.__current_request.url().path())))
+                                               os.path.basename(
+                                                   foundations.strings.to_string(self.__current_request.url().path())))
         if foundations.common.path_exists(self.__current_filePath):
             LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(
-            self.__class__.__name__, os.path.basename(self.__current_filePath)))
+                self.__class__.__name__, os.path.basename(self.__current_filePath)))
             os.remove(self.__current_filePath)
 
         self.__current_file = QFile(self.__current_filePath)
 
         if not self.__current_file.open(QIODevice.WriteOnly):
             LOGGER.warning("!> Error occured while writing '{0}' file to disk, proceeding to next download!".format(
-            self.__current_filePath))
+                self.__current_filePath))
 
             self.__download_next()
             return
@@ -560,10 +561,10 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         """
 
         LOGGER.debug("> Updating download progress: '{0}' bytes received, '{1}' bytes total.".format(bytes_received,
-                                                                                                    bytes_total))
+                                                                                                     bytes_total))
 
         self.Current_File_label.setText("Downloading: '{0}'.".format(
-        os.path.basename(foundations.strings.to_string(self.__current_request.url().path()))))
+            os.path.basename(foundations.strings.to_string(self.__current_request.url().path()))))
         self.Download_progressBar.setRange(0, bytes_total)
         self.Download_progressBar.setValue(bytes_received)
 
@@ -584,7 +585,8 @@ class DownloadManager(foundations.ui.common.QWidget_factory(ui_file=UI_FILE)):
         LOGGER.debug("> '{0}' download complete.".format(self.__current_file))
 
         self.__current_file.close()
-        self.__downloads[self.__current_filePath] = (self.__current_request.error(), self.__current_request.url().toString())
+        self.__downloads[self.__current_filePath] = (
+            self.__current_request.error(), self.__current_request.url().toString())
         self.Current_File_label.setText("'{0}' downloading done!".format(os.path.basename(self.__current_filePath)))
         self.Download_progressBar.hide()
         self.__current_request.deleteLater()

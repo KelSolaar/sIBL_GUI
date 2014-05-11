@@ -50,6 +50,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Online_Update
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
+
 class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.online_updater.online_updater` Component Interface class.
@@ -120,7 +121,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -130,7 +131,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -154,7 +155,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -164,7 +165,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -188,7 +189,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -198,7 +199,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def preferences_manager(self):
@@ -222,7 +223,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -232,7 +233,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     @property
     def templates_outliner(self):
@@ -256,7 +257,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -266,7 +267,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     @property
     def locations_browser(self):
@@ -290,7 +291,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "locations_browser"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "locations_browser"))
 
     @locations_browser.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -300,7 +301,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "locations_browser"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "locations_browser"))
 
     @property
     def io_directory(self):
@@ -324,7 +325,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "io_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "io_directory"))
 
     @io_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -334,7 +335,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "io_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "io_directory"))
 
     @property
     def repository_url(self):
@@ -358,7 +359,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repository_url"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repository_url"))
 
     @repository_url.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -368,7 +369,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "repository_url"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "repository_url"))
 
     @property
     def releases_file_url(self):
@@ -392,7 +393,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "releases_file_url"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "releases_file_url"))
 
     @releases_file_url.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -402,7 +403,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "releases_file_url"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "releases_file_url"))
 
     @property
     def network_access_manager(self):
@@ -426,7 +427,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "network_access_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "network_access_manager"))
 
     @network_access_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -436,7 +437,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "network_access_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "network_access_manager"))
 
     @property
     def release_reply(self):
@@ -460,7 +461,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "release_reply"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "release_reply"))
 
     @release_reply.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -470,7 +471,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "release_reply"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "release_reply"))
 
     @property
     def remote_updater(self):
@@ -494,7 +495,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "remote_updater"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "remote_updater"))
 
     @remote_updater.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -504,7 +505,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "remote_updater"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "remote_updater"))
 
     @property
     def report_update_status(self):
@@ -528,7 +529,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "report_update_status"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "report_update_status"))
 
     @report_update_status.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -538,7 +539,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "report_update_status"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "report_update_status"))
 
     def activate(self, engine):
         """
@@ -561,7 +562,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__locations_browser = self.__engine.components_manager["addons.locations_browser"]
 
         self.__io_directory = os.path.join(self.__engine.user_application_data_directory,
-                                        Constants.io_directory, self.__io_directory)
+                                           Constants.io_directory, self.__io_directory)
         not foundations.common.path_exists(self.__io_directory) and os.makedirs(self.__io_directory)
 
         self.__network_access_manager = QNetworkAccessManager()
@@ -610,8 +611,8 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         self.__engine.parameters.deactivate_worker_threads and \
         LOGGER.info(
-        "{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(
-        self.__class__.__name__, "deactivate_worker_threads"))
+            "{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(
+                self.__class__.__name__, "deactivate_worker_threads"))
 
         self.__Check_For_New_Releases_On_Startup_checkBox_set_ui()
         self.__Ignore_Non_Existing_Templates_checkBox_set_ui()
@@ -619,9 +620,9 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
         self.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(
-        self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+            self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
         self.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(
-        self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
+            self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
         self.initialized_ui = True
         return True
@@ -639,9 +640,9 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
         self.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(
-        self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+            self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
         self.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(
-        self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
+            self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
         self.initialized_ui = False
         return True
@@ -658,7 +659,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         self.__report_update_status = False
         if not self.__engine.parameters.deactivate_worker_threads and \
-        self.Check_For_New_Releases_On_Startup_checkBox.isChecked():
+                self.Check_For_New_Releases_On_Startup_checkBox.isChecked():
             self.check_for_new_releases()
         return True
 
@@ -695,11 +696,13 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__settings.get_key(self.__settings_section, "check_for_new_releases_on_startup").isNull() and \
         self.__settings.set_key(self.__settings_section, "check_for_new_releases_on_startup", Qt.Checked)
 
-        check_for_new_releases_on_startup = self.__settings.get_key(self.__settings_section, "check_for_new_releases_on_startup")
+        check_for_new_releases_on_startup = self.__settings.get_key(
+            self.__settings_section, "check_for_new_releases_on_startup")
         LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox",
-                                                foundations.common.get_first_item(check_for_new_releases_on_startup.toInt())))
+                                                                foundations.common.get_first_item(
+                                                                    check_for_new_releases_on_startup.toInt())))
         self.Check_For_New_Releases_On_Startup_checkBox.setCheckState(
-        foundations.common.get_first_item(check_for_new_releases_on_startup.toInt()))
+            foundations.common.get_first_item(check_for_new_releases_on_startup.toInt()))
 
     def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
         """
@@ -721,11 +724,13 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__settings.get_key(self.__settings_section, "ignore_non_existing_templates").isNull() and \
         self.__settings.set_key(self.__settings_section, "ignore_non_existing_templates", Qt.Checked)
 
-        ignore_non_existing_templates = self.__settings.get_key(self.__settings_section, "ignore_non_existing_templates")
+        ignore_non_existing_templates = self.__settings.get_key(
+            self.__settings_section, "ignore_non_existing_templates")
         LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox",
-                                                    foundations.common.get_first_item(ignore_non_existing_templates.toInt())))
+                                                                foundations.common.get_first_item(
+                                                                    ignore_non_existing_templates.toInt())))
         self.Ignore_Non_Existing_Templates_checkBox.setCheckState(
-        foundations.common.get_first_item(ignore_non_existing_templates.toInt()))
+            foundations.common.get_first_item(ignore_non_existing_templates.toInt()))
 
     def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
         """
@@ -758,7 +763,7 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if not self.__releases_file_reply.error():
             content = []
-            while not self.__releases_file_reply.atEnd ():
+            while not self.__releases_file_reply.atEnd():
                 content.append(foundations.strings.to_string(self.__releases_file_reply.readLine()))
 
             LOGGER.debug("> Parsing releases file content.")
@@ -770,59 +775,67 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             for remote_object in sections_file_parser.sections:
                 if remote_object != Constants.application_name:
                     database_templates = \
-                    sibl_gui.components.core.database.operations.filter_templates("^{0}$".format(remote_object), "name")
-                    database_template = foundations.common.get_first_item([foundations.common.get_first_item(database_template)
-                                                for database_template in sorted(((database_template, database_template.release)
-                                                for database_template in database_templates),
-                                                reverse=True,
-                                                key=lambda x:(foundations.strings.get_version_rank(x[1])))])
+                        sibl_gui.components.core.database.operations.filter_templates(
+                            "^{0}$".format(remote_object), "name")
+                    database_template = foundations.common.get_first_item(
+                        [foundations.common.get_first_item(database_template)
+                         for database_template in sorted(((database_template, database_template.release)
+                                                          for database_template in database_templates),
+                                                         reverse=True,
+                                                         key=lambda x: (foundations.strings.get_version_rank(x[1])))])
                     if not self.__engine.parameters.database_read_only:
                         if database_template:
                             if database_template.release != sections_file_parser.get_value("Release", remote_object):
                                 releases[remote_object] = ReleaseObject(name=remote_object,
-                                                                    repository_version=sections_file_parser.get_value(
-                                                                    "Release", remote_object),
-                                                                    local_version=database_template.release,
-                                                                    type=sections_file_parser.get_value("Type",
-                                                                                                    remote_object),
-                                                                    url=sections_file_parser.get_value("Url",
-                                                                                                    remote_object),
-                                                                    comment=sections_file_parser.get_value("Comment",
-                                                                                                    remote_object))
+                                                                        repository_version=sections_file_parser.get_value(
+                                                                            "Release", remote_object),
+                                                                        local_version=database_template.release,
+                                                                        type=sections_file_parser.get_value("Type",
+                                                                                                            remote_object),
+                                                                        url=sections_file_parser.get_value("Url",
+                                                                                                           remote_object),
+                                                                        comment=sections_file_parser.get_value(
+                                                                            "Comment",
+                                                                            remote_object))
                         else:
                             if not self.Ignore_Non_Existing_Templates_checkBox.isChecked():
                                 releases[remote_object] = ReleaseObject(name=remote_object,
-                                                                    repository_version=sections_file_parser.get_value(
-                                                                    "Release", remote_object),
-                                                                    local_version=None,
-                                                                    type=sections_file_parser.get_value("Type",
-                                                                                                    remote_object),
-                                                                    url=sections_file_parser.get_value("Url",
-                                                                                                    remote_object),
-                                                                    comment=sections_file_parser.get_value("Comment",
-                                                                                                    remote_object))
+                                                                        repository_version=sections_file_parser.get_value(
+                                                                            "Release", remote_object),
+                                                                        local_version=None,
+                                                                        type=sections_file_parser.get_value("Type",
+                                                                                                            remote_object),
+                                                                        url=sections_file_parser.get_value("Url",
+                                                                                                           remote_object),
+                                                                        comment=sections_file_parser.get_value(
+                                                                            "Comment",
+                                                                            remote_object))
                     else:
-                        LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(
-                        self.__class__.__name__, remote_object, "database_read_only"))
+                        LOGGER.info(
+                            "{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(
+                                self.__class__.__name__, remote_object, "database_read_only"))
                 else:
                     if Constants.version != sections_file_parser.get_value("Release", remote_object):
                         releases[remote_object] = ReleaseObject(name=remote_object,
-                                                            repository_version=sections_file_parser.get_value("Release",
-                                                                                                        remote_object),
-                                                            local_version=Constants.version,
-                                                            url=sections_file_parser.get_value("Url", remote_object),
-                                                            type=sections_file_parser.get_value("Type", remote_object),
-                                                            comment=None)
+                                                                repository_version=sections_file_parser.get_value(
+                                                                    "Release",
+                                                                    remote_object),
+                                                                local_version=Constants.version,
+                                                                url=sections_file_parser.get_value(
+                                                                    "Url", remote_object),
+                                                                type=sections_file_parser.get_value(
+                                                                    "Type", remote_object),
+                                                                comment=None)
             if releases:
                 LOGGER.debug("> Initializing Remote Updater.")
                 self.__remote_updater = RemoteUpdater(self, releases, Qt.Window)
                 self.__remote_updater.show()
             else:
                 self.__report_update_status and self.__engine.notifications_manager.notify(
-                "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.application_name))
+                    "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.application_name))
         else:
             raise sibl_gui.exceptions.NetworkError("{0} | QNetworkAccessManager error code: '{1}'.".format(
-            self.__class__.__name__, self.__releases_file_reply.error()))
+                self.__class__.__name__, self.__releases_file_reply.error()))
 
     def __get_releases_file(self, url):
         """
@@ -836,8 +849,8 @@ class OnlineUpdater(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         self.__releases_file_reply.finished.connect(self.__releases_file_reply__finished)
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            sibl_gui.exceptions.NetworkError,
-                                            Exception)
+                                              sibl_gui.exceptions.NetworkError,
+                                              Exception)
     def check_for_new_releases_ui(self):
         """
         Checks for new releases.

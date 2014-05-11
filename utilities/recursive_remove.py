@@ -27,7 +27,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["recursive_remove", "remove", "get_command_line_arguments" , "main"]
+__all__ = ["recursive_remove", "remove", "get_command_line_arguments", "main"]
+
 
 def recursive_remove(root_directory, pattern):
     """
@@ -48,6 +49,7 @@ def recursive_remove(root_directory, pattern):
             if pattern in item:
                 remove(item_path)
 
+
 def remove(item):
     """
     Deletes given item.
@@ -60,6 +62,7 @@ def remove(item):
         os.remove(item)
     except:
         print("{0} | '{1}' file removing failed!".format(remove.__name__, item))
+
 
 def get_command_line_arguments():
     """
@@ -94,6 +97,7 @@ def get_command_line_arguments():
 
     return parser.parse_args()
 
+
 def main():
     """
     Starts the Application.
@@ -104,6 +108,7 @@ def main():
 
     args = get_command_line_arguments()
     return 0 if recursive_remove(args.input, args.pattern) else 1
+
 
 if __name__ == "__main__":
     main()

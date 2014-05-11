@@ -44,6 +44,7 @@ FILTERS_OUT = ("default_script\.py", "tests")
 foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
+
 def list_imports(packages, filters_in, filters_out):
     """
     Lists Application imports.
@@ -73,6 +74,7 @@ def list_imports(packages, filters_in, filters_out):
                         statement != "_" and imports.add(statement)
     return imports
 
+
 def get_command_line_arguments():
     """
     Retrieves command line arguments.
@@ -100,6 +102,7 @@ def get_command_line_arguments():
 
     return parser.parse_args()
 
+
 @foundations.decorators.system_exit
 def main():
     """
@@ -114,6 +117,7 @@ def main():
     imports = list_imports(args.packages, filters_in=FILTERS_IN, filters_out=FILTERS_OUT)
     LOGGER.info("{0} | Imports: \"{1}\"".format(list_imports.__name__, ",".join(sorted(imports))))
     return True
+
 
 if __name__ == "__main__":
     main()

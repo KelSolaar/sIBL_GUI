@@ -102,6 +102,7 @@ This software is released under terms of GNU GPL v3 license: <a href="http://www
 </center>
 """
 
+
 class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
@@ -160,7 +161,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @ui_resources_directory.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -170,7 +171,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
 
     @property
     def ui_logo_image(self):
@@ -194,7 +195,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_logo_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_logo_image"))
 
     @ui_logo_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -204,7 +205,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_logo_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_logo_image"))
 
     @property
     def ui_gpl3_image(self):
@@ -228,7 +229,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_gpl3_image"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_gpl3_image"))
 
     @ui_gpl3_image.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -238,7 +239,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_gpl3_image"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_gpl3_image"))
 
     @property
     def engine(self):
@@ -262,7 +263,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -272,7 +273,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def miscellaneous_menu(self):
@@ -296,7 +297,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneous_menu"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneous_menu"))
 
     @miscellaneous_menu.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -306,7 +307,7 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneous_menu"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneous_menu"))
 
     def activate(self, engine):
         """
@@ -406,8 +407,8 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
         self.__miscellaneous_menu.addAction(self.__engine.actions_manager.register_action(
-        "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.application_name),
-                                                                slot=self.__miscellaneous_menu_aboutAction__triggered))
+            "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.application_name),
+            slot=self.__miscellaneous_menu_aboutAction__triggered))
 
     def __remove_actions(self):
         """
@@ -435,8 +436,8 @@ class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         umbra.ui.common.set_window_default_icon(self)
 
         about_message = ABOUT_MESSAGE.format(os.path.join(self.__ui_resources_directory, self.__ui_logo_image),
-                        Constants.version.replace(".", " . "),
-                        os.path.join(self.__ui_resources_directory, self.__ui_gpl3_image))
+                                             Constants.version.replace(".", " . "),
+                                             os.path.join(self.__ui_resources_directory, self.__ui_gpl3_image))
 
         self.About_label.setText(about_message)
 

@@ -48,6 +48,7 @@ LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Raw_Editing_Utilities.ui")
 
+
 class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
     """
     | Defines the :mod:`sibl_gui.components.addons.raw_editing_utilities.raw_editing_utilities` Component Interface class.
@@ -110,7 +111,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
     @engine.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -120,7 +121,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
     @property
     def settings(self):
@@ -144,7 +145,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
     @settings.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -154,7 +155,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
     @property
     def settings_section(self):
@@ -178,7 +179,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings_section"))
 
     @settings_section.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -188,7 +189,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings_section"))
 
     @property
     def script_editor(self):
@@ -212,7 +213,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "script_editor"))
 
     @script_editor.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -222,7 +223,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "script_editor"))
 
     @property
     def preferences_manager(self):
@@ -246,7 +247,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "preferences_manager"))
 
     @preferences_manager.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -256,7 +257,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "preferences_manager"))
 
     @property
     def components_manager_ui(self):
@@ -280,7 +281,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "components_manager_ui"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "components_manager_ui"))
 
     @components_manager_ui.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -290,7 +291,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "components_manager_ui"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "components_manager_ui"))
 
     @property
     def ibl_sets_outliner(self):
@@ -314,7 +315,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @ibl_sets_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -324,7 +325,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ibl_sets_outliner"))
 
     @property
     def inspector(self):
@@ -348,7 +349,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspector"))
 
     @inspector.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -358,7 +359,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspector"))
 
     @property
     def templates_outliner(self):
@@ -382,7 +383,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templates_outliner"))
 
     @templates_outliner.deleter
     @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
@@ -392,7 +393,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         raise foundations.exceptions.ProgrammingError(
-        "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates_outliner"))
 
     def activate(self, engine):
         """
@@ -460,10 +461,10 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
         self.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(
-        self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+            self.__Custom_Text_Editor_Path_lineEdit__editFinished)
         self.__engine.content_dropped.connect(self.__engine__content_dropped)
         self.__script_editor.Script_Editor_tabWidget.content_dropped.connect(
-        self.__script_editor_Script_Editor_tabWidget__content_dropped)
+            self.__script_editor_Script_Editor_tabWidget__content_dropped)
 
         self.initialized_ui = True
         return True
@@ -481,10 +482,10 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         # Signals / Slots.
         self.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
         self.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(
-        self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+            self.__Custom_Text_Editor_Path_lineEdit__editFinished)
         self.__engine.content_dropped.disconnect(self.__engine__content_dropped)
         self.__script_editor.Script_Editor_tabWidget.content_dropped.disconnect(
-        self.__script_editor_Script_Editor_tabWidget__content_dropped)
+            self.__script_editor_Script_Editor_tabWidget__content_dropped)
 
         self.__remove_actions()
 
@@ -529,28 +530,28 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
 
         if not self.__engine.parameters.database_read_only:
             edit_ibl_sets_files_action = self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.ibl_sets_outliner|Edit Ibl Set(s) File(s) ...",
-            slot=self.__ibl_sets_outliner_views_edit_ibl_sets_files_action__triggered)
+                "Actions|Umbra|Components|core.ibl_sets_outliner|Edit Ibl Set(s) File(s) ...",
+                slot=self.__ibl_sets_outliner_views_edit_ibl_sets_files_action__triggered)
             for view in self.__ibl_sets_outliner.views:
                 view.addAction(edit_ibl_sets_files_action)
 
             self.__inspector.Inspector_Overall_frame.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
-            slot=self.__inspector_edit_active_ibl_set_file_action__triggered))
+                "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ...",
+                slot=self.__inspector_edit_active_ibl_set_file_action__triggered))
             self.__templates_outliner.view.addAction(self.__engine.actions_manager.register_action(
-            "Actions|Umbra|Components|core.templates_outliner|Edit Template(s) File(s) ...",
-            slot=self.__templates_outliner_view_edit_templates_files_action__triggered))
+                "Actions|Umbra|Components|core.templates_outliner|Edit Template(s) File(s) ...",
+                slot=self.__templates_outliner_view_edit_templates_files_action__triggered))
         else:
             LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(
-            self.__class__.__name__, "database_read_only"))
+                self.__class__.__name__, "database_read_only"))
 
         separator_action = QAction(self.__components_manager_ui.view)
         separator_action.setSeparator(True)
         self.__components_manager_ui.view.addAction(separator_action)
 
         self.__components_manager_ui.view.addAction(self.__engine.actions_manager.register_action(
-        "Actions|Umbra|Components|factory.components_manager_ui|Edit Component(s) ...",
-        slot=self.__components_manager_ui_view_edit_components_action__triggered))
+            "Actions|Umbra|Components|factory.components_manager_ui|Edit Component(s) ...",
+            slot=self.__components_manager_ui_view_edit_components_action__triggered))
 
     def __remove_actions(self):
         """
@@ -566,15 +567,15 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             self.__engine.actions_manager.unregister_action(edit_ibl_sets_files_action)
             edit_active_ibl_set_file_action = "Actions|Umbra|Components|core.inspector|Edit Ibl Set File ..."
             self.__inspector.Inspector_Overall_frame.removeAction(
-            self.__engine.actions_manager.get_action(edit_active_ibl_set_file_action))
+                self.__engine.actions_manager.get_action(edit_active_ibl_set_file_action))
             self.__engine.actions_manager.unregister_action(edit_active_ibl_set_file_action)
             edit_templates_files_action = "Actions|Umbra|Components|core.templates_outliner|Edit Template(s) File(s) ..."
             self.__templates_outliner.view.removeAction(
-            self.__engine.actions_manager.get_action(edit_templates_files_action))
+                self.__engine.actions_manager.get_action(edit_templates_files_action))
             self.__engine.actions_manager.unregister_action(edit_templates_files_action)
         edit_components_action = "Actions|Umbra|Components|factory.components_manager_ui|Edit Component(s) ..."
         self.__components_manager_ui.view.removeAction(
-        self.__engine.actions_manager.get_action(edit_components_action))
+            self.__engine.actions_manager.get_action(edit_components_action))
         self.__engine.actions_manager.unregister_action(edit_components_action)
 
     def __ibl_sets_outliner_views_edit_ibl_sets_files_action__triggered(self, checked):
@@ -647,7 +648,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
         """
 
         custom_text_editor_executable = umbra.ui.common.store_last_browsed_path(
-        QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", RuntimeGlobals.last_browsed_path))
+            QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", RuntimeGlobals.last_browsed_path))
         if custom_text_editor_executable != "":
             LOGGER.debug("> Chosen custom text editor executable: '{0}'.".format(custom_text_editor_executable))
             self.Custom_Text_Editor_Path_lineEdit.setText(QString(custom_text_editor_executable))
@@ -656,7 +657,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                                     self.Custom_Text_Editor_Path_lineEdit.text())
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.UserError)
+                                              foundations.exceptions.UserError)
     def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
         """
         Defines the slot triggered by **Custom_Text_Editor_Path_lineEdit** Widget
@@ -669,7 +670,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             self.__Custom_Text_Editor_Path_lineEdit_set_ui()
 
             raise foundations.exceptions.UserError("{0} | Invalid custom text editor executable file!".format(
-            self.__class__.__name__))
+                self.__class__.__name__))
         else:
             self.__settings.set_key(self.__settings_section,
                                     "custom_text_editor",
@@ -696,9 +697,10 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             path = foundations.strings.to_string(url.path())
             LOGGER.debug("> Handling dropped '{0}' file.".format(path))
             path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
-            re.search(r"^\/[A-Z]:", path) and path[1:] or path
+                   re.search(r"^\/[A-Z]:", path) and path[1:] or path
             if not re.search(r"\.{0}$".format(self.__ibl_sets_outliner.extension), path) and \
-            not re.search(r"\.{0}$".format(self.templates_outliner.extension), path) and not os.path.isdir(path):
+                    not re.search(r"\.{0}$".format(self.templates_outliner.extension), path) and not os.path.isdir(
+                    path):
                 self.edit_path(path, self.Custom_Text_Editor_Path_lineEdit.text())
             self.__engine.step_processing()
         self.__engine.stop_processing()
@@ -736,16 +738,18 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 success *= self.edit_path(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(
-                self.__class__.__name__, ibl_set.title))
+                    self.__class__.__name__, ibl_set.title))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__,
-                                                                ", ".join(ibl_set.title for ibl_set in selected_ibl_sets)))
+                                                                                          ", ".join(
+                                                                                              ibl_set.title for ibl_set
+                                                                                              in selected_ibl_sets)))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler,
-                                            foundations.exceptions.FileExistsError)
+                                              foundations.exceptions.FileExistsError)
     def edit_active_ibl_set_file_ui(self):
         """
         Edits :mod:`sibl_gui.components.core.inspector.inspector` Component Ibl Set file.
@@ -761,11 +765,12 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
             return False
 
         if foundations.common.path_exists(active_ibl_set.path):
-            return self.edit_path(active_ibl_set.path, foundations.strings.to_string(self.Custom_Text_Editor_Path_lineEdit.text()))
+            return self.edit_path(active_ibl_set.path,
+                                  foundations.strings.to_string(self.Custom_Text_Editor_Path_lineEdit.text()))
         else:
             raise foundations.exceptions.FileExistsError(
-            "{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
-            self.__class__.__name__, active_ibl_set.title))
+                "{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(
+                    self.__class__.__name__, active_ibl_set.title))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def edit_templates_files_ui(self):
@@ -787,13 +792,15 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 success *= self.edit_path(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(
-                self.__class__.__name__, template.name))
+                    self.__class__.__name__, template.name))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while editing '{1}' templates!".format(self.__class__.__name__,
-                                                            ", ".join(template.name for template in selected_templates)))
+                                                                                           ", ".join(template.name for
+                                                                                                     template in
+                                                                                                     selected_templates)))
 
     @foundations.exceptions.handle_exceptions(umbra.exceptions.notify_exception_handler, Exception)
     def edit_components_ui(self):
@@ -815,13 +822,15 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 success *= self.edit_path(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
             else:
                 LOGGER.warning("!> {0} | '{1}' Component path doesn't exists and will be skipped!".format(
-                self.__class__.__name__, component.name))
+                    self.__class__.__name__, component.name))
 
         if success:
             return True
         else:
             raise Exception("{0} | Exception raised while editing '{1}' Components!".format(self.__class__.__name__,
-                                                            ", ".join(component.name for component in selected_components)))
+                                                                                            ", ".join(component.name for
+                                                                                                      component in
+                                                                                                      selected_components)))
 
     def get_process_command(self, path, custom_text_editor):
         """
@@ -868,7 +877,7 @@ class RawEditingUtilities(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
                 return True
             else:
                 raise Exception("{0} | Exception raised: No suitable process command given!".format(
-                self.__class__.__name__))
+                    self.__class__.__name__))
         else:
             self.__script_editor.load_path(path) and self.__script_editor.restore_development_layout()
             return True

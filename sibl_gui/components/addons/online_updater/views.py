@@ -31,6 +31,7 @@ __all__ = ["LOGGER", "TemplatesReleases_QTableWidget"]
 
 LOGGER = foundations.verbose.install_logger()
 
+
 class TemplatesReleases_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
     """
     Defines the view for Templates releases.

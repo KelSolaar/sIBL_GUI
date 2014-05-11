@@ -30,6 +30,7 @@ __status__ = "Production"
 
 __all__ = ["Constants"]
 
+
 class Constants():
     """
     Defines **sIBL_GUI** package default constants.
@@ -133,12 +134,12 @@ class Constants():
     """
 
     preferences_directories = (database_directory,
-                                patches_directory,
-                                settings_directory,
-                                user_components_directory,
-                                logging_directory,
-                                templates_directory,
-                                io_directory)
+                               patches_directory,
+                               settings_directory,
+                               user_components_directory,
+                               logging_directory,
+                               templates_directory,
+                               io_directory)
     """
     :param preferences_directories: Application preferences directories.
     :type preferences_directories: tuple
