@@ -5,10 +5,10 @@
 **exceptions.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines **database** component exceptions. 
+    Defines **database** component exceptions.
 
 **Others:**
 
@@ -26,99 +26,98 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER", "AbstractDatabaseError",
-			"DatabaseOperationError",
-			"AbstractIblSetError",
-			"MissingIblSetFileError",
-			"MissingIblSetIconError",
-			"MissingIblSetPreviewImageError",
-			"MissingIblSetBackgroundImageError",
-			"MissingIblSetLightingImageError",
-			"MissingIblSetReflectionImageError",
-			"AbstractTemplateError",
-			"MissingTemplateFileError",
-			"MissingTemplateHelpFileError"]
+            "DatabaseOperationError",
+            "AbstractIblSetError",
+            "MissingIblSetFileError",
+            "MissingIblSetIconError",
+            "MissingIblSetPreviewImageError",
+            "MissingIblSetBackgroundImageError",
+            "MissingIblSetLightingImageError",
+            "MissingIblSetReflectionImageError",
+            "AbstractTemplateError",
+            "MissingTemplateFileError",
+            "MissingTemplateHelpFileError"]
 
 class AbstractDatabaseError(foundations.exceptions.AbstractError):
-	"""
-	Defines the abstract base class for database related exceptions.
-	"""
+    """
+    Defines the abstract base class for database related exceptions.
+    """
 
-	pass
+    pass
 
 class DatabaseOperationError(AbstractDatabaseError):
-	"""
-	Defines Database operation exceptions.
-	"""
+    """
+    Defines Database operation exceptions.
+    """
 
-	pass
+    pass
 
 class AbstractIblSetError(foundations.exceptions.AbstractError):
-	"""
-	Defines the abstract base class for Ibl Set related exceptions.
-	"""
+    """
+    Defines the abstract base class for Ibl Set related exceptions.
+    """
 
-	pass
+    pass
 
 class MissingIblSetFileError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's file is missing.
-	"""
+    """
+    Raises when an Ibl Set's file is missing.
+    """
 
-	pass
+    pass
 
 class MissingIblSetIconError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's icon is missing.
-	"""
+    """
+    Raises when an Ibl Set's icon is missing.
+    """
 
-	pass
+    pass
 
 class MissingIblSetPreviewImageError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's preview image is missing.
-	"""
+    """
+    Raises when an Ibl Set's preview image is missing.
+    """
 
-	pass
+    pass
 
 class MissingIblSetBackgroundImageError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's background image is missing.
-	"""
+    """
+    Raises when an Ibl Set's background image is missing.
+    """
 
-	pass
+    pass
 
 class MissingIblSetLightingImageError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's lighting image is missing.
-	"""
+    """
+    Raises when an Ibl Set's lighting image is missing.
+    """
 
-	pass
+    pass
 
 class MissingIblSetReflectionImageError(AbstractIblSetError):
-	"""
-	Raises when an Ibl Set's reflection image is missing.
-	"""
+    """
+    Raises when an Ibl Set's reflection image is missing.
+    """
 
-	pass
+    pass
 
 class AbstractTemplateError(foundations.exceptions.AbstractError):
-	"""
-	Defines the abstract base class for Template related exceptions.
-	"""
+    """
+    Defines the abstract base class for Template related exceptions.
+    """
 
-	pass
+    pass
 
 class MissingTemplateFileError(AbstractTemplateError):
-	"""
-	Raises when a Template file is missing.
-	"""
+    """
+    Raises when a Template file is missing.
+    """
 
-	pass
+    pass
 
 class MissingTemplateHelpFileError(AbstractTemplateError):
-	"""
-	Raises when a Template help file is missing.
-	"""
+    """
+    Raises when a Template help file is missing.
+    """
 
-	pass
-
+    pass

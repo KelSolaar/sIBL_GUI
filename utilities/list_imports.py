@@ -5,10 +5,10 @@
 **list_imports.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Lists Application imports.
+    Lists Application imports.
 
 **Others:**
 
@@ -45,75 +45,75 @@ foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
 def list_imports(packages, filters_in, filters_out):
-	"""
-	Lists Application imports.
+    """
+    Lists Application imports.
 
-	:param packages: Packages.
-	:type packages: list
-	:param filters_in: Filters in.
-	:type filters_in: tuple or list
-	:param filters_out: Filters out.
-	:type filters_out: tuple or list
-	:return: Imports.
-	:rtype: list
-	"""
+    :param packages: Packages.
+    :type packages: list
+    :param filters_in: Filters in.
+    :type filters_in: tuple or list
+    :param filters_out: Filters out.
+    :type filters_out: tuple or list
+    :return: Imports.
+    :rtype: list
+    """
 
-	imports = set(IMPORTS)
-	for package in packages:
-		path = __import__(package).__path__.pop()
-		for file in sorted(list(foundations.walkers.files_walker(path, filters_in, filters_out))):
-			source = File(file)
-			source.cache()
-			for line in source.content:
-				if not re.search("oncilla|foundations|manager|umbra|sibl_gui", line):
-					search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import",
-									   line)
-					if search:
-						statement = search.group("moduleA") or search.group("moduleB")
-						statement != "_" and imports.add(statement)
-	return imports
+    imports = set(IMPORTS)
+    for package in packages:
+        path = __import__(package).__path__.pop()
+        for file in sorted(list(foundations.walkers.files_walker(path, filters_in, filters_out))):
+            source = File(file)
+            source.cache()
+            for line in source.content:
+                if not re.search("oncilla|foundations|manager|umbra|sibl_gui", line):
+                    search = re.search("^\s*import\s*(?P<moduleA>[\w+\.]+)|^\s*from\s*(?P<moduleB>[\w+\.]+)\s+import",
+                                       line)
+                    if search:
+                        statement = search.group("moduleA") or search.group("moduleB")
+                        statement != "_" and imports.add(statement)
+    return imports
 
 def get_command_line_arguments():
-	"""
-	Retrieves command line arguments.
+    """
+    Retrieves command line arguments.
 
-	:return: Namespace.
-	:rtype: Namespace
-	"""
+    :return: Namespace.
+    :rtype: Namespace
+    """
 
-	parser = argparse.ArgumentParser(add_help=False)
+    parser = argparse.ArgumentParser(add_help=False)
 
-	parser.add_argument("-h",
-						"--help",
-						action="help",
-						help="'Displays this help message and exit.'")
+    parser.add_argument("-h",
+                        "--help",
+                        action="help",
+                        help="'Displays this help message and exit.'")
 
-	parser.add_argument("-p",
-						"--packages",
-						nargs="*",
-						dest="packages",
-						help="'Packages.'")
+    parser.add_argument("-p",
+                        "--packages",
+                        nargs="*",
+                        dest="packages",
+                        help="'Packages.'")
 
-	if len(sys.argv) == 1:
-		parser.print_help()
-		sys.exit(1)
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
 
-	return parser.parse_args()
+    return parser.parse_args()
 
 @foundations.decorators.system_exit
 def main():
-	"""
-	Starts the Application.
+    """
+    Starts the Application.
 
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	args = get_command_line_arguments()
-	args.packages = args.packages if all(args.packages) else []
-	imports = list_imports(args.packages, filters_in=FILTERS_IN, filters_out=FILTERS_OUT)
-	LOGGER.info("{0} | Imports: \"{1}\"".format(list_imports.__name__, ",".join(sorted(imports))))
-	return True
+    args = get_command_line_arguments()
+    args.packages = args.packages if all(args.packages) else []
+    imports = list_imports(args.packages, filters_in=FILTERS_IN, filters_out=FILTERS_OUT)
+    LOGGER.info("{0} | Imports: \"{1}\"".format(list_imports.__name__, ",".join(sorted(imports))))
+    return True
 
 if __name__ == "__main__":
-	main()
+    main()

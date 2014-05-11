@@ -5,10 +5,10 @@
 **tests_exceptions.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines units tests for :mod:`sibl_gui.exceptions` module.
+    Defines units tests for :mod:`sibl_gui.exceptions` module.
 
 **Others:**
 
@@ -19,9 +19,9 @@ from __future__ import unicode_literals
 import inspect
 import sys
 if sys.version_info[:2] <= (2, 6):
-	import unittest2 as unittest
+    import unittest2 as unittest
 else:
-	import unittest
+    import unittest
 
 import sibl_gui.exceptions
 
@@ -37,47 +37,47 @@ __all__ = ["EXCEPTIONS", "TestExceptions"]
 EXCEPTIONS = []
 
 def _gather_exceptions():
-	"""
-	Gathers the exceptions.
-	"""
+    """
+    Gathers the exceptions.
+    """
 
-	for attribute in dir(sibl_gui.exceptions):
-		object = getattr(sibl_gui.exceptions, attribute)
-		if not inspect.isclass(object):
-			continue
-		if issubclass(object, Exception):
-			EXCEPTIONS.append(object)
+    for attribute in dir(sibl_gui.exceptions):
+        object = getattr(sibl_gui.exceptions, attribute)
+        if not inspect.isclass(object):
+            continue
+        if issubclass(object, Exception):
+            EXCEPTIONS.append(object)
 
 _gather_exceptions()
 
 class TestExceptions(unittest.TestCase):
-	"""
-	Defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
-	"""
+    """
+    Defines :mod:`sibl_gui.exceptions` module exceptions classes units tests methods.
+    """
 
-	def test_required_attributes(self):
-		"""
-		Tests presence of required attributes.
-		"""
+    def test_required_attributes(self):
+        """
+        Tests presence of required attributes.
+        """
 
-		required_attributes = ("value",)
-		for exception in EXCEPTIONS:
-			exception_instance = exception(None)
-			for attribute in required_attributes:
-				self.assertIn(attribute, dir(exception_instance))
+        required_attributes = ("value",)
+        for exception in EXCEPTIONS:
+            exception_instance = exception(None)
+            for attribute in required_attributes:
+                self.assertIn(attribute, dir(exception_instance))
 
-	def test__str__(self):
-		"""
-		Tests exceptions classes **__str__** method.
-		"""
+    def test__str__(self):
+        """
+        Tests exceptions classes **__str__** method.
+        """
 
-		for exception in EXCEPTIONS:
-			exception_instance = exception("{0} Exception raised!".format(exception.__class__))
-			self.assertIsInstance(exception_instance.__str__(), str)
-			exception_instance = exception([exception.__class__, "Exception raised!"])
-			self.assertIsInstance(exception_instance.__str__(), str)
-			exception_instance = exception(0)
-			self.assertIsInstance(exception_instance.__str__(), str)
+        for exception in EXCEPTIONS:
+            exception_instance = exception("{0} Exception raised!".format(exception.__class__))
+            self.assertIsInstance(exception_instance.__str__(), str)
+            exception_instance = exception([exception.__class__, "Exception raised!"])
+            self.assertIsInstance(exception_instance.__str__(), str)
+            exception_instance = exception(0)
+            self.assertIsInstance(exception_instance.__str__(), str)
 
 if __name__ == "__main__":
-	unittest.main()
+    unittest.main()

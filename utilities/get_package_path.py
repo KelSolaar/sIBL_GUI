@@ -5,10 +5,10 @@
 **get_package_path.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Write given package path to stdout.
+    Write given package path to stdout.
 
 **Others:**
 
@@ -36,58 +36,58 @@ foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
 def get_package_path(package):
-	"""
-	Writes given package path to stdout.
+    """
+    Writes given package path to stdout.
 
-	:param package: Package to retrieve the path.
-	:type package: unicode
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :param package: Package to retrieve the path.
+    :type package: unicode
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	package = __import__(package)
-	sys.stdout.write(package.__path__[0])
+    package = __import__(package)
+    sys.stdout.write(package.__path__[0])
 
-	return True
+    return True
 
 def get_command_line_arguments():
-	"""
-	Retrieves command line arguments.
+    """
+    Retrieves command line arguments.
 
-	:return: Namespace.
-	:rtype: Namespace
-	"""
+    :return: Namespace.
+    :rtype: Namespace
+    """
 
-	parser = argparse.ArgumentParser(add_help=False)
+    parser = argparse.ArgumentParser(add_help=False)
 
-	parser.add_argument("-h",
-						"--help",
-						action="help",
-						help="'Displays this help message and exit.'")
+    parser.add_argument("-h",
+                        "--help",
+                        action="help",
+                        help="'Displays this help message and exit.'")
 
-	parser.add_argument("-p",
-						"--package",
-						type=unicode,
-						dest="package",
-						help="'Package to retrieve the path.'")
+    parser.add_argument("-p",
+                        "--package",
+                        type=unicode,
+                        dest="package",
+                        help="'Package to retrieve the path.'")
 
-	if len(sys.argv) == 1:
-		parser.print_help()
-		sys.exit(1)
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
 
-	return parser.parse_args()
+    return parser.parse_args()
 
 @foundations.decorators.system_exit
 def main():
-	"""
-	Starts the Application.
+    """
+    Starts the Application.
 
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	args = get_command_line_arguments()
-	return get_package_path(args.package)
+    args = get_command_line_arguments()
+    return get_package_path(args.package)
 
 if __name__ == "__main__":
-	main()
+    main()

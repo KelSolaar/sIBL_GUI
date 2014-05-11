@@ -5,10 +5,10 @@
 **runtime_globals.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
+    Defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
 
 **Others:**
 
@@ -26,18 +26,17 @@ __status__ = "Production"
 __all__ = ["RuntimeGlobals"]
 
 class RuntimeGlobals():
-	"""
-	Defines **sIBL_GUI** package runtime constants.
-	"""
+    """
+    Defines **sIBL_GUI** package runtime constants.
+    """
 
-	templates_factory_directory = None
-	"""Templates factory directory."""
-	templates_user_directory = None
-	"""Templates user directory."""
+    templates_factory_directory = None
+    """Templates factory directory."""
+    templates_user_directory = None
+    """Templates user directory."""
 
-	thumbnails_cache_directory = None
-	"""Thumbnails cache directory."""
+    thumbnails_cache_directory = None
+    """Thumbnails cache directory."""
 
-	images_caches = None
-	"""Images cache."""
-
+    images_caches = None
+    """Images cache."""

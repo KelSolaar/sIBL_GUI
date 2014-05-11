@@ -5,10 +5,10 @@
 **get_hdrlabs_documentation.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Extracts sIBL_GUI documentation body for HDRLabs.com.
+    Extracts sIBL_GUI documentation body for HDRLabs.com.
 
 **Others:**
 
@@ -39,82 +39,82 @@ foundations.verbose.get_logging_console_handler()
 foundations.verbose.set_verbosity_level(3)
 
 def get_hdrlabs_documentation(input, output):
-	"""
-	Extracts sIBL_GUI Documentation body for HDRLabs.com.
+    """
+    Extracts sIBL_GUI Documentation body for HDRLabs.com.
 
-	:param input: Input file to extract documentation body.
-	:type input: unicode
-	:param output: Output html file.
-	:type output: unicode
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :param input: Input file to extract documentation body.
+    :type input: unicode
+    :param output: Output html file.
+    :type output: unicode
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(get_hdrlabs_documentation.__name__, input))
-	file = File(input)
-	file.cache()
+    LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(get_hdrlabs_documentation.__name__, input))
+    file = File(input)
+    file.cache()
 
-	LOGGER.info("{0} | Processing 'body' data!".format(get_hdrlabs_documentation.__name__))
-	content = []
-	skip_line = True
-	for line in file.content:
-		if re.search(r"<body>", line):
-			skip_line = False
-		elif re.search(r"</body>", line):
-			skip_line = True
+    LOGGER.info("{0} | Processing 'body' data!".format(get_hdrlabs_documentation.__name__))
+    content = []
+    skip_line = True
+    for line in file.content:
+        if re.search(r"<body>", line):
+            skip_line = False
+        elif re.search(r"</body>", line):
+            skip_line = True
 
-		not skip_line and content.append("{0}\n".format(line.replace("\t", "", 2)))
+        not skip_line and content.append("{0}\n".format(line.replace("\t", "", 2)))
 
-	file = File(output)
-	file.content = content
-	file.write()
+    file = File(output)
+    file.content = content
+    file.write()
 
-	return True
+    return True
 
 def get_command_line_arguments():
-	"""
-	Retrieves command line arguments.
+    """
+    Retrieves command line arguments.
 
-	:return: Namespace.
-	:rtype: Namespace
-	"""
+    :return: Namespace.
+    :rtype: Namespace
+    """
 
-	parser = argparse.ArgumentParser(add_help=False)
+    parser = argparse.ArgumentParser(add_help=False)
 
-	parser.add_argument("-h",
-						"--help",
-						action="help",
-						help="'Displays this help message and exit.'")
+    parser.add_argument("-h",
+                        "--help",
+                        action="help",
+                        help="'Displays this help message and exit.'")
 
-	parser.add_argument("-i",
-						"--input",
-						type=unicode,
-						dest="input",
-						help="'Input file to extract documentation body.'")
+    parser.add_argument("-i",
+                        "--input",
+                        type=unicode,
+                        dest="input",
+                        help="'Input file to extract documentation body.'")
 
-	parser.add_argument("-o",
-						"--output",
-						type=unicode,
-						dest="output",
-						help="'Output html file.'")
+    parser.add_argument("-o",
+                        "--output",
+                        type=unicode,
+                        dest="output",
+                        help="'Output html file.'")
 
-	if len(sys.argv) == 1:
-		parser.print_help()
-		sys.exit(1)
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
 
-	return parser.parse_args()
+    return parser.parse_args()
 
 @foundations.decorators.system_exit
 def main():
-	"""
-	Starts the Application.
+    """
+    Starts the Application.
 
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	args = get_command_line_arguments()
-	return get_hdrlabs_documentation(args.input, args.output)
+    args = get_command_line_arguments()
+    return get_hdrlabs_documentation(args.input, args.output)
 
 if __name__ == "__main__":
-	main()
+    main()

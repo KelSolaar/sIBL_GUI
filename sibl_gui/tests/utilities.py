@@ -5,10 +5,10 @@
 **utilities.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines tests suite logging configuration.
+    Defines tests suite logging configuration.
 
 **Others:**
 

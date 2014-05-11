@@ -5,10 +5,10 @@
 **common.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines common *Alembic* manipulation related objects.
+    Defines common *Alembic* manipulation related objects.
 
 **Others:**
 
@@ -30,49 +30,49 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-		"rename_column"]
+        "rename_column"]
 
 LOGGER = foundations.verbose.install_logger()
 
 def rename_column(table, column, name):
-	"""
-	Provides *Alembic* support for *SQLite* incomplete *ALTER* ddl statement, renames given table column with given name.
-	
-	:param table: Table name.
-	:type table: unicode
-	:param column: Column name.
-	:type column: unicode
-	:param name: New column name.
-	:type name: unicode
-	:return: Definition success.
-	:rtype: bool
-	"""
+    """
+    Provides *Alembic* support for *SQLite* incomplete *ALTER* ddl statement, renames given table column with given name.
 
-	engine = op.get_bind()
-	metadata = sqlalchemy.MetaData(bind=engine)
-	metadata.reflect()
+    :param table: Table name.
+    :type table: unicode
+    :param column: Column name.
+    :type column: unicode
+    :param name: New column name.
+    :type name: unicode
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	source_table = metadata.tables[table]
-	source_table_name = source_table.name
+    engine = op.get_bind()
+    metadata = sqlalchemy.MetaData(bind=engine)
+    metadata.reflect()
 
-	select = sqlalchemy.sql.select([source_column for source_column in source_table.columns])
+    source_table = metadata.tables[table]
+    source_table_name = source_table.name
 
-	source_columns = [copy.copy(source_column) for source_column in source_table.columns]
-	for source_column in source_columns:
-		source_column.table = None
-		if source_column.name == column:
-			source_column.name = name
+    select = sqlalchemy.sql.select([source_column for source_column in source_table.columns])
 
-	target_table_name = "target_{0}".format(table)
-	op.create_table(target_table_name, *source_columns)
-	metadata.reflect()
-	target_table = metadata.tables[target_table_name]
+    source_columns = [copy.copy(source_column) for source_column in source_table.columns]
+    for source_column in source_columns:
+        source_column.table = None
+        if source_column.name == column:
+            source_column.name = name
 
-	insert = sqlalchemy.sql.insert(target_table).from_select([source_column.name for source_column in source_columns],
-															select)
-	engine.execute(insert)
+    target_table_name = "target_{0}".format(table)
+    op.create_table(target_table_name, *source_columns)
+    metadata.reflect()
+    target_table = metadata.tables[target_table_name]
 
-	op.drop_table(source_table_name)
-	op.rename_table(target_table_name, source_table_name)
+    insert = sqlalchemy.sql.insert(target_table).from_select([source_column.name for source_column in source_columns],
+                                                            select)
+    engine.execute(insert)
 
-	return True
+    op.drop_table(source_table_name)
+    op.rename_table(target_table_name, source_table_name)
+
+    return True

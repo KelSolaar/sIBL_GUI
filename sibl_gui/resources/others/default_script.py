@@ -10,7 +10,7 @@ import foundations.core
 import umbra.ui.common
 
 def ____():
-	print "-" * 120
+    print "-" * 120
 
 ____()
 
@@ -72,8 +72,8 @@ Processing interactions:
 steps = 5
 sIBL_GUI.start_processing("Processing Example ...", steps)
 for i in range(steps):
-	foundations.core.wait(0.25)
-	sIBL_GUI.step_processing()
+    foundations.core.wait(0.25)
+    sIBL_GUI.step_processing()
 sIBL_GUI.stop_processing()
 
 ____()
@@ -95,8 +95,8 @@ print("Layouts: '{0}'".format(layouts))
 current_layout = sIBL_GUI.layouts_manager.current_layout
 print("Current layout: '{0}'".format(current_layout))
 for layout in sIBL_GUI.layouts_manager.list_layouts():
-	sIBL_GUI.process_events()
-	sIBL_GUI.layouts_manager.restore_layout(layout)
+    sIBL_GUI.process_events()
+    sIBL_GUI.layouts_manager.restore_layout(layout)
 sIBL_GUI.layouts_manager.restore_layout("edit_centric")
 
 ____()
@@ -194,16 +194,16 @@ ____()
 ibl_sets_outliner = components_manager.get_interface("core.ibl_sets_outliner")
 example_ibl_set = umbra.ui.common.get_resource_path("others/Ditch_River_Example/Ditch-River_Example.ibl")
 if example_ibl_set:
-	ibl_sets_outliner.add_ibl_set("Example Ibl Set", example_ibl_set)
-	ibl_sets = ibl_sets_outliner.get_ibl_sets()
-	print("Ibl Sets: '{0}'".format(ibl_sets))
-	ibl_sets_names = ibl_sets_outliner.list_ibl_sets()
-	print("Ibl Sets names: '{0}'".format(ibl_sets_names))
-	# Ibl Sets management:
-	ibl_set = ibl_sets_outliner.get_ibl_set_by_name("Ditch River \( Example \)")
-	ibl_sets_outliner.remove_ibl_set(ibl_set)
-	ibl_sets_outliner.add_directory(os.path.dirname(example_ibl_set))
-	ibl_sets_outliner.remove_ibl_set(ibl_sets_outliner.get_ibl_set_by_name("Ditch River \( Example \)"))
+    ibl_sets_outliner.add_ibl_set("Example Ibl Set", example_ibl_set)
+    ibl_sets = ibl_sets_outliner.get_ibl_sets()
+    print("Ibl Sets: '{0}'".format(ibl_sets))
+    ibl_sets_names = ibl_sets_outliner.list_ibl_sets()
+    print("Ibl Sets names: '{0}'".format(ibl_sets_names))
+    # Ibl Sets management:
+    ibl_set = ibl_sets_outliner.get_ibl_set_by_name("Ditch River \( Example \)")
+    ibl_sets_outliner.remove_ibl_set(ibl_set)
+    ibl_sets_outliner.add_directory(os.path.dirname(example_ibl_set))
+    ibl_sets_outliner.remove_ibl_set(ibl_sets_outliner.get_ibl_set_by_name("Ditch River \( Example \)"))
 
 ____()
 
@@ -217,10 +217,10 @@ print("Templates: '{0}'".format(templates))
 templates_names = templates_outliner.list_templates()
 print("Templates names: '{0}'".format(templates_names))
 if templates_names:
-	template = templates_outliner.get_template_by_name(templates_names[0])
-	name, path = template.name, template.path
-	templates_outliner.remove_template(template)
-	templates_outliner.add_template(name, path)
+    template = templates_outliner.get_template_by_name(templates_names[0])
+    name, path = template.name, template.path
+    templates_outliner.remove_template(template)
+    templates_outliner.add_template(name, path)
 
 ____()
 
@@ -239,11 +239,11 @@ gps_map = components_manager.get_interface("addons.gps_map")
 ibl_sets_outliner = components_manager.get_interface("core.ibl_sets_outliner")
 ibl_sets = ibl_sets_outliner.get_ibl_sets()
 if ibl_sets:
-	gps_map.show()
-	for ibl_set in ibl_sets:
-		gps_map.set_marker(ibl_set)
-	gps_map.remove_markers()
-	gps_map.hide()
+    gps_map.show()
+    for ibl_set in ibl_sets:
+        gps_map.set_marker(ibl_set)
+    gps_map.remove_markers()
+    gps_map.hide()
 
 ____()
 
@@ -258,9 +258,9 @@ templates_outliner.add_default_templates()
 templates = templates_outliner.get_templates()
 
 if ibl_sets and templates:
-	output_script = loader_script.output_loader_script(templates[0], ibl_sets[0])
-	script_editor = components_manager.get_interface("factory.script_editor")
-	script_editor.load_file(output_script)
+    output_script = loader_script.output_loader_script(templates[0], ibl_sets[0])
+    script_editor = components_manager.get_interface("factory.script_editor")
+    script_editor.load_file(output_script)
 
 ____()
 
@@ -289,6 +289,6 @@ preview = components_manager.get_interface("addons.preview")
 ibl_sets_outliner = components_manager.get_interface("core.ibl_sets_outliner")
 ibl_sets = ibl_sets_outliner.get_ibl_sets()
 if ibl_sets:
-	preview.view_images(paths=(ibl_sets[0].lighting_image, ibl_sets[0].icon))
+    preview.view_images(paths=(ibl_sets[0].lighting_image, ibl_sets[0].icon))
 
 ____()

@@ -5,10 +5,10 @@
 **testsruntime_globals.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines units tests for :mod:`sibl_gui.globals.runtime_globals` module.
+    Defines units tests for :mod:`sibl_gui.globals.runtime_globals` module.
 
 **Others:**
 
@@ -18,9 +18,9 @@ from __future__ import unicode_literals
 
 import sys
 if sys.version_info[:2] <= (2, 6):
-	import unittest2 as unittest
+    import unittest2 as unittest
 else:
-	import unittest
+    import unittest
 
 from sibl_gui.globals.runtime_globals import RuntimeGlobals
 
@@ -34,22 +34,22 @@ __status__ = "Production"
 __all__ = ["TestRuntimeGlobals"]
 
 class TestRuntimeGlobals(unittest.TestCase):
-	"""
-	Defines :class:`sibl_gui.globals.runtime_globals.RuntimeGlobals` class units tests methods.
-	"""
+    """
+    Defines :class:`sibl_gui.globals.runtime_globals.RuntimeGlobals` class units tests methods.
+    """
 
-	def test_required_attributes(self):
-		"""
-		Tests presence of required attributes.
-		"""
+    def test_required_attributes(self):
+        """
+        Tests presence of required attributes.
+        """
 
-		required_attributes = ("templates_factory_directory",
-								"templates_user_directory",
-								"thumbnails_cache_directory",
-								"images_caches")
+        required_attributes = ("templates_factory_directory",
+                                "templates_user_directory",
+                                "thumbnails_cache_directory",
+                                "images_caches")
 
-		for attribute in required_attributes:
-			self.assertIn(attribute, RuntimeGlobals.__dict__)
+        for attribute in required_attributes:
+            self.assertIn(attribute, RuntimeGlobals.__dict__)
 
 if __name__ == "__main__":
-	unittest.main()
+    unittest.main()

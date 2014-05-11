@@ -5,11 +5,11 @@
 **views.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines the :class:`sibl_gui.components.addons.online_updater.online_updater.OnlineUpdater`
-	Component Interface class Views.
+    Defines the :class:`sibl_gui.components.addons.online_updater.online_updater.OnlineUpdater`
+    Component Interface class Views.
 
 **Others:**
 
@@ -32,9 +32,8 @@ __all__ = ["LOGGER", "TemplatesReleases_QTableWidget"]
 LOGGER = foundations.verbose.install_logger()
 
 class TemplatesReleases_QTableWidget(umbra.ui.views.Abstract_QTableWidget):
-	"""
-	Defines the view for Templates releases.
-	"""
+    """
+    Defines the view for Templates releases.
+    """
 
-	pass
-
+    pass

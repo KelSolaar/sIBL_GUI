@@ -5,7 +5,7 @@
 **sitecustomize.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
 

@@ -5,11 +5,11 @@
 **views.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines the :class:`sibl_gui.components.addons.search_database.search_database.SearchDatabase`
-	Component Interface class Views.
+    Defines the :class:`sibl_gui.components.addons.search_database.search_database.SearchDatabase`
+    Component Interface class Views.
 
 **Others:**
 
@@ -32,9 +32,8 @@ __all__ = ["LOGGER", "TagsCloud_QListWidget"]
 LOGGER = foundations.verbose.install_logger()
 
 class TagsCloud_QListView(umbra.ui.views.Abstract_QListWidget):
-	"""
-	Defines the view for Database Ibl Sets tags cloud.
-	"""
+    """
+    Defines the view for Database Ibl Sets tags cloud.
+    """
 
-	pass
-
+    pass

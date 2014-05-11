@@ -5,14 +5,14 @@
 **10df7481424c_initial_revision.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Initial revision.
+    Initial revision.
 
 **Others:**
-	Revises: None
-	Creation date: 2014-04-26 21:22:45.831459
+    Revises: None
+    Creation date: 2014-04-26 21:22:45.831459
 """
 
 import sqlalchemy
@@ -31,15 +31,15 @@ revision = "10df7481424c"
 down_revision = None
 
 def upgrade():
-	"""
-	Upgrade the database to current revision.
-	"""
+    """
+    Upgrade the database to current revision.
+    """
 
-	pass
+    pass
 
 def downgrade():
-	"""
-	Downgrade the database to previous revision.
-	"""
+    """
+    Downgrade the database to previous revision.
+    """
 
-	pass
+    pass

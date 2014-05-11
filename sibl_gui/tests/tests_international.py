@@ -5,10 +5,10 @@
 **tests.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Runs the international tests suite.
+    Runs the international tests suite.
 
 **Others:**
 
@@ -31,28 +31,28 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["RESOURCES_DIRECTORY",
-		"INTERNATIONAL_TEST_SCRIPT_FILE",
-		"USER_APPLICATION_DIRECTORY_PREFIX",
-		"tests_international"]
+        "INTERNATIONAL_TEST_SCRIPT_FILE",
+        "USER_APPLICATION_DIRECTORY_PREFIX",
+        "tests_international"]
 
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), "resources")
 INTERNATIONAL_TEST_SCRIPT_FILE = os.path.join(RESOURCES_DIRECTORY, "international_script.py")
 USER_APPLICATION_DIRECTORY_PREFIX = "标准"
 
 def tests_international():
-	"""
-	Runs the international tests suite.
+    """
+    Runs the international tests suite.
 
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	user_application_directory = tempfile.mkdtemp(prefix=USER_APPLICATION_DIRECTORY_PREFIX)
-	command = [os.path.join(sibl_gui.__path__[0], "..", "bin", "sIBL_GUI"),
- 			"-u", user_application_directory,
-			"-x", unicode(INTERNATIONAL_TEST_SCRIPT_FILE)]
-	if subprocess.check_call(command) == 0:
-		shutil.rmtree(user_application_directory)
+    user_application_directory = tempfile.mkdtemp(prefix=USER_APPLICATION_DIRECTORY_PREFIX)
+    command = [os.path.join(sibl_gui.__path__[0], "..", "bin", "sIBL_GUI"),
+            "-u", user_application_directory,
+            "-x", unicode(INTERNATIONAL_TEST_SCRIPT_FILE)]
+    if subprocess.check_call(command) == 0:
+        shutil.rmtree(user_application_directory)
 
 if __name__ == "__main__":
-	tests_international()
+    tests_international()

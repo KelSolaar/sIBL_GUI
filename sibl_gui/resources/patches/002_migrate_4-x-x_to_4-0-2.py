@@ -5,10 +5,10 @@
 **002_migrate_4-x-x_to_4-0-2.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Migrates sIBL_GUI from 4.x.x to 4.0.2.
+    Migrates sIBL_GUI from 4.x.x to 4.0.2.
 
 **Others:**
 
@@ -38,19 +38,19 @@ LOGGER = foundations.verbose.install_logger()
 UID = "00fd997f2a2c395b59aa31f1997f831b"
 
 def apply():
-	"""
-	Triggers the patch execution.
+    """
+    Triggers the patch execution.
 
-	:return: Definition success.
-	:rtype: bool
-	"""
+    :return: Definition success.
+    :rtype: bool
+    """
 
-	default_script_editor_directory = os.path.join(RuntimeGlobals.user_application_data_directory,
-														Constants.io_directory,
-														"script_editor")
-	default_script_editor_file = os.path.join(default_script_editor_directory, "default_script.py")
+    default_script_editor_directory = os.path.join(RuntimeGlobals.user_application_data_directory,
+                                                        Constants.io_directory,
+                                                        "script_editor")
+    default_script_editor_file = os.path.join(default_script_editor_directory, "default_script.py")
 
-	if foundations.common.path_exists(default_script_editor_file):
-		LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, default_script_editor_file))
-		os.remove(default_script_editor_file)
-	return True
+    if foundations.common.path_exists(default_script_editor_file):
+        LOGGER.info("{0} | Removing deprecated '{1}' default script file!".format(__name__, default_script_editor_file))
+        os.remove(default_script_editor_file)
+    return True
