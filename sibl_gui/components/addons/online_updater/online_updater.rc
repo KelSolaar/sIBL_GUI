@@ -1,0 +1,13 @@
+[Component]
+Name = addons.online_updater
+Title = Online Updater
+Module = online_updater
+Object = OnlineUpdater
+Require = addons.locations_browser|addons.preview|core.database|core.templates_outliner|factory.preferences_manager
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Online Updater addon Component.

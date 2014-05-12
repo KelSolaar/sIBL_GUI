@@ -5,47 +5,34 @@
 **sIBL_GUI**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	This module starts the Application.
+    This module starts the Application.
 
 **Others:**
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 import sys
 
-#**********************************************************************************************************************
-#***	Path manipulations.
-#**********************************************************************************************************************
-def _setApplicationPackageDirectory():
-	"""
-	This definition sets the Application package directory in the path.
-	"""
 
-	applicationPackageDirectory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
-	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
+def _set_application_package_directory():
+    """
+    This definition sets the Application package directory in the path.
+    """
 
-_setApplicationPackageDirectory()
+    application_package_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "../"))
+    application_package_directory not in sys.path and sys.path.append(application_package_directory)
 
-##**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
-from sibl_gui.launcher import main
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
+_set_application_package_directory()
+
+#from sibl_gui.launcher import main
+
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -55,8 +42,5 @@ __status__ = "Production"
 
 __all__ = []
 
-#**********************************************************************************************************************
-#***	Launcher.
-#**********************************************************************************************************************
 if __name__ == "__main__":
-	main()
+    main()

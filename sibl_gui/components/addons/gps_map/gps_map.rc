@@ -1,0 +1,13 @@
+[Component]
+Name = addons.gps_map
+Title = Gps Map
+Module = gps_map
+Object = GpsMap
+Require = core.ibl_sets_outliner
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Microsoft Bings Maps based geolocalisation addon Component.

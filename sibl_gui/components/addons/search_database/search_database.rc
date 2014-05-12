@@ -1,0 +1,13 @@
+[Component]
+Name = addons.search_database
+Title = Search Database
+Module = search_database
+Object = SearchDatabase
+Require = core.ibl_sets_outliner|core.collections_outliner
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Database Search addon Component.

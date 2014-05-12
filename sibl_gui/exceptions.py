@@ -5,28 +5,19 @@
 **exceptions.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines **sIBL_GUI** package exceptions.
+    Defines **sIBL_GUI** package exceptions.
 
 **Others:**
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -35,59 +26,66 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 __all__ = ["LOGGER",
-			"AbstractNetworkError",
-			"NetworkError",
-			"SocketConnectionError",
-			"Win32OLEServerConnectionError"]
+           "AbstractNetworkError",
+           "NetworkError",
+           "SocketConnectionError",
+           "Win32OLEServerConnectionError",
+           "AbstractCacheError",
+           "CacheExistsError",
+           "CacheOperationError"]
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
+
 class AbstractNetworkError(foundations.exceptions.AbstractError):
-	"""
-	Defines the abstract base class for network related exceptions.
-	"""
+    """
+    Defines the abstract base class for network related exceptions.
+    """
 
-	pass
+    pass
+
 
 class NetworkError(AbstractNetworkError):
-	"""
-	Defines network exceptions.
-	"""
+    """
+    Defines network exceptions.
+    """
 
-	pass
+    pass
+
 
 class SocketConnectionError(AbstractNetworkError):
-	"""
-	Defines socket connection exception.
-	"""
+    """
+    Defines socket connection exception.
+    """
 
-	pass
+    pass
+
 
 class Win32OLEServerConnectionError(AbstractNetworkError):
-	"""
-	Defines Win32OLE Server connection exception.
-	"""
+    """
+    Defines Win32OLE Server connection exception.
+    """
 
-	pass
+    pass
+
 
 class AbstractCacheError(foundations.exceptions.AbstractError):
-	"""
-	Defines the abstract base class for caching related exception.
-	"""
+    """
+    Defines the abstract base class for caching related exception.
+    """
 
-	pass
+    pass
+
 
 class CacheExistsError(foundations.exceptions.AbstractError):
-	"""
-	Defines non existing cache exception.
-	"""
+    """
+    Defines non existing cache exception.
+    """
 
-	pass
+    pass
+
 
 class CacheOperationError(foundations.exceptions.AbstractError):
-	"""
-	Defines cache operations exception.
-	"""
+    """
+    Defines cache operations exception.
+    """
 
-	pass
+    pass

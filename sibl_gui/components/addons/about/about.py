@@ -5,37 +5,25 @@
 **about.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines the :class:`About` Component Interface class.
+    Defines the :class:`About` Component Interface class.
 
 **Others:**
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 import os
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import umbra.ui.common
-from manager.qwidgetComponent import QWidgetComponentFactory
+from manager.QWidget_component import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -45,7 +33,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "COMPONENT_UI_FILE", "ABOUT_MESSAGE", "About"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "About.ui")
 
@@ -114,352 +102,344 @@ This software is released under terms of GNU GPL v3 license: <a href="http://www
 </center>
 """
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
-class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
-	"""
-	| Defines the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
-	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
-	| The message displayed by the **sIBL_GUI - About** window is defined by the
-		:attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.  
-	"""
-
-	def __init__(self, parent=None, name=None, *args, **kwargs):
-		"""
-		Initializes the class.
-
-		:param parent: Object parent.
-		:type parent: QObject
-		:param name: Component name.
-		:type name: unicode
-		:param \*args: Arguments.
-		:type \*args: \*
-		:param \*\*kwargs: Keywords arguments.
-		:type \*\*kwargs: \*\*
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		super(About, self).__init__(parent, name, *args, **kwargs)
-
-		# --- Setting class attributes. ---
-		self.deactivatable = True
-
-		self.__uiResourcesDirectory = "resources"
-		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
-		self.__uiGpl3Image = "GPL_V3.png"
-
-		self.__engine = None
-		self.__miscellaneousMenu = None
-
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
-	@property
-	def uiResourcesDirectory(self):
-		"""
-		Property for **self.__uiResourcesDirectory** attribute.
-
-		:return: self.__uiResourcesDirectory.
-		:rtype: unicode
-		"""
-
-		return self.__uiResourcesDirectory
-
-	@uiResourcesDirectory.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self, value):
-		"""
-		Setter for **self.__uiResourcesDirectory** attribute.
-
-		:param value: Attribute value.
-		:type value: unicode
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
-
-	@uiResourcesDirectory.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self):
-		"""
-		Deleter for **self.__uiResourcesDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
-
-	@property
-	def uiLogoImage(self):
-		"""
-		Property for **self.__uiLogoImage** attribute.
-
-		:return: self.__uiLogoImage.
-		:rtype: unicode
-		"""
-
-		return self.__uiLogoImage
-
-	@uiLogoImage.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self, value):
-		"""
-		Setter for **self.__uiLogoImage** attribute.
-
-		:param value: Attribute value.
-		:type value: unicode
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
-
-	@uiLogoImage.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self):
-		"""
-		Deleter for **self.__uiLogoImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLogoImage"))
-
-	@property
-	def uiGpl3Image(self):
-		"""
-		Property for **self.__uiGpl3Image** attribute.
-
-		:return: self.__uiGpl3Image.
-		:rtype: unicode
-		"""
-
-		return self.__uiGpl3Image
-
-	@uiGpl3Image.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiGpl3Image(self, value):
-		"""
-		Setter for **self.__uiGpl3Image** attribute.
-
-		:param value: Attribute value.
-		:type value: unicode
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiGpl3Image"))
-
-	@uiGpl3Image.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def uiGpl3Image(self):
-		"""
-		Deleter for **self.__uiGpl3Image** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiGpl3Image"))
-
-	@property
-	def engine(self):
-		"""
-		Property for **self.__engine** attribute.
-
-		:return: self.__engine.
-		:rtype: QObject
-		"""
-
-		return self.__engine
-
-	@engine.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def engine(self, value):
-		"""
-		Setter for **self.__engine** attribute.
-
-		:param value: Attribute value.
-		:type value: QObject
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
-
-	@engine.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def engine(self):
-		"""
-		Deleter for **self.__engine** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
-
-	@property
-	def miscellaneousMenu(self):
-		"""
-		Property for **self.__miscellaneousMenu** attribute.
-
-		:return: self.__miscellaneousMenu.
-		:rtype: QMenu
-		"""
-
-		return self.__miscellaneousMenu
-
-	@miscellaneousMenu.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def miscellaneousMenu(self, value):
-		"""
-		Setter for **self.__miscellaneousMenu** attribute.
-
-		:param value: Attribute value.
-		:type value: QMenu
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneousMenu"))
-
-	@miscellaneousMenu.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def miscellaneousMenu(self):
-		"""
-		Deleter for **self.__miscellaneousMenu** attribute.
-		"""
 
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneousMenu"))
+class About(QWidgetComponentFactory(ui_file=COMPONENT_UI_FILE)):
+    """
+    | Defines the :mod:`sibl_gui.components.addons.about.about` Component Interface class.
+    | It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
+    | The message displayed by the **sIBL_GUI - About** window is defined by the
+        :attr:`sibl_gui.components.addons.about.about.ABOUT_MESSAGE` attribute.
+    """
+
+    def __init__(self, parent=None, name=None, *args, **kwargs):
+        """
+        Initializes the class.
+
+        :param parent: Object parent.
+        :type parent: QObject
+        :param name: Component name.
+        :type name: unicode
+        :param \*args: Arguments.
+        :type \*args: \*
+        :param \*\*kwargs: Keywords arguments.
+        :type \*\*kwargs: \*\*
+        """
+
+        LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+        super(About, self).__init__(parent, name, *args, **kwargs)
+
+        # --- Setting class attributes. ---
+        self.deactivatable = True
+
+        self.__ui_resources_directory = "resources"
+        self.__ui_logo_image = "sIBL_GUI_Small_Logo.png"
+        self.__ui_gpl3_image = "GPL_V3.png"
+
+        self.__engine = None
+        self.__miscellaneous_menu = None
+
+    @property
+    def ui_resources_directory(self):
+        """
+        Property for **self.__ui_resources_directory** attribute.
+
+        :return: self.__ui_resources_directory.
+        :rtype: unicode
+        """
+
+        return self.__ui_resources_directory
+
+    @ui_resources_directory.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_resources_directory(self, value):
+        """
+        Setter for **self.__ui_resources_directory** attribute.
+
+        :param value: Attribute value.
+        :type value: unicode
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_resources_directory"))
+
+    @ui_resources_directory.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_resources_directory(self):
+        """
+        Deleter for **self.__ui_resources_directory** attribute.
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_resources_directory"))
+
+    @property
+    def ui_logo_image(self):
+        """
+        Property for **self.__ui_logo_image** attribute.
+
+        :return: self.__ui_logo_image.
+        :rtype: unicode
+        """
+
+        return self.__ui_logo_image
+
+    @ui_logo_image.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_logo_image(self, value):
+        """
+        Setter for **self.__ui_logo_image** attribute.
+
+        :param value: Attribute value.
+        :type value: unicode
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_logo_image"))
+
+    @ui_logo_image.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_logo_image(self):
+        """
+        Deleter for **self.__ui_logo_image** attribute.
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_logo_image"))
+
+    @property
+    def ui_gpl3_image(self):
+        """
+        Property for **self.__ui_gpl3_image** attribute.
+
+        :return: self.__ui_gpl3_image.
+        :rtype: unicode
+        """
+
+        return self.__ui_gpl3_image
+
+    @ui_gpl3_image.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_gpl3_image(self, value):
+        """
+        Setter for **self.__ui_gpl3_image** attribute.
+
+        :param value: Attribute value.
+        :type value: unicode
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "ui_gpl3_image"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
-	def activate(self, engine):
-		"""
-		Activates the Component.
+    @ui_gpl3_image.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def ui_gpl3_image(self):
+        """
+        Deleter for **self.__ui_gpl3_image** attribute.
+        """
+
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "ui_gpl3_image"))
 
-		:param engine: Engine to attach the Component to.
-		:type engine: QObject
-		:return: Method success.
-		:rtype: bool
-		"""
+    @property
+    def engine(self):
+        """
+        Property for **self.__engine** attribute.
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+        :return: self.__engine.
+        :rtype: QObject
+        """
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(__file__), self.__uiResourcesDirectory)
-		self.__engine = engine
-		self.__miscellaneousMenu = self.__engine.toolBar.miscellaneousMenu
+        return self.__engine
 
-		self.__addActions()
+    @engine.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def engine(self, value):
+        """
+        Setter for **self.__engine** attribute.
 
-		self.activated = True
-		return True
+        :param value: Attribute value.
+        :type value: QObject
+        """
 
-	def deactivate(self):
-		"""
-		Deactivates the Component.
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
-		:return: Method success.
-		:rtype: bool
-		"""
+    @engine.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def engine(self):
+        """
+        Deleter for **self.__engine** attribute.
+        """
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
-		self.__removeActions()
+    @property
+    def miscellaneous_menu(self):
+        """
+        Property for **self.__miscellaneous_menu** attribute.
 
-		self.__uiResourcesDirectory = os.path.basename(self.__uiResourcesDirectory)
-		self.__engine = None
-		self.__miscellaneousMenu = None
+        :return: self.__miscellaneous_menu.
+        :rtype: QMenu
+        """
 
-		self.activated = False
-		return True
+        return self.__miscellaneous_menu
 
-	def initializeUi(self):
-		"""
-		Initializes the Component ui.
-		
-		:return: Method success.
-		:rtype: bool
-		"""
+    @miscellaneous_menu.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def miscellaneous_menu(self, value):
+        """
+        Setter for **self.__miscellaneous_menu** attribute.
 
-		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
+        :param value: Attribute value.
+        :type value: QMenu
+        """
 
-		self.initializedUi = True
-		return True
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneous_menu"))
 
-	def uninitializeUi(self):
-		"""
-		Uninitializes the Component ui.
-		
-		:return: Method success.
-		:rtype: bool
-		"""
+    @miscellaneous_menu.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def miscellaneous_menu(self):
+        """
+        Deleter for **self.__miscellaneous_menu** attribute.
+        """
 
-		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneous_menu"))
 
-		self.initializedUi = False
-		return True
+    def activate(self, engine):
+        """
+        Activates the Component.
 
-	def addWidget(self):
-		"""
-		Adds the Component Widget to the engine.
+        :param engine: Engine to attach the Component to.
+        :type engine: QObject
+        :return: Method success.
+        :rtype: bool
+        """
 
-		:return: Method success.
-		:rtype: bool
-		"""
+        LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+        self.__ui_resources_directory = os.path.join(os.path.dirname(__file__), self.__ui_resources_directory)
+        self.__engine = engine
+        self.__miscellaneous_menu = self.__engine.toolBar.miscellaneous_menu
 
-		return True
+        self.__add_actions()
 
-	def removeWidget(self):
-		"""
-		Removes the Component Widget from the engine.
+        self.activated = True
+        return True
 
-		:return: Method success.
-		:rtype: bool
-		"""
+    def deactivate(self):
+        """
+        Deactivates the Component.
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+        :return: Method success.
+        :rtype: bool
+        """
 
-		return True
+        LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-	def __addActions(self):
-		"""
-		Sets Component actions.
-		"""
+        self.__remove_actions()
 
-		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
+        self.__ui_resources_directory = os.path.basename(self.__ui_resources_directory)
+        self.__engine = None
+        self.__miscellaneous_menu = None
 
-		self.__miscellaneousMenu.addAction(self.__engine.actionsManager.registerAction(
-		"Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName),
-																slot=self.__miscellaneousMenu_aboutAction__triggered))
+        self.activated = False
+        return True
 
-	def __removeActions(self):
-		"""
-		Removes actions.
-		"""
+    def initialize_ui(self):
+        """
+        Initializes the Component ui.
 
-		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
+        :return: Method success.
+        :rtype: bool
+        """
 
-		aboutAction = "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName)
-		self.__miscellaneousMenu.removeAction(self.__engine.actionsManager.getAction(aboutAction))
-		self.__engine.actionsManager.unregisterAction(aboutAction)
+        LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-	def __miscellaneousMenu_aboutAction__triggered(self, checked):
-		"""
-		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
+        self.initialized_ui = True
+        return True
 
-		:param checked: Action checked state.
-		:type checked: bool
-		:return: Method success.
-		:rtype: bool
-		"""
+    def uninitialize_ui(self):
+        """
+        Uninitializes the Component ui.
 
-		LOGGER.debug("> Initializing '{0}' window.".format("About"))
+        :return: Method success.
+        :rtype: bool
+        """
 
-		umbra.ui.common.setWindowDefaultIcon(self)
+        LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage),
-						Constants.version.replace(".", " . "),
-						os.path.join(self.__uiResourcesDirectory, self.__uiGpl3Image))
+        self.initialized_ui = False
+        return True
 
-		self.About_label.setText(aboutMessage)
+    def add_widget(self):
+        """
+        Adds the Component Widget to the engine.
 
-		self.show()
-		return True
+        :return: Method success.
+        :rtype: bool
+        """
+
+        LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+
+        return True
+
+    def remove_widget(self):
+        """
+        Removes the Component Widget from the engine.
+
+        :return: Method success.
+        :rtype: bool
+        """
+
+        LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+
+        return True
+
+    def __add_actions(self):
+        """
+        Sets Component actions.
+        """
+
+        LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
+
+        self.__miscellaneous_menu.addAction(self.__engine.actions_manager.register_action(
+            "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.application_name),
+            slot=self.__miscellaneous_menu_aboutAction__triggered))
+
+    def __remove_actions(self):
+        """
+        Removes actions.
+        """
+
+        LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
+
+        aboutAction = "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.application_name)
+        self.__miscellaneous_menu.removeAction(self.__engine.actions_manager.get_action(aboutAction))
+        self.__engine.actions_manager.unregister_action(aboutAction)
+
+    def __miscellaneous_menu_aboutAction__triggered(self, checked):
+        """
+        Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
+
+        :param checked: Action checked state.
+        :type checked: bool
+        :return: Method success.
+        :rtype: bool
+        """
+
+        LOGGER.debug("> Initializing '{0}' window.".format("About"))
+
+        umbra.ui.common.set_window_default_icon(self)
+
+        about_message = ABOUT_MESSAGE.format(os.path.join(self.__ui_resources_directory, self.__ui_logo_image),
+                                             Constants.version.replace(".", " . "),
+                                             os.path.join(self.__ui_resources_directory, self.__ui_gpl3_image))
+
+        self.About_label.setText(about_message)
+
+        self.show()
+        return True

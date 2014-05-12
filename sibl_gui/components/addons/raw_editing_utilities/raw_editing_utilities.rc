@@ -1,0 +1,13 @@
+[Component]
+Name = addons.raw_editing_utilities
+Title = Raw Editing Utilities
+Module = raw_editing_utilities
+Object = RawEditingUtilities
+Require = core.ibl_sets_outliner|core.inspector|core.templates_outliner|factory.components_manager_ui|factory.preferences_manager|factory.script_editor
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Raw Editing addon Component.

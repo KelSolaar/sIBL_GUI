@@ -1,0 +1,13 @@
+[Component]
+Name = addons.locations_browser
+Title = Locations Browser
+Module = locations_browser
+Object = LocationsBrowser
+Require = addons.loader_script|core.ibl_sets_outliner|core.inspector|core.templates_outliner|factory.components_manager_ui|factory.preferences_manager
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Locations Browser addon Component.

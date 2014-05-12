@@ -32,8 +32,8 @@ Changes
 -  Ensured **Softimage_Arnold_*** Templates compatibility with latest **SItoA** build.
 -  Ensured **notificationsManager** has a maximum number of displayed notifiers at same time.
 -  Ensured **foundations.parsers.SectionsFileParser.parse** method reads current file content if no content has been previously set.
--  Ensured that loggers and their formatters receive unicode data. 
--  Ensured directional light position is correct in **Maya_Arnold_Standard** and **Maya_Arnold_Dome_Light** templates.  
+-  Ensured that loggers and their formatters receive unicode data.
+-  Ensured directional light position is correct in **Maya_Arnold_Standard** and **Maya_Arnold_Dome_Light** templates.
 -  Removed **miCreateOtherOptionsNodesForURG** mel procedure call in **Maya_MR_Standard** Template.
 -  Removed dependency on **ordereddict** for Python versions that already include it.
 -  Moved **foundations.common.isBinaryFile** definition into **foundations.io** module.
@@ -80,12 +80,12 @@ Changes
 -  Improved various dialog button sizes.
 -  Darwin Os build should properly raise upon startup.
 -  Fixed exceptions raised by actions triggered in **Inspector** Component when no active Ibl Set is defined.
--  Fixed exception in **sIBLeditUtilities** Component when attempting to edit an Ibl Set and nothing is selected. 
+-  Fixed exception in **sIBLeditUtilities** Component when attempting to edit an Ibl Set and nothing is selected.
 -  Fixed exception in **Database Operations** Component raised while updating an Ibl Set file location.
--  Fixed **shutil.copytree** related exception in **Database** Component. 
+-  Fixed **shutil.copytree** related exception in **Database** Component.
 -  Fixed **AttributeError** exception in **Inspector** Component.
--  Fixed Qt related **RuntimeError** exception in **Preview** Component. 
--  Fixed exception in **Loader Script Options** Component when an attribute has undefined type. 
+-  Fixed Qt related **RuntimeError** exception in **Preview** Component.
+-  Fixed exception in **Loader Script Options** Component when an attribute has undefined type.
 -  Fixed Python 2.6.x related exception in **Inspector** Component.
 -  Fixed duplicated languages on Windows Os build.
 -  Handled **gaierror** exception in **Tcp Client** Component.
@@ -119,7 +119,7 @@ Changes
 | **Foundations** 2.0.5 - Stable - Milestone: https://github.com/KelSolaar/Foundations/issues?milestone=3&state=closed
 
 -  Fixed the encoding related issues preventing the application to work properly.
--  Fixed ui related exception in **Online Updater** component. 
+-  Fixed ui related exception in **Online Updater** component.
 -  Prevented exception in **TCP Server Ui** Component when requested address is not available.
 
 4.0.3 - Stable
@@ -162,7 +162,7 @@ Changes
 4.0.2 - Stable
 --------------
 
-I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer. 
+I would like to thanks **Jens Lindgren** for providing me a much needed stable PyQt installer.
 
 | **sIBL_GUI** 4.0.2 - Stable - Milestone: https://github.com/KelSolaar/sIBL_GUI/issues?milestone=3&state=closed
 | **Umbra** 1.0.1 - Beta - Milestone: https://github.com/KelSolaar/Umbra/issues?milestone=1&state=closed
@@ -195,7 +195,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 -  A new **Images Caches Operations** Component has been introduced to allow images caches operations.
 -  Dropped **NSIS** installer for **Actual Installer** ( http://www.actualinstaller.com/ ) on Windows Os.
 -  Double clicking an Ibl Set in the **Database Browser** Component now opens the **Inspect** layout.
--  Fixed a subtle memory leak related to a Python interpreter issue ( http://bugs.python.org/issue1469629 ), slightly reducing memory consumption. 
+-  Fixed a subtle memory leak related to a Python interpreter issue ( http://bugs.python.org/issue1469629 ), slightly reducing memory consumption.
 -  Fixed an exception in **Inspector** Component when a plate was selected and the view attempted to store the current nodes selection.
 -  Fixed an exception in **Inspector** Component when current Ibl Set preview image doesn't exists.
 
@@ -209,7 +209,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
 -  x64 is the default new **sIBL_GUI** architecture, there won't be anymore support for x86.
 -  **sIBL_GUI** 4.x.x preferences a now stored per version in **./HDRLabs/sIBL_GUI/$MAJOR_VERSION.$MINOR_VERSION** directory.
 -  A new **Inspect** layout has been implemented, it makes use of the new **PREVIEWfile** attribute of .ibl files and allows you to browse your Collections using large preview images.
--  A new **Edit** layout has been implemented, it features **Umbra** **Script Editor** Component and allows you to directly edit Ibl Sets or Templates files and interact with **sIBL_GUI**. 
+-  A new **Edit** layout has been implemented, it features **Umbra** **Script Editor** Component and allows you to directly edit Ibl Sets or Templates files and interact with **sIBL_GUI**.
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
 -  Major parts of the underlying architecture have been rewrote for better evolutivity and feature a cleaner code base.
 -  Startup speed has been dramaticaly increased (Non frozen application version is more than 4 times faster).
@@ -231,7 +231,7 @@ I would like to thanks **Jens Lindgren** for providing me a much needed stable P
    -  Sphinx documentation with chapters and API.
    -  Inline monolitic file for HDRLabs.com.
 -  A **defaultScript.py** file is provided to showcase a few high level API features.
--  Templates settings are now stored / restored in preferences folder for each Template release. 
+-  Templates settings are now stored / restored in preferences folder for each Template release.
 -  Most Maya Templates have been ported toward Python for better maintainability and performance.
 -  3dsMax and Softimage / XSI Templates have been refactored for better maintainability.
 -  Most Templates allows the user to define the prefix the setup will use for better customization.

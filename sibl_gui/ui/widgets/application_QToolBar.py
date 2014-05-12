@@ -5,43 +5,30 @@
 **application_QToolBar.py.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines the :class:`Application_QToolBar` class.
+    Defines the :class:`Application_QToolBar` class.
 
 **Others:**
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtGui import QPixmap
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
-import foundations.exceptions
 import foundations.guerilla
 import foundations.verbose
 import umbra.ui.widgets.application_QToolBar
-from umbra.globals.uiConstants import UiConstants
+from umbra.globals.ui_constants import UiConstants
 from umbra.ui.widgets.active_QLabel import Active_QLabel
 from umbra.ui.widgets.active_QLabelsCollection import Active_QLabelsCollection
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -51,163 +38,163 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "Application_QToolBar"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
+
 class Application_QToolBar(umbra.ui.widgets.application_QToolBar.Application_QToolBar):
-	"""
-	Defines defines the Application toolbar.
-	"""
+    """
+    Defines defines the Application toolbar.
+    """
 
-	__metaclass__ = foundations.guerilla.baseWarfare
+    __metaclass__ = foundations.guerilla.base_warfare
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
-	def __centralWidgetButton__clicked(self):
-		"""
-		Sets the **Central** Widget visibility.
-		"""
+    def __central_widgetButton__clicked(self):
+        """
+        Sets the **Central** Widget visibility.
+        """
 
-		LOGGER.debug("> Central Widget button clicked!")
+        LOGGER.debug("> Central Widget button clicked!")
 
-		if self.__container.centralWidget().isVisible():
-			self.__container.centralWidget().hide()
-		else:
-			self.__container.centralWidget().show()
+        if self.__container.centralWidget().isVisible():
+            self.__container.centralWidget().hide()
+        else:
+            self.__container.centralWidget().show()
 
-	def setToolBarChildrenWidgets(self):
-		"""
-		Sets the toolBar children widgets.
+    def set_toolbar_children_widgets(self):
+        """
+        Sets the toolBar children widgets.
 
-		:return: Method success.
-		:rtype: bool
-		"""
+        :return: Method success.
+        :rtype: bool
+        """
 
-		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
-		self.addWidget(self.getApplicationLogoLabel())
+        LOGGER.debug("> Adding 'Application_Logo_label' widget!")
+        self.addWidget(self.get_application_logo_label())
 
-		LOGGER.debug("> Adding 'Spacer_label' widget!")
-		self.addWidget(self.getSpacerLabel())
+        LOGGER.debug("> Adding 'Spacer_label' widget!")
+        self.addWidget(self.get_spacer_label())
 
-		LOGGER.debug("> Adding 'Library_activeLabel', \
-					'Inspect_activeLabel', \
-					'Export_activeLabel', \
-					'Edit_activeLabel', \
-					'Preferences_activeLabel' \
-					widgets!")
-		for layoutActiveLabel in self.getLayoutsActiveLabels():
-			self.addWidget(layoutActiveLabel)
+        LOGGER.debug("> Adding 'Library_active_label', \
+                    'Inspect_active_label', \
+                    'Export_active_label', \
+                    'Edit_active_label', \
+                    'Preferences_active_label' \
+                    widgets!")
+        for layout_active_label in self.get_layouts_active_labels():
+            self.addWidget(layout_active_label)
 
-		LOGGER.debug("> Adding 'Central_Widget_activeLabel' widget!")
-		self.addWidget(self.getCentralWidgetActiveLabel())
+        LOGGER.debug("> Adding 'Central_Widget_active_label' widget!")
+        self.addWidget(self.get_central_widget_active_label())
 
-		LOGGER.debug("> Adding 'Custom_Layouts_activeLabel' widget!")
-		self.addWidget(self.getCustomLayoutsActiveLabel())
+        LOGGER.debug("> Adding 'Custom_Layouts_active_label' widget!")
+        self.addWidget(self.get_custom_layouts_active_label())
 
-		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
-		self.addWidget(self.getMiscellaneousActiveLabel())
-		self.extendMiscellaneousActiveLabel()
+        LOGGER.debug("> Adding 'Miscellaneous_active_label' widget!")
+        self.addWidget(self.get_miscellaneous_active_label())
+        self.extend_miscellaneous_active_label()
 
-		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
-		self.addWidget(self.getClosureSpacerLabel())
+        LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
+        self.addWidget(self.get_closure_spacer_label())
 
-		return True
+        return True
 
-	def getLayoutsActiveLabels(self):
-		"""
-		Returns the layouts **Active_QLabel** widgets.
+    def get_layouts_active_labels(self):
+        """
+        Returns the layouts **Active_QLabel** widgets.
 
-		:return: Layouts active labels.
-		:rtype: list
-		"""
+        :return: Layouts active labels.
+        :rtype: list
+        """
 
-		self.__layoutsActiveLabelsCollection = Active_QLabelsCollection(self)
+        self.__layouts_active_labels_collection = Active_QLabelsCollection(self)
 
-		self.__layoutsActiveLabelsCollection.addActiveLabel(self.getLayoutActiveLabel((UiConstants.libraryIcon,
-																					UiConstants.libraryHoverIcon,
-																					UiConstants.libraryActiveIcon),
-																					"Library_activeLabel",
-																					"Library",
-																					"setsCentric",
-																					Qt.Key_6))
+        self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.library_icon,
+                                                                                               UiConstants.library_hover_icon,
+                                                                                               UiConstants.library_active_icon),
+                                                                                              "Library_active_label",
+                                                                                              "Library",
+                                                                                              "sets_centric",
+                                                                                              Qt.Key_6))
 
-		self.__layoutsActiveLabelsCollection.addActiveLabel(self.getLayoutActiveLabel((UiConstants.inspectIcon,
-																					UiConstants.inspectHoverIcon,
-																					UiConstants.inspectActiveIcon),
-																					"Inspect_activeLabel",
-																					"Inspect",
-																					"inspectCentric",
-																					Qt.Key_7))
+        self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.inspect_icon,
+                                                                                               UiConstants.inspect_hover_icon,
+                                                                                               UiConstants.inspect_active_icon),
+                                                                                              "Inspect_active_label",
+                                                                                              "Inspect",
+                                                                                              "inspect_centric",
+                                                                                              Qt.Key_7))
 
-		self.__layoutsActiveLabelsCollection.addActiveLabel(self.getLayoutActiveLabel((UiConstants.exportIcon,
-																					UiConstants.exportHoverIcon,
-																					UiConstants.exportActiveIcon),
-																					"Export_activeLabel",
-																					"Export",
-																					"templatesCentric",
-																					Qt.Key_8))
+        self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.export_icon,
+                                                                                               UiConstants.export_hover_icon,
+                                                                                               UiConstants.export_active_icon),
+                                                                                              "Export_active_label",
+                                                                                              "Export",
+                                                                                              "templates_centric",
+                                                                                              Qt.Key_8))
 
-		self.__layoutsActiveLabelsCollection.addActiveLabel(self.getLayoutActiveLabel((UiConstants.editIcon,
-																					UiConstants.editHoverIcon,
-																					UiConstants.editActiveIcon),
-																					"Edit_activeLabel",
-																					"Edit",
-																					"editCentric",
-																					Qt.Key_9))
+        self.__layouts_active_labels_collection.add_active_label(self.get_layout_active_label((UiConstants.edit_icon,
+                                                                                               UiConstants.edit_hover_icon,
+                                                                                               UiConstants.edit_active_icon),
+                                                                                              "Edit_active_label",
+                                                                                              "Edit",
+                                                                                              "edit_centric",
+                                                                                              Qt.Key_9))
 
-		self.__layoutsActiveLabelsCollection.addActiveLabel(self.getLayoutActiveLabel((UiConstants.preferencesIcon,
-																					UiConstants.preferencesHoverIcon,
-																					UiConstants.preferencesActiveIcon),
-																					"Preferences_activeLabel",
-																					"Preferences",
-																					"preferencesCentric",
-																					Qt.Key_0))
-		return self.__layoutsActiveLabelsCollection.activeLabels
-	def getCentralWidgetActiveLabel(self):
-		"""
-		Provides the default **Central_Widget_activeLabel** widget.
+        self.__layouts_active_labels_collection.add_active_label(
+            self.get_layout_active_label((UiConstants.preferences_icon,
+                                          UiConstants.preferences_hover_icon,
+                                          UiConstants.preferences_active_icon),
+                                         "Preferences_active_label",
+                                         "Preferences",
+                                         "preferences_centric",
+                                         Qt.Key_0))
+        return self.__layouts_active_labels_collection.active_labels
 
-		:return: Central Widget active label.
-		:rtype: Active_QLabel
-		"""
+    def get_central_widget_active_label(self):
+        """
+        Provides the default **Central_Widget_active_label** widget.
 
-		centralWidgetButton = Active_QLabel(self,
-											QPixmap(umbra.ui.common.getResourcePath(UiConstants.centralWidgetIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(UiConstants.centralWidgetHoverIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(UiConstants.centralWidgetActiveIcon)))
-		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
+        :return: Central Widget active label.
+        :rtype: Active_QLabel
+        """
 
-		# Signals / Slots.
-		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
-		return centralWidgetButton
+        central_widget_button = Active_QLabel(self,
+                                              QPixmap(
+                                                  umbra.ui.common.get_resource_path(UiConstants.central_widget_icon)),
+                                              QPixmap(umbra.ui.common.get_resource_path(
+                                                  UiConstants.central_widget_hover_icon)),
+                                              QPixmap(umbra.ui.common.get_resource_path(
+                                                  UiConstants.central_widget_active_icon)))
+        central_widget_button.setObjectName("Central_Widget_active_label")
 
-	def extendMiscellaneousActiveLabel(self):
-		"""
-		Extends the default **Miscellaneous_activeLabel** widget.
+        # Signals / Slots.
+        central_widget_button.clicked.connect(self.__central_widgetButton__clicked)
+        return central_widget_button
 
-		:return: Method success.
-		:rtype: bool
-		"""
+    def extend_miscellaneous_active_label(self):
+        """
+        Extends the default **Miscellaneous_active_label** widget.
 
-		self.miscellaneousMenu.addAction(self.__container.actionsManager.registerAction(
-		"Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
-		slot=self.__makeDonationDisplayMiscAction__triggered))
-		self.miscellaneousMenu.addSeparator()
-		return True
+        :return: Method success.
+        :rtype: bool
+        """
 
-	def __makeDonationDisplayMiscAction__triggered(self, checked):
-		"""
-		Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
+        self.miscellaneous_menu.addAction(self.__container.actions_manager.register_action(
+            "Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...",
+            slot=self.__make_donation_display_misc_action__triggered))
+        self.miscellaneous_menu.addSeparator()
+        return True
 
-		:param checked: Checked state.
-		:type checked: bool
-		:return: Method success.
-		:rtype: bool
-		"""
+    def __make_donation_display_misc_action__triggered(self, checked):
+        """
+        Defines the slot triggered by **'Actions|Umbra|ToolBar|Miscellaneous|Make A Donation ...'** action.
 
-		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.makeDonationFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.makeDonationFile)))
-		return True
+        :param checked: Checked state.
+        :type checked: bool
+        :return: Method success.
+        :rtype: bool
+        """
+
+        LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.make_donation_file))
+        QDesktopServices.openUrl(QUrl(QString(UiConstants.make_donation_file)))
+        return True

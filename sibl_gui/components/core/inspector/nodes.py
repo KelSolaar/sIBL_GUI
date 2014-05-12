@@ -5,36 +5,24 @@
 **nodes.py**
 
 **Platform:**
-	Windows, Linux, Mac Os X.
+    Windows, Linux, Mac Os X.
 
 **Description:**
-	Defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
-	Component Interface class nodes.
+    Defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+    Component Interface class nodes.
 
 **Others:**
 
 """
 
-#**********************************************************************************************************************
-#***	Future imports.
-#**********************************************************************************************************************
 from __future__ import unicode_literals
 
-#**********************************************************************************************************************
-#***	External imports.
-#**********************************************************************************************************************
 from PyQt4.QtCore import Qt
 
-#**********************************************************************************************************************
-#***	Internal imports.
-#**********************************************************************************************************************
 import foundations.exceptions
 import foundations.verbose
 import sibl_gui.ui.nodes
 
-#**********************************************************************************************************************
-#***	Module attributes.
-#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2014 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -44,160 +32,152 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "PlatesNode"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
-#**********************************************************************************************************************
-#***	Module classes and definitions.
-#**********************************************************************************************************************
+
 class PlatesNode(sibl_gui.ui.nodes.GraphModelNode):
-	"""
-	Defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
-		Component Interface class Model Plates node.
-	"""
+    """
+    Defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+        Component Interface class Model Plates node.
+    """
 
-	__family = "Plate"
-	"""
-	:param __family: Node family.
-	:type __family: unicode
-	"""
+    __family = "Plate"
+    """
+    :param __family: Node family.
+    :type __family: unicode
+    """
 
-	def __init__(self,
-				plate,
-				name=None,
-				parent=None,
-				children=None,
-				roles=None,
-				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-				iconSize=None,
-				iconPlaceholder=None,
-				**kwargs):
-		"""
-		Initializes the class.
+    def __init__(self,
+                 plate,
+                 name=None,
+                 parent=None,
+                 children=None,
+                 roles=None,
+                 node_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+                 icon_size=None,
+                 icon_placeholder=None,
+                 **kwargs):
+        """
+        Initializes the class.
 
-		:param plate: Plate object.
-		:type plate: Plate
-		:param name: Node name.
-		:type name: unicode
-		:param parent: Node parent.
-		:type parent: GraphModelNode
-		:param children: Children.
-		:type children: list
-		:param roles: Roles.
-		:type roles: dict
-		:param nodeFlags: Node flags.
-		:type nodeFlags: int
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		:param iconSize: Icon size.
-		:type iconSize: unicode
-		:param iconPlaceholder: Icon placeholder.
-		:type iconPlaceholder: QIcon
-		:param \*\*kwargs: Keywords arguments.
-		:type \*\*kwargs: \*\*
-		"""
+        :param plate: Plate object.
+        :type plate: Plate
+        :param name: Node name.
+        :type name: unicode
+        :param parent: Node parent.
+        :type parent: GraphModelNode
+        :param children: Children.
+        :type children: list
+        :param roles: Roles.
+        :type roles: dict
+        :param node_flags: Node flags.
+        :type node_flags: int
+        :param attributes_flags: Attributes flags.
+        :type attributes_flags: int
+        :param icon_size: Icon size.
+        :type icon_size: unicode
+        :param icon_placeholder: Icon placeholder.
+        :type icon_placeholder: QIcon
+        :param \*\*kwargs: Keywords arguments.
+        :type \*\*kwargs: \*\*
+        """
 
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+        LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.nodes.GraphModelNode.__init__(self,
-												name,
-												parent,
-												children,
-												roles,
-												nodeFlags,
-												iconSize,
-												iconPlaceholder,
-												**kwargs)
+        sibl_gui.ui.nodes.GraphModelNode.__init__(self,
+                                                  name,
+                                                  parent,
+                                                  children,
+                                                  roles,
+                                                  node_flags,
+                                                  icon_size,
+                                                  icon_placeholder,
+                                                  **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__plate = plate
+        # --- Setting class attributes. ---
+        self.__plate = plate
 
-		self.__toolTipText = """
-								<p><b>{0}</b></p>
-								"""
+        self.__tool_tip_text = """
+                                <p><b>{0}</b></p>
+                                """
 
-		PlatesNode.__initializeNode(self, attributesFlags)
+        PlatesNode.__initialize_node(self, attributes_flags)
 
-	#******************************************************************************************************************
-	#***	Attributes properties.
-	#******************************************************************************************************************
-	@property
-	def plate(self):
-		"""
-		Property for **self.__plate** attribute.
+    @property
+    def plate(self):
+        """
+        Property for **self.__plate** attribute.
 
-		:return: self.__plate.
-		:rtype: Plate
-		"""
+        :return: self.__plate.
+        :rtype: Plate
+        """
 
-		return self.__plate
+        return self.__plate
 
-	@plate.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def plate(self, value):
-		"""
-		Setter for **self.__plate** attribute.
+    @plate.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def plate(self, value):
+        """
+        Setter for **self.__plate** attribute.
 
-		:param value: Attribute value.
-		:type value: Plate
-		"""
+        :param value: Attribute value.
+        :type value: Plate
+        """
 
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
 
-	@plate.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def plate(self):
-		"""
-		Deleter for **self.__plate** attribute.
-		"""
+    @plate.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def plate(self):
+        """
+        Deleter for **self.__plate** attribute.
+        """
 
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
-	@property
-	def toolTipText(self):
-		"""
-		Property for **self.__toolTipText** attribute.
+    @property
+    def tool_tip_text(self):
+        """
+        Property for **self.__tool_tip_text** attribute.
 
-		:return: self.__toolTipText.
-		:rtype: unicode
-		"""
+        :return: self.__tool_tip_text.
+        :rtype: unicode
+        """
 
-		return self.__toolTipText
+        return self.__tool_tip_text
 
-	@toolTipText.setter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
-		"""
-		Setter for **self.__toolTipText** attribute.
+    @tool_tip_text.setter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def tool_tip_text(self, value):
+        """
+        Setter for **self.__tool_tip_text** attribute.
 
-		:param value: Attribute value.
-		:type value: unicode
-		"""
+        :param value: Attribute value.
+        :type value: unicode
+        """
 
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tool_tip_text"))
 
-	@toolTipText.deleter
-	@foundations.exceptions.handleExceptions(foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
-		"""
-		Deleter for **self.__toolTipText** attribute.
-		"""
+    @tool_tip_text.deleter
+    @foundations.exceptions.handle_exceptions(foundations.exceptions.ProgrammingError)
+    def tool_tip_text(self):
+        """
+        Deleter for **self.__tool_tip_text** attribute.
+        """
 
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+        raise foundations.exceptions.ProgrammingError(
+            "{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
-	#******************************************************************************************************************
-	#***	Class methods.
-	#******************************************************************************************************************
-	def __initializeNode(self, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
-		"""
-		Initializes the node.
-		
-		:param attributesFlags: Attributes flags.
-		:type attributesFlags: int
-		"""
+    def __initialize_node(self, attributes_flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)):
+        """
+        Initializes the node.
 
-		self.roles.update({Qt.ToolTipRole : self.__toolTipText.format(self.name)})
+        :param attributes_flags: Attributes flags.
+        :type attributes_flags: int
+        """
+
+        self.roles.update({Qt.ToolTipRole: self.__tool_tip_text.format(self.name)})
